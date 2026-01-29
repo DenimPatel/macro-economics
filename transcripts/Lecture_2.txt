@@ -1,0 +1,1497 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO J. CABALLERO:
+I expect that there
+will be many fun
+lectures in the sense
+that we're going to be
+discussing a little more exactly
+at the right time in
+which that issue is
+an important issue, at least
+as described in the newspapers.
+And, you know, we are going
+through a very interesting time
+for macroeconomics.
+Inflation is unusually high.
+Something needs to
+be done about that.
+And we still have problems
+on the supply side
+of the economy as
+a result of COVID,
+as a result of the slow
+reopening of China.
+And we have a war
+going on, which
+is affecting also
+the price of energy,
+and is particularly
+impacting Europe.
+And all these things, the
+situation is very fluid.
+All of them can
+change at any moment.
+And policymakers are, therefore,
+paying very close attention
+to all these things.
+It's not a normal time.
+If you're a policymaker,
+macroeconomist policymaker,
+you are not sleeping
+a lot these days.
+And so I expect that we
+will have plenty of time
+to discuss interesting
+things and analyze them
+at a slightly higher level
+than you can do at this moment.
+Now, I also told you
+in the introduction
+that this particular lecture is
+not going to be of that kind.
+It's going to be very
+boring in the sense
+that we need to start
+with definitions.
+And I don't know, who
+likes definitions?
+I don't.
+It's very boring.
+Now, there is an
+interesting, a curious side
+of the definitions
+we're going to discuss,
+which is that if you were
+taking 1401, microeconomics,
+many of the concepts
+we're going to describe
+require no definition.
+They're obvious.
+I mean, if I ask for an output
+of a factory that produces cars,
+it's pretty obvious that
+it's a number of cars.
+If I ask you for the
+prices of those cars,
+it's pretty obvious what
+the price of a car is.
+Not so for macro,
+because if I ask you
+what is the output of
+the US economy, well,
+there's millions of
+goods and services
+are produced at the same time.
+So what do we mean by output,
+a single measure of output?
+Or if I ask you about the
+price level or the inflation,
+the rate at which that
+price level is changing.
+Well, what are we talking about?
+It's very easy to see whether
+the price of a car is going up.
+But if we're mixing sort of
+millions of different goods
+and services, then
+it's a little harder.
+And that's the reason
+we need this lecture,
+because it's a little
+harder than 1401
+and we need to
+define basic things.
+But they have a
+trick because you're
+summing apples and oranges--
+not only apples and
+oranges, apples, oranges,
+health services,
+financial services,
+all of them in one piece.
+And so it's a little trickier.
+And that's the reason we
+need this boring lecture.
+We need to go through that
+slightly trickier definition
+of output prices and so on.
+So let me start with
+the most basic thing--
+aggregate output.
+At the end of the day when
+the economy is in a recession
+or not, and so we don't
+like it or we do like,
+it depends on what is
+happening to output.
+Is output growing at the
+pace it used to grow?
+Or is it growing less
+or it's declining?
+Well, that's very
+important for macro
+and to understand the
+health of an economy,
+the macroeconomic
+health of an economy.
+But we need to start by
+defining what we mean by output.
+And because it's a
+tricky thing to do
+when you're adding so
+many apples, oranges,
+financial services,
+entertainment,
+and lots of things that
+are very different,
+we didn't have a good
+way of doing that.
+In fact, the National accounts
+as we know them in the US is
+something that we have since
+the post-war period in the late
+'40s that we developed the
+techniques, the approach,
+to come up with a measure
+of aggregate output.
+Before that, we had
+measures, proxies.
+Industrial production
+is very high,
+meaning we're producing lots
+of cars, stuff like that.
+But something systematic
+like we have today
+is a pretty recent thing.
+OK we call that NIPA--
+the National Income
+and Product Account.
+Income and product--
+that's going
+to be very important for macro,
+as you'll see in a minute.
+So the main measure
+of aggregate output
+is what we call gross domestic
+product, or simply, GDP.
+You hear GDP, that means
+output of an economy.
+Why is gross and not net?
+You're not going to worry
+about that in this course.
+But that's it.
+You hear GDP, most macroeconomic
+wouldn't say output.
+They would say GDP.
+It's very short.
+It's efficient, and so on.
+Well, that's what it means,
+is the output of an economy.
+But how do we define It?
+As I said before,
+it's much harder
+than when you have
+an individual good.
+By the way, I will be, most
+of the time, I will say goods.
+But really it's
+goods and services.
+But it's very long to
+say goods and services.
+So whenever I say goods, I'm not
+trying to play any trick on you.
+I really mean
+goods and services.
+I just be lazy.
+And most people
+are lazy that way.
+Now, what is the difference
+between goods and services?
+You're not going to worry
+a lot about that in this.
+You're not going to worry at
+all about that in this course.
+But just to get a sense, goods
+are things that are tangible.
+Services are things that
+are not that tangible.
+They're benefits that you
+receive from the tasks
+that someone else
+operates on you.
+So you go to the Medical Center.
+You don't come up with a
+piece of a machine to--
+well, they may
+lend you something.
+But you don't come
+out with an objective.
+You come out with a service
+provided by a doctor to you.
+And the same happens
+if you go to a bank.
+You don't come with
+an ATM with you.
+But you come up
+with is the service
+of having done a
+transaction or deposit
+or gotten a mortgage
+or something like that.
+It's a service.
+If you go to a restaurant,
+again, you don't--
+what you have is an experience.
+It's people provided
+an experience to you.
+Things are a little tricky
+because if you do a take out,
+well, it's not an experience,
+or it's really the good.
+So, if you get into those
+details, which we're not going
+to get, it gets to be tricky.
+But just to get a sense, on
+average, a consumer in the US,
+2/3 of the consumption is
+in services, not in goods.
+It's not the bananas
+and so on that you buy.
+It's a lot of the financial
+services, health services,
+and entertainment, and
+things like that, traveling.
+That's where you spend
+most of your time.
+Having clarified that,
+you can forget that.
+From now on, I'm
+going to say goods.
+So occasionally I may
+say goods and services.
+But I always mean the same.
+OK, good.
+So how do we measure
+these things?
+Well, there are different
+ways of doing this.
+Something happened
+to my slide there.
+OK, there we are.
+And so suppose that you have
+an economy that is very simple.
+I don't need to tell you
+how simple this economy is.
+It has just two firms.
+Suppose that we have an
+economy that is very simple.
+It has two firms.
+One firm produces a steel and
+the other one produces cars.
+And the company
+that produces cars
+buys all the steel
+from the company.
+You, as a consumer,
+don't buy steel directly.
+The car company buys the steel.
+It uses to produce a car.
+And you buy the car.
+So that's our simple economy.
+And those are the accounts
+of the simple economy.
+So there you have a company.
+One has a revenue from sales.
+It sells 100.
+So price of steel
+times steel is 100.
+The second company buys steel,
+uses workers, and sells 200.
+So the question I asked
+you, the first question I
+asked you here is, well, what
+is the GDP of this economy?
+Here you have an economy
+that has two goods.
+Needless to say, a real economy
+is a lot more complicated
+than this.
+But you have two companies.
+And I asked you, what is GDP?
+So the obvious things that you
+can come up with is, well, I
+sum all the revenues.
+OK, so that's the obvious one.
+The total GDP of these
+economies is 300.
+That's a sensible answer.
+At least at this
+moment, I would accept
+that as a sensible answer.
+In the quiz, I wouldn't.
+But here it's a sensible answer.
+I mean, well, you
+ask me for what
+is the total output
+of that economy.
+I sum up all the
+revenues and sales.
+And that's 300.
+OK, so is it 300, or is it 200?
+I mean, that's another--
+it says, well, look, only
+the final goods perhaps
+should count because, you
+know, this is the only thing
+that you, as a consumer, will
+ever see is this part, not that.
+Those are two sensible answers.
+And what I'll show you
+in three different ways
+is that the right answer is
+200 for that economy, not 300.
+The right answer is 200.
+So method one-- and all
+these methods are used,
+and they used to check
+each other to compute GDP.
+So method one is what I
+said here is final goods.
+You said GDP is the
+value of the final goods
+and services produced
+in the economy
+during a given period of time.
+Notice that GDP is
+a concept of a flow.
+It's something you
+produce in a year.
+That's the reason you say GDP of
+the US in 2022 was $23 trillion.
+It's in a year.
+It's a period of time.
+So that's one definition.
+And one way of making
+sense of this definition
+is imagine that I give you the
+same economy with the same two
+factories.
+And now all of a
+sudden I tell you,
+you know what, I'm going
+to merge the two companies.
+So company, the car company will
+buy the steel mill, or whatever.
+Well, if I now put together
+those two accounts,
+now, I never see the
+steel because that's all
+happening inside the factory.
+And it's still the
+case that the economy
+would be producing 200 cars.
+And all that you
+would see is 200,
+because I would put
+this thing together.
+There was a steel that this
+company had purchased from that,
+but now it's all inside.
+So if I put them
+together, then that steel
+there doesn't appear because
+it's all produced in-house.
+And now GDP would be 200.
+Well, it makes no sense
+that just because I change
+the ownership structure of the
+company, that your GDP changes,
+collapses from 300 to 200.
+If I'm only measuring
+final goods,
+though, I don't
+have that problem.
+It's still 200.
+Doesn't matter that I have
+the merge lies, and lies in 20
+or whatever.
+So that tells you that
+we're going the right way
+here because it's a
+very robust answer.
+That is, you don't count
+the intermediate output.
+You only count the
+final goods, which
+are the things that
+the consumer will buy,
+the firms will buy
+for investment,
+and things of that kind--
+that foreigners will buy.
+Alternative method
+is GDP is the sum
+of value added in the economy
+during a given period of time.
+What is value added?
+The difference between
+the final goods
+produced by a company and
+the intermediate inputs
+it purchased to
+produce those goods.
+OK, so what is the value added
+of the steel company here?
+The answer is there.
+But what is the value of it?
+It's 100.
+How do I know it's 100?
+Well, because it's not
+buying any intermediate input
+and the revenue is 100.
+So that's the reason
+I get 100 there.
+OK, 100.
+There is no intermediate inputs.
+What is the value added
+of the car company?
+Well, the revenue
+on sales is 200.
+But it purchased 100
+intermediate inputs.
+So the value added
+is 200 minus 100.
+The value added of
+this company is 100.
+100 plus 100, I
+get my 200 again.
+Yeah.
+AUDIENCE: Would we consider the
+wages to be intermediate good?
+RICARDO J. CABALLERO: No.
+Those are not goods.
+Those are factors of production.
+Their machines in that
+factory that are helping you
+produce things, that's a
+service of the machine.
+It's capital.
+That's not an
+intermediate input.
+An intermediate input is
+another good or service
+that you buy for the purpose
+of producing that good.
+So workers, no.
+The workers are working
+inside your company and so on.
+If the work was
+produced, was outsourced
+and you had another company
+that produces something
+that you use from
+those workers, that
+would be an intermediate input.
+But you would have to count the
+value added of the companies you
+have outsourced to.
+So that's method two.
+And you see we get exactly 200.
+Those two methods are
+called production methods.
+There are different
+ways of measuring
+the production of the economy.
+The third method,
+and the last one,
+is an income
+method, which means,
+look, all that is produced
+has to be earned by someone--
+the workers, the
+owners of capital.
+Somebody has to own that.
+If the firms sell
+collectively $200, those $200
+have to be allocated to someone.
+Someone means
+workers, the owners
+of capital of the firms,
+or in realistic economies,
+the government.
+You pay taxes and
+things of that kind.
+OK, we're not going to
+worry about the government
+for a while.
+So that's an alternative
+method, is method three.
+You just sum the incomes.
+So who are the
+factors of production
+here related to your question?
+In this, there is no
+government here, no taxes.
+So we have only workers and
+profits and the capital,
+the owners of the company.
+Wages is 80 plus 70, is 150.
+Profits is 20 plus 30, 50.
+150 in wages plus 15 profit
+gives you back your 200.
+OK, so those are the three ways
+we have of measuring things.
+And you see, they give you
+exactly the same result. Now,
+there is something, as I
+say, from the construction
+of national accounts, there is
+something interesting in what
+I just said, which is,
+look, that production
+is the same as income.
+That's going to be very
+important for macro--
+very important for macro.
+And it's totally
+unimportant for micro.
+When you're looking at a
+company, for example, in micro,
+and you're looking at a
+car company by itself,
+it is true that the
+output of that company
+becomes income, part for
+the owners of the company
+and part for the workers.
+But that income needs
+not be spent in cars.
+Can be spent in food and
+entertainment and whatever.
+Not so in macro.
+Because what else are
+you going to spend
+it to than in the same
+good that you're producing
+in the aggregate good?
+So it's very interesting.
+That's a very distinctive
+feature of macro
+that is not present in
+micro, is that the income has
+to be spent in the same goods.
+If the economy is
+closed, later on,
+we're going to open the economy
+to the rest of the world.
+And then you buy some Chinese
+goods and blah blah, blah.
+But if you keep it close, hey,
+you are not going to buy cars.
+That's what you work on.
+But you're going
+to have to buy it
+in the single good
+of the economy, which
+is a sum of all the goods
+that we consume in average.
+That's going to
+be very important.
+Anyways, this time this stuff
+moving in the right direction.
+OK, so that's, that.
+Now you know what GDP is and
+the different ways of measuring.
+You're going to have to
+remember that for p set one
+and for quiz 1.
+And you might as well
+forget it for the future.
+It's good that you
+understand the concept,
+but it's different
+ways of constructing
+that's not important.
+Second thing we
+need to worry about
+is that whenever you're thinking
+about the output of an economy,
+you're really trying to
+think about the real output,
+meaning the number of cars and
+number of machines and so on.
+But you have
+inflation, for example.
+Then the prices of these
+things are growing.
+And so the total revenue
+on sales is growing.
+But they don't mean the same.
+And we want to certainly
+separate these two things.
+And for that reason,
+we have a concept
+which is called nominal
+GDP and another one
+which is called real GDP.
+Nominal GDP is the
+simplest thing on Earth.
+It's essentially we have only
+one final goods company there
+which was carved out.
+Imagine you have
+cars, refrigerators,
+many, many things.
+Nominal GDP is simply the
+sum of the final goods
+and you multiply them
+by the current price.
+And that gives you the
+dollar GDP that you have.
+I don't know what it
+is in the US today.
+You could check it, but it's $24
+trillion or something like that.
+So that's it.
+P times Q, prices
+times quantity.
+And you sum across all
+the final goods, as we do.
+That's one way of
+calculating things.
+That's nominal GDP.
+But again, what we
+really care about is
+we're going to care
+a lot about later on
+is how that economy
+is doing over time.
+Is it growing?
+Is it not growing?
+Nominal GDP can grow for
+two different reasons.
+It can grow because
+the economy is really
+becoming more productive.
+It's producing more goods, or
+because prices are going up.
+Now, at this moment, nominal GDP
+is growing very fast in the US,
+despite the fact that we may
+have a recession this year.
+We don't know.
+But nobody has any doubt that
+nominal GDP will grow because we
+have lots of inflation.
+And so you want to
+separate these two things.
+And the thing that removes
+the inflation component
+is what we call real GDP.
+And real GDP is you
+hear the word only GDP.
+And that was produced by
+somebody who understand
+what he's talking about.
+GDP really means real GDP.
+Just hear GDP, people
+are trying to say
+the output of the economy.
+Well, that's real GDP.
+And the real GDP is computed--
+many tricks.
+But essentially what you
+do is you also sum across
+all the goods.
+You also sum across the goods,
+but you use constant prices, not
+the prices of that point
+in time necessarily.
+So I'm going to give you
+a very concrete example.
+But before doing
+that, for this course,
+we're going to call nominal
+GDP and all nominal variables
+are going to have.
+That's what the textbook does.
+They're going to have
+a dollar sign in front.
+So that's nominal GDP.
+GDP is going to be y
+without the dollar.
+That's real GDP.
+For the first part of the
+course up to quiz one,
+we're going to worry very
+little about nominal things
+because we're going to have
+prices completely fixed.
+But you still need
+to know the concept.
+And that's real GDP.
+So now let me give
+you an example.
+So suppose you have this, this
+simple economy we had before.
+We're just going to
+look at final goods
+because as we need to
+look at to construct GDP.
+And so this economy produces
+cars, and supposedly produces
+10 cars in 2011, 12 cars in
+2012, and 13 cars in 2013.
+But suppose the price of a car
+is what you see there, 20,000,
+24,000, and 26,000.
+Nominal GDP is simply the
+product of this times that.
+That gives you $200,000.
+12 cars times $35,000
+gives you 288 and so on.
+That's nominal GDP.
+Real GDP, you have to pick
+which price you want to use.
+But only use one.
+And don't vary it over time.
+So in this particular
+case we picked 2012.
+So that means when you say GDP,
+real GDP at 2012, base 2012,
+were 2012 prices, means you're
+using the prices of 2012.
+You don't vary that.
+You let quantities
+change over time.
+But the prices remain fixed.
+So in this case, real GDP at
+2012 is, 10 cars times 25,000.
+That gives you 240,000.
+12 cars times 24,000, 288.
+This is interesting.
+For this year, nominal GDP
+is the same as real GDP.
+Why is that?
+An accident?
+AUDIENCE: Because you used the
+base year as the [INAUDIBLE]
+RICARDO J. CABALLERO: Exactly.
+We're using that as a base year.
+So nominal GDP will always
+be equal to real GDP
+at the base year.
+That's the year we're
+picking as the base
+because those are the
+prices we're using.
+I got about 2013.
+Well, is not 26,000 times 13.
+Is 24,000 times 13.
+So we get 312.
+And it's obvious
+here that real GDP is
+growing less than nominal GDP.
+Why is that?
+Well, because this
+economy has inflation.
+Prices are rising
+over time and we
+want to remove that when we
+look at the real concept.
+The real concept removes
+the price effect.
+There are times
+in which you don't
+want to remove all
+that price effect.
+And it happens a lot, for
+example, in computers.
+Because sometimes the increase
+in the price of the computer
+is simply because the
+computer is better
+and you want to correct
+for quality and so on.
+But again, that's not
+something you need
+to worry about in this course.
+Maybe some of you
+are deciding the pace
+at which you want me to move.
+I'm really puzzled
+by this stuff.
+This is from the book.
+And you see what happened in the
+US, with nominal and real GDP,
+with base year 2012.
+So as I said before,
+these two curves,
+one is nominal
+GDP, the red line.
+The blue line is real GDP.
+We're using base year 2012.
+So at that point, they
+have to be the same.
+And what you see
+very clearly there
+is that the blue line, real GDP,
+is flatter than the red line.
+Why is that?
+Why is the-- yeah.
+AUDIENCE: Real GDP before was
+lower beacuse [INAUDIBLE] GDP--
+I mean this particular market
+probably [INAUDIBLE] inflation.
+RICARDO J. CABALLERO:
+This inflation.
+By the way, I do have
+a reference for you.
+So ask me after the--
+OK, good.
+And anyway, so yeah, in the
+US, between 1960 and 2018,
+nominal GDP increased by a
+factor of 38, while real GDP
+by a factor of 5.7.
+Big difference.
+So you better be
+careful when you
+look at GDP that you are
+removing inflation, especially--
+I mean, if you were
+to look in Argentina,
+these guys have had a
+recession, a chronic recession
+for a long time, big recession.
+But nominal GDP is exploding
+because they have 10,000%
+inflation.
+So it makes a big difference,
+especially over time.
+This is just so you get the
+picture, the complete picture
+for the US.
+This is GDP growth in the US
+since we have national accounts.
+And some noticeable things--
+well, again, recessions.
+This was a big recession.
+Remember, we call this the
+Great Recession, big recession.
+And this is COVID.
+And then this is 2020.
+And then they bounce back in
+2021 when we reopen the economy.
+Big growth.
+But that's very anomalous.
+I mean, it was a
+very weird shock.
+But see, these are all the
+shaded areas are recessions.
+Recessions are defined as
+slightly more complicated way
+than that.
+But one sort of popular
+way of describing recession
+is as an episode where you
+have two consecutive quarters
+of negative inflation.
+That's not the formal
+definition of a recession,
+but it's pretty close.
+And so that's what
+you have there.
+Another concept is
+unemployment rate--
+the unemployment rate.
+So that's GDP.
+And in the first
+part of the course,
+we want to worry
+a lot about that.
+We're going to build a model
+on how to find equilibrium GDP.
+And we're going to see what
+happens with fiscal policy,
+with monetary policy,
+how does equilibrium
+GDP, macroeconomic
+output, changes
+with different forms of
+policies or when consumers
+get scared or stuff like that.
+What about the
+unemployment rate?
+The unemployment
+rate is not something
+we want to worry a lot
+about until the second part
+of the course, after quiz 1.
+But still, I want to get it
+over with these definitions.
+So what is employment?
+It's a number of
+people who have a job.
+That's easy.
+Unemployment is slightly less
+easy because it's first of all,
+obviously to be unemployed,
+you cannot have a job.
+But it's not enough that
+you don't have a job.
+An unemployed person is
+somebody that doesn't have a job
+and is looking for one.
+And not all unemployed
+people look for a job.
+Not all non-employed people
+are looking for jobs.
+So to be unemployed, you
+need to not have a job
+and be looking for one.
+The labor force, what
+we call the labor force,
+is the sum of those two groups,
+the employed and the unemployed
+that would like to get a job.
+The unemployment rate,
+which is something
+I showed you in the
+previous lecture,
+is just a ratio of these
+two concepts, the unemployed
+over the labor force.
+Notice, over the labor force,
+not population, the labor force,
+which is the sum
+of the employed,
+and those that are unemployed
+that do not have a job
+and are looking for a job.
+And how is unemployment
+measured in the US?
+It's mostly a survey.
+And I have the info there.
+It's called the CPS, the
+Current Population Survey that
+consults lots of households.
+And they ask them about
+the employment status,
+whether they have been looking
+for a job over the last two
+weeks or not and so on.
+And that's the way we
+come up with the number.
+As I said before, those
+that do not have a job
+but are not looking
+for a job, they
+haven't been looking for a
+job in the last two weeks,
+are called not in
+the labor force.
+That's what we say.
+Now, these concepts are
+between unemployed and not
+in the labor force
+is not that clear.
+We look at the
+unemployment rate.
+But we also tend to
+look at those people,
+as well, because many people
+are simply discouraged.
+They would like to
+get a job, but they
+have been looking for a while
+and they haven't found it.
+And it happens that there is
+a lot more discouraged workers
+during recessions.
+And you're having
+a big recession.
+It's very difficult
+to find a job.
+So it's very easy
+to get discouraged.
+And so that's the reason we
+look at broader measures of non
+employment than the
+typical unemployment rate,
+because a lot of those--
+not in the labor force.
+People do not have a job and
+are not looking for a job,
+are really discouraged.
+They just gave up after a while.
+The participation
+rate-- and that's
+a very important concept--
+is something you would
+have ignored most of the time.
+It's very critical
+at this moment.
+The participation
+rate is the ratio
+of the labor force to the total
+population of working age.
+And you exclude people in
+prison and stuff like that.
+But so it's labor
+force, which is
+the sum of the employed
+and unemployed,
+divided by those that
+could work in principle.
+And that's what we call
+the participation rate.
+How do these numbers look?
+I showed you this picture
+in the previous lecture.
+And that's the
+unemployment rate.
+It skyrocketed during COVID,
+but it has declined enormously.
+And as I said in the
+previous lecture,
+a big issue is that
+the unemployment rate
+today is extremely low.
+We haven't seen levels like
+this since the early '60s.
+Unemployment rate today
+is at record low levels.
+And that's a problem.
+Sounds wonderful.
+But it's also a problem because
+we have an inflation problem.
+And those two things
+are connected,
+as you will learn
+later on in the course.
+But that's what
+we have right now.
+That's the unemployment rate.
+Now, the reason that
+employment rate is so low,
+there are two reasons, really.
+One is that there was lots of
+stimulus policy, fiscal policy,
+monetary policy.
+So aggregate demand
+and consumers
+were fed up with being locked
+out of restaurants and trips
+and so on for two years,
+decided to travel and so on.
+And they had lots of savings.
+The US consumer accumulated
+excess savings of $2.7 trillion.
+And now they're
+spending the stuff.
+China, a big reason why
+people expect a big bounce
+back is because they
+also had a lot of savings
+because they were locked
+up for quite some time.
+So as a result of that, there
+is lots of demand for goods.
+And as we learn in
+the next lecture,
+that means lots of
+output, as well.
+But the second reason
+is the following.
+It's the participation rate.
+People haven't come back
+to work in the magnitude
+that we expected.
+So that's the participation
+rate in the US.
+Remember, the participation rate
+is labor force over all those
+that could work, in principle.
+What do you think is this?
+Look at the participation rate
+used to be in the '60s, below
+'60s.
+And then there was a big
+rise in the participation
+rate in the US.
+What do you think
+is this due to?
+AUDIENCE: Women
+joining the workforce.
+RICARDO J. CABALLERO: Women
+joining the workforce.
+That's what it did.
+OK, that's that.
+Since then, since this woman
+did all that they had to do,
+we have been declining.
+And that's an issue.
+But look at what happened here.
+Lots of people exit the
+labor force during COVID.
+I mean, you know, they had
+to take care of the kids
+and/or the elderly.
+And so people withdrew
+from the labor force.
+They didn't want a job.
+It was also discouraging.
+It was very difficult
+to get a job.
+I mean, you work
+in a restaurant.
+It was impossible to get
+a job in a restaurant.
+But everyone expected this to
+recover to the previous level
+and it hasn't.
+So you see that the
+participation rate has not come
+back to the levels pre-COVID.
+It's substantially below.
+And that's one of
+the reasons, you
+know, that restaurants complain
+that they don't have workers
+and so on and so forth, is that
+many people haven't come back
+to the labor force.
+We thought this was
+going to be temporary.
+Now, there is a concern that a
+lot of that is really permanent.
+People that decided that life at
+home wasn't that bad after all.
+Less income, but they spend more
+time with the kids or whatever.
+And that's an issue.
+And that's a big reason behind
+the low unemployment rate.
+And the fact that we
+have all this inflation
+has to do with everyone.
+In particular, the Fed
+miscalculated the bounce back
+of the participation rate.
+So as I said before,
+we're not going
+to look at labor market
+issues until the second part
+of the course, after quiz one.
+And the same is for inflation.
+We're not going to look
+at inflation issues
+until the second part of the
+course because to connect them,
+I mean, they are connected.
+And we're not going to
+look at labor markets
+until sort of eight
+lectures from now or so.
+But this is an important
+variable and certainly something
+you're facing every single
+day in the newspapers
+and so on-- the inflation rate.
+So by inflation, when
+you hear inflation,
+that typically means
+the sustained rise
+in the general level of prices.
+So it's not that
+the price of cars
+went up relative to the price
+of hotels, or now down relative
+to the price of hotels.
+It's that on average,
+prices are rising.
+That's what we
+call an inflation.
+We're going to call
+the price level BT.
+And there are many different
+price levels, as you see.
+So the inflation rate, when
+you hear the inflation rate,
+is the rate of change
+of that price level.
+An episode of
+deflation, the opposite
+of what we're
+experiencing now, where
+we're experiencing inflation,
+is when that inflation rate
+is negative.
+Japan most prominently has
+experienced something like that
+not now, but experienced it for
+on and off for the last three
+decades or so.
+And so what is the price level?
+There are many ways
+of defining it.
+And there are many
+different price levels.
+A very popular one is what
+is called the GDP deflator,
+and it's the one you see.
+It's never mentioned
+in the newspapers.
+But we economists tend
+to look at the deflator.
+The deflator is nothing else
+than the ratio of nominal GDP
+to real GDP.
+Another one is far more popular
+and more relevant for you as
+consumers, is what we call
+the consumer price index.
+That's the CPI.
+The CPI, that's what it is.
+So you calculate the rate
+of inflation from the CPI.
+You calculate the same way.
+But you use a CPI there
+instead of the GDP deflator.
+Now, it turns out that--
+obviously confused with this.
+It turns out that these
+two measures are sort of
+pretty well aligned.
+There are differences
+that may be
+interesting at some
+specific point in time.
+But they tell you more
+or less the same picture.
+In particular, there
+is absolutely no doubt
+that we have an inflation
+problem these days.
+You can be as selective as
+you want with the price index
+you want to use and people
+are getting very selective.
+Now we have CPI excluding--
+Well, one thing that
+makes a lot of sense
+is to exclude the
+most volatile goods.
+So typically, the
+CPI, we use is called
+Core CPI, which removes
+energy and food, which
+are very volatile prices.
+You don't want the thing to
+be moving all over the place.
+But now we're also
+beginning to remove shelter
+because shelter inflation is
+very high and sticky and so on.
+So people can get to
+be very selective.
+But no matter how you look at
+the thing, we have a problem.
+There is no way around that.
+So that's the way we look.
+Again, we're not
+going to look-- we're
+going to talk a lot about
+this problem, of course.
+But we need to build tools.
+And we're going to get there in
+about nine lectures from now.
+Nine lectures from
+now, we're going
+to be able to talk about
+what is going on with models.
+I mean, you can talk whenever
+you want, but with models,
+OK, so those are the concepts
+I wanted to discuss today.
+Those are the
+definitions, some relief
+that we got over this stuff.
+Let me just show you, because
+we have five minutes or so,
+equivalent numbers for other
+places around the world.
+That's China.
+That's China.
+That's GDP growth for China.
+And there are several
+things that you
+can see for this GDP series.
+The first is that
+it was very high.
+These numbers look
+a lot on average.
+That's a lot higher than the US.
+When I showed you the
+US, the rate of growth
+was moving around 2%, 1.5%,
+blah, blah, blah, occasionally
+recessions and so on.
+This is China.
+Look, you had numbers
+like 10% or so.
+That's interesting.
+We want to know why is that
+you can have so much difference
+in different countries.
+And that's what
+we're going to do
+in the third part of the course.
+When we look at
+growth, we're going
+to look at these kind of
+factors, what can give you
+sustained rate of growth?
+Sustain, I mean, for
+a long period of time
+higher than in another country.
+The main factor, just to
+preview what will happen,
+is simply that China was
+a lot poorer than the US
+at the beginning.
+And when you're poorer and
+you put your act together,
+you can grow a lot
+faster than the rest.
+Now China is slowing down.
+Aside from COVID, it's very
+clear for quite some time
+that they have been worried
+because clearly GDP growth is
+declining.
+And they're
+terrified about that.
+And many of the things that
+are happening with China
+have to do with
+the fear associated
+to a slowdown in
+the rate of growth
+when they are still quite
+poor in per capita terms.
+So a lot of what happens in
+China has to do with that.
+If you look at
+Japan, look at Japan.
+Japan also grew very
+fast in the '60s.
+You see this very
+fast rate of growth.
+Then it began to slow down.
+And boom, here it collapsed.
+They have a massive crash in
+financial markets, equities
+and land.
+The price of land was enormous
+in Japan at this time.
+They had a big financial bubble.
+For those of you that know
+Japan-- or if you don't know,
+doesn't matter.
+The imperial park
+in Tokyo, which
+is a park that is much smaller
+than Central Park or whatever,
+the value of that land
+at some point in time
+was the same as the value of
+the entire state of California.
+That's an order of magnitude.
+It was not for sale.
+But, you know, in terms
+of location, times, price.
+But that bubble crash.
+And since then, Japan has never
+been able to recover its mojo.
+It has been sort of
+growing at a very low rate
+for a very long period of time.
+And one of the things
+that scares China
+is that this may happen to them.
+Because this happened
+to Japan when
+they were already quite rich.
+Japan was pretty poor
+after the war, naturally.
+And they grew very
+fast in the '60s.
+But then they had this issue,
+financial bubble and so on.
+They crashed and had never
+been able to recover.
+And China is worried that
+this slowdown happens to them
+before they have reached the
+level of income per capita
+that Japan reached
+when that happened.
+There are common factors
+behind the two of them,
+as well-- demographic factors.
+Demographics are very
+negative for both of them,
+which naturally will slow
+down the rate of growth.
+We're going to look
+at that later on.
+This is inflation in Japan.
+You see, most countries had
+high inflation around there
+because the price of oil, we had
+massive oil shocks and so on.
+So inflation was pretty high.
+But the problem of Japan
+has been the opposite.
+Since the bubble crash in the
+late '80s, early '90s, they have
+had very low inflation,
+even deflation.
+And that's been a big problem.
+Part of the reason why
+they have had so low growth
+is because they have been
+in this deflationary trap.
+And then something you will look
+at later on in the course, when
+you have deflation,
+it's very difficult
+to use monetary policy to
+get out of a recession.
+And that's the reason they
+keep getting stuck there.
+So that's all I wanted
+to say for today.
+And I'm relieved again that
+this lecture is behind us.
+In the next lecture, we're going
+to introduce the first model.
+We're going to look at is how
+to determine equilibrium GDP
+and how that depends on a
+variety of things, including
+fiscal policy--
+not monetary policy,
+that will happen later--
+but how scared you are,
+consumers' preferences
+and fears and so on.
+So that's the plan.
+So unless there are any
+questions about this--
+No.
+I'll see you next Monday.

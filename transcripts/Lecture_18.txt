@@ -1,0 +1,1837 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO CABALLERO:
+So after doing IS-LM
+in the first part of
+the course and where
+we took prices completely
+sticky and output was fully
+determined by
+aggregate demand, we
+said, well, that dominates
+in the very, very short run.
+But over time, at some point the
+supply side starts showing up.
+There are constraints.
+The labor market gets
+very tight, and so on.
+And so we added a block that
+started from wage determination.
+And then we look at the
+impact of wages on prices.
+And then we related
+inflation rate.
+You start to relate
+the inflation rate
+to economic activity.
+So output above or below
+the potential output,
+or the natural level of output
+and things of that kind.
+So remember, the starting point
+was a wage demand equation,
+so what workers
+demand for a wage.
+This period depends on
+what is the price level
+they expect for the period.
+Because they set the
+wage today and they
+have to live through
+the year or two,
+whatever is the contracting
+period, with that nominal wage.
+So naturally, if they
+expect higher price level
+in the future, they're going
+to demand a higher nominal wage
+today.
+And then we said that's
+a function that is also
+going to be decreasing in
+the level of unemployment
+because obviously that weakens
+bargaining power for workers
+or makes actually
+becoming unemployed or not
+having a job more costly because
+it's very difficult to exit out
+of unemployment.
+And then we made normalization,
+this function, also
+an increasing function
+on this variable z,
+which captures a bunch of
+labor market institutions,
+including wage labor
+bargaining power.
+So more bargaining power
+means that for any given
+level of unemployment,
+workers would
+tend to demand a higher wage.
+So that's what the z
+variable was all about.
+Then we wanted to go
+from wages to prices,
+because the ultimate goal
+was to bring inflation
+into the picture.
+And for that, we
+had to produce--
+we introduce a production
+function because in particular,
+we made output a
+function of employment.
+And that, very naturally,
+will connect wage pressure
+to price pressure because you
+need labor to produce output.
+So that the labor market is
+very tight, that means also
+there's going to be more
+expensive to produce output.
+And we simplify this
+production function a lot.
+We made it output
+equal to employment.
+And that meant also
+that one unit of labor,
+in order to produce one
+extra unit of output,
+you need one extra
+unit of labor,
+which means you need to pay
+a wage, one unit of the wage.
+And so then we said, suppose
+that the price setting
+from the side of
+the firms simply
+takes this cost, which is the
+wage, and adds a markup to it
+to pay for a bunch
+of other things
+that we haven't
+introduced in this model.
+So the price charged by firms
+is equal to the wage times 1
+plus some positive numbers, 8.2
+or something like that, so 1.2.
+And we can rewrite this
+price setting equation
+as a wage, a real wage the
+firms are willing to offer.
+And it's just equal to that.
+So when the markup
+goes up, that means
+the real wage firms
+are willing to offer
+is lower than otherwise.
+So that took us to the
+concept of the natural rate
+of unemployment.
+And what I said,
+no, there's nothing
+natural about the natural
+rate of unemployment.
+It's simply a
+definition that says
+that's unemployment that results
+when the price, expected price,
+is equal to the actual price.
+That's all that is.
+And when we have that
+condition, then we
+can think of the real wage
+demanded by workers because I
+can replace the expected
+price for actual price
+and divide both sides by price.
+So the actual wage
+demanded by workers
+is equal to a function of the
+natural rate of unemployment.
+And I stick the
+end there precisely
+because I replace expected
+price or P, for no other reason.
+But now we have two equations
+for the real wage, the real wage
+that firms are willing to pay
+and the real wage and workers
+need to demand.
+And we can make them both equal.
+And that determines the
+natural rate of unemployment.
+OK, so remember this from the
+point of view of the firm.
+This is equal to 1
+over 1 plus the markup.
+The only endogenous variable
+in the markup is a constant z.
+This is also a
+parameter is exogenous.
+And so from here, we can
+solve the natural rate
+of unemployment,
+1 over 1 plus m.
+And we can solve the natural
+rate of unemployment.
+And if you do the
+algebra right, you're
+going to get to a
+point like that.
+That pins down the natural
+rate of unemployment.
+Again, there is nothing
+natural about the natural rate
+of unemployment.
+It depends on a bunch of
+parameters, which, for example,
+it clearly depends
+on the markup.
+It depends on things that we
+took as constant here as given
+here, all the things
+that were in z.
+Those are part of that.
+And so then we look
+at things that change.
+And that's just
+done with equations.
+We look at things that
+change the natural rate
+of unemployment.
+That's one example.
+If bargaining power
+by workers goes up,
+they're going to demand a higher
+wage at the initial natural rate
+of unemployment.
+Well, that obviously,
+that higher wage
+is inconsistent with what
+firms are willing to pay.
+The only way equilibrium
+can be restored
+in this model, that's the
+medium run equilibrium,
+is for the natural
+rate of unemployment
+to rise to UN prime.
+There you have it.
+Nothing natural.
+Natural rate of unemployment
+is not constant.
+It depends on
+institutional parameters,
+such as bargaining power.
+Another example is mark
+ups. It depends on mark ups,
+as well, the degree of
+competition, if you will,
+in the goods market.
+If we are in some equilibrium
+like this one and now
+suddenly firms, for
+whatever reason,
+choose or need to charge
+a higher markup, that
+means that at this
+level of unemployment,
+the wage that workers would
+demand is higher than the wage
+that firms are willing
+to pay, the real wage.
+And the only thing that can
+clear the market in this case
+here, in the medium run, is for
+the natural rate of unemployment
+to rise.
+So here, we go two
+experiments where
+we move some parameter-- in one,
+the bargaining power of workers
+and the other one the
+markup of the firms.
+And both increase the
+natural rate of unemployment.
+Good.
+The next step was
+to look at things
+that happen outside the
+natural rate of unemployment,
+in particular, what
+happens to prices there.
+So what we did is we took the--
+we went back to the model
+with the expected price here.
+That means that
+unemployment that comes out
+from this equilibrium
+is not going
+to be necessarily the
+natural rate of unemployment.
+That will be the case only if
+P happens to be equal to P.
+Then we simplify this function,
+F, here for something linear,
+like this.
+Very simple, but
+again, decreasing
+in unemployment, increasing in
+this institutional parameter, z.
+We replace this wage
+here from this expression
+here and rearrange.
+So we got this here.
+And the next step was
+just to go from here
+to the rate of inflation.
+And we did it through several
+steps and approximations.
+And we ended up with what is
+known as the Phillips curve.
+So this says that inflation
+is increasing and expected
+inflation on this
+institutional parameters.
+As the markups go up, that will
+tend to increase inflation.
+If bargaining power by workers
+go up, then that is the same.
+But most importantly,
+it's negatively
+related to unemployment.
+And that's the reason
+that today, nowadays, you
+know, there's lots of discussion
+about the tightness in the labor
+market and whether
+that's really necessary.
+Do we need to cause a recession,
+a situation where unemployment
+goes up a lot, in order to
+really finally bring down
+inflation?
+Yeah, there was a question.
+AUDIENCE: [INAUDIBLE]
+RICARDO CABALLERO: Yeah.
+Remember that I made
+up this function.
+We said this function is
+decreasing unemployment.
+I just replace that
+function for that.
+So it's the sensitivity
+of wage demand by workers
+to their employment rate.
+Alpha is very high, it
+means that wage demand
+is very sensitive, very
+responsive to unemployment.
+AUDIENCE: What would be the
+situation for an expected price?
+Like, could you connect that
+back to like, I don't know,
+some sort of a
+commodity or something?
+RICARDO CABALLERO: So what
+is the intuition for this?
+AUDIENCE: Yeah, just like
+a price feels tactile.
+But an expected price, I don't--
+RICARDO CABALLERO: Well, I mean,
+imagine that workers and firms
+bargain for a wage that
+will live through the year.
+You're bargaining for the
+wage, nominal wage today.
+You don't set a real wage.
+You set the nominal
+wage, say $100, whatever.
+Well, the wage demand
+will depend a lot
+on what they expect inflation
+to be during this period.
+If I expect inflation
+to be 10%, you're
+very likely to demand
+a higher nominal wage
+because you have to live, on
+average, with higher prices.
+So that's the role of
+that, is the price.
+I mean, I would prefer--
+and there are countries
+where that's done--
+to set my wage in
+real terms so I
+don't need to worry about that.
+But in practice, in economies
+with low inflation like the US,
+you don't do that.
+You get a nominal wage and
+you have to live for the year
+or until the next negotiation
+for your wage contract
+with that level of wages.
+AUDIENCE: [INAUDIBLE] be
+dependent on time, [INAUDIBLE]
+with the interest rate or
+with the inflation rate,
+whereas I guess the regular
+price is defined by the wage is
+dependent on the market?
+RICARDO CABALLERO: No,
+they're both the same.
+But the only thing is that this
+price here is not the current.
+It's what you really expect the
+price to be during the year.
+If this is here just because
+at the moment in which you
+set the wage, you
+don't know the price
+that you're going
+to face as a worker.
+But it's the price.
+So you don't know the price that
+you're going to actually face.
+So the best you can
+do is calculate, well,
+I think inflation
+is going to be 10%.
+So give me what I
+would have had in mind
+with inflation
+equal to 0 plus 5%,
+so on average, I'm about right.
+That's the logic.
+But this expected price
+is meant to be your best
+proxy you have at the moment
+in which you're bargaining
+for your wage for what
+the actual price will
+be during the life of
+that particular wage.
+So we end up with that
+Phillips curve here.
+Importantly, this is
+a decreasing function
+of unemployment.
+And then we made different
+assumptions about expectations.
+If expected inflation,
+for example,
+is a constant, that's when we
+say expected inflation is very
+well anchored, then you
+get a Phillips curve
+that looks like this, in which
+inflation has a constant here
+and a decreasing on the
+rate of unemployment.
+And during the '60s, that
+relationship sort of held fairly
+well.
+It was a downward
+sloping relationship.
+It got to be steeper and
+steeper as we moved into higher
+and higher inflation levels.
+And then I said, but in the
+'70s, the whole thing broke
+loose.
+There's nothing like a
+downward sloping curve here.
+That happened for two reasons.
+There were some
+cost push shocks.
+You can think of lots
+of shocks to them.
+But more interestingly, expected
+inflation became an anchor.
+And then we changed the
+expected inflation model
+for rather than
+being a constant,
+being some weighted
+average like this.
+And we said, look, during the
+'70s essentially that theta was
+equal to 1.
+So expected inflation
+was really--
+whatever was
+inflation last year,
+people expected that
+level of inflation
+to stay in the next year,
+rather than going back
+to that whatever was the
+constant or inflation target
+or historical constant pi.
+And that meant that
+during that period,
+really the Phillips
+curve looked more
+like a relationship of the
+change in the inflation rate
+as a decreasing function
+of unemployment.
+So that means that when you
+increase unemployment here,
+you reduce the rate at which
+unemployment, inflation is
+rising.
+That's the goal of the
+situation in a case
+in which expected
+inflation is an anchor.
+And the last step we had
+there is we replace--
+we noticed, we said,
+well, what happens
+if we stick in here the
+natural rate of unemployment?
+Then that will give us--
+that will happen only
+when expected price is
+equal to actual prices.
+So that means that
+when inflation
+is equal to expected
+inflation, from here we
+can solve the natural
+rate of unemployment
+as a function of these
+structural parameters.
+And once we have that, we could
+go back to our Phillips curve
+and rewrite it in this way.
+So you can think of the
+Phillips curve in this way.
+And this is the way we
+typically write it down,
+in which it says inflation is
+decreasing in the unemployment
+gap.
+So if the unemployment
+is above the natural rate
+of unemployment, that
+means inflation will tend
+to be below expected inflation.
+If expected inflation
+happens to be
+equal to log inflation,
+that means if unemployment
+is above the natural
+rate of unemployment,
+then inflation will be falling.
+Any questions?
+Good.
+You need to know this, how
+to derive these things.
+I mean, not so much--
+Yeah, you should
+know how to derive.
+But you need to understand
+this relationship
+between the unemployment
+gap and inflation
+relative to expected inflation.
+Yep.
+AUDIENCE: Could you talk about
+uncut versus de-uncut inflation.
+RICARDO CABALLERO:
+Expected inflation.
+It's just a statement
+about a what
+is the model we have
+for expected inflation.
+So suppose we have the following
+model for expected inflation--
+1 minus theta--
+theta is some number
+between 0 and 1-- times
+a constant inflation
+plus something that is a
+function of theta times
+whatever is previous inflation.
+Central banks try to set a
+target for the inflation rate.
+In the US it's around 2%.
+And ideally, people
+will tend to believe--
+they may see an inflation
+that is above, say, 2%.
+But as long as people
+expect that to be undone
+in the next period,
+then inflation
+will say they are
+very well anchored.
+So that's a case in
+which very well anchored
+means theta equal to 0 here.
+And you always stick in there,
+in the case of the US, at 2%.
+And that's the way the
+economy is behaving right now.
+Inflation today is 5%.
+But if you ask people, what
+do you expect inflation
+to be two years from now?
+People tell you, look
+around 2%, 2.5% or so.
+An anchor expectation is when
+you don't have that anchor,
+that 2% that the Fed
+told you is whatever
+it was the previous inflation,
+that's what people extrapolate
+will be inflation
+for next period.
+And that's a lot harder when you
+get into an inflationary episode
+in that context.
+It's very difficult
+because you have 5%.
+People are still expecting
+5% for next year.
+So you need to--
+it's much harder to
+bring inflation down.
+You need to create much more
+unemployment to bring inflation
+back to the 2% target.
+That's what it means to anchor.
+So anchor means theta
+very close to 0.
+And anchor theta
+very close to 1.
+That's a formal definition.
+We then move to what
+I think is probably
+the most important model you'll
+see in this course, which
+is the IS-LM-PC, which is just
+the IS-LM plus the Phillips
+curve.
+And that allows us to talk
+about the short run, which
+is what we did in the
+IS-LM and then all the way
+to the medium run.
+A medium run
+understood, that's when
+you go back to the natural rate
+of unemployment, natural level
+of output, and so on.
+We got a banking crisis there.
+But that's-- This
+you may find useful.
+Here I was trying to
+explain the banking crisis.
+And I said, we have a
+model for that already.
+Remember, we had this x spreads
+in the investment function
+and said, well, you can think
+of a negative financial shock,
+something like a
+credit spread shock,
+as an increase in x, and that
+will shift IS to the left.
+OK, just saying.
+Good.
+IS-LM-PC model was just going
+back to the IS-LM model.
+We're going to simplify
+things by just assuming
+that the central bank
+sets the real interest
+rate and the real
+interest rate is that.
+And to that, we added
+a Phillips curve.
+But we didn't like
+that Phillips curve
+because we have everything
+is a function of output
+here and interest rate.
+And now we have inflation
+and the unemployment rate
+and so on-- yet another
+variable to carry around.
+So we went from the output
+gap to unemployment gap
+to an output gap.
+And we did that just by
+noticing that the output is
+equal to the labor force times
+1 minus the unemployment rate.
+Similarly, you can
+define potential output
+or the natural output
+level as employment
+times 1 minus the natural
+rate of unemployment.
+Subtract these 2 and
+you get that the output
+gap is equal to minus L
+times the unemployment gap.
+And so we replace this for
+that expression divided by L
+and we end up with
+the Phillips curve
+written in the form
+of an increasing
+function of the output gap.
+So when the output
+gap is positive,
+then inflation will
+exceed expected inflation.
+If expected inflation
+is an anchor, that is,
+expected inflation is equal
+to log inflation, then
+that means that
+a positive output
+gap leads to an increase in
+inflation, in inflation rate.
+We look at an example here.
+This is the type of--
+now we're going to have the
+real interest rate here.
+Just makes it simpler to think
+about central monetary policy
+in terms of the
+real interest rate.
+Otherwise, too many
+things move at once.
+So this is what we
+have done for quiz 1.
+Here you have some particular
+equilibrium, IS-LM.
+With this real interest rate,
+we got some equilibrium output
+equal to y.
+The contribution of
+this block of the course
+is that now we
+need to also check
+whether this is y is consistent
+with potential output
+or not, or with natural
+level of output.
+And that for that we need to see
+whether this level of output is,
+again, is above or below
+the natural rate of output.
+And for that, we need to
+look at the Phillips curve.
+And in this particular
+case, that's
+not the case because output
+is above the natural rate
+of output.
+You put now, given
+that observation,
+you draw here the
+Phillips curve.
+You know that because output
+is above the natural rate
+of output, the natural level
+of output, that means inflation
+is above expected inflation.
+If expected inflation
+happens to be
+an anchor equal to
+pi minus one, that
+means that at this
+output gap, that there
+is an inflation that is rising.
+Now, inflation rising means the
+central bank will have to react.
+And so you have to
+do something up here.
+You need to bring output down.
+And how can you
+bring output down?
+So this economy is engaging
+in an inflationary spiral,
+actually, given this
+model of expectation.
+How do you stop that?
+AUDIENCE: Raise interest rates.
+RICARDO CABALLERO:
+If you are the Fed,
+and you when-- you raise
+interest rates, no?
+Because you need
+to bring them back.
+So the equilibrium
+level of output,
+you increase the real rate up to
+a point in which the equilibrium
+level of output is equal to
+the natural rate of output.
+And you may have to
+do more than that.
+If inflation was an anchor
+and you find yourself
+with 5% inflation, you may
+have to temporarily actually,
+to bring inflation
+back down to 2%,
+you may have to overshoot,
+raise interest rates a lot,
+generate a negative
+output gap for a while.
+And then once you reach the
+level of inflation you like,
+the 2%, then you can go back
+to the natural level of output.
+OK, so that's the reason
+central banks worry
+a lot about unanchored
+expectations
+because then they know that they
+find themselves on inflation
+above their target,
+it's not going
+to be enough to bring
+the output gap to 0.
+They're going to have to
+overshoot in the way down
+in order to reanchor
+expectations-- well,
+in order to bring inflation
+back down to the target of 2%.
+But in any event, even if
+inflation expectation's well
+anchored, you still have
+to bring output down
+because at the very
+least, you need to close
+this positive output gap.
+And that, if you are the Fed
+in the US or any central bank,
+you do it by increasing
+the real interest rate.
+Now, in practice,
+central banks really
+don't control the
+real interest rate,
+control the nominal
+interest rate.
+So there is a little fight
+there between inflation
+and what they do to the
+nominal interest rate.
+But let's ignore that
+complication for now.
+Now, suppose that the Fed is in
+vacation and so somebody someone
+else decides in the
+government decides that, no,
+we cannot have this very
+high level of inflation.
+So what else could you do?
+And you're not the Fed.
+The Fed is in a vacation.
+Who else can make policy?
+The government, the central
+government, the Treasury, and so
+on.
+What is the
+instrument they have?
+What do they need to do?
+The problem they have
+is output is too high.
+And that's what is leading
+to lots of inflation.
+So what do you think
+they should do?
+AUDIENCE: Cut
+government spending.
+RICARDO CABALLERO: Cut
+government spending,
+raise taxes, something
+of that kind.
+But you need a
+fiscal contraction
+because that will
+bring the IS down.
+And so the equilibrium
+output will be lower.
+So that's an
+alternative you have.
+You should know this.
+And here I just did what we
+just discussed, just in steps.
+These things happen slowly.
+The Fed doesn't hike interest
+rates in one shot and so on.
+It takes a while before you
+get to the final equilibrium.
+I showed you the
+deflationary spiral.
+I said, sometimes things can
+get very complicated because you
+may hit the 0 lower bound.
+The Fed can bring the
+nominal interest rate to 0.
+But if inflation is
+already low, that
+may not give you the
+real interest rate
+you need in order to get output
+equal to the natural rate
+of output.
+Here was one
+example in which you
+need a negative real
+interest rate to get output
+to be equal to the
+natural rate of output.
+But that may not happen because
+you hit the 0 lower bound.
+And so at that point, the
+problem you have is that--
+and that was a tragedy
+of Japan for so long--
+is that not only you cannot
+bring the interest rate,
+the nominal interest
+rate below 0,
+but you start getting
+into deflationary.
+Inflation below expectation,
+and the expectation
+goes to number very
+close to 0 because
+of an anchor deflationary
+expectations.
+Then you start getting
+negative expected inflation.
+And when you get negative
+expected inflation,
+even if you are at the 0 lower
+bound in the nominal interest
+rate, that means a positive
+real interest rate.
+So effectively, you are
+increasing interest rate
+at the same time.
+And that can be a very
+complicated thing to get out of.
+Again, that's what happened
+to Japan for a long time.
+What would you do
+as a government
+if you fall into a
+situation like that?
+And Japan did a lot of that.
+Well, you can do lots of things.
+But in particular,
+the kind of things
+you know, what would you do?
+If you are in a situation like
+this in which the 0 lower bound
+is binding and inflation
+is actually falling?
+Here I had a benign case in
+which inflation expectation
+was well anchored.
+That's not what
+happened to Japan.
+After they experience a long
+period of deflationary forces,
+then people began to expect
+more deflation, more deflation,
+and so on.
+So what else can you do?
+Let me give you a hint.
+Japan is one of the
+countries at the highest
+levels of public debt.
+How do you accumulate
+public debt?
+Yeah, you need to borrow a lot.
+You have big fiscal deficit.
+So that's the way
+you can fight this.
+You can shift IS to
+the right by having
+an expansionary fiscal policy.
+That's the only
+tool really have.
+You lose the power
+of monetary policy
+against the 0 lower bound.
+But you still have
+fiscal policy.
+And they did a lot
+of fiscal policy.
+No, not interesting.
+This is interesting.
+This is a different
+kind of shock.
+Suppose you are at your
+medium-run equilibrium
+and then all of
+a sudden mark ups
+go up, perhaps, for example,
+because the price of oil
+went up a lot and
+something like that.
+So then that's a different kind
+of shock from the previous one,
+from any fiscal shock
+or anything like that.
+That's an aggregate demand.
+This is an aggregate
+supply problem
+because the first thing I
+know of a permanent at least
+change in m is that the
+natural rate of unemployment
+has to rise.
+If the natural rate of
+unemployment has to rise,
+that means my Phillips
+curve will shift now.
+In that particular case,
+I know the Phillips curve
+will shift to the left.
+How do I know that?
+Well, because I know that the
+natural rate of unemployment
+went up, which means that the
+natural rate, natural level
+of output has to come down.
+And the natural level
+of output coming down
+means simply that the level
+at which expected inflation
+and inflation are equal happens
+at a lower level of output.
+So the Phillips curve
+moves to the left.
+So suppose you were
+in this equilibrium.
+Here I'm doing for the case
+of an anchor expectations.
+But the same logic goes for the
+case of anchor expectations.
+So suppose you were at
+some equilibrium like this.
+What's your medium
+run equilibrium?
+But now the price of
+energy goes up a lot
+and you expect that
+to last for a while.
+That means the Phillips
+curve moves up.
+So that means that if output,
+with output at this level,
+now you have a problem because
+you start getting inflation out
+of this, because
+this level of output
+is too high relative to the
+new level of the natural--
+the new natural level of output.
+So you have a
+positive output gap.
+Positive output
+gap means inflation
+above expected inflation.
+If you have an
+anchor expectations,
+means inflation
+starts rising up.
+So that means the Fed now
+needs to react to that
+and needs to tighten
+interest rate in order
+to go to the new level of,
+natural level of output.
+And that's the response to that.
+But if the Fed does not react--
+and a little bit of
+this is what happened.
+We had some supply
+shocks and so on that
+were considered to be temporary,
+well, they weren't as temporary.
+So there was no reaction.
+But it turns out that
+they lasted a lot longer
+than the Fed expected.
+And so now they had to catch up.
+That was part of the reason
+we got into a high inflation
+episode.
+That was the main
+reason in Europe.
+The US is a mixture of aggregate
+demand, lots of fiscal policy
+and so on.
+And supply side in Europe was
+very much a story of this kind.
+Well, a financial
+panic, you need
+to offset it with a decline
+in real interest rates.
+And a little bit of
+that has been happening.
+It's not the Fed that
+has cut the rates,
+but the markets have
+anticipated the Fed will not
+raise interest rates as much
+as they expected before we
+got into this banking mess.
+So we had already studied the
+short run, the medium run.
+And now we want to
+look at the long run.
+And that's what economic
+growth is about--
+economic growth theory
+and facts and so on.
+Let me go to--
+So one of the
+things I highlighted
+is that we tend to
+see, among countries
+that are fairly similar along
+the education and variables
+like that--
+systems, economic systems
+and political systems and so
+on-- you tend to
+find relationships
+like this, that is countries
+with a lower per capita income
+at the beginning
+of the sample tend
+to grow faster in the sample.
+And that captures
+very much the idea
+that there is a
+convergence, there
+is a force towards convergence
+of income per capita,
+if you will.
+That's another illustration
+of that phenomenon.
+Lots of dispersion here.
+70 years later, a
+lot less dispersion.
+But we also said that some
+countries do not match that.
+And but we focus most of what we
+did in growth on understanding
+this process, the
+process of convergence
+and how it happened without
+technological progress
+and so on.
+And then we spent a
+little bit of a lecture,
+say at most 10 points worth
+in a quiz, or seven points,
+talking about anomalies
+and things like that--
+5 points or something like that.
+So the key object here,
+one of the key objects--
+there are a couple--
+but one of them
+was, well, now we
+need to be a little bit more
+serious about the production
+function, we said.
+Because for the short run,
+it's OK to take capital
+as given and just
+worry about most
+of the fluctuations
+in output will
+come from fluctuations
+in employment.
+That's not so over
+long periods of time.
+Capital accumulation
+plays a huge role.
+And so we need to be
+explicit about the fact
+that capital matters
+a lot for production.
+And so we postulated
+a production function
+like this, output as increasing
+function of capital and labor.
+And now we said for
+this part of the course
+we're not going to worry
+about unemployment.
+And so on, employment,
+labor force population,
+they're are all the
+same for us here,
+for this part of the course.
+And then they said this
+production function
+has some important properties.
+One, it has constant
+returns to scale.
+Things change quite a bit.
+If you don't have
+constant returns to scale.
+So we have constant returns
+to scale, which means--
+you should know this--
+that if you scale all output,
+all inputs, all the factors
+of production by
+the same factor,
+output also rises
+by the same factor.
+OK, so our production function
+we use a lot was Cobb-Douglas,
+output equals square root of
+k, times square root of n.
+Well, the sum of
+those exponents is 1.
+So that's a production function
+with constant returns to scale.
+Anything that has the exponents
+add up to 1, then that's
+a constant returns
+to scale technology.
+But importantly, it also has
+decreasing returns with each
+of its factors of production.
+That means rather than moving
+both factors of production up,
+you move only one.
+Well, you're going to
+increase output, but just
+keep increasing
+that factor alone,
+you're going to increase output
+by less and less and less
+and less because
+essentially, it has
+fewer and fewer of the
+other factor of production
+to work with.
+And so that's decreasing
+returns to capital or labor.
+I mean, if you fix the
+other factor of production,
+you move up.
+It's going to increase
+at a decreasing rate.
+So one normalization
+that we started with
+was, well, a scaling
+factor could be
+population, 1 over population.
+That's a scaling factor.
+And if I do that, I multiply
+everything by 1 over n.
+We go into output per person
+is an increasing function of--
+an increasing function,
+but at a decreasing rate--
+of capital per person.
+We plot that function here.
+And this is increasing,
+but it's concave.
+That shows the decreasing
+returns of capital.
+And we got that function there.
+So when you move in this, you
+can increase output per person,
+per person by simply
+increasing capital per person.
+And the more you increase
+capital per person,
+output will increase more and
+more but at a decreasing rate.
+You can see that moving the
+distance between A and B
+is the same as the distance
+between C and D. However,
+the increase in output,
+when you go from A to B,
+is enormous when compared
+with the increase in output
+that you get from the
+increase in capital
+over per person from C
+to D, decreasing returns.
+There is another way of
+increasing output per person,
+which is with
+technological progress,
+with the function, F, is
+shifting up over time.
+And we split the two
+main lectures in growth
+into part one, which shut
+down the second channel.
+And then the second
+important lecture
+here, we focus on this channel.
+So that's what we.
+So let's go to when I shut
+down this channel for now
+and focus on the case without
+technological progress first.
+So we put things together.
+We said this comes from
+the previous lecture.
+We can write output per person
+as an increasing function
+of capital per person.
+Second key equation is--
+well, this is a property
+and it has to be,
+if you are in a closed
+economy, no government
+expenditure or anything.
+We could add that.
+But it's not important
+for the message.
+Then investment has to be equal.
+So investment is going
+to be very important here
+because what will make
+the capital stock grow.
+But there has to be
+funding for that.
+And the funding
+come from savings.
+And we simplify things by
+assuming that the saving
+function is just proportional
+to the level of output,
+which is reasonable when
+you think about long run.
+All these things scale up.
+When you're thinking
+about very short term,
+no, we have some constants
+and so on floating around.
+But over the long run,
+things do scale up.
+And so we can write
+investment in equilibrium.
+Investment has to
+be equal to savings.
+Saving is proportional
+to output.
+So we get that investment
+in this economy
+is increasing in output.
+This is a constant
+somewhere between 0 and 1.
+And the last key equation here
+is the capital accumulation
+equation.
+The capital accumulation
+equation says that capital,
+T plus 1, is equal to capital
+today, minus the depreciation--
+some fraction of the machines
+break down in every period--
+but plus the new
+investment, plus It.
+And we rewrote things and
+replaced the saving function
+and so on.
+And we end up in an
+expression like this
+that says capital per person
+here grows with investment,
+which is funded by savings,
+which is an increasing
+function of output, which
+in turn is an increasing
+function of capital
+per person, minus
+whatever is the depreciation.
+And what we did in the start
+diagram in the other model
+is, we plot this function
+and that function.
+We know that the steady state is
+when these two things are equal.
+That pins down the k star over,
+k over n star of this economy.
+But we also know
+that to the left
+of that point in capital space,
+this term is greater than that.
+And therefore, the
+capital stock is rising.
+To the right we get that this
+term is greater than that.
+And therefore the
+capital stock is falling.
+And that's what we
+have in this diagram.
+So that's the steady
+state of the economy,
+when the depreciation per
+worker, which is the required--
+The minimum investment
+you need to keep
+the capital stock
+constant is whatever
+is depreciation per worker.
+Anything else you do, it will
+grow the stock of capital.
+Anything less you do,
+you're not maintaining
+enough of your capital stock.
+It's declining.
+And that's exactly
+what happens here.
+That's the steady state.
+If your capital below
+that, then a capital stock
+will be rising because you have
+lots of savings and therefore
+lots of investment relative
+to what you need in order
+to maintain the stock, the
+small stock of capital you have,
+until you reach steady state.
+And this model alone
+can explain really
+the pattern we have that
+the poorest economies tended
+to grow faster than
+the richer economies.
+If you think of poorer
+economies as economies
+that are otherwise similar, but
+that have a low stock of capital
+to start with, well,
+those economies
+are going to be to the
+left of the steady state,
+and therefore
+they're going to tend
+to grow at whatever is the
+steady state rate of growth,
+plus this catching up growth.
+And so this is a very
+powerful little model.
+It can explain a lot of those
+convergence, the convergence
+that we saw in the data.
+Do you understand this?
+This is important.
+Then we did some experiments.
+What happens if you
+increase the savings rate?
+At the time when Solow
+was writing this model,
+many people say that what
+was behind growth was saving.
+Well, in this model we
+show that, indeed, it
+is a saving rate rises.
+Then at any given
+level of capital--
+suppose that was the
+oldest save state.
+If now the saving
+rate rises, that
+will increase
+investment above what
+you need to maintain that
+level of the stock of capital.
+So the stock of capital
+is going to start growing.
+When that happens,
+output per capita
+will grow faster than
+in a steady state
+because you're going to be
+going from here to there.
+But eventually you'll converge
+to the same old rate of growth.
+So the point here is
+that the saving rate
+can not change, per se, does
+not change the rate of growth
+in the long run.
+But it gives you
+transitional growth.
+And a lot of the Asian miracle
+of the very fast rates of growth
+from the '60s and '70s and
+'80s has to do with this kind
+of thing-- very sudden increase
+in saving rates plus other
+institutional changes and so on.
+But high increase
+in the savings rate
+also led to very fast growth.
+Again, this little model
+can explain a lot, as well.
+It can explain when you
+see those growth miracles,
+often it's associated to--
+for some reason, it varies a
+lot across different scenarios--
+the saving rate
+went up quite a bit.
+But point is, that gives
+you very fast growth
+in the short term, but
+eventually peters out.
+The next thing-- All that we did
+for a fixed population and said,
+well, suppose now the
+population is growing.
+I said the diagram
+we had before would
+be very unpleasant because all
+these curves would be shifting.
+So what we need to do is
+divide not by a constant.
+We need to divide by
+whatever is the population
+at that point in time.
+And that will give
+us the same diagram
+we had with one little twist.
+So I went through
+a little algebra
+here to arrive to a capital
+accumulation equation, capital
+per person equation, an
+equation for the change
+in the capital per person, which
+is very similar to what we had.
+The only difference is that the
+required capital, investment
+required to maintain the
+stock of capital per person,
+has an extra term here, gN.
+And I said that gN-- so
+let's think about this term.
+So delta, think of this
+as the required investment
+in order to maintain the
+stock of capital where it was.
+If this delta comes
+from the fact that,
+well, you have a
+stock of capital.
+You lose a fraction of that.
+Well, you need an investment
+equal to that fraction
+that you lost in
+order to maintain
+the stock of capital the same.
+That's clear.
+But that's not enough to
+maintain the capital per person
+constant if per person is
+rising, population is rising.
+Because even if you maintain
+the stock of capital constant,
+the denominator is rising at
+the rate of population growth.
+So in order to maintain the
+capital per person constant,
+you need to deal with the growth
+of the denominator, as well.
+And that means you need
+a little-- you need also
+investment to match the
+increase in population
+so they can keep the
+capital per person constant.
+So that's a modification.
+So in terms of our
+diagram, all that
+happened here, have
+technological progress, as well.
+Set it to 0 for now.
+All that happened relative
+to the previous diagram
+is that now I rotated this
+curve up, upward a little bit.
+But then you conduct analysis
+exactly the same way.
+The only thing that
+is different now
+is that in the
+previous model, we
+had that the rate of growth,
+the steady state rate of growth
+was equal to 0.
+And the steady state rate of
+growth of output per person
+was also equal to 0.
+Population was not growing.
+Output was not growing.
+The ratio wasn't growing either.
+Here it's still the case
+that in a steady state,
+output per person
+is not growing.
+But that also means
+since population
+is growing at the
+rate of gN or N,
+I don't know how
+we call it here,
+that means output must be
+also growing at the rate gN.
+That's what will keep output
+per person not growing.
+So for the output itself, a
+very important factor in growth
+is population growth.
+And if you look at rates of
+growth in general in the world,
+certainly in the
+developed world,
+they are falling for
+a variety of reasons.
+And one of them is because
+population growth is falling.
+But per person, that
+doesn't make a difference.
+But for the level of the
+rate of growth, it does.
+And then we added
+technological progress,
+which we modeled as
+effective as enhancing labor.
+So having a better technology
+means is you had more workers.
+So for any given
+level of workers,
+having a better
+technology, we modeled it
+as having more workers.
+And you can model
+it exactly that way.
+You can use exactly the
+same diagram we had before.
+But now we divide
+our scaling factor
+rather than being 1
+over the population,
+it's going to be 1 over
+effective population,
+effective workers, 1 over AN.
+And you conduct exactly
+the same analysis.
+You do exactly the same
+approximations I did before.
+But the difference now is
+that here rather than have gN,
+you have AN.
+Why is that?
+Well, because if
+I want to maintain
+the capital per effective
+worker constant,
+then I need to first make
+up for the depreciation
+of the stock of capital.
+Thus, I have to
+stabilize the numerator.
+But then I have to take into
+account that the denominator is
+growing for two reasons--
+because population is growing
+and because
+technology is growing.
+And in order to maintain
+the ratio constant,
+I'm going to have to add
+investment so to maintain
+that ratio constant.
+And that's the reason.
+Now we have this line
+here, rotates even further.
+And we get delta
+plus gA plus gN.
+And you should play
+with these things.
+What happened in
+this diagram if I
+increase gA or stuff like that.
+And notice that here, now
+still you have a steady state.
+But it's a steady
+state in the space
+of output per effective
+worker and capital
+per effective worker.
+That means, for example,
+that these quantities are not
+growing in the steady state.
+But output will be growing at
+which rate in the steady state?
+In any state, state here, what
+is the rate of growth of output?
+If output over AN is
+constant in the steady state,
+how can that happen?
+Output has to be
+growing at which rate?
+At the same rate
+as the denominator.
+So it's gA plus gN.
+That's a trickier question.
+What happens to output per
+person in this steady state?
+What rate is it growing
+at, output per person?
+Sorry, somebody said
+the right thing.
+gA, exactly.
+I want to keep this
+ratio constant.
+I'm asking the question of
+which space does this need
+to rise in order to maintain
+this constant, while
+at the same rate
+as A is growing.
+Good.
+Here we also did, we
+ask the question, well,
+could it be that here,
+if we change the saving
+rate, we get some extra
+kick in the long run?
+And the answer is no for the
+same logic as we had before.
+You're going to get
+transitional growth.
+But eventually you're going
+to convert to a steady state.
+And the rate of
+growth in the long run
+is not going to be a
+function of the saving rate.
+It's going to be
+equal to gA plus gN.
+I do here.
+Measuring technological
+progress, blah, blah.
+I told you the story of China.
+Good.
+We run out of time.
+So let me just say the last
+thing that I want to say.
+So the last thing
+we discussed, you
+say, well, what happen if
+you add education to this
+and try to--
+[INAUDIBLE]
+I expanded the
+model a little bit.
+I had education and said, does
+it change conclusions a lot?
+I said, no, not really.
+I mean, it doesn't change
+the conclusion with respect
+to the long run.
+It affects the level
+of output per capita
+if you have more education.
+But you won't achieve effective
+rate of growth in the long run.
+And the last point I made is
+that, look, in this model,
+if you expand it and you try
+to assume that technology is
+the same and the rate of
+technological progress is
+the same across the world,
+you stick those parameters
+in the model--
+population growth,
+the education levels
+and all that--
+then you don't explain
+the amount of inequality
+we see in the world.
+The world will
+look a lot flatter
+if it was just a differences in
+population growth, deprivation,
+education levels,
+and things like that,
+but with the same technology.
+So if you want to account for--
+so this model, the
+model essentially
+doesn't produce enough
+inequality in the world.
+You need to add
+something else that
+explains that we have some
+countries in Africa that are not
+growing or growing at a
+very low level of rate.
+And we said that something else
+technology, for whatever reason,
+it happens that there is
+a pocket of countries that
+seem to have a lower,
+sort of permanently lower
+level of technology at
+both level and growth rate.
+And that's what explains sort
+of a subset of countries that
+are sort of stacked,
+that are not
+consistent with this
+convergence type thing.
+So that's the reason it's
+called conditional convergence.
+Those countries themselves
+are converging to something.
+But they're converging
+to something much lower
+and with much lower
+rate of growth
+than most of the
+rest of the world.
+But the final lesson is for the
+average country, on average,
+it's clear that poorer
+countries grow faster
+than richer countries.
+That's a dominant force.
+But you need a
+little more if you
+want to explain certain
+pockets of the world.
+OK.

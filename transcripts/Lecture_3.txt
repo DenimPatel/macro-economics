@@ -1,0 +1,1759 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO J. CABALLERO:
+OK, let's start.
+So what you have
+there in that picture
+is the result of a survey to
+a bunch of economists on--
+which are asked to
+assess the probability
+that there is a recession
+within the next 12 months.
+Recession means, essentially,
+a decline in aggregate output.
+And well, the first
+thing to notice here
+is that it's not very good news.
+There are very high
+chances that, at least
+according to these
+experts, that the US enters
+a recession within the
+next 12 months or so--
+pretty high probability.
+You can see that that number
+typically is very, very low,
+and it goes very high sort
+of next to recessions.
+And now we're not
+in a recession,
+but there is a sort
+of very high perceived
+probability that we may go into
+a recession in the near future.
+So how is it that these people
+come up with this forecast?
+Well, at some level, either
+explicitly or implicitly,
+they must have some model of
+the termination of equilibrium
+output.
+And they need to understand--
+they need to see
+certain things that
+suggest, once you go through a
+model, that output will decline.
+So that's what we're going
+to start doing today.
+And in fact, that's
+what we're going
+to do throughout this course.
+We're going to try to find
+evermore complex, perhaps,
+or richer models of output
+determination, aggregate output
+determination.
+So that's essentially
+what this course is about.
+And so an understanding.
+We're going to try
+to understand what
+is it that drives
+equilibrium output,
+and how is it that we get to
+one specific level of output.
+That's what it means to find
+the equilibrium level of output.
+And we're going to do it
+sort of in three stages.
+In the first part of the
+course-- that is, up to quiz 1--
+we're going to focus on the
+very short run, how output
+is determined in the very short
+run, say within a year or so--
+or a little more even, but
+that type of frame, time frame.
+Then we're going to
+focus on the medium run.
+That's sort of at the
+beginning of the second part
+of the course.
+And by the medium
+run, simply we're
+going to mean by the time
+in which prices begin
+to adjust sufficiently, OK?
+Before that, it's most of the
+action happens in quantities.
+There is little movement
+in goods prices.
+There's lots of movements
+in asset prices,
+but little movement
+in goods prices.
+And in the last
+part of the course,
+we're going to look at
+how output is determined
+over the long run, which is
+quite different from how output
+is determined in the short run.
+The determination of
+output in the short run
+is what we mostly mean by
+business cycle analysis.
+And short or medium run, the
+way we're going to find it here,
+is what we mean by business
+cycle-- the country's
+in a recession, it's in
+a boom, is an expansion.
+Those are all terminologies
+of the short run
+or short or medium run.
+The termination of equilibrium
+output in the long run
+is when we think about growth.
+When we talk about why China
+grows faster than the US today,
+well, that's a question not
+about the business cycle.
+It's a question about
+the long-run determinants
+of output growth, OK?
+And they are even
+different class of models.
+In more advanced models,
+if you were doing a PhD,
+those things are a lot
+closer to each other.
+But in this course.
+They're going to be very
+different type of models.
+It's easier to
+analyze these things
+with different type of models
+than trying to integrate
+all in one big machine, OK?
+But let's start with
+the simple part.
+In the short run,
+the key mechanism,
+something that will keep
+showing up in all the models
+and submodels we analyze
+in the first eight lectures
+or so or seven
+lectures-- the next seven
+lectures or so is
+this mechanism.
+In the very short run, output--
+that is, equilibrium output, the
+thing that these economists are
+forecasting that will decline
+in within the next 12 months--
+is determined primarily
+by what we call demand.
+So demand will determine output.
+Thus, if there's a
+change in demand,
+that will change production.
+But when production changes,
+that will also change income.
+That you know from
+national accounts.
+Remember, we said that
+we could measure output
+from the production side but we
+also measured the income side.
+And they're exactly the same.
+More production, somebody has to
+receive the proceeds of that--
+workers and owners, capital
+owners, the government,
+whatever.
+So changes in-- so the second
+step is changes in production
+that were brought about
+by the changes in demand
+will lead to a change in income.
+But when income changes, that
+will change demand again and so
+on and so forth, OK?
+So that's essentially-- that's
+quintessential short-run macro,
+to try to understand
+this aggregate demand,
+because that's the
+main driver, and then
+how it gets multiplied
+in the short run, OK?
+In this lecture, we're going to
+talk just about that, primarily
+about that.
+But that's one-- so when I
+mean short-run macro, that's
+a structure I have in mind.
+And that's what most
+people have in mind,
+something where aggregate
+demand will determine that.
+That's the reason
+why, in the short run,
+you worry a lot about whether
+consumer confidence is
+high or low.
+That's demand.
+If consumers are very depressed,
+they tend to reduce demand.
+If consumers are
+very bullish, that
+will tend to increase demand.
+And since, in the
+short run, output
+is determined by demand,
+the business cycle,
+whether we have a
+recession or not,
+depends a lot on
+how demand feels.
+So if somebody's forecasting
+a recession within the next 12
+months, is forecasting really
+that demand will decline
+within the next 12 months, OK?
+Why they're forecasting
+that-- that's something
+we're going to learn in steps
+as we go through the course.
+What are the kind of things
+they may be thinking about?
+What are the drags
+on aggregate demand
+that are likely to depress
+demand and so on and so forth?
+But we'll get there, OK?
+Anyways, first, let me tell
+you about the components
+of aggregate demand.
+The first and one of--
+the largest component of
+aggregate demand is consumption.
+And what I mean
+aggregate demand--
+OK, I'll be--
+I'll pause for a slide.
+Let me go over the definition.
+Consumption-- we're
+going to denote by C--
+is the goods and service
+purchased by consumers,
+households, and so on.
+Investment, which we're
+going to denote by I,
+is the sum of nonresidential
+and residential investments--
+so equipment and
+factories on one side,
+and then residential investment
+is houses, stuff like that,
+apartment buildings and
+so on, which is also--
+these are goods and services, as
+well, capital goods and so on.
+But they're are also
+goods and services.
+Government spending-- that's
+what we're going to denote
+by G-- are purchases of goods
+and services by the federal,
+state, and local
+government, excluding--
+that's important--
+government transfers.
+What is a government transfer?
+Many of you may have
+received that during COVID.
+The government sent you
+a check, for example, OK?
+Well, that check is not part
+of government expenditure.
+That check is like
+a-- is a negative tax
+and is going to
+enter somewhere else.
+When we mean
+government expenditure
+is things the government
+purchases, services
+the government
+acquires and so on, OK?
+And then exports, X, which
+will play no role until seven
+lectures, eight
+lectures from now,
+or actually 10 lectures
+from now probably,
+is purchases of US goods
+and services-- that is,
+goods produced by US factories--
+by foreigners.
+IM is the other side
+of the story, inputs.
+It's the purchase of
+foreign goods and services
+by US consumers, US
+firms, US government.
+So when you buy something
+that is produced in Germany,
+well, that's an import.
+When the Germans
+buy something that
+is produced in the US,
+that's an export, OK?
+And then the last
+component is something
+we're not going to pay
+any attention whatsoever
+in this course, which
+is inventory investment.
+Inventory investment
+is certainly--
+it's almost accidental.
+There is some planning on it,
+but there is a lot of-- it's
+just when there's difference
+between sales and production.
+And over the very short run,
+there's lots of differences.
+I mean, you're not producing--
+unless you're in a bakery,
+you're not producing
+and selling immediately.
+There are certain lags.
+That's a small thing.
+It's volatile, but
+it's a small thing.
+So we're going to ignore
+it for this course.
+We're going to assume,
+actually, unless we explicitly
+say the contrary, and that
+could show up in a pset.
+It would never show in a quiz,
+because it's not that important.
+We're going to assume that
+this inventory investment is
+equal to 0.
+Also, for this part of the
+course, until further notice,
+we're going to assume that
+exports and imports are
+equal to 0 as well.
+That's not realistic,
+but it's easier
+to analyze what we call a
+closed economy, an economy that
+is not interacting with
+the rest of the world.
+In, again, 10 lectures
+from now, we're
+going to open the economy
+to the rest of the world,
+and then we're going
+to have to talk
+about things like
+import/exports, exchange rates,
+things of that kind.
+But for now, let's
+keep it simple, OK?
+So now, so you get a
+sense, this is for 2018.
+But I mean, the totals change,
+but the composition doesn't
+change very much, of GDP--
+of GDP output, aggregate demand.
+They're are all the
+same in equilibrium,
+but we'll get there.
+In GDP, you see that consumption
+accounts for a big chunk, close
+to 70% of aggregate demand.
+That's the reason people worry
+so much about consumer sentiment
+and so on.
+University of Michigan
+has many claims to fame.
+But one of them is that they
+produce its index of consumer
+sentiment.
+And everyone is
+watching that thing.
+Anybody that worries
+about macro or finance
+is watching that thing
+because it tells you
+a lot about one of the main
+drivers of output, equilibrium
+output.
+Then you see investment
+is substantially smaller,
+but it's large, in particular,
+nonresidential investment.
+Government expenditure is a big
+component of aggregate demand.
+And then I'm not going
+to worry too much about--
+for a country like the
+US, the openness part
+is relatively small.
+If you go to a--
+a small economy typically will
+have sort of very large exports
+relative to GDP and so on.
+But that's not the
+case of the US.
+And there you see why
+we're going to set
+inventory investment to 0.
+It's a small thing.
+It moves a lot
+more than its size,
+so it can account for
+fluctuations in sort
+of the monthly level of GDP.
+But it's not that important in a
+slightly longer period of time,
+OK?
+So that's more or
+less the story.
+So now this is the model.
+Please stop me.
+Is there anything here
+you don't understand,
+because everything that we
+build from here to quiz 1
+will build on understanding
+this, what I'm about to say.
+Very simple, but if
+you miss a step here,
+everything is going
+to be confusing
+in the next few lectures.
+And you're not supposed to
+understand it in the first run,
+so it's OK that you ask me.
+But let's make sure
+that you understand
+what is going on here.
+OK, so that's aggregate demand.
+First, definition-- so we're
+going to denote aggregate demand
+by this Z, letter Z. And
+aggregate demand is going
+to be--
+when we say aggregate
+demand, remember
+what is the exercise
+we're trying to do.
+Ultimately, what we
+want to determine
+is the output, the production
+of the US economy, say.
+So when we meet-- when we
+talk about aggregate demand,
+we're trying to
+determine the demand
+for domestically produced goods,
+for goods produced in the US.
+That's what we're
+trying to pin down.
+And so that's the reason
+aggregate demand looks
+like that, is, well, consumers.
+Consumers are going
+to demand goods.
+Investment, G, plus exports.
+If foreign demands
+US goods, that also
+increases US production--
+minus imports
+because imports is goods and
+services that consumers, firms,
+and governments sort
+of buy from foreigners,
+but they're not produced
+by US companies.
+So they do not affect the
+determination of equilibrium
+output in the US, OK?
+That's the reason
+you subtract it.
+Now, that distinction
+is not going
+to matter until 10 lectures
+from now, because we're
+going to set X and IM equal
+to 0 from the point of view
+of modeling.
+So all demand is demand for
+domestically produced goods
+in this part of the course, OK?
+So aggregate demand for US
+will be this C plus I plus G.
+So we need to understand what
+determines C plus I plus G.
+And at least
+initially, we're going
+to keep it very, very simple.
+We're not going to think
+too much about what
+determines investment.
+In fact, we're going to assume
+that it's a constant, is given.
+So it's determined
+somewhere else,
+not in the model
+I'm about to solve.
+Government
+expenditure, the same--
+I'm going to assume
+it's determined
+by some other priorities, green
+agendas and stuff like that.
+It has very little to do
+with what we're doing here.
+And then taxes is something
+that doesn't show up there,
+but it will show
+up very shortly.
+We're also going to
+assume that they have
+been determined somewhere else.
+In psets and later
+on in the course,
+we're going to endogenize
+all that, but not now.
+Let's assume-- I'm
+trying to come up
+with the simplest possible
+model of aggregate demand.
+And I'm making two of these
+terms trivial, just constants,
+OK?
+And I'm going to focus all my
+effort here in this component
+here, which I
+already told you is
+the most important component
+of aggregate demand, which
+is consumption, OK?
+So we're going to assume--
+here we're going
+to have a function.
+Something has to move for
+the model to be interesting.
+So this-- we're going to
+assume that consumption
+is an increasing function
+of disposable income.
+I'm about to define what
+disposable income is,
+but you can imagine what it is.
+It's something you can
+use to consume and so on.
+So very naturally, if you have
+a higher disposable income,
+you're going to consume more.
+That's what this says, OK?
+In reality, that consumption
+function is a lot more complex.
+There are lots of things that
+enter there that we're not
+modeling for now.
+But let's start
+from the basics, OK?
+So that's going to be the only
+behavioral assumption we're
+going to make for a while,
+that the consumers consume
+more when they have
+more disposable income.
+And then we're going
+to get even simpler.
+I'm going to assume that
+consumption is a linear function
+of this disposable income.
+So there's going to be some
+constant C0 which captures lots
+of things that we're not
+modeling here-- for example,
+the fact that, for any given
+level of disposable income,
+if you--
+if you're richer, suppose
+you have some shares,
+and now the shares
+double in value,
+you probably are going
+to consume more as well.
+There are lots of other
+things that affect consumption
+which are different from--
+aside from your
+disposable income.
+But we're not going
+to model that.
+So thus, we're going
+to call it autonomous,
+autonomous in the
+sense that we're not
+going to determine it here.
+We're going to take
+it as a parameter that
+comes from somewhere else.
+We may do some experiments
+moving that variable around,
+but it's not going to be
+part of what we model.
+C1 is a more
+interesting parameter
+for this part of the course.
+And it's what we call the
+marginal propensity to consume--
+out of disposable
+income, in this case.
+That is, C1 tells you the share.
+If you get an extra dollar
+of disposable income,
+how much of that do you
+spend in consumption?
+So say you get an
+extra dollar of income.
+If you spend $0.60 in the things
+you normally consume of that
+extra dollar, well,
+then your C1 is 0.6, OK?
+That's the marginal
+propensity to consume.
+And that's what gives us
+our increasing function.
+If you get an extra
+dollar, you're
+going to do-- you're going
+to save part, but some of it
+you're going to spend.
+That part you're going
+to spend is the C1
+that we have there, OK?
+Good.
+Now let me tell you how we
+define disposable income.
+Disposable income is
+just equal to income,
+which is equal to
+production, minus taxes.
+That's disposable income.
+It's whatever you earn as a
+worker or as a capital owner--
+well, then the government
+takes some out of it.
+That's your disposable
+income, and that's
+what you have to decide how much
+to save and how much to consume.
+So that means that our
+consumption function
+can be written that way after
+all these assumptions I've
+made--
+equal to its autonomous
+component plus C1,
+the marginal
+propensity to consume,
+times income,
+output, minus taxes.
+Is it clear?
+Yes?
+So all these are assumptions.
+Now, they're not crazy
+assumptions in the sense
+that we know that there is a
+relationship between these two
+things.
+Again, the consumption
+function in practice
+is much richer than that.
+And there is lots of randomness,
+random terms around and so on.
+But that's not what
+we're about here.
+But that's-- if you want
+to start with a consumption
+function, this is a pretty
+reasonable one to start with,
+OK?
+OK, so that's going to look in
+the space of disposable income,
+or income--
+I could have put income
+there, not disposable income--
+so that it looks like that.
+OK?
+So C0 is that
+autonomous consumption.
+It's something you're
+going to consume
+regardless of your level
+of disposable income.
+And there is a minimum
+consumption you have to have.
+[CHUCKLES] And then
+the slope of that
+is the marginal
+propensity to consume,
+which is C1, which is a
+number between 0 and 1.
+OK, so let's determine
+equilibrium output.
+So we have aggregate demand,
+which is C plus I plus G, OK?
+There we are.
+That was our definition
+of aggregate demand.
+I'm going to stick in
+now the functional forms.
+Well, these guys
+are very boring.
+They're constants.
+And I'm plugging in here
+the consumption function.
+So what we have here is
+that aggregate demand is
+an increasing function
+of output, or income, OK?
+It's also a function of
+taxes, investment, and so on.
+But it's an increasing
+function of output.
+And this is important because,
+remember, the goal of this
+is to find equilibrium output.
+So here I have, on
+the right-hand side
+of my aggregate demand, output.
+That's good.
+I have one equation in which
+output shows up, [CHUCKLES] OK?
+Now, I cannot find equilibrium
+output just from this equation.
+Why is that?
+So remember, we're
+trying to build a model
+to find equilibrium output.
+That's our goal.
+That's what will tell us whether
+we're in a recession or not--
+output is low, recession,
+output is high, we're in a boom.
+Obviously, I cannot
+solve it from this.
+I have two unknowns.
+What are my two unknowns?
+Two unknowns, one equation.
+What is my second unknown there?
+AUDIENCE: The aggregate demand.
+RICARDO J. CABALLERO:
+Aggregate demand, of course.
+We have to determine Z and Y.
+So how are we going to do that?
+Well, using a second
+equation, which
+is the equilibrium condition.
+It's not a function.
+This is a function.
+This is not a function.
+This is an
+equilibrium condition.
+It says, in equilibrium--
+not outside equilibrium,
+in equilibrium--
+output is equal to
+aggregate demand.
+OK?
+That's what this equilibrium
+condition tells us.
+Off equilibrium,
+this doesn't hold.
+That's the reason this
+is not a function.
+This holds everywhere.
+It's a function.
+This is an
+equilibrium condition.
+It says, at equilibrium,
+aggregate demand
+is equal to output.
+So now we're done because
+we have two equations, two
+unknowns, OK?
+Good.
+And the reason I post
+on this is that I
+see that mistake
+made often, that this
+is interpreted as a function.
+It's not.
+It's an equilibrium condition.
+At equilibrium, it holds.
+And that you can
+see, actually, I'm
+going to illustrate the
+same point in the diagram.
+So this is the--
+let me keep going.
+So this is clear, no?
+So this is just
+a summary of what
+we had in the previous slides.
+And this is the new thing here,
+which is, in equilibrium, output
+is equal to aggregate demand.
+And again, that's what makes
+this really a short-term model.
+You see, I'm saying
+output, in the short term,
+is whatever demand
+wants it to be,
+which is different
+from the long run that
+says, no, no, hold on a second.
+I mean, but how much
+output you can produce
+is a function of the capital you
+have, of the workers you have.
+Yeah, yeah, that's
+true in the long run.
+But in the short run, you
+have lots of flexibility
+because you have lots of
+unused capacity and so on, OK?
+So this is pretty--
+is a big assumption.
+And there are schools of
+thought within macroeconomics
+that are split by
+this assumption,
+whether you believe
+that, in the short run,
+output is aggregate
+demand-determined or not.
+Ultimately, we tend to believe
+that in the short run--
+the long run, no.
+But in the short run,
+that's what it does.
+Now, sometimes the long run
+gets to you very quickly.
+And at this point, we're
+in a situation like that.
+That's the reason we're
+seeing inflation and so on.
+But that's something you'll
+understand later on, OK?
+But for now, so
+this is important.
+We're saying here, output--
+I don't need another equation.
+I could have done
+aggregate demand like this
+and then output a function of
+capital, labor, lots of things.
+I'm not going to even do that.
+I'm going to say, no, no,
+output will be whatever
+demand wants it to be, OK?
+And that means, in equilibrium,
+they have to be equal.
+[CHUCKLES] Good.
+You had a question.
+AUDIENCE: [INAUDIBLE] can you
+[INAUDIBLE] output and GDP
+[INAUDIBLE]?
+RICARDO J. CABALLERO: No,
+they are the same for us.
+AUDIENCE: They are [INAUDIBLE]?
+RICARDO J. CABALLERO:
+That's our definition.
+GDP, for us, is output.
+So when they say aggregate
+output, I mean GDP.
+Remember?
+Real GDP-- we're talking
+all about real GDP, OK?
+And it's also equal to income--
+not disposable, but
+it's equal to income.
+Remember when we did those
+little tables where we look
+[INAUDIBLE], the three
+different ways of doing it?
+Well, the first two were output.
+And the last one was income.
+And they had to be the same, OK?
+So Y is real GDP for us?
+That's real GDP.
+What happens, in the
+table I showed you,
+I already used the
+fact that real GDP
+is equal to aggregate demand.
+And that's the
+reason I showed you
+the different components
+of Z I showed you
+that, that, and
+that, [CHUCKLES] OK?
+But in equilibrium,
+they are equal.
+There's really a figure
+that will clarify,
+I think, a lot of that.
+But let me keep solving this.
+So we have that--
+so what I'm going to do
+next is just solve it.
+So we have this
+equilibrium condition.
+I'm going to plug in my
+aggregate demand function here.
+And so I can solve out
+for equilibrium output.
+And here we have,
+for the first time
+in this course, an equation
+for equilibrium output.
+There you are.
+That's your equilibrium
+output in this economy.
+OK?
+Now, this guy here
+is very famous
+and is very macro It
+doesn't happen in micro.
+It happens in macro
+only, this guy here.
+Another guy there is
+called the multiplier.
+And it's a very
+important macro concept.
+It's a huge concept in macro.
+Now, why do you think
+it's called a multiplier?
+Well, obviously, it
+multiplies something.
+But a multiplier sounds
+like it multiplies--
+that makes something bigger.
+[CHUCKLES]
+So what happens if
+C1 is greater than 0?
+What happens if C1
+is greater than 0.
+Remember, it's between 0 and 1.
+But what happens if
+it's greater than 0?
+What happens with that number
+there, 1 over 1 minus C1?
+AUDIENCE: Bigger than 1.
+RICARDO J. CABALLERO:
+It's greater than 1.
+It multiplies.
+So the reason we
+call it a multiplier
+is not nothing deep there.
+So this thing here is
+sort of autonomous stuff.
+It's what the government
+spends, what firms are spending,
+capital.
+This is autonomous consumption.
+And this actually
+is a typo there.
+There should be a C1
+in front of that--
+typo.
+It comes from there, C1 times
+T. So fix that typo, please.
+I'm going to upload the slides
+again with the typo fixed, OK?
+I'm just-- it comes
+from here, C1 times T.
+OK, so that's what this does.
+It multiplies.
+So whatever it is that
+is happening here,
+whatever it is that the
+government is spending
+or whatever, this
+term is multiplied.
+And that's a huge thing.
+There was a big debate--
+almost always,
+when you're trying
+to get out of a recession, and
+the government starts spending,
+a big question is, well,
+how big is the multiplier?
+If the multiplier
+is small, you're
+going to have to spend a
+lot to get the economy out
+of the recession.
+If the multiplier is
+large, then you're
+going to have to
+spend very little,
+and then the multiplier
+will take you away
+from that recession.
+So what is it that makes a
+multiplier large or small?
+Well, mechanically, when is
+it that multiplier large?
+AUDIENCE: When C1
+is closer to 1,
+so when people are spending
+more of their income.
+RICARDO J. CABALLERO:
+Exactly, when C1 is large.
+And that gives you the logic.
+And that's very
+important in macro,
+is why is it a big multiplier?
+Well, because think
+what happens in macro.
+The government spends--
+not increases output.
+But now output increases income.
+And if consumers spend a big
+share of their extra income,
+an output, and
+consumption again,
+then that increases
+output again,
+which increases the income
+again, and you keep going, OK?
+So that's the sequence.
+On the contrary, if
+consumers are very scared,
+they don't want to spend any
+extra dollar they receive,
+anything of the extra dollar
+they receive, then you don't get
+any multiplier, because this
+initial increase in output that
+comes from the government
+expansion, that does
+lead to increase in income.
+But if consumers
+don't spend it, it
+doesn't recirculate
+into the economy,
+and then you don't
+get a multiplier.
+So that's the reason we
+call it the multiplier.
+So that diagram is
+an important diagram.
+I'm just doing this, actually.
+In that diagram, I'm plotting
+the aggregate demand function
+and then this equilibrium
+condition, output
+equal to aggregate
+demand, in the space
+of aggregate demand and output,
+production, and income here.
+But remember, income is
+equal to production, OK?
+So there's your aggregate
+demand and, thus,
+your 45-degree line because this
+output equal to-- so whatever is
+in this axis equal to that axis,
+that's the 45-degree line, OK?
+So that's your
+equilibrium conditions.
+It's, at equilibrium,
+these guys here,
+aggregate demand,
+Z, will have to be
+equal to Y. Those are--
+that's traced there.
+This is aggregate demand.
+Why is this line
+flatter than that?
+Why is aggregate
+demand flatter than--
+AUDIENCE: Because people don't
+spend their entire dollar.
+RICARDO J. CABALLERO: Exactly,
+because C1 is less than 1.
+So the slope of the aggregate
+demand in this space
+is C1, is the marginal
+propensity to consume.
+How much more they demand
+if they get an extra dollar?
+Well, they don't get-- they
+don't demand one extra unit.
+They demand C1 unit,
+and C1 is less than 1.
+So that's the reason this.
+So if C1 is very small, this
+line is going to be very flat.
+If C1 is very large,
+very high propensity
+to consume, this is going to
+be very steep, the red line.
+The other one doesn't
+change, the 45-degree line.
+And what I said is that, at--
+so you see, if I take
+an off-equilibrium level
+of output-- say, this--
+aggregate demand is
+different from output.
+It's only at equilibrium that
+these two things will hold.
+This function, I can
+plot it everywhere.
+But this one will hold
+only at equilibrium, OK?
+That's when these
+two things are equal.
+So what I solve here--
+here, I just found this point.
+So parameters here
+are C0, C1 times T,
+and G. They all shifters of this
+aggregate demand, up and down.
+And that point here
+is exactly that.
+And all those things
+are parameters
+in my aggregate demand.
+I really want you to
+internalize this diagram.
+Any questions about it?
+Just stare at it a
+little because it's
+going to show up repeatedly.
+And later, it's not
+going to show up.
+But whenever you get
+confused, the way
+to get yourself out
+of that confusion
+is going to be to go
+back to the diagram.
+You'll see.
+I'll remind you when
+that's likely to happen.
+So you better
+understand this diagram.
+Play with it.
+Move-- here, the only
+thing you can move around
+is the ZZ, the aggregate
+demand curve, OK?
+The other thing is an
+equilibrium condition.
+[CHUCKLES] You can't
+move that 45-degree line.
+But ZZ, you can move it around.
+So let's do a few exercises.
+One, the most obvious, suppose
+that C0 increases by $1 billion.
+So autonomous
+consumption-- that is,
+that level of consumption which
+is independent of income--
+goes up by $1 billion.
+And that could be we're
+only in a better mood.
+Disposable income is
+whatever it is today.
+But there is great
+expectation that the economy
+will enter a boom next year.
+And so then you feel
+richer and so on.
+And you may decide to consume--
+not wait until next year.
+You may decide to
+consume more today.
+That kind of thought experiment
+can be captured by a C0 type
+shift, go up.
+And that's when I talk
+about consumer sentiment.
+Well, consumer sentiment
+is a lot about C0--
+for any given level of
+income, whether consumers
+are likely to consume more than
+they would otherwise or less.
+And that's what C0 captures.
+So let's go-- everything
+in this model-- there's
+no dynamics in
+this simple model.
+So we immediately--
+what we know is,
+if you just were to
+solve the equation,
+and I tell you what happens to--
+if output-- what happens
+to output if C0 goes up
+by $1 billion, you know that
+output will rise by how much?
+Let's keep it simple.
+Just staring at that equation,
+if I tell you autonomous
+consumption goes
+up by $1 billion,
+what happens to
+equilibrium output?
+Goes up by more or
+less than $1 billion?
+Or exactly $1 billion?
+AUDIENCE: [INAUDIBLE]
+RICARDO J. CABALLERO: Exactly.
+And the multiplier
+is greater than 1.
+So we know that the output
+will increase by more than $1
+billion, will increase by 1
+billion times the multiplier.
+If C1 is 0.5, then it will
+increase by $2 billion
+equilibrium output.
+Now, I'm going to get you from
+the $1 billion to the $2 billion
+in steps using the diagram.
+That's what I intend to do next.
+OK?
+So this shift here-- so we're
+starting from this equilibrium
+output here.
+This shift here, boom,
+is increasing C0.
+That's at $1 billion.
+So distance A to
+B is $1 billion.
+That's because what I did is,
+for any given level of output.
+I shift this aggregate
+demand up by $1 billion.
+Thus, autonomous
+consumption, up, OK?
+Well, because output is
+whatever demand wants,
+that immediately increases
+output by $1 billion.
+So the distance between B
+and C is also $1 billion.
+Demand increased by $1
+billion, boom, output
+immediately catches up.
+So output increases
+by $1 billion.
+But if output increases
+by $1 billion,
+what has happened to income?
+It also increased by $1 billion.
+Income is the same as output.
+So income has increased
+by $1 billion.
+Well, if income has
+increased by $1 billion,
+and C1 is different from 0, that
+means part of that extra billion
+is going to be spent in
+consumption, second round.
+So say C1 is 0.5, then
+now you get $500 million
+more of expenditure.
+But if it's-- of consumption.
+And it's $500, that's the CD.
+That's $500 million.
+Obviously, this C1
+here is less than 0.5
+because otherwise this would
+be half of that, but it's not.
+But anyway, you get
+$500 million more.
+But if now there's $500
+million more of demand,
+since output does
+whatever-- production
+does whatever demand wants, then
+you get $500 more of production.
+And if you have $500
+more, million dollars
+of more production, then
+you have $500 million
+more of income.
+And if you have
+$500 more of income,
+and you have C1 is
+greater than 0--
+say, 0.5-- you're going to
+spend $250 million more.
+But $250 million more
+will generate $250 million
+of production, which also
+will generate $250 million
+more of income, which
+will generate $125 million
+more of consumption, and
+blah, blah, blah, blah, blah.
+You [INAUDIBLE] OK?
+So that's-- and that's
+what is happening here.
+[WHISTLING] Boom.
+Yeah?
+AUDIENCE: [INAUDIBLE]
+the movement from C to D
+[INAUDIBLE]?
+RICARDO J. CABALLERO:
+From C to D. OK,
+so this is the initial shift in
+aggregate demand up, $1 billion.
+That leads to a $1
+billion more of production
+as well, which means $1
+billion more of income, OK?
+But now these consumers
+not only have this C0--
+$1 billion higher in C0, but
+they also have $1 billion
+more of income.
+And since they have $1
+billion more income,
+and they're going to
+spend part of it--
+C1 times that, and I
+assume C1 was 0.5--
+that's what gives me CD.
+That's the extra $500 million.
+And then that thing there
+is also $500 million.
+And there was $250 million,
+$250 million, $125, $125 $62.5.
+That's the way you get there.
+There is an alternative way
+of finding equilibrium output,
+which is entirely equivalent.
+And it's the way it was
+initially done, by the way.
+And you'll see later on a very
+important curve in this course
+will be the IS curve,
+which is a curve that
+describes all the
+equilibrium in goods markets.
+We'll get there.
+But the reason it's called IS
+because of this alternative way
+of deriving the same I have
+derived, which is through--
+you can arrive to the same
+equilibrium by saying,
+look, equilibrium output
+is that output at which
+investment is equal to savings.
+That's the reason that curve
+is going to be called IS,
+investment equal to savings, S.
+So let me very quickly do it
+for you and then make a point
+and connect the two things.
+So private saving is what
+consumers do and so on,
+and firms.
+It's just disposable
+income minus consumption.
+That's your saving, OK?
+So it's equal to
+Y minus T. That's
+disposable income minus C.
+Government saving is taxes
+minus government expenditure.
+So if the government has a
+deficit, that thing is negative.
+Governments often have
+negative saving, OK?
+If it has a surplus, then
+taxes are greater than G,
+then you have a fiscal surplus.
+Again, rarely happens in the US
+or in the Americas in general.
+It happens a lot in Asia, but
+it doesn't happen very much
+in this part of the world.
+But there we are.
+So in equilibrium, investment,
+I, has to be equal to saving.
+So that's what you are going to
+use the saving for, to invest,
+OK?
+So investment is equal
+to the sum of savings.
+I can replace all
+that in here, and you
+see that I get exactly
+the same equilibrium
+condition I had before--
+output equal to
+aggregate demand.
+So this is an entirely
+equivalent way of deriving this.
+And I just want to show
+you this because it's
+the way it was originally done.
+And you'll understand
+better the terminology
+we use later on if you see
+that this is an equivalent way.
+This is also a nice way
+of illustrating something,
+why macro can be
+counterintuitive sometimes.
+Microeconomics is
+very intuitive.
+I mean, things make sense.
+It's like physics.
+It makes sense.
+Macro can be confusing.
+For example, there is a
+well-known paradox of savings,
+in the short run,
+not in the long run.
+In the short run, you have
+the paradox of saving.
+So we all think that you
+save more is a good thing.
+Our parents teach us
+that is a good thing
+to save more and so on.
+And in general, that is true.
+You'll do better in life if you
+save a little more and so on.
+But it's not true for the
+macro in the short run.
+It's not good for
+macroeconomics in the short run,
+unless you are in an
+overheated economy.
+Now it could help.
+But otherwise, it's not very
+good for equilibrium output.
+And let me show you that very
+quickly with the expression
+I just showed you.
+Remember I said,
+equilibrium output
+is pinned down by
+investment equal to saving.
+And saving-- the
+private saving here
+is an increasing
+function of output, OK?
+It's equal to,
+actually, 1 minus--
+the function has a
+slope of 1 minus C1.
+C1 is the share of income
+that you spend in consumption.
+Therefore, 1 minus C1 is
+the share of your income
+that you spend in saving, OK?
+So this function is increasing
+with a slope of 1 minus C1.
+So suppose I tell
+you now that all we
+decided to learn the
+lessons of our parents
+and say, OK, we
+should all save more.
+So that means, for any
+given level of income,
+now we all decide to save more.
+That means the S
+function shifts up.
+For any given level of
+income, we save more.
+But we have a problem there
+because now we have more savings
+than investment.
+So how do we
+restore equilibrium?
+That's not in equilibrium.
+How do we restore equilibrium?
+So now we all decided to be more
+prudent and save a little more.
+At the level of the
+economy as a whole,
+now we have more
+saving than investment.
+That can't happen.
+It's not an equilibrium.
+What restores equilibrium?
+Well, in this very simple
+model, our investment is fixed.
+So nothing can adjust
+on the investment side
+because it's fixed.
+Later on, it's going to
+move, but now it's fixed.
+Nothing can adjust in
+the public savings part
+because it can't move.
+We assume that it's exogenous.
+So something has to
+happen endogenously
+here that the reverses
+the increase in savings,
+the only thing that can happen.
+And the only thing can
+happen endogenously here
+is a decline in output--
+output declines,
+saving declines.
+So here you end
+up in a situation
+in which we all decided
+to be better people,
+save a little more.
+And we ended up sinking the
+economy in a recession--
+output decline.
+That's the reason it's
+called the paradox of saving.
+That's not going to happen
+to you individually,
+but to an economy
+as a whole, that's
+the reason I said
+it's counterintuitive.
+It can happen.
+So look, if you don't
+like this way of--
+and it's not the main
+way we're going to use.
+If you don't like this way of
+finding equilibrium output,
+just ignore it.
+I just wanted you to know it.
+Go back to-- the thing you
+really need to understand
+is not this.
+It's this, that, that.
+That you need to understand.
+So let me illustrate
+the paradox of saving
+in the model we're
+using, in the one
+I want you to really remember.
+Well, the paradox of saving I
+can capture by a decline in C0.
+For any given level of income,
+now we decide to consume less.
+If we consume less for
+any given level of income,
+that means we're saving more.
+So I can capture in
+this diagram the fact
+that we have all become
+sort of more prudent
+by a decline in
+aggregate demand.
+But if aggregate
+demand declines-- so
+suppose we start at this
+equilibrium level of output,
+and then, all of a sudden,
+we say, OK, enough is enough.
+We need to start saving more.
+Then what happens?
+Well, aggregate demand declines.
+I mean, for any given
+level of income,
+if you're going to
+save more, that means
+you're going to consume less.
+So aggregate demand declines.
+But what happens when
+aggregate demand declines?
+AUDIENCE: Output declines.
+RICARDO J. CABALLERO:
+Output declines.
+What happens when
+output declines?
+AUDIENCE: [INAUDIBLE]
+RICARDO J. CABALLERO:
+Income declines.
+What happens when
+income declines?
+Well, part of that
+income you consume.
+So you're going to consume less.
+C1 times that.
+So then-- and then you get the
+multiplier working against you.
+So not only-- if now we
+all decide to save more,
+not only output falls
+by the same amount
+that we increase
+savings, but actually
+declines by more than that
+because you get the multiplier
+working against you, OK?
+That's the reason a big role
+of policymakers, really,
+in recession is to try to
+maintain the calm because you
+can get into these
+kinds of things.
+It's everybody gets scared,
+and we all get scared.
+So the economy can implode just
+out of bad sentiment and so on.
+Now we're on the opposite
+side of the cycle.
+We would want output to decline
+a little because we are having
+other problems, inflation
+and so on-- again, something
+we'll discuss later.
+So now you may want to
+scare consumers a little.
+And in fact, the governance
+of the Federal Reserve--
+and the same is happening in
+other places in the world--
+are doing just that.
+I mean, when they go out there,
+says the economy is too hot,
+we're going to have to mess
+up this economy a little.
+[CHUCKLES] They're
+telling us that.
+And the first one is
+listen to these things
+is the financial markets.
+So every time they come out
+and make a speech of that kind,
+equity markets decline.
+Well, equity markets
+capture before the mood
+that consumers will have in
+the future, captures it early.
+But that's the message, OK?
+So they're trying--
+at this moment,
+really, policymakers-- at
+least the central banks--
+are trying to do just that,
+depress a little bit consumers
+so we can cool off
+the economy a bit.
+OK.
+Any questions?
+Again, very important
+lecture because we're
+going to build on this
+and, later on, this
+is going to be always
+in the background.
+And of this-- until
+we actually go
+to the third part of the course,
+the key model will be this.
+This will be in the background.
+More things will be
+happening on top.
+But whenever I ask
+you a question--
+for example, later--
+ah, one example--
+what else would produce
+a situation like this?
+What else-- what could happen?
+What kind of policy would
+generate that movement?
+Well, at this point, we haven't
+introduced monetary policy.
+So you cannot talk
+about monetary policy.
+But we do have other kinds of
+policy we could talk about.
+Remember?
+Here, fiscal policy.
+OK?
+Fiscal policy.
+G and T, those are
+fiscal parameters.
+When G goes down
+or T goes up, we
+call that contractionary
+fiscal policy.
+Why contractionary?
+Because it contracts
+aggregate demand.
+If G goes down, clearly
+aggregate demand
+goes down immediately.
+If T goes up, well,
+disposable income
+for any given level
+of income goes down,
+and therefore,
+consumption goes down.
+So we call an increase-- a
+decline in G or an increase in T
+a contractionary fiscal policy.
+The opposite-- if G goes
+up, and T goes down,
+we call that an
+expansionary fiscal policy.
+So I take you back
+to this diagram here.
+And I ask you the
+question again,
+what kind of fiscal policy
+will generate this type of--
+this picture?
+Contractionary or expansionary?
+AUDIENCE: Contractionary
+RICARDO J. CABALLERO:
+Contractionary.
+I mean, a good mnemonic,
+the output decline.
+So contractionary-- so that is
+a decline-- a reduction in G,
+in going expenditure.
+Or an increase in taxes
+will shift that curve down.
+And then the multiplier will
+make it even more contractionary
+than the initial fiscal impulse.
+OK?
+Very good, see you on Wednesday.

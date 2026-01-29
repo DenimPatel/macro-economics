@@ -1,0 +1,1689 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICHARDO CABALLERO: And so
+we started with something
+a little boring,
+basic definitions.
+And the first thing
+we had to do is
+to understand how do we measure
+output at the aggregate level.
+It's very easy to
+understand what
+output is at the level
+of an individual factory,
+but at the aggregate level,
+it's a little tricky.
+And so we had an example
+of a very simple economy
+with two companies,
+one that produces steel
+and the other one
+that produces cars.
+And in this particular
+example, the steel company
+doesn't sell anything
+to the final consumers,
+it sells all its production
+to the car company.
+And we ask the question, what
+is the GDP of this economy?
+The simplest answer would
+have been, well, 300.
+I summed the output
+of the two companies
+and that could be one answer.
+But then I show you the
+three different methods
+that that's the wrong answer.
+And method 1 was--
+a definition is GDP is the
+value of final goods only.
+And final goods in
+this simple example
+is, well, this company
+is not producing anything
+as a final good because all its
+sales are going to-- as an input
+into other companies'
+production.
+And so this one
+doesn't count at all
+in our simple example,
+this one counts,
+and then the answer is $200.
+Not 300, but $200.
+Method 2 was to count only the
+value added in each company.
+And value added
+is the difference
+between the final output--
+that is, the revenue from sales,
+minus whatever that company
+spends on intermediate inputs.
+In this simple
+example, this company--
+the steel company is
+not spending anything
+on intermediate inputs--
+it's a strange production
+of steel, but anyways,
+it is quite a decent example.
+And so this $100 is value-added,
+completely value-added.
+There is no expenses
+on intermediate inputs.
+For the car company, however,
+the revenue from sales is 200,
+but the company spends 100
+on intermediate inputs.
+Therefore, the value
+added of this company
+is 200 negative 100, so
+you get 100 value added
+from this one, 100 of
+value added from that one,
+total value added, 200.
+So same answer.
+And the third method--
+these are-- the two methods
+that I just described
+are production methods.
+You're measuring
+the production side.
+The alternative is to
+look at the income side.
+And the income side says just--
+let's sum all the incomes
+in the economy.
+And the incomes are income
+to workers, wages, and income
+to the owners of
+capital, profits.
+Income to workers is
+$80 plus 70, is 150.
+Income to owners of capital
+is 20 plus 30, that's 50.
+So 150 plus 50 is, again, 200.
+So these are three equivalent
+ways of measuring output.
+And I said-- one of the features
+I show you of this method
+is that they are immune to
+organizational structure
+within the economy.
+So for example, if these
+two companies were to merge,
+clearly the sum of
+incomes would not change.
+It would still be 100--
+it would be 200.
+This one would not change
+because if they were to merge,
+then the whole production of the
+revenues from sales of the car
+company would be value-added.
+Everything would be
+produced in-house,
+and still, the
+answer would be 200,
+then, because this
+company would disappear,
+it would emerge inside here,
+and you would get still get 200.
+And the same happened with
+method 1 because still,
+the sales of final
+goods is only 200.
+The naive approach of
+just summing output
+would be terrible because
+once you merge it,
+output would collapse
+from 300 to 200.
+That tells you that's not the
+right way of doing things.
+So while the three methods
+we propose do work,
+are immune to this
+organization-- changes
+in the organization structure.
+The next step was to highlight
+that when we say output,
+we're really after real output.
+And there is a distinction
+between nominal output
+and real output.
+Nominal output is
+simply the quantity
+of final goods measured
+at current prices,
+while real output is measured at
+some fixed set of prices of one
+fixed year.
+And I think I gave
+you an example.
+This is an example I gave
+you, and then in the P-sets,
+you had more complicated
+examples with multiple goods.
+Here, you have an economy that
+produces only one good, cars,
+and that produces 10 cars
+here, 12 cars, 13 cars here.
+The price of the cars is
+rising, so the nominal GDP
+is rising a lot while the
+real GDP is rising less.
+How do we measure real GDP here?
+We use-- in this particular
+example, we use the prices here,
+12--
+10 times the price of the car
+in 2012 is 24,000, that's 240.
+Obviously for the
+base year, nominal GDP
+is the same as real GDP.
+And then for 2013 is 13--
+not times 26,000, but times
+24,000 and we get that.
+Now in this particular
+example of only one good,
+you can pick any
+base year and you'll
+get exactly the same rate
+of growth of real output.
+If you have multiple
+goods, that's not true
+because the relative prices
+of goods are moving over time,
+but that's the basic idea.
+So-- I mean, again, you
+should know these things--
+I'm not going to be tremendously
+important in the quiz,
+but they will show
+up in your quiz.
+Then we went through
+some definitions.
+The unemployment
+rate being the number
+of unemployed over the
+labor force, not population,
+that's important.
+We talked about the
+inflation rate as well.
+And that's the rate
+of change of prices,
+and there are different
+prices in the economy.
+One of them is the
+deflator, the other one
+is CPI, and so on and so forth.
+That's it.
+So that was the first lecture
+relevant for the quiz.
+Any questions about that?
+Good.
+Keep moving.
+OK, then we move to--
+then we began to
+really get serious
+because we began to construct a
+foundation for the IS-LM model.
+And the first thing we did is
+we looked at the goods market.
+No.
+And what we did
+here is we said--
+we describe the different
+components of aggregate demand,
+and we said, in this
+economy-- for now, at least,
+we're going to make
+this economy closed,
+so we remove exports and
+imports, and for your quiz,
+absolutely you're not
+going to see anything
+about exports or imports.
+So this is your
+aggregate demand.
+We wanted to build
+a little more,
+so we had to have some
+behavioral assumptions.
+We made it initially
+very simple.
+We assume this was exogenous,
+that government expenditure was
+exogenous.
+Taxes were also exogenous.
+And the only behavioral
+equation we had
+was this consumption
+function, and we
+said consumption is
+increasing disposable income.
+So we assume something
+linear like this.
+Disposable income is
+just income minus taxes.
+And remember, income-- remember
+from the alternative ways
+of measuring GDP, income
+is the same as output.
+So when I say income,
+because that's what
+is relevant for the
+consumption-- consumers world,
+but it's the same as output.
+So that was our
+consumption function.
+it had an
+upward-sloping-- it was
+upward-sloping because there
+is a marginal propensity
+to consume, c1.
+And then a key assumption
+of this part of the course
+is that output is aggregate
+demand-determined.
+Prices were completely
+fixed, and we said, well,
+but output is whatever demand
+wants, that's what output is.
+So this is an
+equilibrium condition.
+This is the aggregate demand,
+this is an equilibrium
+condition, so we can
+solve out because I
+can say in equilibrium,
+z is equal to y,
+and I can solve for equilibrium
+output from that equation.
+And that's exactly what
+we did in this slide,
+and you got to an
+expression like this.
+Knowing how to do that is
+very important for you.
+So you better be sure that
+how to find equilibrium output
+in this model.
+I mean, it's going to be
+very difficult to do IS-LM
+if you don't know these steps,
+so you better know this stuff.
+And remember something--
+we call this guy
+here in the simple
+economy the multiplier.
+Why the multiplier?
+Well, because given
+certain something
+we call exogenous expenditure,
+the 1 minus c1 multiplies that.
+If the marginal propensity
+to consume is very high--
+say it's close to 1, then the
+multiplier is very, very high.
+If the marginal propensity
+to consume, say, is 0.5, then
+how much is the multiplier?
+2.
+OK, good.
+So the multiplier is 2.
+Good.
+And that was our equilibrium.
+We had the aggregate demand.
+The slope was less than the
+45-degree line because c1 is
+a number less than 1, and so
+you have some equilibrium output
+there.
+That's the equilibrium output.
+At this point, aggregate
+demand is equal to--
+well, aggregate demand is equal
+to aggregate supply, that's
+always true, but
+that's consistent also
+with aggregate demand--
+with the function
+of aggregate demand.
+And important for this
+equilibrium output
+is that the equilibrium output
+is a function of a lot of things
+that we took as parameters in
+this aggregate demand curve.
+What did we take as parameters
+in the aggregate demand curve?
+Just give me examples.
+Well, investment, government
+expenditure, and taxes
+at the very least.
+Also, parameters like autonomous
+consumption, that c0 we're
+taking as given.
+Anything-- if any of
+those things move,
+the position of the aggregate
+demand curve will shift around.
+And that was one example.
+Suppose autonomous
+consumption c0 goes up.
+So suddenly consumers
+decide to spend more.
+Well, then what we have is
+that aggregate demand shift up
+and equilibrium output
+ends up changing
+by more than the
+initial change in c0.
+Why is that?
+So this is the change in c0,
+but the change in output--
+and so the initial
+change c0 leads
+to an initial change in
+output, which is equal to c0.
+That's up to here.
+But then we end up with a final
+equilibrium output is higher
+than the initial response.
+All this happens infinitely
+fast in this model.
+Why is this change
+greater than c0?
+There is a multiplier in front.
+Exactly.
+We change c0 by 1, but then you
+have to multiply it by 1 over 1
+minus c1.
+And that's what we illustrated
+in this picture there.
+OK, good.
+And so you should
+move everything--
+you can move here around.
+Move G up, D up, and stuff
+like that and see what happens.
+The last thing I
+did in this section
+is I showed you an alternative
+way-- entirely equivalent way
+of illustrating
+equilibrium, which
+was saving equal to investment.
+Remember, I derived this, and I
+go to an expression like that.
+That's exactly the same
+as aggregate demand
+equal to aggregate supply.
+An investment, which, in
+this particular basic model,
+is fixed, is equal to saving by
+the government, which is also,
+in this basic model,
+is fixed because it's
+G minus T, which is fixed.
+Sorry, it's T minus
+G, which is fixed.
+And then private saving.
+And then I show you
+an interesting result,
+which is called-- known
+the paradox of savings,
+which says the following.
+If, for whatever reason,
+consumers decide to save more,
+say, for example, because
+c0 now comes down.
+So now they have certain income.
+Out of that same income,
+they want to save more.
+Then from this very
+simple equation,
+I know that-- what
+happens to output?
+Why?
+AUDIENCE: Because savings go
+up, consumer demand goes down.
+And then also, investments
+will also go down.
+And then--
+RICHARDO CABALLERO: No.
+Investment doesn't go down
+here because it's fixed.
+In this basic
+example, not IS-LM.
+AUDIENCE: [INAUDIBLE]
+RICHARDO CABALLERO:
+Yes, but that's
+an explanation, which is
+the right explanation,
+but the explanation in the outer
+space, output and the income.
+I wanted in the space of
+saving and investment.
+So let me give it
+to you very quickly.
+But your answer is
+correct, but it's not
+what I wanted here because
+what I wanted to say
+is the following.
+If, for whatever reason, for
+any given level of income,
+savings go up, then
+we have an imbalance.
+Total saving is greater
+than investment.
+The only variable
+that can adjust here--
+so we restore equilibrium,
+investment equal to savings,
+is for the output to come down
+because if output comes down,
+savings come down, and that's
+the way you restore equilibrium.
+I told you, this way
+of looking at things
+is entirely equivalent
+as we have already done.
+So I can also do what
+you wanted to do,
+which is represent that in
+the space of output and--
+aggregate demand and aggregate--
+and output or income.
+And an increase in c0--
+a reduction in c0 would lead to
+a decline in aggregate demand
+and then through the multiplier
+larger increase in output.
+So this is the way
+we characterize it
+before, this is a slightly
+different way of characterizing
+which is what gives rise to what
+is called the paradox of savings
+because suddenly you
+decide to save more,
+supposedly that should be good.
+Well, in the short-run
+it's not really good,
+it causes a recession.
+Anyways.
+It's cute, but it may
+show up in your future,
+so I wanted to remind you.
+So that was the
+goods market side.
+Oops.
+Then we look at
+financial markets
+and we trivialize
+financial markets, really.
+We said let's assume the
+financial markets are very, very
+simple.
+Money and bonds.
+That's it.
+Nothing else.
+And the first behavior--
+the only behavioral
+equation we really had here
+was money demand,
+and we said, well,
+money demand is
+increasing in nominal GDP
+because if nominal
+GDP is larger,
+then you need to do
+more transactions,
+you need more money, more cash.
+Cash of deposit, but here,
+we're looking only at cash.
+But it's decreasing
+in the interest rate.
+Money-- the money is
+decreasing in-- why is it
+decreasing in interest rate?
+Interest rate is the
+return on the bonds.
+Why is money demand decreasing
+in the interest rate?
+Yes.
+The opportunity cost of holding
+cash in your pocket is higher.
+You didn't care about
+this stuff a year ago.
+But now, it costs
+you 5% to hold cash.
+That's what you get in
+1-year certificate bond.
+US Treasury bond at this moment.
+So it's more significant.
+Maybe it's not that relevant
+for you, but corporation,
+makes a big difference,
+I guarantee you.
+I'm keeping the thing
+in the checking account,
+now they're really buying
+short-term Treasuries and stuff
+like that.
+Good.
+So that's the reason
+this is downward-sloping.
+And that's the concept here.
+So then what the central
+bank controls is money.
+How much money it injects in
+the economy, that is how much--
+OK.
+How much money it injects
+into the economy, how does--
+let me say just that for now.
+And so that's the money supply.
+So the equilibrium
+interest rate is simply
+the point in which money demand
+is equal to the money exogenous
+money supply.
+And I said in the modern world,
+the central banks don't tell you
+M S. They tell you this is
+the interest rate we want,
+and then they provide
+whatever M they need in order
+to get the interest rate they
+have told you they want to have.
+So that's the case of an
+expansionary monetary policy.
+Suppose the Fed wants to lower
+the interest rate from here
+to here.
+Well, what it needs to
+do is increase money.
+And increase money means it
+goes out there, an open market
+operation, and buys bonds
+from the private sector.
+Buys bonds, takes bonds
+in, and gives them cash.
+Money.
+That's an expansionary
+monetary policy,
+and an expansionary
+monetary policy
+will lower the interest rate.
+That's an open market operation.
+So that's what we just
+saw, was exactly that.
+The Fed wants to lower
+the interest rate.
+What it does is
+it goes out there,
+it buys bonds from
+the private sector
+so it's balance sheet on the
+asset side has more bonds now,
+but it has more liabilities
+because it gives cash to people
+and that's a liability
+of the central banks.
+So that's an open
+market operation.
+That's an expansionary
+open market operation
+which is designed to
+lower the interest rate.
+Then I talked about
+the relationship
+between the interest rate
+and the price of the bond.
+And that's the return on a bond.
+It's the face value
+of the bond, what
+you get when the bond matures.
+Say it's 100, it's a
+bond for 100, minus
+whatever you pay divided
+by whatever you pay.
+So say if you pay
+today $95 for a bond
+that will pay you $100 a year
+from now, that's approximately--
+it's 5% interest rate.
+It's a little more,
+but that's about it.
+Which also helps you
+understand a little bit what
+happens during an
+open market operation.
+In an open market operation, an
+expansionary monetary policy,
+the central bank goes
+out there and buys bonds.
+What typically happens
+to a price of a good
+or an asset that is being
+bought by somebody big?
+Goes up or down?
+Now we have a big buyer out
+there that goes and buys bond.
+Do you think the price of
+bonds will go up or down?
+Up.
+Big buyer got into the market
+to buy bonds, the price of bonds
+go up.
+But if the price
+of bonds goes up,
+that means the interest
+rate goes down.
+So that's an intuitive
+way of understanding
+how monetary policy
+lowers interest rates.
+It's a big buyer buying bonds,
+the price of bonds will go up,
+but the interest rate
+and the price of the bond
+are inversely related.
+You can see that.
+Now suppose that the initial
+price of the bond was 95,
+and now the price of
+the bond goes to 100,
+the interest rate goes from
+a little more than 5% to 0%.
+Good.
+Then we talked about
+intermediaries.
+Forget it for now.
+So then we got into two
+lectures about IS-LM--
+about the basic
+IS-LM model, and then
+we did one more on the
+extended IS-LM model.
+And I told you that at least
+two-thirds of your quiz
+will be about this.
+So-- and I already know what is
+in the quiz and I cannot tell
+you, that I honor my commitment.
+So you better understand the
+IS-LM model very, very well.
+Now understanding
+the IS-LM model also
+means understanding
+the previous two
+lectures because we're
+building the IS-LM model there.
+So the first thing
+we did here is
+we said, well, to make
+this stuff a little more
+interesting-- we already
+had a model in which we
+could find equilibrium output.
+But remember, that was in
+lecture 3, we had that.
+But we said-- but we took
+many things as exogenous there
+that are really not
+exogenous in practice.
+In particular,
+private investment.
+Private investment is
+certainly something
+that responds to
+aggregate activity
+and to the cost of borrowing
+and things of that nature.
+So what we did-- the
+first thing we did here
+is we changed the
+investment function
+for some constant for something
+that was a function of output
+and the interest rate.
+That component here, the fact
+that it was increasing in output
+just increase the multiplier,
+but it didn't change anything
+qualitatively in the analysis.
+But the fact that it
+depends on the interest rate
+is important because now we have
+as a parameter in the goods--
+in the aggregate demand
+curve the interest rate.
+When you solve out
+the whole thing,
+the interest rate is one
+of the things that can
+move aggregate demand around.
+And that's important
+because now you
+can begin to see the
+connection between what
+the central bank does and how
+it affects aggregate activity
+because what the
+central bank does
+is affect the interest rate.
+The central bank cannot go out
+there and buy hamburgers as I
+said.
+It can go out there
+and buy bonds,
+and with that, it affects
+the interest rate.
+And for that to matter
+for the economy,
+not only to
+bondholders, it better
+be the case that that interest
+rate matters for the equilibrium
+level of output.
+And it does so by
+affecting real investment.
+So that's the mechanism through
+which monetary policy affects
+real activity.
+Is through the
+cost of borrowing.
+We simply-- in
+reality, consumers
+are also affected by that, by
+the interest rate and so on,
+but let's keep things simple
+and have only investment
+as a function of
+the interest rate.
+And very importantly,
+it's a decreasing function
+of the interest rate.
+The higher interest
+rates, the lower
+its investment for any
+given level of output
+because it's more costly to
+borrow to fund that investment.
+So that gives us
+our curve, which
+is a combination of
+output and interest rate
+that are consistent with
+equilibrium in the goods
+market-- that is, when output
+is equal to aggregate demand.
+So that's the IS So
+that point belongs
+to one IS for one
+interest rate here.
+So how do we construct the IS?
+Well, we start moving
+the interest rate.
+So suppose we start from
+this one point in the IS,
+the point I just showed you.
+Supposing that now-- we
+increase the interest rate,
+we look at the new
+equilibrium output.
+Well, that also
+belongs to this IS.
+And you can keep moving
+the interest rate around.
+So you move z around only
+by moving the interest rate.
+Don't move G, T,
+or anything else.
+Only by moving the
+interest rate, and then
+you can trace an IS curve.
+If you move other parameters
+than the interest rate,
+then it's a shift
+in the IS curve,
+it's not a movement
+along the IS curve.
+So if, for example, if I
+increase G, what happens?
+With this IS curve?
+The IS curve shift to
+the right because--
+now for any given
+level of interest rate,
+output will be higher because
+aggregate demand moves up.
+And so that's a shift to
+the right of the IS curve.
+Good.
+That's an example
+of the opposite.
+An increase in taxes, well,
+it will shift IS to the left.
+The LM relationship
+is already described.
+It is no equilibrium
+in financial markets,
+but we said the way
+monetary policy is conducted
+is the Fed sets the
+interest rate and the money
+is whatever the market needs
+in order for that to be
+the equilibrium interest rate.
+So the model in LM, if you will,
+is horizontal just like that.
+So now we're set, because
+once the Fed decides
+to set this interest
+rate, we can
+find not only the equilibrium
+combinations of interest rate
+and output that are consistent
+with the equilibrium
+in the goods market, but
+the particular equilibrium
+level of output that is
+consistent with that interest
+rate.
+And that's exactly
+equilibrium output.
+So given the LLM, now I looked
+at it intersection with my IS,
+and that gives me
+equilibrium output
+for that level of the
+interest rate, which
+has been set by the Fed.
+And then you can use this model.
+This is a very
+powerful little model
+because now you can do
+lots of things with it.
+For example, that's a
+contractionary fiscal policy.
+That's what happens
+when you reduce G
+or when you increase T.
+What happens if you reduce
+G and T by the same amount?
+You see what I'm doing.
+Maybe if you--
+that's often done.
+OK, you can increase
+government expenditure,
+but then you find a
+source of revenue,
+or reduce government
+expenditure,
+but then you don't need to
+generate a fiscal surplus,
+and so on.
+So what I'm saying, this is a
+balanced budget fiscal policy.
+That's what it's called.
+What if I move G and
+T by the same amount?
+Does that curve move?
+Yeah.
+AUDIENCE: It does because
+the multiplier next to T
+is c0 in the equation--
+original equation.
+RICHARDO CABALLERO: c0?
+AUDIENCE: c1.
+RICHARDO CABALLERO: Yeah, OK.
+Perfect.
+Yeah.
+Yeah.
+So, in which direction
+does it move?
+So if I reduce G and reduce
+T by the same amount,
+what happens to IS?
+Moves to the left
+or to the right?
+Yeah, it moves to the left.
+Because why is that?
+I can always go back to my basic
+goods market equilibrium model.
+If I reduce G by 1, that reduces
+aggregate demand one by 1.
+One for one.
+And then the
+multiplier kicks in.
+If I-- but the initial
+change shift down is 1.
+If I reduce taxes, I
+increase aggregate demand,
+but by c1 times 1.
+And so I had a reduction
+in aggregate demand of 1
+and I had an increase in
+aggregate demand of c1.
+1 minus c1 is greater than 0.
+That's the reason you
+have, on net, a reduction
+in aggregate demand.
+Hint, this is not a
+random thought I had,
+so do understand it.
+OK, good.
+OK.
+Thus, monetary policy.
+So that's an expansionary
+monetary policy.
+And in equilibrium,
+why it's expansionary?
+So cutting interest
+rate, because it will
+increase equilibrium output.
+That's the case in
+which the Fed probably
+is unhappy with this
+low level of output,
+maybe it's a recession.
+So one of the main policy tools
+we have to fight a recession
+is to lower the interest rate.
+And you can see here how
+lowering the interest rate
+will increase
+equilibrium output.
+How does it happen?
+Why is it that this happened?
+Why is it that the
+equilibrium output rises?
+Exactly.
+Because it's
+increasing investment.
+That gives us the first kick.
+And once equilibrium
+starts rising,
+then consumption rises and
+we get the whole multiplier.
+But the initial
+impulse is exactly
+because this increase
+in investment.
+And how does it implement that?
+Open market operation.
+So what the Fed will do is if it
+wants to cut the interest rate,
+it goes out there, buys
+bonds from the public,
+and gives them
+money in exchange,
+and that's what happens here.
+And then I talk about
+different policy mixes.
+This is what typically when an
+economy is deep into recession,
+you're going to see
+both policies that
+work at the same time
+that's very powerful.
+That's the case in which
+we have a very-- we cut--
+we have an expansionary
+monetary policy that shifts down
+and an expansionary
+fiscal policy.
+And that's definitely what we
+did during COVID, was massive.
+And during the Global
+Financial Crisis--
+so typically big
+recessions will lead to--
+any recession will lead
+to something like that.
+Obviously if it is
+big, you're going
+to have a bigger combination
+of this kind of stuff.
+Some problems that
+monetary policy may face
+is that sometimes you
+hit a zero lower bound.
+And then when you hit
+a zero lower bound,
+you just can't lower
+the interest rate more,
+you lose monetary policy,
+you need to do other stuff,
+and typically fiscal policy
+then becomes very, very active.
+And this is not just a
+theoretical curiosity.
+I mean, we have been
+against the zero lower bound
+for a sustained amount of time
+during the last 20 years or so.
+Oh, that's another
+policy mix as well that--
+suppose that you need to do
+a fiscal adjustment, I said.
+So you want to reduce
+the deficit, reduce G,
+but you don't want to have a
+recession as a result of that.
+One way you can do that is by--
+you have a contraction in G
+or increase in taxes.
+That's contractionary,
+but you can offset it
+with an expansionary
+monetary policy.
+I think in the quiz somewhere
+you have a question--
+I don't think that is specific
+to this, but you could
+you're asked to compensate
+for something with something
+and something like that.
+So some curve move,
+and then you're
+asked to offset that
+effect on output.
+So you should understand
+this kind of things.
+The next step was to extend
+a little bit our IS-LM model.
+And by extension we
+said, well, look,
+at this moment we have only--
+prices are completely fixed, but
+in reality we have inflation.
+And so the nominal interest rate
+is not really the effective cost
+of capital for a company.
+A company that wants to
+fund the real investment
+is more concerned with the
+real interest rate in Spain,
+not the nominal interest rate.
+So with prices
+that are constant,
+there is no distinction, but
+if you have positive inflation,
+then the distinction
+makes a difference.
+That's the reason we
+want to talk about that.
+And the second thing
+is that the same firms
+are very unlikely to pay the
+same that the Treasury pays
+for borrowing.
+It's going to pay--
+it's a riskier
+proposition to invest
+in bonds issued
+by a corporation,
+and therefore,
+they're going to have
+to pay a risk premium for that.
+And so the importance
+of these two things
+is that a we ended up
+with an IS-LM model that
+now had something a
+little more complicated
+here because it didn't have
+only the nominal interest rate,
+but also had expected inflation.
+If, for any given
+nominal interest
+rate, if we expect
+a higher inflation,
+that means a lower
+real interest rate.
+So for any given
+nominal interest
+rate, if expected
+inflation goes up,
+that's expansionary,
+really, for firms.
+It's like it's cheaper,
+in a sense, to borrow.
+Conversely, if x goes
+up, the credit spread
+goes up, that's contractionary
+because it's now
+more expensive for
+the firms to borrow
+for any given real
+interest rate.
+So we can-- this is called
+extended IS-LM model simply
+because it has been
+extended to incorporate
+these additional factors.
+And now, you have
+two more parameters
+in your model, which
+is expected inflation
+and the credit spreads.
+So if you move either
+of these, you're
+going to move your
+aggregate demand
+curve in the goods market.
+And it's going to move for
+exactly the same reasons
+that that aggregate demand moved
+when you move the interest rate.
+It enters symmetrically.
+In this model, these guys here
+enter completely symmetrically
+with the interest rate.
+So whatever was the
+comparative statics
+you had with respect to
+the nominal interest rate
+before, they applied
+to x minus pi.
+What I'm trying to
+say is if you know
+what is the change
+in equilibrium
+output as a response-- as a
+result of an increase in 100
+basis points on the
+nominal interest rate,
+then you know what is the
+response of equilibrium output
+to an increase in credit
+spreads of 100 basis points,
+or to a reduction-- or to
+a reduction in expected
+inflation of 100 basis points.
+Entirely symmetric.
+Because that's a channel.
+It's the real-- it's the cost
+of capital channel for the firm.
+That's they're all entering
+exactly through the same place.
+But the Fed doesn't
+control this guy,
+it controls only the
+nominal interest rate.
+So anyways.
+So these are new
+parameters here.
+So this is an example here.
+That's an example in
+which credit spreads
+or expected inflation went up.
+Sorry.
+Where credit spreads went down
+or expected inflation went up.
+And that's expansionary.
+That will increase
+aggregate demand
+because for any given
+level of output,
+now there will be
+more investment.
+Credit spreads are lower or
+expected inflation is higher
+mean the real
+interest rate is lower
+for any given nominal
+interest rate.
+So if the Fed doesn't
+react to that,
+that's going to lead to
+an expansion in output.
+Of course, the Fed
+could react to that.
+Suppose the Fed is OK with
+the level of output we have.
+Suppose it's a low output.
+And the Fed's seeing
+credit spreads falling,
+so output is expanding.
+But the Fed says, no, no,
+no, the level of output Y0
+wasn't what I needed.
+I don't want Y1.
+What would the Fed do?
+Increase the interest rate.
+Exactly.
+And it's very easy to
+see in this picture here
+that if you don't want this
+guy, the total sum to move, then
+if this guy moves down--
+or this guy moves up, then
+I need to move i exactly
+to offset that, and that's it.
+It's very easy to calculate.
+I don't need to solve my
+whole model, actually.
+You tell me this thing in net
+went down by 100 basis points,
+if I don't want
+to change output,
+then I need to increase the
+interest rate by 100 basis
+points so I don't change
+the cost of borrowing--
+the effective cost of
+borrowing for corporations.
+In fact, this is exactly
+what is going on right now
+in the US economy.
+Every time Marcus
+gets very excited,
+credit spreads are compressed,
+the stock market goes up,
+the Fed comes out and
+says, come on, guys.
+I mean, we have
+inflation problem,
+I'm going to need to keep
+hiking interest rates because I
+need to offset your enthusiasm.
+They don't use those words, but
+that's exactly what happened.
+I mean, Chairman Powell
+was testifying in Congress
+yesterday and today,
+and that's what he said.
+I'm just giving you a
+summary of what he said.
+Now a problem that the
+central bank may face,
+suppose you have the
+opposite situation,
+is that one in which credit
+spreads are going up a lot
+and expected inflation
+is declining a lot.
+And the Fed doesn't
+want output to decline
+because that combination will
+lead to a reduction in output.
+So the Fed wants to
+cut interest rate.
+What problem may it face?
+The zero lower bound.
+It may not be able to bring
+interest rates as much as--
+Because suppose that the
+interest rate today is 50 basis
+point.
+It's not the case today,
+but it was two years ago,
+50 basis points, or 25 basis
+points, and credit spreads
+go up by 200 basis points.
+Well, there's no way
+the Fed can offset
+that because it has maximum 25
+basis points to lower and credit
+spreads went up by
+100 basis points.
+And that's when you start seeing
+all these more exotic policies--
+quantitative easing
+and other things--
+to offset the negative impact
+of the increase in the credit
+spreads in the economy.
+And the last thing we did
+was to begin our transition
+to wear medium running
+shoes, and the whole thing
+began from the labor market.
+Now you're going to get a
+little bit in the quiz of that,
+but it's not going to be
+as important as what I just
+described.
+A little bit you're
+going to have.
+And the basic-- well,
+definitions, you
+should know the
+basic definitions.
+Well, this was the first
+important equation.
+We had that
+wage-setting equation
+that said essentially
+that wages are
+increasing in expected prices.
+Obviously the nominal wage the
+workers are going to demand
+is going to be higher if they
+expect the price level to be
+higher in the future.
+But importantly, it's decreasing
+and unemployment and increasing
+in this variable that represents
+their bargaining power and so
+on.
+Then we look at what happened
+on the price-setting side,
+meaning what firms do.
+And for that, we have to start
+with the production function.
+We had a very simple
+production function
+which said if you
+want to produce
+one more unit of the good, you
+need to hire one more worker.
+That means that the marginal
+cost of production is the wage.
+So it's very simple.
+And then we said
+we're going to have
+a very simple model in
+which the firms charge
+their marginal cost, which is
+the wage times the markup 1
+plus m.
+So m is a number like, say, 0.2.
+So the wage is 100, the markup
+is 20%, they want the price of--
+they're going to
+charge a price of $120.
+We can rearrange this
+in terms of wages,
+and you can say,
+well, the firm--
+the maximum real wage that firms
+collectively are willing to pay
+is really 1 over
+1 plus the markup.
+That's just from that.
+So then we look at a
+concept that is important,
+which is the natural
+rate of unemployment,
+and we said the natural
+rate of unemployment
+has nothing of natural.
+It just means that is the
+level of unemployment when
+the price is equal
+to expected price,
+or expected price equal
+to the price, you pick.
+So all that we
+did was to replace
+the wage-setting equation
+the expected price
+for the actual price, and
+then we divided both sides.
+And now we have this real
+wage demand by workers,
+when the price is equal
+to expected price,
+and we also had a
+price-setting equation.
+We can-- and I said when
+we replace P e for P,
+then I get the
+right to put an n--
+superscript n there.
+That's the natural
+rate of unemployment.
+Because that's my definition
+of the natural rate
+of unemployment.
+It's what happens
+when I can replace
+in the wage-setting equation the
+expected price for the price.
+And we look at the natural
+rate of unemployment,
+which is the equilibrium here
+of the price-setting equation.
+It has an implied real
+wage of 1 over 1 plus m.
+And that's the wage-setting
+equation, which is obviously
+decreasing unemployment because
+the higher is unemployment,
+the lower the wage
+demand by the workers.
+And that's one natural
+rate of unemployment.
+Again, nothing natural, it's
+a function of parameters.
+Which parameters?
+Well, it's a function of
+that markup parameter,
+it's a function of this
+institutional variable
+z, for example.
+So that's an equation.
+That's an example
+in which z goes up.
+So suppose that
+somehow unions go up
+or something like that,
+unionization goes up,
+something of that kind.
+Or unemployment benefits
+go up, something
+of that kind, which,
+in principle, is
+supportive of workers.
+Well, in this model,
+that will immediately
+lead to an increase
+in wage demand--
+at this level of
+unemployment, there
+are going to be a higher
+demand of-- a higher real wage
+demand by the workers because
+they have more bargaining power
+now.
+In this particular model, that
+cannot happen because the real
+wage that firms are willing to
+pay is only this, 1, 1 plus m.
+So in order to
+restore equilibrium
+in the labor market,
+what has to happen
+is unemployment-- natural rate
+of unemployment will go up,
+and that will restore
+equilibrium here
+because, well, the workers-- the
+bargaining power workers gain
+through those benefits
+in z they end up
+losing by an increase
+in the equilibrium
+level of unemployment.
+So that's the reason here this
+stuff backfire in a sense--
+to the workers
+because you end up
+with higher natural
+rate of unemployment.
+So Europe, for example, has
+much higher labor protection
+than the US.
+Well, they typically have a
+much higher unemployment rate
+than the US.
+So that trade-offs,
+all these things.
+That's the case of
+increasing the markup,
+and increasing the
+markup means effectively
+that the firms are going
+offering a lower real wage.
+Well, at this level
+of unemployment,
+workers are not going to
+take that lower real wage.
+So what will have to
+happen for workers
+to take that lower real wage
+is for unemployment to rise.
+So those are the two canonical
+experiments you can have here.
+It's what happens
+when markups go up.
+And that can go-- they can
+go up for the wrong reasons.
+It could be for oil shocks
+and stuff like that.
+It could be because the market
+becomes less competitive
+or it will be used to
+[INAUDIBLE] and so on.
+But the final outcome here is
+that we end up with a higher
+natural rate of
+unemployment, which, again,
+highlights the idea that this
+is not a God-given unemployment
+rate, so it's not--
+it's not good in
+any sense, it's just
+whatever it is the equilibrium.
+OK.
+Anyway.
+So you should understand well
+what these two type of shocks
+do to the natural
+rate of unemployment.
+And I think that's--
+because lecture 9 is
+not for this quiz.
+That's all I want to say.
+Any questions?
+No?
+So-- oh, yeah.
+AUDIENCE: [INAUDIBLE]
+RICHARDO CABALLERO: Yeah.
+This?
+AUDIENCE: I think so.
+I think-- is that the
+same x as next to the--
+RICHARDO CABALLERO: Yeah.
+This is the credit spread.
+AUDIENCE: All right.
+RICHARDO CABALLERO: You
+want me to explain this--
+AUDIENCE: I just want to
+make sure it's credit spread.
+RICHARDO CABALLERO: Yeah,
+this is the credit spread.
+I said-- that's the way
+you calculate this credit
+spread here.
+It's-- remember, there
+are two reasons why--
+you really want to know?
+In any event, let me say.
+So there are two reasons why the
+credit spreads really happened.
+One is the actual
+probability of default
+of a bond, which the Treasury
+has a very low probability
+to default. Corporations,
+depending on the ratings,
+they may have a high or low.
+And the other one, which
+is very significant,
+is how risk-averse
+investors are.
+And that risk aversion changes
+a lot over the business cycle.
+We capture everything through
+just that x spread, which
+we capture through this
+probability of default.
+But you can think of that
+probability of default
+as being the perceived
+probability of default.
+When you're very scared, you
+perceive that terrible things
+can happen.
+So it's a subjective
+probability of default.
+So when that probability of
+default is different from 0,
+then you start getting
+a positive spread.
+AUDIENCE: How impactful
+is the actual default?
+I know there were some recent
+defaults in at least the
+European real estate markets.
+RICHARDO CABALLERO: Yeah.
+AUDIENCE: Like how--
+I guess, is there a difference
+between a fear of a default
+and like an actual default,
+like the implications--
+RICHARDO CABALLERO: Oh.
+This is all about
+perceived risk.
+So because this
+determines the borrowing
+that firms can do-- the
+cost for firms of borrowing.
+If you already defaulted, you
+cannot borrow, so that's over.
+That has other consequences.
+It may have impact on the
+balance sheets of the banks,
+it's destruction of wealth,
+it may lead to other problems.
+But the problem we're
+highlighting here in this model
+is the cost of
+borrowing, and that
+is something that happens
+only before you default.
+Yeah.
+I mean, actual defaults,
+especially typically
+in developers and
+stuff like that,
+can-- and that's what happened
+in the Great Recession,
+it can have
+consequences, especially
+for the banks that typically
+lend to these developers
+and so on.
+But I may do something
+about financial crisis,
+but much later in the
+course at the end.
+OK.
+Well, good luck.
+Enjoy it.
+If you understood what I said
+today, you're in good shape.

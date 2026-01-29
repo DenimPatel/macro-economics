@@ -1,0 +1,1718 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO CABALLERO:
+But before I do
+that, before I get
+into the IS-LM model,
+let me spend a little time
+telling you what is going on
+in the US economy, as this will
+relate to the kind of things
+that we'll discuss
+later in this lecture.
+So what you see there is the
+path of net worth, so wealth,
+essentially, of households
+and nonprofit organizations,
+households primarily in the US.
+And what you can see is that
+there is a more or less steady
+trend.
+Obviously, in recessions,
+net wealth tends to decline.
+And certainly, early on
+in the COVID recession,
+it declined very dramatically,
+because the price of equity,
+the price of houses, everything
+declined with the initial shock.
+But what you see after that
+is a dramatic rise in wealth
+in the US, and all around
+the world, but particularly,
+in the US.
+And what is behind
+that, well, there
+are two things that
+are behind that,
+but the main one
+is asset prices.
+You have massive rallies
+in the equity market.
+The price of houses
+sort of skyrocketed
+everywhere, and so on.
+Last year, 2022, was a
+bad year for asset values.
+The equity market declined
+pretty sharply in the US.
+But still, I mean,
+it's a small decline
+relative to the big
+buildup of wealth.
+Now, why do you think
+that, in this course,
+I would be talking about
+this at this point?
+What happens?
+Remember, in this
+part of the course,
+we're trying to come up with
+a model of aggregate demand,
+and then, how aggregate
+demand reacts to policy.
+That's the name of the game
+in this part of the course.
+So if I tell you that
+wealth increases a lot,
+why do you think I'm
+telling you that?
+Aggregate demand.
+Consumers will reach.
+They will tend to consume more.
+That will increase
+aggregate demand.
+So the point I'm
+highlighting to here
+is that there is a big
+force behind increasing
+aggregate demand, which
+is consumers feel richer.
+By the way, something similar
+is happening in corporations,
+and investment is
+also pretty high
+because of that,
+real investment.
+The other source of
+increasing wealth,
+which is not as dramatic
+as the previous one,
+but it's very important,
+especially in lower income
+segments of the population which
+tend to have a higher propensity
+to consume is that incomes did
+not decline a lot during COVID.
+And in some cases,
+they even increased
+because of the large transfers
+that we saw from the government
+to individual households,
+especially lower income
+households.
+And at the same time, there
+wasn't much to spend on.
+So that meant that
+the saving rate also
+went up a lot in the US
+during the COVID recession.
+So people save a lot more.
+That's sort of the average
+saving, household savings.
+This is by quarter, I think.
+No, monthly.
+But that's what we
+saw in the past.
+Look at during the
+COVID recession.
+People save a lot more.
+And what you're seeing today is,
+obviously, they save a lot more.
+That's part of the increase
+in net worth is due to this.
+It's small relative
+to the amount
+of wealth we saw increase.
+But this was about-- this excess
+saving amounted to about $2.7,
+$2.8 trillion.
+So you get a sense of
+the order of magnitude.
+And what is happening now is
+what people are desaving so now
+people are saving
+less than they used to
+because now, they
+have opportunity
+to spend the stuff on.
+And so that's where you see
+massive demand for travel,
+massive demand for restaurants,
+hotels, and stuff like that.
+Well, that has a lot to do with
+people have the money to do it.
+They haven't been able
+to do it for a while.
+So now, they're
+doing a lot of that.
+Why would I be telling you
+this now in the course,
+in this part of the course?
+For the same reason I told
+you that net worth went a lot.
+I mean, people had the
+savings, and they're really
+willing to spend it.
+That puts lots of upward
+pressure on aggregate demand.
+These pictures capture
+more or less the same.
+This captures very much what
+I said in the previous slide.
+You see the personal
+saving rate.
+That's the average.
+I don't remember, over--
+oh, seven-year average.
+And you see what
+happened during COVID.
+Big spike in the savings
+rate, and now, big decline
+in the saving rate,
+where saving rate is much
+lower than what normally is.
+And remember, the saving
+rate is your income
+minus your consumption.
+So if you're saving
+less, you're consuming
+more relative to your income.
+That's the way it works.
+Obviously, there is
+lots of heterogeneity.
+Some people made a lot
+of money, some people
+didn't make a lot of
+money during COVID.
+Some people save a lot, some
+people didn't save a lot.
+And in fact, we do know that
+on the lower income segments,
+a lot of the excess
+saving is already gone.
+I mean, it accumulated early
+on, but they spent it also
+much earlier.
+But what you're beginning to
+see in some of those segments
+is even though they don't
+have access savings,
+they're borrowing a lot.
+So now, you see
+credit card borrowing,
+which had declined a lot, and
+now, has increased quite a bit.
+And again, what
+do you borrow for?
+Well, for consumption.
+So that also funds
+additional consumption.
+So for all these
+reasons, at this moment,
+the US economy, and many
+economies around the world,
+are what we call overheating.
+There's a lot of demand
+for the production,
+that capacity of the economy.
+And that translates--
+the problem,
+say, well, what's
+wrong with that?
+Well, the problem is,
+something you don't understand
+at this part of the
+course, you understand
+but you don't have
+a model for, but you
+will have six lectures,
+more or less, from now is
+that leads to high inflation.
+You don't know that,
+but intuition tells you
+that it's a lot of demand
+relative to supply.
+Well, prices tend to go up.
+That happens in micro, and
+it also happens in macro.
+We'll learn that later.
+But in any event,
+as a result of this,
+the US economy is overheating,
+and therefore, monetary policy
+has been very contractionary.
+The Fed has been
+tightening interest rate
+to cool down the economy.
+So how does that happen?
+Well, that's the kind
+of things that we can
+answer with the IS-LM model.
+So the Fed is very IS-LM like.
+I mean, that's the
+way they think.
+The model is richer.
+They have more
+equations, and so on.
+But they are thinking in
+terms of the mechanism
+that we're about to
+summarize in the IS-LM model.
+So if you have an economy
+that has this problem,
+and you are in the central bank,
+you need to use monetary policy.
+Well, to understand
+how the thing works,
+you need the IS-LM model.
+That's a starting point.
+Then you can add
+bells and whistles.
+But your starting point is
+the model we're about to see.
+Anyway, so what you see
+is what I was saying,
+is that all that wealth,
+all that excess saving,
+all that pent up demand, if
+you will, led to lots of--
+led to a very--
+an economy that's overheating.
+And you can see
+here what happened.
+I disentangled between
+consumption of goods
+and consumption of services.
+Consumption of service is
+about 2/3 of consumption.
+Remember, we talked about that.
+And goods is about 1/3.
+What happens is the
+scales are different.
+This is for goods.
+That's for services.
+But what you see here
+is that was a trend.
+So consumption in services
+was growing at a steady pace,
+then COVID came and collapsed.
+I mean, you couldn't go to a
+restaurant, you couldn't travel,
+couldn't do anything.
+So consumption in
+services collapsed.
+And now, it has been recovering.
+And that recovery picked up
+pace last year, actually,
+in 2021, already picked
+up pace, and by now, we're
+above the trend.
+So service consumption that
+collapsed during COVID now
+has fully recovered.
+While, at the same
+time, the capacity
+to produce in the service
+sector hasn't recovered equally.
+But we'll get to
+that after quiz 1.
+What happens to
+goods consumption?
+Well.
+Also initially collapsed,
+but then, well, people
+were bored at home.
+They couldn't do anything.
+They bought lots of gadgets
+and stuff like that.
+So goods consumption went up
+very sharply during COVID,
+way above the trend, you see?
+There is COVID collapse,
+and then, people
+began to buy all
+sorts of gadgets.
+Now, it's slowing down.
+But still, if you look relative
+to trend, consumption of goods
+is way above what
+it would have been
+in the absence of this episode.
+So the sum of the
+two things tells you
+that you have an economy
+with a lot of consumption.
+And that, at this moment,
+the Fed wants to cool down.
+It's too much for
+the economy to take.
+So the Fed wants
+to cool it down.
+And we're going to
+see how you do that.
+OK, so now, let's get
+into this set of lectures.
+And please, stop me if there's
+anything that is unclear,
+because as I said, this is
+probably-- if I hear over
+the summer you have forgotten
+everything you have learned
+in this course, but you remember
+these two lectures well,
+I'll be happy.
+So stop me if you do.
+In fact, normally, I have
+taught this lecture in one.
+I decided to try to slow
+it down as much as I can
+because, again, I
+think it's particularly
+important for this course, and
+for your stock of knowledge.
+So one of the main
+things we're going
+to be able to do with this
+model, as I've been saying,
+is we're going to
+be able to discuss
+the main macroeconomic
+policy tools, which
+are monetary policy--
+monetary policy is main
+anti-cyclical tool,
+but we're also going to be able
+to understand fiscal policy.
+And fiscal policy is not exactly
+equivalent to monetary policy.
+It works through
+the mechanism that
+allows you to do things
+that are more targeted,
+transfer resources to a specific
+group of people, and so on.
+And sometimes monetary
+policy is just not enough.
+And the COVID-19
+initial recession
+was clearly a case of that,
+and you had to go all in,
+and we'll see what we did there.
+It was pretty dramatic
+as an intervention.
+The COVID-19 recession
+led probably to what-- no,
+not probably.
+Surely to the largest combined
+package in history of policy
+support in terms of monetary
+policy and fiscal policy.
+After these two
+lectures you're going
+to get to understand essentially
+the joint determination
+of output and interest rate, and
+we're going to be able to study,
+as I said before, the impact
+of monetary and fiscal policy.
+And this framework
+that we're going
+to use to develop,
+to study this is
+what Hicks and Hansen initially
+called the IS-LM model.
+I already hinted
+that this was coming,
+but why do you think the name?
+I notice that you
+separate IS from LM.
+Remember what we're
+trying to do here.
+We're trying to look at the
+joint determination of output
+and interest rate.
+That is, we're
+trying to determine
+at the joint
+equilibrium of goods
+markets and financial markets.
+When we describe the
+equilibrium in the goods market,
+we said there is an alternative
+way of describing it.
+Remember, I said as an
+investment equal to savings--
+I equal to S. So the
+IS part of the name
+comes from the part that has to
+do with equilibrium in the goods
+market.
+IS-- investment
+equal to savings.
+And the LM part has
+to do-- remember,
+L was that component
+of aggregate demand
+we had in the financial markets.
+We look at equilibrium as
+aggregate demand-- sorry,
+demand for money equal
+to supply of money.
+Supply of money was M. Demand
+for money was y times L of I,
+and therefore the LM part.
+That's the reason.
+That's a mnemonic for why this
+model is called the IS-LM.
+IS stands for the part that
+has to do with the equilibrium
+in the goods market.
+LM has to do with
+the part that has
+to do with the equilibrium
+in financial markets.
+This model is a model that
+combines those two equilibrium.
+So we're going to be interested
+in points in which both markets
+are in equilibrium.
+That's the name
+of the game here.
+So let's first develop
+the IS relation.
+And the IS relation is really
+going back to lecture three.
+We're going to go
+back to lecture three,
+use the same model we used in
+lecture three with one change.
+And that change is--
+remember in lecture three, we
+worked a lot on our consumption.
+The only endogenous--
+the only function
+we had was a consumption
+function, remember?
+And then all the rest we
+took as given-- government
+expenditure was given,
+investment was given.
+All that was given.
+We're going to relax
+one of those here,
+and we're going to flesh out
+a little more this investment
+here, make it closer to what
+a realistic function is.
+Not a constant, obviously.
+It's not totally exogenous to
+equilibrium output and so on.
+In fact, we do know
+that real investment,
+this physical investment--
+remember, what is this I?
+It's investment.
+This is purchase of
+goods and services
+by firms for the purpose
+of building capital--
+equipment, structures,
+and stuff like that.
+I saw in Piazza-- very
+quickly, I'm not into that,
+but I see more or
+less the flow--
+that somebody asked,
+"should bonds be included
+in investment?"
+What is the answer?
+In that investment.
+I.
+Should purchase of bonds be
+included in that investment?
+No.
+This is purchase of goods
+and services by firms, no?
+Capital, machines,
+stuff like that.
+The other thing, it's
+a financial investment.
+It's nothing to do
+with the goods market.
+It's something that has to
+do with the financial market,
+not with the goods
+market equilibrium.
+So that investment
+is real investment.
+Again, purchase of
+capital, buildings
+for the purpose of production
+and stuff like that.
+And this investment is a
+function of two things at least.
+The first one is activity.
+When output is high,
+sales are high,
+companies tend to invest more.
+They buy more equipment, they
+buy more buildings, they expand.
+So investment is an increasing
+function of output very much
+like consumption, remember, was
+an increasing function of output
+because income is
+increasing in output
+So it was an increasing
+function of output.
+So these, we already had seen
+functions that looked like that,
+and we already know what it
+does to aggregate demand.
+It makes that curve
+steeper, remember?
+And it's the
+multiplier behind that.
+Investment gives you
+something similar there.
+But there is a second
+component which
+is also present in
+consumption but is not
+as important as for investment,
+which is the interest rate.
+In particular, when the
+interest rate goes up
+for any given level
+of income or output,
+then investment goes down.
+Why do you think
+that's the case?
+AUDIENCE: [INAUDIBLE].
+RICARDO CABALLERO: Yes.
+Most of investment is
+funded with borrowing,
+and borrowing becomes more
+expensive so you don't do it.
+Even if you don't
+need to borrow,
+there's an opportunity
+cost of those funds.
+You can use it to build
+machines to produce
+or you can do something else
+like have an investment,
+financial investment.
+So whether you borrow or not,
+if still the interest rate
+is higher, the opportunity costs
+of building factories is higher.
+And so that's the
+reason investment
+is decreasing with respect
+to the interest rate.
+So now we go back
+to our equilibrium
+in the goods market, which we
+said production is whatever
+aggregate demand wants.
+So output is going to be
+equal to aggregate demand.
+Aggregate demand is the same
+old aggregate demand we had,
+except that now we flesh out
+what is inside that investment
+function there, which we have
+another function is increasing
+output like consumption
+was, but we also
+have something that is
+decreasing in the interest rate.
+And so this is what we
+call the IS relation.
+And so the IS relation therefore
+has all the combinations
+of output and interest rate that
+are consistent with equilibrium
+in the goods market.
+Listen to what I said.
+I said the IS relation or IS
+curve has all the combinations
+of output and interest rate that
+are consistent with equilibrium
+in the goods market.
+What about lecture three?
+We already had that, but
+interest rate played no role,
+so we found one point.
+We said there is
+one level of output
+which is consistent with
+equilibrium in the goods market.
+That's what we found.
+Now since we have an
+interest rate there,
+we have two variables
+for one curve,
+so we can trace a curve,
+which is not only one point.
+We can trace a curve.
+And that's what we
+call the IS relation.
+So I remember I told you when
+we look at the goods market
+equilibrium,
+remember this diagram
+because you're going to
+come back to it many times.
+And there you are.
+So remember when we look at the
+equilibrium in the goods market,
+we had something like that.
+I'm just making it curve
+rather than linear simply
+because I haven't specified the
+functional form of investment,
+but it doesn't matter, really.
+Make it linear.
+But remember, that's the
+way we found equilibrium
+in the goods market.
+We have an aggregate demand,
+and it was increasing.
+The slope was positive because
+we had a marginal propensity
+to consume.
+That's the reason this was
+not flat, but upward sloping.
+And we found equilibrium
+output that way.
+So this is lecture three.
+We're back in lecture three
+here but with two things,
+two differences.
+The first one is
+that this ZZ curve
+relative to the one we
+had in lecture three
+is a little steeper.
+Why is that?
+Why is it that it's a little
+steeper than that-- by steeper,
+I mean if income goes up,
+then aggregate demand goes up
+by more than it used to go up.
+AUDIENCE: Is it
+because investment
+is also not [INAUDIBLE]?
+RICARDO CABALLERO: Exactly,
+because what made it upward
+sloping before was the
+marginal propensity to consume.
+But now there is also a
+marginal propensity to invest,
+which is also
+positive, and that's
+the reason it's
+a little steeper.
+More interesting for this
+part of the lecture, though,
+for the construction
+of the IS curve
+is that it's a parameter
+that we have there in ZZ.
+What are the parameters we
+had before in that curve?
+We had things like government
+expenditure, taxes,
+the autonomous consumption.
+That's the kind of
+stuff that we had
+as parameters of that ZZ curve.
+By parameters I mean if we
+change those parameters,
+we shift that curve.
+Now, for this particular ZZ
+we have an extra parameter,
+which is a very interesting.
+What is that?
+It's there, I think.
+It's the interest rate.
+That curve holds for
+some given interest rate.
+If I move the interest rate, I'm
+going to move this curve around.
+That's very important.
+One of the parameters
+there, the star
+parameter I would say for this
+minute of the lecture, at least
+for this moment in the
+lecture, is the interest rate.
+I can find an equilibrium
+because I couldn't
+find an equilibrium
+in the goods market
+if you don't tell
+me what the interest
+rate is, because it's a curve.
+Remember I told you, it's
+a relationship, the curve.
+So if I tell you what
+the interest rate is,
+then you can find the
+equilibrium in the goods market
+because you can fix this curve.
+That's for one
+given interest rate.
+OK.
+Do you understand that?
+That's important.
+Yes?
+Those of you that are awake,
+you understand it or not?
+Not everyone is in
+the same page here.
+OK, good.
+So what we're going to do next
+is construct the IS curve.
+And how are we
+going to-- remember,
+what I want to try
+to do is constructing
+the space of interest
+rate and output, a curve,
+which we're going to
+call the IS curve.
+Here we have a
+point in that curve,
+because for one level
+of interest rate
+I found the equilibrium output.
+So to construct the
+curve, what I need to do
+is start moving
+the interest rate
+and see how the
+equilibrium output changes,
+and that will trace a curve.
+And that's going to be my
+IS curve or relationship.
+So let's do that.
+That's the construction
+of the IS curve.
+So in the previous
+chart we found point A,
+So point A there is that point.
+There we are.
+We had some interest rate.
+This interest rate.
+Believe me, that was a
+parameter of the ZZ curve
+I showed you before.
+Gave us equilibrium output A.
+So that's a point in the IS
+because that's a combination
+of interest rate and output,
+which is consistent with the
+equilibrium in the goods market.
+That's a point in the IS.
+That's the definition of IS.
+So now what I'm going
+to do to construct my IS
+is, OK, let me move
+the interest rate.
+Let me raise interest
+rate from I to I prime.
+OK, that's an increase
+in the interest rate.
+And now let me find what is the
+new equilibrium in the goods
+market for a given interest rate
+which is higher than the one
+I used to have.
+That amounts to shifting
+the ZZ curve down.
+Why does increasing
+the interest rate
+shift the ZZ curve down,
+the aggregate demand down?
+AUDIENCE: Because it
+makes borrowing lifetime.
+RICARDO CABALLERO:
+It makes investment.
+The client-- exactly.
+Borrowers will expect,
+therefore investment declines.
+So that means for any
+given level of output,
+now aggregate demand is lower
+because investment is lower.
+And then you get the
+multiplier to do its trick,
+and therefore, you end up
+with a decline in output
+which is even larger than the
+initial decline in investment
+as a result of the increase
+in the interest rate.
+That's what a multiplier does.
+So say interest rate
+increased by 100 basis points.
+That reduces investment
+by, say, $10 billion,
+and equilibrium output ends
+up falling by $15 billion
+because of the
+multiplier and so on.
+But the point is after I do all
+my convergence to this new lower
+equilibrium level of output,
+I have a second point
+in my IS curve, because that's
+a combination of a new interest
+rate, I prime, an output that is
+consistent with the equilibrium
+in the goods market.
+How do I know that it's
+consistent with equilibrium
+in the goods market?
+Because I'm there.
+I'm crossing.
+45-degree line, that means
+output equal to aggregate
+demand.
+That's equilibrium
+in the goods market.
+And of course you can keep
+going and trace an entire curve.
+And all that you'll do is
+you'll change the interest rate.
+That will shift this curve.
+Then you do the multiplier and
+end up with a new equilibrium,
+and that's another
+point for your curve.
+So is it clear how we
+constructed that curve?
+Very important.
+OK, good.
+It's also very important
+to understand--
+so why is it downward sloping?
+That's a question.
+Why is it downward sloping?
+What does it mean that
+it's downward sloping?
+That means that the combination
+of output and interest rate
+that are consistent when
+equilibrium output are
+negatively correlated,
+meaning I have
+a combination of high output
+and low interest rate--
+it's consistent with
+[INAUDIBLE],, or high interest
+rate and low output.
+That's what I find here.
+But why is that?
+What is the logic
+of behind that?
+Or the mechanism.
+The way to think
+about that is exactly
+the way I did this experiment.
+It's to say, let me think
+what happens if I increase
+the interest rate and I keep the
+level of output where it was.
+So what happens if I
+increase the interest rate
+and I keep the level of
+output at the level it was?
+My claim is that that's not an
+equilibrium in the goods market.
+What is it?
+So I'm saying suppose I
+increase the interest rate
+but I keep the output constant.
+So output is here,
+higher interest rate,
+aggregate demand is there.
+So what is the problem?
+My claim is that's not an
+equilibrium in the goods market.
+We're going to need a
+lower level of output
+to have an equilibrium
+in the goods market.
+That's the reason
+it's downward sloping.
+But why is that not an
+equilibrium in the goods market?
+Or what is the nature of the
+disequilibrium in the goods
+market there?
+What do we have-- an excess
+demand, excess supply?
+Excess supply, meaning
+there isn't enough demand
+to support that
+supply, so supply
+has to fall in order to restore
+equilibrium in that market,
+in the goods market.
+And since one drags the other
+one, it has to fall by a lot.
+That has to do with the
+slope of this curve.
+But that's the
+reason is negatively.
+So that's the first thing
+you have to understand
+when you construct this curve.
+I know I'm going slowly,
+but it's important.
+Please try to understand--
+another way of saying it--
+when I change the equilibrium
+output along this IS curve
+by moving the interest
+rate around, what I'm doing
+is I'm moving along an IS curve.
+So if the only reason why
+equilibrium output is changing
+is because I'm moving
+the interest rate,
+that's a movement
+along the IS curve.
+So I'm tracing points
+of the IS curve.
+Good.
+And I want to draw a contrast
+between these movements
+along the IS curve versus
+things that shift the Is curve.
+For example, that.
+So suppose I increase taxes.
+I don't increase taxes.
+The government increases taxes.
+My claim is that the
+IS shift to the left.
+That is, for any given
+level of interest rate--
+pick any interest you want.
+Say this one.
+You're going to have
+a lower equilibrium
+output consistent with
+that interest rate.
+You have a lower
+equilibrium consistent
+with the same interest rate
+that has shifted the IS.
+It has to be a different IS.
+And think that I can do that
+for any given [INAUDIBLE] event.
+I pick this one, but I
+could have picked that one.
+Would have been the same.
+I'm saying, if you
+increase taxes,
+that's going to lead to
+lower equilibrium output.
+So that means that for
+this higher level of taxes,
+I will have to trace
+a different IS curve.
+I can start moving the
+interest rate around,
+but I'm going to have
+a lower level of output
+for any given level
+of interest rate
+because I have higher taxes.
+So how do I know that an
+increase in taxes will do this?
+Which diagram would you go
+to to try to understand this?
+So let me ask it differently.
+How do I know that this
+stuff shift to the left?
+So I give you more open space.
+How do I know that
+this increase in taxes
+will shift this IS
+curve to the left?
+How would you go about
+thinking about that?
+AUDIENCE: Well, I think
+there's more taxes than people
+[INAUDIBLE] --disposable
+income, so they're not
+going to spend as much money,
+and there'll be less outcome.
+RICARDO CABALLERO: Their would
+be less aggregate demand,
+and less aggregate demand leads
+to less output because output
+is aggregate-demand determined.
+Exactly.
+That's what equilibrium
+in the goods market.
+So you can go back
+to this diagram.
+I could say ignore these labels
+here and say, for any given
+level of interest rate, pick
+any, if I increase taxes,
+I'm going to shift
+the ZZ curve down.
+So ignore this [INAUDIBLE].
+Suppose that I fix the
+interest rate but I now
+change taxes, increase taxes.
+I'm going to do
+exactly the same here.
+I'm going to move this down.
+And it's going to be a different
+IS curve, though, because--
+I shouldn't have
+used this diagram.
+Let me keep your answer.
+I should have put
+it on your diagram.
+But it's lecture three.
+In lecture three we did see
+that an increase in taxes
+would lead to lower
+equilibrium output.
+In fact, we know
+exactly by how much.
+If taxes increase
+by 100, then you
+know that the
+equilibrium output would
+decline by C1 times 1 over minus
+C1 are your change in taxes.
+Here would be a little
+different because there is also
+remembered investment also
+has a propensity to spend
+as a function of output.
+So it would be a
+little different,
+but that's the kind
+of calculation.
+What else would shift
+the IS this way?
+AUDIENCE: Decrease in
+government spending.
+RICARDO CABALLERO: Decrease
+in government expenditure
+will do that.
+What else?
+This is another thing I want you
+to do-- think of everything--
+because for sure you're going
+to face that in the quiz--
+anything that would
+shift the IS curve.
+What else would
+shift the IS curve?
+AUDIENCE: Decreasing export.
+RICARDO CABALLERO:
+Yeah, that's true,
+but that's not for this
+part of the course.
+Remember, we're in
+a closed economy.
+So here we assume x
+equal to M equal to zero.
+IM equal to zero.
+That comes after quiz one.
+What else?
+Things that were
+captured-- remember,
+when I began this lecture,
+I showed you wealth,
+what had happened, and so on.
+There's nowhere wealth
+in this model here.
+It's just output.
+But wealth affects how
+much consumers consume.
+So autonomous consumption.
+There were lots of stuff hidden
+in that C0, that constant C0.
+Remember C0 plus one and one.
+Well, C0 captures things
+like how confident
+were consumers, how wealthy
+they felt, and stuff like that.
+So anything that shifts C0
+down, consumer sentiment
+declines, wealth declines,
+something like that,
+will also shift IS to the left.
+So that's important.
+Good.
+So we're done with IS for now.
+Now with IS alone I
+cannot find what I want.
+I want to find combinations
+of interest rate and output
+that are consistent
+with equilibrium
+in the goods and
+financial markets.
+This doesn't do it
+because it gives you
+only combinations that are
+consistent with equilibrium
+in the goods market.
+So I now need to look at
+financial markets, which
+is the other side,
+the LM relationship.
+And remember what we had.
+We had equilibrium in
+the financial markets.
+We had two instruments
+that we could use.
+Remember we had
+only two assets--
+money and bonds.
+So we could look at the
+equilibrium in money
+or equilibrium in bonds.
+It's the same.
+But we did it all
+in terms of money.
+It's the same
+because given wealth,
+if one is in equilibrium,
+the other one
+has to be in
+equilibrium as well.
+So I only need to look at one,
+and we're looking at money.
+So money is equal
+to money demand.
+I'm going to divide
+both sides by P.
+This is not going to
+be very important now,
+but later it will be.
+And so we're going
+to have that--
+This is equilibrium
+in financial markets.
+Means that real money supply
+equals real money demand.
+That's what we have here.
+So this, you already see
+it traces combinations
+of output and
+interest rate which
+are consistent with equilibrium
+in financial markets.
+In the past, that's the way
+the LM would be described.
+We would fix M and say,
+well, this will give you
+an upward-sloping curve.
+Because this is downward
+sloping, so if this guy goes up,
+I need to-- if this is
+constant, this guy goes up.
+This guy needs to come down.
+What does that?
+What does bring L down?
+I going up, because
+L prime is negative.
+So that's the way LM
+used to be described.
+Your life is a
+lot simpler today.
+It's a lot simpler because
+central banks don't
+target monetary aggregates.
+They don't target M. They target
+the interest rate directly.
+So they tell you
+the answer already.
+The central bank,
+when it does policy,
+it says, look, I tell
+you what I will be.
+Then if output moves
+around or whatever,
+it's a problem for
+M. We'll provide
+the M that the market needs
+in order to have an interest
+rate equal to the one we want.
+So it is true that it captures
+all the combinations of output
+and interest that are
+consistent with the equilibrium
+in the financial markets, but
+it's very simple because what
+the fed does in the US or other
+central banks do is they say,
+OK, this is the
+interest rate we want.
+And now you can put any
+amount of output you want.
+As long as we remain committed
+to this interest rate,
+it will be consistent
+with the equilibrium
+in the financial markets
+because we will do it so.
+And the way we will do it so
+is we'll provide as much M
+as the market needs so that
+that combination of output
+and interest rate
+is an equilibrium
+in the financial market.
+That's a very long way of
+saying that the fed sets I
+and then M is whatever is
+needed for this equation
+to be in equilibrium.
+So if output rises
+and the fed doesn't
+want to change
+the interest rate,
+that means you need to change M.
+So suppose that the fed says,
+I want this interest rate
+to be fixed at this level.
+Call it I0.
+And now output turns
+out to be higher.
+What will the fed do in order
+to ensure that I remains at I0?
+What if the fed
+doesn't do anything?
+So the fed says,
+I want I equals 0,
+and the fed is
+calculating that output
+will be about a certain level.
+And it turns out that
+output is higher.
+What happens if the fed doesn't
+react and keeps the interest
+rate at I0?
+An output tends to be higher
+than what they thought when they
+provided the M that they
+thought the market needed
+to be in equilibrium
+with that interest rate.
+What will happen?
+The interest rate will go
+up because money demand
+will exceed money supply.
+The only way to restore
+equilibrium is for interest rate
+to go up.
+But the fed doesn't
+want that, so what
+the Fed will do is when it feels
+that, it feels the interest
+rates are going up, they
+will provide more money
+so they can restore equilibrium
+in the financial markets
+at that level of interest
+rate despite the fact
+that output ended up being
+higher than they thought.
+So all this is a long-winded
+way to say that the modern LM is
+horizontal.
+A few years ago, that curve
+would have been upward sloping.
+But given the way monetary
+policy is conducted nowadays,
+your life is a lot simpler.
+The LM is a horizontal curve.
+The fed tells you, the
+central bank tells you
+what the interest
+rate has to be,
+and then it will
+give whatever M, will
+provide whatever M is needed.
+So that's the equilibrium
+interest rate.
+So what shifts the modern LM?
+And by modern, I only mean--
+the book doesn't use
+that terminology,
+but by modern I mean
+that the fed decides
+what the interest rate is.
+AUDIENCE: Won't that
+change your interest rate?
+RICARDO CABALLERO: Exactly.
+The only thing that will shift--
+your life is very simple.
+The only thing that
+will shift the modern LM
+is that the fed
+changes its mind.
+A few years back it would
+have been more complicated.
+A change in money demand.
+A change in money supply.
+All those things would be
+shifting the LM around.
+Now in this setup
+it's very simple.
+It will change only if
+the feds changes its mind.
+Now obviously the fed is not
+just a moody institution.
+It will change the
+mind, and sometimes it's
+forced to change its mind.
+They're not happy
+with the interest
+rate they're setting nowadays.
+They have been forced into that.
+They were very reluctant to go
+into this very high interest
+rate.
+But what is happening around
+with this very high consumption
+and the impact that is having on
+inflation, they have been forced
+into moving interest rate not
+only very high but also very
+fast, and that was very risky.
+We have been lucky that
+nothing has really broken.
+Normally when central banks
+raise interest rates so fast,
+they break something
+along the way.
+Somebody is very levered out
+there, some bank or something
+like that, and you can blow up.
+In the UK we had a little scare
+with some insurance companies,
+but that was for a
+different reason.
+But it's scary to move
+policy very fast because this
+is a very important price
+for financial markets.
+Everything in financial
+market gets priced off--
+that's the starting-- any
+pricing model for stocks
+or anything will start
+from that policy rate,
+and then everything
+builds from there.
+So if this has to move fast, you
+can have lots of dislocation.
+So my goal for today is just
+to give you the instruments,
+and then we're going to all
+talk about combinations, things
+that we did in certain episodes
+and things of that kind.
+OK, good.
+So again, this part of the
+IS-LM model is very easy,
+and it's a lot easier now
+than it was a few years back.
+So what does the IS-LM model?
+The IS-LM model simply mean
+puts the two curves together.
+Now we have two curves in the
+space of output and interest
+rate and two unknowns, which is
+output and the interest rate.
+So we have one
+combination only, A,
+that is consistent with both
+equilibrium in the goods market
+and equilibrium in
+financial markets.
+That's the point A.
+What happens to
+points to the right?
+What happens here if I show
+you this point in this space?
+What's wrong with that point?
+So a point along the
+LM but to the right.
+What's wrong there?
+If it is along the
+LM I know that I'm
+OK with financial markets.
+Those points are consistent
+with the equilibrium
+in financial markets.
+But it's not my
+equilibrium, so it
+has to be inconsistent
+with the other one.
+It's not consistent
+with equilibrium
+in the goods markets.
+In fact, you know
+more than that.
+What's wrong with goods market?
+There's an imbalance there,
+but in which direction?
+That point here.
+AUDIENCE: Excess of goods.
+RICARDO CABALLERO: What do
+you mean by excess of goods?
+AUDIENCE: The demand
+is not meeting--
+RICARDO CABALLERO: No, demand.
+Exactly.
+Insufficient demand.
+There is too much
+output for that demand.
+So that's the reason it's not
+consistent with equilibrium
+in the goods market.
+To the left it's the opposite.
+To the left we have insufficient
+output for the demand we have,
+so it's not consistent with the
+equilibrium in the goods market.
+So the only point that
+is consistent-- well, you
+can think, what happens with
+a point here, for example?
+That point, because
+it's in the IS curve,
+is consistent with equilibrium
+in the goods market,
+but it's not consistent
+with equilibrium
+in financial markets.
+What do we have there?
+Suppose I'm in that point.
+The interest is too
+high, so that means--
+and the demand is
+low, so too much
+money demand for money supply.
+That's what you have.
+So at the end of the day, this
+is the only equilibrium point
+we have.
+And all the experiments
+we're going to do next
+have to do with moving
+one curve or the other
+and see what happens to
+trace new equilibrium points.
+But try to understand
+very well these diagrams,
+so what happens when I move
+up, horizontally, and so on,
+and convince yourself that
+this is the only combination.
+It's pretty easy to
+convince yourself
+that it's the only combination,
+but think a little.
+Try to get away from point
+A and see what happens.
+I guess the best way to do
+that is just to do experiments,
+meaning move parameters
+of these curves
+and see how equilibrium
+output changes and so on.
+So let's do the
+first experiment.
+Yeah.
+So let's play with this.
+So now you have your
+model, and now we
+can start asking
+interesting questions.
+The first thing you can
+ask is fiscal policy.
+How does it work?
+Well-- sorry.
+So this is a contractionary
+fiscal policy.
+So the same as we
+did before, remember,
+we increased taxes or we
+could have reduced government
+expenditure, whatever.
+That would have shifted IS.
+We did that.
+When we look at IS,
+we did exactly that.
+We shift the IS to the left.
+And what happens
+here is, well, if you
+shift IS to the left there is
+a new combination of output
+and interest rate that is
+consistent with equilibrium
+in both markets, and
+that's a lower output.
+So if the fed
+doesn't do anything,
+that means it
+keeps the LM there,
+and there's a contractionary
+fiscal policy,
+that will lead to a
+contraction in output as well.
+That's the reason we
+call it contractionary.
+Not only because fiscal--
+not only because government
+expenditure declined.
+But if taxes increase,
+that's contractionary
+because it reduces aggregate
+demand, and the equilibrium,
+that will reduce output.
+So that's canonical
+contractionary fiscal policy.
+You move output to the left.
+Interest rate doesn't
+move because that's
+controlled by the fed,
+but output declines.
+So if somebody asks
+you what happens
+if there is a
+fiscal contraction,
+you were asking a bit
+the opposite side,
+that people may have spent--
+we had perhaps a fiscal
+expansion that was very large.
+But what happens with
+a fiscal contraction?
+That will lead to lower
+equilibrium output.
+I keep pressing
+the wrong button.
+Lower equilibrium output.
+What happens if you have a
+very large fiscal expansion?
+What happens if you have a
+very large fiscal expansion?
+What moves?
+That's something
+you should-- that's
+a question-- you should
+always ask yourself
+when there is any
+question of IS-LM,
+you should ask
+which curve moves.
+Start from that always.
+If we ask you any question
+that it's obvious about IS-LM,
+the first thing you should
+ask is which curve will move.
+So suppose I tell you due
+to COVID, the COVID shock,
+there was a massive
+income transfer
+to low-income individuals.
+That is we had a very
+expansionary fiscal policy.
+First thing you
+should ask is OK,
+which curve moves--
+the LM or the IS?
+If I do that.
+It's the IS.
+Shift to the right.
+Does LM move?
+No.
+Has nothing to do
+with monetary policy.
+So that's the first
+thing you need to do.
+Which curve is moving?
+If it is fiscal, that's
+a good market thing.
+That means it's
+going to move the IS.
+Not the LM.
+What is the mechanism here?
+What happened?
+Remember what we have.
+I told you, go always
+back to this diagram.
+If you increase taxes and you
+keep the interest rate constant
+and you start from there so
+the interest rate doesn't move,
+then that will do what
+increasing taxes did
+in lecture three- it will
+reduce aggregate demand,
+and then the
+multiplier will take us
+to a larger decline than the
+initial fiscal contraction.
+And that's a declining
+equilibrium output.
+So that y1 one there is
+exactly this one here.
+That y prime.
+I haven't moved
+the interest rate.
+I kept it at the same level.
+I had a fiscal contraction.
+That's what we described
+with that diagram.
+That's my new IS.
+I have a new IS because
+for the same interest rate
+I have a lower
+equilibrium output.
+And it happens
+that the fed didn't
+change the interest rate, so
+that's going to be [INAUDIBLE]..
+With the whole curve
+moved to the left,
+that we could tell three slides
+ago, but now I know more.
+I also know that since
+the fed hasn't reacted,
+I know exactly what
+is the new equilibrium
+output, which is this.
+Before, we could only tell that
+the curve has shift to the left.
+Now, since the fed didn't react
+to that fiscal contraction,
+I also know the equilibrium
+output will end up at y prime.
+OK.
+Good.
+So I'm going to stop here,
+and in the next lecture
+we'll continue with this.

@@ -1,0 +1,1658 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDEO CABALLERO:
+I couldn't connect.
+So the Fed just hiked
+by 25 basis points.
+And as people expected--
+this is the way it works.
+When there's lots
+of uncertainty,
+essentially, the Fed
+starts communicating
+what it's going to do,
+and the communication
+was very clear that 25 basis
+points was to be expected.
+And apparently-- I was
+reading this right now.
+It was released 3 minutes
+ago, 4 minutes ago--
+they also said that further
+hikes are no longer guaranteed.
+So remember that we saw
+that expected hikes--
+we saw several expected
+hikes for the next few months
+before the SVB mess.
+And right after it, we saw
+the whole thing declining.
+And at least the minutes
+are consistent with that.
+So there we are.
+So not big uncertainty.
+I imagine the markets are
+rallying or something like that,
+at least for the next
+10 minutes or so.
+But we shall see.
+Anyway, but today, we're
+going to really start--
+I'm going to show you the
+first model of economic growth.
+And before I do that, who
+knows who that person is?
+No, no clue?
+Actually, he's Robert Solow.
+He's an emeritus
+professor at MIT.
+Together with Paul
+Samuelson, essentially, he's
+responsible for building the
+Economics Department at MIT.
+And he won the Nobel
+Prize in 1987--
+I was a student then here--
+primarily for his work
+on economic growth.
+And so what we're going to do in
+the next two or three lectures
+are essentially things that Bob
+Solow developed many, many years
+ago.
+The basic mechanism--
+you remember
+that we had this Keynesian
+cross before where
+we had this multiplier
+in the goods market
+and aggregate demand feeding
+into income and so on and so
+forth.
+That was the star mechanism
+in short-run macro.
+In long-run macro growth theory,
+this is the key mechanism,
+and you can think of
+it as the following.
+At any point in
+time, an economy has
+factors of production--
+primarily, labor and capital.
+That capital is stock.
+Labor is more or
+less fixed, so it
+depends on population,
+growth, things
+that are difficult to
+control, or they're not
+really that endogenous to
+economics, not, at least,
+in the current times.
+Many centuries ago,
+yes, they were.
+We had this Malthusian theories,
+in which population growth
+determined growth because food
+scarcity and stuff like that.
+But that's no longer
+the case, fortunately,
+in most parts of the world.
+But what can change over
+time and quite a bit,
+and it depends on economic
+decisions, is the capital stock.
+But at any point in time, there
+is certain capital stocks,
+which, combined with labor,
+give you some certain output.
+Output is income.
+Part of that income will
+be saved, as we have seen.
+And those savings will
+be used for investment.
+But investment is nothing else
+than capital accumulation.
+So this income will
+lead to savings,
+which will fund
+investment, which
+will change the
+stock of capital,
+will feed into the
+capital stock, that will
+feed into income, and so on.
+All this is happening very
+slowly because the capital
+stock accumulates slowly.
+But this is what is happening.
+And so all the
+models we're going
+to look at-- certainly,
+the model we're going
+to look at in this lecture
+is all about this mechanism.
+So let's remember what we
+did in the previous lecture.
+And I'm going to assume
+that population is constant.
+I'm going to relax
+that at the very end.
+But assume that the population
+is constant and equal to N.
+And remember, we're not worried
+about unemployment and stuff
+like that here.
+And so output per capita
+or per person is Y over N.
+And we remember we had
+a production function
+f of K and N. Then because
+of constant returns to scale,
+we could divide by N on
+both sides, everything.
+And we ended up with
+this relationship.
+So output per
+person is equal to--
+is an increasing function
+of capital per person.
+It's an increasing function
+of capital per person,
+but it's also a concave
+function of capital per person.
+Why is it concave?
+That is, why is it
+increasing at a smaller pace?
+Yeah?
+AUDIENCE: It's decreasing
+marginal method.
+RICARDEO CABALLERO:
+Decreasing marginal product
+of capital, exactly.
+For fixed amount of
+labor, the more capital
+you put into production,
+well, output keeps expanding,
+but by less and less because
+it has less and less labor
+to work with, each
+unit of capital.
+Perfect.
+That's very important.
+Then we're going to
+work in closed economy.
+I haven't opened it.
+I'm going to do
+that after quiz 2.
+And I'm going to assume, also,
+no public deficits-- so g
+equal to T, capital
+T. And in that case,
+then, we know that private
+investment-- private savings
+equal to private investment.
+That's the way we
+derived our S curve.
+So that's not new.
+I'm going to modify a little bit
+what we did in the short run,
+and I'm going to
+assume that savings
+is proportional to income.
+So savings-- little
+s times Y. Notice
+that this is different from
+what we did in the short run.
+In the short run, remember,
+we had a C0 floating around.
+We had a constant in the
+consumption function.
+So savings, which was equal
+to income minus consumption,
+also had a constant
+floating around.
+Now, that constant was
+important in the short-run model
+because we were approximating
+for a bunch of things that are
+not related to
+short-term income--
+wealth, the price of
+houses, and stuff like that.
+We put all that in
+that constant there.
+When you think about
+the long run, though,
+most of those things
+that we excluded there--
+asset prices, stuff like that--
+tend to scale with
+output, as well.
+So these are inconsistent
+on the surface.
+But if you were
+to fully work out
+what is behind the C0 in
+the consumption function,
+then this is not a
+bad approximation.
+They are not that
+inconsistent because you
+endogenize things that, over
+the long run, scale with income.
+I mean, wealth tends
+to rise with income,
+and all these things tend
+to move together-- not
+at high frequency.
+You can have all
+sorts of fluctuations.
+But over the long run, they
+tend to scale up together.
+So that's going to be
+our saving function.
+So that means that we
+know, in equilibrium--
+this is not investment function.
+We know that, in equilibrium,
+investment will be equal to--
+it will be
+proportional to income.
+So remember where we were
+going through the box.
+At the top of the
+box, we had capital.
+That led to output.
+We're doing
+everything per capita.
+That led to savings, and
+that funded investment.
+So that's what we have.
+So this growth model is really
+about these three functional
+forms and then a
+dynamic equation
+for the stock of capital.
+So the evolution of
+the stock of capital--
+capital will increase
+because of investment.
+That's what investment is.
+It's an increase in
+the stock of capital.
+But it will also decrease
+as a result of depreciation.
+I mean, things do break
+up once in a while.
+And different types of capital
+have different depreciation
+rates.
+Equipment depreciates much
+faster than structures,
+and buildings, and so on.
+But we're not going to make
+those distinctions here.
+But you see this tells you,
+the capital stock at t plus 1
+is equal to the capital
+stock we had before minus
+what is depreciated of
+that stock of capital
+plus any new
+investment we do today.
+In per worker terms-- and
+remember that, for now,
+I'm keeping population
+growth constant--
+equal to 0-- not
+population growth
+constant-- yeah,
+constant, but equal to 0.
+So population is constant.
+I can divide these
+both sides by N,
+and I get that
+capital per worker.
+Per worker or per person is
+equal to this expression here.
+I did two things here.
+I divided by N, and I
+replaced this I function,
+this investment, for
+savings because I
+know, in equilibrium,
+they have to be equal.
+So I have that.
+I can rewrite this.
+Just subtract Kt
+over N on both sides,
+and then you get-- the
+change in capital per person
+is an increasing
+function of savings
+and decreasing of depreciation.
+So the last step that is
+important in this model is to--
+so here, I have, essentially, a
+difference equation for capital,
+but we have an output per
+capita on the right-hand side.
+But it turns out that I
+know that output per capita,
+per person--
+I said per capita, per person.
+They're the same thing.
+Per worker-- it's the same thing
+in this part of the course.
+So this is equal to--
+is a function, is an
+increasing and concave function
+of capital per person.
+So this is-- I would say
+it's a fundamental equation
+of the Solow growth model.
+It says, the change in the
+stock of capital increases
+with investment, of course, and
+decreases with depreciation.
+And both of these
+expressions here
+are increasing functions of the
+stock of capital per person.
+So let's try to understand
+what is in here.
+So why-- so this is
+linear, obviously,
+because the
+depreciation is linear.
+Say you lose 5% of your
+stock of capital every year
+because it breaks down.
+Obviously, the more capital
+per person you have,
+the more units of capital
+you're going to lose.
+This is units of
+capital per person.
+You have a larger stock of
+capital, you're going to lose--
+5% of a larger number
+is a larger number.
+And this is proportional.
+It's linear.
+Now, this one--
+remember, this comes here
+from the saving function.
+And this term here is
+equal to income per person.
+Now, suppose that you
+start in a situation
+where the capital stock
+is relatively low,
+and this is positive.
+What does it mean
+that this is positive?
+I mean, the implication
+of this being positive
+is that the stock of capital
+per person will be growing.
+But what does it mean that
+it's positive in words?
+I mean, you have a
+stock of capital.
+There are things that
+reduce the stock of capital,
+and there are things that
+increase the stock of capital.
+This is the thing that
+increases the stock of capital.
+That's the thing that
+reduces the stock of capital.
+So if this is greater than
+that, what does that mean?
+That means it is positive.
+But in words, what is happening?
+And we simplify,
+but remember, this
+is just investment per person.
+Well, this just says
+that in this economy,
+there is more investment
+than destruction
+of capital due to depreciation.
+That's what this means.
+This is investment.
+And this is positive means
+that the investment, which
+is a function of saving,
+the saving rate, and stuff
+like that--
+it's a function of the funding
+available for investment--
+it's equal to the funding
+available for investment.
+If this is positive,
+well, this is greater
+than the stock of capital.
+Another way of saying it--
+you need a minimum level
+of investment in an economy to
+maintain the stock of capital.
+The minimum level
+of investment you
+need to maintain
+the stock of capital
+is equal to the depreciation.
+So 10 machine breaks, you need
+to invest at least 10 machines
+in order to maintain the
+stock of capital constant.
+Now if this is
+positive, it means
+that you're investing more
+than the machines that
+are breaking down.
+Now, suppose you start in a
+situation where that's the case.
+So that means the stock
+of capital is growing.
+Suppose I ask you,
+the next period,
+do you think the gap will
+be larger or smaller than it
+used to be?
+Actually, that's
+not a great question
+because I'm not doing it in
+the right units for that.
+Let me ask you a variation
+of that question.
+Suppose we keep going.
+After a while, do
+you think that number
+will get larger or smaller?
+Let it run for quite a while.
+Do you think that number will--
+so remember what I'm saying.
+We start from some
+stock of capital.
+This is positive.
+If this is positive, it
+means that the capital stock
+is growing.
+That means this guy is growing,
+and that guy is growing,
+and they're growing equally.
+But after a while, do you
+think this number will
+get smaller or bigger--
+after a long while,
+just to make sure
+that my approximation
+is not tidy.
+AUDIENCE: Smaller because of
+the decrease in [INAUDIBLE]..
+RICARDEO CABALLERO: Exactly.
+It's going to get smaller
+because this guy keeps
+growing linearly [INAUDIBLE]
+and this one is not.
+It's concave.
+At some point, this income--
+you need to put a lot
+of capital for income
+to keep rising, and
+therefore, for saving
+to keep rising, and therefore,
+for investment to keep rising.
+And at some point, yes, it
+won't be able to really grow.
+I mean, you're going to be using
+all your investment, really,
+to maintain the
+stock of capital.
+That's the logic
+of the Solow model.
+And it's all in this diagram.
+So this is the diagram you
+should really, really understand
+well and control it, and
+play with it, and all that.
+It's the equivalent
+to your IS-LM
+model in the first
+part of the course.
+So look at what we have here.
+So I'm going to plot
+output per worker--
+per worker, per person--
+against capital per worker here.
+And so this red line here
+is just the depreciation,
+this term here, and thus,
+is a linear function
+of the capital per worker.
+That's what it is.
+The blue line here is output
+per worker, which, as we said,
+is a concave function
+of K over N. Remember,
+I showed you that
+production function
+in the previous lecture.
+There you are.
+What is the green line?
+It's investment
+per worker, which
+is equal to saving per worker.
+And saving per worker is
+little s, the saving rate,
+times a output.
+So it's little s, which
+is a number like 0.1,
+if we're talking about
+the US, and 0.4 if we're
+talking about Singapore.
+It varies a lot
+across countries.
+So this green line
+here is nothing else
+than this blue line multiplied
+by a number that is less than 1.
+That's the reason it's lower.
+OK, good.
+So the point I was describing
+before was a point like this.
+Remember?
+The point I was describing--
+suppose that the economy starts
+in a point like this one, K0
+over N. And I want to understand
+the dynamics of this economy.
+How will it grow over time?
+So what you see here
+is that, at this level
+of capital per
+worker, investment
+is greater than depreciation.
+So that's exactly
+a situation where
+this is positive That
+distance here is that.
+And the reason I
+said, ah, I'm not
+going to do any local analysis
+because we could have started
+with a K over 0 over here, and
+then that number is growing.
+But it's growing-- if
+you were to normalize
+by the stock of
+capital, it's declining.
+But I didn't want
+to do that then.
+But now, that's what I--
+so let's look at this case.
+You're in a situation
+where this is positive.
+If this is positive, it means
+the capital stock per worker
+is growing.
+So you're moving to the right.
+In the next period,
+you're going to be here.
+That means the
+capital-- so it keeps
+growing but by smaller steps.
+Eventually, the
+investment is entirely
+used for recovering from
+the depreciation of capital,
+so covering the
+depreciation of capital.
+And at that point, the
+capital stock stops growing.
+We call that a steady
+state, stationary state.
+We stop there.
+So that's the steady
+state of this model.
+That means this economy,
+regardless of where I--
+I'll do the analysis
+from the other side.
+Suppose that you start
+from a situation like this.
+You start with a lot of capital.
+Well, if you start with a lot
+of capital in this economy,
+what happens here?
+Well, what happens here
+is that the investment
+you're putting into the
+ground in this economy
+is less than what you need to
+maintain the stock of capital,
+which is the depreciation.
+And that means the
+stock of capital
+will be shrinking over time.
+You're moving that way.
+So regardless of where
+you start in this economy,
+if I ask you the question
+A hundred years from now,
+where are you?
+you tell me, I don't need to
+know where you start from.
+I know that we're going
+to end up around there.
+You can-- either you start
+from here, you can go there.
+From here, you go
+there and so on.
+That's the reason we
+call this a steady state.
+This is where you
+converge in the long run.
+Now, this is already interesting
+because it tells you,
+at this point here, the
+economy was growing.
+The capital stock was growing,
+and output was growing.
+You see the capital--
+if you start from here, the
+capital stock is growing.
+Well, output is also growing.
+You're moving up.
+So you had growth.
+That kind of growth we
+call transitional growth.
+It goes from one point
+to another point.
+It's not a permanent growth.
+It's a transitional growth.
+It's the fact that you were
+away from your steady state,
+and then you're going convergent
+towards your steady state.
+A lot of the growth we observed
+and the difference of growth we
+observed across
+countries-- remember,
+I showed you those
+downward-sloping curves and all
+that--
+is as a result of that.
+Poorer economies tend
+to have lower capital--
+capital labor, capital
+employment ratios,
+capital population ratios.
+And therefore, they tend to grow
+faster because they're catching
+up with the steady state.
+Very advanced economies
+that have been more or less
+in the same place for a long
+time are moving around there,
+so there's less
+catching up growth.
+And that's the main responsible
+for the downward-sloping
+curve I showed you within OECD
+countries and even broader
+than that.
+Africa was a little
+bit of a problem there.
+OK, so this is an
+important model
+for you, important diagram.
+Let's play a little with it.
+So suppose that, at the time--
+this is a very simple model.
+But at the time, the
+view was that, well,
+what really supports
+growth is savings.
+So economies that
+save a lot grow a lot.
+And this sort of
+makes sense here
+because investment,
+which is what
+leads to capital accumulation,
+is entirely funded by savings.
+It makes sense.
+You have more savings,
+you should grow more.
+OK, so this is something--
+we can do an experiment.
+Suppose you start at a
+steady state, if you will.
+And now we increase
+the savings rate.
+What moves?
+Which curve?
+This is the kind of
+thing you should know
+when you work with this model.
+If I change the saving rate,
+which curve moves in this model?
+Let me go one by one.
+Does the red line move?
+No.
+It has nothing to
+do with savings.
+It has to do with depreciation.
+If I move depreciation rate,
+that curve will move, but not--
+will the production
+function move?
+No.
+So the blue line cannot move.
+All that will move
+is the green line
+because the green line is the
+saving rate times the blue line.
+So if I increase
+the saving rate,
+I'm going to move
+the green line up.
+That's what we have here.
+So you see what
+happens is you start--
+this was a steady state for this
+saving rate in this economy.
+Now, all of a sudden, this
+economy starts saving more.
+What happens?
+This tells you very
+much the story of Asia.
+The Asia miracle of the '60s,
+'70s, and so on is very much
+something like that--
+a little more complicated.
+A big part of what explains
+the fast growth of Asia
+during that period is that
+something like that happened.
+Now, why the savings
+rate increase and so on--
+that's all very
+interesting and so on.
+But it's not what I
+want to discuss today.
+So what happened here, then?
+So what happens-- this
+economy was in a steady state.
+So there was no growth.
+It was growing at 0 in a
+steady state because this says,
+in a steady state, output
+per worker remains constant.
+And since we have no
+population growth,
+that means output is
+not growing, either.
+The only way you
+can have that ratio
+constant with the
+denominator not moving
+is that the numerator
+is not moving, either.
+OK, good.
+So now, boom, all of a sudden,
+we get a higher saving rate.
+So what happens now?
+What reacts?
+So the saving rates go up.
+It's a closed economy.
+It means the investment
+rate will go up.
+What happens now?
+What does that gap tell you?
+Now you have a
+positive gap there,
+which means you're investing
+more than what you need in order
+to maintain the stock of capital
+at the previous steady state.
+So that means that
+the stock of capital
+is going to start
+growing to the right.
+It's going to start growing.
+And as the stock of capital
+grows, then output per capita
+also grows.
+And this will keep
+happening until you
+reach the new steady state.
+So a higher saving rate-- so
+important conclusion there.
+This, as simple as it
+is, proves something--
+that the conventional wisdom
+that the higher saving
+rate would give you sustained
+growth, higher growth,
+isn't really true,
+certainly not in this model.
+Eventually, you'll go
+back to growth equal to 0.
+When you reach a
+new steady state,
+you're going to be
+also growing at 0.
+What is true, though,
+is that you get, again,
+what is called transitional
+growth because here, you're
+going to start growing
+very fast, in fact.
+And then you're
+going to keep growing
+at the lowest-- lower, lower
+pace until you go back to 0.
+But you're going to
+get lots of growth
+in the transition
+as a result of that.
+And it turns out,
+in the data, when
+you're looking at
+20, 30 years of data,
+it's difficult to disentangle
+very permanent rates of growth
+versus transitional
+rate of growth.
+This is one of the things that
+has concerned China quite a bit.
+They grow very, very fast.
+They have been growing very,
+very fast for a long time.
+But it's very clear that it's
+becoming harder and harder
+for them to grow at the
+type of rates of growth
+that they had 20 years ago.
+They had rates of
+growth 15% or so.
+They had very high-- they had
+a very low initial capital
+population ratio--
+big population, little capital,
+and enormous savings rates.
+So they grew very, very fast.
+They had the green
+line very close
+to the blue line, the
+capital stock very low,
+so they grew very, very fast but
+they have been growing very fast
+for a very long period of time.
+So now it's getting a lot
+harder because they're
+getting closer and closer
+to their steady state.
+That's the issue.
+There are other
+sources of growth,
+and that's what we're going to
+talk about in the next lecture.
+But this is sometimes called
+the easy part of growth.
+It's sort of running
+out in China.
+And it has run out in
+all developed economies
+for quite a while.
+Good.
+Is this clear?
+It's important.
+I mean, a question like that is
+guaranteed in your quiz for 81.
+What happens if the saving
+rate does something?
+So this is a plot over time.
+So this is a case in which
+you were in a steady state.
+And at time t, the
+saving rate goes up
+as 1 greater than 0 jump.
+Then output cannot jump.
+So the saving rate goes up, but
+output cannot jump at day 0.
+Why?
+Why is it that the output
+doesn't jump immediately
+to a new steady state?
+This is the--
+I'm saying, this is what
+will happen to output.
+You're going to start
+growing very fast early on,
+and then keep
+growing, keep growing
+at a slower and lower pace
+because of decreasing returns
+to capital.
+And eventually, you'll convert
+to the new steady state
+with the rate of growth equal to
+0, like the one you had before,
+this savings shock.
+And the question I'm asking
+now is, why does output
+have to do this?
+Why doesn't it just jump?
+What is the only variable
+that could make it jump?
+So you need to look at
+the production function.
+The production function
+is the function
+of K over N. N is fixed.
+The only thing that can make it
+jump is the capital stock jumps,
+but the capital
+stock is not jumping.
+That's a stock.
+And in order to
+accumulate a larger
+stock of the new
+steady state, you're
+going to go through
+a lot of flows.
+That's investment.
+Every year, you're going
+to be adding a little more
+to the stock of capital.
+That's the way you grow.
+It's not that, all of a sudden,
+your stock of capital jumps.
+That's very much because
+this is a closed economy.
+If you're in an open
+economy, the capital stock
+can move a lot faster
+in a transition
+because you can
+borrow from abroad.
+You don't need to fund it
+all with domestic sources.
+And in fact, that's
+what typically happens
+in emerging markets and so
+on is they typically borrow
+for a long time.
+Problem is that they tend to
+consume it rather than invest
+it, and that's the reason you
+end up in financial crisis
+and so on.
+But in principle,
+things could go
+much faster if you
+have an open economy,
+and you have capital
+inflows into your country.
+But we'll talk more about that
+five or six lectures from now.
+But anyways, but this is
+what happens with an increase
+in the savings rate.
+So yes, it affects the rate
+of growth of the economy
+during the transition
+but not in the long run.
+Now, this transition
+can be very long.
+Now, what about consumption?
+So invariably-- and there's
+no way around that--
+given a technology and so on,
+if the saving rate goes up,
+then output per
+worker will go up.
+The next question
+is, what happens
+to consumption per worker?
+Does consumption per
+worker go up or not?
+You are inclined to
+say, well, I mean,
+it makes sense that it goes up
+because we have more income.
+If the saving rate is
+little less times y,
+then consumption is 1
+minus little s times Y.
+So income goes up,
+consumption should go up.
+And yes, that's a
+dominant source.
+But it's not all the
+story because remember
+what I told you.
+So consumption here is going
+to be equal to 1 minus little
+s times Y. So consumption
+per person will be that.
+Remember that what is
+increasing Y over N there--
+so what is making
+this guy go up,
+which will lead to an increase
+in consumption over N--
+is that this guy went up.
+And that's a force in
+the opposite direction.
+And in fact, that was one of
+the debates with the Southeast
+Asian miracle is that it was
+fueled by lots of savings.
+So people say, OK,
+that's wonderful.
+Your output growth is very
+fast, but consumption growth
+is not so fast.
+And at some point, it
+may be hurting you.
+I think that they were right,
+though, for other reasons.
+But that picture
+makes the point.
+So if your saving rate to start
+with-- this is a general lesson.
+If the saving rate you start
+with is very, very low,
+then an increase
+in the saving rate
+will lead to a strong
+increase in consumption
+because this change is small
+relative to the big bang
+get in output because, if
+you have low saving rate,
+that also means that the
+capital stock is very low.
+And if the capital stock is
+very low, f prime is very big.
+This is a concave
+function, and you're
+in the steep part
+of the function.
+Later on, if saving
+is very high,
+you're going to tend to have
+capital stock very high.
+And then, first of
+all, more capital
+won't increase output
+per worker a lot
+because of decreasing returns.
+And this is a big number,
+so it starts dominating.
+And that's what you see here.
+This economy has
+increased the saving rate.
+Consumption per worker rises.
+But at some point,
+it reaches a maximum,
+and then it starts declining.
+I mean, think of the limit.
+If you save 100% of your income,
+you don't consume anything.
+No matter how much
+is your output,
+if your saving
+rate is 100%, then
+you're not going to
+consume anything.
+If you have no income, no
+savings rate, no savings,
+no capital stock,
+no income, you're
+not going to consume
+anything either.
+So at least you know
+these two points.
+And since you know there
+are some positive points
+in the middle.
+You know that the
+curve is going to tend
+to have that kind of change.
+It's going to be nonmonotonic,
+and that's the way it is.
+So let me just play
+with a few numbers.
+This is-- yeah, let me
+play with a few numbers.
+It's not that crazy.
+Suppose you have a production
+function that gives equal weight
+to capital and workers--
+so this production function.
+Does the production function
+have constant return to scale?
+It better be because
+that's what we're doing.
+What do you think?
+Yes.
+The sum of the exponents
+is 1, so it's K to the 1/2,
+N to the 1/2.
+The sum of the
+exponents is 1, so you
+know that it's proportional
+to a scaling factor.
+So we're going to
+use as a scaling--
+as before, N. S we have this.
+This is a f of
+little f of K over N
+is the square root of K
+over N minus delta K over N.
+All that I'm doing is I'm
+plugging in that function.
+So here, I'm replacing
+all these functions
+by a specific
+example, one in which
+this is a square
+root of K over N.
+That's a concave
+function-- square root.
+Good.
+Now, do it as an exercise.
+If you solve for
+the steady state,
+how do you solve for
+the steady state?
+Well, set this equal to 0.
+That will give you
+the steady state.
+The steady state is when the
+capital is not growing anymore.
+It's when this is equal to 0.
+When this is equal to 0, I
+can solve for the steady state
+level of K over N from here.
+This equal to 0, I can
+solve for K over N.
+And I'm going to call that
+the steady state, K star.
+We typically use stars for
+steady states in growth theory.
+Well, the answer to this is K--
+the steady state, stock
+of capital per person
+is the saving rate
+over delta squared.
+That's what it is.
+Output per person, which is
+the square root of K over N,
+is, therefore, the square
+root of s over delta squared,
+so it's over s delta.
+So in this particular model, in
+the long run, output per worker
+doubles when the
+savings rate doubles.
+If I double the saving
+rate, then output per worker
+will double.
+Notice that the
+stock of capital is
+going to grow a lot more when
+you increase the savings rate.
+It's squared.
+So in that economy, if you
+do increase the savings rate
+from 10% to 20%, this
+is the way it goes.
+So remember, 10% to 20%-- that
+means that the new steady state
+output per worker will
+be twice what it was
+in the previous steady state.
+So you go from 1 to 2.
+But it takes a long time.
+The numbers are [INAUDIBLE].
+50 years it takes you
+to go to the new state.
+And so that's the time
+frame we're talking about.
+So it is true that the
+saving rate will not
+change the long-run rate of
+growth, absent other mechanisms.
+But you can grow faster than
+your average, your steady state
+level for quite some time.
+And again, a lot of the Asian
+miracle has been of that kind.
+This is what I was telling
+you of China before, no?
+Well, yeah, you
+can grow very fast,
+especially if you have saving
+rate much higher than 20%--
+I mean 50% or so.
+But the rate of growth
+will have a tendency
+to decline, absent
+some other miracle.
+There are a lot of the reasons
+why we have all this fight
+about technology and so on.
+It has to do with-- because
+that's the main mechanism--
+alternative mechanism
+to grow is technology.
+We're going to talk about
+that in the next lecture.
+But this force, which
+is, what I said before,
+is the easy part of growth--
+it's very difficult
+to fight this pattern.
+So here you have numbers
+for the steady states.
+So if the saving rate is 0,
+obviously, everything is 0--
+no way around.
+If saving rate is 0.1,
+10%, then, in this model,
+capital per worker is 1.
+Output per worker is 1.
+Consumption per worker
+then go from 0 to 1.
+Why?
+Because you were
+saving something.
+So it's 1 minus 0.1,
+which is a saving rate.
+Suppose you double
+the saving rate.
+Well, we know that we're going
+to double output per worker
+in this economy.
+We said that.
+We're going to go from 1 to 2.
+The capital stock
+is going to have
+to grow a lot more to
+double the amount of output.
+Why is that?
+Decreasing returns.
+To double output, you're going
+to have to much more than double
+capital because you're going to
+be fighting decreasing returns.
+What about consumption?
+Well, it won't
+double because you're
+doing this out of
+increasing the saving rate.
+So you get the 2 minus,
+now, 0.2, not 0.1--
+minus 0.2 times 2, so
+you get 1.6 and so on.
+And the higher you go
+with your saving rate,
+the harder it gets for
+capital to bring along
+output per capita,
+and the more the drag
+on consumption because you need
+to be saving a lot in order
+to maintain this high stock
+of capital that you're having.
+You have a very large
+stock of capital.
+That means you need
+to save a lot just
+for the sake of maintaining
+that stock of capital.
+And so little is left for
+extra output per capita.
+And so you see that, here,
+for this particular model,
+when the saving
+rate exceeds 0.5,
+then output obviously
+keeps rising
+when you increase
+the saving rate,
+but output starts declining.
+So you're in the declining part.
+And if you get to 1, of course,
+there is no consumption.
+So that's the curve
+that we trace.
+Is everything clear?
+Now I'm going to-- that's
+the basic Solow model.
+And that's a model that, again,
+you need to control completely.
+All that I'm going to
+do now is very simple.
+I'm going to just modify a
+little bit this model to add
+population growth.
+So what happens-- by
+the way, for centuries,
+population growth has been one
+of the main-- in this model,
+we concluded that output
+per worker was not growing.
+What we're going to
+conclude in a second
+is that output per
+worker will not
+grow if population is growing.
+But that means that
+output is growing.
+If population is growing,
+and output per worker
+is not growing, it's constant,
+that means output is also
+growing.
+And for a long time,
+growth of output,
+not of output per
+worker, was driven
+by large population growth.
+And sometimes, you get
+big migration flows
+into a country that leads
+to growth and so on.
+Now big parts of the world have
+negative population growth.
+So now we're going through
+a cycle in which things
+are going the other way
+around in many large parts
+of the world.
+This is true in almost
+all of continental Europe,
+certainly in Japan.
+I said South Korea, China,
+and even some places
+in Latin America.
+So the drag, actually,
+is against that.
+We don't have the
+natural force for growth
+that we had for
+many, many years.
+So let me introduce
+population growth.
+So assume now that population,
+rather than being constant,
+grows at the related gN, which
+could be positive or negative.
+I'm going to do the example for
+a positive population growth
+example.
+So there's no equation
+that changes, in the sense
+that this is still true.
+It's still true that
+investment is equal to savings.
+It's still true that output
+is equal to output per worker,
+and output is equal to f of K
+and N and so on and so forth.
+The thing that is
+a little trickier
+is that, in this model, if I
+don't normalize things for--
+in this case here, where
+population was not growing,
+I could have just eliminated
+this N as a constant.
+And I would have done
+everything in capital,
+in a space of capital
+here, and output here
+would have been the
+same, just scaled
+by a number, a constant N.
+When I have
+population growth, I'm
+not indifferent between doing
+one way or the other because,
+if I don't have--
+if I do it in the space of K and
+Y, and population is growing,
+then all these
+curves are moving.
+This is a very
+unfriendly diagram
+because my curves
+are all moving.
+As N is moving,
+everything is moving.
+So the trick in all
+these growth models,
+and it's going to be even more
+important in the next lecture,
+is to find the right
+scaling of capital
+so there is a steady
+state, so your curves
+are not moving around
+as population growth.
+It's very easy to find
+the scaling factor.
+It's population.
+So that's what I'm going to do.
+But remember what is
+different here is--
+so what I'm saying
+is I want to get
+all my variables
+scaled by population
+at some point in time.
+That's what I want to
+do because I know--
+I practice enough with
+these things-- that's going
+to give me a steady state.
+Now, what is tricky
+relative to what
+I showed you before is that,
+before, I just divided by N
+both sides, and I was home.
+Now I can't really do that.
+OK, let me divide by
+Nt plus 1 both sides.
+So that's nice.
+I get my capital per
+worker at t plus 1.
+But there are certain
+things that are not as nice.
+What I have on the right-hand
+side is not what I really want.
+I don't want capital over
+population next period.
+My steady state is going to
+be in the space of capital
+overpopulation at the same time.
+That's my steady state.
+So this is not so nice.
+So what I have to do
+is I want to convert
+this, the right-hand
+side, in assumption
+that these are the kind of
+things that I want to have.
+So what I'm going
+to do is divide
+and multiply each of these
+sides by Nt over Nt plus 1--
+sorry-- I'm going to divide.
+I multiply each of these by Nt.
+So multiply by Nt, divide
+by Nt, so multiplying by 1.
+And then I can rearrange
+the terms in this way
+so I get what I want, which is
+capital per person at time t,
+all at time t.
+But then I get this ratio here.
+And I can do the same
+for this expression here.
+Now, what is that ratio?
+It's population today divided
+by population tomorrow.
+Well, it's 1 over 1 plus the
+rate of growth of population.
+Nt plus 1 is equal to
+Nt times 1 plus gN.
+That's the rate of
+growth of population.
+So what I have here
+is 1 over 1 plus gN.
+Now, gN is not a big number.
+So 1 over 1 plus gN is
+approximately equal to minus gN.
+So 1 over 1 plus gN--
+gN is very close to 0--
+is approximately
+equal to minus gN.
+So that's the reason this guy
+became that guy-- approximately
+that guy.
+I can do the same
+here, but it turns out
+that there's an
+extra term here which
+is equal to s times
+gN times Yt over Nt.
+Well, that's second-order.
+That's the reason
+I'm going to drop it.
+It's a saving rate which is--
+it's a small number times a
+rate of population growth, which
+is a number like 0.01
+or something like that.
+So that's a small number,
+so I'm dropping it.
+That's a bigger approximation
+than that one, actually,
+but I'm going to do it.
+Everything becomes
+a lot simpler.
+So this is an approximation.
+I'm just dropping
+second-order terms.
+And once I have that,
+I have the system
+I want because now
+I have a system
+for the evolution of the capital
+per worker or per person.
+And if you see, it looks
+exactly as we had before.
+Remember, this is exactly
+what we had before--
+sf K over-- we used
+to have N subscript t.
+Now it's K over Nt.
+But what is different is that
+now, rather than having only
+the depreciation rate here,
+we have the depreciation rate
+plus the rate of
+growth of population.
+Why do you think we have the
+rate of growth of population
+there?
+Remember the economics behind
+this expression before.
+It was this is what adds to
+capital, to capital per worker.
+This is what you
+need to maintain,
+what takes away from capital.
+Now, it's what takes away from--
+given we're doing everything in
+the space of capital per worker,
+that takes away from capital--
+oh, that's a typo.
+There's a t there--
+t.
+So why do you think
+I have this gN here?
+Well, I have only one minute,
+so I don't have time to--
+because if I want to maintain
+a stock of capital per worker,
+and workers are growing, then I
+need to be growing the capital.
+So even if I had
+no depreciation,
+if I want to maintain the
+capital per worker constant,
+and workers are
+growing, then I need
+to grow the stock of capital.
+So in order to
+maintain the capital--
+I still need to spend what I
+used to spend for depreciation
+of the capital stock.
+But if I want to maintain the
+capital per worker constant,
+then I'm going to need more
+investment, just to make up
+for that extra component.
+So now, set gA equal to 0.
+Your diagram is exactly
+as before in this space.
+Set a equal to 1 and constant.
+But this line, the red line
+here will have delta plus gN.
+So it rotates up.
+So you can play
+here and see what
+happens if there is a
+change in population growth
+and so on and so forth.
+It's going to be
+counterintuitive initially
+because you see, if I
+increase population growth,
+this curve will
+rotate up, and then
+it will appear as if that
+leads to negative growth.
+But you don't get
+negative growth.
+In this diagram, you do get
+that Y over N will decline.
+But that doesn't mean that
+you get negative growth.
+It just means that output is not
+growing as fast as population.
+But both are growing, just the
+population is growing faster
+than output.
+I'll start from that--
+oh, I think it's
+after your break,
+so when you have forgotten
+everything by then.
+So I'll do a review
+of this, and then we--
+OK, have a nice break.

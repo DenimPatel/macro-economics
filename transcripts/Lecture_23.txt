@@ -1,0 +1,1753 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO J. CABALLERO:
+OK, so let me
+continue with the topic of
+the previous lecture, which
+is asset pricing.
+And we said the tricky
+thing with asset pricing
+is that the payoff of having
+an asset comes in the future.
+And that implies at
+least two things.
+The first one is that we need to
+have a method to value returns
+in the future as of today, OK?
+So what is it equivalent to?
+After all, if you want
+to buy a financial asset,
+you need to pay for it
+today with dollars of today,
+and you are expected to receive
+some payoff in the future.
+You need to be able to
+compare these two things.
+And the second is
+that-- is related,
+is that because this
+payoff is in the future,
+you need to have
+expectations about it.
+So those are the two
+concepts we play with.
+And it's a third
+related concept,
+which is, because it
+comes in the future,
+many things can
+happen in between.
+And so there is also
+a concept of risk.
+Those are the three
+elements we discussed.
+And remember, we did--
+I'm going to go very
+quickly over what
+we did in the previous lecture
+because I could see some faces.
+So let me go quickly over that
+and then continue with equity,
+which was the next step.
+So the first step says, OK,
+ignore the expectations part
+for now and risk and so on.
+Assume that you know the future.
+And we ask the question, well,
+how do we value $1 next year?
+In particular, we
+want the question,
+is it equivalent
+to having $1 today?
+And the answer
+quickly became no,
+because imagine that you
+had the dollar today.
+Then you can invest
+it for a year,
+and you get the return of the
+one-year interest rate return.
+So with a $1 today, you can do
+more than with $1 in the future.
+In fact, that
+calculation gave us
+the exact recipe to valuing $1
+in the future, because in order
+to get $1 in the future,
+I don't need $1 today.
+I need 1 over 1 plus
+the interest rate.
+I invest this in
+the one-year bond,
+and I get a return of
+that over that amount.
+That gives me exactly
+$1 in the future, OK?
+So that gives us a very natural
+way of valuing $1 next year.
+It's just 1 over 1
+plus the interest rate.
+And by the same logic,
+if I have $1 today,
+and I want to invest
+it for two years,
+well, I'm going to
+earn that interest
+rate for the first year.
+And then I'm going
+to earn that interest
+rate on the full product,
+not on the original $1.
+On the 1 plus i t dollars, I'm
+going to earn 1 plus i t plus 1.
+And so I can generate a lot of--
+[CHUCKLES] if the interest rate
+is 10% on average, $1 today
+generates $1.21
+two years from now.
+So that tells you, by the
+same logic, that 1 over $1.21
+today is equivalent
+to $1 in the future.
+So then we said, let's
+pick a very general asset,
+an asset that has--
+that pays Zt dollars
+this year, then Zt
+plus $1 one year from now,
+Zt plus $2 two years from now
+and so on and so forth,
+up to n years ahead.
+What is the value
+of that asset today?
+Well, you apply
+exactly the same logic
+that we apply here for every
+single year in the future.
+And you get-- that's the--
+that's called the
+present discounted value
+of those cash flows.
+That gives you the value today.
+Present, discounted-- those are
+the discount factors, 1 over--
+and then that's the value
+that you get out of that.
+So that asset has that
+present discounted value
+of future cash flows.
+And that should be
+more or less the price
+that you are willing to
+pay for that asset, OK?
+And then we introduce
+expectations.
+OK, but we're talking about
+cash flows in the future.
+In many cases, we don't know.
+Well, we don't know two things.
+First, we don't know where
+the cash flows may be.
+In a very safe bond, you
+do know the cash flow.
+[CHUCKLES] But in
+almost any other asset,
+you don't know exactly the
+cash flows you receive.
+And you don't know what
+the future interest rate,
+one-year interest rate will be.
+So that took us to the concept
+of expected present discounted
+value, in which you just
+replace all the things
+we don't know today for the
+expectations of those things.
+So we don't know the
+cash flows in the future.
+That's the reason-- we
+have an expectation.
+That's what you put there.
+And we don't know the future--
+we know the current interest
+rate, but we don't know the
+future one-year interest rate
+or two-year interest rate,
+end-year interest rate
+and so on.
+So we put an
+expectation there, OK?
+So that's that.
+And then I gave you
+some special cases.
+That's a case in which the
+interest rate is constant.
+That's a case in which
+the payoff in the future,
+the coupons, are constant.
+And that's a case in
+which both are constant,
+the interest rate and
+the payoffs in the future
+and for a bond-- for a
+financial asset that lasts for n
+years, that matures in n years.
+That's the case in which an
+asset that does not mature,
+that goes on forever
+under these conditions.
+And then I said,
+well, suppose that we
+look at the x dividend price.
+That means after this year's
+dividend or this year's payment,
+then that's the value.
+And I made the point there
+that shows immediately
+something that will be present
+in almost any asset price, which
+is, as interest rate goes down,
+asset values tend to go up, OK?
+And the reason for
+that is because assets
+pay something in the future.
+And if the interest
+rate falls, then you
+discount less the future.
+So whatever you're
+going to receive
+is valued more because you
+discount less the future, OK?
+So that's the effect.
+In fact, in this
+particular case,
+if the interest rate goes
+to 0, the value of that
+goes to infinity because you
+don't discount the future,
+and you're going to receive
+infinite payments in the future,
+OK?
+Then we look at the
+specific financial assets.
+And we first look at bonds.
+And we said one important
+distinction, something--
+whenever you buy a bond, one
+of the things you want to know
+is the maturity of that bond.
+Is it a one-year bond, a
+two-year bond, five, 10, 30?
+Those are the typical US
+Treasury bonds, at least.
+You want to know the
+maturity of the bond.
+So then we went into
+pricing different bonds.
+We say, well, a bond--
+the simplest bond is a bond--
+is a one-year bond that--
+suppose we have a bond that pays
+$100 at the end of the year,
+and then it matures.
+Well, the price of
+that bond should
+be the present discounted value
+of the flows of that bond, which
+is $100 divided by 1 plus
+the one-year interest
+rate at time t, OK?
+And notice again here,
+by the same logic
+of what I explained before,
+is that, if the interest
+rate, one-year interest rate,
+goes up, the price of that bond
+will decline because that bond
+pays you one year from now.
+And one year from now, when
+the interest rate is higher,
+it's worth a little less
+than it was when the interest
+rate was a little lower, OK?
+And then we look at a two-year
+bond, a bond that pays nothing
+up to two years from now.
+And we say, well, two years
+from now, it pays $100
+and then matures.
+Well, the price of that
+bond will be this, OK?
+And notice that, in
+this case, the price
+of a two-year bond
+at time t goes down
+if either of the one-year
+rates goes up, OK?
+It can be the first--
+this year's one-year rate
+or maybe the expectation
+that the one-year rate
+next year will go up, OK?
+Good.
+Then I introduce an
+important concept,
+which is this concept of
+arbitrage pricing, which is--
+two instruments
+should give you sort
+of the same interest
+rate-- we're leaving
+risk considerations aside.
+It should give you the same
+return when you compare them
+over the same maturity, OK?
+So in this particular
+example, I said,
+look, a one-year bond
+and a two-year bond
+that you invest-- you
+hold for only one year
+should give you more or
+less the same return, OK?
+So that means that this is the
+return you get from $1 invested
+in a one-year bond--
+should be equal
+to the return you
+get by investing
+in a two-year bond
+and selling that
+bond after one year.
+And that's the
+expression we had here.
+If you-- this is what you
+pay for a two-year bond.
+And this is what you expect
+to be paid for that bond when
+you sell it one year from now.
+Notice that, one year from
+now, the two-year bond
+will be a one-year bond because
+one year will have expired,
+and at that point, it
+will be a one-year bond.
+That's the reason we have
+a subscript P1t here.
+So that means that we
+can solve from here
+that P2t is simply that.
+But there is an
+expression like the one
+we had for the one-year
+bond at time t.
+There is one for t plus 1.
+We put expectations because we
+don't know the actual interest
+rate in the future.
+And then I stuck
+this into there.
+And we got exactly
+the same price
+that we got with
+the net present--
+expected present discounted
+value approach, OK?
+And so this asset pricing--
+this arbitrage way
+of pricing things
+is an incredibly
+powerful tool that
+is used very
+extensively in finance.
+These are simple calculations.
+But when an asset gets to be
+tricky, much more complicated,
+this is very useful.
+Then we talk about bond yields.
+And bond yields are defined
+as the constant interest
+rate that is consistent
+with the current price
+of that particular bond.
+So in the case of
+the two-year bond,
+we call the two-year
+rate, that interest rate
+that is constant
+over the two periods.
+That's the reason I square it.
+It's not i1t times 1 i1t plus 1.
+I square it.
+It's not constant over time.
+The two-year interest
+rate may be moving a lot.
+I mean, the Fed just
+hiked by 25 basis points.
+I'm sure all the rates
+are moving at this moment.
+So the rates can be moving
+at all points in time.
+But what we define as the
+yield is, at one point in time,
+you tell me the
+price of the bond,
+you tell me the payoff
+of the bond, then
+what is the constant interest
+rate that makes this price--
+this expression equal
+to the actual price?
+That's the way we define
+the two-year rate.
+That's the two-year rate.
+And if you have a bond that
+pays 100 n years from now,
+then there would be a
+constant interest rate, i n,
+that gives you $100 divided
+by 1 plus i nt to the n power.
+That will give you--
+when you set that equal to
+the price, the actual price
+of the bond, the one you get out
+of expected present discounted
+value or out of
+arbitrage, then you
+have found the yield or
+the yield to maturity.
+We know what the-- we
+already got the price
+from the previous slide.
+We know that the
+price of this bond
+is going to be 100 as
+a two-year bond divided
+by this product of 1 plus
+interest rate, one-year interest
+rate.
+So this has to be equal to that.
+That's the way, actually, you
+calculate the two-year yield.
+And numerators are the same.
+That means the denominators
+have to be the same.
+And this implies approximately
+that the two-year rate
+is a sort of average of the
+expected one-year rates, OK?
+So in this case,
+the two-year rate
+is a sort of average
+of the one-year rate.
+That means that, when the--
+when you expect the interest
+rate to be-- the one-year
+rate to be rising over time,
+then the two-year rate will be
+above the one-year rate today.
+That's when the curve is-- we
+say the curve, the yield curve,
+is steep.
+Remember I showed you this in--
+there?
+When the curve looks
+like that, so steep,
+means that the later--
+the two-year rate,
+the three-year-- well,
+here, in particular,
+the three-year rate
+is-- the two-year rate
+is higher than
+the one-year rate.
+The three-year rate is
+higher than the two-year rate
+and so on and so forth.
+That happens when you expect--
+the market expects
+the interest rate
+to be rising over
+time, the one-year rate
+to be rising because
+remember, the two-year rate
+is the average of the
+current one-year rate
+plus the expected one-year
+rate one year from now.
+For that average to be higher
+than the one-year rate now,
+it has to be the case that the
+expected one-year rate one year
+from now has to be higher than
+the current one-year rate, OK?
+So that's when you tend to get--
+that's when you get an
+upward-sloping term structure.
+And when you get a
+downward-sloping term structure,
+which is the way it
+looks right now--
+actually, right now, it
+looks very downward-sloping.
+There you are.
+It looks very
+downward-sloping-- is
+people expect that we're getting
+to the peak of current policy
+rate of short-term
+interest rate.
+And so people expect now
+for the interest rate
+to decline going forward.
+And that's the reason
+the two-year rate now is
+lower than the one-year rate.
+And the five-year rate is
+lower than the two-year rate
+and so on.
+And as you can see
+here, it's very steep.
+Then we said, well, let's
+add risk because yeah, sure.
+Here we assume that you were
+indifferent between investing
+in a completely safe one-year
+bond and a two-year bond
+in which you had to make an
+expectation about the price.
+But that price
+could move around.
+So there is risk on that price,
+on the price of one-year--
+the one-year bond as of today.
+So we added risk.
+And there are two
+types of risk in bonds.
+One is default risk, that they
+had promised that they would pay
+you $100, but it may happen that
+they cannot pay you the $100,
+the corporation or the
+government or so on.
+Argentina defaults its bonds
+regularly, for example.
+Many of the regional
+banks that have gone under
+will default on
+their bonds as well--
+so that kind of risk.
+But we'll remove that risk, and
+we'll focus, for now, on the--
+I'm going to focus
+mostly on the price risk
+because I'm going to be talking
+mostly about US Treasury bonds.
+US Treasury bonds have no
+default risk, we think.
+I mean, there could be an
+event in a few weeks from now,
+but no one expects that
+to be a lasting event.
+I mean, if it is,
+there is a real mess.
+But in any event, but
+there is also a price risk
+because you have to hold this
+and then sell it at one year.
+And you don't know exactly the
+price, what the price will be.
+There is a risk
+associated to that.
+So that means that, really,
+you shouldn't equalize
+the return on the one-year
+bond to the return you expect
+to get in the two-year bond.
+You should add a
+little compensation
+for holding the two-year bond,
+for going the two-year bond
+route.
+And so rather than
+expect to make
+1 plus i1t the two-year
+bond after one year,
+you should expect to
+earn a little more.
+And that's what this xb
+being positive reflects.
+And so in that case, the
+price of the two-year bond
+is a little different
+from what we had.
+In fact, it's a
+little lower than what
+we had because that's the
+way you compensate for risk.
+I sell you an instrument
+a little cheaper
+than it would have been
+in the absence of risk.
+So you expect to get a little--
+a slightly higher return out
+of that.
+So this price is lower than
+the price without the risk
+premium here, no?
+That means-- but it
+still is promising you
+$100 So that's exactly how
+you get more return out of it,
+because you're buying
+something at a lower price, OK?
+So I can do the same
+logic now and see
+what the two-year rate is.
+But now that I have this--
+take into account
+this risk, and you
+have that the two-year rate
+now is the average not only
+of the expected one-year
+rate, but also includes
+a risk premium.
+And that tends to be the
+case, that the further out
+in the curve you are, the
+larger is the risk premium.
+It's called term premium because
+term is the same as maturity,
+OK?
+Actually, sometimes that
+is negative, actually.
+And recently, up to very
+recently-- now it's positive.
+But until very recently,
+that xb was negative.
+And the reason for that-- you
+don't need to understand that
+now--
+is because long-term
+bonds were great hedges.
+Meaning, if there is--
+for any major event, for a
+financial crisis or something
+like that, because
+in a financial crisis
+or a major disaster,
+interest rates tend to fall.
+And when interest rates fall,
+the price of bonds goes up,
+[CHUCKLES] OK?
+And so that was a good hedge.
+If you wanted to protect
+your portfolio of equities
+and so on against a major
+catastrophic-- major event
+like a financial crisis
+or a war or something
+like that, it was not a bad
+idea to have some long-term US
+Treasury bonds in
+your portfolio,
+because they would tend to go
+up precisely when everything
+else was going to be losing
+money and so, as a result,
+tend to be negative.
+Now that's not the case, because
+now one of the biggest risks
+is inflation.
+And so if there is an
+inflationary spike,
+then interest rates will
+go down-- up, not down.
+And that means the price
+of bonds will decline.
+So they will decline
+at the wrong time, OK?
+So the price of bonds,
+of long-term bonds,
+now will tend to decline
+when everything else is also
+plummeting.
+I mean, if we get a negative,
+if we get an inflation surprise,
+and inflation is a lot
+higher than people expected,
+asset prices are going
+to decline, all of them,
+including long-term bonds.
+And that's the reason
+now this xb is positive.
+OK, so that's-- so I
+think that's where we were
+at in the previous lecture.
+Any questions about that?
+Then I'm going to-- next
+step is to talk about equity.
+No?
+Yeah?
+AUDIENCE: Why don't we add the
+risk premium to the interest
+rate on your note?
+RICARDO J. CABALLERO:
+Well, because next year,
+that one-- for this
+particular bond, that bond
+will have no risk because
+it will be one year to go.
+And at the end of that year,
+you're going to get the $100.
+So there is no risk, that $100.
+If it was a
+three-year bond, then
+you would have--
+in two of those,
+you would have risk premium.
+But you wouldn't have
+it in the last one,
+because in the last one,
+you don't have the-- you're
+going to receive the $100.
+[CHUCKLES]
+If the bond could default--
+because I'm only looking
+at price risk in the bond.
+If the bond could default, then
+I would add an extra term there
+because it's default risk.
+But here I'm just
+looking at price risk.
+And I'm assuming the
+unit of time is one year.
+So just one year
+before it expires,
+there is no more risk because
+there is no price in between,
+and you're going to receive
+$100 at the end of a year.
+In reality, time is continuous.
+So every second, there is
+a little bit of a risk.
+So you have a little bit
+of that risk all the time
+except for the last second.
+But I'm looking at a simple
+example, where things
+happen every one year only.
+In the book, I think
+they mess up, actually.
+They put the risk premium
+in the wrong place.
+There was another question.
+No?
+OK.
+So let's look at the
+stock prices now.
+So stock prices have two key
+differences with respect to--
+well, several differences, but
+two that I want to highlight.
+The first is that they don't
+pay coupons, fixed amount.
+They don't promise you
+to pay $100 two years
+from now or anything like that.
+They pay dividends.
+They tell you we have a
+policy of paying dividends.
+And even different companies
+differentiate themselves
+by how much they promise to give
+you on average in dividends.
+But it's a promise that, if
+everything goes as planned,
+they'll pay you those dividends.
+[CHUCKLES] It's not a commitment
+to pay you a dividend.
+It's very different from a bond.
+A bond says, I'll pay you a
+coupon of this amount every six
+months.
+And if you don't pay that
+coupon, that's a default.
+There's nothing
+like that in equity.
+Equity, you buy shares
+of Apple, and you
+look at the history
+of dividends,
+what the CEO tells you the
+last time, in the last release.
+And you think, OK,
+these are more or less
+going to be my dividends.
+But there's no commitment.
+They will always tell
+you what's their plan.
+But it's a plan.
+It's not a commitment.
+So that's the first thing.
+It doesn't have fixed coupons
+or anything like that.
+There's no commitment.
+And in that sense, there
+is no sense of default,
+because there was no commitment.
+So there is no default.
+If a company has
+to cut dividends to 0,
+that's not a default.
+That's conditions change.
+That's it.
+There was no commitment to that.
+The second feature is that they
+don't have a fixed terminal
+date.
+99.9999999% of the bonds
+do have a terminal date.
+They have a maturity.
+There is a few exceptions, which
+are called perpetuities, that--
+I think the US has
+none, for example.
+But most bonds have
+a maturity, OK?
+Equity doesn't come that way.
+Nobody tells you buy
+a share of Apple.
+You don't buy
+shares of Apple that
+will be retired 30
+years from now, OK?
+There will be there as
+long as Apple exists.
+Of course, if you had shares
+of First Republic Bank,
+you have nothing now
+[CHUCKLES] because that--
+but that was not
+the original plan.
+It First Republic Bank
+had been more successful,
+you would have--
+the shares would have survived
+for a very long period of time.
+So there's no sense of maturity.
+In principle, equity
+can last forever.
+So I'm going to use
+arbitrage to price equity.
+So let me-- so it lets
+me have the following
+portfolio of options here.
+One is our old one-year bond.
+So you can invest your dollar
+today in a one-year bond.
+The alternative,
+I'm going to say,
+there is some equity out there.
+And I'm going to call the
+price of that equity Q
+and the dividend of
+that equity D, OK?
+So this price is a
+stock by arbitrage.
+So equity is risky.
+I mean, it's much
+riskier than bonds
+unless you are into Argentinian
+bonds or things like that.
+But I mean, it's much
+riskier than bonds.
+So there is always
+a risk premium.
+And actually, that
+in itself is a trade,
+should trade at risk
+premium of equity market.
+So I'm going to put an xs here.
+So what do you expect
+to get from holding--
+arbitrage means the
+same holding period.
+So I'm going to compare
+investing in a one-year safe
+bond versus buying equity
+today, buying a stock,
+holding it for a year,
+And then selling it there
+because that's the same--
+I cannot do arbitrage depending
+from different holding periods.
+That's a one-year
+holding period.
+So I'm saying this is what I'm
+going to get from the bond.
+I'm going to require some
+risk compensation for that
+because risk equity is risky.
+So I'm going to want that.
+And this is what
+I'm going to get.
+That's my return
+on equity I get.
+This is what I'm going to
+pay today for the stock--
+say, for a share of Apple.
+And when I get this,
+this is the dividend
+I expect to get at
+the end of the year.
+And then this is
+the price at which
+I expect to sell that share
+one year from now, OK?
+So that's the
+return I'm expecting
+to get from holding the share
+of Apple for one period.
+And that's what I need
+to compare with holding
+for one year, one-year bond.
+But I want also to be
+compensated for a risk, OK?
+Good.
+Is this clear?
+OK.
+I don't know whether
+silence means yes or no.
+But this is-- we did
+something like this
+with the two-year bond,
+except that we didn't
+have a dividend
+there, because there
+was no coupon that they won.
+We only had a final
+payment of 100.
+But we did this already when
+we compared the one-year bond
+with holding the two-year
+bond for one period.
+We had exactly that,
+except that there
+was-- the expected
+dividend. there
+was 0 because there
+was no payment
+at the intermediate date, OK?
+Good.
+So we know this concept already.
+The only difference
+here is, again,
+that there is expected
+dividend and, second,
+that we have a risk premium
+here, which we added for bonds.
+But for equities, I
+said, it's typically
+much larger than for
+bonds, especially if you're
+talking about Treasury bonds.
+So I'm going to reorganize
+this to solve out
+for the price, this Qt here.
+That's what I want
+to figure out,
+what is the price of
+the share of Apple, OK?
+Well, I can reorganize this,
+which means move to the left,
+divide these two guys here
+by 1 plus i1t plus xs,
+and I get this.
+So the price is equal to the
+discounted expected dividend--
+I have to discount
+it because I expect
+to receive it one year from now,
+and I want also compensation
+for risk--
+plus the discounted
+value of the money
+I'm going to get from selling
+the share of Apple one
+year from now, which I also
+discount by the interest rate,
+but also with a risk
+premium because that's
+a risky investment.
+So that's what we have.
+Now notice that, at t plus
+1, I will have an expression
+like that as well, again.
+When we did the
+two-year bond, we
+didn't have an expression like
+that, because after one year,
+the two-year bond was going
+to be a one-year bond.
+And so we didn't need to think--
+put a price there.
+We just put the $100, OK?
+Here is different because we
+said this equity never expires.
+Unless the company goes
+bankrupt, it's there.
+So in the next date, I'm going
+to have an expression exactly
+like that.
+I'm just going to have an
+expected dividend at t plus 2
+and the expected price at t
+plus 2 and so on and so forth.
+That means I can replace
+this expression here
+by an expression like this
+shifted all by one year.
+And I can keep doing that.
+If I do that, I'm
+going to get, then, two
+expected divisions here, and
+then I'm going to get a--
+so I'm going to get
+something like this,
+but shifted by one year
+and discounted by two terms
+in the denominator.
+And then I'm going to
+get an expected Qt plus 2
+around here, OK?
+Well, I can do a substitution
+of that, as well, again,
+by everything shifted
+by two years and so on.
+So I can keep going.
+And I can keep going and going
+and going and going on forever.
+So if you keep doing
+it, you're going
+to end up with an
+expression that gives you
+the price of the asset as the
+expected present discounted
+value of all the future
+dividends you expect.
+You see?
+I'm summing here,
+Dt plus 2, 3, 4, 5.
+And it doesn't stop here.
+It stop here, I'm going to
+have here a Qet plus n plus 1.
+Well, I can replace
+that thing again.
+And I can keep going
+and keep going forever.
+So you're going to integrate the
+expected dividends, discounted
+expected dividends, to infinity.
+Now, each future dividend
+is discounting more and more
+heavily because the
+denominator is growing
+and growing and growing because
+it's further out in the future.
+It's worth less and less, OK?
+But still, it can go on forever.
+And in fact, even if you
+substitute this stuff a million
+times, there is
+going to still be
+a little price at
+the very end floating
+around [LAUGHS] discounted.
+It will never go away.
+So it never ends.
+There is no maturity.
+They keep going, OK?
+Now we did everything
+up to now for nominal--
+in nominal terms you can do it--
+and that's the reason I didn't
+want to spend much time with it.
+You can do everything
+in real terms as well.
+And all that happens there
+is just remove the dollars,
+and just be careful to
+replace the nominal interest
+rate by the real interest
+rate-- but nothing deep there.
+I can-- you can go to real
+pricing, nominal pricing,
+and so on.
+But the important
+concept is not that.
+It's the fact that this--
+in principle-- we call that, by
+the way, the fundamental value
+of equity or of a stock.
+It's the expected
+present discounted
+value of all the dividends.
+And you have to discount it
+by the appropriate discounting
+factor, which includes
+interest rate and risk premium.
+But that's what we call,
+typically, fundamentals.
+And we differentiate that
+from what we call sometimes--
+I'm going to show you an
+example later on bubbles,
+when the price seems to
+exceed any reasonable sense
+of fundamentals.
+OK, good.
+OK, let me sort of start
+going back to things that we
+worry about in this course.
+And in fact, it's a big issue.
+I don't know what is
+happening to markets now.
+What the Fed did was
+very anticipated.
+But markets often find a
+way to react to things,
+even if things were anticipated.
+What happens-- so let me ask
+you a following question.
+What is the effect--
+what do you think
+is the effect of an expansionary
+monetary policy on the asset
+prices we have discussed,
+so bonds and equity?
+Let's start with bonds first.
+What do you think is the effect
+of an expansionary monetary
+policy-- that means a
+reduction in the interest
+rate-- on the price of your
+one-year bond, two-year bond,
+any year, you pick?
+We already talked
+about that earlier.
+[CHUCKLES] Goes up.
+The price of a bond is inversely
+related to the interest rate
+because if I cut an
+interest rate, it means--
+a bond is something that pays--
+the payoff is in the future.
+That thing in the
+future is worth more
+if the interest rate goes down.
+There is less discounting of it.
+So the price of the
+bond, any bond here,
+will go up, the one-year,
+two-year, three-year, five-year.
+All of them will go up--
+assuming that nothing changes as
+a result of the monetary policy.
+What happens is
+sometimes markets think,
+oops, the Fed messed up.
+And that leads to lots of
+changes in all the term
+structure and things
+like that because they
+expect the market to
+react in strange ways
+to this mistake made by the Fed.
+But here I'm saying,
+suppose that the Fed just
+cuts the interest rate
+once, and everyone
+believes that the Fed will
+continue to do so and so on.
+Well, then you're
+going to get that--
+the price of bonds will go up.
+What will happen to
+the price of stocks?
+Yeah, you want to answer.
+[LAUGHS]
+AUDIENCE: It would go up.
+RICARDO J. CABALLERO: Up.
+But-- well, but it's important
+to say that it will go up
+probably for two reasons.
+The first one is that--
+it's also the case that a lot of
+the price of an equity, actually
+even more so than a bond,
+has to do with expected
+payoffs in the future.
+So if I lower interest rates,
+just the effect of discounting
+will tend to raise
+the price of--
+so even if I don't change
+the expected dividends
+at all, the fact that the
+interest rate goes down,
+for the same reason that
+the price of a bond went up,
+the price of equity
+will tend to go up, OK?
+So that's exactly--
+it's the same logic.
+But there's an extra kick here
+for equity, which is what?
+That bones did not
+have, but equity does.
+At least it's an equity
+that is positively
+related to aggregate activity.
+But that's what
+I'm assuming here.
+AUDIENCE: [INAUDIBLE] bond
+is [INAUDIBLE] fixed amount
+before stocks and can't
+guarantee that pays you
+the same dividend.
+RICARDO J. CABALLERO: Well,
+yeah, that's the logic.
+Here, the expansionary
+monetary policy
+is cutting interest rates.
+But as a result of that,
+output is going up.
+When output is going up, sales
+will go up, revenues will go up,
+dividends will
+probably go up as well.
+So monetary policy can
+have very large effect.
+I mean, people in financial
+markets are looking at the Fed
+all the time
+[CHUCKLES] because it
+can have a big impact on
+the price of those assets.
+And on equity, in particular,
+it can be very strong.
+And in fact, that's one of the
+ways monetary policy works.
+When the Fed cuts
+interest rates,
+it inflates the value
+of asset prices.
+And that creates more wealth.
+People feel richer,
+consume more, blah,
+blah, blah, blah, blah.
+Firms feel also richer.
+[CHUCKLES] They
+invest more and so on.
+That's deliberate, in a sense.
+That's one of the
+main mechanisms
+through which monetary policy
+affects aggregate demand.
+It just creates wealth.
+And when there's too
+much demand, too much
+aggregate demand,
+like is going on now--
+that's the reason we
+have inflation and so on.
+In 2022, the Fed went out
+and deliberately destroyed
+wealth [CHUCKLES] because that's
+what [INAUDIBLE] Raise interest
+rates a lot, the price
+of equity came down,
+even houses began to wobble.
+The price of Treasury
+bonds sort of collapsed
+and so on and so forth, OK?
+Good.
+Another experiment that we did
+sort of early on, lecture 3, 4,
+around there is what
+happens-- what do you think
+happens when there is an
+increase in consumer spending?
+So suppose that now--
+remember, we had a C0
+floating around, an autonomous
+consumption component.
+And so suppose
+that that goes up.
+What do you think
+happens to asset prices?
+And this is a big issue
+these days, actually.
+AUDIENCE: That depends on how
+the Federal Reserve reacts
+to it by raising or
+lowering interest rates.
+RICARDO J. CABALLERO: Exactly.
+That's right.
+That's very good.
+It depends a lot--
+I mean, when financial markets
+receive news-- every day,
+they are releases of news
+of all sorts of things.
+And in financial markets,
+they-- people always
+think, OK, this is the news.
+The obvious thing
+for this is good news
+because this will tend
+to increase output.
+Output will increase dividends.
+That's a good thing for stocks.
+But the immediate reaction
+is, whoa, but what will
+the Fed do about this?
+Does the Fed like that we have
+more aggregate demand or not?
+[CHUCKLES] OK?
+And so that's key here.
+So suppose that, in this
+case, the Fed did not like--
+the Fed-- like today,
+the Fed doesn't want
+more aggregate demand today.
+There's no central bank around
+the world-- maybe in China,
+but there's no
+other central bank
+around the world that wants
+more aggregate demand, OK?
+So if the release is consumer
+are very bullish now,
+that's not good news.
+I mean, the financial markets
+immediately are saying, uh-oh,
+we have a Fed that is
+watching for inflation.
+This means they're going
+to hike interest rates, OK?
+So what happens to the price of
+bonds, then, in this environment
+when C0 goes up, and
+the Fed doesn't like it,
+and the markets know that
+the Fed doesn't like it?
+The Fed may take a
+month to react to it.
+But markets react
+immediately, say, whoa, this
+is what the Fed will
+do one month from now.
+So what do you think happens
+to the price of bonds?
+If we get news that
+consumers are very bullish,
+and it turns out that we also
+have inflation of 4% or so.
+So we know that the Fed doesn't
+like more aggregate demand.
+What do you think will
+happen to the price of bonds?
+Well, [CHUCKLES] again, The
+news happened, say, a week ago.
+And the Fed moves
+one week later.
+So markets are going to
+anticipate that, in this case,
+the Fed will hike
+interest rates.
+If the Fed-- if the
+markets anticipate
+that the Fed will
+hike interest rate,
+interest rates will go up
+immediately-- not the rate
+that the Fed controls,
+but the one-year rate,
+the two-year rate,
+the three-month rate.
+All those rates are going
+to go up immediately
+as a result of that, OK?
+And that, we know, reduces
+the price of bonds.
+Bonds and interest rates
+are-- the price of a bond
+and the interest rates
+are inversely related.
+So the anticipation that
+the Fed will hike rates
+will lead to higher interest
+rates at all horizons.
+And that will reduce
+the price of bonds, OK?
+So this thing that--
+and for equity,
+well, look what happened
+for equity here.
+Well, for equity,
+you say, OK, well, I
+get the same discounting effect
+of the bond, which is bad news,
+goes down.
+Ah, but the good news is
+the dividend because now
+I have more consumers.
+Well, that depends on how much
+the Fed dislikes this stuff
+because if the Fed does
+this, that means it offsets--
+it fully offsets the
+effect on aggregate demand,
+increases the serial shift
+[INAUDIBLE] to the right.
+That would have
+increased output to here.
+The Fed doesn't
+want more output,
+so it will hike
+interest rates up
+to the point in which
+output doesn't go up.
+That means dividends are
+not going to go up either.
+So we get just the negative
+effect of the discounting,
+and we don't get the benefit
+of the extra activity that
+would have come from
+having consumers that are
+more optimistic and so on, OK?
+So this is-- actually,
+this has happened
+a lot over the last few months.
+This is an environment
+people call--
+it's an environment where
+good news is bad news.
+Good news about aggregate
+demand, consumers
+are happy, blah,
+blah, blah, blah.
+It's bad news.
+Or labor markets are very
+tight, wages are going up,
+all things that sound wonderful
+in other environments sound--
+is terrible news for the
+financial markets, OK?
+For most, I mean.
+There is difference in
+different sectors and so on.
+But for the aggregate, for
+the average, it's bad news.
+So this is an environment where
+good news is bad news, good news
+about aggregate demand.
+You have to be
+specific about what.
+Good news about aggregate demand
+is bad news for asset markets.
+It's not always like that.
+If you're in a recession, the
+Fed doesn't want to fight that.
+It wants to have more
+aggregate demand.
+So if you get good news
+about aggregate demand,
+that's very good
+news for asset prices
+because the Fed will
+not offset that,
+and you get the positive
+effect of the extra dividends
+and things of that kind, OK?
+Another component that
+moves asset prices a lot--
+so monetary policy moves
+asset prices a lot, OK?
+But monetary policy
+doesn't happen
+in some separate,
+isolated space.
+It reacts to news
+about the economy,
+about consumers, about
+firms, about regional banks,
+all sorts of things, OK?
+Another big driver
+of asset prices
+is this guy here, of
+equity in particular,
+is this risk premium.
+So that risk premium
+can move a lot.
+And it's an important
+driver of asset prices.
+This index, this is
+the-- it's called VIX.
+VIX is-- I'm not going
+to explain what it is.
+But people call it, so you
+get the picture, an index
+of fear in equity markets.
+It's done-- well, I'm not
+going to tell you what it is.
+It's based on option
+prices and so on.
+So this is when people
+realized that COVID [CHUCKLES]
+was coming.
+And so what you see is that
+this thing exploded up--
+big risk-off, thus a massive
+spike in the little xs.
+Well, not surprisingly, look
+what happened to equity--
+collapsed by 35% or so.
+Part of that was expected
+deviance, blah, blah, blah,
+blah, blah, blah.
+But a lot of it
+was the risk-off.
+And it's called risk-off when
+markets are very fearful.
+They don't want to take
+risks, risk-off, OK?
+The recovery, actually,
+also had a lot
+to do with the recovery
+on the risk environment.
+People sort of got
+used to the thing.
+But that recovery
+also was a result
+of very aggressive
+monetary policy.
+The Fed tried to offset this
+by cutting interest rates very
+aggressively, and that also
+gave a boost to asset prices.
+In fact, they did so much
+that we ended up with a big--
+lots of overvaluation
+in asset prices.
+And then, as a result,
+when they hiked rates,
+we had a big decline in
+asset prices as a result.
+What is this?
+Look, this is--
+over the weekend--
+over the weekend--
+we talked about this
+in the previous lecture.
+Essentially, the First
+Republic Bank went under,
+and JPMorgan absorbed it.
+So people thought that--
+and Monday was good
+because people thought
+that this mini crisis was over.
+Well, yesterday, it turns out
+that two other regional banks,
+the shares began to
+collapse in the same way
+as the First Republic
+Bank shares collapsed
+the week before.
+So panic immediately set in.
+So the VIX, the fear index,
+[WHISTLES] this is intraday.
+So markets open here, And
+the shares of these two banks
+began to decline very rapidly.
+And so VIX went up a lot.
+And what-- this is--
+this is the main-- this
+is the SPX, the main--
+S&P 500.
+It's the main price index,
+equity price index, in the US--
+immediately declined.
+So that's the xs moving.
+Here, xs move up, the little x.
+And then it began to come
+down, and the markets
+began to recover.
+So this risk on and off
+is a very big driver
+of equity prices.
+This is one of the banks,
+actually, that was in trouble.
+You see that-- by the end of
+the day-- this is PacWest.
+PacWest had declined by
+28% by the end of the day.
+But you see things
+look very weird here.
+They don't look
+like normal prices.
+Here they look
+like normal prices.
+They're moving all the time.
+Here, they don't.
+What happens is
+that these prices
+decline so rapidly
+that they trigger what
+is called circuit breakers.
+So you cannot trade those shares
+when they decline too rapidly.
+And that's done deliberately
+so this little x
+doesn't get completely out of
+control, people to calm down.
+And so it triggered
+it several times.
+The whole idea is
+that people calm down,
+[CHUCKLES] that they don't--
+is there a question?
+AUDIENCE: Yeah, just
+on the last slide--
+RICARDO J. CABALLERO:
+The previous or this one?
+AUDIENCE: Yeah,
+the previous one.
+Is-- [INAUDIBLE] are either of
+them dependent on the other?
+Or are they more just showing
+the same sort of trend?
+RICARDO J. CABALLERO: No, no.
+OK, that's a good question.
+This is the risk component only.
+So this is more independent--
+what I'm saying,
+when this guy goes up,
+if nothing else happens,
+this will decline because
+you are discounting things
+more heavily.
+But it is true that there
+were some common elements.
+There are also common
+elements, which
+is people got very worried about
+having another regional bank
+collapsing and so on.
+And so that also created
+fear about the economy,
+which is an independent
+reason for this to decline.
+And normally, in
+recessions as well,
+this risk appetite is lower.
+So you're right that
+it's a common component.
+But the point I was highlighting
+is that this VIX sort of
+is a big driver.
+It has a big impact
+on asset prices.
+But it's not the cause.
+It was an event
+that caused both.
+But the fact that this event
+came with this big spike
+in the VIX meant that the
+impact on the equity index
+was larger than if it had been
+only news about the economy,
+meaning that there was a
+recession ahead or something
+like that.
+And let me just finish with
+the opposite phenomenon.
+I was [INAUDIBLE]
+episodes of fear.
+But sometimes markets
+get very carried
+away the opposite direction.
+And here I'm showing
+you examples.
+I put together this
+picture many years back,
+and now Deutsche Bank
+keeps updating it,
+which is it shows you some--
+it seems that the world needs
+a bubble somewhere.
+[CHUCKLES]
+And here, it shows you several
+sort of big asset valuations.
+Look, 500%.
+Here is the Nikkei.
+I mean, it was enormous
+appreciation of the Nikkei.
+Here was bitcoin.
+Then it collapsed.
+They always end up bad.
+Whenever you see this
+big sort of spiking up,
+they almost always
+end up quite poorly.
+Now, this is-- it's much
+more likely that it happens
+in equity than in bonds.
+In bonds, it cannot happen
+because there is a terminal
+date, a terminal value.
+So what happens with
+these kind of things,
+people dream that their
+value will go to infinity.
+And it could because the
+thing will last to infinity,
+and the price could
+go to infinity.
+For a bond, that cannot happen,
+because there is a terminal
+date, and at that date,
+they going to pay you $100.
+So it can't happen.
+But for equity, people's
+imagination can run very wild.
+In fact, there is a famous
+bubble, the South Sea Bubble.
+It's a company in the UK.
+It's famous for many
+reasons, but one of them
+is that Isaac Newton got
+involved in this one.
+He got carried away.
+He sold.
+He made a profit.
+He sold the shares at 7,000.
+He profited 3,500 pounds, which
+must have been an enormous
+amount of money at the time.
+Prices kept going up--
+couldn't resist, went back in,
+ended up losing 20,000 pounds,
+which must have
+been a lot of money.
+So he famously said, "I
+can calculate the motions
+of the heavenly bodies, but
+not the madness of people."
+This is all about
+expectations, OK?
+[CHUCKLES] Let me stop here.

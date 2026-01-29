@@ -1,0 +1,1883 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO J. CABALLERO:
+OK, so let's
+continue with this IS-LM model.
+Remember in the
+previous lecture,
+we set up-- we set it up.
+We built the IS-LM model.
+And we'll go over that very
+quickly in this lecture
+because I think it's
+very important for you.
+And then, we're going to use it.
+And eventually,
+we're going to talk
+a little bit about
+the policy response,
+the macroeconomic policy
+response during the COVID-19
+shock, or recession,
+all of the above.
+So the starting point--
+remember, the first thing
+we did, we constructed
+the IS relation.
+And the IS relation was
+just the same as lecture 3.
+But we sort of spelled out
+what is inside that investment
+that we had taken
+as a constant there.
+We said, well,
+far more realistic
+is to make investment
+itself increasing
+in output because it's
+increasing in sales.
+That won't change the analysis
+that we had in lecture three.
+All that will do is change the
+slope of the aggregate demand
+curve, and therefore
+change the multiplier.
+But we could have
+solved everything
+in terms of lecture three.
+What made this a little
+different from lecture three
+is that we also said
+the investment--
+real investment--
+remember, this has
+nothing to do with financial
+investment-- real investment is
+also a decreasing function
+of the interest rate.
+And that led to the IS
+relationship, which essentially
+says these are all--
+the IS curve traces
+all the combinations of
+output and interest rate
+that are consistent with
+equilibrium in the goods market.
+That's the definition
+of that IS.
+Now, of course,
+in lecture three,
+we were able to determine
+the equilibrium output.
+Here, we can't.
+Why can't we?
+AUDIENCE: Because we're
+tracing a curve [INAUDIBLE]..
+RICARDO J. CABALLERO:
+Yeah, we have
+to announce its output
+and the interest rate.
+And we have only one
+relationship, the IS curve.
+So the reason for
+the LM curve is
+that we need to pin down
+the second variable.
+And that's what LM will do.
+And it will be sort of
+very brutal about it.
+In the past, you remember it was
+some upward-sloping relationship
+[INAUDIBLE] said in the
+previous-- no, that's not what
+the central banks do today.
+They just set the interest rate.
+So if the central bank
+sets the interest rate,
+then you can use lecture
+three to pin down
+equilibrium in the goods
+market, which is what you would
+effectively be doing here.
+If you fix this interest
+rate at whatever level
+the central bank
+wants, then now you
+have one curve for one
+unknown, which is output.
+And that's exactly what
+we saw in lecture three.
+OK?
+Good.
+So I said, lecture three now,
+this ZZ curve [INAUDIBLE]
+a little steeper
+because investment also
+responds positively to
+increases in output.
+Importantly, now we
+have an interest rate,
+which is a shifted of
+this aggregate demand.
+In particular, if the
+interest rate goes up,
+what happens to that curve?
+So as the interest
+rate goes up, what
+happens to the
+aggregate demand curve?
+I have two candidates
+here, down or up.
+AUDIENCE: Goes down?
+RICARDO J. CABALLERO: Down.
+Yeah, because investment drops.
+So you can tell me even more
+by how much-- if I tell you
+how much a change
+in the interest rate
+is, and I tell you what is
+the sensitivity of investment
+to the interest rate,
+you know exactly
+by how much this
+thing will come down.
+It's going to be the
+change in the interest
+rate times the sensitivity
+of the investment function
+to the interest rate.
+That's not the end of the
+story, as you well know.
+That's the horizontal
+shift in aggregate demand.
+But the final decline
+in output will
+be larger than that initial
+decline in investment
+as a result of the
+higher interest rate.
+Why is that?
+So someone, say the Fed,
+raises interest rate,
+that immediately
+reduces investment
+because investment is negatively
+related to the interest rate.
+That immediately decreases
+aggregate demand, which
+immediately decreases output.
+Because in this
+part of the course,
+output is determined
+by aggregate demand.
+Thus, the adjustments
+stopped there.
+No, that's what the
+multiplier was about.
+Because now with lower income,
+there is lower consumption
+and actually lower investment
+as a result of that,
+and we keep going.
+So the final decline in
+output is a lot larger.
+And doing that
+kind of experiment,
+moving the interest
+rate around and seeing
+what happens to
+equilibrium output,
+is that we derive-- we
+constructed the IS curve.
+Here is for-- a cut
+in the interest rate.
+Oh, this is exactly the
+experiment I just described.
+So if you raise
+the interest rate,
+then aggregate
+demand comes down.
+And then output
+declines by a lot more
+than the initial decline
+in investment because
+of the multiplier,
+but eventually, we
+get to another equilibrium
+output, which is that.
+So now we know that this
+point belongs to the IS curve
+because it's a combination of
+output, Y-prime, and interest
+rate, I-prime, that is
+consistent with the equilibrium
+in the goods market.
+That's what lecture
+three told us.
+That's what equilibrium in
+the goods markets look like.
+That's another point
+of the same IS.
+Because I have higher output
+here, lower interest rate.
+That's another point of the IS.
+That's the reason this
+is downward sloping.
+Look at what I just said.
+I said, I have another
+point of the same IS.
+How do I know it's the same
+IS and not some other IS?
+All that I told you there
+is I found two points,
+two combinations of
+output and interest rate,
+that are consistent with
+equilibrium in the goods market.
+But I said a little more.
+I said, and that's part-- that's
+the way we construct one IS.
+AUDIENCE: Because you're holding
+everything like tax [INAUDIBLE]..
+RICARDO J. CABALLERO: Exactly.
+Because there is a lot of other
+parameters that we're keeping
+constant there.
+That's the distinction
+between a movement
+along an IS curve, which is--
+the only thing I move
+is the interest rate
+that allows me to trace a
+movement along a single IS.
+If I move something else, like
+taxes, foreign expenditure,
+or autonomous consumption by--
+something like that, then I will
+be shifting the aggregate demand
+for any given interest rate.
+And I'm going to get a
+different level of output
+for any given interest
+rate, which means I'm
+going to be in a different IS.
+And that's what we did there.
+In that case there,
+we said, look,
+I can fix the interest rate,
+any interest rate you want.
+Let's pick this one.
+But I could have done it
+at an interest rate here,
+there, whatever.
+And now, I say, what
+happens if I increase taxes?
+Well, again, you know from
+lecture three exactly what
+happens when the
+interest rate is constant
+because there, we didn't even
+talk about the interest rate.
+Nothing was a function
+of the interest rate.
+And you increase taxes.
+Well, that would reduce
+disposable income
+for any given level
+of output, and that
+will lead to a contraction in
+aggregate demand and output,
+and so on, and so forth.
+So that means that for
+this interest rate,
+now I found another point--
+another point that is an
+equilibrium in the goods market.
+But it belongs to a
+different IS because I
+moved one of the parameters,
+which is the taxes.
+And now for this
+higher level of taxes,
+I can play around with
+the interest rate.
+I can say, well, what happens
+if I cut interest rates?
+Well, if I cut
+the interest rate,
+we're going to find another
+equilibrium, say here--
+if I cut the interest
+rate from here to here,
+I'm going to find another
+equilibrium level of output
+which is consistent
+with that very same IS.
+Why is that very same IS?
+Well, because I haven't
+moved taxes again.
+So the reason I'm repeating
+this is because, I told you,
+it's very important
+to understand
+what is a movement along the
+IS versus what shifts the IS.
+OK?
+Good.
+Then, we move to
+the LM relation.
+And the LM relation
+is just equilibrium
+in the financial markets.
+This is combinations of
+output and interest rate
+that are consistent
+with equilibrium
+in financial markets.
+And we constructed
+from our money supply
+equal to money demand
+in nominal terms.
+Then, we divided
+by P, which is not
+very interesting in
+this part of the course
+because P is constant.
+We are assuming that
+P is not moving.
+That's the price of
+goods and services.
+And then we have
+this equilibrium here
+now stated in real terms.
+So real money supply is
+equal to real money demand.
+And as I said, had you taken
+this course a few years back,
+or perhaps in other places,
+that would have been
+an upward-sloping relationship.
+So the LM would have been an
+upward-sloping relationship.
+How do I know it's
+upward-sloping?
+Well, because if I don't
+change money supply
+and I increase output, then
+I need to bring LI down.
+And since L-prime is negative,
+the way to bring L down
+is by increasing
+the interest rate.
+So that's what it
+would have given you,
+an upward-sloping LM curve.
+I said, we don't do that
+now because, really, banks,
+central banks abandoned a
+long time ago in most parts
+of the world-- not everywhere--
+this idea of targeting M.
+But they target directly
+the interest rate,
+and then they give you
+whatever M that you need--
+they need in order for the
+equilibrium in financial markets
+to be consistent with
+the interest rate
+the central bank wants to set.
+So I said the modern IS
+curve really looks like that.
+The Fed and the US central
+bank, anywhere else,
+sets the interest rate.
+Turkey is a little different.
+[SOFT LAUGHS] But sets
+the interest rate.
+And that's the LM.
+Now, this particular LM says--
+it's a flat curve.
+It's not a function of output.
+The Fed sets the interest rate.
+That's it.
+That's the reason.
+It's flat.
+It's not upward-sloping
+or anything.
+So I asked the question,
+what shifts the modern LM?
+Only the central bank.
+Because the central bank is
+the one that sets the interest
+rate, certainly in--
+well, let me not
+complicate things.
+So it's the interest rate.
+So if the central bank
+doesn't change its mind,
+then the interest rate
+is whatever it is,
+and the LM will remain there.
+OK?
+Good.
+So we put the two
+things together,
+and now we can pin down
+equilibrium output.
+Because remember, we had--
+when we just looked at the IS,
+we had combinations of
+interest rate and output
+that were consistent with
+equilibrium in the goods market.
+Now we have an
+interest rate which
+is consistent with
+the equilibrium
+in financial markets, that's
+what the central bank is there
+to ensure.
+And so at that
+interest rate, we can
+look into the IS, what is
+the level of output that
+corresponds to that.
+That's what we get here.
+So now, we found an equilibrium.
+We found a combination
+of interest and output
+that is consistent with the
+equilibrium in both goods
+markets and financial markets.
+And that's what the
+IS-LM model is about.
+It's about finding
+those combinations.
+Good.
+Is this very clear?
+Yes?
+OK, good.
+So now we can begin to
+play with this stuff.
+One of the main purposes
+of the IS-LM model
+is to understand policy,
+macroeconomic policies,
+what you should do in
+certain environments or not.
+Well, before knowing
+what you should
+do in certain
+environments, you need
+to understand what is it that
+the different macroeconomic
+policies do to equilibrium
+output and interest rate,
+and so on.
+And so that's what
+we began to do.
+And the first experiment
+was one of fiscal policy.
+So that's an example of a
+contractionary fiscal policy.
+That could happen as a--
+contractionary fiscal policy
+is essentially
+increasing taxes, like we
+illustrated before, or a
+reduction in government
+expenditure.
+Either of those will lead to
+a shift in the IS to the left.
+Remember from lecture three,
+if I increase taxes or reduce
+government expenditure,
+equilibrium output will fall.
+Thus, lecture three.
+Remember?
+And so I can trace--
+using lecture three, I
+can tell you, well, the IS
+will shift to the left.
+No, we just did that.
+But now we know
+more because we know
+that the central bank is also
+pinning down the interest rate.
+And in this particular
+example here, the central bank
+did not go along with
+the Treasury Department
+and say, OK, I'm going to keep
+the interest rate wherever
+it is.
+You do whatever you want
+with the fiscal policy.
+So this is an example
+of a situation where
+fiscal policy is contractionary
+and the central bank remains
+with its previous target,
+interest rate target.
+So as a result of that, a
+contractionary fiscal policy,
+as the word says
+then, is a contraction
+in aggregate demand
+policy ends up also
+leading to a lower
+equilibrium output.
+And then I ask, I already told
+you two things, T up or G down.
+But what else would do
+something similar to this,
+which is not policy?
+AUDIENCE: Just any shock
+of aggregate demand, right?
+RICARDO J. CABALLERO: Exactly.
+I want anything that is a
+shock to aggregate demand
+different from interest
+rate or anything like that.
+So, for example,
+consumer confidence,
+that thing that we put in C0.
+Or wealth, something
+that wasn't in the model
+but clearly what
+is behind C0, that
+would lead to a shock like
+that, and that's contractionary.
+That's the reason central
+banks and financial markets
+are all the time looking at the
+releases of surveys of consumer
+confidence and
+things of that kind
+because these are the
+implications of shocks
+to consumer
+confidence and so on.
+OK, good.
+So what is the
+mechanism here, well, we
+have discussed it
+multiple times.
+The contraction in fiscal policy
+lowers the aggregate demand
+down.
+Then, we multiply and you end
+up lowering output a lot more.
+And this happens for
+a given interest rate.
+I'm having the
+same interest rate
+here and there because
+I'm looking at two points
+along for a fixed LM, for
+a fixed interest rate.
+Good.
+So that's the contractionary
+monetary policy.
+Needless to say, an
+expansionary fiscal policy
+is just a shift in the
+opposite direction.
+So what will an
+expansionary fiscal policy
+do to equilibrium output?
+Expansionary.
+It will increase output,
+again, contractionary
+fiscal policy reduce output
+or will it do the opposite?
+Obviously, it will
+increase output.
+So that's expansionary
+fiscal policy.
+And it's a very important
+tool to move output
+around when the
+economy's in a recession,
+or so on and so forth.
+The other canonical
+macroeconomic policy
+is monetary policy.
+And that's an example of an
+expansionary monetary policy.
+So an expansionary monetary
+policy cuts the interest rate.
+Why is that expansionary?
+Well, look, it is expansionary--
+let me take this as--
+I'm going to do
+things in a step.
+So claim first.
+An expansionary monetary
+policy is a reduction
+in the interest rate.
+So the central bank now
+decides to set a lower interest
+rate than it used to.
+As a result of that--
+if output didn't
+change, what would
+happen in the goods market?
+So suppose that the Fed cuts the
+interest rate and output doesn't
+change.
+Is there an equilibrium
+in the goods market?
+Is there an equilibrium
+in the goods market?
+Suppose that the Fed cuts the
+interest rate and now we say,
+OK, well, nothing
+will happen here.
+Output will stay where it is.
+We will have a lower
+interest rate, that's nice.
+Why is that not the final
+outcome of the monetary policy
+expansion?
+AUDIENCE: Because then
+the [INAUDIBLE] market
+reacts and aggregate
+demand [INAUDIBLE]..
+RICARDO J. CABALLERO:
+Exactly, this is an imbalance.
+No, because aggregate demand
+now, at low interest rate,
+investment will go up.
+This fiscal
+investment, remember,
+purchases of goods
+and services by firms
+for the purpose of building
+capital, structures,
+and things like that.
+So aggregate demand
+went up, so now we
+have a disequilibrium there.
+Output is less than
+aggregate demand.
+And we know that output is
+determined by aggregate demand,
+and then we go on through
+all the mechanism.
+So at this point, it's
+not at equilibrium.
+We're going to end up with
+a higher level of output.
+At that lower interest rate, we
+have a lower level of output.
+Therefore, it's not
+surprising that we
+call this an expansionary
+monetary policy.
+So when the Fed cuts
+the interest rate,
+that's an expansionary
+monetary policy.
+This will expand
+aggregate demand.
+So how does the
+Fed implement this?
+Sorry.
+AUDIENCE: They can do
+expansionary open market
+operations.
+RICARDO J. CABALLERO:
+Yeah, there you are.
+Perfect.
+So what they need to do is do
+some expansionary monetary open
+market operation.
+Again, now it's a little
+more sophisticated than that,
+but let's stick with this.
+That is the first
+thing they'll do
+is they'll shift money supply.
+They'll go out there and they
+start buying bonds and giving
+money to--
+injecting money into the system,
+particularly through the banks.
+So that's the initial response.
+That's what will cut
+the interest rate.
+What happens next?
+This will allow me to
+illustrate the modern IS.
+Remember, the Fed's
+decision was not
+to increase the
+money supply by 35%.
+What the Fed communicated
+to the market
+was that it was going to cut
+interest rates by 50 basis
+points.
+That's the communication.
+So initially, the way it
+does that overnight is it
+goes out and does exactly that.
+So what it did is
+what we have there.
+We had some interest rate, I0.
+The Fed now wants to go to I1.
+So in order to do
+that, well, you
+have to look at this money
+demand and increase money supply
+to achieve the
+lower interest rate.
+The question I'm asking you
+now, does it stop there?
+So the Fed says,
+OK, I did my job,
+I want to lower
+the interest rate.
+I'm going to increase
+M. I increase M.
+And now, I manage to bring
+the interest rate down
+to that point.
+And that-- they're
+intervening overnight market,
+so that happens very quickly.
+Do you think that the Fed
+now can sleep for a while?
+Why not?
+There are many reasons why the
+feds cannot sleep for a long
+time, but in this
+particular case.
+AUDIENCE: [INAUDIBLE]
+RICARDO J. CABALLERO: OK, yes.
+Money demand will increase.
+AUDIENCE: [INAUDIBLE]
+RICARDO J. CABALLERO: Why?
+AUDIENCE: Because now,
+[INAUDIBLE] increasing?
+RICARDO J. CABALLERO: No.
+So the first shock was an
+increase in money supply.
+The point-- the
+thing you want to say
+is that because now the
+interest rate is lower,
+equilibrium output will go up.
+But if equilibrium--
+output goes up,
+then what happens
+in this diagram?
+Well, the money demand goes up.
+Because remember, one of
+the parameters in this curve
+was output.
+Remember?
+This was output times LI
+That's that curve there.
+In this money demand, I
+had output fixed at Y0.
+But now equilibrium
+output is higher,
+so this curve will
+also shift out.
+Now you're going to
+have Y1 LI there.
+So what will the Fed do?
+See, the Fed doesn't do
+anything and it stops here,
+then the interest rate goes
+back up, not necessarily
+to the old level,
+but it will go up.
+So what the Fed will have to
+do is keep expanding money.
+Sorry, it's an ugly diagram.
+But it will keep
+expanding money up to--
+so it can preserve
+the interest rate.
+In the old analysis, you would
+have stopped in the first shot,
+but nowadays, that's not.
+The Fed says, look, I'm
+going to provide money,
+and I know it takes time for
+output to expand and all that,
+so I will accommodate
+all that comes.
+It will not come overnight, all
+this extra demand for money,
+but I know there will be
+more demand coming along
+if I'm successful at
+expanding economic activity.
+So the central bank knows that
+if this ends up happening, then
+that it will have to provide
+more money than initially just
+to preserve the interest
+rate at the lower rate level.
+Again, we don't have any
+concept of time in this course.
+And I don't think that-- well,
+we'll do a little bit later.
+But things happen in reality--
+in the financial markets,
+they happen very quickly
+and then they take time.
+The real side is much slower.
+I mean, this expansion in
+output takes a couple of years,
+for example.
+It's slower.
+The reaction of interest
+rate, asset prices, and so on
+happens over night, instantly.
+When people do analysis of
+the impact of monetary policy
+on financial asset prices,
+you look at the small windows,
+minutes around an announcement
+or something like that
+to understand what
+is the impact.
+When you look at the impact
+of monetary policy or prices
+on real activity, you look
+over the span of quarters.
+That's your unit
+of-- and you begin
+to see effects a quarter later.
+And you keep seeing effects,
+you know eight quarters later.
+So different time scale.
+In this course, we're
+not worrying about that.
+But everything happens at once.
+So really, what will
+happen in this course
+is that it won't be
+enough to increase
+money supply to this point.
+In order to have an interest
+rate at the final equilibrium
+level of output,
+at this level, I'm
+going to have to expand
+money supply a lot more.
+That's what I'm saying.
+Good.
+So again, I can always go
+back to my lecture three.
+Remember, I always-- I
+told you that that diagram
+in lecture three was going
+to be very important.
+The expansionary effects of an
+expansionary monetary policy
+can be analyzed in the
+lecture three diagram,
+because there, we take as
+given an interest rate.
+And now, we know that when we
+have a higher interest rate,
+a lower interest rate will
+bring this aggregate demand up,
+and then we get the multiplier,
+and blah, blah, blah, blah,
+blah, blah.
+That's what happened.
+So this is a movement in the--
+when monetary policy changes--
+that's another thing
+that is very important
+when you do IS-LM analysis.
+Whenever you ask a
+question, the first thing
+you need to think
+about is, which
+curve is this policy
+moving or which
+curve is this shock moving?
+And what I know is
+that monetary policy--
+fiscal policy will
+always move the IS.
+Will it move the LM?
+No, it has nothing to
+do with things that
+happen in financial markets.
+That doesn't mean
+that the Fed may not
+wish to respond to the
+fiscal expansion or whatever,
+but that's a response
+that the Fed decides.
+It's not a direct consequence
+of the fiscal policy.
+Fiscal policy is not
+bundled with interventions
+in the financial market.
+Contrary to that
+is monetary policy.
+I tell you the Fed decides
+to cut interest rate, that's
+a movement of the LM.
+It has nothing to
+do with the IS.
+So anything that
+happens in the IS
+is going to be a movement along
+the IS, not a shift of the IS.
+So that's what we saw here.
+When the Fed cut interest rate,
+we end up with higher output,
+but that was a result
+of a shift along the IS.
+Because monetary policy
+is not an IS policy.
+It's an LM policy.
+Fiscal policy is an IS policy.
+That is something that
+shifts the IS and not the LM.
+So that very important
+to understand,
+again, what moves what.
+OK, so let's look at the--
+anyways, so let me pause here.
+Because if you understand
+what I just said,
+it's 2/3 of your quiz.
+So make sure that
+you understand it.
+I mean, if you really
+understand it--
+obviously we're not going
+to ask you exactly this,
+but small perturbations
+around what I just said.
+So now, we can use
+this stuff even more.
+Now we understand what the
+basic monetary policy does.
+We're going to understand
+what basic fiscal policy does
+to the economy.
+Let's look at some scenarios.
+This, I'm calling all in.
+What am I representing there?
+In that diagram?
+So I'm saying all
+that you see in
+that diagram is a result
+of policy decisions,
+macroeconomic policy decisions.
+AUDIENCE: Expansionary
+fiscal and monetary policy?
+RICARDO J. CABALLERO: Exactly.
+That's the reason I'm
+calling it all in.
+That's the case in which both
+want to be very expansionary.
+And so you see that the
+expansionary monetary policy
+already sort of increases
+equilibrium output.
+But then you add to it
+expansionary fiscal policy,
+which moves the IS to the right,
+and you further increase output.
+So you end up with
+a big increase
+in output as a result of
+this powerful policy package.
+When do you think you may
+see situations like that?
+Sometimes you see it out
+of pure irresponsibility.
+I mean, people go to Argentina,
+this happens all the time
+for the wrong reasons.
+But if in normal times,
+normal environments,
+when do you think that--
+I shouldn't have
+said "normal times."
+In normal environments, sort of
+with sound macroeconomic policy,
+when do you think you would
+see something like this?
+AUDIENCE: Recessions?
+RICARDO J. CABALLERO:
+Recessions.
+And the biggest--
+during recessions,
+you need to get the
+economy out of the hole.
+And then you
+probably-- you first
+try monetary policy
+because that's
+the most direct and quick.
+I mean, that's a decision
+that can be made overnight.
+But often, when the recession
+is sufficiently deep,
+that's not enough
+and you need more.
+And that's what you
+do with fiscal policy.
+There are other reasons--
+there are other differences
+between the two policies.
+Because we're not looking
+under the hood here.
+But, for example, in
+COVID, it was very--
+a certain group of people were
+much more affected than others.
+I mean, people that
+work in restaurants,
+those guys just lost
+their jobs and there
+was nothing they could do.
+So there was a reason to
+target the transfers-- when
+you use interest rate, it's a
+very blunt policy to everyone.
+When you use fiscal
+policy, you can also--
+it's not only the
+amount you spend,
+but you can also
+target the expenditure
+in certain directions.
+And so there are
+other reasons why you
+may want to use the two tools.
+But the main one
+is-- the first order
+one is if you're in
+a deep recession,
+you need everything to try to
+lift the economy out of that.
+And so that's the
+kind of packages
+you see in big recessions.
+Now, there's a
+slide that I think
+I have pending from
+two lectures ago.
+And this is a good
+opportunity to bring it back.
+Remember when we
+looked at equilibrium
+in financial markets,
+we came up with
+this downward-sloping
+demand, money demand.
+And then we said, well, if
+you lower the interest rate,
+there's more money demand,
+and so on, and so forth.
+And then we said,
+therefore, the way
+the Fed lowers interest
+rate, or the central bank
+lowers the interest rate is
+by increasing money supply.
+The point of this picture is
+that there is a limit to that.
+And the limit is,
+more or less, when
+the interest rate reaches zero.
+Because when the
+interest rate reaches--
+the nominal interest
+rate reaches zero, then
+there is no cost
+in holding bonds--
+in holding money, sorry.
+The only reason for you
+not to hold all your wealth
+in the form of money is
+because you were giving up
+some opportunity cost of
+investing in bonds, which
+were inconvenient financial
+assets because you couldn't
+transact with them, but they
+pay you higher interest rates.
+That's the reason
+you want to go there.
+But once you reach zero interest
+rate, then you're indifferent
+and you might as well hold.
+If the central bank goes out
+there and does an open market
+operation, you don't need
+to be compensated for that
+because you're totally
+willing to hold your wealth
+in the form of money.
+And so monetary policy
+is no longer effective
+when you reach what is
+called the zero lower bound.
+And that's what we call
+the liquidity trap.
+It's called the liquidity trap.
+Let me not get into why.
+But essentially, it's that.
+So you can inject more
+and more liquidity,
+but you cannot move the interest
+rate, so you lost a policy tool.
+This was the tragedy of
+Japan for many decades.
+They were stuck against the zero
+lower bound, the liquidity trap.
+And so they had to go through
+massive fiscal expansions
+because they didn't have--
+they were in recession,
+chronic recessions, and they
+didn't have a very powerful
+monetary policy tool
+because they were
+against the zero lower bound.
+So why did I use this
+opportunity to bring this about?
+Because that's, for the reason
+I just described, in the case
+of Japan.
+But I asked the
+question, what would you
+advise the government to do?
+Well, I already
+told you the answer.
+If you have an economy
+in a recession,
+and this means you use all the
+monetary policy that you had,
+conventional monetary
+policy that you have-- now
+we have unconventional
+monetary policy,
+but I'll tell you a little
+bit more about that later.
+But once you run out of
+this and you're still
+in a recession, what would
+you tell the government to do?
+AUDIENCE: Use fiscal policy?
+RICARDO J. CABALLERO:
+You use fiscal policy.
+That's the other
+tool that you have.
+So that's a typical
+situation you see.
+When countries-- the interest
+rates are already very low,
+they tend to use much more
+actively fiscal policy
+because it's the only
+policy they have left.
+And that has been the
+case of Japan, again,
+since the crash of their
+financial bubble in the late
+'80s, early '90s.
+So look at the
+COVID-19 response.
+Something happened
+to my figure here.
+But anyways, this is
+zero, essentially.
+So this is COVID.
+The COVID shock happened.
+Clearly, the economy was
+imploding into a recession.
+The Fed immediately reacted
+and cut interest rates very,
+very aggressively to zero.
+And then, we were stuck there.
+This is effectively zero.
+I mean, there are
+technical things--
+the thing moves a little,
+but this is effectively zero.
+So the US was,
+during that period,
+against really a liquid--
+against the zero lower bound.
+There was no more power for
+the kind of monetary policy
+that we have described here.
+So let me-- so that
+tells you that there's
+going to have to be
+lots of fiscal policy
+if you want to get out of that.
+And I'll show you that later.
+There was a lot
+of fiscal policy.
+But before getting
+there, I'm going
+to show you something that
+you don't need to really know
+for the quiz, but so
+you can understand
+what is going on in the
+newspapers a little better.
+The Fed-- that was not
+the only-- precisely
+because the situation with Japan
+was so chronic, people began
+to develop lots of
+tools, alternative tools
+for central banks to use
+when your interest rate--
+the main interest rate you
+use is stuck against zero,
+against the zero lower bound.
+And that's what you
+may have heard--
+it's called sometimes
+unconventional monetary policy,
+QE, quantitative easing.
+All those kinds of things, they
+represent essentially policies
+that are like monetary
+policy, but they are not
+exactly the way we have--
+because they are not
+interventions in the
+very short-term bonds.
+They are interventions in
+other assets out there.
+In this course, we
+have it very simple.
+We have only one interest rate.
+In reality, there
+are multiple bonds.
+There are risky bonds.
+They're spread.
+Somebody asks about risky
+bonds in a few lectures ago.
+They are spreads.
+There are lots of interest
+rates floating around.
+So in principle, a central
+bank could intervene
+in those other rates as well.
+In fact, in Japan,
+they have even
+intervened in the stock
+market, and that tells you
+how far they can go.
+So in a richer environment
+with more financial assets,
+in principle, the Fed could go
+beyond the standard short-term
+bonds that they go for
+their open market operation.
+And that's exactly what
+they have been doing.
+A way of thinking about
+that is, remember,
+when we look at the
+monetary-- expansion
+in conventional
+monetary policy, we
+start with a balance
+sheet like that.
+Remember, we said the central
+bank has bonds and the money.
+If it wants to have an
+expansionary monetary policy,
+it goes out there,
+it buys more bonds
+and gives them the-- it
+gives the bank's money.
+And that expands
+the balance sheet.
+You end up with
+more-- the balance
+sheet of the central bank
+ends up with more bonds
+and also with more
+liabilities because it
+gave more money to
+people, banks, and so on,
+so it owes more money.
+So monetary policy naturally--
+expansionary monetary policy
+naturally leads to an
+expansion of the balance sheet.
+Now, for years,
+outside of Japan,
+nobody really cared
+too much about that
+because this effect, relative
+to what you saw in the interest
+rate, was very small.
+I mean, yeah, the balance
+sheet was moving a little bit,
+but it was mild.
+And also here.
+We hit the zero lower bound.
+And essentially,
+the Fed went out
+and bought all sorts of things.
+First of all, when you hear
+QE, quantitative easing, that
+means mostly that the Fed
+goes out there and buys
+not only short-term US Treasury
+bonds, but long-term bonds.
+Because there's something
+called the term spread.
+Typically, interest rates in
+the long run are higher than
+the interest rates in
+the short run, typically,
+controlling for a
+bunch of things,
+and that's called
+the term "premium."
+Well, they went and bought
+those kind of bonds.
+They also bought bonds issued
+by Fannie and Freddie--
+Freddie Mac-- no,
+Freddie and Fannie,
+mortgage-backed securities,
+a bunch of stuff, even loans.
+In fact, they created a
+facility to buy corporate bonds.
+And at some point,
+they created a facility
+to buy fallen angels bonds.
+Initially, it was only
+investment grade bonds, so
+all the companies that have
+the best possible rating.
+But that wasn't enough, so
+they went out there and created
+a facility to buy
+fallen angels bonds.
+Fallen angels were
+essentially companies
+that were prime
+companies before COVID,
+but after COVID, they didn't
+look so good; airlines, cruises,
+and stuff like that,
+hotels, and so on.
+So that was a massive
+expansion of the balance sheet.
+So in terms of this,
+this guy grew a lot.
+But the purpose, that's
+like monetary policy.
+That's what we call
+unconventional.
+It's different from
+the standard one,
+but they were doing--
+trying to operate very much
+like monetary policy operates.
+Here, you see the
+balance sheet of the Fed.
+You see, before the
+global financial crisis
+or the Great Recession
+of 2008, 2009,
+the balance sheet wasn't
+an interesting thing
+to look at for the central bank.
+Because, yeah, they did their
+regular open market operations
+and for anti-cyclical policy,
+but you would see small wiggles
+in the size of the balance
+sheet relative to the size
+of the balance sheet.
+In the global
+financial crisis, they
+hit the zero lower bound
+for the first time, the US.
+And so there, you saw a massive
+expansion of the balance sheet.
+This is the number of assets.
+The same happened
+to liabilities.
+The other side of it is they're
+injecting massive amounts
+of money into the economy.
+So there, you saw
+a big expansion.
+The recovery from the
+global financial crisis
+was hard because the financial
+sector was very compromised,
+so it took them a while.
+And they kept doing
+this kind of policies.
+Then they began to
+unwind the balance sheet.
+And then COVID came, and that's
+what I was showing you before.
+Massive expansion.
+They sent the
+interest rate to zero.
+That wasn't enough.
+And then they went
+out and bought
+lots of other financial
+assets, which work
+very much like monetary policy.
+Big thing.
+And now, they're
+unwinding the thing.
+Now we're in the
+opposite process.
+We have inflation.
+We want to get out of this
+situation, so they're unwinding.
+But you can see
+the size of that.
+It's huge.
+Huge.
+I mean, this is--
+the balance sheet
+a couple of decades
+ago was of the order
+of $1 trillion,
+which was more or
+less of the money that
+is circulating around.
+Now it's $9 trillion.
+Massive intervention.
+And all central banks, major
+central banks look like this.
+I mean, the ECB also
+looks like this.
+The Bank of Japan
+looks like this.
+But actually, you
+don't see these blips
+as much because they
+began to do them here.
+So they have been
+accumulating for a long time.
+They have been using
+these kind of policies.
+So coming back
+now to the course.
+What about fiscal policy?
+Well, I'm showing you different
+countries around the world.
+Massive fiscal expansions
+during the COVID episode.
+Massive.
+I mean, this is--
+the US, the fiscal expansion,
+if you combine all the packages,
+it's of the order of 20% of GDP.
+That's huge for fiscal--
+you don't see things
+like this, and this
+happened almost everywhere.
+Now, you don't see things
+like that outside of wars.
+This was really like a war,
+there's no doubt of that.
+The amount of expansionary
+fiscal policy we saw
+was comparable to
+what you see in a war.
+So there you have it.
+Big recession, huge recession,
+massive policy response,
+both monetary of the
+conventional and unconventional
+kind and fiscal.
+And again, this was
+not unique to the US.
+It happened
+essentially everywhere.
+China is a little
+different for reasons
+I think I mentioned
+in the first lecture.
+But I may talk more
+about that later.
+Good.
+OK, so another policy mix.
+This is different.
+So what do we have there?
+That's another policy mix
+that we see fairly frequently.
+So what is that?
+LM going down, that's
+expansionary monetary policy.
+IS is going to the left, that's
+contractionary fiscal policy.
+So when do you think you
+would do such a thing?
+Or countries would engage
+in things like this?
+Yeah?
+AUDIENCE: What if you wanted
+to reduce government spending
+but you wanted to
+ward off a recession?
+RICARDO J. CABALLERO: Exactly.
+That's exactly the conditions
+when you want to do this.
+It's called consolidation
+of the fiscal deficit.
+Sometimes, you have a
+large fiscal deficit
+that's leading to accumulation
+of public debt, that
+doesn't look so good.
+So the government-- the
+Treasury, in the case of the US,
+may decide that it wants
+to reduce fiscal policy
+but is afraid
+because in doing so,
+it's going to cause a recession.
+And the purpose-- and there is
+no problem of output being over
+[INAUDIBLE].
+It's just that the fiscal
+accounts look very weak.
+So if that's the situation, that
+is if the economy is not going--
+is not going through an
+overheating period and so on,
+and you want to reduce the
+fiscal deficit, in some places,
+it will be explicit, in
+some places, implicit.
+But the central--
+because the central bank
+has a goal to keep
+prices stable and output
+close to the potential output.
+So even if there is no explicit
+coordination, if the government
+announced a massive fiscal
+consolidation package,
+say it reduces government
+expenditure by 10%,
+the central bank
+knows that that's
+going to cause a recession.
+And so the central
+bank naturally
+will respond by cutting
+interest rate to that
+because the recession
+is not needed.
+If the US announced today
+a fiscal contraction of 5%,
+I'm not sure the Fed
+would do anything.
+It will just stay there,
+put, because we have
+an economy that's overheating.
+So that's what you would do in
+a situation in which you want
+to fix the fiscal account
+and the economy is
+more or less at a normal time.
+It's not overheating.
+When will you do the opposite?
+It's not, when would
+you do the opposite?
+It's, when are you likely
+to see the opposite?
+So first of all,
+what is the opposite?
+The opposite is a combination
+of a fiscal expansion
+with a monetary contraction.
+When do you think you
+would see such a thing?
+AUDIENCE: Either maybe when
+the government has a budget
+[INAUDIBLE] and wants
+to increase spending,
+or maybe when they--
+the interest rates are too high.
+They want to reduce
+interest rates.
+RICARDO J. CABALLERO: Yeah.
+OK, that's true.
+But I'm not sure that that's--
+yeah, but that requires a
+concerted decision and so on.
+It's true.
+Yeah, valid question.
+It's not the one I wanted.
+I wanted something more
+interesting, more exciting,
+but those are valid answers.
+AUDIENCE: War.
+RICARDO J. CABALLERO: War?
+No, war typically is all in.
+No.
+OK, let me note, I know
+it's a strange question,
+but I know where I'm heading.
+Suppose that the
+government decides
+to spend, for whatever reason.
+And the central bank
+says, whoa, we don't
+need that expenditure now.
+We don't need this
+fiscal expansion now
+because we're on the
+margin of overheating,
+and now we're going to get
+this big fiscal expansion.
+Then, the Fed, the
+central bank, is
+likely to react to that
+and hike interest rate.
+That will make very
+upset the government.
+It always happens.
+The government gets very upset.
+And there's a guy
+that says, look,
+I'm trying to expand the
+economy, and you're fighting me.
+But that's the nature
+of the-- that's
+the reason central banks
+are meant to be independent.
+That's where they government--
+they can offset that.
+And the reason I wanted to
+highlight that example is I
+think some of that-- and
+somebody asked that question,
+I think, in the
+previous lecture--
+happened to the US economy.
+One of the reasons we are in
+an overheating situation right
+now is because the US had a big
+fiscal expansion early in 2021.
+And that fiscal expansion
+was, at the time,
+in which there wasn't much
+spare capacity in the economy.
+So we were very close
+to full employment.
+The supply side was very
+constrained and so on.
+And so there may have been good
+reasons for the fiscal package,
+transfers to people that you
+need to transfer and so on.
+But the macroeconomic
+consequences
+of that very naturally was
+going to lead to overheating.
+And the Fed did not
+respond to that.
+And I think that's one of the
+reasons people think sometimes
+that the Fed--
+well, there's no doubt--
+exposed that the Fed
+was behind the curve.
+But one of the reasons
+they were behind the curve
+is that there was this big
+fiscal expansion, which
+naturally was going
+to span output,
+and they did not react to it.
+Eventually, they reacted,
+but it took them a long time.
+And by then, we had
+inflation and all that.
+So that's a
+situation in which we
+should have seen a picture
+like the opposite of this,
+but we didn't see the picture.
+We didn't see the
+monetary part, and that's
+the reason we ended up with an
+economy that is overheating.
+Oh, yeah?
+AUDIENCE: Did the
+Fed ever elaborate on
+why they didn't do it?
+Or was it just for [INAUDIBLE]?
+RICARDO J. CABALLERO:
+I mean, it's always--
+it's a very uncertain
+environment here.
+Yeah, they thought
+this was going
+to be very
+transitory, that there
+was enough
+inflationary dynamics,
+dis-inflationary dynamics,
+that would offset all that,
+exposed it obviously it was
+a mistake, but it's exposed.
+I mean, there was a
+lot of noise and so on.
+Then, the came the Russian
+war that sort of increased
+the price of oil dramatically,
+and that sort of created lots
+of bad dynamics.
+So they were unlucky.
+That part is the part
+that I think that--
+again, they thought
+we were going
+through a temporary situation.
+They didn't think that it was
+going to be strong enough.
+They thought the supply side
+was going to expand a lot faster
+than it did.
+So they may have been
+right in not fighting it,
+but over a horizon
+of three years.
+And they found everything very
+compressed into three months,
+and that led to a problem.
+So the last thing
+I want to show you
+is that this model-- how
+this model works in practice.
+I mean, obviously, you're
+not going to estimate
+exactly the model I show you.
+You have a real model, we'll
+have dynamics and many more
+things.
+But the more complete version
+of what I just showed you,
+the IS-LM I showed you, many
+people have estimated sort of--
+for example, I've estimated
+the response of the economy
+to monetary shocks, or to
+fiscal expansion, and so on.
+And they trace out different
+dynamics, different variables,
+and check whether that's
+consistent with the IS-LM
+framework or not.
+And the point of this
+figure is that it
+is very consistent with that.
+But let me show you a
+little bit about time.
+So this is the effect
+on different variables
+of a surprise increase in
+the federal funds rate.
+That's the monetary policy rate.
+Federal funds rate is the
+interest rate that the Fed sets.
+And where you see that
+in practice, what you see
+is this is the impact on
+retail sales, on sales output,
+really, more or less.
+And, yeah, in
+practice, the output
+doesn't respond immediately.
+It takes a while.
+It takes several quarters.
+But eventually, it hits you.
+And that's one of the big issues
+with monetary policy today
+is that clearly, inflation
+is not under control,
+but they have done a lot.
+And we know that it takes
+time for the economy
+to really perceive the full
+impact of a monetary policy.
+And so that's the tension
+now because lots of people
+are pushing the Fed to
+do more because we still
+have 6% inflation, but
+they have done a lot.
+And they know that monetary
+policy works with lags.
+"With long and variable
+lags" is a famous sentence.
+And so it takes about six
+quarters to really see the mess,
+how much mess has been caused.
+It will take a while,
+so we have to see.
+You see, output, well,
+it's more like sales.
+It's the same thing.
+Initially, they trend
+slowly, but it takes a while,
+but it does have a
+very large effect.
+This is employment.
+Same thing.
+These diagrams, you don't--
+well, this is unemployment.
+Naturally, the other
+side of it is--
+unemployment also
+will build up slowly.
+So unemployment is very low now.
+But we don't know when
+the economy really
+feels the impact of
+all the monetary policy
+has been done in the
+last eight months or so.
+Where will unemployment end?
+And the big problem
+for the Fed today
+is something that you
+don't need to understand
+until the second
+part of the course
+is that prices do
+decline eventually,
+but it takes a long time.
+So to control inflation
+with monetary policy,
+it takes a while, a long time.
+Let's see whether the economy,
+consumers, and so on have
+the patience to hang in there.
+OK.

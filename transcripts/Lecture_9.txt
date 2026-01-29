@@ -1,0 +1,1611 @@
+[SQUEAKING]
+[RUSTLING] [CLICKING]
+RICARDO CABALLERO:
+So today I'm going
+to talk about the Phillips
+curve and inflation.
+Now as I said in the
+previous lecture,
+the material that is
+specific to this lecture
+will not enter this quiz.
+It's the beginning of what is
+perhaps the most important model
+you'll see in this class,
+but it will take us
+three or four
+lectures to develop.
+So I'm going to say things
+that certainly will--
+may help you understand
+a little better
+the previous lecture,
+so if you're only
+concerned about the
+next quiz, there
+will be a sort of small review
+of the previous lecture here.
+But again, anything that
+is specific to this lecture
+and was not in the previous
+one won't be part of this quiz.
+So what is this Phillips curve?
+Well, in 1958, an economist at
+LSE, London School of Economics,
+came out with just an
+empirical relationship.
+This is AW Phillips found
+that using historical data
+for the US, I think he did,
+there was a negative relation up
+to the '50s, I think.
+There was a negative
+relationship
+between the unemployment rate
+and the rate of inflation.
+And then our very own Paul
+Samuelson and Robert Solow
+labeled this relationship
+the Phillips curve
+in honor of AW Phillips.
+And nowadays, it is a central
+concept in macroeconomics,
+and it's certainly
+very, very relevant
+to understand what is
+going on right now,
+not only in the US
+economy, but in most
+economies around the world.
+So let me show you this is not
+the one that Phillips plotted.
+I think this is the one that
+Samuelson and Solow plotted.
+For data from between
+1900 and 1960 for the US,
+you find this
+negative correlation.
+I think it's reasonable,
+this negative correlation
+between the unemployment
+rate and inflation rate, no?
+At very low levels
+of unemployment,
+you typically see very
+high levels of inflation.
+Conversely, very high
+levels of unemployment,
+you tend to see low levels of
+inflation or even deflation.
+In fact, this period includes
+the Great Depression,
+for example.
+So that's the data.
+And again, this was just
+an empirical regularity.
+But we can build some theory
+about this relationship using
+the ingredients-- most
+of the ingredients that--
+I mean, essentially we
+can build a relationship
+that is downward sloping from
+the ingredients we already have.
+And this is the part that
+is a little bit of a review
+of the previous lecture.
+Remember that we had a--
+actually, the
+previous two lectures.
+We had a wage setting equation,
+W equal expected prices,
+and then a decreasing
+function of unemployment
+and an increasing function of
+this labor market supporting
+institutions, or workers
+supporting institutions.
+Institutional
+variables, I should say.
+And then we had a price
+setting equation, which
+was simply the wage marked up.
+m is a positive constant.
+So let me start from these two.
+So what I'm trying to do
+is derive a Phillips curve.
+Again, this was only an
+empirical relationship.
+But it turns out that
+even with theory, we
+knew by the time of
+Samuelson and Solow
+we could come up with a
+theory of that relationship.
+And that theory builds
+on the ingredients
+we have been looking at.
+So these are the wage
+setting equation,
+the price setting equation.
+I'm going to just
+simplify things and assume
+that this relationship here,
+this function, F of u z,
+is some linear function,
+at least locally
+linear function, which is
+decreasing in unemployment
+and increasing in z.
+Why is it decreasing
+in unemployment?
+This says no, that if
+unemployment goes up
+for any given expected
+price, wage demand is lower.
+And that's essentially because
+for the worker, it's sort of--
+becoming unemployed
+is a scary situation.
+Conversely for firms, it's
+easier to find a worker and--
+so we say a worker is
+scared for two reasons.
+One is that it's more
+likely that he gets fired
+when unemployment is high.
+Typically, that's a recession.
+It's also like--
+that worker knows
+that if she were to fall
+into the unemployment pool,
+it will take a longer
+time to get out of it.
+And the firms are seeing
+the opposite side.
+It's pretty easy for
+them to replace a worker
+if they were to
+dismiss a worker,
+because there's lots
+of available workers
+in unemployment.
+So that's the reason
+that's negative.
+So I'm going to stick this
+function back in here.
+And then I'm going to replace
+this W with this function
+in there in the price
+setting equation,
+and I end up with
+an equation for P.
+So this says that the price,
+given the expected price,
+is decreasing unemployment,
+and increasing in z,
+and increasing in the markup.
+So again, why is this price
+decreasing in unemployment?
+This is the part that is
+review of the previous lecture.
+Previous two lectures.
+STUDENT: Because
+when wages go down,
+and then factors of
+production are achieved.
+RICARDO CABALLERO: OK, perfect.
+Because wages go
+down, since our firm
+needs one worker to
+produce one unit of a good,
+then the cost of production of
+one unit goes down with the wage
+and therefore the
+price goes down.
+Because the firm is asking for a
+constant markup over that wage,
+the wage declines,
+and the price drops.
+Good.
+So that's all review.
+So this equation,
+you have seen just
+without an explicit
+functional form here.
+What I want to do
+is to go from here--
+this is still not
+the Phillips curve.
+Remember, the Phillips curve was
+a relationship between inflation
+and unemployment.
+Here, we have a relationship
+between the price level
+and unemployment.
+So we want to take
+one derivative higher.
+We want to go to relationship
+between inflation
+and unemployment.
+Inflation is the rate
+of change of P, no?
+It's not the level of P.
+So to do that, all
+that we'll do is-- so
+this, when I don't
+have a subscript here,
+I mean the price at time t,
+And this is the expected price
+for next period.
+That's what you have.
+But today, for the next period.
+What I'm going to do, I'm
+going to divide both sides
+by P minus 1.
+By that, I mean the price
+in the previous period.
+So both sides.
+I'm going to divide this side
+by P minus 1 and this one
+by P minus 1.
+So I get that expression.
+That's exactly the same
+equation we had before.
+All that I did is I
+divided by P minus 1.
+Remember what this means.
+So if this is the
+price for January 2023,
+this is the price for--
+say, what, we're using
+annual data for January 2022?
+So I'm dividing by the price
+of January 2022 both sides.
+Now notice that-- remember
+that P over P minus 1
+is equal to 1 plus
+the inflation rate.
+Remember where
+inflation rate is just
+P minus P minus
+1 over P minus 1.
+So this is just
+straightforward algebra, no?
+Remember our definition
+of inflation.
+That's P minus--
+that's inflation.
+So 1 plus pi is just P minus--
+over P minus 1.
+And that's what you have there.
+I can do the same for
+expected inflation.
+Notice that sometimes,
+people get confused.
+But expected inflation
+is equal to P expected,
+not minus P expected minus 1.
+It's P minus 1.
+P minus 1.
+And the reason I'm not
+subtracting the expectation
+here is because at time
+t, which is when you're
+forming that
+expectation, you already
+know what happened at t minus 1.
+So that's the reason this
+is expected inflation.
+I don't need to put
+expectations in here.
+So that's pi e.
+And so what we get is
+I can replace this guy
+here for 1 plus pi, this
+guy here for 1 plus pi e,
+and I get the
+following relationship.
+All that I've done
+is substituting
+this for that, that for that.
+So that's our price setting
+equation now expressed
+in terms of inflation rates
+and expected inflation rate.
+And now, we're not
+in Argentina, we're
+in the US, expected
+inflation are small numbers.
+And the log of 1
+plus a small number
+is approximately that number.
+So I'm going to use this
+approximation, which,
+again, is valid for x small.
+And so I can replace this 1 plus
+pi for pi and this 1 plus pi
+e for pi e, this 1
+plus m for m plus,
+and this term here, if these
+numbers are not too large,
+again, plus minus
+alpha u plus z.
+And I do all that and I end
+up with this expression.
+All I've done is I
+took logs of these.
+So I get log of 1 plus pi
+equal to log of 1 plus pi e
+plus log of 1 plus m plus log
+of 1 minus alpha u plus alpha z.
+I'm saying if pi, pi
+e, m, alpha u, plus z
+are not very large numbers,
+which we will assume,
+then this is
+approximately right.
+So I can rewrite that expression
+as that, approximately.
+I should have put
+in approximately.
+So now we have
+something that looks
+a lot more like the
+empirical relationship we
+were talking about.
+We have a relationship between
+inflation and unemployment.
+So this says that for any given
+expected inflation, and markups,
+and labor market institutions,
+higher unemployment
+means lower inflation.
+And why is that?
+So that curve tells you, that's
+the negative relationship
+we wanted, no?
+It says, higher unemployment,
+lower inflation.
+Why is that?
+Look, you heard it very clear
+when we talk about this, no?
+You understood very clearly
+why an increase in unemployment
+lowered the wage.
+You understood very
+clearly why, therefore,
+an increase in unemployment
+lowered the price.
+I haven't done anything but
+algebra in the two steps.
+So the same economics behind the
+explanations that you had before
+apply to this curve here.
+So the reason
+inflation will be lower
+when unemployment is
+higher, given all the rest,
+is because it will be
+less wage pressure.
+Workers will demand lower wages.
+That means lower prices,
+and therefore inflation
+will be lower.
+The economics doesn't
+change at all.
+I only divided both sides by
+P minus 1 and I took the logs
+and I approximated it.
+So the economics
+has not changed.
+I just did a little
+bit of basic math.
+So all-- what I'm trying to
+say is all the intuitions
+that you can
+already-- you already
+had from the wage setting,
+price setting equation
+and so on, you can apply to
+the Phillips curve as well.
+Good.
+So now we have something that,
+in principle, could explain
+the type of relationship
+that Phillips found and then
+Samuelson-Solow corroborated
+with extended data.
+Let's see.
+How do we get to something that
+looks like what these people run
+as a regression?
+Remember, they ran a
+regression essentially,
+or they correlated
+inflation with unemployment.
+And they found a downward
+sloping relationship.
+Well, look at what happens here.
+Suppose that we assume that
+the expected inflation is
+equal to some constant.
+In economics, we say
+when that's the case,
+and especially if
+pi is a low number,
+inflation expectations
+are well anchored,
+meaning any single year, there
+can be a price of oil is high,
+or something happens
+and inflation
+will deviate from that.
+But people are all the time
+expecting for inflation
+to go back to what
+is a normal level.
+Nowadays, or at least a
+few years ago, in the US,
+the normal level
+was around 2%, say.
+So people say, well, this
+year inflation was 1.8%,
+but we expect next year 2%.
+The next year, we got
+surprises on the upside.
+Price of food went
+up, or something like
+that, we got inflation of 2.3%.
+But you ask people how much
+you expect for next year
+and say, well, 2%.
+So that's what a model of
+expectation like this means.
+It's that you're always
+expecting something which
+is some historical
+value and that we
+have agreed is a reasonable
+level for our economy
+or something like that.
+So you see that if I
+replace expected inflation
+for a constant here
+by bar, then I have--
+then my Phillips
+curve is really this.
+It's inflation, then I have
+a constant minus alpha u.
+That's the simplest of
+the downward sloping
+relationship I can have.
+That case is a
+downward sloping line.
+That's it.
+Of course, it could be
+nonlinear and so on.
+But this captures the essence.
+So that's a theory
+for why Phillips was
+finding what he was finding.
+Our theory of the wage of the
+labor market, if you will,
+and the price setting
+behavior of firms
+gives us a Phillips curve of
+the kind that he had in mind.
+And if you look in
+the '60s in the US,
+then you see this negative
+relationship that eventually
+became steeper.
+So it wasn't linear like this.
+It was a little convex,
+but it's downward sloping.
+And in fact, to some extent,
+our very own Bob Solow and Paul
+Samuelson were advising the
+US government at the time
+and they said, well, let's
+exploit this stuff a little.
+We like to have
+lower unemployment.
+We can live with a
+little more inflation,
+but we know that it's
+a negative trade off.
+It's a negative trade off
+between these two things.
+So if we'd like to lower
+unemployment, it's fine.
+We get a little
+more of inflation.
+And initially the
+deal was very good
+because this curve was
+very flat, you see?
+So you could cut
+unemployment a lot--
+you can see the dates here.
+You're cutting
+unemployment a lot
+and you're not getting
+a lot of inflation.
+Eventually, the deal turned
+into a much rotten deal--
+much more rotten
+deal, because then
+to lower a little bit
+more unemployment,
+we start getting a
+lot more inflation.
+So people, for a while,
+were OK with this model,
+assuming that inflation was low.
+But when they realized that
+this thing was being exploited,
+then they began to change
+the expectations they made.
+I think that's what we had here.
+But the region held pretty
+well during this time.
+And again, it became
+steeper and steeper
+as we pushed it more and
+more towards very low levels
+of unemployment.
+So that's the story.
+But again, there is your
+model of the Phillips curve.
+And that is a very good model
+for the times where Phillips
+also estimated his Phillips.
+Now if you turn the page
+and look at the same data
+in the '70s, look how it looks.
+So from 1970 to 1995, that's
+the data you have there,
+there is no negative
+relationship.
+I think it's all over the place.
+So had Mr Phillips
+been born a few years--
+a few decades later and had
+he estimated his regression,
+he would have found nothing.
+There would be no
+curve in his honor,
+at least he had run
+that same regression.
+Maybe he would have run
+a different regression.
+But nothing.
+OK, so what happened?
+Well, our theory can explain
+as well what happened there.
+Remember the theory
+is not that inflation
+is equal to a constant
+minus alpha u.
+The theory says
+this is a constant
+only if the mode of
+expectation is this constant.
+But if the expectation
+is moving around,
+or if anything in this
+constant is moving around,
+then there is another
+source of variation.
+For example, what happens--
+suppose you are here in 1965
+and all of a sudden, you get--
+the price of oil goes up a lot.
+And I'm telling you,
+capture the price of oil
+with an increase in m.
+Firms need to mark up
+things more in order
+to cover higher energy costs.
+Well, look at what m does.
+m says that for any given
+level of unemployment,
+now I get higher inflation.
+That's what an oil
+shock does, no?
+You get an oil shock, then for
+any given level of unemployment
+now, you find yourself
+with more inflation.
+So that moves you in
+the opposite direction.
+It moves you up there.
+And that's one of the reasons
+for these points around here.
+We got lots of inflation because
+we got massive oil shocks during
+the '70s and early '80s.
+We had wars in the Middle
+East and so on that
+led to those shocks.
+So that was one of the
+reasons we got shots here,
+to this term here.
+And that sort of muddied
+the relationship.
+But the other reason, which
+is more interesting, I think,
+and that you already began to
+see that something was happening
+here is that as
+inflation went up,
+people stopped
+believing in this model.
+So the expectation
+formation mechanism changed.
+So this guy began to react
+to endogenous variables.
+And I'm going to explain
+more precisely why.
+So that's what we
+mean by expecting
+inflation became deanchored.
+It was no longer anchored
+around this constant of 2%,
+but it became deanchored.
+It began to follow the data.
+So if the data came
+with more inflation,
+then people believed
+that next year,
+we would have more
+inflation as well.
+Not back to 2%, but if we
+got 5% inflation today,
+people began to say, well, OK.
+I don't think that next year--
+my best estimate is 2%.
+It's probably closer to 5%.
+So that's what it
+means, deanchoring.
+That's what has the fed and most
+central banks around the world
+terrified today.
+Inflation is much higher
+than 2% and they're
+very worried about this
+guy becoming deanchored,
+or unanchored.
+I'll get back to
+that in a second.
+Anyway, but let me explain
+how this expected inflation
+term works.
+So let me replace the model of
+expected inflation for something
+which is some weighted average
+of a constant and the most
+recent inflation.
+So this model says, what
+is my expected inflation
+for next year?
+Well, it's an average
+of this long run target
+that we have, say,
+2%, and whatever
+was the most recent inflation.
+If theta-- in the model
+I showed you before,
+the one that applied
+to the '60s and so on--
+up to the '60s had
+essentially theta equal to 0.
+So this guy didn't show up
+there and expected inflation
+was very well anchored.
+What, what began to happen
+as we began to move that way
+and then we got
+hit by oil shocks,
+so people began to see
+much higher inflation
+numbers than they were
+used to, then this theta
+began to increase.
+So people began to change
+the model of expectation
+and began to think
+that the inflation was
+going to be more persistent than
+they used to think in the past.
+So high inflation today means
+high inflation tomorrow.
+That's what it means
+more persistent.
+In the past, it was
+high inflation today.
+That was a backdraw.
+We'll go back to the
+normal long run average.
+Now that's no longer the case.
+And so if I replace
+this more general model
+of expected inflation here
+in the Phillips curve,
+I get this expression, which
+now has this extra term.
+So we used to have
+theta equal to 0.
+But during the '70s and '80s,
+and even early '90s, actually
+that theta got to
+be very close to 1.
+You estimate these
+models, you get
+that theta was very close to 1.
+And look at what happens when
+theta gets very close to 1.
+So when theta is 1, literally,
+then the best forecast
+for inflation is the
+previous inflation.
+So this year is 5%, and
+I think next year is 5%.
+Not 2%, 5%.
+If this year is 7%, I think
+next year is 7% again.
+And so if you do that,
+then my expected inflation
+becomes lag inflation
+by t minus 1.
+So if I replace the expected
+inflation for pi t minus 1,
+I get to this
+Phillips curve, which
+I can rewrite as the
+change in inflation--
+as a relationship between
+the change in inflation
+and the level of unemployment.
+So now what you have is that
+if unemployment is very low,
+then inflation is picking up.
+It's going-- so if inflation--
+if unemployment is very low, not
+only the inflation is high, but
+it's also growing over time.
+That's the reason
+sometimes people
+refer to this formulation
+of the Phillips curve
+as the accelerationist
+Phillips curve,
+because now it's the
+relation between unemployment
+and the change in inflation.
+And if you estimate
+this Phillips curve,
+this accelerationist Phillips
+curve on the data I just showed
+you of the '70s and '80s, you
+get a much better relationship.
+You still have the oil
+shocks that mess things up,
+but you start recovering
+this negative relationship.
+But again, it's between
+the change in inflation
+and the level of unemployment.
+And that's a very scary
+situation for the central bank
+to find itself in, because
+it's very easy for things
+to escalate.
+So by the mid-90s, we had
+reanchored expectations.
+There were very
+aggressive policies
+to control inflation by
+Paul Volcker in the US
+and it was imitated around
+the world with some lag.
+But inflation became reanchored.
+So we went back to this
+theta equal to 0 type model.
+The expected
+inflation in the US--
+the target inflation of the
+central bank was around 2%.
+That became what people
+expected for the next year
+and that reanchored-- so we
+went back, in other words,
+to that Phillips curve.
+And that's what central
+banks want to be at.
+They want to have inflation
+expectations very well anchored.
+And they were very
+successful after the '90s.
+And so we got into
+again-- now look.
+And now I'm not running
+the accelerationist--
+I'm again running inflation
+against unemployment
+and you again see this
+downward sloping relationship.
+So that was very good news.
+It was a great success
+of monetary policy during
+the '90s and later was the
+reanchoring of expected
+inflation again all around
+the developed world,
+and many of the--
+even Latin America.
+Many economists in Latin America
+reanchored their expectations,
+Asia, and so on.
+So it was a good time
+for central banks.
+So the next thing I want to
+do, this will connect more
+with the previous
+lecture, and it's
+the last thing I want
+to say for this lecture,
+and I may start the
+review afterwards,
+is that I want to
+connect now this Phillips
+curve with something
+we discussed
+in the previous
+lecture, which is
+a natural rate of unemployment.
+Because that's the way you
+typically see the Phillips
+curve written and
+that's also the way
+that when Chairman Powell is
+talking about the labor market
+tightness and so
+on, he's not talking
+relative to m, and z,
+and things like that.
+He's talking relative to what
+is called the natural rate
+of unemployment.
+So I want to go from
+a Phillips curve that
+looks like that the one that has
+the natural rate of unemployment
+in there.
+And so that's the last
+step in this lecture.
+So remember the definition
+of the natural rate
+of unemployment?
+What was the definition of the
+natural rate of unemployment?
+Was it the unemployment rate
+that God gave us, any God?
+No.
+It had a very precise
+meaning for us.
+And remember, we used exactly
+that model to figure it out.
+Remember?
+We saw-- actually, we saw the
+natural rate of unemployment
+from something like this.
+I think we had-- the function is
+still generic function F of u z,
+but we solved from an
+expression like this.
+And we said, under
+one assumption,
+we can call this u, un, the
+natural rate of unemployment.
+What was that assumption?
+And that's the only thing--
+STUDENT: The price is equal
+to the expected price.
+RICARDO CABALLERO:
+Expected price
+is equal to the actual price.
+So we said, if this
+is equal to that,
+then you solve out the
+natural rate of unemployment.
+And that's the only thing that
+natural rate of unemployment
+means, simply that
+when the price is
+equal to the expected price.
+But if the price is equal
+to expected price, what
+else is equal?
+And I pointed at the
+right expressions.
+STUDENT: [INAUDIBLE].
+RICARDO CABALLERO: Inflation
+is equal to expected inflation.
+So I can use the same
+logic I used here
+for the natural
+rate of unemployment
+using the Phillips curve.
+I can say, OK, I can solve
+out for the natural rate
+of unemployment here simply by
+setting the expected inflation
+equal to actual inflation.
+And if I do this, I can
+solve for the natural rate
+of unemployment from here, un.
+I mean, I'm going to give--
+I'm going to put the
+superscript n here when
+you let me replace pi for pi.
+The fact that I replaced
+this pi e for pi
+is what allows me to put
+the superscript n there.
+Call it the natural
+rate of unemployment.
+And now I can solve it.
+Well, obviously that
+cancels with that
+and I can solve the natural
+rate of unemployment,
+and it's equal to
+this function here.
+So why is the natural rate
+of unemployment increasing m?
+A question like that
+can come up in the quiz.
+I'm not going to use the
+Phillips curve to ask you,
+if I ask you about that.
+But I can ask you that.
+What happens to a natural rate
+of unemployment if m goes up?
+You know that un will go up,
+but what is the mechanism?
+So why does the natural
+rate of unemployment
+go up when the markup goes up?
+Yep.
+STUDENT: [INAUDIBLE] our
+main cause and we just
+have to go down, right?
+RICARDO CABALLERO:
+I mean, another way
+of saying it is that the firms
+are not willing to pay-- they
+want to pay a lower real wage.
+At the original
+level of unemployment
+before the change in
+m, workers would not
+take that lower real wage.
+It's not an equilibrium real
+wage, because workers say,
+no, no.
+At this level of unemployment,
+we need a higher real wage.
+So the only way to restore
+equilibrium in that model we had
+was to increase
+unemployment, because that
+will lower the bargaining
+power of workers,
+and they will end up accepting
+the lower real wage that firms
+are willing to offer now.
+So that's the reason and
+we get this markup effect.
+z is same logic.
+It's a little easier
+to see it there,
+but z means, well, at any
+given level of unemployment,
+an increase in z means workers
+want a higher real wage.
+Firms are not willing to
+pay a higher real wage.
+So you have to bring down the
+real wage and workers' demand,
+and the only way that can happen
+is with a higher unemployment.
+That's the reason the
+natural rate of unemployment
+is also increasing in z.
+And now the last step.
+The last step is to--
+you see, I can go back to
+my Philips curve, say that.
+And I'm going to replace
+m plus z for alpha un.
+I can do that, you see?
+I can replace this m plus
+z for alpha times un.
+How do I know that?
+Well, m plus z, z is
+equal to un times alpha.
+We can replace in the Phillips
+curve m plus c by alpha un
+and I can therefore
+rewrite the Phillips curve
+in the following form.
+Inflation is equal
+to expected inflation
+minus alpha times the gap
+between the unemployment rate
+and the natural rate
+of unemployment.
+So when Chairman Powell is
+worried about labor market very
+tight, what he's saying
+is, well, unemployment
+is likely to be below the
+natural rate of unemployment.
+Because if unemployment
+is below the natural rate
+of unemployment, that's putting
+upward pressure on inflation.
+So that's a-- so
+that's what he means.
+This gap is very important for
+macroeconomists, and certainly
+for central bankers that are
+very worried about inflation,
+that gap here.
+Problem is, is this is a
+difficult object to estimate.
+So you have to have estimates.
+The truth is that it's very
+difficult to know what it is,
+although there are
+estimates out there,
+and I'm going to show you one.
+You notice that
+something is wrong when
+this guy starts speaking up.
+It's a little bit
+the other way around.
+The US, in fact, had the
+opposite problem before COVID.
+It's that somehow,
+unemployment was
+very low, relative
+to historical levels,
+but inflation was
+not picking up.
+So that was
+implicitly telling us
+that for some reason
+not fully understood,
+the natural rate of
+unemployment was declining.
+So here is one
+picture that looks--
+is one estimate.
+Again, I don't trust
+any particular estimate,
+but it tells a story.
+That's one particular
+estimate of the natural rate
+of unemployment in the
+US, that blue line.
+And what you see in red,
+the red is the actual rate
+of unemployment in the US.
+So what happens in
+situations like this?
+So what do you think was
+happening to inflation
+in this episode, which is right
+after the global financial
+crisis, or the Great Recession?
+So what do you
+need to read here?
+Well, the unemployment
+rate was a lot higher
+than the natural
+rate of unemployment.
+Does that put upward or
+downward pressure on inflation?
+Downward pressure on inflation.
+Unemployment is very high
+relative to natural rate
+of unemployment.
+It's minus alpha
+times u minus un.
+And that's what happened.
+We had lots of problems
+with inflation.
+Inflation was going very low.
+We even had negative
+inflation there,
+a little deflation for a while.
+So that was the problem.
+Here is the period that
+I described before.
+It's a little mysterious,
+because we went-- unemployment
+went below what we thought was
+a natural rate of unemployment
+and inflation wasn't
+really picking up a lot.
+At the end, it began
+to pick up a little.
+But it wasn't picking
+up a lot, and that
+was a little bit of a mystery.
+Now we're in this
+situation here,
+which we have extremely
+low unemployment
+and very high inflation.
+So I think this captures
+well the situation right now.
+We have a negative gap
+between unemployment
+and the natural rate
+of unemployment.
+And that's the reason that's
+putting a lot of pressure
+on inflation.
+We also have other things
+that are putting pressure
+on inflation that come from
+the supply side of the economy
+and so on.
+So that combination is pretty
+bad for the inflation outcomes
+and outlook as well.
+So that's where we're at.
+We're going to talk a lot
+more about this, because this
+is what is going on right now.
+Any questions about that?
+Otherwise, I want to start
+sort of reviewing things.
+Although, I don't know--
+any question about this?
+Yeah?
+STUDENT: Is the only way
+to fix it this direction
+to increase unemployment?
+RICARDO CABALLERO: Sorry?
+STUDENT: Is the only way to
+fix, I guess, the inflationary--
+RICARDO CABALLERO: Well,
+that's a very good question.
+That's a very good question.
+I'm trying to decide what to
+answer it with what we have.
+There are two views
+at this moment.
+There's one view that says
+there's no way around that.
+Just look at this curve.
+It says, look, there
+is no way around that.
+That's the reason
+we need a recession.
+Because otherwise, we're not
+going to control inflation.
+A recession means
+high unemployment.
+That's one view.
+At this moment, it's
+becoming the dominant view.
+It has gone in cycles.
+But at this moment,
+it's the dominant view.
+There is another
+view, which is the one
+that the central bank, the
+fed adopted for a while that
+said, well, this is not the
+only indicator of tightness
+of the labor market.
+There is other things as well.
+And those indicators are
+moving in the right direction.
+And so we may be able not
+to create a big mess here
+because these other factors are
+moving in the right direction.
+Some of those factors
+are, as I said,
+other measures of labor market
+tightness and hiring, the flows.
+Remember I showed you
+flows between employment
+and unemployment, out of
+employment, and so on?
+Those flows look extremely
+tight and now they're improving.
+So the gaps in those
+dimensions are better.
+And the other one is there was
+a big cost push component, which
+is what I said before.
+The supply chains
+and so on created
+extra inflation,
+abnormal inflation,
+like increasing markups.
+m was very high.
+And some of that is
+subsiding as well.
+So there are
+dynamics that suggest
+that inflation is declining
+even without unemployment.
+But I would say the median voter
+in this space of forecasts,
+of inflation and so
+on thinks that we
+will need some adjustment
+through this part as well.
+My main concern--
+I think that the path the fed
+is forecasting is feasible,
+but a very narrow path.
+I mean, it may happen.
+And to me, whether they're
+successful at not creating
+a big mess here, I mean
+bringing unemployment very high
+in order to bring
+inflation down,
+has a lot to do with
+whether somehow we
+manage to keep expected
+inflation anchored.
+And there was some evidence--
+I think I said that
+a few lectures ago.
+There was some evidence
+that in the summer of 2022.
+I'm from the
+Southern hemisphere,
+so I get always confused
+with summers and so on.
+So in the summer of 2022,
+US summer of 2022, inflation
+was becoming very unanchored.
+This guy, one year expected
+inflation was creeping up to 6%,
+and that was very scary.
+Because think what happened.
+If you get expected
+inflation at 6%,
+then it's not enough to bring an
+employment to the natural rate
+of unemployment to get inflation
+back to the 2% we like,
+because you need to bring
+expected inflation down now.
+And that means you need to bring
+the unemployment rate very, very
+high in order to
+re-anchor expectation.
+So that's a very
+scary situation.
+They were very
+persuasive, though,
+at the end of the summer with
+very hawkish speeches and so on.
+And they managed to
+re-anchor expected inflation.
+Expected inflation very quickly
+came down to 2%, 2.5% one year
+out even.
+But now it has been picking up
+again and now we're around 3%
+again.
+So it's a little
+scary where we are.
+So to me, this is going to
+be very important in that.
+So if inflation keeps
+lingering around 6%
+and so on, and
+eventually, expected
+inflation becomes
+unanchored, then there's
+almost no way around but to have
+a recession to get out of that.
+If that doesn't happen, if
+they succeed convincing people
+that they're very
+serious about this stuff
+and they re-anchor
+expected inflation,
+then we don't need to
+create a large recession.
+Still, they may create causes
+because accidents happen,
+but they don't need to.
+But they will need to if
+this guy gets unanchored.
+Actually, maybe I can use
+even this expression here
+to explain what
+I'm trying to say.
+And I realize that again,
+this is material really
+for the next lecture.
+What I'm trying to
+say is that if they
+manage to keep this theta
+very close to 0, then in order
+to bring inflation back to their
+target of pi bar, 2% or so,
+all that they
+really need to do is
+to bring unemployment to the
+natural rate of unemployment.
+So they only need to
+really fix this gap.
+They need to raise unemployment
+so it closes that gap.
+But it's a small change.
+That is, they succeed keeping
+expected inflation at around 2%.
+If they don't, suppose that
+theta becomes very far from 0.
+Then we have a problem.
+Because then expected inflation
+is above the target, no?
+Because we have 6%.
+So suppose that is equal to 1.
+We have 6%, then
+expected inflation is 6%.
+That means that if your
+expected inflation is 6%, then
+in order to bring the
+inflation-- if you bring
+unemployment just to the
+natural rate of unemployment,
+so the red line
+to the blue line,
+you haven't made
+a lot of progress.
+All that you have done is you
+have brought down inflation
+to 6%, which is
+expected inflation.
+So if you have expected
+inflation of 6%,
+you need to bring
+unemployment much higher
+than the natural
+rate of unemployment
+in order to bring inflation
+back to the target of 2%.
+That's the reason I say
+to me, the fight will be--
+the battle will be won or
+lost on that term there.
+Yep?
+STUDENT: How much of this
+current inflationary pressure
+is caused by unemployment
+and how much of it
+caused on the supply side?
+Because it feels like a lot of
+the stuff, like CPI going up,
+energy prices going up, how much
+can the fed control something
+like that.
+RICARDO CABALLERO: Well, it
+varies at different places
+around the world.
+But in the US, for a while, a
+big component of the inflation
+was all that stuff,
+bottlenecks in the ports
+and stuff like that.
+That's almost all gone.
+There's very little
+of that left.
+So now it's aggregate demand.
+People feel very rich
+for a variety of reasons.
+They're spending a lot, and
+that's the reason unemployment
+is very low.
+It's not unemployment
+per se, it's
+just that aggregate
+demand is very high.
+And that translates into
+very low unemployment
+and that feeds into
+inflation this way,
+through wages and so on.
+But in the US, the component
+of aggregate demand
+is much larger than in Europe.
+In Europe, those supply side
+factors are much more important.
+So around yeah, the summer of
+2022, you could say both Europe
+and the US are about the same
+amount of excess inflation.
+We're hold with
+around 10% inflation.
+But in the US was 2/3
+excess aggregate demand,
+while in Europe was 2/3
+problems on the supply side,
+especially because of the
+war and stuff like that.
+But for the US today, it's
+mostly an aggregate demand
+problem.
+We're not going
+to get a lot of--
+obviously, if the war
+stops, that's going to help.
+But it's not going to be enough.
+We need to-- just the
+economy is too hot.
+It's too much aggregate
+demand out there.
+That's the fundamental problem.
+STUDENT: Can you explain
+again why an increase in z
+would increase the natural
+rate of unemployment?
+RICARDO CABALLERO:
+An increase in z?
+Yeah.
+So for that, the base is
+the previous slide diagram,
+but remember what z does.
+Actually, let me go
+to this equation here.
+So we can figure it out in
+these two equations here.
+If z goes up, that means for
+any given level of unemployment,
+unexpected inflation,
+wages go up.
+Workers demand a higher wage.
+But remember that the firms--
+sorry.
+We're talking about the
+natural rate of unemployment,
+so let me replace this
+Pe for P, first of all.
+So I'm going to divide
+W by P on both sides.
+So I get-- if z
+goes up, the workers
+want a higher real wage, because
+if z goes up, then W over P,
+I'm dividing by P
+both sides, goes up.
+Workers demand a higher wage.
+But the firms,
+from here, you can
+see that I can divide by
+P both sides, W over P
+that the firms offer is
+equal to 1 over 1 plus m.
+So the firms are not going
+to offer a higher real wage.
+The workers want a
+higher real wage.
+The only thing that
+can restore equilibrium
+that the workers end up
+demanding the same real wage
+as the firms are
+willing to pay is
+that somehow, the hands of
+the worker gets weakened.
+And the only variable here
+that can weaken their hand
+is higher unemployment.
+So let me put it all in.
+So at the natural rate, I
+know that P is equal to P.
+So that means the wage setting
+equation implies W over P
+equals F u, z.
+From the price setting
+equation, I have that W over P
+is equal to 1 over 1 plus m.
+So in this very simple
+model, this is given.
+If this guy goes up, these
+guys want a higher real wage.
+But that cannot happen because
+that would be inconsistent with
+the price setting.
+So you need to
+bring down this guy.
+The only thing that
+can bring it down
+is for unemployment to go up.
+And that's-- at P, we call that
+a natural rate of unemployment.
+STUDENT: Last lecture, we
+talked about the labor force
+participation rate.
+Is there any reason to try and
+increase that to increase--
+RICARDO CABALLERO: Oh,
+that would be fantastic.
+Yes.
+STUDENT: Is there a
+policy that [INAUDIBLE]??
+RICARDO CABALLERO:
+Well, I mean there
+are negative policies as well.
+z reduction, in a sense,
+does that, because there
+was emergency
+unemployment benefits,
+an emergency income
+supplement and so on
+as a result of the pandemic
+that are disappearing slowly.
+And that's very
+natural, so it's going
+to bring participation back up.
+And it is beginning to pick up.
+So yeah, you need to
+incentivize return to work.
+And now there are some
+people that there is nothing,
+that they retire, essentially,
+or they have health problems
+and they just cannot return.
+We lost that.
+And the other margin, which is
+very important, is immigration.
+So that's a big issue, because
+immigration, obviously--
+we lost, I think in the US--
+I'm not a labor economist,
+but we lost, I think,
+a flow of the order of 500,000
+people a year during COVID.
+And that's a big chunk of
+the decline in the labor.
+No, what you need
+is more employment.
+That's going to-- that
+puts downward pressure
+on wages for the same
+amount of aggregate demand.
+And that's what you need.
+But yeah, that's
+a very good point.
+We're taking all
+that as given here.
+Remember, we're fixing all that.
+But if you don't,
+then other terms
+start appearing in this
+expression and so on.
+Good.
+Obviously, I'm not going
+to start the review.
+We have only one minute.
+So in the next
+lecture, I'll just
+review the material
+for the quiz.

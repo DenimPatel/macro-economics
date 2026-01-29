@@ -1,0 +1,1734 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO CABALLERO: So today
+we're going to look at--
+we're going to start looking
+into the labor market.
+Now, the labor market is very
+interesting for a wide variety
+of reasons that we will
+not discuss in this course,
+because it's not
+about labor economics,
+it's about macroeconomics.
+But there are at
+least two reasons
+why labor markets are
+very important in macro.
+One is because things
+like unemployment rate
+is a very important indicator
+of the macroeconomic health
+of a country or an economy.
+And the second one, which is
+quite relevant these days,
+is that the inflation rate is--
+one of the main drivers
+of the inflation rate
+is what is going on
+in the labor market.
+And we will try to
+understand this mechanism
+in the next couple of lectures.
+But you have there is the
+inflation rate in the US.
+And I'm showing you this
+picture several times
+after going through a long
+period in which the inflation
+rate hovered around
+2% with cycles.
+We are experiencing an episode
+of very high inflation.
+Things are coming down.
+But they are still at extremely
+high levels, 6% or so.
+And actually, very
+recently these numbers
+have picked up again a little.
+And so that's very high
+inflation rate-- way
+too high for an economy like
+the US to feel comfortable with.
+And whenever some member of
+the FOMC comes out and explains
+why interest rates are
+so high at this moment
+and explains why they are likely
+to remain high for quite a
+while, they say, well, look,
+inflation is uncomfortably
+at high levels and labor market
+conditions are very tight.
+And that suggests that the
+inflation problem is not
+likely to go away
+in the near future.
+So that's something we need
+to understand in macro.
+Why is it that the
+labor market being tight
+says anything about the
+inflation rate, for example?
+And that's the kind
+of things that we're
+going to discuss in particular
+on the Monday lecture.
+Now today we're going to start
+with more basics of the labor
+market and at the
+same time, we're
+going to begin a transition in
+the course in which we have been
+focusing on things that
+are in the very short run
+into things that take more time.
+Because many of the things that
+we're going to discuss today
+are things that you're
+not likely to see
+in every single quarter.
+But there are things that
+you're likely to see over
+averages over several
+quarters, several months.
+That's what we're
+going to look at today.
+So remember-- let me just
+recap a little bit what
+we have been doing up to now.
+We have been looking
+at this IS-LM
+model, which is a great model.
+It is a very good
+model to build on.
+But it's a very nice
+model, starting point,
+to understand what
+happens during a recession
+and what are the likely impact
+of the different macroeconomic
+policies, monetary policy,
+fiscal policy, and so on.
+It is not such a great model
+once the aggregate supply
+side of the economy, something
+we have completely ignored,
+starts becoming binding.
+Remember that to now
+in the IS-LM model
+we had basically, as a model,
+we had two assumptions,
+related assumptions.
+One, prices were fully sticky.
+They didn't move at all.
+Second, that output was
+aggregate demand determined.
+So whatever aggregate
+demand wanted,
+producers found a way to
+produce it at some given price.
+That combination is
+unlikely to happen when,
+for example, when firms
+are finding trouble
+finding new workers.
+Because there may
+be more demand,
+more demand for its goods.
+But the firm may find it
+hard to expand production.
+And it is also highly likely
+that in a situation like that,
+firms are going to want
+to keep prices constant.
+At some point they
+will, look, you
+have lots of meals
+at my restaurant.
+I cannot find people to
+work at my restaurant.
+I'll hide the prices so
+at least fewer tables
+and I can manage one
+way or the other.
+So we're going to start
+building a model that
+takes those things
+into consideration,
+what is the impact
+of a tight supply
+side of the economy on prices?
+And how that starts
+affecting, feeds back
+into equilibrium
+output eventually.
+And so the main thing
+I would say we're
+going to do, really, relative
+to the model in the next two,
+three lectures is endogenize
+the inflation rate.
+We have kept prices fixed.
+But now we're on endogenize.
+And the story of that
+endogenization of inflation
+starts from the labor market.
+And that's the reason
+why we're going
+to start looking at
+the labor market today.
+Now, let me remind
+you a few things
+that I think we discussed
+in the first lecture
+or so or maybe second,
+I don't remember.
+Let me give you a picture
+of the labor market
+and some variables, important
+statistics of the labor market,
+that matter for understanding
+inflation and so on.
+So this is a picture
+that's the one
+that you have in the
+book of the labor market.
+It's a picture of the labor
+market at some point in 2018.
+I don't know when.
+This is a picture at one point.
+And that says that at that
+time the US had about 330
+million people, that the
+noninstitutional civilian
+population.
+That is, those people that
+in principle could work,
+were about 260 million.
+That excludes people
+under 16 years old,
+people that are
+incarcerated, people
+that are in the armed forces.
+Those are excluded from--
+that's the difference.
+That's the reason you have such
+a big gap between these two
+numbers.
+Now, out of this people
+that potentially could work,
+some of them want to work.
+And that's what we call
+the civilian labor force.
+And then some of them are
+out of the labor force--
+again, at one point in time.
+It doesn't mean that these
+people are permanently out
+of the labor force.
+They may be temporarily out
+of the labor force, and so on.
+But we started with
+about 330 million.
+And by the time that we look
+at the people that really want
+to work at that point when
+the picture was taken,
+was about half of that,
+162 million people.
+Now, these 162 million people,
+the great majority of them
+are typically employed.
+They have a job.
+And then there is
+a group of people
+that would want to have a job--
+that's the reason they are part
+of the civilian labor force--
+but do not have one.
+And that's about 6 million
+in that picture there.
+So when you hear the
+unemployment or the unemployment
+rate, you're really talking
+about these people here.
+And when you hear about
+the unemployment rate
+is these people not divided
+over total population,
+but is these people divided
+by the civilian labor force.
+OK, so that's a picture.
+The most recent numbers we have
+about that kind of statistics
+is here you have them.
+I mean, the unemployment rate
+in the US today is about 3.4%.
+That's very low.
+I'll show you historical data
+in a minute and a half shown
+you historical data
+in the recent past.
+But this number
+is very, very low.
+The change in the
+unemployment level--
+this is for January--
+was a reduction.
+This is not rate.
+This is number of
+people that were--
+it's not number of people
+that were unemployed
+that are no longer so.
+You look at the total stock of
+unemployed in December and then
+you look at the total stock
+of unemployed in January 2023,
+the difference between
+these two is 28,000 workers.
+So 28,000 less workers are
+in the unemployment pool.
+Now notice that how
+this number is made.
+It's not that you 25,000,
+28,000 people just gain a job.
+That's not what happened.
+What happens is first
+employment, 895,000,
+894,000 people got a job--
+much bigger number.
+But also, the civilian labor
+force went up by 866,000 people.
+So if you go back
+to this picture,
+what you have in January, or the
+numbers reported in January--
+I do not know which month
+they correspond to exactly--
+is that yes, this decline.
+But that decline was made of
+a big increase in employment
+together with a big increase
+in the civilian labor force.
+So that must have been mostly
+movement out of the labor force
+and probably had
+something to do-- well,
+I'm not going to
+get into that here.
+But all these numbers
+are seasonally adjusted.
+So they are corrected relative
+to what happens normally
+in January and so on.
+And COVID and weather
+can derail a lot
+what happens in
+January and February.
+Numbers tend to be very noisy.
+Since COVID they
+have been very noisy
+because the seasonal
+adjustments are different.
+And also, weather matters a
+lot in January and February,
+and so on.
+So you can get pretty
+large fluctuations
+which are really not that
+interesting to macroeconomists.
+But anyways, those
+are the numbers.
+You look at the civilian
+labor force participation.
+Then it was about 62%, 62.5%.
+And the employment population
+ratio is of the order of 60%.
+So the employment
+population ratio
+is just this divided
+by total population.
+And those are the averages.
+The number of
+unemployed in 2022,
+about 6 million people
+that's unemployed.
+So there you have the
+unemployment rate.
+And it moves, as
+you would expect it.
+It typically goes
+up in recessions.
+The last sort of large
+recession we had big swings.
+One thing that was interesting,
+and we couldn't quite
+understand what was going
+on, is that we noticed right
+before COVID the
+unemployment rate had already
+declined to very low levels.
+And so people were
+wondering whether something
+was going to talk about
+later in this lecture,
+whether the natural
+rate of unemployment
+had changed for some reason.
+We'll come back to that.
+Then we got COVID, obviously
+a very recessionary shock
+initially, massive
+unemployment and so on.
+But then it came
+back very quickly.
+And today we have record
+low levels of unemployment.
+We haven't seen numbers like
+this since the '60s really--
+very low levels of unemployment.
+So one of the things that
+when you hear the FOMC
+members talking about the
+labor markets being very tight,
+well, one of the things
+they're looking at is this one.
+There are other statistics
+that I'll show you.
+But this is one of them.
+Unemployment rate is
+really, really low.
+Sometimes, again, especially
+post-COVID because of movements
+in and out of the labor
+force, the unemployment rate
+is not such a great
+statistic, not as reliable
+because many people
+left the labor force.
+So people look a lot
+at the employment rate.
+This is not the employment
+population ratio.
+Its employment
+rate-- so employed
+over the non
+civilian population.
+And that number, you can see,
+we have discussed this before,
+was trending up here because
+of the increase in the labor
+participation of women,
+then it came down,
+had a lot to do with the
+students and things like that,
+systematically.
+But then it was
+climbing up enormously.
+It collapsed during COVID.
+That's mostly unemployment and
+people out of the labor force.
+And then recovery.
+But the recovery has not
+picked up to back to the trend.
+So we are back to more or less
+the levels we had before COVID,
+but we're certainly
+off the trend.
+And one of the reasons the
+labor markets are very tight
+is that we haven't
+recovered the employment
+rate that we used to have.
+This has to do with migration
+flows, with a variety of things.
+But that's the issue.
+OK, so that's sort of--
+those are very static
+pictures of the labor market.
+What is the stock of
+unemployment at one point?
+What is the unemployment
+rate, and so on and so forth.
+But the truth is
+that labor markets
+are very dynamic, especially
+in an economy like the US.
+The flows are very large.
+So what I have there-- and
+I don't know for which state
+this is in the book-- but the
+pictures look more or less
+the same for the
+point I want to make.
+This is monthly labor flows.
+And this has happened
+in some months--
+I don't care, 2018,
+at some point.
+Look at what happened there.
+You have this.
+We're talking about
+the stocks recently.
+So employment in that
+month was of the order
+of 132 million people.
+Out of the labor force,
+about 79 million people.
+Unemployed, about 8.6 million.
+Those are the stocks.
+Those were the type of numbers
+I was showing you before.
+But look at these arrows.
+These are flows.
+So in every single
+month, you see in the US
+about 3 million people that
+move from one job to another.
+So employment to employment.
+You see about 1.8 million
+that moved from employment
+to unemployment and
+about 2 million people
+that move from unemployment
+to employment, large flows.
+Not only so, not everything goes
+to unemployment to employment.
+There are people are also
+moving out of the labor force
+and into the labor force into
+an employment, into employment.
+Here in this particular
+case, out the flow,
+out of the labor force into
+employment is 3.4 million.
+Flows from employment, without
+going through unemployment
+without the labor
+force, 3.7 million.
+During COVID, this must have
+been a very thick arrow,
+lots of people move out from
+employment to out of the labor
+force.
+And one of the problems
+the economy has
+had in the recovery on
+the labor market side
+is that this arrow hasn't been
+as strong as we would want it.
+This arrow or this arrow for
+that matter of fact-- people
+coming out of the labor
+force into unemployment.
+That's also a big flow.
+Sometimes people
+are not working.
+And then they decide they run
+out of unemployment insurance
+or something like that.
+And so they decide
+to start looking.
+And they move into unemployment
+here, or they run out of savings
+and they have to come back.
+And they may not
+find a job initially.
+They have to go
+through unemployment.
+So point is that these
+flows are very large.
+And these flows matter
+a lot for the kind
+of things we want to talk
+about in this course.
+Look at what we have here.
+The red line is the
+unemployment rate
+and it's measured
+on the left axis.
+And what we have
+here in the blue line
+is measured in an inverse scale.
+Look at this-- this
+goes up as you go down--
+is the percentage of unemployed
+workers becoming employed.
+So it's the job finding
+rate from unemployment.
+So you have unemployed people.
+And they will be finding jobs.
+They are looking for jobs.
+And they will be finding jobs.
+This number here, this blue line
+here, shows you the likelihood
+that they'll find a
+job in inverted scale.
+OK, so what correlation
+do you notice there?
+I mean, you know,
+it's very tight.
+Yeah.
+AUDIENCE: There's
+a percent of people
+that get a job each
+month is smaller,
+there's more people
+without a job.
+RICARDO CABALLERO: Exactly.
+That means when the
+unemployment rate is high,
+it is harder for unemployed
+workers to find a job.
+Or another way of a
+direct implication
+of that is the typical
+unemployed worker
+will spend more time
+in unemployment,
+because they're going
+to be looking for jobs
+and it's harder to get a job.
+So you're going to be looking
+for a job for a longer
+period of time.
+Why are we talking
+about these things?
+Well, because of
+these type of reasons.
+Well, this means that
+when unemployment is high,
+workers are worse off
+in at least two ways.
+And there are two
+ways that are going
+to be important for
+what I'll say next.
+One is that the employed
+workers face a higher
+probability of losing job.
+That's what happens when
+unemployment-- the reason
+unemployment gets to be high
+is because firms are firing
+workers and so on and so forth.
+And so when
+unemployment is high,
+the first thing
+the workers know is
+that it's very likely that
+they'll lose their job,
+more likely that
+they'll lose their job.
+But the second channel, which
+is what this picture highlights
+here, is that if you
+fall unemployment,
+it's going to be a lot harder
+to get out of unemployment.
+So when unemployment
+is high, it's
+scary for workers
+for two reasons.
+One, you're more likely to
+lose a job because you're
+capturing recessionary
+conditions and so
+on in the economy.
+But second, if you end
+up in unemployment,
+it's going to be
+hard to get out of it
+And later on, this
+unemployment rate
+is going to show up
+in wage bargaining.
+And the main reason is going
+to show up is of this kind.
+And also think about
+the other side.
+When there's bargaining,
+there's two in a bargaining.
+There's going to be
+firm and workers.
+From the firm point of view if
+there's a lot of unemployment,
+do you think it's hard
+or easy to find a worker,
+to replace a worker that decides
+to leave for whatever reason?
+Yes.
+We have lots of
+people to choose from.
+So it becomes easy.
+So unemployment is high,
+workers are more scared.
+If they get out, they're
+scared of losing the job.
+If they get out, it's
+hard to get a job.
+And on the other side,
+the firms, for the firms,
+it's not that scary to lose
+a worker because it's fairly
+easy to replace that worker.
+Today, firms are very worried
+about losing their workers
+in some sectors.
+In some sectors are
+getting rid of workers.
+But if you run a
+restaurant, you're
+very scared of
+losing your workers
+because it's going to be
+very difficult to find
+a replacement for that worker.
+Surprise, surprise,
+wages in that industry
+are going up a lot.
+We're going to get there.
+So that's what comes
+next-- wage determination.
+Look at what I'm
+trying to build here.
+I'm starting from
+telling you stories
+about the labor market, what
+things are important for workers
+and so on.
+Now I'm going to get
+into wage determination.
+And obviously the
+variables I talked
+about are going to be important
+in this way determination.
+But my ultimate goal is
+to talk about inflation.
+So the next step--
+so I'm going to talk about
+wage determination here.
+And then we want to
+talk about prices.
+And there we're going
+to be one step closer
+to talking about inflation
+OK, so let's go through
+the intermediate step, wage
+determination.
+And so just to give you
+a little background,
+sometimes wages are set by
+collective bargaining, unions,
+in particular.
+Now, in the US unions
+are not a big thing.
+They were a much
+bigger thing many years
+back than they are today.
+In other economies
+they are a big thing--
+Japan and Europe.
+And the unions can happen at
+different levels of aggregation,
+at the level of the firm,
+at the level of the sector,
+and you name it.
+In general, regardless of
+the level of unionization
+you have in a country
+or in a sector,
+the higher the skill needed
+to do a job, the more likely
+it is that bargaining takes
+place between an individual,
+between an employer, and an
+individual, rather than a union,
+because it's sort of much more
+idiosyncratic and customized
+and so on.
+But either way, regardless
+of whether wages
+are set at a collective level
+or at an individual level,
+the main macroeconomic
+drivers of wages
+are similar across both of them.
+Of course, the particulars
+are going to be different.
+Even the dynamics can
+be different and so on.
+But the big drivers,
+the big macro drivers,
+are similar, regardless
+of the bargaining
+mode you have at the level
+which happens, and so on.
+And those are the things
+we're going to highlight here.
+So a fact of life is that
+workers' wages typically
+exceed the reservation wage.
+Now, what does it mean
+the reservation wage?
+The reservation
+wage is a wage that
+would leave you indifferent
+between employed or unemployed.
+It doesn't mean, it's a
+nice wage or anything.
+And certainly it doesn't
+mean that you wouldn't
+prefer to have a higher wage.
+But it tells you that, look,
+at that wage you'd rather
+be employed than unemployed.
+And there is a way,
+long list of reasons
+why that ends up being
+the equilibrium type wage.
+And I'm not going to
+discuss them here.
+But take it as a fact for now.
+So workers preferred
+to be employed.
+They may take the risk
+of becoming unemployed.
+But they typically
+prefer to be employed.
+And now wages-- and this is
+where it becomes important,
+interesting for us in macro--
+is the wages that
+are finally set
+depend on labor
+market conditions.
+So very clearly, the lowest
+unemployment rate, the higher
+the wages will tend to be.
+And you're seeing it now.
+The unemployment
+rate is very low.
+Wages are rising a lot.
+And workers' bargaining
+power depends,
+again, there's a huge
+literature on these things
+and just compressing it
+into the bare minimum.
+And the bargaining
+power of our workers
+are things that we
+already discuss.
+Well, it depends on
+how costly for the firm
+to find the workers.
+So obviously, if
+unemployment is very high,
+it's very easy for
+firms to find a worker.
+That's not good for the
+bargaining of a worker.
+If you want to bargain
+with your employer
+and there lots of people
+like you out there,
+you're not going to have
+a lot of bargaining power.
+So it's unlikely that
+you're going to come up
+with a very high wage.
+And it's also, the
+other side of it
+is how hard is for workers
+to find another job if they
+were to leave the firms.
+I mean, if you know that there
+are lots of jobs like the one
+you currently have out there,
+which are not occupied--
+so there's empty, vacant, jobs--
+then you probably are going
+to have a much stronger hand
+with your employer
+because you can say, OK,
+if you don't pay me what I
+want, I move to the next door.
+And in terms of the
+macroeconomic variables
+we care about, a
+situation like that
+is very likely to
+happen when unemployment
+is very low because that
+means that other jobs are
+unlikely to be filled because
+there are lots of people looking
+for things, but it's
+difficult for the firms
+to find the workers.
+And therefore, you're going
+to be a lot more attractive
+to that labor market.
+So in summary, at
+the aggregate level,
+we can write a wage setting
+equation of this form.
+So the wage-- and this
+is a nominal wage--
+can be written as an increasing
+function of the expected price,
+meaning wages are not
+set, in most professions,
+they are not set
+second by second.
+You bargain for
+a wage and so on.
+And that thing sticks for
+a year or so at least.
+Well, obviously if you
+expect, if inflation is zero,
+you're going to demand a wage
+that is more or less what
+you need today.
+If inflation is 10%,
+you say, well, I'm
+going to have to demand a
+higher wage because I have
+to live with this
+wage for a year
+and prices are going to be
+rising when I have this wage.
+So if they expect
+lots of inflation,
+if I expect prices to
+be high in the future,
+then I'm going to ask
+for a higher nominal wage
+today because I'm
+going to have to live
+with that wage on average
+for the next year or so.
+So that's the first
+thing, and it's
+going to play an
+important role, is
+that wages are an increasing
+function on the price level
+workers expect.
+They expect a higher
+price level in the future
+or during the life
+of the wage contract,
+then they obviously are going
+to demand a higher wage,
+other things equal.
+What are other things?
+Well, the arguments of
+this function here--
+unemployment.
+For any given expected price, if
+the unemployment rate is high,
+workers are going to
+demand a lower wage.
+Why is that?
+AUDIENCE: Because it's going to
+be harder for them to find a job
+so they have less
+bargaining power.
+RICARDO CABALLERO: And they have
+less bargaining power, exactly.
+And so they're going
+to demand a lower wage.
+This variable, z, here is a
+catch all variable for strength,
+workers' strength in the
+bargaining position situation,
+something like that.
+So for example, this is things
+like employment protection
+laws, firing costs.
+If it's difficult
+to fire someone,
+the z will tend to be high.
+So this only tells you that
+given the level of unemployment,
+if it is very hard
+to fire someone,
+workers are going to be very
+likely to demand a higher wage.
+It's hard for you to fire me.
+I'm going to bargain
+hard for my wage.
+And these type of
+institutional factors
+play a huge role in Europe,
+much more than in the US.
+Good.
+But as a matter of
+definition, we're
+going to say an
+increase in z, z is
+something that increases the
+bargaining power of workers.
+And therefore, for
+any given level
+of unemployment and
+expected prices,
+they're going to lead
+to a higher wage demand.
+This is the workers'
+demand in a wage.
+We have to figure out what
+happens in equilibrium.
+But this is what the
+workers are demanding.
+Is it clear what we have here?
+So let's now move
+to the other side.
+So that's one side
+of the scissor.
+We have the workers.
+And they given certain
+macroeconomic conditions
+summarized by the unemployment
+rate and expected prices.
+They demand certain wages.
+Now, we can find
+the equilibrium wage
+until we don't see the
+other side, what firms
+are willing to pay and so on.
+So we need to explore
+this other side.
+And the starting point
+of that other side
+is the production
+function, meaning firms
+are going to end up
+setting prices for goods.
+But producing those goods will
+take factors of production.
+They're going to have to use
+something to produce that.
+And the cost of that something
+will determine, importantly,
+what is the price
+they end up charging.
+I'm going to simplify
+things a lot here.
+I'm going to assume the
+production function is
+first linear and linear only
+on labels, so no other factors
+of production.
+Meaning this says
+that to produce
+one unit of the aggregate
+good, you need--
+well, this says that if
+you add an extra worker
+to the big production
+function of the economy, then
+you're going to get A
+more units of output.
+That's what this says.
+So Y is output, the output
+we've been talking about,
+measuring the way we have
+been talking about, and so on.
+N is employment.
+And A is labor productivity.
+That is the output per worker.
+I want to make
+things very simple.
+We're going to talk a lot about
+in the next part of the course
+and the part of growth
+about this A, what
+moves this A over time,
+what it does, and so on.
+But I'm going to simplify
+things a lot here for now.
+And I'm going to
+set A equal to 1.
+So it doesn't get
+any simpler than this
+as a production function.
+This production
+function says you
+want to produce one more good,
+you need one more worker.
+This is what this says.
+If you have 10 workers, you
+produce 10 units of good.
+If you have 11 workers, you
+produce 11 units of goods.
+To produce one more unit of
+good, you need one worker more.
+Now, why do you think I'm
+simplifying it so much
+and I'm even repeating this idea
+that one more worker one more
+unit of good?
+That tells you that how much
+does it cost to the firm,
+to the firm that has
+this production function,
+to produce one extra
+unit of workers, of one
+extra unit of goods.
+Well, you have to ask
+the question, well,
+what will the firm have to do?
+Well, the first--
+so suppose a firm
+wants to produce one
+more unit of goods.
+What is it that it needs to do?
+AUDIENCE: Hire another worker.
+RICARDO CABALLERO: It needs
+to hire another worker.
+How much will that cost?
+AUDIENCE: The wage.
+RICARDO CABALLERO: The wage.
+Exactly.
+So now we're beginning
+to [INAUDIBLE]..
+So this is the
+wage, in this case
+is the cost per unit of
+production for this guy.
+So the marginal cost of
+production for this firm
+is the wage.
+All the rest, intermediate
+inputs, is all summarized.
+This value added is
+built on something else.
+So this production function,
+as simple as it is,
+says exactly that.
+The marginal cost of production
+is equal to the wage.
+So now I'm going to come up with
+a pricing model, a price setting
+rules.
+Firms that understand
+how much more it
+costs to produce an
+extra unit of good
+now have to decide
+the price they
+want to charge for that
+extra unit of the good.
+There is a lot that
+comes into that decision.
+But we're going to summarize
+it with a markup, very simple.
+I'm going to say, look, the
+firm will do the following.
+We'll say, it
+costs me one worker
+to produce one unit
+of extra of good.
+A worker costs me
+W. So the price
+I want to charge is 1 plus is M.
+M is a positive number times W.
+So M is a number like 0.2.
+So you pay 100 in the wage.
+Then you're going to charge--
+and suppose the wage is 100.
+If the markup is 20%, you're
+going to set a price of $120.
+That's the price setting rule
+that we're going to adopt.
+And again, it's not that crazy.
+Simple, but not that crazy.
+So thus, we call this the
+price setting equation.
+The firm takes the
+wage because that's
+the marginal cost of production
+and then adds a markup.
+And that's the final price.
+Now, we can rewrite this
+price setting equation
+as a wage equation in
+the following sense.
+It's still a price
+setting equation.
+But all that I've done here is I
+divided by P, by P and 1 plus M.
+And I get that the
+wage, the real wage
+the firm is willing to
+pay, is equal to 1 over 1
+plus the market.
+That's another way of saying it.
+It's the same.
+I took this price
+setting equation.
+And I just rewrote it.
+I rewrote it this
+way because then when
+I look at the wage
+setting equation,
+I also wrote it that
+way, W over something.
+I want to write the
+price setting equation
+in the same sort of units
+as my wage setting equation
+so then I can use one diagram,
+put them together easily,
+and find an equilibrium
+of something.
+So what you see here is, for
+example is that the higher is
+the markup, the lower
+is the real wage
+the firm is willing to offer.
+You see that?
+And this is an equilibrium at
+the level of the economists,
+not you individually.
+But on average, that's
+what ends up happening.
+Firms, on average, end up
+charging a higher markup.
+It has to be the case that
+in equilibrium the real wage
+offer by the firms is lower.
+That's what this is.
+So if we're in a situation
+where the markup was 0
+and now all of a sudden
+because of imperfect
+competition or perhaps some
+price of a key input went up
+and it's not well measured
+in value added or whatever,
+if the market goes to 1, then
+the real wage in equilibrium
+will fall to half
+what it used to be.
+That's what the
+firms will offer.
+Well, that's an equilibrium
+or not, we shall see.
+Or how do we get that
+to be an equilibrium?
+We shall see.
+But that's what the
+firms will offer.
+That's what the price
+setting equation says.
+In fact, you already
+know from this equation
+that that's what
+the real wage will
+be because there is no variable
+here that can adjust to that.
+What happens is
+something else will
+have to give in the economy.
+So this ends up being
+the equilibrium wage.
+But you'll understand
+that a little later,
+or you'll understand it
+better a little later.
+So now, we're almost
+ready to come up with--
+to discuss a very important
+concept in macroeconomics.
+And that's the concept of the
+natural rate of unemployment.
+Now, the first
+warning is that there
+is nothing natural about the
+natural rate of unemployment.
+It's not something that God
+gave us or anything like that.
+I'll say for us, and
+what typically means
+the natural rate
+of unemployment,
+simply means what I wrote there,
+which is the unemployment that
+takes place when the expected
+price is equal to actual prices.
+That's what we'll define for
+this class, for this course,
+we'll define the natural
+rate of unemployment.
+The natural rate
+of unemployment is
+when the expected price is
+equal to P. That's what we mean.
+If we ask you any question about
+the natural rate employment,
+we don't mean that
+that's what is good,
+that that's what is bad,
+that that's what God decided
+or someone else decided.
+This is all that it means,
+is that in any equation where
+you have P, you can stick in P
+and then solve for equilibrium.
+And the unemployment
+rate that comes from that
+is what we call the natural
+rate of unemployment.
+Because of this, you can also
+think of that unemployment rate
+as a good proxy for
+what is likely to be
+the average rate of unemployment
+of an economy over a longer
+period of time.
+Because people are
+unlikely to be fooled
+all the time in
+the same direction.
+So sometimes they're
+going to expect
+a higher price [INAUDIBLE],,
+sometimes it's lower, and so on.
+On average, unless there is
+something very weird going on,
+they're going to get
+right, because you
+know more or less what the level
+of inflation of the economy is.
+Sometimes you miss up.
+Sometimes you miss down.
+But on average, you're
+going to be right
+if you take an average
+over a long period of time.
+So for that reason, you can
+also interpret this natural rate
+of unemployment as
+the unemployment
+rate of the medium
+run, if you will--
+so when you have
+collected enough data
+and positive errors are balanced
+with negative errors, and so on.
+But that's all that we
+mean by the natural rate
+of unemployment.
+Now, notice that with
+this assumption, that Pe
+is equal to P. I can go back to
+my wage setting equation, which
+was W over Pe equal to F that.
+I don't remember what I had
+divided by P. But I had P there.
+And when I divide by
+P both sides, and then
+I'm going to set Pe
+equal to P. And now
+I have that my wage
+setting equation
+can be written this way.
+And notice that the
+unemployment rate I put here
+is N. It's a natural
+rate of unemployment.
+Because once I have a
+model in which I assume
+that Pe is equal to P,
+the unemployment rate
+that comes out of that is a
+natural rate of unemployment.
+That's all that it just means.
+It says OK, you allow me
+to replace Pe by P, well,
+then I can call my unemployment
+rate here the natural rate
+of unemployment.
+And it has lots of names--
+natural rate, structural rate
+of unemployment, and so on.
+Now what this tells you--
+I mean, you can see the
+slope of this function.
+If the natural rate
+of unemployment
+is higher in this
+economy, what is
+the real wage that comes from
+the wage setting equation?
+Lower.
+It's a downward sloping curve in
+the space of wages to real wages
+to unemployment.
+So the natural rate
+of unemployment
+is a downward sloping
+curve for the reasons
+we discussed before--
+bargaining power and so on.
+OK, so I can put together--
+remember, the price setting
+equation led me to
+also an equation
+the real wage, which was
+not a function of anything.
+It was only a function
+of parameters.
+So that's a horizontal curve
+in the space of real wages
+and unemployment, natural
+rate of unemployment.
+Here we have a
+downward sloping curve.
+And the intersection
+of these two curves
+is the natural rate
+of unemployment.
+So this was the price
+setting relation.
+Remember, it's 1 over 1 plus
+M. This is the wage setting
+equation with the assumption
+that Pe is equal to P.
+And thus, the natural
+rate of unemployment.
+And here you can
+understand what I
+said before is that you see,
+in this economy, the real wage,
+because this price
+setting equation is flat
+in this simple economy, the real
+wage is pinned down by the firm,
+by the firms collectively--
+and not collectively in
+an oligopsonistic way.
+It's what happens
+in equilibrium.
+But the equilibrium
+unemployment,
+natural rate of
+unemployment, is intersection
+of the real wage set by the
+firms and the wage setting
+relationship.
+So what happens to a
+point, say to the right?
+What happens in this point here?
+What is the situation we have?
+Well, at that high
+level of unemployment,
+workers are willing to work
+for much lower real wages
+than the firms are offering.
+This is what workers, at
+this level of unemployment,
+very high level of unemployment,
+workers would be fine with this.
+Firms are paying that.
+So unemployment is
+very likely to be
+falling because workers
+are not demanding a lot
+and firms are going to
+hire all these workers.
+The opposite here.
+If here, workers are
+demanding a wage that
+is much higher than
+firms are willing to pay,
+that's likely to lead
+to more unemployment
+because firms are going to
+be very reluctant to hire
+these very expensive workers.
+So that's going to be
+unemployment in this direction.
+Good.
+So that's the natural
+rate of unemployment.
+Again, nothing natural
+about it is the equilibrium
+when you assume the expected
+price is equal to price.
+So there are some important
+parameters in this diagram here.
+One is this M, the market.
+That's a parameter, very
+important markup here.
+See, if the markup changes, the
+natural rate of unemployment
+will change.
+There's another set of
+parameter here, which is z.
+We took as given
+the institutions
+that protect the bargaining
+power of workers institutions,
+supporting institutions, the z.
+That's a parameter here.
+If that changes, the
+natural rate of unemployment
+will change, which
+is, again, something
+that confirms that
+there is nothing
+natural about the natural
+rate of unemployment.
+So let me just do it in
+equations very quickly
+and then I'll do a couple
+of important shifts.
+So in terms of equation,
+all that I did is says,
+look, the wage setting equation,
+the price setting equation
+gives us that.
+The wage setting
+equation gives us that.
+Therefore, that equal to
+that, that's a point we found.
+That's the natural
+rate of unemployment
+So from here, that's
+when the two are equal.
+This was the flat curve.
+This was the downward
+sloping curve.
+Well, these two are equal when
+these two things are equal.
+And that's what you get there.
+So from there you solve the
+natural rate of unemployment.
+What do you think happens to
+the natural rate of unemployment
+is z goes up.
+Let's just be very mechanic
+at this point, just math.
+If z goes up, watch
+what happens to F?
+Goes up if z was positive.
+Well, the right hand
+side hasn't gone up.
+So this went up.
+Something has to give,
+so F comes back down.
+And the only thing that
+can give, the only thing
+that's endogenous
+in that picture
+there is a natural
+rate of unemployment.
+So if z goes up, F goes up.
+Well, I need to bring F back
+down because the right hand
+side hasn't given an inch.
+So what do I have to do to a
+natural rate of unemployment
+for F to come back down?
+Rise-- because that's what
+will weaken bargaining power.
+Workers' bargaining power got
+stronger because increasing z.
+Well, I have to weaken it some--
+I don't have to.
+Equilibrium will
+weaken it somehow
+so that we end up in
+the same situation,
+with the same real wage
+that we had before, which
+was equal to 1 over 1 plus m.
+What happens if m goes up?
+Well, if m goes up, markups go
+up, that means firms real wage--
+the real way to
+firms offers drops.
+So if this right
+hand side drops,
+then I need the left hand
+side to drop, as well.
+And the only thing
+that is endogenous here
+is the natural rate
+of unemployment.
+So I know that I need to drop
+F, what do I need to do to?
+So I need to bring F down.
+And the only tool you
+have is not a tool,
+but in equilibrium anything
+that will can change here is uN.
+It will increase uN
+because that will
+reduce bargaining
+power of workers
+and that will reduce
+the real wage demand.
+And therefore, you restore
+equilibrium that way.
+So this environment is
+a very nasty environment
+for workers in a sense
+because it's always
+the escape value is the
+natural rate of unemployment.
+So here you have what I
+just said in pictures.
+So that's example of z
+going up, bargaining power
+of workers going up.
+So suppose you start at
+an equilibrium like this.
+And now z goes up.
+Well, that means that
+workers, for any given
+level of unemployment,
+natural rate of unemployment,
+want a higher wage because they
+have more bargaining power.
+Well, that higher wage is
+inconsistent with the wage
+that firms want to pay.
+What restores equilibrium
+is unemployment,
+the natural rate of
+unemployment goes up enough so
+that the wage demand sort comes
+down to the same original level
+because this price setting
+equation is completely flat.
+So there you have
+a situation where
+bargaining power of workers went
+up and all that end up happening
+is that, in the
+medium run, at least,
+that the natural rate
+of unemployment went up.
+That's very much the story
+of Europe, by the way,
+in the '80s--
+France in particular.
+France had major labor reforms,
+z boosting, if you will,
+in the 1980.
+Initially it was a
+great deal for workers.
+Real wages went up and so on.
+It was wonderful.
+But eventually with
+the passage of time,
+they ended up just with
+a much higher real--
+not a much higher real wage, but
+a much higher real unemployment
+rate.
+That went from single
+digit, low single digits,
+to 15% unemployment rates
+and things like that.
+And since then, they have been
+sort of reforming the labor
+market to fix some of that.
+But that was very much what
+happened in continental Europe
+in the '80s.
+This is the case of
+a markup increase,
+the other one I described.
+So if markups go up, then that
+means firms in equilibrium
+are not willing
+to pay real wages.
+They want to pay
+a lower real wage.
+Well, at this level
+of unemployment,
+workers are not
+going to take it.
+The only thing that
+will restore equilibrium
+is that the natural
+rate of unemployment
+goes up that weakens
+the hand of workers.
+And you end up with this.
+And again, there is
+nothing natural about this.
+I'm not saying this
+is good or bad.
+I have no idea why
+the markets went up.
+It is just imperfect
+competition, going up,
+that's clearly not a good thing.
+But it may have been something
+else-- the price of oil
+went up a lot, I don't know.
+It was a war somewhere and
+then productivity came down,
+something of that kind.
+So I don't know what it did.
+But the only thing
+I'm describing here
+is the mechanics.
+Good.
+So the quiz is up to here.
+So the quiz ends here.
+In the next lecture, we're
+going to start the Phillips
+curve, which is now
+using this model,
+but looking at
+deviations situations
+where the price is not equal to
+expected price, or the expected
+price is not equal
+to the actual price.
+And that's going to lead
+to interesting situations.
+And then we're going to be
+talking about inflation.
+Here, this is not a model
+to talk about inflation.
+I'm talking about what
+happens in the medium run.
+I haven't told you whether
+the adjustment happens
+through the nominal wage,
+through the prices, or what.
+I mean, there are many ways of
+reaching the same real wage.
+You could have it--
+you could lower
+real wages by increasing wages
+by 50% and prices by 60, say.
+Or you could do it by
+lowering nominal wages by 10
+and not moving prices.
+So there are many
+ways of doing it.
+The Phillips curve is going to
+allow us to get into that part.
+But it's not going to
+be part of your quiz.
+The quiz, that's going to
+be part of the second quiz.
+So in the next
+lecture, I'm going
+to talk about the Phillips curve
+and then on Wednesday a review.
+And then you have your quiz.

@@ -1,0 +1,1134 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO J. CABALLERO: OK.
+Let's start.
+So hello, everyone.
+Welcome to 1402, Introduction
+to Macroeconomics.
+And I won't teach today.
+So that's a good news.
+I will start on Wednesday.
+So what I want to do today
+is essentially tell you
+what macro is about,
+macroeconomics
+is about, and also
+the rules of the game.
+So what a difference
+a single letter makes.
+Many of you must
+have taken 1401.
+In fact, some of you may
+be taking it concurrently,
+a lecture right before mine.
+And that's Microeconomics, 1401.
+This is macroeconomics.
+And it doesn't take
+a lot of imagination
+to realize that this
+course is about big things.
+We don't look at small things.
+That's what micro is about.
+Micro looks at a household,
+at a firm, at an industry.
+In macro we don't do that.
+We look at the whole economy.
+We think about the US.
+We think about China.
+We don't think about
+an individual price.
+We think about inflation, so the
+rate of change of all prices.
+We don't think about
+whether a particular worker
+is employed or unemployed.
+We think of whether the
+rate of unemployment
+is very high or low,
+things of that kind.
+When we look at
+two countries, we
+look at the exchange rate, which
+is the relative price of two
+currencies, not to
+individual goods in two
+different countries, but the
+whole currency and so on.
+So that's what macro is about.
+Now, you could think that
+macro is nothing else
+than the sum of lots of micros.
+After all, that's what
+an economy is made of.
+A population, a
+whole population is
+made of lots of
+individuals that can
+be analyzed with
+the tools of 1401
+and the sequence
+that follows 1401.
+But that doesn't work.
+And there are parallels in
+physics about this and so on.
+The way you want to
+study sort of big bodies
+is different from
+the way you want
+to understand the movements
+of small elements.
+And that's the case in macro.
+In macro there's a
+big line of research
+that has to do with the micro
+foundations of macro economics.
+But even in that case, which
+is very close to micro,
+most of the action ended up
+happening in the non-micro part,
+in the interactions,
+in the equilibrium
+aspects of the system.
+So it's a much more
+complicated object.
+And if you were to
+build it from the micro,
+it would be an incredibly
+complicated object.
+So one of the things we
+need to do in macroeconomics
+is take some shortcuts.
+That's what makes
+macro a lot of an art.
+It's not a science, per se.
+It's some sort of a science.
+It has the tools of a science.
+But it's a lot about
+shortcuts and tricks
+and so on to capture the
+essence of a problem that
+is very complex if
+you were to model it
+in all the gory details.
+And in this course, we're going
+to exaggerate on that sense.
+We're not going to do anything
+complicated, I promise you that.
+Some occasionally conceptually
+things will be complicated.
+But the math will
+not be complicated.
+So we're going to keep
+things very, very simple.
+I want to communicate
+the essence
+of the big macroeconomic
+relationships.
+This is not a PhD course.
+If you were to take a
+PhD course in macro,
+it would be a very
+mathy type course.
+In fact, most of the people that
+do apply in micro in our PhD
+program complain against
+macro because they find it too
+mathy and so on.
+But that's not going
+to be the case here.
+That's not what this
+course is about.
+My goal-- so if this
+is a successful course,
+it's not that you come out
+being a researcher in macro
+out of this.
+Hopefully you'll have
+a career eventually
+and do all the next steps
+that you need to do that.
+But I want you to
+be able to do is
+to read something like this--
+this is a World Economic
+Outlook.
+It's a publication
+that the IMF puts out
+every six months in which it
+tells you how it sees the world
+and where we're
+heading and so on.
+No equations there.
+Lots of tables and
+stuff like that.
+I'd like you to be able to
+read that kind of document
+very clearly.
+I would like you to be able to
+read something in say, the Wall
+Street Journal and
+read even critically,
+sometimes disagreeing
+with what is in there--
+Financial Times, The Economist.
+That's a goal of this course.
+It's not a lot more than that.
+It's just that.
+If you do a summer
+internship in Wall Street
+and you work in a macro
+hedge fund or whatever,
+this is going to be a
+good course for that.
+I mean, this is what
+traders really know.
+They don't know a
+lot more than that.
+Many traders should know that.
+They don't.
+But this does a
+level of knowledge.
+If it gets to be very
+complicated, I'm failing.
+That's not what I
+want to do here.
+The typical lecture-- again,
+this is not a lecture.
+The first lecture
+will be on Wednesday.
+The typical lecture--
+and not in the first part
+of the course because
+you're not going
+to have the tools, the
+definitions and so on to do it.
+What I want to do is spend
+5 to 10 minutes early on.
+Again, the first
+part of the course,
+we can do that because you don't
+have the knowledge to do that.
+But as you start
+building tools, I
+want to be able to talk about
+current events, something that
+is happening out there
+that I find interesting
+or something I received
+that morning, the morning
+of the lecture, which
+I find interesting.
+And if I think you already have
+the tools to begin to understand
+it, I'm going to be repetitive.
+I'm going to come back
+two, three, four times
+to the same topic.
+Hopefully you'll be more
+advanced in your knowledge
+in the later stages
+and you'll be
+able to understand
+it more and more.
+The typical lecture will
+have 5 to 10 minutes
+in which we'll talk about
+some facts, something
+that is going on.
+For example, a
+picture like this.
+This I received this morning.
+I think this came from Goldman,
+I think, Goldman Sachs.
+Yes.
+And what you have in
+that picture-- again,
+don't worry about
+details today--
+is you have two lines.
+One of them is a measure of
+wages, wage growth, compensation
+to workers.
+And another one is a
+measure of inflation.
+Again, all those
+definitions will
+come in the next
+lecture on inflation.
+So it's the rate at which--
+you must have heard
+about inflation.
+It's something,
+prices are rising.
+And what that picture shows
+you is that these two series
+are very highly correlated.
+So when wage growth is high,
+inflation tends to be high.
+And that's a big
+issue on these days.
+There's a lot of concern
+about this stuff.
+So let me try to explain
+a little bit what
+is a concern on these days.
+Again, if you don't understand
+anything, doesn't matter.
+If you don't
+understand anything I'm
+saying right now in the last
+lecture, then it matters.
+But now it doesn't matter.
+I'm just trying to give you a
+flavor of the kind of things
+we'll be talking about.
+That picture there,
+again, a variable
+that will define in the
+next lecture, not now,
+shows you the unemployment rate.
+You don't need any
+specific definition
+to know that to feel,
+at least get a sense,
+that, well, if unemployment is
+high, workers aren't very happy.
+It's not a good thing to
+have lots of unemployment.
+And what that series
+shows you the shaded areas
+are recessions in the US.
+What that series shows you is
+that typically in recessions,
+unemployment goes up.
+So that's one of the features.
+One of the main
+features of a recession
+is that unemployment is high.
+This episode here, it's
+called the Great Recession--
+as a parallel for
+the Great Depression.
+The US had the Great
+Depression in the '30s.
+This is the Great
+Recession, the biggest sort
+of recession outside of the
+Great Depression in the US.
+And it's also known as the
+Global Financial Crisis
+because this was a recession
+all around the world.
+And what you can see is that
+unemployment went very high.
+That's a very feature,
+a telltale sign
+of a big recession.
+And then it took a long time.
+This was in recovering.
+COVID was a massive
+shock to the labor market
+So not surprisingly,
+unemployment, the unemployment
+rate spike there.
+But then it also
+recover, a lot faster
+than it recovered from that.
+And today we have
+unemployment rates that
+are at historically low levels.
+And that's a big issue.
+The rate of
+unemployment in the US
+is at historically low levels--
+way below what is normal.
+Forget recessions, obviously
+way below what is it
+happens in recessions, but
+even way below what is normal,
+what happens during
+normal times.
+Closely related to
+that is wage growth.
+I have just one measure of wages
+there, is a series of wage that
+is particularly--
+what I'm about to say
+is particularly sharp,
+which is the wages of in the
+accommodation and food service
+sectors.
+So wages have been rising very
+steadily and very fast recently
+everywhere,
+particularly in sectors
+like this, where we
+have some problems which
+we call labor supply.
+But I'll get back to that.
+So those are two facts.
+We have unemployment
+at extremely low levels
+and we have wage growth
+at a very fast pace.
+Now, that sounds wonderful, no?
+I mean, what else do you want,
+an economy which is few people
+unemployed and wages
+are growing a lot.
+I mean, if this was micro,
+this would be fantastic.
+OK, look the guy is employed
+and he's getting a high wage.
+This is great.
+Well, not so fast for macro.
+Not so fast because I already
+showed you in the first picture
+that I showed you,
+[INAUDIBLE] there
+is a connection between
+wage growth and inflation.
+And that's what
+we're experiencing.
+The normal level of inflation
+for an economy like the US
+is around 2%.
+That's normal.
+That's what central banks
+target in an economy like the US
+in the Euro area.
+Japan has been dreaming with 2%,
+but hasn't been able for decades
+to get it.
+Although now they are.
+But they weren't, for a couple
+of decades, to get to 2%.
+But that's about-- and we will
+discuss later in the course
+why 2% is about right for
+economies of the size of the US
+and so on.
+Obviously in recessions,
+these things can go low.
+And that's why in
+the COVID recessions
+inflation went to
+zero, essentially.
+But then it began to pick up.
+And it's now at levels, which
+are unheard of in the US since
+the '80s.
+So depending on the particular
+measure you use of inflation,
+it's around 6.5% to 8%.
+That's a level of
+inflation we have,
+which is way, way above
+what is considered
+a normal or reasonable
+target for the central banks
+for inflation.
+So that's a problem.
+We have had some good news
+recently in that inflation
+clearly peaked already--
+again, definition of inflation,
+formal definition of inflation
+happens in the next lecture.
+But it already peaked.
+And it's declining.
+But it's still a very,
+very high levels.
+And that's a problem.
+That's a big
+macroeconomic problem.
+And one of the things we want
+to understand in this course
+is, well, what to do about it.
+How do you deal with that?
+What do central banks need to
+do in order to deal with that?
+Now, I've been
+talking about the US.
+But this is not
+specific to the US.
+This episode this
+recovery from COVID
+is incredibly common across
+different regions of the world.
+I mean, you see it everywhere
+with a few exceptions.
+And I'm going to talk about one
+major exception in a minute.
+But it's widespread.
+It's a widespread phenomenon
+that we had high unemployment.
+Then we had sort of very high--
+well, I haven't told
+you that part yet.
+But then we had sort
+of low inflation.
+Then inflation
+picked up enormously.
+And now we're all worried
+about these very high levels
+of inflation.
+In fact, if you look
+at what happened
+between the Great Recession
+and the COVID recession,
+it was pretty normal
+to have 70% to 80%
+of the economies in the
+world having inflation
+levels at or below 2%.
+So that's a norm.
+If they throw you
+into a country,
+they drop you into a country,
+the normal thing would be well,
+it's about 2%.
+That's a level of inflation.
+Obviously, if I dropped
+you in Argentina,
+you're going to find a much
+bigger number, you know,
+10,000%.
+But the bulk of the countries
+were around 2% or so.
+Today you don't find any
+country with inflation below 2%.
+Not even Japan, for years
+we're in deflation and trying
+to get sort of above zero.
+That's all they wanted.
+Not even in Japan you have
+inflation below 2% today.
+So this thing I showed you.
+And for more or less
+the same reasons,
+it's happening everywhere.
+Not exactly the same factors.
+It's the same
+episode, for example,
+with differences depending on
+the structure of the economy
+or in additional shocks.
+In Europe, for example they
+had very high inflation.
+But the problem is not--
+the origin of the problem,
+the bulk of the problem
+is the same as in the US.
+But at the margin
+they are different.
+In Europe, the big
+driver of inflation,
+the big recent
+driver of inflation,
+is unlike the US, which is
+aggregate demand, a concept
+you'll understand later.
+It's essentially
+the war in Ukraine.
+That has increased the price of
+energy and the price of energy
+has led to lots of inflation.
+So there are different reasons.
+But all of them are sort
+of different reasons
+that you add on top of what
+is a common story, which
+is that we overheated coming
+out of the COVID episode
+and now we're
+struggling with that.
+Now, the main tool--
+and we're going
+to talk a lot about
+in this course--
+the main tool that central banks
+have to deal with inflation
+is the interest rate.
+So for reasons you'll
+understand later,
+although you may have intuition
+about some of those now,
+obviously when the central
+bank lowers the interest rates,
+then that helps the
+economy to expand.
+And when it increases interest
+rate, then it does the opposite.
+Rising Interest rate makes
+mortgages more expensive,
+make everything more expensive
+so people tend to consume less.
+Firms tend to invest
+less and so on
+because it's more expensive
+to invest, to borrow, to do
+something.
+And there you see it.
+I mean, this was the level of
+the interest rate in the US
+before COVID.
+When COVID came, boom.
+They brought it
+all the way down.
+It happens that you can
+not bring the interest
+rate a lot lower than zero.
+That's the reason it
+stayed close to zero.
+We're going to talk
+about that later on.
+But then eventually
+they realized
+that we're behind the curve.
+Inflation had picked up a
+lot and the central banks
+were behind the curve.
+So they began to hike
+rates in a hurry.
+And that's what we have been
+experiencing for the last year
+or so, very fast increase
+in the interest rate.
+Now, this is, of course,
+about macroeconomics.
+But I happen to do
+a lot of research
+between macro and finance.
+So I'm going to put a little bit
+more of a component of finance
+into--
+I think I'm going
+to do most of that
+in the last third of the course.
+But monetary policy has lots
+of implications for finance,
+for equity, values,
+for the stock market,
+and stuff like that.
+So what you see here, this
+line here, is the SPX 500.
+It's the main index of
+equity in the US of shares.
+There are several indices--
+NASDAQ, S&P, Dow, and so on.
+This is the main index,
+the most comprehensive,
+the one that takes
+the largest companies,
+and so on and so forth.
+And what you can see
+what happens here
+is that when COVID happened,
+the surprise that we had,
+really a pandemia, then
+the stock market crash,
+declined like 30% or something
+like that at the time.
+That's interesting facets.
+I mean, that's one
+characteristic of equity
+that I like a lot.
+Other risky assets, as well, but
+they anticipate what happens.
+What happened there
+is the stock market,
+the shareholders, realized
+that something big
+was-- negative and big-- was
+happening in front of us.
+So it was time to sell.
+And so the equity
+market collapsed.
+What happens next is
+even more interesting
+for a macro economist,
+which is this big boom here.
+There's an enormous boom.
+The economy here still
+was at levels of activity
+below what it had before COVID.
+But the stock market, the
+value in the stock market
+had way exceeded the level
+we had before the pandemic.
+And the main driver of that,
+I've shown that in some papers,
+the main driver of that is not--
+I mean people tell lots
+of stories of Amazon
+and so on, Tesla,
+bla, blah, blah.
+If you look at the aggregate,
+the main reason for that rise
+was monetary policy.
+You can explain all that
+increase in the equity value
+in the US of the index--
+not the individual shares,
+of the index--
+by the effect of interest rates.
+So monetary policy
+plays a big role.
+If you care about
+finance, well, it
+plays a huge role in
+the value of assets.
+When monetary policy
+is very loose,
+that tends to increase
+the value of assets.
+And that's one of the
+mechanisms the central banks
+use to expand aggregate
+demand when they want
+to expand aggregate demand.
+They want people to feel--
+you are in a recession,
+you want people to feel richer
+so they spend more and so on
+and so forth.
+What happened here?
+This decline, you can
+also explain it fully
+with the hike in interest rate.
+Remember, I showed you that
+the interest rate began
+to rise very rapidly here.
+Well, last year the
+equity market in the US
+and most major equity
+markets around the world
+declined by 20% or more.
+You can explain all
+that decline simply
+by increasing the interest rate.
+So that's another thing
+we need to understand
+is why is it that the interest--
+why is the interest rate
+matter so much for
+something like equity?
+So when a value assets,
+and when I see what
+is the effect of
+the interest rate,
+and then we're going
+to think about, well,
+why would the central bank worry
+or not worry about these things,
+and so on and so forth.
+But the truth is that financial
+markets and the central banks
+interact all the time.
+I mean, if you are into
+Wall Street type thing,
+you are going to be watching
+every day, every time
+that the monetary minutes.
+The minutes of the central
+banks are released,
+you're going to be watching
+because it has a big implication
+for the value of your equity.
+Actually, something very
+interesting of this nature
+happened last week.
+On Friday, last
+Friday, there was
+a release of payroll numbers.
+So it's an employment
+index, employment numbers.
+And people expected the
+payroll to increase,
+so to add nonfarm payroll--
+we'll talk about
+these things later--
+by about 190,000 workers.
+At 8:30-- well and this,
+you're seeing here,
+is the behavior of the same
+index I showed you before,
+but the futures, so things you
+can trade before the market
+actually opens.
+The market in the
+US opens at 9:30 AM.
+But you can trade
+futures since Asia times.
+Anyway, so this is the path.
+It's all very quiet, tranquil.
+Everyone is waiting the release
+of this news at 8:30 AM.
+At 8:30 AM, great news
+for the labor market.
+The actual change in the
+payroll was not 190k.
+It was over a 500,000k.
+So enormous addition
+of jobs to the economy.
+And look what happens
+to the equity market.
+Boom.
+It imploded immediately.
+So this is wonderful news now
+for the economy-- lots of jobs.
+The equity market imploded
+as a result of that.
+Why do you think that happened?
+I've already given
+you a little bit
+of the ingredients
+for why, for an answer
+in the previous slides?
+The reason I'm showing you
+this is because in 15 minutes,
+it summarizes all that I was
+talking about in the previous 30
+minutes.
+Why do you think that happened?
+This is wonderful news.
+Why the stock market should
+crash like 2% from top
+to bottom as a result of that?
+AUDIENCE: There's
+a lot more labor
+because that gives a lot
+more supply of that thing,
+and thus, it decreases price
+because of high supply.
+RICARDO J. CABALLERO: No, but--
+OK, that's an
+interesting explanation.
+It's not the one I have in mind.
+The explanation says, look, that
+means firms hire lots of people.
+So the price, that
+means they're going
+to be lots of supply of whatever
+goods they're producing.
+The price of those goods
+is going to decline.
+And that's going to
+be bad for profits.
+That's a story you had in mind.
+Maybe there's some of that.
+But I'm willing to bet that
+it's not the main thing.
+So the only clue I give
+you is that I already
+talk about these things
+five minutes ago.
+AUDIENCE: Employment
+is very closely related
+to inflation rates.
+[INAUDIBLE] up to 0.81.
+So this could be a
+result of expectations
+of continued high
+inflation rates.
+RICARDO J. CABALLERO:
+OK, you're very close.
+One step more.
+Yes.
+That means that--
+AUDIENCE: [INAUDIBLE]
+RICARDO J. CABALLERO:
+OK, there you are.
+So what happens?
+The shareholders wouldn't
+have done anything
+if they thought that
+the Fed would not
+be able to see this data.
+But they know that the
+Fed also sees this data
+and say, whoa,
+these guys are going
+to be worried because
+the economy is
+going to keep overheating.
+They're going to
+have to hike interest
+rates even more in order
+to cool down this economy.
+I already showed you that what
+happens in the labor market
+is very connected to what
+happens with inflation.
+The central bank knows that.
+And now we get this big surprise
+that means they're not really
+being able to-- they're
+not being successful
+at really slowing down one of
+the main drivers of inflation.
+And so financial markets
+are very forward looking.
+They say, whoa, this is coming.
+This only means that
+financial markets
+were betting that
+the Fed was going
+to begin to cut interest rates
+in four months more or so.
+And if you look at what
+the forwards did there,
+what the market--
+you can extract what
+the market thinks.
+Right after this, it got
+immediately pushed out
+to the end of the year.
+So it's precise.
+It's the anticipation
+that the central bank
+will have to do something.
+And so I thought it
+was very interesting
+for that point of view.
+Recessions-- well, look.
+And these are all
+very good news.
+But everyone knows that the Fed
+needs to cool off the economy.
+So despite the fact that
+we're getting good news now,
+people expect, the
+majority of people
+expect a recession in
+the US for this year.
+I'm not going to explain
+this bar graph here.
+But these are forecasts.
+These are professional
+forecasters.
+And more than half of them--
+so the median of them thinks
+that there is a 65% probability
+that there is a recession
+in the US this year.
+And we're going to
+talk a lot about this
+and probably we're going to
+be getting news about this
+while we're taking the course.
+So this is going to be
+a picture that we're
+going to discuss extensively.
+And the reason for the
+recession is nothing else than--
+The reason you ask this
+forecast, why do you
+think we may have a recession?
+Well, because the Fed is
+trying to fight inflation.
+It's going to keep
+hiking interest rates.
+And at some point, it
+may break something.
+And that's the reason.
+But all these
+things you are going
+to be able to understand
+very clearly through models.
+The last thing I want to
+say before telling you
+a little bit the
+rules of the game
+is that I said before that the
+story I told you about the US
+is more or less what is
+happening all around.
+I was in Chile a month ago.
+I'm Chilean.
+And they have the same story.
+They start hiking interest rates
+a little earlier because they
+had more inflation than the US.
+But they're going
+through the same cycle.
+There's one big economy,
+the second largest economy
+in the world, that has not been
+part of this, which is China.
+China was very aggressive
+in the COVID policy,
+so zero COVID policy.
+So they really slowed
+down their economy.
+That's a consequence.
+They didn't want to do that.
+But as a result of a
+very strict COVID policy,
+they essentially shut down
+big parts of the economy
+for a long time.
+That, by the way, had big
+impact in the rest of the world,
+through the network
+of production,
+the chains of production
+and stuff like that.
+That was inflationary in itself.
+That part is dissipating.
+But for their own economy,
+for the domestic economy,
+that really slowed down China,
+an economy that grew typically
+at 5 and 1/2 to 6%, a
+lot higher 15 years ago.
+We're going to try to
+understand why later on.
+But last year, I don't
+know, it was 3% or less.
+Numbers in China were
+difficult to figure it out.
+They're not equally
+transparent to other numbers.
+But in any event,
+it's very clear
+that China slowed down a lot.
+And that policy
+recently changed.
+The zero-COVID policy changed.
+And so there is
+great expectation
+that now there is going
+to be a big boom in China
+because they are lagging behind.
+I mean, in the US when
+COVID began to dissipate,
+we got a huge boost to growth.
+And that's part of the reason
+we got all this inflation is
+because we had lots of growth
+coming out of the recession that
+happened in COVID.
+And more or less the same
+is expected in China.
+And one of the big reasons
+behind those big bounce backs
+is when people are desperate.
+They want to spend on something.
+They want to go to restaurants
+and cinemas and stuff like that.
+And the other one is they
+have the means to do it
+because they couldn't spend
+on anything for a while.
+And so they can travel
+and stuff like that.
+So people expect-- and this
+is a very large economy
+that suddenly sort of wakes up.
+No, that's a big
+thing for China.
+But it's also a big
+thing for the world.
+What happens in China
+doesn't stay in China.
+It's a big giant.
+So it moves.
+And for some countries
+it's very, very important.
+And this picture
+here shows you what
+is the impact on
+different regions
+of the world on the growth
+rate and different regions
+of the world of an increase
+by 1% in the rate of growth
+of China.
+Obviously all the
+neighbors benefit a lot.
+But Latin America
+benefits even more.
+Why is that?
+Well, because Latin
+America produces
+lots of commodities
+and China consumes
+lots of commodities when it's
+building and stuff like that.
+And so that's the reason
+big impact on Latin America.
+So this is a piece of good
+news for the world in the sense
+that activity will go up.
+But it's good news on average.
+But it may be too much
+of a good thing, as well.
+Why?
+Because many economists
+are going through what
+we described before.
+They're trying to
+bring down inflation.
+They don't want more demand.
+They want less for
+now because we're
+going to understand that
+connection later on how
+demand connects to inflation.
+But you want less.
+And now you're going to get this
+impulse from China, which is
+going to fuel more inflation.
+It's OK for China because they
+don't have an inflation problem.
+But it may be a problem
+for many of the countries
+that are trying to undo the
+inflationary consequences
+of the previous expansion, the
+expansion that followed COVID.
+OK, anyways.
+But this is the kind of things
+we're going to be talking about.
+I said the course is
+not going to be mathy,
+but it's going to
+be all about models.
+The next lecture is
+the most boring lecture
+of the course I tell you
+in advance because it's
+definitions.
+I need to go through
+the definitions.
+At least I get bored.
+But the rest, there's
+always little models
+but it's simple models.
+OK, but the models
+are going to try
+to explain the kind of
+things I discussed today.
+So that's what this
+course is about.
+Ideally, if we're
+successful, you're
+going to be able
+to read something
+like the World Economic
+Outlook, which will have
+lots of pictures like this.
+And you're going to be able to
+write a little equation very
+simple on the side
+to try to understand
+what is going on there, and to
+catch the mistakes, as well.
+OK, WEO has less mistakes
+than the Wall Street Journal,
+but you will catch
+mistakes, you'll see,
+you'll be proud of those.

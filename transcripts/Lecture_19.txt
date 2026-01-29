@@ -1,0 +1,1632 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO CABALIERO:
+So now we're going
+to go back to the first part
+of the course in the sense
+that we're going to go
+back to the short term.
+So we're going to essentially do
+the IS-LM model again, but now
+in the context of
+an open economy.
+But before I get
+into that first model
+of this part of
+the course, I want
+to finish the previous lecture
+in which I was introducing
+the concept of openness
+and the key relative prices
+in open economy.
+And we stopped after
+discussing this and says,
+well, one of the things that
+opening an economy means
+is that now you can buy
+goods, both at home or abroad.
+So you need to be able
+to compare these two
+different kinds of goods and
+controlling for quality and all
+these differences and all that.
+At the end of the day,
+you want some sense
+of relative prices,
+which good is more
+expensive than the other one.
+And we said for that, we
+use what is called the "real
+exchange,"
+And we define the real
+exchange rate as well,
+essentially it's
+the relative prices
+of goods at home versus abroad.
+But we have to put them
+in a common currency.
+That's the reason we
+couldn't just directly
+compare the prices at home
+versus the prices abroad.
+We have to convert
+the prices at home
+to the unit of account
+of the other country.
+And then we could
+compare these two things.
+And that's what we call
+the real exchange rate.
+When that thing
+goes up, we call--
+that's a real appreciation
+of the local currency,
+of the local economy.
+And that means that the goods--
+domestic goods--
+become more expensive
+relative to international goods.
+When that epsilon goes
+down, then we call,
+we say the real exchange
+rate has depreciated.
+And that means that the domestic
+goods become cheaper relative
+to foreign goods.
+So as a key concept in what it
+means when you open an economy,
+you need to have this price
+is very important to decide
+whether you're going to, again,
+whether you and foreigners are
+going to buy goods
+abroad or domestically.
+The second concept of
+openness that we're
+going to explore in this course
+is openness in capital account,
+in financial market.
+And openness in financial market
+means something very similar,
+which is now you when
+you have a to invest--
+financially invest, not
+physical investment,
+not real investment--
+well, you can
+decide whether to invest
+in domestic assets
+or foreign assets.
+We're going in this--
+later on, we're going
+to talk about equity.
+But for now, bonds.
+So suppose you have a domestic
+bond and a foreign bond.
+Well, you can decide whether
+to invest in the domestic bond
+or in the foreign bond.
+Now to make that
+comparison, it's
+not enough to have the current
+exchange rate because it doesn't
+mean much if I tell you
+that the British bond is
+more expensive than
+a domestic $1 bond.
+What you really need in order
+to decide where to invest
+is some sense of what is
+expected relative return
+of these two things.
+Do I expect to make more
+money in the dollar bond
+or in the pound bond?
+And that's the comparison
+I need to be able to make.
+There are also
+risk considerations
+and so on that we're not going
+to discuss in this course.
+But the very basic comparison
+is not the value of things
+when you're talking
+about financial,
+but what is the
+return you expect
+to get in one or the other.
+So this is what you need to do.
+Suppose you have a dollar to
+invest and you have two options.
+One is you buy $1 bond.
+The dollar bond gives you
+an interest rate of it.
+So you know that, say, 5%
+nowadays, more or less,
+that if you have a dollar today
+and you invest it in a dollar
+bond, you're going to get next
+period, you're going to get a--
+how much is it, $100?
+So suppose you have
+$1, then you're
+going to get a $0.05 on that
+dollar at the end of the year.
+And so that's what you get if
+you invest in the dollar bond.
+Now, you're giving now
+an option because we
+are open to financial
+markets, to also
+invest in a British bond,
+in a pound bond that is
+as safe as the US bonds, say.
+And so we're going to
+call that the UK bond.
+And I know, for example,
+that the UK bond is
+offering a 10% interest rate.
+So suppose that I
+think i star is 10%.
+Then I asked you
+the question, well,
+that does mean that
+obviously, since you
+want to compare returns that you
+should be investing in the pound
+bond, in the UK bond
+rather than the US bond.
+So suppose this is
+5%, and that's 10%.
+And I'll tell you, where do
+you want to invest your money?
+Do you want to invest it in
+the US bond or in the UK bond?
+What is your answer?
+I told you, you know,
+they pay you 10%,
+the other one pays you 5%.
+AUDIENCE: [INAUDIBLE] as well?
+RICARDO CABALIERO: Exactly.
+Why do I need to know that?
+AUDIENCE: [INAUDIBLE]
+RICARDO CABALIERO: Excellent.
+So this is not enough
+information for me,
+because it may happen that
+what I get in terms of return,
+I lose on the currency
+exposure, for example.
+So let's see how
+that can happen.
+So how would I do this?
+I have $1 of wealth
+that I want to invest.
+And suppose I want to
+go the UK bond route.
+So the first thing
+I have to do is
+I have to convert the
+dollar into pounds today
+to buy my dollar, which is my UK
+bond, which will be in pounds.
+So the first thing I
+have to use is suppose
+that I get a 0.8
+pounds per dollar,
+then I can invest 0.8 pounds
+in, UK bonds with my dollar.
+That will give me 0.8 times
+1.1, plus i star tomorrow,
+but what are the units of this?
+What do I get there?
+Next year, what do
+I get next year?
+I invested 0.8 pounds and I got
+0.8 times 1.1, say, pounds back.
+I just told you.
+So what I get next
+year is pounds.
+I cannot compare a
+return in dollars,
+which this was $1.05
+with a return on pounds.
+I need to be able to convert
+those pounds in the future
+to dollars in the future.
+And the best I can
+do here, we're not
+going to open four world
+markets or anything, is well,
+I can-- that means I have to
+divide by the exchange rate
+next year to convert
+from pounds to dollars.
+I don't the exchange rate of
+next year, so the best I can do
+is use expected exchange rate.
+So I divide this by the
+expected exchange rate next year
+and then I get--
+thus, my return in dollars of
+having gone the UK bond route.
+And so what I need
+to compare in order
+to decide where do I
+want to put my money
+is that return here
+versus that one there.
+That's in the same
+units of account
+is I invest the same today,
+$1, and I get dollars tomorrow.
+So now I can compare.
+And as you correctly
+pointed out,
+this thing here
+therefore requires
+that you think about
+what the exchange
+rate is likely to be tomorrow.
+So, for example,
+in my example here,
+when I said suppose
+i is 5% and i
+star, the interest rate
+in the UK bond, is 10%.
+Is it obvious that I should
+invest in the UK bond?
+And the answer is
+no, not so fast.
+Because I know I'm going
+to make 5% more in terms
+of return of the bond.
+But then when I convert
+it back to dollars,
+I may lose all that gain because
+the pound has depreciated
+vis-a-vis the dollar.
+In particular, is the
+pound, I expect the pound
+to depreciate
+relative to the dollar
+or if I expect the dollar to
+appreciate relative to the pound
+by 5%, then I'm indifferent.
+Yeah.
+In one case, I'll get--
+because if I go
+the US bond route,
+I get 5% next year from
+this year to the next.
+If I go to the UK
+bond route, I get 10%
+in return on the bond
+minus 5% in the capital
+loss due to the
+appreciation of the dollar.
+So net I get 5% as well.
+That's what appears here.
+That's what I've done here.
+So what I did here is says if
+the markets are very integrated
+and the function fairly
+well, those two returns
+should be more or less
+similar in equilibrium,
+because prices are
+going to adjust,
+exchanges are going
+to adjust and so on.
+So there's two ways of investing
+are more or less the same.
+And I'm going to take
+the extreme assumption
+that they are exactly the
+same here so that this holds.
+That in equilibrium, we have
+to find that equilibrium,
+these two things are
+going to be equal.
+That's called-- and it's
+a very important concept
+in international finance--
+the "uncovered interest
+parity condition."
+Don't ask me why it's uncovered,
+but it's the interest parity
+condition.
+And again, that
+one in particular
+is called the uncovered
+interest parity condition.
+If you do a little bit of--
+and this just tells you
+that in equilibrium you have to
+be indifferent between investing
+in one bond or the other.
+If you do a little
+algebra here of the kind
+that we have done in
+the past, like 1 plus i
+is i is approximately equal to
+1 over 1 minus i or this one,
+1 plus i star is approximately
+equal to 1 over 1 minus i star,
+and so on.
+That's a kind of approximation,
+Taylor expansion,
+when these terms are small.
+Then you can write this
+as this expression here.
+And this says exactly
+what I just said in words.
+It says, look, if the
+interest rate in the US bond
+is lower than the UK bond's
+interest rate, that's
+OK in the sense that
+we can be indifferent
+when we do those things as
+long as you're expecting
+an appreciation of the dollar.
+That is equivalent to the
+difference in these two interest
+rates.
+So that's what's called the
+interest parity condition.
+The two, in
+equilibrium, the two are
+going to be the
+same once you adjust
+for the expected appreciation
+or depreciation of the currency.
+So in my example before,
+we had this interest rate
+of 5%, that was 10%.
+Then the only way that that's
+going to be in equilibrium
+is that if we also expect the
+dollar to appreciate by 5%.
+OK, so dollar appreciation,
+remember, is this guy going up.
+So if this is 5%, then
+it's fine to have 5% here,
+10% there, because they
+both gave me the same return
+in expectation, at least.
+If I do it in dollars, I
+say I'm going to get 5%
+either way investing in American
+dollars, or through the UK pound
+because in the UK bond and
+the bond, I'm going to get 10%
+and then lose 5%
+because of the currency.
+Or I can do the
+comparison in pounds
+and then I say, well, I'm going
+to get 10% in pounds directly.
+And if I go the US way,
+I'm going to get 5%,
+but I'm going to get also 5%
+in the currency appreciation.
+And that gives me 10%.
+Key concept.
+Anyways, so these
+are the two senses
+of opening that we can have,
+opening in goods market,
+opening in financial markets.
+And the key relative
+prices and things
+that are going to
+equilibrate both markets.
+And one is the real exchange
+rate in the goods market,
+and this one is the uncovered
+interest parity condition.
+I want to shut down this part
+of openness for a lecture or so,
+and I'm going to focus now on
+the goods market opening only.
+And then I'm going
+to come back to this.
+But I just wanted to show you
+the two senses of opening.
+So now let's forget a little
+bit about financial opening
+and let's just focus
+on opening the goods
+markets to international trade.
+So that means we're
+going to have now imports
+and exports floating around.
+So this is, we'll go back
+again to our IS-LM model to--
+actually, we're going
+to go back to our goods
+market only model, the
+very first model we
+saw in this course.
+But we're going to bring
+back a couple of terms
+that we shut down there.
+Now something that will
+be-- that we didn't
+need to worry about,
+but what we're
+going to have to worry
+about here a lot,
+is that there is a
+distinction between the demand
+for domestic goods and the
+domestic demand for goods.
+This can be tricky.
+But there is a
+difference between demand
+for domestic goods versus the
+domestic demand for goods.
+This is what residents say, US
+residents, households firms,
+government demand
+in terms of goods.
+This is how those same agents,
+plus the rest of the world,
+demand of
+domestically-produced goods.
+That's the distinction.
+When the economy was
+closed, they were the same,
+but now they're not.
+So the domestic demand
+remains the same as before.
+Domestic demand is whatever
+the households demand--
+consumption--
+plus firms investment, plus
+government expenditure.
+That's the same we
+had in closed economy.
+This hasn't changed.
+The domestic demand is the same.
+It's a function of the
+same behavioral functions
+that we had there.
+And the only behavioral
+function that was-- the only two
+that we had was the consumption
+function and the investment
+function, remember?
+So that remains the same.
+Nothing has changed.
+What does change is that
+this is no longer what
+determines the demand for
+domestically-produced goods.
+And remember, that's very
+key in the short run,
+because this is a Keynesian
+model with very sticky prices.
+Demand determines
+output activity.
+So if we're going to determine
+domestic production from demand,
+we better be very
+careful about what
+is the demand for
+domestically-produced goods.
+This is demand for both
+domestically-produced goods
+and foreign-produced goods.
+Some of those demands will
+be satisfied by imports.
+That's not demand for
+domestic production,
+and therefore we will not be
+determining equilibrium output
+domestically.
+So this is going to be
+a new concept, which
+is demand for domestic goods.
+And demand for domestic
+goods is the same as demand--
+as domestic demand
+for goods that--
+the thing we have in
+a closed economy--
+minus that part of demand
+that is satisfied by imports.
+So minus imports and
+divided by the exchange rate
+because imports may
+be priced in euros,
+say, and I have to
+convert them into dollars.
+That's the reason.
+It's very, very changing.
+But don't worry
+about this for now.
+So I have to subtract
+from that imports.
+Because that's demand by
+residents, US residents.
+That doesn't go to demand for
+domestically-produced goods.
+Is demand for BMW, whatever.
+So that's not going to affect
+the demand for Ford cars
+and therefore, will not affect
+the production of Ford cars
+because it's not
+demand for that.
+But against that, we
+also have a component
+of demand for
+domestically-produced goods
+that we didn't have
+before, which is what
+foreigners demand from the US.
+Part of the demand that US
+would-- probably not Ford a lot,
+at least.
+Part of the demand that
+US goods perceived--
+US production perceived--
+is not due to residents,
+it's due to foreigners that
+are importing US goods.
+Apple sells a lot of phones
+to the rest of the world.
+That's determined
+by foreign demand
+for domestically-produced goods.
+That's what I call X, exports.
+So this is our new
+key concept here,
+Z. We're just the same
+as we used to have.
+But now we need to
+understand two more terms--
+the export, and that's going to
+be a function, and the imports,
+which also will be a function.
+So let me introduce that.
+So exports, we're going to
+assume to simplify things,
+but it's a sensible
+behavioral assumption.
+We're going to assume
+that exports are
+increasing in foreign output.
+That's what Y star means.
+And it makes sense.
+It's the rest of the world.
+I mean, emerging market, the
+commodity-producing economies
+today are very excited
+about the recovery in China.
+China is reopening so it's
+a big boom domestically.
+That's great news for the
+emerging markets, commodity
+producers, because that will
+increase the demand from China
+for goods produced
+around the world,
+in particular in
+commodity-producing economies.
+So that's what
+this is capturing.
+It's an important trading
+partners' output goes up,
+income goes up,
+then they're going
+to consume everything,
+their domestic goods,
+but they also going to
+consume the goods they import,
+which are our exports.
+So that's the reason
+this is increasing.
+Exports are decreasing on
+the real exchange rate.
+That's a sensible assumption.
+Why do you think it's
+a sensible assumption?
+So why do you think
+that exports--
+US exports-- are decreasing
+on the real exchange rate?
+[INAUDIBLE]?
+AUDIENCE: Major [INAUDIBLE]
+for foreign customers to buy?
+RICARDO CABALIERO: Exactly.
+Because then US goods
+become more expensive
+relative to foreign goods.
+That's where the real
+exchange rate appreciation is.
+And therefore there is less
+demand for domestically, for US
+goods.
+That's the reason we have that.
+What about imports?
+Well, imports are
+the dual of that,
+meaning of the export function.
+Is actually, our imports
+is what the other countries
+sees as their export.
+So our imports will tend to go
+up when domestic output goes up,
+because if domestic
+income goes up,
+domestic consumers will both
+consume more goods at home,
+but they will also
+consume more goods abroad.
+They're going to scale
+up their consumption
+and they're going to
+consume from both places.
+So imports is an increasing
+function of domestic output.
+What about the real
+exchange rate here?
+Well, imports are an increasing
+function of the real exchange
+rate.
+Why is that?
+It's the same
+argument of exports,
+but seen from the other side.
+Remember when-- why do we use
+this epsilon for to decide where
+do we want to buy our goods?
+If epsilon goes up, it means
+our goods become more expensive.
+If our goods become more
+expensive for any given
+level of domestic
+consumption, where do you
+think you'll buy your goods?
+You'll buy more abroad,
+because they're cheaper.
+So then that's an increasing
+function of epsilon.
+Good.
+Any question about that?
+Because these are the only
+sort of new behavioral
+equations that we're going
+to have for this model.
+No?
+And what I'm going
+to do next is I'm
+going to start from the same
+model we had in, I don't know,
+lecture 2 or 3.
+And I'm going to add these
+terms and see how things change.
+Good?
+Good.
+So let's do that.
+So remember, I think the
+first curve that we--
+the very first diagram we had
+in this class was this one.
+This was just a demand for
+domestic demand, sorry,
+which was just C plus I plus G.
+It's an increasing function here
+because consumption
+and investment are
+increasing function of output.
+And then in closed economy, what
+we did is we had a 45-degree
+line here and we
+said in equilibrium,
+output equal to demand.
+And therefore, the intersection
+of this curve with the 45-degree
+line gave us our
+equilibrium output.
+That's what we had.
+We need to change
+things a little bit.
+We're going to put the 45-degree
+line in the next slide.
+But we first need to--
+this is not the relevant demand
+for domestically-produced goods.
+So we need to go from
+here to the demand that
+is relevant for
+domestic producers.
+So the first thing we need to do
+is we need to subtract imports.
+Because part of that demand
+will go for foreign goods.
+And so that's what
+I'm doing here.
+To this domestic
+demand, I'm subtracting,
+the part that is going
+to foreign goods,
+not domestic goods,
+because this is not
+demand for
+domestically-produced goods.
+So obviously, this
+is a shift down,
+but there is also a rotation.
+Why is that?
+You see?
+Obviously, we're subtracting
+imports from domestic demand,
+so that moves us down here.
+But it also is not
+a parallel shift.
+This curve becomes flatter.
+Why is that?
+In other words, the decline
+is larger for the difference.
+The gap is larger for
+high levels of income
+than for low levels
+of income, or output.
+Why is that?
+AUDIENCE: [INAUDIBLE]
+dependent on output?
+RICARDO CABALIERO: Exactly.
+It's because there is a positive
+marginal propensity to import.
+And so you'll import more
+if the output is higher.
+And that's the reason
+we have this curve.
+Notice that this
+also means, well,
+let me get to the end of
+that and of these diagrams
+and then I'll get back to this.
+So one step more.
+Still, this is not what I need
+to integrate with my 45-degree
+line because this is not the
+demand that domestic producers
+will face.
+We still have to add the demand
+that comes from foreigners,
+and that's exports.
+So to this AA function,
+I have to add exports.
+And exports is a parallel
+shift because it didn't
+depend on domestic output.
+It depends on foreign output.
+So foreign output is going to
+be a parameter in this curve,
+but it's not--
+it doesn't change the
+slope of that curve.
+So here we went
+from the DD curve
+to the new curve, which is
+the relevant for equilibrium
+domestic equilibrium output,
+which is this ZZ curve.
+OK?
+Now notice two things, or
+one thing about this ZZ curve
+relative to DD.
+What is the most
+obvious difference
+between these two curves?
+No, this is the one we use in
+lecture 2 or 3, I don't know.
+And then what we did
+yesterday and all that.
+And this is the one we're
+going to use now, the ZZ.
+It's flatter.
+Yeah, why is that?
+Flatter is low.
+Slope will mean
+lower multiplier.
+Why is the multiplier lower
+then, in open economy?
+AUDIENCE: Because part of the
+demand falls on foreign goods.
+RICARDO CABALIERO: Exactly.
+Because part of the-- remember
+the way we got to the multiplier
+is that income went
+up, consumption
+went up, that increased income
+again and so on and so forth.
+But if part of that
+increase in consumption
+is going to foreign
+goods, that's
+not reflected in demand for
+domestically-produced goods,
+and therefore there is
+less of a multiplier.
+And that's one characteristic
+of an open economy,
+is that the multipliers
+are smaller.
+The other distinction is that--
+you don't see it here, but
+we have more parameters.
+In particular, a very
+important parameter
+here is Y star, Y star.
+We didn't worry about what
+was the income in Germany When
+we look at the IS-LM,
+the closed economy model.
+Now we worry about what the
+income of our main trading
+partners is.
+There is an extra
+parameter there.
+OK, good.
+Now we still haven't
+found equilibrium output,
+but there is a point that
+is already interesting here,
+which is this one.
+What do I know of this point?
+Well, in this point,
+domestic demand for goods
+is the same as the demand for
+domestically-produced goods,
+for domestic goods.
+And that also means that
+the trade balance is zero,
+meaning at that point, exports
+is exactly equal to imports.
+So net exports are equal to 0.
+OK, so that's what I'm
+plotting here, actually.
+This is the net export function.
+The net export
+function is simply
+that minus that divided
+by the exchange rate.
+So that's what
+I'm plotting here.
+Is a decreasing
+function of output.
+Why is that?
+Why is this decreasing
+in domestic output?
+Remember, this is
+export minus import
+divided by the exchange rate.
+But we're not moving the
+exchange rate for now.
+Why is this decreasing?
+That means here,
+exports exceed imports,
+here, imports exceed exports.
+So here you have
+a trade deficit.
+Here you have a trade surplus.
+Why is that?
+Why is that the shape?
+Why is it downward sloping?
+AUDIENCE: Because import grows
+when outgrossed by exports.
+RICARDO CABALIERO: Exactly.
+Exports is not a function
+of domestic output.
+It's a function
+of foreign output,
+while imports is an increasing
+function of domestic output,
+and net export is
+exports minus imports.
+OK, so that's why
+this is decreasing.
+And this point here
+happens to be when the two
+things are exactly balanced.
+Thus, trade balance happens
+to be the point where
+DD is equal to ZZ.
+That's just-- there's no reason
+why equilibrium output should
+be at that level, I'm saying.
+That's the point
+where that happens.
+OK, now we're going to find
+the equilibrium output.
+And to find
+equilibrium output, I'm
+going to erase all
+these extra curves here.
+And I'm just going
+to keep the ZZ here,
+because that's the demand for
+domestically-produced goods.
+And I'm doing short run
+here, so I know that domestic
+production-- that is the Y--
+is going to be equal to the
+demand for domestic goods.
+It's a demand-determined model.
+That's what the short
+run is all about.
+So erase all these
+curves, and I'm
+going to just keep
+the ZZ curve there.
+There you are.
+So now I have my 45-degree
+line because in the short run,
+equilibrium output is
+equal to aggregate demand.
+Aggregate demand for what?
+For domestically produced goods.
+That's the reason
+I'm using ZZ, not DD.
+OK, but there you are.
+Then you do exactly the
+same as we did before.
+That's our equilibrium output.
+And here you can do all
+sorts of experiments
+and you're going to get
+the same type of things
+that we did there,
+the multiplier, it's
+a small multiplier,
+but you're going
+to still get a multiplier
+and all these kind of things.
+Now, this is just--
+in this example, it happens
+that this equilibrium output,
+this country has
+a trade deficit.
+I just made up that.
+So this is the
+equilibrium condition
+is output equal to Z, output
+equal to domestic demand
+plus exports minus imports.
+And then the net export is just,
+I'm plotting this term here.
+That's what we have here.
+But equilibrium is just Y equal
+to Z. Is not this equal to 0.
+You can think about equilibrium.
+But this is what it is, given
+that that's equilibrium out.
+This is clear?
+I mean, this is
+the start diagram
+of this part of the course.
+So you need to
+understand this diagram.
+Go over it.
+Play with it.
+Think, what is a parameter
+in there, and so on.
+I'm going to do a
+little bit of that
+now, but make sure that
+you understand this.
+So there's a few things here.
+So let's do things that
+we did in closed economy.
+So suppose that you
+have a fiscal expansion.
+So what did we do when we had
+a fiscal expansion in lecture 2
+or 3?
+Well, that moves
+the ZZ curve up.
+Output will go up, and then
+there will be a multiplier.
+So output will go up by more
+than the initial increase
+in government expenditure.
+No?
+That's what we had before.
+It will go up by more,
+but not as much as it
+did in the closed economy.
+So the increasing
+output will be more
+than the increase in
+government expenditure,
+but it will be not as much
+as it would have been had
+we had a closed economy.
+Why is that?
+Why is the last part true?
+Why not as much as it would
+have been in the closed economy?
+Well, you can read it here.
+It's because part of
+that extra energy,
+the demand for consumption,
+will go to foreign goods.
+So it will not come back to
+demand more domestic production.
+And that's reflected
+in the trade deficit.
+In this particular example,
+we start with a situation
+where the trade was balanced.
+We had no-- net export
+was equal to zero
+and we ended up with
+a trade deficit.
+That trade deficit is
+exactly the same reason
+why we got a smaller
+multiplier is
+because part of the
+extra demand that
+came from the
+extra income that's
+created by the
+additional expenditure,
+by the aggregate demand effect
+of additional expenditure
+went to the demand
+for foreign goods.
+Good.
+So do the same things we did in
+closed economy and just practice
+here.
+Increase taxes, do things like
+that, increase [INAUDIBLE]
+and see what happens both
+with the equilibrium output.
+Qualitatively it will
+be exactly the same
+as you had in closed economy,
+except that the effects are
+going to be smaller,
+but you're going
+to get something new, which
+is what happens to the trade
+deficit as a result?
+This is a shock we couldn't
+do in the closed economy
+case, which is what happens
+if foreign demand comes up?
+That's what I'm
+saying, even when
+it's jubilant in
+emerging market world
+because China's
+output is going up.
+So what are all these
+economists thinking and say,
+well, China's
+output is going up.
+That means they're going to
+import a lot more from us.
+That is, they think
+our exports are
+going to go up because Chinese
+consumption is going up.
+Well, exports going up means
+that our ZZ curve moves up.
+OK, so then what do you get?
+Well, you get now an
+increase in exports
+for any given level
+of income means
+that eventually you're going to
+get higher output immediately.
+But higher output also has a
+multiplier, although smaller.
+But at the end of
+the day, you're
+going to get higher
+equilibrium output.
+So it's great news.
+That's the reason
+they're so happy.
+It's great news that China is
+expanding because that also
+leads to an expansion in
+the rest of the world.
+That's what you get.
+So in that sense, you
+know, that if China decides
+to do an expansionary
+fiscal policy,
+it also expands US
+output or more important,
+for Chilean output.
+It does that.
+So it's the same--
+Chile could have
+done it by having
+their own fiscal policy that
+would also have expanded output.
+But it's wonderful
+that China decides
+to do it because that
+expands output as well,
+with one advantage--
+two advantages.
+What is-- but there's one that
+you can see here, which is what?
+Why is it that they prefer
+that China does therefore
+rather than me?
+What looks better here?
+Assume that they're
+of comparable size
+and so on in terms of the
+impact in the top diagram.
+Suppose you generate the
+same increase in output
+as a result of one policy, which
+is by domestic expansion in G,
+which is what we did
+in the previous slide,
+or because China
+goes into a boom
+and it starts importing a lot?
+That is, we can
+export a lot to them.
+So suppose we get the
+same increase in output.
+What looks a little better?
+Not a little better, it
+can look a lot better.
+There are two things, but one
+is in this diagram, which is,
+remember, if I did
+government expenditure,
+the net export function
+wouldn't have moved
+and I ended up
+with higher output.
+I would have ended up with
+a bigger trade deficit.
+OK?
+In this case, it's
+export-driven,
+so it's the opposite.
+Because now the net export
+function is shifting up.
+You know, if I move Y star
+up, I'm moving exports up.
+That means the net
+export function
+is moving up, shifting up.
+And then I'm losing
+some of that because
+in increasing domestic
+output goes into imports.
+But at the end of the
+day, in this case,
+I end up with a trade surplus
+rather than a trade deficit.
+So lots of-- that's the reason
+when you open the world,
+there's a lot of
+free riding here.
+You want the other one to do the
+policies for you because then
+you're a lot better.
+And you can get the
+same increasing output.
+But here you end up with a
+trade surplus rather than
+a trade deficit.
+And there is a second thing
+that I'm not showing you here.
+There is a big difference
+between doing it domestically
+by increasing government
+expenditure versus the other one
+doing it for you and then
+pulling you through export.
+What else will look better in
+the US in this case, relative
+to the previous slide?
+AUDIENCE: Do interest affect it?
+RICARDO CABALIERO: But
+that's too sophisticated.
+We're still keeping the
+interest rate constant.
+Aha?
+That's even more sophisticated.
+This is short run,
+completely sticky prices.
+Forget all that.
+Fiscal deficit.
+In the other one, I
+need to increase G
+so I had a fiscal deficit.
+Here, I don't need to do that.
+And in fact, in reality,
+taxes are typically
+indexed to output--
+domestic output.
+So that probably will improve
+the deficit in the US.
+So anyways.
+The last point I
+want to talk about
+is another variable
+that we didn't
+have in the closed
+economy, which
+is the role for the exchange
+rate, what the exchange rate can
+do.
+And so for this, we need
+to look at, you know,
+the only term that depends
+on the exchange rate
+is this net export term.
+It's the exports minus imports.
+So what you know
+from net exports,
+it's very clear what
+happens to net exports
+when we increase Y star.
+We did an experiment before.
+That's what increased exports.
+So net exports will increase
+if you increase Y star.
+We also know that
+net exports will
+decrease if domestic output goes
+up because imports increase.
+But from this expression,
+it's a little ambiguous
+what happens to net
+exports when there
+is a-- when the real
+exchange rate appreciates.
+And it's a little ambiguous
+for the following reason.
+The volume expression is clearly
+increasing in the real exchange
+rate.
+If US goods become
+more expensive,
+you want to import more.
+That's what we discussed before.
+But the value may not be such
+because if you are importing
+those goods in euros and
+now the euro is cheaper
+for you, than you are paying
+less for each unit you import.
+Now, we're going
+to assume from now
+on that this second
+effect is not
+as strong as the volume effect.
+And that's a very
+realistic assumption
+except for the very,
+very, very short run.
+So that's going to
+be our assumption.
+Our assumption will be
+that net exports decrease
+when the currency appreciates.
+If your goods become more
+expensive, then on net,
+you're going to have
+less net exports.
+That's an assumption.
+It simply says that this
+guy in the numerator
+responds more strongly than the
+denominator to a depreciation--
+to an appreciation
+of the exchange rate.
+So the quantities effect
+is much more important
+than the price effect.
+Again, I'm not going to have
+three questions about this
+or anything.
+I'm going to assume
+that from now on.
+That's your assumption.
+If I make a mistake and I try to
+trick you in the quiz for that,
+you can charge me the points.
+I don't intend to do that.
+Just as I did in a spot
+when one of the TAs sort of
+wrote something there.
+And because this is a
+very realistic assumption.
+Good.
+So now let's see
+what happens, then,
+when the exchange rate moves.
+And let me use it.
+Suppose that you are in a
+situation where you want
+to reduce the trade deficit.
+What would you do to--
+so the experiment I have
+here has two components.
+But let's talk
+about the first one.
+Suppose that your country
+has a big trade deficit
+and you want to reduce
+that, and the only tool
+you have is the exchange rate.
+What would you do?
+Because suppose you have a trade
+deficit, you don't like that.
+And you can move the
+exchange rate around.
+What would you do?
+Yes, you depreciate.
+You make the domestic
+goods cheaper relative
+to the rest of the world.
+So depreciate your
+currency, which
+is the prices are
+completely sticky, fixed.
+Then nominal depreciation
+means also real depreciation.
+And that will
+increase net exports.
+So what that will do
+if you depreciate,
+the exchange rate is also a
+parameter in this net export
+function.
+And given my assumption, when
+you depreciate the exchange
+rate, that then moves the
+net export function up.
+Now, the problem is that
+if you do that, that's also
+going to be
+expansionary because now
+you have certain
+equilibrium level of output.
+And now there's going
+to be expenditure
+switching all around the
+world towards your goods.
+So you're going to
+end up producing more.
+And so suppose that you didn't
+want that extra production.
+You just wanted to fix
+your trade balance.
+Then you have to set that.
+And that's what I've done here.
+So typically--
+that's very typical.
+So suppose you're in a situation
+where you have very large trade
+deficit, but you're OK with
+the equilibrium level of output
+you have.
+Then a typical package is
+you depreciate your currency,
+but you also reduce
+government expenditure.
+Because the depreciation of
+the currency is expansionary.
+It's expansionary.
+It improves the trade
+deficit, but it's also
+expansionary
+because you relocate
+expenditure, both of
+residents and foreigners,
+towards your good.
+That increases demand for
+your good, increases output.
+But I mean, if I
+don't like that, I
+have many ways of setting that.
+One of them is by reducing
+government expenditure.
+So that's what I've done here.
+Again, this is a great package.
+You see, this is doing--
+remember I told you here
+that people tend to prefer.
+Remember I said, this is one
+way of increasing output.
+If you want to increase output.
+And another way is to
+do it by exports rising.
+If I don't want to increase
+out, but this is better
+because this increases the trade
+balance, well, suppose I do--
+which is what is [INAUDIBLE]
+is I do the converse.
+Suppose I don't want
+to change output,
+but I want to increase
+the net export.
+Well, these two charts,
+this and the previous one,
+tell me exactly how to do it.
+I use this for the
+expansion of output
+and to improve the net exports.
+And I use the other one to
+offset the effect on output,
+but with the opposite sign.
+I use this, but
+with declining G.
+That's exactly what I did here.
+So that's very
+tempting for a country
+to do, to depreciate the
+currency and at the same time,
+if you think that you need
+to cool off the economy,
+then you can use some
+other instrument,
+domestic instrument to.
+For a long time, China was
+accused of doing just this.
+It was called the mercantilist
+policies of China.
+And especially sort of in late
+'90s and 2000s and so on, China
+had massive amounts of exports
+and the US had a huge trade
+deficit.
+It was called the time
+of the global imbalances
+because big deficits in the
+US, big surpluses in China.
+And the rest of the
+world kept accusing
+China of really
+maintaining their currency
+at artificially low levels
+with the purpose of doing that.
+And anyways, I'm not going
+to take sides on that.
+I think that--
+but the reason why
+the currency, the Chinese
+renminbi was so depreciated
+was different from that.
+But that's a different story.
+But the result was this.
+It was that they had very
+large trade surpluses.
+And so the result was this,
+that they had very large trade
+surpluses.
+And they grew a lot
+because they had this.
+But it was very export-driven.
+It was the rest of
+the world pulling.
+In fact the domestic economy in
+China, they were saving a lot.
+So domestic consumption
+was very low,
+but they had massive
+amount of exports,
+and that's what was
+pulling their output up.
+So open economy,
+you get new tools.
+OK, so that's all that
+I want to say for today.
+So summary.
+A very important demand
+for domestic goods
+is no longer equal to
+domestic demand for goods
+because part of the latter
+will go to foreign goods.
+And also, part of the former
+will come from foreign demand.
+So that's what is
+new of this part.
+You have an extra component.
+And then the other thing that is
+new of this part of the course
+is that, well, these extra
+components, the exports
+and the imports, are
+functions of things
+that we didn't have before.
+For an output, the exchange
+rate, in particular.
+So equilibrium output, again,
+is determined by a output--
+domestic output-- equal
+to that, not to that.
+The difference
+between the two is
+reflected in the trade balance.
+So the trade-- another way of
+thinking about the trade balance
+is simply the difference between
+the demand for a domestic goods
+and the domestic
+demand for goods.
+So the trade balance
+is nothing else
+than that DD minus the ZZ curve.
+That's the trade balance, OK?
+Sorry.
+The ZZ minus the DD curve.
+That's net exports.
+OK?
+Sorry.
+Let me write that down here.
+So remember that we started
+from the demand, which
+was C plus I plus G. That's
+the domestic demand for goods.
+We went to Z is equal to
+demand plus net exports.
+So what I'm saying is
+that net exports is
+just equal to Z minus Z. So
+that's the reason you can--
+very early on when I want to
+show you this thing here--
+the distance between ZZ and
+DD is this net export here.
+That's the reason
+when the two of them
+are the same, that also means
+that the export is equal to 0.
+Very important also, message
+from this part of the course
+is that a depreciation
+improves the trade balance
+and increases the demand
+for domestic goods.
+Again, that's why it's called
+expenditure switching mechanism.
+The expenditures-- both
+of domestic residents
+and foreigners switches
+towards domestic goods.
+And that's also very important.
+For a given exchange
+rate, changes
+in aggregate demand in one
+large country induced by policy
+or the private sector--
+in this case, China reopening--
+affects other countries through
+Y star, through exports.
+So I'm going to stop here.
+And in the next
+lecture, what we'll do
+is we'll integrate this
+with the financial opening.
+And that will get
+us to what I think
+is one of the most important
+models in this course, which
+is called the
+Mundell-Fleming model.

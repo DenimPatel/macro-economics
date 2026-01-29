@@ -1,0 +1,1735 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO CABALLERO: Let's start
+with the Mundell-Fleming model.
+Now, this is a model that I
+think is extremely useful.
+And in the short term it
+will be important for you
+because probably 70% of
+the quiz will be related
+to things, to this model.
+Meaning, we're going to use
+this model for different things.
+But if you understand
+it well, you probably
+have 70% of the last
+quiz under control.
+So I'm going to go
+very slowly over it.
+And please stop me if there is
+any step you don't understand.
+I put steps into
+myself so I don't rush.
+Because again, I think it's
+important to understand things.
+So here you have the exchange
+rate, two exchange rates.
+The white one is the euro
+dollar exchange rate.
+I'm quoting it the opposite of
+the way it's normally quoted.
+There are some conventions
+in effects markets.
+But this is, as we have defined
+in this course, if it goes up,
+it means an appreciation
+of a local currency.
+That is the dollar.
+That is, you get more of the
+foreign currency per unit
+of the domestic currency
+when it goes up, and down
+is a depreciation.
+And you see there that--
+this is the dollar became a
+gain value relative to the euro
+through all this period.
+And then it has lost
+quite a bit of value
+since sort of late 2022, with
+respect to the Japanese yen.
+That's the blue line.
+The whole cycle is
+even more dramatic.
+Big appreciation of the dollar.
+Depreciation of the yen.
+And a reversal since
+late 2022 and so.
+So what is behind
+this big fluctuations?
+Many things.
+Effects are volatile, like
+almost any asset price.
+But one of the main drivers
+of these fluctuations
+is perceptions
+about interest rate
+policy in the different
+parts of the world.
+So the reason we have seen
+a lot of this decline here--
+the reason for the
+rise here of the dollar
+is mostly because
+investors in general
+perceive that the US was more
+advanced in its business cycle.
+It began to tighten
+interest rates
+before the rest of the world.
+And since interest rates
+were rising in the US,
+that led to an appreciation
+of the dollar by a mechanism
+that I describe at the end
+of the previous lecture.,
+but I'm going to repeat today.
+Remember when I talk about
+the uncover interest parity
+condition.
+Well, it's related to what
+I'm talking about here.
+And when I, again,
+go again over that.
+And a big reason for the
+decline more recently
+is simply that there is a sense
+that monetary policy is peaking
+in the US in terms of tightness
+while the rest of the world
+is catching up.
+And in the case of Europe,
+more than catching up
+because they have further supply
+shocks coming from energy shocks
+and so on.
+So if you look, for example, at
+the expected policy rate path,
+in the case of the US,
+nowadays it looks like this.
+So the steel markets expect
+some hikes in the US,
+but a limited amount
+of hikes and then
+they expect quickly the
+Fed to start undoing that.
+That's what this
+path is telling you.
+This is expected
+policy rate path.
+What the market thinks
+now, the policy rate
+will be in the next meeting,
+two meetings from now,
+three meetings from now, four
+meetings, meetings of the FOMC
+from now.
+OK, well, if you look at
+the same picture in Europe,
+it looks like that.
+It's clear that there
+still is more ahead.
+And you see that.
+That's what the market
+perceives at this point.
+Whether that ends up being
+true or not doesn't matter.
+At any point in time
+the exchange rate
+is determined by what
+the markets think.
+So what actually happens is less
+important for an asset price.
+An asset price is a lot
+about pricing today things
+that you expect to
+happen in the future.
+But what you expect
+is what matters,
+not what actually happens.
+And at this moment, the
+market expect the Euro area
+to go through a more
+prolonged period of hiking,
+interest rate, hiking.
+Japan hasn't had hikes
+in interest rates
+for three decades.
+But even now, you
+begin to see some--
+the scale here is very small.
+These are a few basis points.
+But even the point
+I'm trying to make
+is that certainly people
+expect interest rates in the US
+to go down relative to
+interest rates in Japan.
+Not to say that the
+interest rate in the US
+will be lower than the
+interest rate in Japan,
+but the direction of the
+change is in that way.
+So relative to where we're at
+now, the direction of the change
+is towards the US
+loosening monetary policy
+before the rest
+of the world does
+And that's what is leading
+to these big swings.
+I said before, this is a
+period in which the US have
+to start tightening before
+the rest and the currency
+appreciated a lot, especially
+with respect to the yen.
+Because again, the yen has been
+against the zero lower bound
+for a very long time.
+So nobody expected the yen
+to move, to follow the US.
+And with respect to
+Europe, well, Europe
+was having inflationary
+problems and so on, as well.
+So people expected it to
+follow the US at some point.
+For Japan, there was
+nothing like that.
+And that's what led to
+a massive depreciation
+of the yen, appreciation of the
+US dollar vis a vis the yen.
+So what the Mundell-Fleming
+model is about
+is about first
+connecting these things,
+trying to understand what
+moves the exchange rate,
+how the different monetary
+policies in different places
+or different policies in
+different places of the world
+affect the exchange rate.
+And then it's about
+understanding how those exchange
+rate movements affect real
+activity in the short run that's
+what the Mundell-Fleming
+model is.
+So it is really, we're going to
+go back to our old IS-LM model,
+very short run.
+We're going to even fix
+nominal prices and so on.
+So back to that environment.
+But we're going to do
+it in an open economy.
+So we're going to have a new
+variable floating around,
+which is the exchange rate.
+And we need to understand
+how the exchange rate moves
+when different things happen
+in different countries
+and what is the impact of
+that on aggregate demand,
+and hence, on output--
+we're talking about a very
+short run in the different parts
+of the world.
+So that's the plan.
+That's what we intend to do.
+So let's start with the
+Mundell-Fleming model.
+Remember, we wrote down the
+equilibrium in the goods market
+in the previous lecture.
+And I'm just reproducing what I
+wrote in the previous lecture.
+So it looks exactly
+like the closed economy.
+Output is being determined
+by aggregate demand.
+But it's aggregate demand for
+domestically produced goods.
+Domestically produced goods is
+not the same as domestic demand
+for goods, which is
+this, because now there
+is a net export term.
+So part of the things
+that residents demand,
+they demand from the
+rest of the world,
+not from domestic producers.
+And at the same time, part
+of the demand perceived
+by domestic producers comes
+from the rest of the world,
+from exports, not from
+domestic producers.
+So that's the reason we
+got an extra term here,
+which is this net exports.
+And we said this net exports
+is a function of three things.
+It's a function of output.
+So it's a decreasing
+function of output.
+Why is that-- of
+domestic output?
+Domestic output.
+Domestic income.
+Why is it a decreasing
+function of domestic income?
+Why do net exports decline
+when domestic income rises?
+AUDIENCE: People might be
+more inclined to buy imports.
+RICARDO CABALLERO:
+They import more.
+They consume everything more.
+But part of that is import.
+And so part of that
+energy of the extra demand
+goes to foreign goods.
+And that's what
+deteriorates net exports.
+And that's the reason,
+had we just stopped there,
+made the net export function
+just a function of output,
+we would have not needed
+all these extra parameters
+that I'm about to build because
+all that would have meant
+is that just we have
+a smaller multiplier.
+It would have been
+exactly the same
+as we did in the closed economy,
+but with a smaller multiplier,
+because every time an output
+goes up, now part of that demand
+goes to foreign goods
+rather than domestic goods.
+But it's not so--
+first, because we have
+an extra another income
+that matters here, which is the
+income of the rest of the world.
+But more importantly, because
+we also have an exchange.
+But let's start from this side.
+So net exports is increasing the
+income of the rest of the world.
+Why is that?
+That is, demand for
+domestically produced goods
+rises when foreign
+income goes up.
+For an output, for
+income goes up.
+Why is that?
+The symmetric
+argument with inputs.
+Well, our exports are the
+imports of the other country.
+So if the income in the
+other country goes up,
+then their imports will go up,
+which is our exports that go up.
+That's the reason
+net exports goes up.
+And the last term,
+remember, says
+that net exports is declining
+on the real exchange rate.
+Why is that?
+What happened when the
+real exchange rate goes up?
+AUDIENCE: It makes our
+goods more expensive
+relative to foreign goods.
+RICARDO CABALLERO: Exactly.
+Our goods become more expensive
+relative to foreign goods,
+and that affects us
+from two dimensions.
+First, our exports will tend to
+decline because our goods are
+more expensive.
+And also, our imports
+are going to tend
+to increase because
+foreign goods are cheaper.
+And so that's the reason this
+is decreasing with respect
+to the exchange rate.
+The big thing of the
+Mundell-Fleming model
+really comes from the fact
+that this guy is there.
+Had we not had the
+exchange rate there,
+again, we could have used
+exactly the same apparatus
+as we used earlier on.
+But we're going to have an
+exchange rate floating around.
+And that will require us to
+build more, a little more.
+We need an extra
+equation, because we have
+an extra endogenous variable.
+Now, what I'm going
+to assume here,
+as we did in the first
+part of the course,
+is that both the domestic
+and foreign prices
+are completely fixed.
+So I'm going to ignore
+Phillips curve, inflation,
+expected inflation, and all
+that, and assume all that is 0.
+Expected inflation,
+inflation, zero.
+When I do that,
+the same equation,
+the equilibrium in the goods
+markets changes a little bit.
+I mean, it's the same equation.
+But now I don't need
+to differentiate
+between real interest rate
+and nominal interest rate
+because inflation is zero.
+So nominal interest rate is
+equal to the real interest rate.
+So I'm going to stick in here
+the nominal interest rate.
+Second, I really don't
+need to differentiate
+between real exchange rate
+and nominal exchange rate
+because the relative prices,
+the prices themselves are not
+changing.
+And so all that will move
+the real exchange rate
+is the nominal exchange rate.
+So that's the reason
+I'm going to write
+here the nominal exchange
+rate is because it's
+the only thing that will move
+this variable around given
+that prices are fixed.
+So our equilibrium
+in the goods market.
+And this is the thing you
+need to compare with lecture
+three or something like that.
+And as I said, this part here
+only lowers the multiplier, so
+not a big change.
+This one here is
+an extra parameter
+that shifts aggregate
+demand up and down.
+So you can treat it almost
+like we treated [INAUDIBLE]..
+Remember, as the consumer
+confidence goes up,
+then aggregate demand goes up.
+Well, here we have the rest
+of the world's output goes up.
+It does exactly the
+same, the same analysis.
+The problem we have, though, is
+that we have an extra variable
+here, which is
+the exchange rate.
+And that's an
+endogenous variable.
+So we're going to have to come
+up with some other equation
+to solve for that equation here.
+In lecture 3 or
+4, what we did is,
+OK, we said we have two
+endogenous variable, output
+and the interest rate--
+output and the interest rate.
+We need one more equation.
+Well, the other equation was
+just monetary policy that
+set the nominal interest rate.
+Here, that's not
+going to be enough
+because we also have an
+exchange rate floating around.
+So we need to bring
+another equation here
+to deal with this new
+endogenous variable.
+What is that extra equation?
+Well, it's the uncovered
+interest parity condition.
+Remember, it's the
+last expression
+we had in the previous
+lecture that takes this form.
+Before I simplify lots of
+things, I wrote this down.
+And it says that the exchange
+rate is equal to that.
+Now, what is this?
+Where does this
+equation come from?
+What is it trying to do?
+Remember, we talked about
+this in the context of say,
+well, you know, when
+you open goods markets,
+then you need a
+relative price to decide
+what you're going to buy.
+That's what the
+real exchange did.
+And then we open
+the capital account.
+And then people need to
+decide where are they
+going to invest their money.
+And that equation
+was related to that.
+AUDIENCE: Expected
+rate of return
+has to be the same for domestic.
+RICARDO CABALLERO: Exactly.
+It's what equalizes
+expected rate of return.
+In equilibrium,
+that has to happen.
+Again, in reality, there
+is risk adjustment.
+There is lots of other factors
+that we're removing from here.
+But absent those other
+factors, the returns
+have to be similar
+in both places
+because if one
+asset is giving more
+return than the other
+expected return,
+then people are
+going to invest all
+their portfolios in that asset.
+And what happens
+is those flows that
+try to go to those assets that
+give the highest return end up
+equalizing expected
+return in equilibrium.
+And that's the equation that
+does that, exactly that.
+How do I know that?
+Well, remember,
+I can divide this
+by the exchange
+rate on both sides.
+And then what you get is 1
+equal to a numerator that
+has the nominal exchange
+rate times the expected
+appreciation of the currency.
+And in the denominator, you
+have the foreign interest rate.
+And so when you
+compare the two, you
+have to compare one base
+interest rate, the domestic
+or the foreign, plus the
+expected appreciation
+of the appreciation
+of that currency.
+And that's what this
+term is doing here,
+this divided by that.
+Good.
+So what do we get out of this?
+One thing we're going
+to do for quite a while,
+because it will simplify
+things a lot, but sometimes
+also lead to confusion in the
+way we understand why currencies
+depreciate or appreciate.
+But we'll pause and I'll
+remind you of this repeatedly.
+We're going to assume for now
+that the expected exchange
+rate for t plus 1 is fixed.
+And until I tell
+you otherwise, we're
+going to make this assumption.
+Now, that's a huge
+simplification, completely
+unrealistic, and so on.
+But it will help me
+explain the mechanism.
+I mean, one of the things
+that moves exchanges a lot
+is that people have
+lots of expectations
+about future exchange rates.
+We'll get to that later.
+But for now, so you
+understand the mechanism,
+how the Mundell-Fleming
+model works,
+I'm going to assume that we all
+know what the expected exchange
+rate-- we all have a common
+expected exchange rate
+and it's fixed.
+We may move it as a parameter.
+But I'm trying to say, I'm
+not going to endogenize that.
+I'm going to take it as fixed.
+And I may move it
+around to show you
+what happens when that changes.
+But I'm not going
+to endogenize it.
+Otherwise, I need more
+equations, one more.
+I want to stop this
+sequence of equations
+that I would have to build.
+Later we'll understand more
+that, what I just said.
+But for now, just
+take this as fixed.
+So if I take this as fixed,
+now I have an equation.
+Remember, I was
+looking for an equation
+here for my exchange rate.
+Once I do that, then
+I have what I want.
+I have an equation for
+my exchange rate today.
+It's just a function of
+domestic interest rate,
+international interest rate,
+and the expected exchange rate.
+So I know the
+following, for example.
+I know that an increase in
+the domestic interest rate,
+other things equal,
+appreciates exchange rate.
+I can see it in the equation.
+If I move the domestic
+interest rate up,
+the exchange rate goes up.
+That's an appreciation.
+The dollar becomes
+more expensive.
+Even simpler.
+Suppose we start
+with a situation
+in which the domestic and the
+international interest rate
+were the same.
+And now I increase the
+international interest rate.
+And I'm saying the exchange
+rate will appreciate.
+Well, first of all, let me start
+with something even simpler.
+Suppose that this
+interest rate is
+equal to international
+interest rate
+before analyzing the change
+I'm about to analyze.
+Then from this equation, what
+do I know about exchange rate?
+What is it equal to?
+If the domestic interest rate is
+equal to international interest
+rate, what is the exchange
+rate today equal to?
+The expected exchange
+of next year.
+If I have the same
+interest rates,
+I cannot expect a capital gain
+or loss on the currency position
+because I have already an equal
+interest rate in the two bonds.
+So then I'm starting
+from a situation
+where the current
+exchange rate is
+equal to the expected exchange
+rate and these two are equal.
+And now I'm going to
+increase the interest rate,
+the domestic interest rate.
+And it's very easy for
+you to read from here
+that the exchange
+rate will go up.
+The currency will appreciate.
+Why?
+This is not an easy thing
+to answer unless you have
+read the book or something.
+AUDIENCE: The
+interest rate goes up,
+then money supply should go
+down, which would generally
+increase the value of money.
+RICARDO CABALLERO: Nope.
+No money here.
+That money is only related
+to the mechanism we
+use to increase interest rate.
+But I'm saying just use
+that equation and the logic
+behind that equation, the
+uncovered interest parity.
+Why is it that if we went
+to financial situation
+which interest
+were the same, now
+I increase the
+domestic interest rate.
+I'm saying the exchange
+rate has to appreciate.
+AUDIENCE: [INAUDIBLE]
+RICARDO CABALLERO: No, no,
+but that's a description of--
+yeah, we know that.
+The question is,
+what is the logic?
+Yeah, we know the
+result. What I'm
+asking is for an economic
+explanation for that result.
+AUDIENCE: More people will
+want to invest in the currency,
+using currency, so the
+demand go up and [INAUDIBLE]..
+RICARDO CABALLERO: Well, if you
+go to Wall Street, [INAUDIBLE]
+they will explain
+it in those terms.
+It's not the right explanation.
+But they will explain
+it on those terms.
+And there is some
+logic behind that
+because this equation assumes
+that the arbitrage happens
+instantaneously.
+Immediately things move.
+But before that
+happens, some people
+will start buying more of
+the one that has more return.
+But this equation
+already solves all that.
+And that's when this
+assumption matters.
+And it's a little annoying.
+It bothers me for a
+variety of reasons.
+But we're going to use it
+to understand the mechanism.
+You see, if I keep the changes
+fixed, we start with a situation
+where the exchange rate was
+equal to expected exchange rate.
+If I keep it fixed and I
+appreciate the currency today,
+then what do I expect to
+happen to the dollar--
+let's talk about the dollar--
+from this period
+to the next one.
+Remember, we start
+from a situation
+where the exchange rate was
+equal to the expected exchange
+rate.
+Now I increase the
+interest rate and I said
+the exchange rate appreciates.
+Then what do you expect the
+exchange rate to do over
+the next period?
+If I have a move
+expected exchanger, now
+the exchanger moves above
+the expected exchange rate,
+what do you expect the
+exchange rate to do?
+Exactly.
+It has to depreciate.
+So the reason the
+depreciation happens here
+is because you need to
+expect depreciate the dollar
+from this period
+to the next one.
+Why do I need to expect the
+exchange rate to depreciate?
+So not appreciating
+the currency,
+in equilibrium, I need
+to expect to depreciate.
+That is, I need to expect to
+lose money on the currency
+part of the trade.
+Why is that?
+Confusion is good.
+You learn from that.
+And this can be very
+confusing, I know.
+What is this equation
+trying to do?
+We are trying to make the
+specter returns the same.
+That's the whole idea of this.
+So if I am now telling you that
+one bond is paying a higher
+interest rate than
+the other one,
+I need to offset that somehow.
+How do I offset it by expecting
+a depreciation of the currency
+of the bond, that
+is, the bond that
+is denominated in the currency
+that is expected to depreciate?
+So what I need to do is
+compensate for the interest rate
+differential with an
+expected depreciation
+of the currency that is
+paying a higher interest rate.
+So that's what, in this model,
+when I fix the expected exchange
+rate, the only way I can do that
+is by appreciating the currency
+today so I can expect it to
+depreciate in the future.
+That's the logic.
+Now, what is the connection
+with Wall Street?
+They will tell you,
+well, before this
+may happen not instantaneously.
+It happens somewhat slowly.
+So traders immediately will
+go to the US dollar bond
+because they see that
+they have a higher return.
+And it will be the case until
+the currency really appreciates.
+Once the currency
+appreciates enough,
+then that advantage disappear.
+That's what this
+condition is doing.
+It's making the spectral
+return the same.
+But in the process
+of the exchange
+going from the
+initial exchange rate
+to the new equilibrium
+exchange rate,
+there may be an
+opportunity there.
+And that's when you
+start seeing these flows.
+That happens very, very fast.
+But that's when you can
+see some of those flows.
+I mean, in this market, that
+happens very, very quickly.
+So what is typically wrong
+is that then an analyst comes
+and tells you,
+explains the story,
+why the exchange rate is going
+to continue to appreciate.
+Well, that's just way too late.
+You're already in
+this environment.
+You lost the trade.
+What about an increase in the
+foreign interest rate, I star?
+So an increase in
+the foreign interest
+rate, let's start from the
+same situation we had before.
+We start from interest rate
+equal to international interest
+rate.
+Therefore, the exchange rate
+is equal to the exchange rate.
+And now the foreign
+interest rate goes up.
+What is going on now in the US.
+The US is sort of
+stabilizing here.
+And Europe is beginning to
+hike a little more than the US.
+So we know from the
+equation that means
+the exchange rate will fall.
+That is will drop here.
+So that means the exchange
+rate is depreciated
+and the dollar is depreciating.
+Why is the dollar depreciating?
+AUDIENCE: Needs
+the same mechanism
+that you described previously,
+except replacing Et with 1
+over star key.
+RICARDO CABALLERO:
+Yeah, that's correct.
+I mean, the issue here
+in terms of the economics
+is that, remember, if we
+start from the same interest
+rate and now all
+the [INAUDIBLE] I'm
+giving you doesn't need to start
+with the same interest rate.
+It's just simpler to start
+from the same interest.
+But suppose we start with
+the same interest rate.
+And now we increase this one.
+Then that means the foreign
+bond is paying a higher interest
+rate than the domestic bond.
+I need to equalize
+the spectral returns.
+The only way I can do that is by
+having an expected appreciation
+of the dollar.
+Since the expected
+exchange, we fix it here.
+The only way I can
+give you an expected
+appreciation of the dollar is by
+depreciating the dollar today.
+So this is the same mechanism.
+The same logic is symmetric.
+That's the mechanism.
+Now, is this true that in the
+very short run, when I star
+goes up and I doesn't
+move, then lots of people
+go and buy foreign bonds.
+And that produces sort
+of demand for euros
+and blah, blah, blah, blah.
+But that's very quick.
+Machines do it for you now.
+So it happens very quickly.
+So this equation
+shows you what happens
+after all that mess
+has already cleared,
+which happens in milliseconds.
+OK, what if I change
+expected exchange rate?
+So again, I'm fixing it.
+But I can move it around.
+I'm treating it as a parameter.
+When I say I fix it, I just
+don't want to endogenize it.
+I don't want to make it
+another endogenous variable.
+So what happens here
+is the exchange rate,
+we start with the same
+situation we had before.
+Now the expected
+exchange rate goes up.
+Well, from the equation
+it's very clear.
+The current exchange
+rate immediately rises--
+one for one, in fact.
+If I have these two
+interest rate at the same.
+And now I move the
+expected exchange rate up,
+then the current exchange
+rate immediately jumps.
+So if we expect the dollar
+to appreciate in the future,
+then it depreciates today.
+Why is that?
+Expectations are very powerful
+in financial assets in general.
+This is the first time you come.
+And we'll talk a lot more
+about that in the next week.
+But you can see it here.
+So if I move the
+exchange rate today up,
+the expected exchange rate.
+It means expect the
+exchange to be--
+we know today the
+dollar is $0.90--
+0.9 euros per dollar.
+Well, suppose I expect 1 euro
+per dollar in the next period.
+What will happen to
+exchange rate today?
+Well, it jumps today to 1.
+Why is that?
+AUDIENCE: The dollar will be
+more expensive to buy later.
+So people are--
+RICARDO CABALLERO: OK.
+That's your friend,
+the trader there.
+Yes, that's true.
+That's true.
+What does that mean, though?
+It is true.
+It's more expensive.
+But why did you want to
+buy it to start with?
+I mean, who cares that
+something is more expensive.
+You are not planning to buy it.
+AUDIENCE: Because the current
+price or something also
+has to take into account
+the future price.
+RICARDO CABALLERO: That's
+what the equation says, yes.
+AUDIENCE: Because
+it's part of it.
+Because its value, at
+the present moment,
+takes into account some of
+its value in the future.
+RICARDO CABALLERO: This is an
+arbitrage type relationship.
+And what I suggest is whenever
+you come across an arbitrage
+type argument, you ask the
+question, well, suppose not.
+Suppose this didn't happen.
+What would then happen?
+What would look odd?
+Almost any arbitrary, that's a
+good way of thinking about this.
+The equation tells me
+that the exchange rate
+has to jump right away.
+But suppose not.
+What goes wrong?
+Well, I think that's
+the way, the easiest
+way to think about any
+of these asset pricing
+in general, by the way.
+Well, suppose not.
+Suppose that the expected
+change that goes up.
+The interest rates
+haven't changed.
+And the exchange rate
+today doesn't move.
+What happens then?
+Remember, we're in a situation
+with both interest rates
+are the same.
+Now, the expected changes
+went up by 10%, say.
+And the current exchange
+rate hasn't moved.
+I'm sure between the two of
+you, you can design this trade.
+What do you do?
+AUDIENCE: Everyone
+would buy foreign bonds
+in the next period.
+And no one would in
+the first period.
+RICARDO CABALLERO: No, no.
+But what did you do today?
+Suppose you're a trader.
+And now you see, whoops,
+the exchange, the dollar
+will appreciate 10%.
+The interest rates are the same.
+And the exchange is
+not moving today.
+What do you do?
+Which bond do you buy?
+AUDIENCE: Buy a lot
+of American bonds.
+RICARDO CABALLERO: Of
+course, because you
+have a 10% expected capital
+gain from buying that bond
+if that doesn't happen.
+The two bonds are paying
+the same interest rate.
+And now I tell you,
+well, yeah, but one
+is going to appreciate by
+10% relative to the other.
+So clearly, you go short
+massively the foreign bond.
+And you go very
+long the US bond.
+That's what you do.
+We all want to do the same.
+So it happens very quickly.
+And the changes
+appreciated today up
+to a point in which that
+incentive is no longer there.
+And in this particular case, if
+the interest rate are the same,
+that will happen only if the
+exchange rate jumps exactly
+by the same amount as
+expected appreciation of the--
+expected value of the
+dollar change in the future.
+Think about this.
+Play with these things.
+I know it can be confusing.
+And I always start with
+let me move something.
+The equation tells
+me this is what has
+to happen to the exchange rate.
+Well, suppose that didn't
+happen to the exchange rate.
+And then you say, then I
+clearly invest in this bond.
+This dominates the other one.
+Well, that condition tells
+you no, no, in equilibrium
+you have to be indifferent.
+So the only thing you can
+move is exchange rate.
+And the exchange has to move
+until you are indifferent
+again after you have done
+some change, some argument
+on the right hand side.
+That's the way you
+need to think about it.
+So here I'm just plotting
+this relationship
+in the space of exchange
+rate in the x-axis
+and the domestic
+interest rate here.
+So that's an upward
+sloping relationship.
+You can see here that as I
+move the interest rate up
+or the other way around.
+But anyways, if I move
+the interest rate up,
+the exchange is going up.
+So that's a positive
+relationship.
+I can do it the
+other way around.
+As I move the exchange rate up,
+then the domestic interest rate
+has to go up.
+I'm taking as parameters,
+the foreign interest rate
+and the expected exchange rate.
+If I take as parameter
+this and that,
+then I have a
+positive relationship
+between the exchange rate and
+the domestic interest rate.
+So that's going to be--
+I'm plotting the UIP and
+covering parity condition.
+Notice this point
+here is interesting.
+This point tells you that when
+the domestic interest rate, I,
+is equal to the
+International interest rate,
+then the exchange rate has to be
+equal to the expected exchange
+rate, which is the
+question I asked before.
+Remember, I asked
+you a question,
+let's suppose that we
+start with an interest
+rate that is equal to the
+International interest rate.
+What is the exchange rate?
+And you said the
+answer was, well,
+it has to be equal to the
+expected exchange rate.
+That's that point here.
+If the interest rate, domestic
+interest rate, is above that,
+the international interest
+rate, then the exchange rate
+today has to be above the
+expected exchange rate
+because that will give you
+a expected depreciation
+of the currency, which will
+compensate for the fact
+that the domestic bond is
+paying a higher interest
+rate than international bond.
+Conversely, if the domestic bond
+is paying a lower interest rate,
+then the exchange rate
+today is very depreciated
+because you have to expect
+it to appreciate in order
+to compensate for the
+interest rate differential.
+Probably not.
+But this requires
+practice, I tell you.
+OK, so now we have an equation
+for the exchange rate at least.
+So I can go back to my IS
+equation in the open economy.
+And I have an equation
+for the exchange rate.
+So I replace it.
+This is nice because I
+have two new parameters,
+expected exchange rate and
+international interest rate.
+But now this is also a
+function of the interest rate.
+So at this moment, I have one
+equation and two unknowns,
+really, after I solve out
+for the exchange rate.
+I have one equation
+and two unknowns.
+The two unknowns are output
+and the domestic interest rate.
+All the rest are parameters.
+So that's the same situation
+we're at in lecture 3 or so.
+So then we need
+an extra equation.
+The extra equation was
+monetary policy, the LM.
+We're going to do
+exactly the same here.
+LM is the same.
+It's the domestic central
+bank sets the interest rate.
+So now I'm set.
+Now we have the IS-LM
+model in the open economy.
+This is the
+Mundell-Fleming model.
+That's what the
+Mundell-Fleming model is.
+A more complicated IS with a
+UIP, a driven exchange rate.
+And then the LM is the same
+as in the closed economy.
+So this is the
+Mundell-Fleming model.
+So one thing we know already, we
+knew from the previous lecture,
+that we have a small
+multiplier in the open economy
+because we have the inputs that
+are also responding to output.
+We have a new parameter.
+But now we also know that
+an increase in the interest
+rate-- so monetary policy
+in the open economy--
+has two effects now.
+It used to have
+only this effect.
+Remember, it affected
+domestic investment.
+So an increase in
+the interest rate
+would lead to a reduction
+in aggregate demand
+because investment would fall.
+Remember that was the
+role of the interest rate.
+That's the way monetary policy
+works in the closed economy,
+was through this channel here.
+Now we have a second
+channel, which is this one.
+So when the interest
+rate goes up,
+it's contractionary
+for two reasons.
+One, for the reason we had
+before, which is that investment
+falls.
+But there is a second
+reason it's contractionary.
+What is that second reason?
+I mean, there's only here.
+It's only second-- yeah.
+AUDIENCE: Raise
+the exchange rate.
+RICARDO CABALLERO: Because
+appreciates the exchange rate.
+And when you appreciate
+the exchange rate,
+net exports decline.
+So more domestic consumption
+is diverted to foreign goods.
+And less foreign demand is
+allocated to our exports.
+So that's the second channel.
+So in an open economy-- and
+the smaller is the economy,
+the more important is this
+term, the more powerful
+is that channel.
+The US cares very little
+about this effect.
+Most other economies care
+a lot about this effect.
+Because the US is a
+relatively closed economy,
+believe it or not.
+So this is the start diagram
+of the Mundell-Fleming model.
+So this thing here is
+our old IS-LM model.
+It's just that this IS
+is a little thicker now.
+It has net exports
+in there and so on,
+but it looks exactly the same.
+That is, plot equilibrium in
+financial and goods market,
+the combinations of output
+and domestic interest
+rate that are consistent with
+equilibrium in both markets.
+That's the case here.
+This is IS, which is all the
+combinations of domestic output
+and domestic interest rates that
+are consistent with equilibrium
+in goods market.
+This is the interest rate that
+is consistent with equilibrium
+in financial markets.
+That's what the
+Fed does in the US.
+That point is where both
+markets are in equilibrium.
+But we can take
+this interest rate.
+So that's what will happen.
+The interest rate
+will be, in the US,
+the interest rate is set
+by the Fed, not by the ECB.
+The Fed will set
+the interest rate.
+That will give us some
+equilibrium output.
+And then we can go
+to the UIP condition,
+you see, I'm plotting
+here, and figure out
+what the exchange rate is.
+Because for this
+interest rate here,
+there's going to be
+some point in the UIP.
+And that tells me exactly
+what the exchange rate is.
+So with this set of diagrams, I
+can determine the interest rate
+output and exchange rate.
+So I can study the effects
+of different policies,
+for example, on output, the
+interest rate, of course--
+that's the policy itself--
+and the exchange rate.
+So this is the new
+thing I can explain.
+I can do a little bit
+of asset pricing here.
+I can explain the behavior of
+the exchange rate, as well.
+So this diagram--
+I mean, you need to really
+control very, very well.
+So I'm going to play
+with it quite a bit.
+Monetary policy.
+Let's do monetary policy.
+We talk about monetary
+policy already.
+So suppose that for
+whatever reason,
+the domestic economy,
+domestic central bank,
+decides to hike interest rate.
+Suppose the economy
+was overheating,
+output was too high
+relative to natural rate
+of output, the typical
+reasons why you
+need to raise interest rates.
+And so suppose that the
+domestic interest rate goes up.
+Well, as it used to be, that's
+going to be contractionary.
+What happens to
+the exchange rate?
+Well, I know the
+interest went up.
+I look into my UIP.
+For the high interest rate
+and a current exchange rate
+that is above--
+that has to go up
+relative to all.
+When I increase interest
+rate from here to there,
+then my exchange rate
+has to appreciate.
+Why is that?
+So an expansionary
+domestic monetary policy
+will lead to a contraction in
+output, which is what we get out
+of a monetary policy.
+But it will also lead to an
+appreciation of the currency.
+Why is that?
+That's what we just
+discussed, UIP.
+If I move the domestic
+interest rate and the rest
+and the rest of the
+world does not follow me,
+so we move interest
+rates, they don't, then
+now I need to compensate for
+this increase in the interest
+rate differential.
+And the compensation will come
+through an expected capital loss
+through the currency.
+So if I appreciate
+more the currency,
+since I haven't moved the
+expected exchange rate,
+I expect a larger loss
+from the point of,
+from the countries
+from the currency side.
+That's what has happened here.
+So that's what is
+behind depreciation.
+And, of course, the
+depreciation is already
+built in here, which is what
+makes monetary policy more
+powerful than the closed economy
+because you get the next export
+channel.
+But that's built in here.
+OK, here all that I
+did is exactly the same
+as we were doing in
+the last 30 minutes.
+I just use this UIP.
+For whatever domestic reason,
+I need to raise interest rate.
+And have contractionary
+monetary policy.
+Well, one of the
+effects that you're
+going to get in an open
+economy is that your currency
+will tend to appreciate.
+OK, good.
+What about fiscal policy?
+Well, if the Fed doesn't follow,
+the central bank doesn't follow,
+and you have an
+expansionary fiscal policy,
+then that will increase output.
+It has no effect on
+the interest rate.
+Therefore, it has absolutely
+no effect on the exchange rate.
+So an expansionary
+fiscal policy,
+which is accommodated
+by the Fed--
+that means the interest rate
+is kept at the same level--
+then does not lead to an
+appreciation of the currency.
+It doesn't move
+the exchange rate.
+It no implication for
+the exchange rate.
+Now, what about this
+change in output?
+Is it larger or smaller than the
+one we did in lecture 3 or 4?
+AUDIENCE: It's
+going to be smaller.
+RICARDO CABALLERO: Smaller.
+Why?
+AUDIENCE: Because it's part
+of the increase in [INAUDIBLE]
+falls on [INAUDIBLE].
+RICARDO CABALLERO:
+Exactly because yeah,
+it goes to imports.
+Perfect.
+OK, good.
+So this is smaller than it
+was in the closed economy.
+And it has no impact
+on the exchange rate.
+That is, the UIP has nothing to
+do with government expenditure.
+It's all about
+financial markets.
+It's about expected
+returns, things like that.
+So unless the fiscal policy
+somehow affects interest rate,
+then there is no effect.
+What may happen is that, for
+example, is that treasury
+becomes very expansionary.
+And this output becomes
+too large for what
+is consistent with a zero
+output gap or no inflation.
+And then the Fed may react
+and raise interest rate.
+And that will lead to inflation
+of the exchange rate and so on.
+And that's the reason why, in
+practice, when countries have
+sort of expansionary
+fiscal packages,
+the currency tends
+to appreciate,
+is because investors
+expect the Fed to react
+to that or the central
+bank to react to that
+and raise interest rates.
+But if the Fed says, no, no,
+we need that fiscal expansion,
+I'm not going to move
+the interest rate,
+then the exchange
+rate won't move.
+So let's use a little
+more of this model
+and look at other shocks
+within this model.
+So let's start with--
+suppose that we increase
+the expected exchange rate.
+What moves in this diagram?
+Let's go-- does LM move?
+No, the LM is controlled
+by domestic central bank.
+Doesn't move.
+Does the IS move?
+When I asked you
+whether it moves,
+you should always fix something.
+So you say, OK, let me
+fix the interest rate,
+say, pick a point like this one.
+And now I have to
+ask the question,
+what happens to
+output now that I have
+moved the expected exchange?
+If I get the same output back,
+means that IS doesn't move.
+If I get a different output,
+equilibrium output, then I
+know that the IS did move.
+So what is the answer?
+If the interest
+rate doesn't move,
+the foreign interest
+doesn't move,
+and expected change
+rate goes up,
+what happens to the
+current exchange rate?
+Appreciate.
+What happens when
+there is an opposition?
+Net exports decline.
+That means that moves
+the IS to the left.
+So this movement will
+move the IS to the left.
+That's the first effect.
+What about the UIP condition?
+Will it move or not?
+We have taken that
+as a parameter.
+Will it move?
+I mean, remember, I give
+you a clue because I said,
+we are taking these
+two as parameters here.
+So if I move a parameter, most
+likely I will move the curve.
+But in which direction
+will it move?
+To the right.
+Yes, because for the
+same interest rate,
+now I need the exchange
+rate to move one for one,
+the current exchange
+to move one for one
+with the expected exchange rate.
+So this was the
+exchange rate before.
+And now the expected
+exchange moved to the right.
+Well, in order not to
+generate the expected capital
+gain or loss, I have to
+move the current exchange
+rate by the same amount.
+And so that means this curve
+will shift to the right.
+What if I move
+foreign output down?
+What happens?
+Which curve moves?
+Well, this is not
+a parameter here.
+So this is not moving.
+This is not a parameter here.
+So this one is not moving.
+Only one can move.
+The IS, where?
+AUDIENCE: It would
+move to the left.
+RICARDO CABALLERO: It
+will move to the left
+because net exports
+will decline.
+Now, for any given level
+of the interest rate,
+now we have less net exports.
+And therefore the IS move to
+the left, so output falls.
+But there is no movement here.
+Unless the Fed reacts to that,
+the central bank reacts to that,
+it won't happen.
+I mean, and it may
+well be the case
+that you want to react to that.
+If the whole world
+goes into recession,
+the US is very likely
+to lower interest rates
+because it's very
+contractionary.
+The whole world
+goes into recession.
+When the US goes into recession,
+the rest of the world, everyone
+wants to cut interest rates
+because the US is a big player.
+So it really drags
+everyone down.
+The last one, I'm going to
+repeat this in the next lecture
+is, well, what happens if I star
+moves up, the foreign interest
+rate moves up?
+Well, the LM doesn't move.
+This one will move which way?
+Because that was
+a parameter here.
+To the right.
+You said to the right.
+That's right.
+So think what happened here.
+If the foreign
+interest rate goes,
+up at any given interest
+rate, now the domestic bond
+is doing worse than otherwise.
+So I need to depreciate the
+exchange rate today in order
+to expect an appreciation.
+That means this curve
+moves to the left.
+It moves to the
+left because I have
+to expect an appreciation to
+compensate for the interest rate
+differential.
+So these will move to the left.
+What about this curve here?
+We solve it in the next lecture.
+Very good.

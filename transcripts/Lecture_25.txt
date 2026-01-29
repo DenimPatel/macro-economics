@@ -1,0 +1,1714 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO CABALLERO: The
+main topic in this part
+is really open economy.
+And so we extended
+the IS-LM model.
+We did not bring in--
+we again shut down
+price changes,
+so we said price is
+completely fixed.
+No Phillips curve here.
+So we expanded the IS-LM
+model to add this open economy
+dimension.
+And so we start from the same
+aggregate demand function
+that we had in closed
+economy-- consumption
+plus investment plus
+go in expenditure--
+but now we have to draw a
+distinction between demand
+by domestic households,
+companies, and the government,
+and the demand for
+domestically-produced goods.
+And so z is the demand for
+domestically-produced goods,
+which is equal to demand plus
+the demand that foreigners have
+for the goods produced at home
+minus the imports, that part
+of that expenditure that
+is going to imports.
+That means goods produced
+by other countries.
+And so the new
+behavioral functions
+here were the export function
+and the import function export.
+Is increasing in foreign output.
+More income abroad will
+lead to more imports
+by them, which means
+more export for home.
+And it's decreasing with
+respect to the exchange rate.
+Real exchange rate and
+nominal exchange rate
+will be the same here since
+we have fully sticky prices.
+But if the real exchange
+rate appreciates,
+that means domestic
+goods are more expensive.
+It means exports are less.
+Foreigners are going to
+buy less of our goods.
+Conversely for imports,
+it's like the exports
+of the other country, means that
+if domestic output goes up, then
+there will be more
+purchases of foreign goods.
+And if the exchange
+rate appreciate,
+means also that foreign
+goods are cheaper for us,
+and therefore we import more.
+OK.
+So positive.
+So those were the two
+new behavioral functions
+in the goods market expanded
+to include an open economy.
+And that had implications
+for the diagram
+that we had in lecture three
+or so to determine equilibrium
+output.
+We started from the same demand
+we had in closed economy.
+Then we had to subtract imports,
+and that shifts things down
+because now it's part
+of the domestic demand
+that is going to foreign
+goods, not to domestic goods.
+But it also rotates the
+curve because the higher
+is domestic income,
+the more the imports
+that we do from the
+rest of the world.
+Now to that we have to add
+the exports, which are not
+a function of domestic output.
+That's a parallel shift
+with respect to this curve.
+No.
+We go up.
+And that gives us
+the zz curve, which
+is what we call the demand for
+domestically-produced goods.
+Now notice that the
+distance between the demand
+for domestically-produced
+goods and the domestic demand
+for goods is the net export, so
+the distance between zz and dd
+is the net exports.
+So this point here,
+for example, the zz
+is higher than dd, which means
+that our exports are greater
+than our imports, and that's the
+reason you have a trade surplus.
+At this point they're
+the same, and that's
+the reason the trade
+account is balanced,
+but over here, imports
+exceed exports.
+And that's the reason
+we have a trade deficit.
+I'm going to go very quickly, so
+you're in charge of stopping me.
+I'm not going to
+ask you questions.
+Just stop me if
+there's something
+that you need clarification.
+OK, so that's what's the demand
+for domestically-produced goods.
+Now we're going to
+determine equilibrium output
+in this open economy
+context, and that
+means aggregate demand
+has to be equal--
+aggregate demand for
+domestically-produced goods has
+to be equal to output,
+and that's what we do with
+the 45-degree line here.
+And so where the 45-degree line
+intersect with this zz curve,
+that's our equilibrium output.
+Now it happens that
+in this example,
+that leads to a trade deficit.
+But there is nothing here, so we
+still determine the equilibrium
+output up here, and then we read
+in this curve, bottom curve,
+what is the implication for
+the trade deficit or surplus.
+But the equilibrium
+condition, important
+is that
+domestically-produced output
+has to be equal to the demand
+for domestically-produced goods.
+Not for total demand.
+It's demand for
+domestically-produced goods.
+Because this is a Keynesian
+model in which output
+is aggregate demand determined.
+But it has to be
+aggregate demand
+for the things
+you're producing, not
+aggregate demand for all
+goods around the world.
+OK.
+Good.
+So then we did some experiments.
+We said, suppose what happens
+in this open economy context
+if we increase
+government expenditure.
+The curve will shift up
+in exactly the same way
+as in the closed economy.
+The difference will
+be in the multiplier
+though, because
+as output goes up
+as a result of the expansionary
+aggregate demand, that also
+means that domestic
+income will go up,
+and that means that
+imports will go up,
+and thus demand will
+go for foreign goods.
+And that's the reason this zz
+curve has a lower multiplier.
+It's flatter than the dd curve.
+Still if we start, for
+example, with a trade balance,
+since imports are
+going to increase
+as a result of this
+expansionary fiscal policy,
+we're going to end up
+with a trade deficit.
+And that's the reason
+the response of output
+is less than closed economies,
+because part of that
+goes to foreign goods.
+Conversely, if
+this other country
+that is doing an expansionary
+fiscal policy or something that
+leads to higher
+output abroad, y star,
+that's also
+expansionary for home
+because the export
+function goes up,
+and that leads to an
+increase in output,
+still with lower
+multiplier because part
+of that increase in domestic
+output will go to imports.
+But in this case,
+unlike the other ones,
+actually the trade balance
+improves because it's
+being pulled by exports.
+And so at impact we
+get a big increase
+in exports, which is
+the driver of increase
+for demand for
+domestically-produced goods.
+And then as income goes
+up, we do some of that,
+but you end up with higher--
+better trade surpluses
+than in the case
+in which you induce the
+expansion in aggregate demand.
+Then the last step there was to
+look at the role of the exchange
+rate.
+And what we said is we're going
+to make some assumptions that I
+promise you, and I
+now read the quiz
+so I guarantee you
+all of this promise--
+nothing weird will
+happen, meaning
+if our goods gets more
+expensive, that means
+that net exports will be worse.
+And for two reasons.
+For at least one reason,
+but it could be two.
+If the exchange rate
+goes up, then there
+is going to be less
+exports at any given
+level of foreign income.
+That will worsen the net export.
+And then we're going
+to tend to import more.
+Now that will be partially
+offset for the fact
+that you can buy more with
+the same amount of dollars,
+but we said we're going
+to impose conditions such
+that the positive--
+the negative effect
+of an appreciation on net
+exports always dominates.
+And again, in your
+quiz you're going
+to have a situation like that,
+and that will be the case.
+So don't think that we're
+trying to trick you or anything.
+This will hold.
+The point of this being that
+depreciating your currency,
+making your goods
+less expensive will
+produce a response equivalent
+to what you get here
+out of an increase in y star.
+That's exports will
+go up, and you're
+going to get all this shift.
+Net export function will go up.
+That will increase
+aggregate demand and so on.
+So that's the kind of
+things that countries
+want to do typically when
+they're in a recession
+and so on.
+Then that was an introduction
+to the most important lecture
+in this part of
+the course, which
+is the Mundell-Fleming model.
+And I promise you that you would
+get 70% at least in the quiz,
+and I already read the quiz, so
+I tell you there is at least 70%
+of your points have
+to do with this model,
+so you better
+understand it very well.
+You do every single
+comparative statics
+that you can imagine
+with this model,
+and then you'll
+get 70% at least.
+I think you get 73%
+actually, but that's the--
+so what's this?
+The Mundell-Fleming model is
+simply what I just showed you.
+It's the goods
+market equilibrium
+but with an endogenous
+exchange rate.
+And so we rewrote and said,
+since we're assuming completely
+sticky prices, we can replace
+the real exchange rate
+by the nominal exchange
+rate, but now we're
+going to endogenize
+the exchange rate.
+And for that we're going to use
+the uncovered interest parity
+condition.
+This is a condition you should
+understand very well as well.
+So that tells you essentially
+that the expected return
+of the two bonds,
+the bonds issued
+in foreign currency and domestic
+currency, have to be the same.
+The expected return
+have to be the same.
+And this condition ensures
+that, because if a country,
+for example, if the
+domestic interest
+rate is higher than the
+international interest rate,
+you need to expect
+a depreciation
+of the current currency,
+otherwise the expected return
+would not be the same.
+And that's the reason
+when we add the assumption
+that the expected exchange is
+fixed at least temporarily,
+then an increase in
+the interest rate
+leads to an appreciation
+of the exchange rate.
+Why?
+Because if the exchange
+rate appreciates
+but the expected
+exchange rate stays put,
+that means the expected
+appreciation will
+have to be undone,
+and that means
+that leads to an
+expected depreciation.
+So that's very important.
+So and here you
+have therefore you
+need to understand this,
+know that for a given
+expectation of
+the exchange rate,
+an increase in
+domestic interest rate
+appreciates the
+domestic currency,
+and an increase in the foreign
+interest rate without us
+matching it will lead
+to a depreciation
+of the domestic currency.
+So that's what you have there.
+That's important.
+Now notice that if the
+expected exchange rate goes up
+and the interest
+rates do not change,
+then the current exchange
+rate has to go up.
+Because if it didn't, then you
+would have an expected capital
+gain out of the currency
+and expected appreciation,
+and that would add to
+the expected return
+of owning domestic bonds.
+OK, good.
+So we characterize that interest
+parity condition as follows.
+We said, this here, we are
+plotting the domestic interest
+rate.
+Here we're plotting the
+current exchange rate.
+And we are marking
+in this picture--
+this is a curve
+that traces the UIP
+and coverage by the condition.
+And naturally when the
+domestic interest rate
+is equal to the
+International interest rate,
+then it has to be the
+case that the exchange
+rate is at the same level as
+the expected exchange rate.
+If that is equal to
+that, so if we're here,
+then we know that the
+point in that curve
+is that in which the exchange
+rate is equal to the expected
+exchange rate.
+That's what we have.
+Good.
+So you should understand this
+curve and know what moves it.
+Here it's very clear
+what moves it, no?
+There are two things that
+can move this curve here.
+One is a change in i
+star, the other one
+is a change in
+expected exchange rate.
+What happens if
+the i star goes up?
+You know that the
+UIP will shift,
+but you do know that the
+point equivalent to that, that
+is one in which exchange rate is
+equal to expected exchange rate,
+will have to have a higher
+domestic interest rate.
+Because if I'm
+bringing this up and I
+want to still look at
+the point in which e
+is equal to the
+expected exchange rate,
+then I have to move i
+up by the same amount.
+And so I know that this curve,
+when i star goes up, this curve
+moves up or to the left.
+You pick which way you analyze.
+OK.
+Now what about the
+expected exchange rate?
+If the expected
+exchange rate goes up
+and the international
+interest rate hasn't gone up,
+so if the expected
+exchange rate moves
+to the right and the domestic
+interest doesn't go up,
+then that means that
+the current exchange
+rate will have to also go up.
+So that means if this goes
+up, then at an interest rate
+equal to the international
+interest rate,
+so let's look in
+this direction, then
+we have a point around here.
+If that wasn't
+the case, then you
+would be expecting
+an appreciation,
+and then again, it would be
+inconsistent with the UIP.
+Then we put things together.
+So what we did is we use the
+UIP to replace the exchange
+rate there, and now we get this
+expression in the net export
+function.
+Now the LM is exactly
+the same as before.
+The central bank sets
+the interest rate.
+Here I'm writing it in terms
+of the nominal interest rate.
+I think in the quiz we wrote it
+in terms of the real interest
+rate, but it's the same
+because prices are fixed,
+so real and nominal interest
+rates are exactly the same.
+Yeah.
+AUDIENCE: Is the x axis
+the expected exchange rate?
+RICARDO CABALLERO: No.
+It's the actual exchange rate.
+The expected exchange rate
+is in this curve here.
+That is a parameter.
+This happens to be a value
+of the current exchange
+equal to the expected
+exchange rate, which
+is convenient to plot
+because that's also
+when the domestic interest rate,
+which is what I'm putting here,
+is equal to international
+interest rate.
+That's all I'm saying.
+And then if you shift this to
+the right, exchange rate up,
+the expected exchange
+rate up, then I
+know that a new
+point in this curve
+has to have a higher
+current exchange rate.
+So that I know.
+I know that the
+equivalent to this point
+A is going to be to the right.
+If you lower the foreign
+interest rate, then what I know
+is that exactly, that the
+point at which exchange rate is
+equal to the expected
+exchange rate
+has to have a lower
+domestic interest rate.
+So that means that I
+know that this point
+A will be around here, which
+is like a shift to the right.
+Anyway, so as I was saying,
+nominal and real interest rates
+are the same.
+I think in the quiz we wrote
+r there, but it's the same.
+Same model.
+So now you see that interest
+rates have two effects.
+One is the traditional
+effect, affects investment,
+but it also affects
+the exchange rate.
+So an increase in the
+domestic interest rate
+now will be doubly
+contractionary in the sense
+that we lower
+domestic investment.
+That reduces aggregate demand.
+But at the same
+time, it will also
+appreciate the exchange
+rate, and therefore it
+will reduce net exports.
+We're going to import
+more and export less,
+and that's also going to
+reduce aggregate demand.
+So those are the two effects.
+So that's the contribution
+of all this exchange rate
+block to our IS-LM framework.
+Mundell-Fleming is simply
+IS-LM plus a UIP condition
+and a net export function.
+That's it.
+So we put out now the
+two things together, sort
+of a standard IS-LM,
+now with different slope
+and so on because we have
+this net export function
+and we have more parameter, we
+have y star, i star, and things
+like that, and then
+we have the UIP there.
+And then we did a
+few experiments.
+Said suppose that now you have
+an expansionary monetary policy.
+So an expansionary
+monetary policy
+as before with slightly
+different slopes
+and so on because of
+the net export function
+will lower equilibrium output.
+And it will lower
+it for two reasons.
+As I said before, it will lower
+it because investment will
+decline but also because
+higher interest rate
+means an appreciation
+of the exchange rate
+today because you have to
+expect a depreciation now
+in the next period.
+And that means also
+less net exports.
+So the interest rate
+is contractionary
+for two different reasons here.
+Is that clear?
+Yeah.
+Raised interest rate.
+Raised interest rates will
+lower aggregate demand
+for the standard reason,
+but on top of that,
+we're going to get an
+appreciation of the exchange
+rate, which also
+reduces net exports.
+What about an increase in
+government expenditure?
+It's the same as before,
+and nothing changes
+relative to before
+except for the fact
+that we have a lower multiplier.
+But it's still the case
+that it's expansionary,
+but it doesn't affect
+the interest rate,
+it doesn't affect the exchange
+rate or anything like that.
+Again, it's less expansionary
+than closed economy
+because part of that
+energy will go to imports.
+Then I went to this diagram,
+and I played with this diagram
+here and said, suppose that the
+expected exchange rate goes up,
+then which curves change?
+And the first one that
+changes is this one.
+This one moves to the right, so
+you get an appreciation today.
+And that also means that
+this curve here, that, yes,
+will shift to the left.
+If expected change
+goes up and you
+don't change
+monetary policy, that
+means interest rate will go up.
+Sorry.
+And you don't change
+monetary policy,
+that means the current
+exchange rate will appreciate.
+That will reduce net
+exports, and that's
+a shift in this space.
+That's a shift in
+the yes to the left.
+This is a parameter.
+These two things are parameters
+now in the IS-LM diagram.
+What about for an
+output going down?
+That doesn't affect
+the UIP condition,
+but it does affect net exports,
+so that moves IS to the left.
+And the last thing we did
+was an increase in i star.
+And an increase in
+i star, what it does
+is at the same
+interest rate, then
+you know that you need a
+depreciation of the currency
+today because that will lead
+to an expected appreciation,
+so that means that
+this UIP curve moves
+to the left and the IS
+curve moves to the right.
+And increasing the interest rate
+taken as given foreign output.
+If foreign output
+also changes, then you
+have to look at the
+combination of the two things.
+But taking foreign
+output as given,
+then this curve will
+shift to the left
+and that will move
+the IS to the right
+because the exchanges
+will depreciate.
+It said sometimes countries
+choose to fix exchange rates.
+And when you fix
+an exchange rate,
+and if it's a credible
+exchange rate,
+then the expected exchange is
+equal to the actual exchange
+rate and equal to
+some constant, then
+that implies immediately
+that the domestic interest
+rate has to be equal to the
+international interest rate.
+So if you fix your exchange
+rate to someone else,
+then you give up
+your monetary policy.
+The monetary policy is run
+by a different country.
+OK, good.
+So that's a very
+important lecture.
+Play with it, please.
+Then we look more carefully at
+different exchange rate regimes
+and the effectiveness
+of policy within each
+of these regimes, the flexible
+exchange rate system, which
+is the one we were
+discussing before, you get
+sort of-- if a country
+is in a recession,
+you can use fiscal policy.
+I showed you that before.
+It works well.
+And you can also use
+expansionary monetary policy,
+which will be very
+successful for two reasons.
+One, the traditional one,
+but the second reason
+is that it will
+depreciate your currency.
+OK, good.
+Now then suppose that
+you had a country that
+is also in a recession but you
+have a fixed exchange rate.
+Then you still can
+use fiscal policy.
+There is nothing against that.
+But you cannot use the
+expansionary monetary policy.
+So that's a limitation
+of fixed exchange rate,
+that you lose an important tool.
+Another problem that can arise
+with fixed exchange rates
+is speculative attacks
+on the currency.
+Sometimes the peg
+is not credible,
+and when the peg is not
+credible, you can imagine that--
+suppose that people expect
+your currency to depreciate,
+so expect the exchange rate goes
+down, and suppose that you do
+want to keep your peg today,
+that's what typically happens.
+Somebody speculates
+against your peg,
+but the central bank
+resists that for a while.
+But the only way
+you can resist that,
+short of closing
+the capital account
+and doing all sorts
+of things there,
+but you haven't learned
+about those, so don't worry.
+The only tool you have here to
+defend the speculative attack
+on your currency that is
+for the exchanging note
+to depreciate today is by
+raising interest rates.
+So the defense of an exchange
+rate causes a recession at home.
+That's another problem that
+flexible exchange rate have.
+And the deal seems
+pretty obvious
+that you don't want to
+have a fixed exchange rate.
+And I said, be careful
+because flexible exchange
+rates are also not a panacea.
+You may get lots of volatility
+in the exchange rate
+because the role of
+expectations is very important.
+And anyways, this
+looks complicated,
+but it's essentially what we
+did later on when we price
+equity and things like that.
+We use the same sort of iterated
+substitutions and things.
+This was just meant to say
+that in a flexible exchange
+rate, once you endogenize
+expected exchange rate,
+you don't take it
+as a constant, it
+gets to be very complicated
+because effectively the exchange
+rate is pinned down
+by the expectations
+of infinite horizon of interest
+rate at home and abroad.
+So there's lots of
+space for creativity
+and moving things around.
+And that's the reason
+exchanges can be very volatile.
+OK, good.
+So anyways, so all that, that
+was it for Mundell-Fleming plus.
+Any question about that?
+Because now I'm going to
+move to the next part.
+OK, so then the next step
+was to look at asset prices
+really and/or valuations
+of assets in general that
+have cash flows in the
+future or an exchange
+that's a little bit
+like that, by the way.
+We talk a lot about
+current events.
+But the key thing was this.
+We said, OK, many things,
+many financial or real assets,
+actually, or even your human
+wealth, we'll discuss later on,
+you are receiving
+some income today,
+but you're also expecting to
+receive income in the future.
+And this part was about how do
+we value those things that we
+receive in the
+future, those cash
+flows that come in the future.
+And so we developed this concept
+of a expected present discounted
+value.
+And we said, very natural way
+of bringing dollars received
+in the future to the present is
+to discount them by the interest
+rate between now and then.
+And the reason, the
+logic behind that
+is because if you
+give me $1 today,
+I can do a lot more than if you
+give me $1 five years from now
+because I can invest the dollar
+today and earn the interest rate
+return up to five
+years from now.
+So $1 today is worth a lot more
+than $1 five years from now,
+therefore $1 five years from
+now is worth a lot less than $1
+today.
+How much less?
+1 over 1 plus the interest rate
+over that period, which is--
+OK.
+So that's what we did.
+Then I show you a
+general cash flow.
+This is an asset that gives a
+cash flow zt at the beginning
+of this period.
+zt plus 1 at the
+beginning of the next one
+or at the end of this
+one, something like that.
+This one you don't
+need to discount.
+That one you do need to discount
+because you're not receiving it
+now, you're receiving
+it a year from now.
+This one, it's two
+years from now.
+You need to discount it more
+because it's two years that you
+could be earning an interest
+rate and so on and so forth.
+This formula you
+need to understand.
+And I said, that's if
+you know the future.
+If you don't know the future,
+then you just replace the things
+you don't know for
+their expected value.
+That's what you say.
+And that's the approximation.
+In reality, if you were
+to do this formally,
+it's a little more complicated.
+But for this course,
+that's all that you do.
+And then I look at
+some particular cases.
+This is a case, the same case,
+but one in which the interest
+rate is constant.
+Suppose that you expect the
+interest rate to be constant,
+then it's a little
+simpler expression,
+because rather than
+getting this product of 1
+plus 1 the interest
+rates at different times,
+you get just powers of 1 plus i.
+Then another one that
+is simpler obviously
+is one in which all
+these expected payments
+are constant and so on.
+And then even simpler, if
+the interest rate is constant
+and the payment is constant,
+you get some simple formulas
+like that.
+Simpler formulas.
+And then cases in which
+asset lives forever
+of that kind and
+that's a value, if you
+don't pay for-- if you don't
+receive the first cash flow now
+but you receive it at the
+beginning of next year
+or at the end of this one, then
+it gets even simpler like that.
+And you are going to get a
+question of this kind in which
+you are going to
+be asked to compare
+two different assets that have
+different profiles of cash
+flows, and you're going to have
+to compare between those two.
+Then we talk about
+bonds and bond yields.
+And essentially we use expected
+present discounted value formula
+just for bonds.
+And bonds have a very particular
+form, profile of payment.
+Typically some coupons
+and some final payment,
+which we call it the face
+value of the bond or something
+like that.
+And we said a very important
+concept in bonds is maturity.
+And maturity is the
+date, the number of years
+till the last
+payment on that bond.
+Doesn't matter
+whether you receive
+lots of little
+coupons along the way.
+And one final payment,
+whether you receive no payment
+whatsoever until the last
+day, that doesn't matter.
+The maturity of a bond is
+the date, the number of years
+till the last time,
+your last payment.
+So we give some examples.
+There's a bond that pays nothing
+now but pays $100 one year
+from now.
+Has a price.
+It's a discounted value of
+$100 for one year divided
+by 1 plus the one year
+interest rate at time t.
+A bond that pays
+nothing up to two years
+and then after two
+years pays $100,
+then that's the value,
+the price of that bond.
+It's $100 discounted by that.
+And then we look
+at arbitrage, which
+says suppose you hold a
+bond that you're considering
+investing your money for one
+year, but you have two options.
+One is to buy a one-year bond.
+The alternative is to buy a
+two-year bond now and sell it
+at the end of the year.
+Those two strategies should
+give you more or less
+the same return.
+Well, if you buy
+a one-year bond,
+you're going to get 1 plus
+i1t at the end of the year.
+If you go through the
+two-year bond strategy,
+then you're going
+to pay this today
+but you expect to receive the
+price of a one-year bond one
+year from now.
+And we said these two
+things have to be equal.
+More or less equal.
+Again, we're not adding
+risk to these things.
+If there's no risk consideration
+of agents at risk neutral,
+then these two things
+have to be equal.
+That allows you to solve for
+the price of a two-year bond
+as expected price of a
+one-year bond one year
+from now divided by 1
+plus the interest rate,
+but the expected price of a
+one-year bond one year from now
+is going to be like a one-year
+bond but one year from now,
+so it's 100 divided by 1 plus
+i1t plus 1 expected value.
+I can stick that in there, and I
+get exactly the same expression.
+So these are two different
+ways of pricing a bond
+or any other asset actually.
+And then we define
+the yield to maturity.
+So that's an important concept.
+Yield to maturity is a
+constant rate that gives you
+the current price of the bond.
+So we already determined
+the price of a two-year bond
+is that.
+And now I'm saying,
+suppose that-- let
+me look for a rate that is
+the same in both periods that
+gives me the same price.
+And that's the reason I have
+a subscript 2 here at time t.
+So what is the rate that, if I
+put a constant rate, so I have
+1 plus i2t times 1
+plus i2t gives me
+exactly the same price as the
+one we already determined.
+And that's what we call
+the yield to maturity
+or the yield or the end--
+in this case, would
+be a two-year rate.
+If you hear, what is a
+two-year rate, it's that.
+And so we know what this price
+is, which is equal to that,
+thus this expression there.
+So the whole trick here is
+to find the two-year rate
+at time t that gives you
+exactly the same value.
+That means obviously
+since 100 is equal to 100,
+it means to find the i to t that
+gives you this equal to that.
+Would you say it's
+approximate, implies
+that approximately
+a two-year rate
+is like an average of
+the two one-year rates.
+But this concept, you
+should know what it is.
+I said there are two
+forms of risk in a bond.
+One type of risk
+is the full risk.
+What if the issuer of
+the bond doesn't pay you?
+Now there's a huge issue
+with the US debt ceiling,
+because if somehow
+they don't fix that,
+there will be a default
+on some treasury bonds.
+Let's hope that
+it doesn't happen.
+But that's default
+risk, is that whoever
+issued the debt, at the time in
+which it should be paying you
+a coupon or the principal, the
+face value, it doesn't pay you.
+That's default risk.
+And typically, US Treasury
+bonds don't have that risk,
+so nobody worries about that.
+At this moment, the
+default risk price
+in US bonds for one-month bonds
+is higher than that of Mexico
+and the bonds in
+Mexico or Brazil.
+That tells you the
+kind of things we have.
+But in any event, so this
+is a temporary default risk.
+Nobody expects in the
+US that this will not
+be eventually repaid.
+But you can cause a big mess by
+just delaying a coupon payment
+when these coupons are huge.
+And so that's what's
+leading to all this concern.
+But in any event,
+that's one type of risk.
+But we didn't look at
+that type of risk a lot.
+Corporate bonds have
+a lot of that risk,
+but we didn't look
+at that kind of risk.
+We looked at another kind of
+risk, which is price risk.
+If you invest in your one-year
+bond, there is no price risk,
+you're going to get your
+coupon, your face value of $100
+at the end of the year.
+That's it.
+If you go through a
+two-year strategy,
+there is a risk
+there because you
+don't know exactly what the
+price of the one-year bond
+will be one year from now,
+and that's a risk there.
+We are not looking at what
+risk-averse investors do and so
+on, but in reality,
+there is such a risk.
+And just the way we model
+that is we said, then
+if I'm going to go
+through the two-year bond
+route for a one-year
+investment, then I
+don't have to set this
+equal to the return
+I get in the short
+bond, the one-year bond.
+I have to add an
+extra risk premium.
+And then we write to this
+formula using the same steps.
+We said, well the
+two-year rate is really
+the average of the expected
+one-year rate plus a premium.
+And we call that actually
+the term premium.
+You're more likely
+to face a question
+about the top of the slide
+than the bottom of the slide,
+but I don't remember fully.
+Stock prices and present value.
+It's the same sort of idea.
+The only difference is that the
+equities do not have maturity.
+Stocks do not have maturity.
+In principle, a company
+would last forever.
+And so there is no maturity.
+And there is also the
+commitment of-- the coupons
+are a lot shakier in the sense
+that, yeah, the company is
+likely to give dividends,
+they may announce the dividend
+policy, but it's
+not a commitment.
+Regional banks now are
+not giving any dividend
+because they want to
+preserve the capital.
+They could, but they're
+not because they
+want to build capital
+just to be more
+resilient to any
+further bad news.
+But anyway, so equity,
+that means that you always
+have this future
+price floating around,
+and you can keep substituting
+this multiple times.
+And essentially, you get to
+an expression that says, look,
+the price of equity is really
+the expected present discounted
+value of the dividends, and that
+includes lots of uncertainty
+because you don't know exactly
+what the interest rate will
+be in that period and so on.
+And there is always a
+remaining term out there which
+also causes a lot of trouble.
+In practice, assets,
+equities move a lot more
+than what you can justify with
+respect to the present value
+of dividends.
+There's a lot of volatility.
+There are bubbles.
+There are all sorts of things.
+I told you the story
+of Newton and so on.
+So this formula for the bonds,
+those formulas are great.
+For equity you're going to be
+pretty far off on actual prices
+if you use this type of formula.
+Still people call this the
+fundamental value of equity.
+And then the rest is
+sort of more speculative.
+But the point is that
+the speculative component
+moves a lot.
+It's responsible for a very
+large share of the volatility
+in asset-- in equity prices.
+In any event, I'm
+not going to ask you
+about this kind of stuff.
+Yeah.
+AUDIENCE: So that final
+equation on the slide,
+there is no expression for qt.
+RICARDO CABALLERO:
+It's right here.
+AUDIENCE: Oh, OK.
+RICARDO CABALLERO: It
+keeps going forever.
+It doesn't stop.
+Yeah.
+It just discounted
+more and more and more,
+so you would expect it to
+be less and less important.
+But if the thing is
+blowing up, then it
+may dominate the heavier
+and heavier discounting
+because it's further
+out in the future.
+And that's the way you
+create theories of bubbles.
+You can even come up with
+rational bubbles in that way,
+but again, that's for
+a different course.
+What else?
+Then we look at
+what is the effect
+of an expansionary monetary
+policy on asset prices.
+And we said, obviously
+it's going to,
+if you lower interest
+rates, that's
+going to increase the
+value of any asset that
+pays in the future returns.
+And so it is typically
+the case that
+expansionary
+monetary policy will
+lead to an appreciation
+of all assets.
+Most assets, but certainly
+bonds will go up directly
+because that's where
+the interest rate has
+a maximum, the clearest
+effect, but it's also the case
+that it tends to be
+bullish for equity as well.
+It's got interest rate.
+A lot of the response
+of equity to news
+has to do with the
+expected behavior
+of the fed in the future.
+Do you think that this will lead
+them to increase interest rates
+or to lower interest rates
+and things of that kind.
+But again, I think that's a
+little too complicated for you
+for now.
+It said, what is the effect
+of an increase in consumer
+spending on asset prices?
+Well, that depends.
+It's clear that if consumers
+become more bullish,
+that's going to tend to lead to
+more cash flows for the firms,
+so equity at least will go up.
+Bonds no, because the
+coupon is set, fixed,
+doesn't depend on
+whether the economy
+is doing better or worse.
+I'm assuming there
+is no default risk.
+But it depends a lot of what
+you expect the fed to do.
+If you think that this is
+going to trigger a fed hike,
+then it's bad news for bonds
+because the bonds do not
+benefit from the extra
+economic activity,
+and they get hurt by
+higher interest rates.
+So it depends a lot on what you
+anticipate the fed to do or not.
+But again, I think this
+is a bit more complicated
+than what you need to know.
+OK, the last step was
+to bring expectations
+into the IS-LM model.
+I said the model we discussed
+through the course on the IS-LM
+except for the part where we
+put the exchange rate, where
+we had to think about
+the future exchange rates
+and things like that.
+It really overweighed
+the present.
+In reality, expectations matter
+a lot for consumers' decisions,
+for firms' decisions, and so on.
+Probably matters even more than
+the future-- than the present.
+And so what we did is we
+expanded the IS-LM to include
+expectations, which is where
+consumers not only worry about
+disposable income--
+this part will show
+up in your test,
+so you should understand
+what the IS-LM model is
+and do the comparative statics
+that corresponds to this model.
+So what we did here, it
+says, consumers not only
+worry about the current
+disposable income,
+they also worry about the income
+they receive in the future
+through financial
+assets, financial wealth,
+or through their
+future labor income.
+That's what we
+call human wealth.
+But the point is
+that expectations
+about the future
+matter for consumption.
+In the first part of the
+course we summarize all that
+in that little parameter c0.
+We said consumers can
+be bullish or not.
+A lot of what
+happens here is what
+shifts c0 in the first
+part of the course.
+And this also highlights
+an important concept,
+which is typically if
+you expect something
+to have only a temporary
+transitory consequence,
+it will move consumption little
+relative to when you expect
+that change to be permanent.
+So you expect current
+income to be up,
+but future income to
+go back to a lower
+level, that's not
+going to change
+current consumption a lot.
+However, if you think
+there is a change that
+will increase consumers
+income permanently up,
+well that will increase not
+only this but also human wealth,
+and that will lead to a much
+larger response of consumption.
+We did more or less the
+same for investment.
+Obviously what matters for
+investment is future cash flows.
+And there we talk about the
+concept of depreciation.
+But really was this
+expected present discounted
+value of the cash flow generated
+by an extra unit of capital.
+So expected present
+discounted value formula.
+So in the first
+part of the course,
+we just look at an investment
+function that has output here,
+and then we have an
+interest rate here,
+where now we have something
+that is more complicated.
+It has future output, which as
+a proxy for future cash flows
+but also current
+and future interest
+rates because those affect
+the value of those future cash
+flows in terms of
+today's dollars.
+And we put all of this
+together, and we ended up
+with an expanded aggregate
+demand in which we
+had the same
+parameters as we had
+when we did the static
+model without expectations,
+but now we get sort
+of the same things
+repeated here one year
+ahead because it matters
+not only for
+aggregate demand, not
+only the income that
+consumers are receiving today
+or the sales that
+firms are making today,
+but also what they
+expect to have next year.
+It matters what the taxes
+they are paying today
+but also what they expect
+to pay in the future.
+The interest rate
+matters not only today
+but also what they
+expect the interest rate
+to be in the future and so on.
+So the bottom line is that if we
+now look at the IS-LM model, now
+we have lots of more parameters.
+All these things that happen in
+the future are new parameters.
+I said notice that also this
+curve now is a lot steeper.
+Why is that?
+Well because if you change
+the interest rate today
+without changing the
+interest rate in the future,
+then that has a small effect.
+And so I said now this
+IS becomes very steep,
+but the equivalent to what
+we did in the static model
+is a situation where you cut
+the interest rate today-- say
+the central bank cuts
+the interest rate today,
+but it also convinces the
+public that it will also
+keep the interest rate
+low in the next period.
+That is not only you move
+along these [INAUDIBLE],,
+but you also persuade the
+public that the interest
+rate will be lower
+in the future, that
+will shift IS to the right.
+And then therefore you're going
+to get a much larger kick out
+of monetary policy.
+And monetary policy is a
+lot about forward guidance.
+It's that you cut interest rates
+today, but you're also telling,
+there is always a speech after
+they take the policy action
+which they talk about how
+they see interest rates going
+in the future and that.
+That's because you want
+to have maximum power.
+If you just tell
+the markets, I'm
+going to change the interest
+rate for now and then nothing
+else, that's going to have
+a very limited impact.
+To have a large impact
+out of monetary policy,
+you have to convince
+them that you will also
+affect the interest
+rate path in the future.
+Same sort of situation here.
+The other parameters is what
+happens if, for example, you
+expect future output to go up.
+That's going to shift
+IS to the right.
+That's yet another reason why
+convincing people that you're
+going to cut interest
+rates in the future
+as well, that you're
+going to keep them
+low in the future
+shift IS even more,
+because if you're going
+to keep the interest
+rate low in the future,
+that means probably
+that future output
+will be higher.
+And since future
+output is higher,
+that increases human
+wealth, and that means
+consumption will tend to go up.
+But do play with this.
+And again, it's
+important to have
+this distinction between the
+impact of temporary things,
+which is much smaller,
+and the impact
+of permanent things,
+which is bigger
+because it affects wealth.
+Oh, that's an example.
+So monetary policy,
+again, that's
+just if you don't
+persuade the public
+that you're going to change the
+interest rate in the future,
+then it just a movement along,
+but if you also convince them
+that you remain sort of loose
+monetary conditions next year,
+then that effectively shifts the
+IS to the right for a variety
+of reasons, for two
+reasons at least,
+and that's much
+more expansionary.
+The last thing we
+need is fiscal policy.
+I said fiscal policy
+today is contractionary.
+There is no doubt of that.
+But there are episodes,
+and I show you
+the Irish episode, in
+which actually may end up
+going the other way
+around, in which you
+cut expenditure today,
+which is contractionary,
+but you end up actually
+having an expansion.
+But for that, the only
+way that can happen
+is that if somehow you
+affect expectations
+in a very significant way.
+So that's what I said.
+If you ever get sort of a
+strange correlate response
+to a policy announcement,
+it's probably
+because there has been a
+big effect on expectations.
+So I showed you
+the case of Ireland
+because there's a case
+that was famous in which
+all the people talk about there
+was a fiscal deficit-- that it's
+a big drag in the
+economy, that it was going
+to be a big day of reckoning and
+that, and so on and so forth.
+So once they dealt with
+it, sort of expectations,
+they realized that they could
+cut interest rates then,
+they could realize that also
+that this malaise in the economy
+was going to go away, so
+people became optimistic
+about the future and so on, and
+they end up with an expansion.
+That shows you how
+important expectations are.
+So economic policy in general,
+the direct immediate effect
+is what we have been discussing
+throughout the course,
+but a lot of its power and even
+the sort of perverse or good
+synergies that you
+get out of them
+has to do with what you
+do with expectations.
+OK, good.

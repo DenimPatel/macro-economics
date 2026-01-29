@@ -1,0 +1,1886 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO J. CABALLERO:
+So today, my plan
+is to finish the open
+economy part of the course.
+And we will talk about
+exchange rate regimes.
+But before I do that, I need
+to finish a few things that we
+didn't in the previous lecture.
+And that will help
+as an introduction
+for the kind of things I
+want to talk about today.
+And let me start just
+reviewing that last slide
+that we discussed, which is
+the Mundell-Fleming model.
+And the Mundell-Fleming
+model, essentially,
+is our old IS-LM model, in
+which the IS a little different
+because now we have a
+net export term, which
+is a function of new things like
+foreign output, foreign income,
+and most importantly,
+the real exchange rate.
+And the real exchange rate
+itself, because of the UIP,
+uncovered interest
+parity condition,
+is a function of
+expected exchange rate,
+the foreign interest rate.
+And it also gives
+yet another reason
+for why the interest
+rate affects
+domestic aggregate demand.
+There's the traditional
+investment effect
+of an increase in
+interest rate, but we also
+get the appreciation effect
+of an increase in the interest
+rate, which is contractionary
+from the point of view
+of aggregate demand.
+But this is like that without
+this extra net export term.
+And in this diagram, we have
+the same interest rate here.
+From this diagram, which
+portrays the uncovered interest
+by the condition, we
+can get, for any given
+international interest
+rate and expected exchange
+rate for the next period, we can
+get the current exchange rate,
+OK?
+So that was our model.
+And we did a few
+experiments here.
+The first one was, well, what
+happens if the expected exchange
+rate goes up?
+The first thing is
+which curves move?
+Well, if the expected
+exchange rate goes up,
+then I know that, for
+any given interest rate,
+the current exchange
+rate will go up, OK?
+I know that this curve, in other
+words, will shift to the right.
+Why do I know that?
+Well, because if the
+current exchange rate
+doesn't move by the same amount
+of respect to the exchange rate,
+now I'm going to expect--
+I'm going to have expected
+capital gain or loss, which
+will be inconsistent with the
+previous parity of interest
+rate.
+So we have agreed that we had
+certain expected appreciation.
+So let's make it very simple.
+Suppose that this
+interest rate happens
+to be equal to the
+international interest rate.
+Then we know that this
+exchange rate has to be equal
+to the expected exchange rate
+because you cannot expect
+an appreciation or depreciation
+of the currency if the interest
+rates are the same.
+But if now the expected
+exchange in next period goes up,
+and if the exchange
+rate today doesn't move,
+that would mean that you
+expect also an appreciation
+of the currency, and which means
+that investing in domestic bonds
+would give you a higher return
+because the same interest rate
+plus expected appreciation.
+So we know that the uncovered
+interest parity condition
+will move to the right as
+a result of the increase
+in expected exchange rate.
+But that also means that,
+at any given interest rate,
+you get a higher--
+an appreciated exchange
+relative to the previous one
+before the increase in
+the expected exchange
+rate, which means that the
+IS will shift to the left.
+So if the expected
+exchange rate goes up,
+that leads to an
+appreciation, and that
+leads to contraction
+in aggregate demand.
+OK, good.
+Next experiment was,
+well, what happens
+if foreign output comes down?
+Well if foreign
+output comes down,
+then this has nothing to do with
+the interest parity condition.
+It's not-- it doesn't show
+up in this expression.
+But it does shift
+this because it
+reduces our exports for any
+given level of interest rate
+and output.
+And so the IS
+shifts to the left.
+So that's contraction.
+That's the way you
+import the recession
+from the rest of the world, OK?
+As I said before, people around
+Asia and Latin America are very,
+very worried about
+the-- actually,
+the Europeans as well because
+Germany [CHUCKLES] exports a lot
+to China--
+are very worried about
+contractions in China
+and so on because,
+through that channel,
+it's contractionary as well.
+Now we're in the other
+part of the cycle
+because China is reopening.
+And that sort of gives lots
+of hope to Europe and so on.
+And that's one of the reasons
+why the euro has appreciated vis
+a vis the dollar recently.
+And then the last experiment
+that I don't remember
+whether we finished or not--
+I think I said it very
+quickly-- is, well,
+what happens if the
+international interest
+rate goes up?
+What moves?
+Well, the first thing
+that will move is this.
+This was a parameter, OK?
+So what do I know?
+That if I keep the
+interest rate constant,
+and the international
+interest rate went up,
+what has to happen
+to the exchange--
+and expected exchange
+rate hasn't changed,
+what has to happen
+to the exchange rate
+today to be indifferent between
+the two things, the two bonds?
+So this is an experiment.
+Suppose you were at any
+domestic interest rate.
+We don't touch that.
+Now I increase
+international interest rate,
+and I say expected exchange rate
+is the same as it used to be.
+What has to happen to
+the current exchange rate
+in order to be indifferent
+between investing in the US
+bond or the foreign bond?
+AUDIENCE: It has to go down.
+RICARDO J. CABALLERO: Exactly.
+It has to depreciate.
+Why?
+AUDIENCE: So that the uncovered
+interest parity [INAUDIBLE]
+RICARDO J. CABALLERO:
+That's correct,
+but why is it that you need
+the exchange falls today
+in order to restore--
+to have the interest
+parity condition holding?
+OK, so remember what happened is
+that you had the same interest
+rate.
+And now the international
+interest rate went up.
+That means it's nothing moves.
+Now you prefer-- you
+were indifferent before.
+Now you would prefer to invest
+in the international bond.
+If I don't change
+the US rate, then I
+have to compensate you
+by some other means.
+The only way I
+can compensate you
+in this model, the only
+thing that's endogenous
+is by an expected appreciation
+of the exchange rate
+because that would
+give you a capital
+gain from holding the bond,
+the US bond, a currency capital
+gain.
+Now, since the expected
+exchange rate is given,
+the only way I can give
+you that is depreciating
+the currency today.
+So then you can expect
+an appreciation tomorrow,
+from today to tomorrow.
+OK, that's the mechanism.
+OK, so that means
+that this curve here
+will shift to the right.
+For any given interest rate,
+you need a-- sorry, to the left.
+For any given-- I made that
+mistake in the previous lecture
+as well.
+So for any given
+interest rate, this curve
+will have to move
+to the left, OK?
+So if the interest
+rate doesn't change,
+and international
+interest rate is up,
+you need an exchange
+rate today that
+is lower than it used to be.
+So you can expect an
+appreciation from now
+to the next period, OK?
+So that's when it
+moves to the left.
+Now, what happens?
+What else moves in that case?
+I remember when I'm asking
+the question, what else moves,
+I mean, when a curve
+moves, what you need to do
+is just take something
+as given and then
+see whether we get the same
+equilibrium output or not.
+So I'll take an
+interest rate as given--
+that's the easiest-- and
+then ask the question, well,
+will I get the same
+equilibrium output or not?
+If I get the same
+equilibrium output,
+that means the IS doesn't move.
+But if I get a different
+equilibrium output,
+it means the IS has moved
+because, for the same interest
+rate, I'm getting a
+different equilibrium output.
+So what happens in this case?
+Does IS move or not?
+When IS star goes up?
+Going to simplify the
+question-- yes, it does.
+[CHUCKLES] Which way?
+Will I get more or less output
+when the international interest
+rate goes up?
+And I'm taking-- look the kinds
+of things I'm taking as given.
+I'm also taking as given
+international output.
+So I'm not moving Y star.
+I'm not moving
+expected exchange rate.
+And I'm asking the question,
+if the domestic central bank--
+the Fed, in the case
+of the US-- does not
+change the interest rate, what
+happens to equilibrium output?
+Does it go down or up?
+If the international
+interest rate goes up,
+the domestic interest does not.
+What has to happen
+to the exchange rate?
+You answered it before.
+AUDIENCE: Goes down.
+RICARDO J. CABALLERO:
+It has to go down.
+That means it has to depreciate.
+What happened to
+net exports when
+the exchange rate depreciates?
+What does it mean that
+exchange rate depreciate,
+especially if you have
+the-- in this case,
+we have the price
+is completely fixed.
+So now, if the nominal
+exchange rate depreciates,
+it means that the real
+exchange rate depreciates.
+What does that mean?
+What got cheaper?
+OK, you need in order
+to study for the quiz.
+[CHUCKLES]
+Domestic goods are cheaper.
+So that means that--
+and equivalently, foreign
+goods got more expensive.
+That means, for any given level
+of domestic interest rate,
+now there will be less
+imports and more exports.
+That means net
+export will be more,
+which means the IS will
+shift to the right, OK?
+Good.
+So these things you
+need to control.
+I understand that it's a
+little confusing to think
+about exchange rates and so on.
+So anything that happens
+here with the exchange rate
+is just a relative price.
+The more expensive
+are your goods,
+the harder it will be
+to sell them [CHUCKLES]
+and the more tempted you
+will be to buy foreign goods.
+That's what it does.
+So that's contraction,
+appreciation or contraction
+here or not.
+Here, the story's
+a little different.
+It's all about equalizing
+expected returns.
+So you need to have a movement
+in the exchange rate today
+so that you are always
+indifferent between investing
+in one side or the other.
+It's about the
+return, the expected
+exchange in the exchange rate.
+So OK, good.
+OK, I got this a little
+unclear, but [CHUCKLES]
+we'll keep trying.
+Is there anything
+particularly unclear?
+Or it's all a blur?
+[CHUCKLES] OK, got it.
+Well, let me-- so all
+of this I describe here
+is allowing the
+exchange rate to move.
+We're saying, look, if we move
+something or the foreigners move
+something, then we ask
+the question, well,
+what does the exchange
+rate has to do today here?
+And typically, when
+that's done, we
+call those regimes
+floating exchange rate
+systems, meaning the exchange
+rate can float, can move around.
+As interest rates in different
+parts of the world change,
+then the exchange
+rate moves around.
+We typically call that
+flexible exchange rate.
+I think the distinction is a
+lot harder to make in practice,
+but-- for reasons
+I'll explain later.
+But that's what is meant
+as a floating exchange rate
+system, one in which
+really you're doing--
+each country is doing its own
+policies and so on, and exchange
+it does what it needs to do so
+the financial markets clear.
+Many countries,
+however, do something
+which is the polar opposite of
+that, which is called a fixed
+exchange rate regime.
+So some countries really
+peg their currencies
+to a major currency.
+An extreme case is the
+eurozone, where they gave up
+their individual currencies and
+they have a common currency.
+So Germany and Italy have
+an ultra peg exchange rate
+because they have the
+same currency, OK?
+Now, most of the times,
+fixed exchange rates
+are a little weaker than that.
+For example, the
+Hong Kong dollar
+has been pegged to the
+dollar for a long time,
+for the US dollar
+for a long time.
+And I'll show you a few others.
+Many countries go
+through some phase
+where they tried to
+peg the currency,
+and it typically
+fails at some point.
+But they have periods in
+which the currency is pegged.
+So let me-- suppose that you
+have a pegged exchange rate.
+Let me show you
+some features of it.
+Suppose you are in a peg or
+a fixed exchange rate regime
+pegged to another currency.
+And suppose this is credible.
+That's a big issue with
+fixed exchange rate,
+but suppose it's credible.
+There are some countries that
+have credible fixed exchange
+rates.
+Well, if you have a fixed
+exchange rate with respect
+to some other currency,
+and it's credible,
+then you know the
+expected exchange
+rate is equal to exchange
+rate and equal to a constant.
+That's what it means to have
+a fixed exchange rate, OK?
+It's constant.
+But if this is constant,
+means you never
+can expect an appreciation
+or depreciation
+because it's constant.
+It's fixed.
+And if you can't expect an
+appreciation or depreciation,
+then uncovered interest parity
+condition tells you that--
+what does it tell you?
+That your interest
+rate has to be the same
+as the foreign interest rate.
+Why?
+What would happen
+in a credible peg,
+in a credible fixed exchange
+rate if the domestic interest
+rate is higher than
+international--
+than the currency, the interest
+rate of the country you
+are pegging to?
+What would happen?
+Suppose that-- I mean,
+a fixed exchange rate,
+and we have the
+same interest rate,
+and now, you unilaterally
+decide to raise interest rates.
+What do you think would
+happen with capital flows?
+What would you do
+to your portfolio?
+If the exchange rate is
+pegged and is credible,
+it is as if they were
+issuing the same currency
+because it's the same--
+it's a different
+currency, different name,
+but it has a constant
+in front of it, OK?
+So it's as if it was issued
+in the same currency.
+Two bonds that are identical
+and issued in the same currency
+cannot be paying
+different interest rates,
+because you would all invest all
+your money in the bond that is
+paying a high interest rate.
+And that's what happens here.
+So it's-- mechanically,
+what would happen is,
+for some crazy reason, a country
+has a fixed exchange rate,
+credible fixed exchange rate
+decides to have an interest rate
+higher than the currency, the
+interest rate in the currency
+it's being pegged to, then you
+will see massive capital flows
+to that country.
+So there will be an enormous
+pressure for an appreciation
+of that currency.
+But what the central
+bank would have to do
+is start buying
+massive amounts of--
+supplying massive
+amounts of currency
+for those that want to
+buy it because there
+would be an infinite
+demand for that, OK?
+So in practice,
+what that means--
+and sometimes you can do
+that for a little while,
+but not in a sustained manner.
+So what happens in practice
+is that, if you really
+have a pegged exchange rate, and
+you have free capital mobility,
+which is people can move
+in and out of your bonds--
+China doesn't, for example.
+So it can allow
+itself to both control
+a little bit the currency and--
+eh, eh be semi-pegged.
+And it still can move its
+domestic interest rate
+because they have
+capital controls.
+But if you don't have
+capital controls,
+and people can move
+money in and out,
+it can do portfolio
+investment, as it happened
+with most of the
+advanced economies, then,
+effectively, you give up
+domestic monetary policy
+because whatever the
+other country does,
+the country you're pegging
+to does, you have to follow.
+So that's what it means.
+You peg-- you give up your
+domestic monetary policy
+if you choose to peg
+to another country.
+A little later, I'm going
+to tell you why countries
+may choose to do that.
+But that's what you do.
+And the uncovered
+interest parity
+tells you that's what you do.
+You're not going to be able
+to deviate very significantly
+from the interest rate that
+the other country's setting
+if you want to maintain
+your fixed exchange rate.
+Now, in practice, there
+are many hybrid regimes.
+There are very, very
+few pure float regimes--
+a few.
+I mean, maybe five or
+something like that.
+So there are all sorts of
+degrees of exchange rate regimes
+which are hybrids between
+fixed exchange rates and fully
+flexible exchange rates.
+Let me show you just a few
+randomly-- more or less
+randomly selected in Bloomberg.
+So there you have in
+white is the US-euro.
+That's a float.
+That's a cleanest
+float you can imagine.
+I mean, there is no--
+then another which
+is a very clean float
+is the dollar-yen, Japanese yen.
+Now, that's a currency
+that has that freely float.
+But if there is a
+major dislocation,
+central banks do
+intervene to [INAUDIBLE]..
+It means, in normal
+circumstances, they float.
+And the same is
+true with the euro.
+But if there's a big
+dislocation, some major bank
+collapses or
+something like that,
+then there are
+major dislocations
+in financial markets.
+They become very segmented.
+Arbitrage is not
+that easy and so on.
+Then central banks intervene.
+But for the normal business
+cycle and so on, they do not.
+They don't intervene
+in the currency market.
+The intervene in different ways.
+And that's the reason--
+I'll get there.
+And the other one is the pound.
+Now the US dollar versus
+the British pound,
+then it's also as a pure float.
+These are also pure float.
+This is the US versus
+the Aussie dollar
+and against the Canadian dollar
+and against the Swedish krona.
+Those are pretty
+floating regimes.
+They are a little different
+from the previous ones
+I showed you because
+these are currencies
+that are much more
+prone to sell off
+during risk-off environments.
+And that's the reason you
+see these spikes here, OK?
+This was COVID-- biggest spike.
+You didn't see it
+in the dollar-euro
+and so on and so forth.
+So these are currencies
+that are free floaters,
+but they're very exposed
+to risk, the risk
+environment in the market.
+But it's still
+they're free floaters.
+The Swedes are a little bit
+more independent-minded.
+But they do control a
+bit more of the currency.
+But still, I consider
+those free floaters.
+These are currencies that
+are a little different.
+This is the Brazilian real.
+The ZAR is the
+South African Rand.
+And this is the Colombian peso.
+And you see several things here.
+They do move, so they have a big
+component of flexible exchange
+rates.
+They do intervene
+a lot more, though,
+because they are exposed to much
+more risk-off type environments
+and so on and they need to
+intervene fairly frequently
+to control movements
+in the exchange rate.
+But you also see a
+trend in these things.
+So their currencies are becoming
+chronically weaker relative
+to the dollar.
+And the reason for that is
+because there are countries
+that have higher inflation.
+So if you want to maintain the
+real exchange rate constant,
+and you have higher inflation
+than the other country,
+then your nominal exchange
+rate has to be depreciated,
+because your prices
+are rising at a faster
+pace than the other one.
+Well, if the exchange rate
+was not appreciating on--
+depreciating on
+average, then it would
+mean that you were becoming
+more and more expensive, OK?
+So that's the reason countries
+that have higher inflation,
+they tend to have these
+trends as well, OK?
+But it's still fairly floating.
+Here, these are all currencies
+that are, to a different degree,
+targeted, in the
+sense that they're
+contained in terms of they're
+not free to float at will.
+The scale here will mislead you.
+If I had put it
+in the same scale
+as the euro-dollar
+or the euro-yen
+and the dollar-yen or
+the euro-yen as well,
+then these things would have
+been-- looked very small, OK?
+So I should have put
+a real floater there
+so you would have seen
+that these guys are
+moving a lot less.
+And these are different
+kinds of countries.
+This is the Hong Kong dollar
+that, for all practical purpose,
+is pegged.
+This little wiggles is just
+technical things that happen
+overnight and stuff like that.
+But they're pegged
+to the dollar, OK?
+So the Hong Kong dollar
+is pegged to the dollar.
+And that means they really don't
+have independent monetary policy
+relative to the US,
+vis a vis the US.
+This is the CNH.
+This is the Chinese renmimbi.
+And it's a currency.
+Again, I should have put it
+with a real floater there.
+It's a lot more controlled.
+So it moves around, but
+in a much tighter range.
+And they are thinking
+about exchange rate.
+When part of their policy
+programs and so on,
+the exchange rate is something
+they are thinking about.
+This one here, the blue
+one, is an interesting one.
+That's the Singaporean dollar.
+And the Singaporean dollar, they
+have a very interesting regime.
+They have a target zone, meaning
+they let the exchange rate
+move within a range only.
+But it's not pegged
+against a single currency.
+It's pegged against a
+basket of currencies.
+And the recipe is secret.
+So everyone is always guessing
+what they're doing and so on.
+They do change the
+weights a little bit
+to keep the markets confused.
+But the currency is very stable.
+We all understand it's a
+weighted average of the euro,
+the renminbi, and the dollar.
+But they don't disclose
+exactly the thing.
+But you can filter out
+what they're doing.
+And they keep things in a
+range, and they occasionally
+change the slope of that range.
+But it's very regulated
+in that constraint.
+And in fact, they state
+their monetary policy
+in terms of the effects.
+They said, that's our policy.
+Interest rate is
+whatever it needs to be,
+so the exchange rate
+remains in that range.
+That's the way they state
+the monetary policy.
+They don't even think about--
+so I let the markets
+determine the interest rate.
+We determine the exchange
+rate here in that range,
+and it's a narrow range.
+Again, I should have
+put a real floater
+that you would have seen that.
+OK, so the point is
+that everything goes.
+There are all sorts
+of arrangements
+happening around the world.
+These are different
+kind of currencies, no?
+This is the Turkish lira
+and the Argentinian peso.
+I think, through this sample,
+this has been called pesos.
+Since they have this
+very high inflation,
+they keep changing the
+name of the currency and so
+on because you have to
+remove zeros from things.
+But I think, through
+all that period,
+this is still the
+Argentinian peso.
+So I mean, look at
+the scale, though.
+[LAUGHS] So you cannot
+see it, but all--
+these two countries
+are all the time
+fighting against
+the exchange rate.
+In fact, Argentina today has,
+like, five different exchange
+rates.
+There is the official
+exchange rate.
+There is the blue exchange rate.
+There is the purple
+exchange rate.
+There are all sorts of things.
+You should never pay
+with a credit card
+if you go to Argentina
+if you do tourism,
+because you don't want to pay
+the official exchange rate.
+You can get three times
+that in the blue market.
+They don't call it
+the black market.
+Since everyone does it,
+they think blue is fine.
+So there are all
+sorts of exchanges.
+But still this is
+the official one.
+And even the
+official one you see
+sort of as completely exploded.
+The Turkish lira
+looks pretty good
+here just because I put it
+next to the Argentinian peso.
+Otherwise, it also
+would look pretty bad.
+But most of these
+countries are all the time
+paying the exchange
+rate because they use
+that to stabilize inflation.
+The whole thing breaks up.
+And then, boom, they
+go through big spikes.
+You see this, for example.
+They're trying to
+stabilize-- there you
+see that they're trying
+to stabilize the currency.
+They're not floating
+there, that range.
+They were a little
+successful and [WHISTLES]
+And that happens
+all the time today.
+And now, obviously--
+I mean, look at
+the size of this.
+This is an appreciation
+of the dollar,
+so it's a depreciation
+of the Argentinian peso.
+What do you think
+is happening here?
+It looks very
+smooth, by the way.
+It's not that it's
+moving around.
+It's just [WHISTLES] What
+do you think is happening.
+Very high inflation,
+in the thousands.
+And that's what
+is happening here.
+But again, this is
+a hybrid system.
+They try to stabilize
+frequently the exchange rate.
+The thing goes, and then they
+stabilize it again and so
+on and so forth.
+But you can't fight just
+having much higher inflation
+than the rest of the world.
+You have higher
+inflation, then there's
+no way around that your
+currency is going to depreciate.
+They try to, but they can't.
+Anyways, so let me
+go back to this model
+and think a little bit
+more about the decision
+to have one kind of
+exchange or the other one
+and therefore everything
+that goes in between.
+So remember, just to remind you,
+that that's the model we have.
+So let me think
+about policy first,
+and then let's think
+how do you deal
+with policy in the different
+exchange rate regimes.
+And then we'll see
+why would countries
+would want one
+thing or the other.
+So suppose a country
+is in a recession.
+We're in this model.
+And suppose that we are in the
+flexible exchange rate regime.
+So what should the
+fiscal policy do?
+Suppose you are in a recession.
+What should fiscal policy do?
+There's nothing unique
+of closed economy here--
+in open economy.
+In closed economy, you would
+have given me the same answer.
+If you are in a recession, what
+will you do with fiscal policy?
+Have expansionary fiscal
+policy, increase [INAUDIBLE]..
+So that means you move
+the IS to the right.
+Nothing changes in
+the open economy.
+You keep doing that.
+The only thing that you get
+is a little smaller multiplier
+because part of that
+will go to imports.
+But still, it moves you in
+the right direction, OK?
+And yes, and countries rely
+on other countries doing also
+their own expansionary
+fiscal policy.
+But suppose we're talking
+about a recession that
+is unique to this country.
+Then you're going to do an
+expansionary fiscal policy.
+What would the central bank do?
+In closed economy?
+What--
+AUDIENCE: Drop interest rates.
+RICARDO J. CABALLERO:
+Drop interest rate.
+Well, in open economy,
+it does the same.
+You just drop the interest rate.
+It turns out that
+will depreciate
+your currency, which will
+help you, [CHUCKLES] as well.
+So it's very expansionary
+because of that,
+because your currency
+depreciates, so net export
+goes up as a result of that.
+So you get the investment kick.
+You lose a little bit because
+part of it goes to imports.
+But then you also get
+the effect of net exports
+that comes from the
+exchange rate, OK?
+So monetary policy is a
+great policy in open economy
+because it gets reinforced
+by the exchange rate.
+It's even better than fiscal--
+other things equal, when
+you compare the two.
+The two policies lose power
+relative to the closed economy
+because the
+multiplier is smaller.
+But the difference is that
+the interest rate policy
+gets an extra kick that
+comes from the depreciation
+of the currency.
+So it's a very powerful tool.
+So that's what you do if you
+have a flexible exchange rate.
+And that's what
+countries do in practice
+when they are free-floaters.
+Suppose you have a fixed
+exchange rate regime.
+And it's a credible fixed
+exchange rate regime.
+Then I asked you,
+again, the question,
+what kind of fiscal policy
+would you run in that country?
+The same, expansionary.
+That's what you would do.
+And it's effective, as
+it was in closed economy,
+a little less because the
+multiplier is a little less.
+That's it.
+But no difference
+in the analysis.
+In fact, fiscal policy has
+exactly the same effect
+as fiscal policy in the
+flexible exchanges in this case
+because I haven't moved
+the exchanges in any event,
+in either of the two cases.
+What should the central bank do?
+That's a trickier question.
+AUDIENCE: If there's
+a [INAUDIBLE] does
+central bank know naturally what
+the foreign country's doing?
+RICARDO J. CABALLERO:
+Yes, central bank knows.
+So it will have too much.
+Yeah, exactly.
+So the central bank
+cannot do anything.
+I'm saying suppose it is
+an [INAUDIBLE] recession.
+This country's in recession.
+Now it wants to use his policy
+tools to deal with that.
+It has fiscal, but it
+doesn't have monetary policy.
+Unless the cycle of the
+other country coincides with
+your cycle-- so it's a global
+recession or something like
+that--
+then you're doomed
+because other country's
+doing the monetary policy for
+what they're doing, what they
+need, not for what you need.
+And therefore, you don't
+have monetary policy.
+So that's a costly thing
+of a fixed exchange rate.
+We already said, but now
+we're making it very concrete,
+because we are in a
+recession, and you realize now
+that you don't have a
+tool that you had before.
+So that's a cost of a
+fixed exchange rate.
+Here is an example.
+Here, what I'm plotting is
+the policy rate in the US.
+That's the blue one.
+And that's the policy
+rate in Hong Kong.
+Very small difference,
+but you can see that--
+these are technical things.
+But you can see
+that Hong Kong has
+to follow the US, essentially.
+It's exactly the same shape.
+So Hong Kong doesn't have
+independent monetary policy, OK?
+Again, those are technical
+gaps and not really--
+just look at the shape.
+It's exactly the same,
+not moving around.
+So Hong Kong doesn't have
+monetary policy, period.
+Not something they have.
+If they get a recession that
+has to do with their own cycle
+and that is not a
+result of something that
+is happening in the US,
+they don't have the tool
+to deal with that.
+Of course, during COVID, and
+during the global financial
+crisis, they were aligned.
+So they [CHUCKLES] would have
+moved in the same direction.
+That worked.
+But if there is a shock
+that is Chinese-centric
+that is affecting Hong
+Kong, the US monetary policy
+is not going to react to that.
+And that that's a
+problem for Hong Kong.
+Still, they choose to do it.
+A good question is, why?
+Always there is politics.
+There is more than
+the kind of thing.
+But there are also
+economic arguments
+for why you may want
+to do these things.
+Another situation
+that I mentioned
+happens all the time, every
+other day in Argentina,
+for example, is speculative
+attacks on the currency.
+So you want to have a
+fixed exchange rate,
+but the markets
+don't believe you,
+that you're going to be
+able to keep it there.
+And so what happens?
+So look at this equation here.
+Suppose that you have
+a fixed exchange rate,
+but now the market
+thinks you're not
+going to be able to sustain it.
+So that means suppose that
+this guy starts going down.
+This happens, again, in
+Argentina, every other day--
+probably today,
+every single day.
+They want to say that they
+want [INAUDIBLE] exchange rate,
+but the markets
+don't believe you.
+And they expect your
+currency to lose value
+in the next few hours,
+in the case of Argentina.
+So this guy is going down.
+[WHISTLES]
+What happens to the
+current exchange rate?
+So expected exchange goes down.
+Everyone expects your
+currency to drop.
+What will tend to
+happen to the currency
+today, to the
+Argentinian peso today?
+AUDIENCE: It also drops.
+RICARDO J. CABALLERO: It drops.
+But if you have a fixed exchange
+rate, you can't let it drop.
+And so if you're going to
+maintain an exchange-- a fixed
+exchange rate, and now you
+have a speculative attack,
+people think your
+currency is going to drop.
+And you want to
+maintain your peg.
+That's called defending the peg.
+If you want to defend the
+peg, then the only option
+you have as this guy is dropping
+to keep the exchange rate
+is to raise interest
+rates a lot.
+That's the way you fight--
+the main way you fight it.
+I mean, you fight it by closing
+capital accounts and so on,
+but that's the last resort.
+You first try to fight
+it with monetary policy.
+So if this thing
+is dropping, you
+fight it by increasing
+interest rate a lot.
+And that's the way you
+stabilize the currency.
+But what happens when you
+raise interest rates a lot
+to defend the parity, the peg?
+What is the problem of that?
+AUDIENCE: Increases output.
+RICARDO J. CABALLERO: Yeah, you
+generate a domestic recession
+because just to defend
+your currency, your peg,
+you had to raise
+interest rates a lot.
+So it means you're going to
+have a recession at home, OK?
+So that's another problem
+of fixed exchange.
+It's a problem-- that's not
+a problem for Hong Kong.
+It was in 1997.
+They did have a speculative
+attack despite the fact
+that they had twice
+the number of reserves
+relative to their money base.
+But still, they had
+speculative attack.
+But it rarely
+happens in Hong Kong.
+In Argentina, again,
+every other day, but in--
+same in Turkey.
+In Turkey, it's every 15 days.
+But it's happening all the time.
+So that's a problem,
+as well, because if you
+have to spend a lot of energy
+defending your peg, then
+you're going to be
+causing lots of recessions
+at home just to stabilize
+the currency, OK?
+Thus, bigger economies
+say, well, OK,
+well, Argentina, Turkey, and so
+on, but these are bigger boys.
+Here we have-- this
+is the ERM crisis.
+So before the
+euro, more or less,
+the eurozone plus the UK had
+a system called the ERM--
+EMS, ERM.
+ERM is the model.
+Anyway, EMS is European
+Monetary System.
+ERM is Exchange Rate Mechanism,
+or something like that.
+And they're both linked.
+But let's call it the
+European Monetary System.
+And the basic idea of the
+European Monetary System
+was that they behave very much
+like Singapore with respect
+to each other, meaning they
+allow themselves to move around,
+but only in narrow bands.
+The countries that
+have the more stable
+domestic monetary position, like
+France, [INAUDIBLE] Germany,
+the Deutschmark, and the
+French franc, where they have
+is bands of 2.5% up and down.
+And they move
+within those ranges.
+They didn't have a full peg,
+but they allowed themselves
+to move a little bit.
+Portugal, which was a little--
+had a little less discipline,
+they had 5% for each
+side and stuff like that.
+But the point is they would
+have narrow bands, OK?
+And they moved around
+in those narrow bands,
+and they kept their--
+kept it for quite a
+while before the euro.
+Now, here the whole system came
+under a speculative attack.
+What happened around there?
+You probably have no idea.
+[LAUGHS]
+AUDIENCE: Maybe the
+end of the Cold War?
+RICARDO J. CABALLERO: Well,
+it's really linked to that, yes.
+Yeah, it's the
+German reunification.
+So what happens is, when East
+Germany and West Germany unify,
+they had to have a
+massive fiscal policy,
+massive expansionary
+fiscal policy.
+And that big expansion put
+lots of upward pressure
+on German interest rates.
+And that led to
+big appreciations
+of the Deutschmark.
+And the other countries
+tried to fight it
+because it had to be in
+this very narrow band.
+But they were experiencing
+these big speculative attacks.
+And so they had to raise the
+interest rate enormously.
+The UK tried to do it for a
+while and, essentially, said,
+ah, we give up.
+And then they
+abandoned the system.
+The French tried to stay in
+there for quite a bit, OK?
+You can see the French franc.
+They didn't move.
+They didn't move.
+But it was extremely
+costly for them
+because the interest
+rate has to go up a lot.
+And so they got into a
+big recession and so on.
+Eventually, the whole
+system broke up, broke down.
+I mean, everyone left.
+And eventually, they
+rejoined, but now in the euro.
+And the euro is a little
+different because, in the euro,
+you gave up--
+there's no space for
+speculative attacks,
+because it's a
+single currency, OK?
+So that's the most extreme form.
+Speculative attacks
+nowadays in Europe
+happen through different means.
+It's the-- well, anyways
+let me not get into that.
+But here you have-- so I'm
+saying having a fixed exchange
+rate is not easy,
+even for countries
+that have sort of
+very well developed
+financial markets and
+so on and so forth.
+Now, it would seem, given
+all that I said, that--
+I mean, there is no reason to
+have a fixed exchange rate.
+It is something-- you
+give up an instrument.
+And on top of that, you're
+subject to speculative attacks
+all the time--
+not all the time.
+Well, it depends
+on how bad you are.
+But you have to be
+very well behaved,
+because otherwise, you're
+subject to speculative attacks
+all the time.
+So why not do flexible exchange?
+Why-- what is wrong with
+flexible exchange rate?
+Well, I think the main problem
+of flexible exchange rate
+is that it tends to move a lot.
+I mean, we know that it moves
+a lot more than fundamentals,
+meaning productivity is a little
+higher in one country than
+in the other.
+Demand is a little
+higher than a country.
+But the exchange
+rate moves a lot more
+than those little
+differences justify.
+And the reason-- one way
+of understanding this
+is the following.
+And this will serve
+as an introduction
+to the next topic of the course,
+which will be asset pricing
+and things like that.
+So let's look at-- revisit
+our interest parity condition,
+but now let's not
+assume that the next--
+the expected exchange
+rate is fixed.
+I mean, that was an assumption
+just to make our life simpler,
+but it needs not be.
+So that's the uncovered interest
+parity condition is this.
+Well, you see, I can
+replace this guy here
+for what will
+happen next period.
+It's the same thing shifted by
+a period with an expectation
+there.
+So E t plus 1
+expected-- this guy here
+is equal to 1 plus expected
+domestic interest rate one
+period from now divided by 1
+plus international interest
+rate expected one
+period from now
+times the expected exchange
+rate for t plus 2, two years
+from now.
+And I can keep doing this.
+I can replace this by
+something equivalent
+to that with all the subindex
+shifted by one year, blah, blah,
+blah, blah, blah, blah.
+And so I can end up
+writing this exchange rate
+as this product
+of lots of things
+that can happen in the future,
+the monetary policy path
+at home, the monetary
+policy path--
+not the next period, the
+path for years to come,
+of a monetary policy
+in the other country.
+And there is always an expected
+exchange rate at the end
+there that is free,
+that can move around.
+So the problem of this
+exchange is that the future
+matters too much, in a sense.
+And people have
+lots of imagination,
+so all sorts of weird
+things they imagine.
+And when people have
+lots of imagination,
+then these things
+are moving a lot.
+And that's the reason you
+see enormous fluctuations
+in nominal exchange rate.
+Now-- and that's a problem.
+It's a problem to have
+a very volatile exchange
+rate because it makes
+transactions more difficult.
+I mean, if the price of things
+are-- relative price of things
+are changing all the time, it's
+a little bit more difficult
+to plan.
+Financial investments
+become more--
+because you get
+all this exchange
+rate volatility in between.
+So that's one of
+the main reasons
+you would prefer, if you could,
+to have a more managed exchange
+rate.
+It's because you don't want this
+all this artificial volatility
+that comes from behavioral
+traits and things of that kind,
+OK?
+That's the main reason.
+Look at this example,
+for example--
+example for example,
+sorry about that.
+But this is Russia
+during the war.
+This was the ruble,
+the Russian currency.
+And when they invaded, of
+course, this thing collapsed.
+The currency collapsed, OK?
+And this period is a little
+longer than you think.
+But it collapsed
+for quite a while.
+And then it recovered a lot--
+actually overshot and came down.
+So this is not because
+the central bank said,
+we're going to devalue
+the currency or anything.
+It's just people
+said, well, this
+is a country going into war.
+It's going to be a
+mess, [MUTTERS] So all
+that future I talk
+about, essentially,
+destroy the currency, OK?
+Now, a lot of that
+recovery happened there
+not because people now began
+to see the future as a better
+future or anything like that.
+It's because they have to
+hike interest rates massively.
+They were around
+4% or 5%, and they
+had to go to 20% interest rates
+to defend the exchange rate.
+Remember I told you, you
+have a speculative attack,
+and you have enormous
+pressure on your currency.
+Well, the main tool
+you have to offset that
+is to raise interest rates.
+So they hiked interest
+rates massively.
+They did a lot of
+other things as well.
+They put capital controls
+on lots of things.
+But this was the
+main thing they did.
+And so they dragged
+the recession--
+the economy into recession
+for war-related reasons
+and because of the
+monetary policy response
+they had to do with that, OK?
+So that's an extreme
+case of a war.
+But that's the kind of things
+that can happen in a floating
+exchange rate.
+Even when-- I mean,
+the main constraint
+in Argentina and Turkey
+and so on is reserves.
+They don't have enough reserves.
+So if you have to defend
+your currency by intervening
+in the FX market, if
+you don't have enough,
+then you're not credible.
+I mean, if you have
+massive capital outflows,
+and you have a few
+billion dollars there,
+it's not going to work.
+That's not the case of Russia.
+They had massive
+amount of reserves.
+So that was not the issue.
+It was all about
+expectations of things
+that happen in the future.
+It was all about these
+kind of terms, OK?
+Anyway, so that added
+to the cost they had.
+So how do we choose these
+things, then, in practice?
+Again, there are lots of things.
+And politics play
+a role and so on.
+But there is a case--
+so again, I would put it
+even the other way around.
+I think that, if you
+could, you would like
+to have a fixed exchange rate.
+If you could, you would like
+to have a fixed exchange
+because then you remove all
+this spurious noise that
+happens every single day because
+of exchange rate volatility
+that complicates your life.
+So when can you do that?
+Well, first, you can
+do it with respect
+to some other country where
+the shocks are very similar
+because if you know that--
+say your Mexico, but--
+or the north of Mexico,
+something like that,
+and you know that all
+your shocks are really
+shocks to the US.
+Then the US can do the
+monetary policy for you
+because you have
+the same shocks.
+[CHUCKLES] I'm exaggerating.
+So if you are very
+similar, then it
+makes sense to have
+a fixed exchange rate
+because why pay for
+all that volatility
+when you're going to be
+doing the same policies
+in both countries, more or less
+at the same time because you're
+exposed to the same shocks?
+So that's one thing.
+That's one reason why the
+eurozone is the eurozone,
+because there are
+European countries that
+have very similar
+business cycles and so on.
+Germany is a little different.
+That's the reason they
+always have some problems.
+I mean, the north and the south,
+they're a little different.
+But they're much more
+similar than other countries.
+And so that's what
+they have one.
+Another option is when you
+have lots of fiscal capacity
+because, if you have
+lots of fiscal capacity,
+then the cost of not
+having monetary policy
+is not that large, because
+you can fight your business
+cycle with fiscal policy.
+That's the case of
+Hong Kong, for example.
+Hong Kong-- Hong
+Kong, first of all,
+is not subject to
+speculated attacks
+because they have massive
+amount of reserves.
+So anyone that
+dares attacking them
+is going to lose their shirt.
+So they're safe.
+Soros tried many
+years back, and he
+didn't do as well as he did
+attacking the British pound.
+But they also have lots
+of fiscal resources,
+so they can fight their
+domestic recessions and so
+on with fiscal policy.
+The other factor, which
+also applies to Hong Kong,
+if you have very
+flexible factor markets.
+So if wages move very easily,
+prices move very easily
+domestically, then
+you don't care
+about having a fixed
+nominal exchange
+rate because a fixed
+nominal exchange rate is not
+the same as a fixed real
+exchange rate, which is what
+you really need to move around.
+If your prices are
+flexible, it doesn't
+matter that the nominal
+exchange doesn't move,
+because the prices
+are moving around.
+And so you still have
+lots of flexibility
+in the real exchange.
+And that's the
+reason I would say--
+it's one of the reasons--
+political reasons, as well--
+but why they can afford it.
+I think, in the case of Hong
+Kong, it's the other way around.
+There were some
+political reasons.
+And then they built a system
+so that it's a coherent system
+because they have lots
+of fiscal capacity,
+they can defend
+the currency well,
+and they have very
+flexible market.
+This is-- well, again,
+this is what I said before.
+If you-- this is
+what I said before.
+If you don't like that
+noise, if you-- especially
+if you're going to be
+trading a lot with people
+and so on, in
+Europe, many people
+cross the border
+many times a day,
+and you want to go shopping
+one way or the other.
+It's a pain if the exchange
+rate is moving all the time.
+It's much easier if
+things are stable.
+And the same applies to
+financial transactions.
+People have deposits
+in different banks
+and stuff like that.
+It's better if you don't
+have all that fluctuation.
+And in the case
+of the euro area,
+they decided that the advantages
+of having a very fixed
+exchange rate were
+more than the cost
+for individual
+countries of not having
+independent monetary policy.
+It's still a work in progress.
+They're building that.
+It's not finished, but
+they're working at it.
+The other reason why
+countries fix exchange rate--
+and that's the
+Argentinian reason
+and so on-- is when they
+have no control on inflation,
+they have no credibility.
+And so if you peg to another
+currency that has credibility,
+then the idea,
+the hope at least,
+is that you will
+inherit the credibility
+of the other currency.
+And that's what
+they tried to do.
+Argentina had a currency board
+like Hong Kong for a while.
+The whole idea was
+to control inflation.
+Well, let's peg to someone.
+And if the markets
+believe you, then
+it would work because
+then you inherit
+the credibility of the--
+you're saying, when you take
+a fixed exchange
+rate, I'm not going
+to run monetary policy, which
+is the main source of inflation.
+So I'm going to let the
+credible country run
+the monetary policy for me.
+And that's what gives
+you credibility.
+As long as somebody believes
+it, you're not going to [LAUGHS]
+quit the thing.
+But that's the reason
+countries do it, often
+to stabilize inflation, as well.

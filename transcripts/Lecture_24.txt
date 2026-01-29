@@ -1,0 +1,1623 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO CABALLERO: Expectations
+play a huge role in economics.
+So what I want to today,
+not only in asset pricing--
+I mean, asset
+pricing-- obviously,
+it's all about the
+future, really,
+but also in the
+kind of issues we
+have discussed
+throughout the course.
+And so that's what I
+want to do, essentially,
+is I want to give you
+a shortcut to think
+about the role of expectations
+in the kind of models
+we have already discussed.
+And so I'm going to do
+all that in the most
+basic model we have discussed,
+which is the IS-LM model.
+And I hope you'll get the
+gist of what expectations
+can do in economics.
+So this is going to be a very
+compressed version, adapted
+version, of chapters 15 and 16.
+But in terms of material
+mapping into the book,
+those are the relevant chapters.
+And the main idea here
+is that the IS-LM model
+as we have described
+it up to now
+really overweights the present.
+And in practice, expectations
+about future conditions
+play a big role in the decision
+of all economic actors.
+We'll look at investors,
+asset pricing and so on.
+But it's also true of consumers.
+It's also true of firms.
+I mean, if you think about
+firms, in investment decision,
+we made the function
+of the interest rate
+on our current output.
+But it's quite clear
+that the reason firms
+invest is not because of
+the current condition.
+It's because they anticipate
+making profits in the future.
+So it's all about
+real expectations.
+And even governments and
+foreigners, when they invest,
+do foreign direct investment,
+they go and invest in a country,
+it's a lot about expectations
+of what the country will
+do in the future.
+I mean, political
+elections, for example,
+have huge impact on asset
+prices and so on precisely
+because they change what people
+think, for good or for bad,
+about future conditions.
+So expectations is
+just huge in economics.
+So we want to do
+things in two steps.
+The first, I'm going to
+revisit the consumption
+function and the
+investment function,
+now taking into
+account expectations
+and motivate how you should
+really think about consumption
+and investment in a
+more realistic model
+than we have been discussing.
+And then I want to embed
+not the fully fleshed
+out consumption and
+investment decisions,
+but the flavor of the role of
+the future into the IS-LM model.
+And by then, you
+would have seen--
+you will have seen all that I
+wanted to communicate, at least,
+in this set of lectures.
+So let's think about,
+first, consumption.
+And up to now, we assume that
+consumption depended only
+on disposable income, on
+current disposable income.
+But that's not really
+the way it works.
+And one of the first in
+formulating, more or less,
+formally how consumption
+decisions are really made
+is Milton Friedman.
+And he called it the permanent
+income theory of consumption,
+meaning what really matters to
+you in a consumption decision is
+not so much your
+current income, but it's
+what you expect to get on
+average during your lifetime.
+And you don't want to
+be moving consumption
+up and down like crazy.
+Once you realize, more or less,
+what you'll get on average,
+then you should--
+consumption should
+be related to that concept.
+And in a sense, it's also
+by thinking in these terms,
+you're also drawing a big
+distinction between things
+that are temporary and
+that shouldn't matter
+a lot for your
+consumption decisions
+versus things that
+are permanent,
+that clearly have a potential
+to have a much larger impact
+on your consumption.
+Of course, you can
+have temporary things
+that are very large.
+I mean, you win the lottery,
+that's a huge temporary shock.
+But probably you're not going
+to spend the whole lottery right
+away.
+You're going to smooth it over
+your lifetime, in any event.
+And that actually relates to,
+more or less at the same time,
+Milton Friedman was at Chicago,
+Franco Modigliani at MIT.
+We will develop a life-cycle
+theory of consumption, which
+says, look, even at the
+level of an individual,
+the day-to-day
+income is not really
+what pins down the
+level of consumption,
+because people
+know early in life
+that they have a lower income
+than they will have later on.
+So they will tend to spend and
+borrow more when they're young.
+Then, in the
+middle, when they're
+in the middle of
+their life cycle,
+before retirement, they panic,
+and you tend to save more.
+So you don't
+consume all you have
+because you know there are
+many years ahead of you where
+income will be lower than
+your consumption needs.
+So there is also a sense
+of intertemporal smoothing
+of your consumption.
+You don't follow income
+second by second.
+You sort of try to stabilize
+consumption over time,
+more or less.
+And that means that
+you have to think more
+about your permanent income,
+what you'll get on average,
+rather than what you
+get in the short run.
+So when you start thinking about
+consumption in those terms, what
+really think, well,
+what really matters,
+then, is total wealth
+more than income.
+How wealthy you are will
+pin down more or less
+the consumption you have more
+than your current income.
+And there are two
+senses of wealth.
+One is financial wealth,
+all the assets you may have,
+you may expect to
+inherit or whatever,
+minus the debts you have.
+So very much as we discussed
+in the previous lecture
+in the context of asset
+pricing, the expected present
+discounted value
+of the cash flows
+of all the assets you have,
+that's your financial wealth.
+And that's important.
+You have more financial wealth,
+even if you have no income
+today, you will probably
+borrow against that wealth
+to the extent that you can.
+And probably the banks will
+be more willing to lend to you
+if they know that you
+have a lot of wealth.
+And so you're going to
+fund the consumption, which
+is above your current
+income just because you
+have more financial wealth.
+In fact, the very rich
+seldom sell assets.
+They borrow against those
+assets to fund consumption.
+That's the way it works.
+There are tax advantages
+of doing that and so on.
+But that's the way it works.
+And the very rich often
+have no income, [CHUCKLES]
+at least labor income.
+All the income comes
+from returns on assets.
+And again, they mostly
+borrow against that.
+But in any event,
+the point there
+is that what really brings
+out your consumption
+is your wealth, not the
+current flow of income.
+And the other very
+important concept,
+which is a bigger thing for most
+individuals, is human wealth.
+I mean, this is huge
+for all of you here.
+It's obvious that
+your current income
+is a lot lower than what your
+income will be in the future.
+You have a lot of human capital.
+And so that's also a concept
+of expected present discounted
+value is you expect to earn a
+lot of income in the future.
+And therefore, it makes
+sense that, at this stage
+of your life, you borrow.
+Now, banks are a little bit
+more reluctant of lending you
+against your human
+capital than lending you
+against your financial assets.
+It's easier to borrow
+against a house
+than against your future income.
+But even there, probably
+you're going to have sort of--
+not going to be saving a lot
+at this time of your life
+because your income is a
+lot higher in the future.
+That we call human wealth.
+And total wealth is just
+a sum of financial wealth
+plus human wealth.
+So at its most basic level--
+and those are-- sorry,
+just to relate to things we did
+in the previous two lectures,
+those are two expected
+present discounted value.
+You don't know exactly how much
+income you're going to get.
+You get a sense
+of, more or less,
+what somebody like you
+does in the future,
+more or less on
+average and so on.
+So you have a sense--
+you have an expected cash flow,
+labor income flow in the future.
+You don't know what the
+interest rates are exactly.
+So you're going to
+guess, more or less, what
+the future interest rate is.
+And that gives you a
+sense of human wealth.
+And I know that many of
+these things you are not
+calculating every night,
+what your human wealth is,
+and then calculating-- consumes
+5% of that or 3.5% of that.
+But you know, there are a lot
+of-- this is very behavioral.
+It's really ingrained in you.
+And you're probably
+more likely to spend
+more if you think that
+you're going to be doing well
+in the future than not.
+Maybe you're too busy
+now to spend a lot.
+But at some point,
+[CHUCKLES] when
+you're given the opportunity,
+that will make a difference.
+Traders, very
+successful traders--
+they get a very low income.
+So essentially, they live out
+of the income that they get,
+they couldn't afford what
+they normally afford.
+But they spent a lot
+more than that income
+because they expect to get a
+big bonus and things like that.
+That's the income that
+comes in the future.
+So in principle,
+your consumption
+should be something
+that is not proportional
+to your disposable income,
+but really proportional
+to your wealth.
+And there are estimates of what
+that proportionality factor is.
+And that's what I said,
+it depends on the type
+of assets we're talking about.
+But it's about 0.03,
+that kind of thing, OK?
+Now, in reality, that's just--
+it's true this is a better
+economic concept than just
+putting income in there.
+But in reality, both
+things really matter.
+So a more realistic
+consumption function
+is something that
+depends on both things--
+for a variety of reasons, that
+many people have no savings.
+And really, we call
+them hand-to-mouth.
+They live by the income they
+receive in every single period.
+Those people are not thinking
+about smoothing consumption
+over time.
+They're consuming whatever
+income they receive.
+As I said before,
+most banks are not
+likely to lend you a lot against
+your expected present discounted
+value of labor income.
+So you may be constrained
+in the short run.
+Your income-- you think
+about how wealthy you'll be,
+but you also think
+about your flows,
+the cash flow you're receiving.
+That's also part of
+your considerations.
+So in reality, it's a
+mixture of those two things.
+When you look at the micro
+level at different individuals,
+the composition changes.
+The richer you are, the
+more this term matters,
+the less this one matters.
+The poorer you are, this
+term overwhelms that term.
+That's, more or
+less, how it works.
+But on average, it
+looks like that.
+So we weren't wrong
+when we did IS-LM,
+having the consumption
+function as increasing
+in disposable income.
+But I always told you there is a
+lot of interesting stuff hidden
+in that little C0, in the--
+in that autonomous
+component of consumption.
+Well, that-- lots of
+interesting things
+has a lot to do with wealth, OK?
+And again, this term
+here is something
+that captures a lot of
+things that are permanent.
+Well, this one captures a lot of
+cyclical components and things
+of that kind.
+So interpreted this
+way, the reason--
+people during booms, even
+though human wealth may not
+change much over
+time, financial wealth
+typically changes in a boom.
+But it's also the case,
+in a boom, wages are high.
+A lot of people
+tend to spend more.
+Even so, this captures a
+lot the temporary component.
+When you're in a
+boom, it's likely
+that you're going to
+consume more for any given
+level of wealth, OK?
+It's temporary, but
+that's what it is.
+What about investment?
+That's a decision by the firm.
+How much physical capital?
+I'm talking about physical
+investment, real investment, not
+financial investment.
+The decision also depend on
+current, but particularly
+on expected profits.
+And when you think
+about expected profits,
+you need to think about
+interest rate as well.
+We put the interest
+rate, as I said,
+OK, it's more
+expensive to borrow
+if the interest rate is high.
+True, but actually it
+matters a lot more than just
+that because it matters also
+through the expected present
+discounted value of
+your future cash flows.
+If the interest
+rates are very high,
+and they're expected
+to remain very high,
+that means a project
+that gives you
+lots of return in the future,
+lots of cash flow in the future,
+may not be worth a lot
+simply because interest rates
+are very high.
+So the discounting of the
+future cash flows is very high.
+And in that
+environment, investments
+that give you a
+return, a quick return,
+are worth more than
+things that have
+a pay-off in the very long run.
+So the decision, for
+example, of buying a machine
+needs to look at the
+price of the machine
+right now and then at the
+expected present discounted
+value of the cash flows, OK?
+So let's think a bit more
+carefully about that decision.
+So suppose you buy a
+machine for a price.
+Let's normalize that price to 1.
+The first thing you
+need to know is, well,
+how long will this
+machine last because I
+need to know for how many
+years I'm going to get a cash
+flow out of these things.
+And a reasonable assumption
+is, for most machines,
+is some sort of geometric
+depreciation-- so meaning,
+it's not deterministic.
+It's more or less--
+machines break
+down occasionally,
+but there is certain probability
+that they break down.
+We typically call that
+notation in economics--
+we refer to that as delta.
+That's the depreciation
+probability.
+So if you think in
+terms of expected value,
+if you buy a machine today, and
+you ask, how much of a machine
+I'll have next year,
+well, it's going
+to be a weighted average
+of 0 and 1 probably.
+But on average, it's
+going to be 1 minus delta.
+So as a machine
+depreciates, the probability
+of the machine breaking
+down over a year is 5%,
+then 1 minus delta is 0.95, say.
+What is the probability
+that the machine is still
+producing two years from now?
+Well, 1 minus delta squared
+and so on and so forth.
+So that's the first
+thing you know.
+I have this machine, and
+it's likely to give me
+cash flows over this
+many years and so on.
+And then I have to know
+how much expected profits
+I expect to get in
+each of those years.
+And then I need also to know
+what are the interest rates that
+are likely to prevail during
+the lifetime of the machine
+and so on.
+So at the end of the
+day, when I calculate,
+I do my little
+project, and I need
+to decide whether 1, which was
+the price of the machine or not,
+is too expensive or
+too cheap, I need
+to compare it with the expected
+present discounted value
+that I have for that machine.
+So here is an example.
+This is a machine that gives--
+the first expected cash
+flow comes next year.
+I set it up today,
+and I generate profits
+by the end of the year or at
+the beginning of the next year.
+That's expected profits for the
+first year of the machine, which
+comes at the end of the first
+year, discounted by an interest
+rate that I know today.
+I know the interest
+rate for one year.
+What about the cash flow that I
+expect for two years from now?
+Well, that's going to be--
+that's expected cash flow.
+If the machine is
+working properly,
+that's the probability
+that the machine
+lasts to the second year.
+Or you can also assume that
+the machine sort of breaks down
+in little pieces every year.
+You get 0.95 of the
+machine in second year,
+1 minus 1.05 squared two years
+from now and so on and so forth.
+But I also now, when
+I think about the cash
+flow in the second year, and
+I don't know the interest rate
+for the second year, so I need
+to have an expected interest
+rate here--
+and so on, so forth, OK?
+If the machine lasts for many,
+many years, that's what I get.
+A question, by the way--
+I'm saying, yeah, I need to have
+expectations here and so on.
+But the truth is that the guy
+that invests in the machine
+doesn't need to have that
+expectation because I
+could replace this for
+something that is known today.
+What would that be?
+I'm saying, when I calculate
+the expected cash flow, when
+I'm discounting the
+two-years-out cash flow,
+I'm going to have
+an interest rate
+that I know, the one from time
+0 to the end of the first year.
+But I don't know
+the interest rate
+that prevails from the end of
+year one to the end of year two.
+That's what I wrote here.
+But I said, hm, but
+there is something
+in the market that I could
+look at and that I really know.
+What is that?
+AUDIENCE: Is it the [INAUDIBLE]
+RICARDO CABALLERO: Exactly.
+I could use 1 plus r2.
+These are one-year rates.
+R2t squared.
+So when you have
+the term structure,
+when you see all the interest
+rates, a firm deciding
+whether to invest or not has
+the interest rate it needs.
+It doesn't need to have
+expectations, form expectations
+about the interest rate.
+The market is doing it for them.
+Now, the guy may
+choose to be a trader
+and decide that it doesn't
+like the interest rate
+that the market is pricing in.
+But that's a different trade.
+It's not the investment
+decision of the firm.
+The firm will have to make a
+forecast about expected cash
+flows and so on, but that's it,
+from the machine and so on, OK?
+So obviously, the
+larger this is,
+the more you're going to
+invest, the more machines you're
+going to buy and so on, OK?
+So in principle, a better
+investment function--
+remember, we wrote an investment
+function as investment,
+a function of output,
+current output,
+which we said is a proxy
+for sales, and then
+the interest rate.
+Well, a better concept
+is that one, which does
+depend on aggregate activity.
+It depends on many things,
+but not only today's,
+also the ones that you
+expect for the future, OK?
+And it depends on the interest
+rate, not only today's interest
+rate, though, also in the
+interest rate of the future.
+If I look at this expression,
+even if the interest rate today
+doesn't change, but I expect
+the interest rate to change
+in the future, to
+go up, that will
+lower the value of my project.
+We had no space for that when
+we posted the initial investment
+function.
+But here we have that.
+And sorry, and this is an
+increasing function of that.
+The higher is V, the higher is
+the expected present discounted
+value of buying a
+machine given the price,
+the larger is the investment.
+Now, this is in principle.
+In practice, current cash
+flows also matter a lot, OK?
+So in the same sense as in
+the case of the consumption
+function, we said, in principle,
+it's only wealth that matters.
+But in practice, there's
+lots of consumers
+that are financially
+constrained,
+they're hand-to-mouth and so on.
+So current income also matters.
+But for firms, the
+same is true because--
+and the main reason
+for that, really,
+is financial
+frictions, in the case
+of the firm because a firm may
+arrive with a great project
+to a bank, but the
+bank may decide
+that it doesn't trust
+as much or is not
+as optimistic as the
+firm is and so on.
+So it may not borrow--
+the firm may not
+be able to borrow
+as much as it would
+want given how
+optimistic that particular
+firm is on its own project.
+The bank may say,
+you know, I'm going
+to be more conservative here
+since I'm lending you the money.
+And one way that
+firms use, actually,
+to get around
+financial constraints
+is simply by returning--
+retaining their earnings,
+meaning they generate a cash
+flow, and they save.
+Firms save a lot, by the way.
+Companies like Apple and so
+on save an enormous amount
+in huge deposits, US treasuries,
+and so on and so forth.
+In the case of Apple, it's not
+to relax financial constraints,
+although it has
+something to do with.
+Being opportunistic, having
+the opportunity to buy things
+that are in distress.
+But many firms,
+especially smaller firms,
+have deposits and
+cash flow and so
+on mostly because, if they
+get a good opportunity,
+they may face
+financial constraints.
+So if current activity
+is high, sales are high,
+firms are going to be less
+likely to be financially
+constrained.
+And that's the reason
+current profits also end.
+Now, current profit is going
+to be an increasing function
+of output over capital that--
+for any given level of
+capital, if output goes up,
+that's going to
+generate more profit.
+And so we can write
+our investment function
+a little bit like we had
+in the earlier lectures.
+But now we put Vt here, Yt,
+and the interest rate and--
+interest and then future output
+and future interest rates
+enter all through
+this term here.
+And again, investment here is
+increasing with respect to Vt,
+and it's increasing
+with respect to Yt.
+So that's a far more
+realistic model.
+So you go back to IS-LM and
+put this type of consumption
+function and
+investment functions,
+and they're going to
+make a lot of sense.
+Again, the concept of something
+persistent-- persistent things
+should matter a lot more
+than temporary things.
+OK?
+So naturally, if you expect
+profits to remain high
+for a very long period
+of time, that machine
+is going to be worth a
+lot more than if you only
+expect the machine to be very
+profitable for only one year.
+And so anything that is
+likely to be persistent
+is also likely to have
+a much larger impact.
+There are important
+exceptions, but I'm not
+going to get into that now.
+And the same is true
+for interest rates.
+If I expect-- since interest
+rates are high today,
+but we expect them to go
+down in the near future,
+then that's not going to
+affect a lot the discounting
+of future profits.
+But if interest
+rates go up today,
+and I expect them to remain
+high for a long time,
+that's going to affect a
+lot more the present value
+of profits.
+And therefore, it's going to
+depress investment a lot more.
+In fact, central banks,
+much more than playing
+with the current interest rate,
+they play with your minds.
+That's what they do.
+They are always
+telling you stories
+for why interest rates
+will remain high, for why--
+[CHUCKLES] they don't
+want-- they want--
+they only control
+an interest rate
+that is an overnight
+interest rate, really.
+But they-- and with that, nobody
+cares about the overnight rate
+except for some
+traders out there.
+But since they want to influence
+aggregate demand-- that is,
+they want to influence
+consumption and investment--
+they need to convince you
+that this stuff will last
+for some time, because
+otherwise it would be irrelevant
+because if you want to
+reduce aggregate demand,
+you want to convince
+firms and households
+and so on that the interest rate
+will remain high for a while.
+Otherwise, you're going to get
+very little effect out of that.
+One of the problems
+they're having now,
+actually, when the Fed is
+trying to cool the economy,
+is that they keep hiking
+rates, but the loan rates
+have begun to decline already.
+And that's a problem for them.
+[CHUCKLES] They would
+like you not to believe,
+bankers not to believe
+that will happen.
+And that's a big issue.
+So let's think about this
+IS-LM with expectations.
+So what we said is, what
+really we're after--
+in the IS-LM model,
+remember, the IS-LM model
+is a model in which aggregate
+demand determines output.
+And that's what happens
+in the short run.
+And the biggest components
+of aggregate demand,
+aside from the government,
+which is something that moves,
+more or less--
+OK, with different
+behavioral functions.
+We're not talking a
+lot about that here.
+But the big drivers are
+consumption and investment.
+Those are at least the
+private sector drivers
+of aggregate demand,
+consumption and investment.
+And what we have said
+now is that human wealth
+is affected not only
+by current income,
+but future after labor income,
+future real interest rate.
+That affects human wealth.
+That affects consumption.
+Future real dividends plus
+future real interest rate
+affect the value of stocks.
+That's very important
+in financial wealth.
+Future nominal interest rate
+affect the price of bonds.
+So all these rates enter here,
+the price of nominal bonds.
+For firms, future
+after tax profits
+affect expected present value.
+Future real interest rate affect
+also the suspected present
+value.
+So there is a lot that says
+future in this column here
+that enters into the consumption
+and investment decisions
+that we care about.
+That's what I showed you
+in the previous slides.
+So remember the
+basic IS-LM model.
+We wrote it this way.
+Output was determined
+by aggregate demand.
+And closed economy-- forget
+all that, fully sticky prices.
+And we wrote consumption
+as these functions.
+So aggregate demand
+was increasing
+in output and
+government expenditure,
+decreasing in taxes, and
+decreasing on the interest rate.
+So a shortcut-- so
+what I want to do now
+is give you a
+shortcut to integrate
+these views of expectations
+or the concept of expectations
+into this very basic
+IS-LM model, OK?
+So think of now of
+aggregate demand
+rather than just being a
+function of current variables,
+be also a function of the same
+variables, but in the future.
+OK?
+So aggregate demand is
+a function, as before,
+of current output, current
+taxes, current interest rate,
+current expenditure,
+but also function--
+and with the same signs--
+of future output.
+So it's increasing in
+expected future output.
+It's decreasing in
+expected future taxes.
+It's decreasing in expected
+future interest rate.
+It's increasing in expected
+future government expenditure,
+although I'm not going
+to play with this here
+because of something
+very specific
+that I'll discuss later on.
+So that's the shortcut, OK?
+The LM is going to be
+the same as before.
+So what I want you
+to think about now
+is a model that is like the one
+you had before with the same LM
+but now the IS is a
+little bit richer.
+It has more parameters-- these
+are parameters-- because I'm
+going to determine
+today's output,
+but it's going to be a
+function of more parameters.
+And all these parameters are
+essentially the same variables
+that we worry about today,
+but are the variables we
+expect of those--
+are the values of respect for
+those variables in the future
+and, again, with the same sign.
+So if output-- so if
+taxes go up today,
+aggregate demand will decline,
+and output will decline.
+But if I expect future
+taxes to go up as well,
+then that's going to depress
+aggregate demand even more.
+That's the type of logic
+I want you to develop.
+So that's the way
+our model will look.
+So this is the IS in the
+same space I had before--
+interest rate and
+output, current output.
+I'm trying to determine
+current output.
+But now I have
+lots of parameters
+that I didn't have before.
+I have a-- things that
+shift to the left.
+If taxes go up today, this
+IS will shift to the left.
+Do you think it will shift
+to the left more or less
+than it did in lecture 3 or 4?
+So suppose we
+increase taxes by 10%.
+Will that reduce
+output more or less
+than when we had the
+static IS-LM model?
+Yeah?
+AUDIENCE: Depends
+on the expectation.
+RICARDO CABALLERO: OK,
+but I haven't moved.
+These are parameters
+from my curve.
+So I don't get the
+right to move them.
+AUDIENCE: [INAUDIBLE] less.
+RICARDO CABALLERO: Less, no?
+Less because now we
+said it's not only
+the present that matter.
+It's a combination of the
+present and the future.
+So if-- that means that anything
+that is just the present
+will matter less
+than in the past.
+Otherwise, you see that?
+Suppose we had a
+two-period model,
+and I give equal weight to
+the present and the future.
+Then I'm going to cut the
+effect of the present in half.
+That's-- I'm exaggerating
+there, but that's, more or less,
+the logic.
+So you correctly said,
+well, it depends on
+whether I expect the future
+taxes to change or not.
+Fine.
+That tells you there
+is a difference
+between changing
+temporarily the taxes
+and increasing
+taxes permanently.
+Permanently here means
+for the two periods.
+So what happens
+with this curve--
+so we decided that
+increasing taxes reduces
+this IS to the left by a
+smaller amount than in the past.
+What happens if you expect
+taxes to increase in the future?
+Which wealth goes down?
+Human wealth, in particular.
+Your human wealth will
+go down because you
+expect your disposable income
+to be taxed more in the future.
+So that will also
+shift IS to the left.
+And that's the
+reason that if you
+have a permanent-- expected
+permanent increase in taxes
+today and next year,
+then that gets us back
+to the type of shift
+in the IS that we had
+when we had the static model.
+It's the sum of the two.
+It's a permanent.
+So permanent changes
+will behave very
+similarly to the way
+the static model worked
+if they're permanent, OK?
+In a sense, that model
+was a very good summary
+permanent changes--
+permanent changes in taxes,
+permanent changes in interest
+rates and so on.
+Changing government
+expenditure, same idea--
+it will also move aggregate
+demand to the right.
+But will it do it
+by more or less?
+Well, think how
+government expenditure
+worked in the basic model,
+in the static model.
+It increased aggregate
+demand, and that then
+led to a multiplier.
+And we got a lot more
+income and so on.
+Now, if we expect this
+government expenditure
+it to be temporary,
+that multiplier also
+will be a lot smaller because,
+yes, it will increase income,
+but people are not going to
+spend all their income today.
+That depends on whether
+they expect future income
+to also go up as well or not.
+And that's a reason that it's--
+again, if you expect this
+government expenditure to go up
+permanently, and nothing
+else changes, [CHUCKLES] then
+you can expect income to go
+up in the future as well.
+And then you get more
+or less the same effect.
+Now, that's a tricky
+experiment because if you--
+and it's very
+relevant for today.
+If this government expenditure
+goes up permanently,
+it's unlikely that the central
+bank will remain unmoved.
+And so you also have to
+start thinking, well,
+what will the central bank do?
+And that takes me to
+this variable here--
+this variable here.
+Well, before I
+discuss this variable,
+actually, let me point out
+that it's not accidental
+that I made this curve a lot
+steeper than it used to look.
+I mean, this looks like
+a pretty steep IS curve,
+which is a way of saying that
+a given change in interest rate
+now has a very small effect
+on current output, OK?
+Much smaller than we
+had in the static model.
+And the reason is, again, this
+is permanent versus transitory.
+If you spec the interest rate
+to decline only for today,
+and that's it, that's not going
+to have a very large effect
+on consumption.
+It's not going to have a very
+large effect on investment.
+For the interest rate decline
+to have a very lasting effect,
+a very large impact on
+consumption and investment,
+it has to affect the
+expected present discounted
+values in a meaningful way.
+And for that, you
+want those changes
+to be more or less
+permanent, persistent,
+that private agents think that
+this change in the interest rate
+will be significant.
+So if the-- so it's good
+to separate the two things.
+So if the Fed cuts
+the interest rate
+but doesn't persuade anyone
+that this rate will remain low
+in the future, then it is
+going to get very small effect
+on output.
+However, if we convince
+people that there
+will be future changes, that
+the rates will remain lower
+for a long time, that
+means that this IS now
+will shift to the right, OK?
+That's what we have here.
+So you have distinguish which is
+a movement-- when the Fed cuts
+the interest rate, you get a
+small movement along the curve.
+But if the Fed
+persuades you that this
+is a long-lasting
+cut in interest rate,
+then the IS shifts to the right.
+And you recover the
+power of monetary policy.
+Monetary policy depends
+a lot on its ability
+to convince people that things
+will remain in the direction
+that they want.
+If they fail-- there
+was a famous episode
+in US monetary policy during
+the times of Alan Greenspan.
+Alan Greenspan is known as one
+of the biggest central bankers
+that the US has, at
+least in recent memory.
+And he went through
+a period which
+was called-- was known as
+the Greenspan conundrum.
+That is, the economy
+was overheating.
+He kept hiking interest rates.
+But the loan rates
+kept coming down.
+So he couldn't cool
+off the economy.
+[CHUCKLES] There was
+no way around that
+because they couldn't
+persuade the markets that this
+would be a long-lasting effect.
+The reason was a different one.
+It was not that he couldn't
+persuade the market.
+It happens that,
+at the same time,
+you had China sending massive
+capital flows to the US.
+And so-- but the point is
+that the Fed had couldn't
+move the interest
+rates in the long run,
+and so it was very ineffective
+in terms of its monetary policy.
+So again, expectations
+mattered quite a bit.
+So let's think about our--
+well, this is what I
+was just discussing.
+So monetary policy--
+I should have-- this--
+so you're not going to do a
+lot unless you persuade people
+that interest rate will remain
+low for quite some time.
+And notice that
+there is here this--
+everything comes into line
+because if the Fed convinced
+that the interest rate
+will be lower in the future
+as well, then you get the
+IS to shift to the right.
+But if interest rates
+will be low in the future,
+that means output will
+be high in the future
+as well, which further
+shifts IS to the right.
+If you convince
+the markets that--
+and the markets and
+consumers, households,
+and so on-- that you're cutting
+interest rates and that,
+with that, you'll be
+successful in creating a--
+getting out of a recession,
+for example, in the future,
+that also increases
+human wealth, expected
+present constant value of
+cash flows, of profits,
+and so on and so
+forth because you
+are giving sort of better
+economic conditions
+in the future.
+So again, for central
+banks, it's a lot like--
+it's mostly about
+expectations management.
+That's the business of
+a central bank, really.
+I don't know how many
+of you are soccer fans,
+but there was a famous
+story of Mervyn King.
+Mervyn King was also one of
+the biggest central bankers
+that the UK has
+had, fairly recent.
+And he described-- he's British.
+It's "Lord" nowadays.
+And he described
+good monetary policy
+very much like Maradona's goal
+scored against the UK, England,
+in some World Cup.
+I don't remember which one.
+And it's essentially
+Maradona picked the ball
+in his side of the field.
+And he essentially drew in
+a straight line to the goal
+and scored.
+But he persuaded everyone around
+to move away from his path,
+and that was a
+successful strategy.
+And central banks do a lot
+of that-- lots of talking.
+[MUTTERS] And, you know,
+at the end of the day,
+the true actions of
+moving the interest rate
+are the least important part
+of, really, a monetary policy
+strategy.
+Fiscal policy can be quite
+tricky here, actually.
+So we know that the fiscal
+contraction, a reduction
+in government expenditure--
+if you just think about the
+basic IS-LM model, what happens?
+Well, it's a fiscal contraction.
+You reduce government
+expenditure, that
+will certainly reduce output.
+All the IS-LM, you reduce
+government expenditure,
+you shift IS to the left.
+And that reduces output.
+When you have
+expectations, things
+are a little trickier
+because it depends
+a lot of what you
+expect the central bank
+to do in the future.
+And it expects a lot on
+what the private sector--
+how the private sector
+responds to that.
+So, for example, if you have
+a fiscal contraction that
+leads to an anticipation
+of a big cut in interest
+rates in the future,
+that may be expansionary.
+It can offset quite a bit of
+the fiscal contraction side.
+And in fact, most
+of the time when
+you have episodes of
+fiscal consolidation
+in environments that are
+not of very high distress,
+financial crisis, and so
+on, it typically sort of--
+how successful that
+is depends a lot
+on whether people
+expect to be a sort
+of implicit deal between the
+central bank and the Treasury.
+If people expect that that
+fiscal contraction will
+come with much looser
+monetary policy conditions,
+then the fiscal contraction
+is not as contractionary
+as could be otherwise.
+And if, for some reason, the
+fiscal deficit, the perception
+of fiscal deficit, was really
+dragging the economy down
+because people didn't
+know when there could
+be a financial crisis in
+the near future and so on,
+then you can get a
+situation in which
+the contraction, fiscal
+contraction today,
+improves the
+perception of stability
+of the country in
+the future, which
+in turn may increase
+expected future income
+and be expansionary.
+So most of the fiscal
+contractions are contractionary.
+But there are some
+famous episodes
+of what are called expansionary
+fiscal contractions.
+One of the most classic
+cases, best-known cases,
+is Ireland in the late '80s.
+Ireland had massive
+fiscal deficit.
+And all they talked
+about was fiscal deficits
+because they had very large
+fiscal deficits relative to GDP.
+And the economy was really
+sort of stagnating and going
+through cycles and so on.
+And it was all around this
+fiscal deficit and so on.
+So towards the late '80s, they
+began a delivery plan of fiscal
+consolidation.
+Fiscal consolidation
+means, essentially,
+reducing the deficit.
+And they were very
+successful, as you can see.
+But contrary to
+expectations, at least,
+output growth did not
+decline, actually.
+They finally sort of--
+they had a very good
+period like that.
+So that's all-- it was
+all about expectations.
+Notice that unemployment,
+though, did go up.
+So despite the fact that
+you got more unemployment
+and so on, output began
+to grow because firms
+began to invest more, consumers
+became more optimistic.
+In fact, you see the
+house household savings
+rate declined dramatically.
+It is all-- consumption
+and investment did that--
+consumption, investment.
+People consume more, invest
+more because sort of everything
+looks a lot better.
+They have been struggling
+with this for very long.
+And they finally-- they had
+gotten that behind them.
+Now, this example is
+abused by almost anyone
+that wants to cut taxes
+and things like that.
+But-- sorry, by almost
+anyone that wants
+to cut fiscal expenditure.
+But there are experiences.
+There is a whole
+spectrum of experiences.
+But in situations that are
+as extreme as this one,
+it clearly proved to
+be very effective.
+So that's that.
+So let me take a stock.
+So the role of this lecture
+was to say something
+that I sort of should
+have said earlier on,
+but I would have
+been a bit confusing.
+So I decided not to
+talk too much about it.
+But it's very important.
+Expectations plays play a
+central role in economics.
+In particular, expectations
+influence aggregate demand.
+And for us, this course was
+a lot about aggregate demand.
+Except for the
+part on growth, it
+was a lot about
+aggregate demand.
+Now, we did talk
+about expectations.
+But we did talk
+about expectations
+mostly in the context
+of aggregate supply.
+Remember, when we talk
+about the Phillips curve,
+we did have expectations
+because wage setting
+was a function of expected
+prices and so on and so forth.
+So we did talk about the role of
+expectations in aggregate supply
+very quickly.
+But I think a much
+bigger role is played--
+of expectation is really
+on aggregate demand,
+and certainly on asset prices.
+But aggregate
+demand asset prices
+are connected
+because asset price
+is about wealth and the value
+of future cash flows, which
+are, more or less, the same
+drivers as for investment
+and consumption.
+And finally, I want to
+say that, many times when
+you find episodes of fiscal,
+even sometimes monetary policy
+that are counterintuitive, it's
+entirely due to the expectations
+part.
+So this is case of
+fiscal consideration
+is not that the cutting
+in fiscal expenditure
+was expansionary.
+That was not.
+That was contractionary.
+But it was
+overwhelmed or offset,
+more than offset by the
+improvement in the outlook
+that you had.
+And that also happens
+with monetary policy.
+Countries that have
+high inflation problems
+and so on sometimes get--
+and they have to go through
+dramatic tightenings and so on.
+Yes, most of them get very
+short-lived recession.
+But sometimes they are
+very short-lived recessions
+because eventually the
+reduction of the instability
+caused by high and unstable
+inflation sort of ends
+up dominating any
+direct contractionary
+effect of monetary policy.

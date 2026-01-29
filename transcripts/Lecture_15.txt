@@ -1,0 +1,1487 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+ROBERT CABALLERO:
+OK, let's start.
+So today we're going to talk
+about technological progress
+and economic growth.
+And that's a big topic,
+certainly, at MIT.
+Perhaps this is one
+of the main ways we
+contribute to human well-being.
+But before I do that,
+let me do a brief review
+of the things I did
+in the second half
+of the previous lecture.
+For two reasons, I want
+to do that brief review.
+First, after spring
+break, so I assume
+there is some depreciation of
+knowledge since the last time.
+And the second is that while
+the equations I showed you
+at the end with population
+growth are correct,
+I think I said something
+which is not correct.
+I think I kept saying--
+I don't know why.
+But I kept saying,
+look, if x is small,
+1 over 1 plus x is
+approximately equal to minus x.
+No, it's approximately equal
+to 1 minus x not minus x.
+So I wanted to
+correct that typo.
+So let me remind
+you what we had.
+So we started with a
+production function.
+One important part
+of economic growth
+is we're going to have
+capital accumulation will be
+a very important variable here.
+And so we haven't talked about
+capital in the production
+function in the previous
+part of the course.
+But now we were
+explicit about it.
+And we started with
+a production function
+that had constant returns to
+scale on capital and labor.
+And here, remember in
+this part of the course,
+we're not talking about
+unemployment or anything
+like that.
+So whenever I say labor,
+I also mean population.
+I mean labor force,
+all of them together.
+You know the distinction
+between each of these concepts,
+but they're not that
+important for growth matters.
+Mostly because all
+of those aggregates
+move in tandem
+over the long run.
+It's very difficult for a
+population and the labor force
+to diverge for a very
+long period of time.
+Maybe fluctuations and so on,
+but then tend to move together.
+So but we decided that we wanted
+to look at things normalized
+by population.
+And so output per person
+is an increasing function
+of capital per person
+but also is increasing
+at a decreasing rate.
+There is decreasing
+returns with respect
+to the capital labor ratio.
+And so output per capita
+grows as the economy becomes
+more capital
+intensive, that is you
+have more capital
+per worker, but it
+grows at a decreasing rate.
+The second key
+equation of our model
+was that we're saying
+this part of the course,
+we're going to assume
+that the government is not
+running any fiscal deficit
+or anything like that,
+and the economy is
+closed, which is
+an assumption we have
+maintained and we
+will keep assuming until
+three lectures from now.
+And so in closed economy,
+no fiscal deficit.
+We have that investment
+is equal to saving.
+And we made an
+extra step to assume
+that the saving is proportional
+to income, so S proportional
+to income.
+So with all these
+things together,
+putting these two
+things together,
+we got to a very important
+equation in any growth model,
+which is the capital
+accumulation equation.
+And this equation says, well,
+the capital stock tomorrow--
+tomorrow means in the
+next unit time, next year,
+or whatever --is equal to
+the current stock of capital
+minus the depreciation
+of that stock of capital
+minus the delta times
+kt plus investment.
+But investment is
+equal to saving,
+and saving is proportional
+to output, OK.
+So that was common
+across all the things we
+did in the previous lectures.
+Is there any question
+about these equations?
+No, no, good.
+OK, so the next
+step was to say, OK,
+and I did remember all
+the initial derivations.
+I assumed that n was constant,
+population was constant.
+And so the next step was I
+divided by a constant here.
+So we did everything in terms
+of capital output per person.
+But actually, since
+population was constant,
+the per person part
+was just trivial.
+We just divided by a constant.
+The last thing I did, though,
+in the previous lecture,
+was to say, OK, what
+if that's not the case?
+What if population is
+growing over time as well?
+How does our analysis change?
+And so I did this.
+Now, I said, well, OK, let's
+start by dividing everything
+by nt plus 1.
+So then we get capital
+per person at t plus 1.
+Problem is, I said is when
+I divide the right hand
+side by nt plus 1, I
+don't get what I want.
+I want capital T divided
+by population of t.
+I want output of t divided
+by population at t, not
+at t plus 1.
+So what I did is I multiply
+and divide by nt both of these.
+So I multiply by 1
+and t over nt is 1,
+so I multiply by 1 everything.
+And then rearrange terms, so
+I got expressions like this.
+I got what I wanted here,
+which is capital per person
+at the same point in time.
+But now it's multiplied
+by nt over nt plus 1, OK.
+And the same I can do
+for this expression here.
+OK so this is what I'm using
+the approximation here,
+in which x is equal to gn.
+This thing here, is
+just 1 over 1 plus gn.
+And I'm saying this is
+approximately equal.
+I can approximate-- if
+gn is a small number,
+this is approximately
+equal to 1 minus gn.
+So that's what we have.
+And this is the
+second approximation
+going from this
+line to this line
+in which we did the following.
+We said, OK, this is equal to 1
+minus delta minus gn plus delta
+times gn.
+But the delta time gn
+is the multiplication
+of two small numbers.
+So I said assume that
+it's close to zero.
+And the same we have here.
+We have saving rate
+times 1 plus gn.
+You get you get the saving rate
+plus the saving rate times gn.
+But the saving rate times
+gn is also small number,
+so we also drop, OK.
+So those are the
+more explicit steps
+of what I did in the
+previous lecture.
+And I think the final equation
+I showed you was this,
+but it comes from, again,
+two approximations.
+The one down here,
+which I use here.
+And then the fact that I dropped
+the second order terms, OK.
+That's it.
+And then I just
+rearrange things.
+I move kt over n to
+the left-hand side.
+And so we have the change in
+the stock of capital per person
+is an increasing
+function of investment
+per person, which
+is this because this
+is saving per person.
+And I can replace this by
+the production function,
+which is f of k over n.
+And so what I have here
+is a difference equation
+in capital per person.
+Why is this?
+So this is investment.
+So the capital stock per person
+will be growing as we invest.
+It shrinks with the passage
+of time just because
+of depreciation.
+Some things break down.
+That reduces the
+stock of capital.
+But the new term
+that we introduce
+at the end of the last lecture,
+is that now this ratio also
+declines with population growth.
+And so who can explain
+why we get this term?
+I'm saying, look,
+suppose that we
+have take as given the
+amount of investment.
+We take as given depreciation.
+But now I say,
+well, if gn rises,
+and all the rest
+remains constant,
+then the left-hand side
+will start declining,
+or it will grow less
+rapidly than what's going
+to grow before I increase gn.
+Why is that the case?
+Sometimes it's counterintuitive.
+That's the reason I thought I
+rush in the previous lecture
+over that.
+And since it's going to be an
+important intermediate step
+into the next one, which
+is going to introduce
+technological
+progress, I want us
+to understand why that gn
+appears with a negative sign
+there.
+Yep.
+AUDIENCE: [INAUDIBLE] returns
+for the same amount of capital
+that have increased
+in [INAUDIBLE]
+ROBERT CABALLERO: That term
+is going to be captured here.
+And it's going to play a role.
+But this one comes from
+something much more mechanical
+than that.
+Hint, observe what I have
+on the left-hand side.
+I don't have on the
+left-hand side, the change
+in the stock of capital.
+I have the change in the
+stock of capital per person.
+So suppose I don't change
+the stock of capital
+at all from this period to the
+next, but population grows.
+What happens to this
+expression here?
+Decreases, it becomes
+negative because I
+haven't changed
+the capital stock,
+but the denominator is growing.
+That's the gn part.
+And that means this
+term's negative.
+And that's what
+this term is here
+for is to capture the fact
+that the denominator Now.
+Is also moving on the
+left-hand side variable.
+And you say, so what?
+At the end of the day, I
+care about the capital.
+Why do I care about
+capital per person?
+Well, my analysis,
+I told you it's
+much easier if I
+do it on something
+which has a steady state.
+And that's the reason I'm
+looking for this normalization.
+But once I look at the dynamic
+equation of accumulation
+of capital in this
+divided by population,
+then I need to take into account
+the fact that my denominator is
+also moving, OK.
+So that's the reason
+that gn is there.
+And again, the reason I
+wanted to pause on this
+is because when we introduce
+technological progress,
+we're going to have
+a similar effect.
+And so I want you to understand.
+It's going to be
+counterintuitive
+because it sounds like
+technological progress is
+something negative.
+No, it's not negative.
+But in this space, it turns
+out that if population
+grows very fast, then you
+need a lot of investment
+to keep up the capital-labor
+ratio constant, OK.
+That's the idea.
+If population is not growing, I
+don't need a lot of investment
+to keep the capital-labor
+ratio constant.
+But if population is
+growing very fast,
+then I need a lot of
+investment to really
+keep that ratio constant.
+That's what this
+is capturing there.
+So to repeat, if this
+guy is very large,
+then I need a lot
+of investment here
+to make this thing
+equal to zero.
+So the capital is stock per
+person is not declining.
+That's idea, OK.
+Good, OK, so and then I said--
+OK, this is where we finished.
+Then I said, OK, so let's
+go back to our diagram.
+Once I have everything in
+this space, k over Ni, n,
+I can go back to our diagram.
+Assume that ga is equal to zero.
+You don't even know what
+a is for the time being.
+You will know in five minutes.
+But assume ga is equal to
+zero, then that's exactly
+the model we had before.
+So and remember, this is
+exactly the same diagram.
+It looked the same, at
+least, that we had when
+population was not growing.
+I'm saying I can use
+the same diagram when
+population is growing as well.
+But there is one
+important difference,
+which is this curve
+looks exactly the same.
+This is just output
+per worker, OK.
+That's the blue line.
+The green line looks exactly
+the same as in the basic model.
+It's just little s
+times the blue line.
+So that's exactly the same.
+But this line is different.
+What happens to this
+red line as gn goes up?
+So what happens to this
+line as gn goes up?
+Becomes steeper, no?
+So it rotates up, OK.
+It goes up.
+And that can sound
+counterintuitive sometimes
+because you say, look
+what happens here.
+Let's spend time on this.
+Suppose that we are at some
+steady state, say this one.
+And now population growth rises.
+OK, it sounds like Ireland
+in 2000s and so on.
+So population
+growth rises a lot.
+What happens in this diagram?
+So suppose we are at
+the steady state here.
+No, and that steady
+state investment saving,
+which is equal to
+investment, is exactly what
+you need to maintain
+the stock of capital
+per person constant, OK.
+That's what the red line
+tells us, that here.
+So the gap here is--
+this is a gap between
+investment and what
+you need to maintain the stock
+of capital per person constant.
+So when the gap is zero,
+then this left-hand side
+is equal to zero.
+OK, that's the red line.
+That's the green line.
+When this is equal to
+zero, that's equal to that.
+That's exactly that point.
+OK, but I'm saying, suppose
+we are at that point,
+and now population growth rises?
+So what moves in that diagram?
+Does the blue line move?
+I don't see gn in the blue line,
+so the blue line doesn't move.
+If the blue line doesn't
+move, and the saving rate
+hasn't changed, then the green
+line doesn't move either.
+So for this diagram to be
+interesting, what moves?
+Something has to move.
+So the only thing that it
+has that can move here,
+is the red line.
+And the red line, we
+already said, if gn goes up,
+it's going to rotate upwards.
+That means, OK, so now
+we have that line there.
+So what happens at the
+previous stage stock of capital
+per worker at this level?
+What happened?
+Is that a new steady state?
+No, but what happens
+in particular?
+So I'm saying, suppose
+that you are here,
+and now I rotate
+the red line up.
+OK, so that means
+the red line that
+represents the
+amount of capital I
+need to maintain the
+stock of capital constant
+is greater than how much is
+society saving and therefore
+investing.
+So what will happen
+to capital per worker?
+AUDIENCE: Decrease.
+ROBERT CABALLERO: Decrease,
+exactly because you need
+more than you're investing.
+So the capital stock
+has to decline.
+And that's what will happen.
+The new steady state is going
+to be to the left of that point
+there.
+That sounds very weird.
+How can it be that-- after all,
+labor contributes to output.
+How can it be that we end up
+with a lower output per worker
+when we increase
+population growth?
+Is population growth bad in
+a sense for growth itself
+for output?
+Well, the answer is no.
+It's true that the
+new steady state will
+have lower output per person.
+So in that sense, it's bad.
+You have lots of population.
+If you don't change the
+saving rate or something,
+then output per
+person will be lower,
+but output will be
+higher than it used
+to be at any point in time.
+It just happens that
+in the transition,
+the growth of output--
+so the growth of
+output in this model
+is going to be equal to
+the growth of population.
+OK, that's if you have a
+steady state, where population
+is growing and output per worker
+or per person is not growing,
+that means output is growing
+at the same rate as population.
+So that means that if I increase
+the rate of population growth,
+the rate of growth of output
+will increase together
+with the rate of
+growth of population.
+But in the transition, as the
+output per capita goes lower,
+output will grow
+less than population.
+And that's what
+is happening here.
+But output is growing.
+If population starts growing,
+if you increase migration,
+you're going to see output grow.
+But output per person
+will start declining,
+until you get to a
+new steady state.
+And then you'll get the same--
+you'll get the
+higher rate of growth
+if you continue with
+population growth
+with the higher
+population growth.
+But output per worker will
+be slightly lower rate, OK.
+Anyways, this may have
+been fast, the last part.
+But since I'm going
+to repeat it now,
+in the context of technological
+progress, we should be fine, OK.
+So if you're a little
+confused now, it's OK.
+If you're a little confused
+at the end of the lecture,
+it's not OK because I'm counting
+with you sort of getting it
+in the second pass,
+OK, the second try, OK.
+So next step is following.
+So here, we assume
+already population growth,
+but we assume the technology,
+so the production function
+stay put for any combination
+of capital and labor.
+The next step is to think what
+happens when the technology
+itself is getting
+better over time.
+And that's what we call
+technological progress, OK.
+This is TFP.
+Let me not get
+into the specifics.
+At the end, I'll
+say a little more.
+But this TFP stands for
+Total Factor Productivity.
+And this index here
+captures the level of TFP
+in the US over time.
+And it's clearly growing.
+So technology is getting
+better and better over time.
+What that means?
+Well, I'll say a little
+more, not a lot more,
+but it's getting better.
+And so the question
+we have here is
+I'm going to address
+next is, how does this?
+So now we're going
+to put together
+our entire economic
+growth model.
+We're going to have
+population growth.
+We're going to have
+also technology growing.
+Up to now, the only reason you
+could grow output per worker,
+was because you were
+accumulating lots of capital.
+You were catching up
+with your steady state.
+That's what would
+make you grow faster,
+but then there was nothing else.
+TFP is going to be the
+only growth in technology.
+It's going to be
+the only thing that
+will give you sustainable
+growth in the long run in output
+per person.
+So this is a very important
+component of growth.
+Again, it's the
+only thing that will
+make you growth in a sustainable
+manner in per-person terms.
+The previous model
+didn't have that.
+In the previous model,
+we had a steady state
+on output per worker.
+So in the previous
+model, we didn't
+have growth in output per
+worker in the steady state.
+We could have transitional
+growth when we were catching up.
+If you started
+here, then you were
+going to have
+growth, fast growth,
+but eventually, we'll put it
+out, OK, output per worker.
+So up to now, we
+don't have a reason
+to explain why we see
+that output per worker
+grows in most
+economies in the world.
+And the answer will be this.
+This is the reason
+really output per worker
+can grow in a sustained manner.
+Technology is getting
+better and better over time.
+So let's see, so
+the question is,
+let's now see what this
+does to the model we have.
+Now, in practice, technological
+progress takes many, many forms.
+At the most basic
+level, it means
+that you can produce larger
+quantities of output,
+and that's really
+the meaning we're
+going to have here, larger
+quantities of output
+for the same amount
+of capital and labor.
+So you have 10
+machines 10 workers,
+technological progress
+means, well, you
+used to produce 12
+units, now we're
+going to produce 12, 14,
+15, and so on and so forth.
+That's one of the main ways
+technological progress shows up.
+We can do more with
+the same if you will.
+Second dimension
+is better product.
+So it's not that you
+produce more cars,
+but you produce better cars,
+better computers, and so on, OK.
+That's another dimension
+of technological progress.
+You can produce new products,
+things that didn't even exist,
+but now you have.
+That counts more than having
+one more unit of good.
+It counts more because
+you have things
+that you couldn't even
+satisfy in the past,
+you can satisfy now because you
+have this certain kind of goods.
+That the nx is before.
+That's a very
+important dimension
+of technological
+progress, it just
+creates new sort
+of forms of inputs
+of production and technologies.
+Think of AI what that will
+do to technology in general
+and to consumption
+very directly.
+And that's what I mean.
+Even within a product,
+you can get more variety.
+And more variety,
+it improves welfare
+because you can align better
+the needs with the product
+and so on.
+But we're going to
+make it very simple.
+In this course, we're going to
+model technological progress
+as if it was workers.
+So we're going to
+capture technology
+with this variable a,
+which is going to be--
+we're going to model
+it as labor equivalent.
+That is, if a grows, it's
+going to count for us as
+if we had more workers.
+That's just one
+way of modeling it.
+I mean I can do it in
+many different ways,
+and many of these
+are equivalent.
+But that's a very
+nice way of modeling,
+so we can use exactly the same
+diagrams we had and so on, OK.
+So you can think of
+technological progress.
+The way I'm going
+to model this here,
+is you can think of
+technological progress
+as if this economy was
+receiving more workers.
+Or a more accurate description
+is, with the same workers,
+it's as if it had
+more labor input, OK.
+That's one way of capturing
+technological progress.
+So now that means that I'm
+going to refer to this term
+a n as effective labor.
+So with the same
+number of n bodies,
+I may get more effective
+labor because each worker
+can produce more things.
+It's a better input
+of production,
+factor of production, OK.
+And I like to model it
+this way because now I
+can use exactly the same
+diagrams we had before,
+but rather than
+normalizing by population,
+I'm going to normalize by
+effective label, by a n.
+So, let me do that.
+So recall that we had
+our production function
+with constant returns.
+So this holds.
+I'm going to set this
+x now as 1 over a n.
+We used to have one over n.
+I'm going to have one over a n.
+And so I'm going to now have
+output per effective worker
+is going to be also the
+same little function
+f of capital per
+effective worker.
+And what is nice of
+this, is that now here
+rather than plotting y over n,
+I'm going to plot y over a n.
+Rather than plotting
+k over n here,
+I'm going to plot k over a n.
+And I have the blue line looks
+exactly like it used to look.
+It's just I'm
+dividing by a over n.
+Remember, the trick
+in all these models,
+is to find the right
+normalization, that
+is to find the right x, So
+I can find a steady state
+in my diagram.
+I don't want these curves
+to be moving around.
+I want to have a steady
+state, something, a point
+that we're going to converge to
+after enough time has passed.
+And I know that the
+thing that will do it
+in a model in which I have
+effective workers growing,
+is one in which I divide
+everything by effective workers.
+OK, so that's what
+I'm doing here.
+I'm going to build
+a diagram that
+looks like the other one
+that has a nice steady state
+as the previous one had, OK.
+So I have my blue line.
+Here I have my blue line.
+I know I have my green line, no,
+because the green line was just
+little s times the blue line.
+So I have that.
+The last thing I need, and
+I already showed you that,
+but I'm going to show it
+again, is the red line.
+But for the red line, I
+need to find the term--
+remember, the red line
+represents the capital
+we need to maintain the
+current stock of capital
+per effective worker constant.
+That's what I need
+my red line for.
+So let's get there.
+And it always starts
+from this equation.
+So this equation is still
+the same as it used to be.
+That doesn't change.
+But what I'm going to do now,
+is rather than dividing by n,
+I'm going to divide
+by a times n.
+So the same as I did
+earlier in this lecture.
+I now I want to
+divide by a over n.
+So I get capital per effective
+worker on the left-hand side.
+I don't like what
+I get here, but you
+know that I can divide and
+multiply by a n, n over a n.
+So I can write the
+right-hand side
+after I do all my
+substitutions as this.
+So first step one,
+I divided everything
+by a t plus 1 times nt plus 1.
+Step two, I multiply each of
+these terms by a, t, and t.
+I multiply by a, t, and t.
+Divide by a, t, and t and.
+And then I regroup things,
+So I end up with that.
+Well, this, using
+the approximation
+we have here, is approximately
+equal to 1 minus gan and gan,
+is equal to ga plus gn.
+So I already showed
+you that case
+for the case in which
+ga was equal to zero.
+I'm doing now.
+The same thing but, since
+I renormalized things
+by effective workers, effective
+labor rather than actual labor,
+I need to use a n rather than n.
+And then by the same
+approximation I had before,
+which is that these
+products are close to zero,
+then I get to the
+equation I want.
+And if I write it
+in first difference,
+then I get my red line.
+This is my red line here.
+OK.
+Good.
+So this tells me that
+when the green line is
+equal to the red line,
+then I have a steady state.
+Capital perfected
+work is constant,
+and this is equal to zero.
+That's the way I
+find my steady state.
+If I ask you a question,
+find the steady state
+of this economy,
+what you'll do is
+you'll set this equal to
+zero and find the capital
+stock that gives you
+this equal to zero.
+That's the way you do it, OK.
+So that's that.
+And then we get back to--
+well, this is the
+same as we had before.
+That's what I just said.
+That's the way you find
+the steady state, OK.
+And then we get
+back to the diagram
+I started with in this lecture.
+But now we have here a n,
+and now, in the first part,
+I said assume this
+ga equal to 0.
+Now the main actor
+is ga positive, OK,
+and we get this diagram.
+So now I can ask
+you the question
+that I asked you before
+with population growth,
+and see how much
+I can confuse you.
+Suppose that ga goes up.
+That sounds like
+a good thing, no.
+I mean, suppose that we are
+at the steady state here,
+and this diagram
+has too much stuff.
+Let me.
+OK, so we're here.
+That's our initial
+steady state zero.
+And this line here is delta plus
+ga plus gn times k over a n, OK.
+So well first, so suppose
+we are the steady state.
+Its output constant there.
+It's a steady state.
+Is output constant there?
+So suppose we are
+at that point here.
+Here, we know that investment
+is exactly how much we
+need to maintain the stock of
+capital per effective worker
+constant.
+That's what the
+steady state means.
+Question, is output
+constant there?
+It's steady state.
+No.
+This only says that capital per
+effective worker is constant.
+That means that if effective
+workers or labor is growing,
+then capital is growing
+at the same rate
+and therefore, output is
+growing at the same rate
+as effective workers, OK.
+Remember, the whole trick,
+so the curves would not
+be moving around, is I find
+the right normalization.
+So everything is growing at the
+same rate in that steady state.
+So let me actually
+show you that, and then
+I'm going to go over the
+experiment I want to have.
+So this is what is happening
+in that steady state.
+So capital per effective
+worker at the steady state,
+so at that point there, is zero.
+That's my definition
+of a steady state, OK.
+Output per effective worker is
+also growing at the rate zero.
+That's that one over there.
+Sorry.
+That's my steady state level
+of output per effective worker.
+So these are constant.
+That's a steady state.
+Those are constant.
+This ratio is constant.
+Each of those components is not.
+So that's what I'm
+plotting there.
+So those are not growing.
+Capital per worker,
+what about that?
+Well, you see there.
+So claim, capital per worker
+is growing at the rate ga.
+How do I know that?
+So the question
+I'm asking there,
+is what is the rate of growth
+of k over n given that I already
+know that the rate of growth
+of k over a n is equal to zero?
+Well, this, the rate
+of growth of k over n,
+is the rate of
+growth of k over a n
+plus the rate of
+growth of a, no.
+I mean, if a is growing
+and this ratio is constant,
+that means that k over
+n must be growing.
+And it has to be growing
+at exactly the same rate
+as this a is growing.
+Otherwise, I wouldn't be able
+to maintain that ratio constant.
+And the same logic applies
+to output per worker
+because in that steady state,
+output per effective worker
+is constant.
+But a is growing,
+so output per worker
+must be growing at the
+same rate as a i growing,
+and that's ga, OK, good.
+Labor, well, labor is exogenous
+which in population, is growing
+at the rate n that's given.
+What about capital and output?
+Well, claim, capital
+and output are
+growing at the rate ga plus gn.
+And I can do the same
+as I was in here.
+I'm asking you the
+question, gk, what
+is the rate of growth of gk?
+Well, it's going to be equal
+to the rate of growth of k
+over n plus the
+rate of growth of n.
+This is equal to ga.
+So it's ga plus gn.
+And the same happens
+for output, OK.
+So remember, I said earlier
+on, that if an economy has
+more population growth,
+it will grow more.
+There's no doubt of that.
+Obviously, output per
+worker will not grow more
+because population growth grows
+more in the new steady state.
+gn doesn't show up there.
+But the only thing that will
+make output per worker grow,
+is technological
+progress, so it;s ga.
+And that was my claim earlier.
+We're going to use this later.
+No, I'm not going to
+do this to myself now.
+I'm going to get back
+to what I wanted to now.
+Because I need to tell
+you a little bit more
+about the production function
+to growth accounting,
+which is what I wanted to do.
+So but this is clear.
+I mean, this is important, OK.
+Good.
+So this is the reason ga is
+such an important variable.
+What you guys do here at
+MIT is very important.
+Afterwards, it's
+very important, OK.
+That's the only thing that
+can drive really growth
+in the long run, in per capita.
+This gn plays also a role.
+You look at countries, not only
+the growth in per capita output.
+You tend to look at
+growth at total growth.
+One of the big concerns
+in big parts of Asia
+now, in Europe as well, as I
+said earlier in the course,
+is that gn is turning negative.
+That's not going to affect
+output per worker growth,
+but it does affect
+output growth in general.
+And you can see it here.
+So if dn goes down,
+that will reduce
+the rate of growth of output.
+Doesn't reduce the rate of
+growth output per worker,
+but it does reduce the rate
+of growth of output, good.
+So what happens-- remember,
+we did in the basic EOQ
+we did an experiment in which
+we increased the savings rate.
+So we can do the same here.
+What happens if we get an
+increase in the savings rate?
+Do we get more growth
+in the long run?
+And the answer is, for the
+same reasons we had before, no.
+If we increase the
+savings rate in this,
+now, this full model,
+all that happens
+is that this green
+line moves up.
+It means that at the
+initial steady state, now
+we have more savings.
+And therefore, more
+investment than we
+need to maintain the stock of
+capital per effective worker
+constant, which means
+that we're going
+to get transitional growth.
+Capital per effective worker
+will start growing, for a while.
+And as that happens,
+output per effective worker
+will also start growing.
+But eventually,
+decreasing returns
+will kick in here, as well.
+And that transitional
+growth will stop,
+and we'll end up at a
+higher level of output
+per effective worker and
+a higher level of capital
+per effective worker, but the
+rate of growth, in the long run,
+will not be affected
+by the saving rate.
+We'll get more
+transitional growth,
+but we will not get
+faster long-term growth.
+A lot of the Asian miracle,
+the Southeast Asian miracle
+in particular, we saw
+very fast rates of growth
+in many economies of Asia,
+was a lot of that kind,
+meaning was a combination
+of what we had before.
+Economies that were relatively
+poor had low capital per worker
+early on in which the saving
+rate increased enormously.
+And that combination gave them
+enormous transitional growth.
+So rate of growth of 10%, 12%.
+That was Japan, and then it
+was Korea, Taiwan, and so on.
+All those economies had
+very fast rate of growth
+as a result of that.
+China, later on, and China
+was a big thing for the world
+because it was much
+bigger at the same time.
+But it was mostly a combination
+of those two things.
+It was having a lower stock
+of capital early on combined
+with, for a variety of reasons,
+an increase in the savings rate.
+And that combination gave them
+very fast transitional growth.
+But they all getting
+a little stuck now.
+And they're very
+concerned with that.
+Well, they're fighting
+against this model.
+There's lots of concerns of
+what is happening to China.
+Are we going to follow
+the Japan path and so on.
+Well, they're
+following this model.
+That's what is happening
+to our first order.
+I'll say a little bit
+more later on about that.
+So in this particular case, what
+I have done is, in log space,
+so I can have linear things
+when it's growing, in log space,
+this economy with the low
+saving rate was growing here.
+This is output, so the slope
+of this was ga plus gn.
+Remember, in the steady state,
+output is growing at ga plus gn.
+If the saving rate
+now increases,
+then output starts growing
+transitionally faster
+than ga plus gn.
+And that's the reason
+output grows faster than--
+here, it's growing
+faster than [INAUDIBLE]..
+Here, it's very fast, OK.
+This is what we saw in
+[INAUDIBLE] the rate of growth
+of 12% and stuff like that.
+We were there moving there.
+And but eventually,
+it sort of peters out.
+You end up with a higher level
+of output per capita per worker,
+a higher sort of
+path, an entire path.
+The rate of growth goes
+back to ga plus gn,
+but you get this transitional
+growth, which is very strong.
+And once you're here,
+once you run out
+of the high saving and
+the catching up growth
+and so on, the only way
+you're going to really change
+your rate of growth in a
+sustained manner is doing what?
+Once you have used the
+tool of catching up
+with the world, of increasing
+your saving rate sometimes
+to levels that incredibly
+high, you still
+want to keep growing very fast.
+What is the only option you
+have according to this model?
+Particularly, let me bring
+even more realism to the story.
+Particularly, if gn is
+dropping, and you still
+want to keep your growth high.
+And your gn now, you used
+the catching up growth.
+You used the higher saving
+rate, which gives you
+transitional growth,
+but it doesn't give you
+permanently higher
+rate of growth.
+And on top of that. for
+reasons you don't control,
+population growth
+is declining, even
+turning negative in some cases.
+But suppose you still want
+to keep the rate of growth
+very high.
+What is the only
+option you have.
+AUDIENCE: Increase ga.
+Increase ga.
+ROBERT CABALLERO: Exactly,
+technological progress,
+that's the only option you have.
+So it makes sense.
+You see, that in
+the case of China.
+They're obsessed about
+technology and so on.
+They understand the Solow model.
+If you want to maintain
+growth at a high pace,
+you're going to need to
+work on that side a lot.
+Now, it doesn't have
+to be you, necessarily.
+It's the world as a whole
+because technology moves
+around the world.
+But ga is at the end what puts
+the limits of what we can do.
+What I was going
+to do is, that's
+what I was drawing this
+diagram for, is say,
+well, suppose that
+in this situation,
+we are in a steady state.
+And we do increase ga.
+What happens if we increase ga?
+Well, this curve rotates up, no.
+And at that point, it's
+clear that if ga grows,
+you're going to start
+growing at the faster rate.
+But transitionally,
+actually, you're
+going to grow less than in
+your long-term rate of growth.
+Why is that the case?
+So my claim is, suppose
+we manage to increase ga.
+So now we know that this line
+here now is a bit steeper.
+Or say this.
+We were in this line,
+whatever, we were in this line,
+and now we make it steeper.
+So we want to start
+growing faster, eventually,
+in the new steady state.
+And my claim now, is
+that in the transition,
+growth is less than the
+new rate of growth--
+in the new steady
+state rate of growth.
+It's higher than
+the rate of growth
+of the previous
+steady state, but it's
+lower than the long run.
+How do I see that?
+I need another diagram, I think.
+So let me just put
+the sy curve here.
+So we're here at
+this steady state.
+If I increase ga,
+the only thing that
+will move here, and remember
+the output equation is there
+but I don't want to put
+it, the only thing I do,
+is I rotate this curve up.
+OK, so this moves up.
+Do you see?
+Yes.
+So this curves moves
+up when ga goes up.
+So at the old steady
+state, what I have now
+is a gap between the savings,
+this economy in investment,
+and how much I need in
+order to maintain capital
+per effective worker
+constant, which
+means that I'm going to start
+moving in this direction,
+until I reach the
+new steady state.
+OK, during this transition,
+I'm growing at a lower pace
+than in the new steady state.
+In this new steady state,
+I'll be growing at a much
+faster than in
+this steady state.
+How much faster?
+Well, equal to delta ga.
+But in the transition, I
+will grow faster than that
+but not as fast as in
+the new steady state.
+That's the claim I was making.
+OK, good.
+You know, I'd rather
+discuss this with more time.
+So questions about what
+we have done up to now?
+Is it clear, or is
+it very unclear?
+Probably both.
+So let me keep this
+for the next lecture
+because might take a
+little time to explain, OK.

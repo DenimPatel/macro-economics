@@ -1,0 +1,1732 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO CABALLERO:
+OK, let's start.
+So by now, you know
+the IS-LM model,
+and if you don't fully control
+it, please spend a lot of time
+on it.
+As I said, 2/3 of your
+quiz will be about that.
+But we're going to
+start adding a few--
+it's a very basic
+model, but still we
+can squeeze a lot
+of insight from it.
+And there are some
+very natural extensions
+that I think we should also go
+over and cover because, again,
+they have a high return
+in terms of investment
+to knowledge acquired from them.
+And today, I want to
+extend this IS-LM model
+along two realistic dimensions.
+The first one is to
+make a distinction
+between nominal and
+real interest rates.
+Now, nominal, up to now,
+since we assume in the model,
+since we assume that prices
+were completely fixed,
+constant, there is no
+inflation, and then
+there is no distinction between
+nominal and real interest rates.
+But needless to say, we
+live in an environment
+with inflation is positive,
+typically, not always,
+but typically.
+And in fact, nowadays we're
+having very high inflation.
+And that's part of one of the
+big macroeconomic headaches
+that we have at this moment
+is a very high inflation rate
+we're experiencing.
+Now, we're not going to
+talk about the determination
+of inflation until
+later in the course.
+I'm going to start talking
+about that in the next lecture,
+and it will not be part
+of your quiz, though.
+Sorry, not in the next
+lecture, next week,
+but will not be
+part of your quiz.
+It will be a very important part
+of quiz 2, but not of quiz 1.
+But we can still
+say a few things
+about what happens to the
+framework we have, conditional
+or taking as a
+parameter inflation.
+We're not going to determine
+inflation [INAUDIBLE],,
+but we say, well, what happens
+if inflation is not really 0?
+And more importantly,
+what happens
+if people don't expect
+inflation to be really 0?
+And we'll see how that
+modifies the analysis.
+The second extension is that
+we simplify financial markets
+enormously and we
+customize it to--
+we could have simplified
+along many dimensions,
+but the simplification
+that we have is we
+look at something that is
+closest to what central banks do
+in setting monetary policy.
+And that's really the
+trade between cash deposits
+at the central bank and bonds.
+US government bonds,
+in the case of the US,
+typically have very
+short maturity,
+and that's what we had
+in mind, and that's
+the way we determine
+the interest rate.
+Now, needless to
+say, there are many,
+many interest rates in the
+economy, different duration,
+one-year rate, two-year rate,
+three, ten, 30-year rates.
+Some countries have
+100 year rates.
+But there is also
+another dimension, which
+is very important, is the
+one that I highlighted
+there, which is riskiness.
+US Treasury bonds,
+especially of short duration,
+are riskless assets.
+There's no risk
+associated to it.
+Now we have a little event
+with the debt ceiling fight
+that may happen in
+August, September.
+But nobody's really concerned
+that something major
+will happen, except for a few
+disruptions for a few days.
+Let's hope that's true.
+Up to now, if you
+look at all the risk,
+markets are behaving as if
+nothing will happen there.
+But corporations don't
+typically borrow at those rates.
+Corporations issue
+their own bonds
+or take loans from the
+banks, and those bonds often
+have a risk premium.
+That is, they're equal to the
+safe interest rate, the Treasury
+rate, if you want,
+plus something else.
+And so you can anticipate
+that will be important
+because interest rates enter
+into our IS-LM analysis
+precisely through the borrowing
+costs of firms in the investment
+function.
+So if there is a
+wedge there, if there
+is a spread between what the
+rates we've been talking about
+and the rate at which
+firms can actually borrow,
+then that wedge will matter.
+And so that's what
+we want to do.
+So we want to introduce this.
+I want to explain
+what these things are,
+and then I'm going
+to modify our IS-LM
+model to take into
+consideration these extensions.
+So what is the
+nominal interest rate?
+Well, we have been talking about
+the nominal interest rate, which
+we typically denote by
+little i, is the interest
+rate in terms of dollars.
+So if the interest rate is
+10%, you buy a bond today,
+that bond will give you 10%
+of whatever amount of money
+you invest in the bond
+at the end of the year.
+So it's a one-year bond.
+So that's a nominal
+interest rate.
+So if you buy 100 in bonds
+today and the nominal interest
+rate 10%, you receive $10 of
+interest payments one year
+from now, $10 of
+interest payment.
+A real interest rate
+is the interest rate
+in terms of a basket of goods.
+So the CPI or something like
+that will be important in that.
+Ex-ante, that is at
+the moment in which you
+are deciding where to
+invest in the real bond
+or the nominal bond.
+The difference between the
+two, the main difference--
+there are other issues
+that have to do with risk
+[INAUDIBLE] I'm not
+going to talk about.
+But the main difference between
+these two is expected inflation.
+In other words, if you expect no
+inflation, then the distinction
+between goods, that is, if you
+expect p to remain constant,
+the distinction between an
+interest rate in dollars
+or in goods isn't existent.
+They're the same.
+But if you expect
+inflation, then that's
+not the case because
+the goods are
+going to become more
+expensive over time.
+And if the goods become
+more expensive over time,
+that means something
+that pays you in dollars
+is paying you more
+per equal unit.
+So if the r, little r,
+which is the interest rate,
+is equal to i, and you
+expect inflation to be 10%,
+really you're expecting
+the real instrument
+to pay you 10% more
+than the other.
+That cannot happen
+in equilibrium,
+but that's what it means because
+one is paying you in dollars
+and the other one is
+paying you in goods,
+so it will be 10% more
+expensive next year.
+OK, good.
+So why do we care about the
+distinction between nominal
+and real interest rate?
+Well, because the private
+sector, important decisions
+of the private sector,
+like the purchase
+of durable goods for
+consumers-- we're
+not modeling that
+in this course,
+but investment in the case
+of physical investment, not
+financial investment,
+physical investment
+depends on real rates,
+not nominal rates.
+So what determines
+whether the opportunity
+cost of a real
+investment is high or low
+is the real interest rate,
+not the nominal interest rate.
+Why do you think
+that's the case?
+Why do you think it's the
+real, not the nominal interest
+rate that matters?
+AUDIENCE: Because when
+they're borrowing,
+they're going to be [INAUDIBLE].
+RICARDO CABALLERO: Not really.
+I mean, most of the borrowing in
+the US is done in nominal rates.
+So it has to come
+from something else.
+Why do you invest?
+You invest to produce
+more goods in the future.
+So if those goods
+are going to be
+more expensive in the
+future because of inflation,
+then what matters to
+you is the difference
+between the cost of
+borrowing and what
+you'll get for those goods.
+And the goods are going
+to be 10% more expensive,
+so what really matters
+is the net for you.
+In other words, if the real
+interest remains constant,
+and now you give me interest
+rates that are 10% higher,
+but you also tell me
+that the goods are
+going to be selling are going
+to be 10% more expensive,
+I don't change my decision.
+If it was a good project
+with zero inflation,
+it's also a good project
+with 10% inflation.
+That hasn't changed.
+If I tell you 30%,
+the same thing.
+No, because I'm going to
+be investing now in order
+to get things that are going
+to be 30% more expensive a year
+from now.
+So the decision that
+doesn't depend on that.
+So that's the reason
+the real interest
+rate is what you really
+care about in the case
+of real investment.
+And remember, we're talking
+about real investment
+at the aggregate level.
+All this can make a difference
+at the level of individual goods
+because when inflation goes up,
+not every goods price goes up
+by the same amount.
+Some goods go up by more and
+some prices go up by less.
+But on average, it's
+what I just said.
+So let's try to look at this
+equivalence more formally,
+how to derive the
+real interest rate.
+Well, [INAUDIBLE] I said, not
+in the US, but in many places,
+you do borrow in real terms.
+For example, in Chile,
+we have a unit of account
+because we had very high
+inflation many years back,
+which is called
+Unidad de Fomento,
+and that unit of account
+is indexed to inflation.
+So you borrow $10 million
+equivalent in Unidad de Fomento.
+And those 10 million
+pesos equivalent
+Unidad de Fomento that
+means the interest
+rate is indexed to that.
+But in the US, that
+happens very rarely.
+The US government does do that.
+It's called TIPS.
+So you have nominal bonds.
+The great majority of
+the US Treasury bonds
+are nominal bonds, but there
+are also some real bonds,
+and those are
+indexed to inflation.
+But firms very rarely
+can issue bonds in the US
+that are in real terms.
+So that's that [INAUDIBLE].
+Sometimes this is even a--
+so the reason I made
+that clarification here
+is I'm going to derive
+the real interest rate,
+but that doesn't mean that
+the instrument exists.
+I'm saying, given a nominal
+rate that I see out there,
+how do I construct
+a real interest
+rate from that
+nominal interest rate?
+That's what I want to hear.
+It doesn't mean that there
+is an instrument that
+is traded in real terms.
+But when I go to
+the bank as a firm
+and I borrow at
+10% nominal, I need
+to calculate, well, what does
+that imply in real terms.
+And that's what I'm
+going to illustrate now.
+OK, good.
+Or maybe I shouldn't
+use the word good
+since we're going to do this.
+So what we want to pin down
+is this real interest rate, r.
+So the real interest
+rate in terms of goods
+means if I borrow, say, one unit
+or if I buy an instrument that--
+if I spend one unit of the good,
+the aggregate good, in a bond,
+then I receive 1 plus rt units
+of goods one year from now,
+then rt is the
+real interest rate.
+It's an interest rate
+in terms of goods.
+Now, suppose that I
+go this route instead.
+So OK, that's what
+I want to get to,
+but let me do it through the
+only instrument I have, say,
+the nominal interest
+rate, the nominal bonds.
+So if I buy one
+unit of goods today,
+that means I'm really buying
+Pt dollars in that bond.
+Pt.
+Is the deflator we have.
+We have Pt dollars.
+Well, Pt dollars invested
+in a nominal bond
+will give me 1 plus it,
+the nominal interest rate,
+times those dollars.
+So say the price index here
+is 2 and the nominal interest
+rate 10%, then next period,
+I get a 2 times 1.1.
+That's the number
+of dollars I get.
+Now, that's still--
+I cannot compare with this up
+here, because at this point,
+I have dollars.
+And really, I want to
+convert it into goods.
+I want to go from
+goods to goods.
+So how do I convert
+dollars into goods?
+I divide by the
+price of the goods,
+but not here, by the price
+of the goods at t plus 1
+because I'm going to get
+this amount of dollars at t
+plus 1 one year from
+now, I have to divide
+by the price of
+goods at t plus 1
+in order to get the number of
+goods I'm getting at t plus 1.
+So I have to divide by plus 1.
+But the problem is that at time
+t, I don't know what Pt plus 1
+will be.
+The best I can do--
+and here's where I'm
+simplifying things
+a lot-- is to have an
+expectation of what the price
+level will be one year from now.
+So the best I can do when I
+want to compare things today,
+whether I want to go
+this way or that way,
+is to use expected price here.
+So these two things are
+equivalent in the sense
+that they require exactly
+the same investment.
+I'm now going this way.
+And then in
+expectation, at least,
+these two things are also
+equivalent because this
+is one I'm going to
+get in terms of goods
+from having invested a good.
+This is what I expect to
+get in terms of goods,
+but I'm ignoring all that
+uncertainty around that.
+And this is what I get if I go
+directly to the route, the goods
+route, and this
+is two things have
+to be equal by indifference.
+If two things give me the same,
+they have to be priced equally.
+They have to have
+the same price.
+And so these two things have to
+be the same, because here I'm
+going from goods to goods.
+Here, I'm going
+through this channel,
+but also from goods to goods.
+These two things should give us
+more or less the same return.
+And we're going to assume
+strictly that they give us
+the same expected return.
+So this relationship holds.
+Is this diagram clear?
+OK, good.
+Because what I'm
+going to do now is I'm
+going to take this expression
+here and play with it a little.
+So we arrive in the previous
+slide to the conclusion
+that 1 plus the
+real interest rate
+is equal to 1 plus the nominal
+interest rate times Pt over Pt
+plus 1 expected.
+I'm going to denote expected
+inflation, the inflation we
+expect, the log change
+in the price level
+or the rate of
+change of the price
+level from year t to
+year t plus 1 as pi e
+t plus 1 is equal to that.
+So this is expected
+inflation at t plus 1.
+See that?
+Well, do a little algebra, and
+I can rewrite this guy here
+as 1 plus expected inflation
+between t and t plus 1.
+I just replaced this for 1
+over 1 plus pi e t plus 1.
+Just algebra, I got that.
+So now I have a relationship.
+And these things, if this
+interest rate is not too high
+and this expected inflation is
+not too high, not too large,
+as it happens in most countries
+but a few around the world,
+then this implies approximately
+that the real interest
+rate is approximately equal
+to the nominal interest
+rate minus expected inflation.
+I'm just taking
+approximations here.
+And that is an
+intuitive expression.
+The real interest rate is
+equal to the nominal rate
+minus the expected inflation.
+So if the interest rate is 6%
+and expected inflation is 3%,
+well, the real interest
+rate is only 3%.
+In terms of good, you're
+going to get 3% less
+because that's inflation rate.
+Good.
+Or if you're borrowing, in terms
+of your borrowing costs, well,
+it's going to cost you
+3% less effectively
+because the goods you're
+going to be selling out
+of your investment are going
+to be 3% more expensive.
+OK, good.
+So, look, this is what happened.
+I'm showing you what
+happened around the years
+of the Great Recession.
+Remember, the Great
+Recession happened
+end of 2008, 2009, 2010.
+Several things you can
+see in this picture.
+The white line here is
+the nominal interest rate
+and the yellow is the real
+interest rate in the US.
+And since in the
+US you can actually
+trade real and nominal bonds,
+the difference between these two
+is expected inflation, as
+priced by financial markets.
+And they're called
+in the US are called
+inflation breakevens, so
+swaps, inflation swaps,
+inflation breakevens.
+But anyways, so several things
+you can see in this picture.
+The first one is that typically,
+unless you're in Japan probably,
+the white line, that
+is, the nominal rate is
+above the orange line, which
+is the yellow line, which
+is the real interest rate.
+Why do you think
+that's the case?
+Or what does it
+tell you, the fact
+that on average sort of
+the nominal interest rate
+is above the real interest rate?
+Yeah, on average, in most
+advanced economies and even more
+so in emerging markets,
+inflation is positive
+and therefore people expect
+inflation to be positive.
+Again, Japan went through this
+long periods of deflation,
+but that's a rarity.
+That was an anomaly, what
+was going on in Japan.
+But you see something else here.
+There is an episode very
+clearly when the opposite
+was holding, when the real
+interest rate went much higher
+than the nominal interest rate.
+And this is despite the
+fact that you see even they
+cross in opposite direction.
+Here there was a sharp decline
+in the nominal interest rate
+and a sharp rise in
+the real interest rate.
+What happened?
+What was happening there?
+First of all, forget
+about the picture.
+What was happening
+around 2008, 2009?
+The Great Recession.
+So that's one observation.
+Typically, especially
+in modern recessions,
+certainly in recessions
+caused by financial crisis,
+as this one was,
+real interest rates
+go above nominal interest rate--
+can go above nominal interest
+rates.
+What does it mean in
+terms of inflation?
+Remember, what
+the Fed is setting
+is this one, more or less.
+This, I think, is
+a one-year rate.
+So it's not exactly what the
+Fed set, but more or less.
+So why do you think the Fed
+cut interest rates there very
+aggressively?
+Yeah, we were in the middle
+of a big financial crisis,
+so we wanted to
+boost the economy,
+so cut the interest rate.
+And this is, when you map
+it into the very short rate,
+this is effectively the
+hit, the zero lower bound.
+They couldn't lower it more.
+They lower it as much as
+they could, and that was it.
+So what must have happened
+for this real interest rate
+to go up like crazy?
+How can it be?
+There's the Fed bringing down
+the nominal interest rate,
+and the real rate,
+boom, jumps up.
+Expected inflation
+went down a lot.
+So what I was saying
+is expected inflation
+is typically positive in
+developed economies, around 2%,
+2.5%.
+That's the type of numbers.
+But in deep recessions,
+it can go even negative.
+And that's what happened.
+There is the
+expected inflation as
+extracted from inflation
+breakevens, from the swaps.
+And you see, typically
+it's around 2% and so on,
+because that's more or less the
+Fed inflation target in the US.
+But during this episode
+here, we entered
+into a very deflationary
+episode, expected
+inflation close to minus 4%.
+That was very deflationary.
+It was very scary.
+Deflations can be very
+complicated objects
+for [INAUDIBLE].
+And we'll say more
+about that later.
+But that's what happened there.
+Good.
+So that's nominal versus
+real interest rate.
+Now, let me talk
+about credit spreads,
+and then we're going to
+put everything together.
+So most bonds issued by
+corporations are risky.
+They are not-- US treasuries
+are as safe as it gets.
+That's considered the safest
+assets in the world, together
+with the German bonds,
+government bonds, and Swiss.
+There are a few,
+but the US in terms
+of liquidity and everything,
+is the premier safe asset
+in the world.
+But most corporations
+don't issue at those rates.
+They have to pay a
+premium because they're
+not as safe as those, as
+the Treasury instruments.
+So let me call that the real
+interest rate paid by this bonds
+by issues by firms on average be
+equal to the safe real interest
+rate plus a premium, xt.
+Now, the point that is important
+is that this risk premium
+moves a lot over
+the business cycle,
+especially when you
+have a financial crisis.
+People really want to
+run away from risk.
+And so it tends to be
+higher in recessions,
+especially when recessions
+are caused by financial crises
+and things of that kind.
+Now, why do we care
+about the risk premium?
+Again, because important
+private sector decisions
+depend on that
+real interest rate,
+on the risk-adjusted
+interest rate.
+If a firm has lots of
+credibility problems
+and is considered very
+risky, the cost of borrowing
+is going to be very
+high and therefore it's
+going to have to have
+a higher threshold
+for any physical investment.
+It's more costly for
+that firm to borrow.
+So that's a reason to worry.
+So the risk premium,
+that x there,
+is determined by two
+things, essentially,
+in the case of bonds.
+There's also risk
+premiums in equity.
+But in the case of
+bonds, one thing
+is the probability
+of default. It
+may be that the firm
+doesn't honor those bonds
+and defaults on
+them, so one thing
+is the probability of default.
+The other one is the degree of
+risk aversion of bond holders.
+There are sometimes in
+which you say, look,
+I don't want to
+hold any risk here
+or very little risk
+because everything
+looks very complicated to me.
+I'd rather go safe.
+I go to Treasury bonds.
+I don't want this stuff.
+So those two reasons
+make that spread grow.
+The second reason,
+on average, to me
+is the most important reason.
+But it's easier to
+model all this stuff
+as a probability of default.
+So that's what I'm assuming.
+What I'm going to
+do here is I'm going
+to ignore this, the degree of
+risk aversion of bondholders,
+and I'm going to
+just concentrate
+on the probability
+of default of a bond.
+But in that sense, you
+can model both as the same
+because you can think
+of risk aversion
+as somebody exaggerating
+the probability of default
+of a bond.
+If I get very nervous about
+investing in risky stuff,
+there is some true
+probability of default
+that some agency is
+calculating out there.
+But if I'm very
+nervous about that,
+I may as well put a marker
+up, say, well, you know,
+these guys have
+messed up in the past.
+They may think that
+the probability
+they followed this bond is
+5% during the next year.
+I'm going to treat it as 10%
+because I want to penalize
+for the risk I'm incurring.
+So think of this p here as
+a probability of default,
+but as perceived by--
+you don't know what is the
+true probability of default.
+That's an abstract concept.
+But it's whatever you use
+in your investment decisions
+that I'm modeling here.
+So by the same
+principle we had before
+between nominal and real
+bonds, what we need to have is
+I need to be indifferent--
+in equilibrium,
+I need to be indifferent
+between investing
+in Treasury bonds, the safe
+bonds that pay an interest rt,
+and investing in risky bonds
+that are paying an interest rate
+rf, which is greater than rt.
+So I have to be indifferent
+between these two things.
+And the spread here
+will have to adjust
+so I'm indifferent between
+these two things indeed.
+It's obvious, if the
+probability of default
+is greater than
+zero, that this rf is
+going to have to
+be greater than r,
+because otherwise I don't want
+to invest in a bond that pays me
+the same as that.
+And on top of that, I
+can experience a default
+occasionally, not
+get my money back.
+So what we have here, this
+indifference condition means,
+OK, during the next year, there
+is a probability of default p.
+That means with
+probability 1 minus p,
+I'm going to get this
+high interest rate.
+I'm going to get my money back.
+I invest one in a bond,
+I get my money back,
+plus an interest rate, which is
+higher than the safe interest
+rate, this rf.
+That's a good thing.
+Against that is a probability
+that the bond there
+is a default, and I'm going
+to assume always in practice
+there is some recovery
+of a bond which is
+much less than the principal.
+I'm going to assume it's 0.
+So if p is positive,
+as I said before,
+then it better be the case
+that this rf is greater than r,
+otherwise I'm not going
+to invest anything
+in the risky bond.
+So I'm going to replace
+this rf by rt plus x
+just to calculate xt.
+And you can solve
+this out here, and you
+get that this risk premium is xt
+is an increasing function of p.
+Naturally, if I perceive bonds
+to be more likely to default,
+I'm going to require
+a higher compensation
+if the bond doesn't default.
+And that's what you have here.
+Now, what happens is that
+during severe recessions,
+actual defaults go up.
+So the probability of
+default objectively goes up
+and people get a lot more scared
+also that this will happen,
+and so p tends to go up a lot.
+So during severe
+recessions-- is always
+almost in recession, but
+especially in severe recessions,
+p can rise a lot.
+It can rise a lot.
+r may fall or not.
+We shall see.
+But this stuff
+dominates, actually.
+This x can move up a
+lot during recessions.
+And in fact, if I
+show you what happened
+during the Great Recession,
+same episode as before,
+there you have it.
+This is our x really.
+Look how it jumped in 2008.
+So the average--
+and this is for--
+I think it's high
+yield, I think.
+But it's not junk.
+It's high yield, though.
+I think it's a weighted
+average of things.
+But think of this as the median
+bond out there, corporate bond.
+It had to pay 20% more than a
+Treasury bond, so big difference
+if you are in the private
+sector and wanted to borrow,
+than if the government
+wanted to borrow.
+Big thing.
+This was a big issue.
+OK, good.
+Now, it's almost always--
+oh, about that level,
+this is high yield.
+So you see, typically
+because these high yield,
+these are not the
+prime companies.
+They have a
+probability of default.
+There's a risk out there.
+They typically have
+to pay a spread, 3%,
+4%, things like that.
+But during severe events,
+that can go very, very high.
+So if you're a corporation and
+you're trying to borrow here,
+it's going to be pretty
+difficult to borrow.
+That's the point, not a good
+time to invest in that sense.
+It pretty expensive.
+So that takes me
+to the IS-LM model.
+I want to now bring in
+these two ingredients.
+So the two modifications
+I introduce
+are relevant for the IS.
+The LM doesn't change.
+The central bank keeps setting
+the nominal interest rate,
+and that's what it does.
+So that's not
+changing, and that's
+the target of the central bank.
+The central bank
+may decide to react
+to things that happen in
+expected inflation and credit
+spreads.
+But the LM is the
+same as it used to be.
+In the book, at some point,
+the book makes a simplification
+and it starts setting the
+interest rate in terms
+of the real interest rate.
+I think that's a bad idea,
+so I'm not going to do that.
+I'm going to keep our IS--
+our LM as it was, but
+now with the extensions,
+we have to modify,
+well, the only place
+where interest rate
+enters for us, which
+is in the investment function.
+And so the investment
+function now
+is not a function of the
+nominal interest rate.
+It's a function of the
+real interest rate adjusted
+by credit risk, because that's
+the relevant opportunity
+cost of--
+that's the real cost of
+borrowing, if you will,
+of firms when they
+want to invest.
+So that's the modification.
+Now, for this part of
+the course, as I said,
+I'm going to take this
+as two new parameters.
+We're not going to
+look at equilibrium
+and the termination of that.
+When we get into the
+next part of the course,
+then we're never going
+to do much about that,
+but yes, about this.
+But for now, these are
+just two new parameters.
+So in our equilibrium lecture,
+three in the goods market
+equilibrium, now we have
+two more parameters,
+expected inflation--
+and remember the ZZ curve, where
+we have g, p, interest rate,
+all those things are constant?
+Well, now we have two new
+parameters, expected inflation
+and the credit spread.
+So that's it.
+That's lecture 3.
+Now, so what I'm
+showing you here
+is what happened in lecture 3.
+If the credit spreads comes
+down or expected inflation rises
+for any given nominal
+interest rate,
+then that shifts
+the ZZ curve up.
+Why is that?
+I'm sorry.
+And if aggregate demand goes
+up, then the multiplier kicks in
+and we end up with an
+expansion in output.
+So I'm saying, for a
+given nominal interest
+rate, if now expected
+inflation goes up
+or the credit
+spreads go down, then
+that acts almost like an
+expansionary monetary policy,
+you see.
+You get an expansion
+in aggregate demand.
+Yes.
+AUDIENCE: Increase
+the [INAUDIBLE]
+because for increased
+inflation, the firms
+will be expected to
+reduce cost more,
+so they would be more
+inclined to invest?
+And for a risk
+premium declining,
+they can take and
+borrow [INAUDIBLE]..
+RICARDO CABALLERO: Exactly.
+That's it.
+The cost of borrowing
+went up or down for firms.
+So that's what I'm saying.
+Those two things operate
+almost as monetary policy.
+That has not been done
+by the Fed, by the way,
+by the central bank.
+But they have the same
+effect because that's
+the way they enter.
+They enter exactly the
+same as an interest rate.
+So saying that this
+guy is going up
+or that this guy
+is going down leads
+to the same analysis
+as when we lower i
+because they're identical.
+They enter exactly
+in the same place.
+No?
+So what I showed you here, I had
+done diagrams like this before.
+That's what you get when
+you lower the interest rate.
+Well, the two strokes
+describe is effectively
+like lowering the interest rate
+that is the relevant interest
+rate for the firms
+because lower credit
+spreads, higher
+expected inflation
+means lower real interest rate.
+Now, the episode I
+described you during
+the global financial crisis
+was exact opposite of this.
+In the global financial crisis,
+we had this x, boom, jumping.
+And I had shown you before that
+expected inflation came down
+a lot.
+Remember, expected inflation
+came down a lot when negative,
+from around 2% to minus 4.
+That's a big shock for the real
+cost of borrowing for firms.
+And the x went up like crazy.
+That's the reason in the
+global financial crisis
+what we got is exactly
+the opposite of this.
+We got a massive shift
+down in the ZZ curve
+for the reasons
+we just described.
+Because this is the case for
+x going down or pi going up.
+In the global financial crisis,
+we got exactly the opposite,
+and in massive amounts,
+massive increase
+in x, massive decline
+in expected inflation.
+So it's the exact opposite of
+this and in a much larger scale.
+It was a massive shock.
+Good.
+So that's the case I
+was just describing.
+That's what happened in the
+global financial crisis.
+So the first thing
+is, so if x goes up,
+as it did in the
+global financial crisis
+and the Great Recession--
+by the way, when I say the
+global financial crisis
+or the Great Recession,
+those are the same episode.
+They end up being--
+it started from a
+financial crisis,
+and it turned out ended up
+being a recession everywhere
+and a financial crisis
+everywhere as well.
+But anyway, so what I
+just described is this.
+In the IS-LM space, the IS
+is shifting inwards a lot.
+For any given nominal interest
+rate, if x goes up a lot,
+that means there
+is less investment
+and that means that
+the LM shift to the--
+sorry, the IS shift to the left.
+And the same would
+happen if there is
+a fall in expected inflation.
+So for the Great Recession,
+we have two reasons why
+this thing move inward a lot.
+One, expected
+inflation came down,
+and the other one, x went
+up a lot, massive movement
+to the left.
+Now, what do you think a
+central bank should do faced
+with a situation like this?
+AUDIENCE: Drop interest rate.
+RICARDO CABALLERO:
+Drop interest rate.
+Why do you do that?
+Well, because this shocks
+negative interest rates,
+like, shocks to
+the interest rate.
+Effectively, it's like
+if you had increased
+the interest rate a lot.
+And so the central bank
+will try to offset that
+by lowering the interest rate.
+What problem may the central
+bank face in doing this?
+AUDIENCE: Reaching
+low-liquidity trap.
+RICARDO CABALLERO: Yeah,
+reaching the zero lower bound
+effectively lowered one
+liquidity trap, exactly.
+There's a limit of
+how much you can do.
+And I showed you that that's
+what happened really here.
+Effectively, this
+is-- the reason
+it looks so flat,
+it doesn't move,
+is because it's against
+the lower bound.
+It cannot move.
+Let me tell you a little bit
+about what's happening now.
+So this is now.
+Remember, the other one was for
+the period from 2008 to 2013,
+I showed you.
+Now I'm shifting
+everything by 10 years.
+So still you see, on average,
+the white line, which
+is the nominal interest rate,
+is above the orange line--
+the orange line--
+the yellow line,
+which is the real interest rate.
+Why is that?
+Yep.
+AUDIENCE: Positive inflation?
+RICARDO CABALLERO:
+Positive inflate--
+expected inflation.
+But they're correlated.
+When inflation is
+on average positive,
+then expected inflation is
+also, on average, positive.
+There's an exception there.
+Why is that?
+When did that happen?
+There's one point
+where the real interest
+rate went above the
+nominal interest rate.
+AUDIENCE: COVID recession.
+RICARDO CABALLERO: Sorry.
+AUDIENCE: COVID recession?
+RICARDO CABALLERO:
+Yeah, exactly.
+The COVID recession.
+So as I said before, that was
+a massive shock, a scary shock.
+And the initial reaction
+of expected inflation
+was to come down enormously,
+and so that's what we saw.
+And also see this big step here
+in the nominal interest rate,
+and then flat.
+So what do you think
+happened there?
+Yep.
+Again, they went
+all the way down
+to the maximum they could do.
+They set the short-term
+interest rate to 0 effectively.
+It's not exactly 0, but
+to 0, and they stay there
+for a very long period of time.
+Now, why do you think--
+and this I think helped a lot
+the recovery of the US economy,
+and it also a big
+reason for the rally
+that you saw in the
+equity market in 2021
+you can see in this
+picture, which is this.
+Notice that the real interest
+rate went very, very low.
+You see that?
+The real interest rate
+went very, very low.
+And that's the reason
+equity markets were flying.
+I mean, you had effectively
+very low real interest rates.
+So what happened there?
+How did that happen?
+What must have happened
+during this episode?
+Yeah, the central bank
+was injecting everything
+possible to it, but even
+more than monetary policy,
+the conventional
+monetary policy.
+But what is the--
+let me say this.
+This wedge reflects what?
+What is that wedge as
+a matter of accounting?
+Expected inflation.
+It's expected inflation.
+So this tells you-- this
+interest rate was at 0.
+The real interest rate
+was at minus 4 here.
+It means that expected
+inflation must have been 4%.
+So we had a combination in which
+the nominal interest rate remain
+at 0, but inflation
+was high, which
+is not the typical combination
+we get in recessions,
+like the previous one, demand
+recessions, financial crises,
+where inflation goes down
+when you are in a recession.
+This was a different shock.
+And after the initial shock,
+we got lots of bottlenecks
+on the supply side
+of the economy, which
+we don't have a good model yet.
+Later, we're going to
+have to model here.
+And when you have problems
+on the supply side,
+you can get a situation in
+which it feels recessionary
+because there is low
+activity and so on,
+but inflation is high.
+And that's exactly
+what we had here.
+inflation was high.
+Now, at some point,
+for a while we
+tolerated this high
+inflation, thinking
+that this was going to be a
+transitory phenomenon and so on.
+But then it began to
+last for too long.
+And when it began to last for
+too long, then the Fed reacted.
+And that's when you see they
+began to hike interest rates,
+And they began to
+hike interest rate,
+and initially it didn't
+do much to the real rates
+because expected
+inflation kept rising.
+And then eventually
+they convinced everyone
+that they were
+serious about this,
+and so real interest rates
+began to rise a lot here.
+And that's when the equity
+market collapsed, by the way.
+You don't know that yet, but I'm
+going to talk about the equity
+market later on.
+But believe me, that's what
+essentially brought down
+the NASDAQ, for sure, primarily,
+and all these memes stocks
+and all that.
+That's that.
+What about today?
+Well, Houston, we have a
+problem because, you see,
+the Fed keeps raising interest
+rates and inflation is not
+coming down as much
+as we expected.
+In fact, expected
+inflation initially
+looked like it was
+going to decline,
+and now it's beginning
+to pick up again.
+So you have a
+situation here where
+the Fed wants to be restrictive,
+but the real interest rate
+is declining, not going up.
+That's a problem.
+That's a problem.
+That's what is happening
+at this very moment.
+The Fed has a big
+problem because of that.
+They are trying to
+tighten interest rates,
+but financial conditions
+are relaxing in a sense
+because of an increase
+in expected inflation
+and even credit spreads
+were declining, in fact.
+So here is what I just
+said in terms of inflation,
+expected inflation.
+And you see here the big
+collapse during COVID,
+early on in COVID, but then
+it recovered very strongly
+and went very high.
+And actually, in the middle of
+2022, it really went up a lot.
+And that's when the
+Fed really got scared,
+and that's when they began to
+increase interest rates by 75
+basis points in a hurry.
+OK, good.
+And this is what
+you see recently.
+I told you that we have a
+problem now because expected
+inflation, they were able--
+there is a famous conference
+happens in Jackson Hole,
+and it's famous mostly
+because most central chairs
+of presidents of
+central banks, governors
+of central banks around the
+world meet for a few days there.
+But there is one
+speech that everyone
+looks at, which is the speech
+of the Chair of the US Central
+Bank, the Fed.
+And they were very worried--
+that conference happened around
+here, and they were very worried
+because expected inflation
+was just exploding.
+I mean, 6% or so, those are
+unheard of numbers for the US
+since the '80s.
+And so they came up with
+a very tough speech,
+a very hawkish speech, saying,
+look, this is unacceptable.
+We are going to do whatever it
+takes to bring this stuff down.
+And they were very
+successful persuading people.
+In fact, expected
+inflation began
+to decline a lot
+very quickly, which
+is one of the reasons you see
+real rates rising very fast,
+in fact, faster than
+the nominal rate,
+because nominal
+rates were rising.
+And on top of that, expected
+inflation began to plummet,
+and that led to a very sharp
+rise in real interest rates
+and the collapse in the
+stock market as a result.
+What about credit
+spreads in this episode?
+Well, here you see, during
+the COVID shock, again
+we got a big spike here.
+It was not as large as
+in the other one, which
+was a financial crisis per se,
+but it was a very large spike.
+And then eventually of came
+down, and it came down a lot.
+That's again, when you're seeing
+rallying in all the markets
+and so on.
+But then began to go up.
+And again, here, we
+began to have a problem
+because the Fed
+wanted to tighten
+and these credit spreads
+were coming down.
+I think I did this on
+Sunday or something.
+Today is 27?
+Yeah, I did it yesterday.
+There it is.
+So this pickup here
+is very recent.
+It's last week.
+But credit spreads
+were declining,
+and that, again, goes against
+what the Fed wants to do,
+which is to tighten financial
+conditions for firms.
+Now, as I said before, central
+banks typically intervene only--
+the monetary policy.
+involves very short
+duration Treasury bonds,
+so their own bonds, the bonds of
+that government, in most places
+like that.
+But this shock was so
+disconcerting and so large,
+and it did affect
+corporations a lot
+because imagine you're
+in the airline industry,
+and then suddenly you get COVID.
+So it really was a major
+shock to corporations,
+and so they went beyond
+traditional conventional
+monetary policy.
+They certainly-- something that
+had done already in the global
+financial crisis, they began to
+buy sort of very long-duration
+US Treasury bonds, so 10-year
+bonds and so on, the US
+Treasury.
+But they went beyond that
+and they created a facility
+to buy corporate bonds.
+That facility was
+meant to deal with x.
+You're getting a huge x
+shock, and they went directly
+to that to try to bring
+that x shock down.
+Why do they want to do that?
+Well, because of the reasons
+we have explained here.
+That amounted the x
+shock, which came together
+with expected inflation coming
+down, amount to a big shift
+there.
+They did all they could with
+conventional monetary policy.
+They brought this down.
+So you can think of their
+policy of intervention
+is called-- they're called
+large-scale asset purchases.
+That's a generic number of that.
+Well, what they were
+trying to do really
+is to act on those
+interest rates that
+do not show up in the LM.
+They show up in here, in x.
+x is a parameter of here.
+If I go out there and
+I buy corporate bonds,
+then I'm reducing x, which is
+a way of shifting the IS back.
+Corporations can borrow more
+cheaply if the government is
+buying their bonds.
+That's the whole idea.
+In Japan, they even bought
+equity, directly equity,
+interventions in
+the equity market.
+So happened in
+Hong Kong in 1997.
+There was a massive intervention
+in the equity market.
+Typically, central
+banks don't do that.
+But when situations
+get desperate
+and you are against
+the zero lower bound,
+so you lost your
+conventional monetary tool,
+they tend to be a
+little more creative,
+and that's what
+they've been doing.
+OK.
+Any questions?
+That's it for today.
+From the-- yeah,
+you have a question.
+AUDIENCE: Could you put x
+into more tangible terms?
+I think I'm still sort of
+trying to figure out what a--
+RICARDO CABALLERO:
+Credit spread.
+For example, if Boeing--
+I don't think Boeing
+is a high yield.
+Well, let's say Boeing.
+It's OK.
+If Boeing borrows, they're not
+going to be able to borrow--
+say, the 10-year rate--
+I'm showing it here in
+10-year rate spread.
+The 10-year rate for the US
+at this moment is close to 4%.
+If Boeing wants to
+borrow 10 years,
+it's not going to be
+able to borrow at 4%.
+They're going to
+have to borrow at 7%,
+so there's a 3% difference.
+That's x.
+AUDIENCE: And that's the
+credit-- is that credit?
+RICARDO CABALLERO: That's x.
+That's credit spread,
+which is linked
+to the perceived probability of
+default. I said, it's perceived.
+When you say perceived,
+is that, say,
+the actual probability
+of default?
+Who knows who can measure that?
+They are, again,
+agencies that try
+to measure them, plus whatever
+extra risk premium you
+want to put on top of that.
+AUDIENCE: And so
+this is tracking
+the relative, this
+reliability of [INAUDIBLE]??
+RICARDO CABALLERO:
+Yeah, how unattractive
+it looks to lend to a
+corporate versus lending
+to the US government.
+And when this line
+is very high, it
+looks very unattractive
+to lend to corporations,
+and therefore you need to be
+compensated a lot for that.
+OK, good.

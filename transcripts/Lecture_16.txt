@@ -1,0 +1,1516 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO CABALLERO: OK.
+Let's start.
+So the plan for today is to
+wrap up this growth theory
+section of the course.
+And I want to conclude by
+showing you what we can
+and cannot explain with the
+models we have looked up till
+now.
+And almost as a
+matter of accounting,
+I will tell you, what
+do we need to fill--
+which gaps do we
+need to fill in order
+to explain the great dispersion
+we see in income per capita
+across the world.
+But before I do that, I need
+to finish the previous lecture.
+And so let me do that.
+I had shown you this table.
+Remember, in the complete
+model-- the model
+that has a productivity growth,
+unemployment, and population
+growth, we concluded
+that in balanced growth,
+the following happened.
+Obviously, if we pick
+the right normalization--
+the right normalization,
+here, was effective workers.
+So the productivity times
+population or workers.
+And so if we normalize
+the variables by that,
+we get, obviously, zero growth.
+That's what it means to have a
+balanced growth, in which all
+the relevant variables are
+growing at the same rate.
+So capital per effective
+worker will be a steady state.
+That's the diagram we plot.
+Remember, the
+diagram we plot was
+output per effective
+worker against capital
+per effective worker.
+And that diagram
+has a steady state.
+And that steady state--
+at the steady state
+or the balanced
+growth point, then we
+have that the normalized
+variables grow at the rate of 0.
+Capital per worker has
+to grow at the rate gA
+because capital per effective
+worker is not growing.
+So capital per worker will
+be growing at the rate gA.
+The same applies for
+output per worker.
+Output per effective
+worker is not growing.
+That's balanced growth.
+But therefore, output per worker
+will be growing at a rate gA.
+These are the
+exogenous drivers--
+output per worker, we assume--
+well, sorry.
+Labor is exogenous
+in this model.
+And so is gN.
+Population growth is
+some constant we take.
+It's not something we try
+to explain within the model.
+But the two drivers of absolute
+growth will be gA and gN.
+And so capital in
+the steady state
+will be growing at
+the rate gA plus gN.
+Output will be growing
+at the rate gA plus gN.
+So that's balanced growth.
+Now, let me give you an
+example so you can do--
+suppose that our production
+function is this.
+We call that the Cobb-Douglas
+production function.
+K to the 1 minus
+alpha AN to the alpha.
+Does this function have
+constant returns to scale?
+Yes, the sum of
+the exponents is 1.
+But-- so take the
+log of both sides.
+The change in the log
+is the rate of growth.
+And so you get that the
+rate of growth of output
+is equal to 1 minus alpha,
+the rate of growth of capital,
+plus alpha times the rate of
+growth of effective workers.
+So in balanced
+growth, gK will be
+growing at the rate gA plus gN.
+And therefore,
+output will also be
+growing at the rate gA plus gN.
+OK, so that's what
+you have in the table.
+And if you want to look at a
+variable like this, capital
+per worker, then
+output per worker,
+then you need gY minus gN.
+So subtract the gN, and you
+can subtract on both sides.
+Then it's going
+to be equal to gA.
+And subtract gN from
+the right-hand side.
+This one and that
+one cancel, and I
+get gA on the right-hand side.
+So that's the way you use
+that expression to fill
+all these blanks.
+That's steady state.
+So I think I stopped
+right before that--
+this slide or at this
+slide, which is--
+if I look at this, this
+table, gN is pretty easy
+to compute in most places.
+There are places in the world
+where we cannot even measure
+birth and death, so it's
+difficult. But in most places,
+you can measure gN, the rate
+of growth of population,
+quite accurately.
+And the question
+we have, though,
+is, how do we measure
+technological progress?
+It's also easy to measure the
+growth in the stock of capital.
+It's investment
+minus depreciation.
+But how do we measure gA, the
+rate of technological progress?
+And the first proposal on how
+to do it was also by Bob Solow.
+That was the second contribution
+he had in growth theory.
+Well, it was also
+growth measurement.
+How do we measure gA?
+It turns out that
+the only way you're
+going to have output per capita
+growing over time or output
+per person growing
+over time is due to gA.
+So we might as
+well try to measure
+that since it's such
+an important variable
+for the growth of--
+the growth of happiness.
+If you give one indicator of
+happiness is output per worker,
+well, such an
+important driver-- we
+need to be able to measure it.
+And the basic idea
+that Bob Solow has is,
+is essentially something you
+could have taken from 1401.
+It's extremely simple.
+It says-- there are some
+assumptions behind this.
+But in the basic
+competitive model,
+you have that you can
+compute the contribution
+of each factor of production
+to output by the payment
+it receives.
+So under this assumption,
+suppose that you're spending,
+in workers, $30,000 a year.
+So that means, in a competitive
+equilibrium in the labor market
+and so on, that the worker is
+contributing, to production,
+$30,000.
+I'm not going to deal with
+markups and things like that
+here.
+But that's the basic idea.
+You can adjust all these
+formulas to include markups.
+But let me not do that.
+So that also tells you that if
+you increase employment by 10%,
+you're also going
+to increase output
+by 10% times whatever is the
+contribution of labor to output.
+And that's what I have here.
+The contribution to
+output of adding workers
+is going to be
+that times delta N.
+I can divide, by Y, both
+sides, and here, multiply
+and divide by N.
+And I get that
+the rate of growth
+in output due to a rate
+of growth in employment
+is equal to the labor share.
+That's called the
+labor share-- it's
+the wage bill, W times N
+divided by total revenue sales
+and times the rate of growth
+of a population or workers
+is the same here.
+So I'm going to call this gYN--
+is the rate of growth of output
+due to the rate of growth in
+population is equal to
+this labor share, which--
+I'm going to call that alpha--
+times Gn
+I can do exactly the
+same with capital.
+And you can do-- if you have
+more factors of production,
+you can do the same for
+each factor of production.
+But in this simple example,
+we have only two factors
+of production--
+labor and capital.
+So I can do the
+same for capital.
+And I can say the
+contribution of capital growth
+to output growth is going
+to be equal to the capital
+share, which is the
+complement of the labor share.
+So it's total revenue minus the
+wage payment, the wage bill,
+divided by total revenue, times
+the rate of growth of capital.
+So the contribution
+to output growth
+of the rate of growth of
+capital is 1 minus alpha,
+which is the share of capital,
+times the rate of growth
+of capital.
+So that means if I sum
+the contribution of labor
+and capital, I'm left with
+a residual, which is--
+whatever is the rate of
+growth I have in output--
+I know how much I'm
+getting from labor.
+I know how much I'm
+getting from capital.
+If there is any
+difference, it must
+be due to that thing
+I do not observe,
+which is technological progress.
+That's the logic
+of all this stuff.
+Go back, for example, to
+this production function.
+I'm saying, I know
+the contribution
+that K has to output growth.
+I know the contribution
+that N has to output growth.
+Well, the only thing I'm
+missing is the contribution
+that A has to output growth,
+which I don't observe,
+but I observe output growth.
+I observe capital growth,
+employment growth.
+So I can solve out what is
+the technological progress--
+A growth.
+And thus, it's called the
+Solow residual, by the way.
+But that's the way, the rate
+of growth of A is measured.
+The rate of growth of the output
+minus the contribution to growth
+of employment,
+population and capital.
+Any question about that?
+Nope?
+Makes sense?
+Somewhat?
+OK, good.
+So anyway-- so there's
+a huge industry
+of measuring these kind
+of things, of course.
+Let me give you an example on
+how to use this accounting.
+So China '78, 2017--
+that's an episode in which China
+was growing very, very strongly.
+On average, China grew
+at over 7%, output--
+over 7%.
+Now, by the formula
+I showed you before,
+if I asked you the
+question, well,
+what was behind that growth?
+How much was the
+contribution of labor?
+How much was the
+contribution of capital?
+And how much was
+the contribution
+of technological progress?
+Well, there are several things
+we can measure fairly well.
+Population growth during this
+period in China was around 1.7%
+per year.
+There was a massive
+amount of investment.
+The capital stock was growing
+at a rate of 9.2% per year.
+And the residual-- you can
+compute it using the Solow
+approach--
+is around 4.2%.
+So that's-- 7.2% is a result of
+the weighted average of these
+three things.
+So that's basic
+explanation of growth
+in China during that period.
+Now, just looking at this--
+don't look at the diagram.
+What jumps immediately?
+If you just look at this part.
+What jumps to you immediately?
+Let me ask you differently.
+Does it look like
+balanced growth?
+Do you think that
+that's balanced growth?
+In other words, do
+you think that China
+had arrived to its steady
+state, and that growth
+is a result of what was
+happening in that steady state?
+No.
+[LAUGHS] But what
+is it that looks--
+that tells you that that's
+not the steady state?
+Balanced growth
+is when everything
+is growing at the same rate.
+Meaning all the endogenous
+variables are normalized,
+are growing at the same rate
+as the exogenous variables.
+So what is it that it would
+merely jump to me here is that--
+uh-oh, 7.2%--
+that's less than the rate
+of growth of capital.
+So I know that there, capital
+over output was rising.
+So that's not a steady state.
+I know that.
+I can see it in a different way.
+I know that in a steady
+state, in balanced growth,
+the rate of growth of
+output and of capital
+should be the sum of the
+rate of growth of population
+plus the rate of
+technological progress.
+That's 5.9%.
+But capital was growing
+at 9.2%, not 5.9%.
+So I do know that that's
+a period in which.
+China was growing beyond its
+steady state or balanced growth
+rate of growth.
+And I know more than that.
+I know that the reason
+that was happening
+is because there
+was more capital
+accumulation than you would
+expect in the steady state.
+When are you likely to
+see a situation like that
+in which capital accumulation is
+faster than the rate of growth
+of capital in the steady
+state and is faster
+than the rate of
+growth of output?
+That is, that's a
+period in which we
+have transitional
+growth being pulled--
+growth above the
+steady state growth
+is being pulled by
+capital accumulation.
+When does that happen?
+STUDENT: Two things
+come to mind.
+First is economies that are
+transitioning from command
+market economies, I believe?
+And also, the second
+thing that comes to mind
+is, potentially, countries
+recovering from war periods.
+RICARDO CABALLERO: OK,
+that's deep answer.
+I wanted something
+simpler, which is--
+I wanted to say--
+so the economy is not
+in a steady state.
+That's clear.
+But what do we also know?
+We know that the capital stock
+is below its steady state level.
+And that could be as a result
+of the things you described.
+You had a war, so capital
+stock was wiped out.
+Or you had a period in which
+saving rate was very low.
+And now you're going
+to a high saving rate.
+[INAUDIBLE] A lot of that is
+what happened in Southeast Asia,
+in particular.
+Actually, it was a fast
+increase in the rate--
+a sharp rise in the saving rate.
+But the bottom-- so
+what I had in mind
+is for one of these
+reasons, that's
+a situation where the
+initial capital stock was
+below the steady state.
+And so you have a period
+of transitional growth
+in which the
+investment rate is more
+than you need to do to
+maintain the stock of capital
+per effective worker.
+It's a positive gap between the
+green line and the red line.
+And that's what leads
+to transitional growth
+until you reach a steady state.
+If things do not change,
+meaning population growth
+remain the same
+as in that period,
+and the rate of
+technological progress
+remains the same
+as in that period--
+we know that the balanced
+growth rate of China is 5.9%.
+It's 5.9%, because
+it's 0.017 plus 0.42.
+So that's 7.2% average
+that you are likely to see.
+And actually, this
+is an average that
+has numbers like 15% very
+early on to close to 6% or so
+on the last stage.
+So that would be a steady state.
+Now, that, I think,
+is an overestimate
+because we know that the
+rate of population growth
+is declining very rapidly in
+China-- is turning negative.
+So for the rate of
+growth of output, China--
+unless there's a big change
+in technological progress--
+in the process of
+technological progress,
+it's going to be pretty
+difficult for China
+to grow a lot more than
+5%, I think, going forward.
+And that creates some problems.
+But that's what it is.
+That's what this
+model tells you.
+You need to change something.
+And the things you can change
+in this model are what?
+Well, you could induce
+higher saving rate.
+You could get more
+transitional growth out
+of that, more
+capital accumulation.
+That's costly.
+That means less
+consumption and so on.
+Or it could be some
+technological breakthrough,
+but that probably would affect
+the whole world, in any event.
+But that's the kind
+of things you expect.
+Good.
+So the models we
+have developed here
+are quite good to explain
+catching up processes,
+catching up growth,
+and to understand
+where are the economists
+converging over time.
+What I want to do next is--
+I want to end up
+trying to explain--
+remember, one of the plots
+I showed you very early on
+is that there's great dispersion
+in income per person, per capita
+across the world.
+And also, some countries are
+not catching up, especially
+in Africa and so on.
+And I want to try
+to understand--
+so people have
+put lots of effort
+in trying to understand why
+do we have these differences.
+And so I'm going to
+expand, a little bit,
+the model we have to show you a
+few things people have explored.
+And then I'm going to conclude
+that those things that people
+have explored sort of
+can't explain it either.
+And then I'm going to go
+back sort of to growth
+accounting. so the sort of thing
+I did for China there, and try
+to explain what seems to be
+behind these big disparities
+we have in the world.
+So the first thing I'm
+going to do is just--
+it's useful as an
+exercise, even.
+I'm going to modify the
+Solow model a little bit.
+So this is like the production
+function I showed you before.
+But rather than
+having N here, I'm
+going to have H.
+And H is just N--
+our old N-- population,
+labor force over there,
+but it's scale up by this
+human capital factor.
+So what this says is that
+human capital is really--
+is the population
+times something
+that controls for the level of
+schooling of that population.
+So a big candidate for
+difference across the world
+is certain populations are
+far more educated than others.
+So this does exactly that.
+Size is an increasing
+function of the numbers
+of years of schooling.
+And there is a big micro
+evidence-- literature
+trying to estimate what
+is the value of that side.
+What is the value of an
+extra unit of schooling
+for human capital and so on.
+And the estimate depends
+on what kind of schooling
+are we talking about--
+primary, secondary, tertiary,
+or whatever.
+But on average, that's
+a number around 0.1.
+So one extra year of
+schooling raises human capital
+by about 10% So the
+whole population
+increases, the
+average by one year.
+That adds about 10%
+to human capital.
+So it's as if you had
+increased population by 10%.
+So it makes a difference.
+Now, it's pretty hard
+to raise, for a country,
+one year of schooling
+for the average.
+It takes a lot of time.
+But when you look in
+the cross-section,
+there is huge difference across
+the world between numbers
+of years of schooling.
+And that accounts for a
+big part of the difference
+in income per capita.
+Anyways-- so let me
+do a balance growth
+exercise with this
+expanded model
+and see how far we can get.
+So the first thing
+I'm going to do
+is I'm going to normalize
+everything by effective work--
+sorry, by workers.
+So I'm going to divide--
+all the variables
+I'm going to show you
+are going to be divided by N.
+Now, notice that I'm
+dividing by N, not
+by A times N or A times H.
+So there is a difference
+with the previous analysis.
+And I can always divide.
+The model we had--
+I can always divide by whatever
+I want, all my variables.
+I divide it by effective
+workers because I
+wanted to have a diagram
+where the curves were not
+moving around.
+But I can divide
+by whatever I want.
+And I will divide
+by different things
+depending on the analysis
+I want to conduct.
+Now, I know that once I
+divide by population only,
+not by A times a population
+and education, perhaps,
+I cannot draw my
+previous diagram--
+the diagram with the saving,
+with output per worker,
+and so on, because those
+curves are going to be moving,
+so it's not very friendly.
+But I can divide
+by whatever I want.
+But I want to divide,
+here, by just population.
+So little h will be
+simply big H divided by N.
+Remember that big H was just
+e to epsi psi u times N.
+So that's that.
+Output per worker will be just--
+will be K capital divided
+by N. And here is big
+H divided by N,
+which is little h.
+So all this, now, is
+measured as output per worker
+or per population--
+per person.
+Now, remember, what I
+can do here is-- then I
+know that the rate of
+growth of output per person
+is going to be equal
+to 1 minus alpha
+times the rate of growth
+of capital per person
+plus alpha times the
+rate of growth of A times
+the rate of growth
+of h, in which
+h is this years of
+schooling transformation.
+Now, if you think
+about the steady state,
+it doesn't make any sense that--
+gH, at some point,
+will become 0.
+I mean, we can
+increase education.
+But at some point, we cannot
+be all going to 150 years
+of education.
+Unlike capital and
+things like that--
+you can increase, for
+a while, education.
+But at some point,
+there is a limit.
+I mean, you're not going to do a
+post post, post post, PHD, blah,
+blah, blah, blah.
+So in a steady state,
+we know that eventually,
+in the long run, this
+gH is equal to 0.
+So this economy-- expanded to
+include years of schooling--
+has the same sort of balanced
+growth characteristics
+of the economy I just
+showed you before.
+So in that economy, capital per
+person will grow at a rate gA,
+and output per person
+will grow at the rate gA.
+Output will grow at
+the rate gA plus gN.
+So exactly the same
+as we had before.
+Up to now, adding human capital
+doesn't change our conclusions
+about balanced growth.
+It will change some
+conclusions that are important.
+So that's the reason I'm
+introducing this variable.
+But it doesn't change
+this conclusion.
+So this model, which is a little
+expansion of the previous model,
+we had, has the same balanced
+growth characteristics
+as the model I
+showed you before.
+So let me do a little
+bit of algebra with it.
+So from the capital accumulation
+equation, I know that--
+so let me-- remember, the
+capital accumulation--
+now written in per person--
+will be kt plus 1--
+this is little k--
+minus kt equal to s times
+yt minus delta plus m kt.
+Wait, why don't I have a delta
+plus n minus plus gA there?
+Remember that in the previous
+model I have a delta plus m
+plus gA there.
+Did I make a mistake?
+Actually, this is a
+useful exercise for you.
+You remember that I had a
+delta plus m plus gA there, no?
+What's wrong?
+I just told you
+that this economy,
+at least in balanced
+growth, is exactly the same.
+So did I make a mistake?
+No.
+The reason I had the
+gA there is because I
+was looking at the change in
+capital per effective worker.
+I'm looking, now, at the
+change in capital per worker,
+not per effective worker.
+So I don't have that
+A in the denominator.
+So I don't need to account
+for the rate of growth
+of the denominator due to
+an increase in technology.
+I don't need that.
+And so what I can do is
+divide both sides by kt--
+that's kt.
+And this is the rate
+of growth of k, no?
+It's the rate of growth of k.
+But in a steady state,
+the rate of growth of k,
+capital per worker,
+is equal to what?
+gA is the rate of
+growth of technology.
+So this-- in a steady
+state, this is equal to gA.
+And so what I wrote there is--
+I think it should
+be exactly that.
+Is it?
+Yes, good.
+That's what I did.
+And why did I do this for?
+Well, because now I can-- you
+know that I can measure delta--
+I can measure delta.
+I can measure n.
+And I can measure gA.
+So this implies that
+I can solve out,
+in a steady state, for what
+is the level of capital
+per effective worker.
+I can solve from this
+equation, and it's
+equal to this expression here.
+Notice a few
+interesting things here.
+Capital per worker--
+Each of them is divided by n,
+so I can also look at big K
+over A times big H. It's
+increasing the savings rate.
+That you already had in the
+model we discussed before.
+If the saving rate is
+higher, then you're
+going to end up with a higher
+capital per effective worker
+ratio in the steady state.
+It's decreasing in
+population growth.
+All these things you
+already saw before.
+So now that I have this
+expression for K over H,
+I can go back to my
+production function, to this.
+And it's sticking there--
+this value.
+And I get that
+output at time, t.
+Once you are in the
+balanced growth path,
+it's equal to A (t)
+times h times k over Ah
+to 1 minus alpha.
+Just solve for that.
+And the point being is that
+now I can write this as y(t) is
+equal to a t times--
+so human capital times
+this expression here.
+So the point is, human capital
+doesn't affect the steady state
+growth, but it does affect the
+income per capita that you have.
+And it makes a big difference.
+I'll show you.
+So when people try to explain
+differences across the world,
+they notice that they were
+missing a big component.
+And that big component
+is education.
+So let's compare.
+What I want to do next is--
+I can do this for every
+country in the world.
+And I can compare
+it with the US.
+OK, I can do this for
+every country in the world.
+And I can compare it with any
+other country in the world.
+But just-- let's compare it with
+the largest country in the world
+in terms of output.
+That's the US.
+So let's see what we get.
+So I'm going to take output
+per capita everywhere
+and divide it by the same
+expression for the US
+and then define that
+variable as yi hat.
+So for country i--
+say, Singapore-- we
+take output per capita
+and we divide it by output per
+capita per person in the US.
+Assume-- big, if.
+This is a huge, if.
+But you can do that for
+the US versus Singapore.
+Probably is not a crazy
+assumption to make.
+Assume that they
+have the same rate
+of technological progress and
+the same technology and so on.
+Well, the same rate of
+technological progress--
+I'm going to assume
+that for now.
+So then this yi hat--
+you can write this--
+it's just this for Singapore
+divided by this for the US.
+It turns out to be
+this expression here.
+Solow did something
+like this and said,
+OK, assume that technology
+is the same across the world
+because, at least
+for major economies,
+technology can be imported.
+And we can have the same--
+more or less, the same
+technology across the world.
+So assume that this
+guy is equal to 1
+and that both Singapore and the
+US have the same rate of growth.
+And so that means that countries
+that have higher savings rate
+will tend to have--
+we know that as
+[INAUDIBLE] goes,
+we'll tend to have
+higher output per capita.
+So Singapore has a higher
+savings rate than the US.
+That will tend to give Singapore
+a higher income per capita.
+If a country has a
+higher population growth,
+then it will tend to have
+a lower income per capita
+and so on and so forth.
+And so the question
+is, well, suppose
+you make this assumption of
+equal technology and take the--
+we can measure the saving
+rate in different parts
+of the world, the population
+rates in different parts
+of the world.
+And we're assuming that
+there's the same rate
+of technological
+progress everywhere.
+How much of of the difference
+we observe in income per capita
+across the world can
+be accounted by that?
+So that was the
+first question, is--
+well, suppose that
+technology is the same,
+but we measure all these other
+things-- saving rate, population
+growth, common rate of
+technological progress,
+common depreciation across
+the world, and so on.
+How much can we explain
+of the income disparity?
+And the conclusion
+is the following.
+The conclusion of that
+experiment is that--
+if the only difference
+behind income per capita
+were years of schooling--
+sorry, a key thing
+that I forgot to measure
+is years of schooling.
+So if a country has
+more years of schooling,
+it will tend to have a higher
+income per capita and so on.
+So if you try to explain the
+differences in income per capita
+across the world,
+using variables
+like years of
+schooling, difference
+in saving rate, difference in
+population growth, and so on,
+the world would be a lot more
+egalitarian than it actually is.
+It would look a lot flatter.
+So this is how much
+you can account.
+Here, you put a bunch
+of lots of countries--
+Africa and so on here.
+And if you just stick,
+in this equation,
+the corresponding saving rate,
+education levels, and so on,
+the world would be
+a lot more similar.
+There wouldn't be the
+kind of disparities
+we see between some African
+countries and Singapore, say.
+We're talking about Singapore.
+But the world doesn't
+look like that.
+That's the point.
+So if you take all
+these things that
+make a lot of sense--
+education, saving rate, and all
+that-- you're going to explain
+a small share of the differences
+in income per capita
+across the world.
+Sorry.
+In this plot here, L is
+our N. L, labor, is our N.
+So this is y over N. Our
+little y in this thing.
+So we can get so far.
+We need something else.
+So what else do we need
+to add to really explain
+the amount of disparity we have?
+Well, the answer is,
+again, the Solow residual.
+It turns out that the
+assumption that As
+are the same across the world--
+that the level and
+the rate of growth
+are the same around the world--
+is just a very bad assumption.
+The level of technology is very
+different across different parts
+of the world.
+So the next step was
+to say, OK, let's
+measure the difference in
+technologies across the world.
+And it turns out that
+if you try to explain--
+so if you go out there and you
+measure the level of technology
+across the world--
+different places-- Zimbabwe,
+Singapore, South Korea,
+and so on and so forth--
+well-- and then you plot that,
+the level of technology that
+countries have, vis-a-vis their
+output per capita, per worker--
+you explain a big share of it.
+So here is what you
+have-- is the relative A.
+So everything is
+relative to the US here.
+So the A that we measure--
+the level of A that we measure--
+I don't remember
+which year was this.
+I don't remember when it was.
+Doesn't matter.
+So if you measured the relative
+level of technology in country
+I, relative to the US,
+and then you measure
+the relative output per
+capita in that country
+relative to the US--
+and forget about
+everything else--
+education and so
+on and so forth--
+you can get a pretty good
+relationship between the two.
+So between one half and 2/3 of
+the difference in output per
+worker across different
+countries in the world can be
+attributed to the difference
+in technology level.
+So that's a conclusion
+that we have.
+Now, let me revisit this
+issue of convergence.
+And so what you do is you
+take countries that have,
+more or less, the
+same A and that
+have more or less the
+same levels of education.
+And you look at the path
+of their output per capita.
+You get that the models we
+have been discussing here
+work extremely well.
+So here, you see that they are,
+more or less, growing together.
+There are wars and
+stuff like that here.
+So there are great recessions
+and things like that.
+But on average, you see the
+countries that were behind
+caught up and so on.
+Big dispersion here.
+They were all growing together.
+And as more time passes, the
+closer they get to each other
+because they are converging.
+These guys-- the US and the
+UK were already very close
+to a steady state, in the 1870s,
+while Japan was way behind.
+But it was sort of in the
+same class of countries
+in terms of technology and
+in terms of education levels
+and so on.
+So it works pretty well.
+This is for more countries.
+And you plot per-capita
+income in 1870--
+again, for countries that
+have similar As and Ks--
+A's and h.
+And you look at
+the rate of growth,
+and you get exactly
+what you would expect.
+Countries that were
+further behind caught up.
+That's Japan.
+Very fast rate of growth.
+And you get this very
+negative relationship.
+So this is the
+convergence model.
+It works extremely well,
+conditional on having the same A
+and h.
+So that's the contribution
+of this lecture.
+I already told you that
+this convergence model
+works quite well.
+The point is now that
+it works very well.
+And I had told you early on--
+I think in the first
+lecture on growth--
+that this worked very well for
+certain kinds of countries.
+But then when we put
+all of them together,
+there were some countries
+that were clearly off.
+And they were mostly
+in Africa, but you
+had countries that had
+low per capita income
+and they grew very little during
+that-- the sample I showed you.
+So here, I'm refining that.
+I'm saying, OK, now I'm going to
+tell you a little bit more what
+I mean by countries
+being similar.
+And what I mean here is that
+they have similar A and h.
+So when I look at countries
+that have similar A and h,
+the models we have discussed
+work extremely well.
+This is over a short
+period of time,
+so you have more fluctuations
+and more countries.
+But still-- you can argue that
+Mexico and Chile probably do not
+belong with many of
+these other countries,
+but you still get this
+negative relationship.
+It's quite clear.
+Now, if you don't
+control by A and h
+and you put everything
+together, then
+the plot looks like the
+plot I showed you earlier.
+So if I control by A and h,
+the models work very well.
+If I don't control for
+A and h, then the models
+do not look that nice.
+So this led to a
+literature, which
+is called the conditional
+convergence literature.
+And the idea-- it's
+almost accounting,
+but the idea is the following.
+So the question that--
+what's behind this literature
+is, well, why is it
+that we have some countries--
+say, here-- that have a
+very low income per capita
+and grow very slowly?
+That's the puzzle.
+How can it happen
+that we have that?
+And the story-- but again,
+it's more accounting than
+an explanation, in my view--
+is what is called
+conditional convergence.
+It says for some reason--
+probably it has to
+be explained in terms
+of institutions, political
+instability, or whatever.
+For some reason, some countries
+have just lower steady state
+levels of technology, lower
+steady states because they
+have lower technologies,
+and they're
+stuck with lower
+technologies and so on.
+So what this literature
+does-- it says,
+OK, let's compute
+the steady state.
+So let's accept that
+some countries will
+have lower level of technology.
+That's what it is.
+Maybe at some point,
+they'll flip from there.
+But they have been,
+for a long time,
+in the stack that let's assume
+that they have a different level
+of technology.
+So that means-- let's
+compute, for each country,
+its steady state,
+its own steady state,
+using its own technology and
+its own level of education.
+So in particular, in this
+plot, I'm going to show you-
+take the values--
+the value of A for 1970.
+That's the plot I'm
+going to show you.
+The value that each
+country has in 1970.
+Compute the steady state
+level of output corresponding
+to that A. A-- and over time, it
+will be growing at gA, whatever.
+But take the A of 1970.
+Compute the steady
+state value of that.
+Compare it with the
+current output over that.
+If the current
+output is below that,
+that means that
+this country still
+needs to catch up--
+not with respect
+to some universal steady
+state, but with respect
+to its own steady state,
+with its lower technology
+and whatever.
+And then look at whether
+we see convergence or not.
+And the answer is that you start
+recovering this downward sloping
+curve.
+So what does this say?
+What is the big
+story telling us?
+It's saying, look,
+some countries,
+for reasons that are
+beyond this model,
+just simply have much
+lower steady state.
+Yep.
+They have lower technologies.
+They don't know how to use
+more complicated technology.
+I don't know.
+But that's what it is.
+They have lower technologies.
+And so they have their
+own steady states,
+which can be steady states
+with very low levels of income
+per capita.
+Now, for those countries,
+it still applies--
+and that's what
+this picture shows--
+that if they are not
+at their steady state,
+they still have lower
+capital per effective worker
+than they need to have
+in their steady state--
+that they will have
+transitional growth.
+So they will grow
+faster than their growth
+in their own steady state.
+And that's what
+this picture shows.
+These are countries
+that grew very little.
+Look, we have Japan here
+together with Botswana.
+And maybe they won
+in the same place.
+So these are countries that
+still had lots of growth to do,
+relative to their
+own steady state.
+And they did grow a lot.
+How do I know that?
+Well, because the
+output I compute--
+the output I compute,
+relative to the steady state
+at the beginning of my
+sample, was much lower than 1.
+That means that you're
+not at your steady state.
+So this variable
+here is the output
+you have at the beginning of
+the sample, relative to what
+the steady state--
+your steady state is.
+How do you compute
+the steady state?
+Well, you input the
+level of technology.
+You input the saving rate.
+You input the population growth
+and all those kind of things.
+So you have a
+number lower than 1.
+It means you still
+have catching up growth
+to do, not with respect to the
+global universal steady state,
+but with respect to
+your own steady state.
+And when you do that, you
+see that some countries that
+are in the total sample looked
+like they are not growing and so
+on and so forth.
+They are growing.
+They are just growing relative
+to their own steady state, which
+has little growth, and it
+has low levels of technology
+and so on.
+And so that's the conclusion
+of this conditional convergence
+literature.
+Now, it turns out that the world
+has become very unequal, also,
+along this dimension over time.
+This shows you the ratio of
+GDP per worker of the 90th
+percentile to the 10th
+percentile country.
+And so you have not
+only big differences
+in technology across the world.
+But also, you have
+very different rates
+of growth in technology
+across different countries
+in the world.
+So this difference is sort of
+increasing quite dramatically.
+I don't know what happened here.
+[LAUGHS] These are the same.
+So the world started with
+countries-- this is telling you
+it started with countries
+that were richer than others,
+and that distance has
+been rising over time that
+towards the end, we
+began to change here.
+I think that has a
+lot to do with China.
+That was a poor
+economy that grew
+very fast during that period.
+And it wasn't very large here,
+so it didn't matter as much.
+But then it began
+to count a lot.
+I think.
+I'm not completely sure.
+That's it.
+Anyways-- but that's the
+state of knowledge in this--
+obviously, there's a big
+literature around all of this,
+and very complex,
+even, literature.
+But there is-- we
+understand-- we
+know that we have good
+ways of explaining
+how a country converges
+to its own steady state,
+that we have very poor models,
+certainly, within economics.
+Or within growth
+theory, per se, there
+is little institutions and stuff
+like that explain some of that.
+But we have very poor
+models, in general,
+to understand what gives rise to
+this big disparity in technology
+adoption and so on.
+So that's all that I
+want to say about growth.
+The next topic is we're
+going to open the economy.
+We're going to go back
+to the type of models
+we had very early on, but now in
+the context of an open economy.

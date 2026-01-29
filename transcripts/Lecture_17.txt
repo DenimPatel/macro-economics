@@ -1,0 +1,1867 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO CABALLERO:
+So remember what
+has been happening
+to the US economy.
+As economy-- and it
+happens similarly
+with a few lags and
+leads and differences
+in sizes but around the
+world, in most economies
+around the world, as the economy
+began to reopen from COVID,
+we had a situation where we
+had too much demand for supply.
+The potential output,
+using the terminology
+you have in the
+IS-LM-PC model, it
+was slow in picking
+up because we still
+had lots of bottlenecks
+in the supply chains,
+and in different
+sectors of the economy,
+some people didn't want to
+come back to work, to the labor
+force for a while and so on.
+So the supply side was
+very still impaired.
+Not as impaired as in the
+middle of the COVID in 2020,
+say, but it's still
+impaired, while demand
+was very strong because people
+were fed up of staying at home.
+They had saved a lot
+during the COVID recession
+and they wanted to spend.
+OK?
+And there had been
+lots of fiscal support
+and monetary policy
+support and so on,
+so people feel
+wealthy and felt rich
+and so they wanted to spend.
+There is a big demand,
+but supply is not there.
+That starts introducing
+inflationary pressures.
+Say we have a negative
+output-- a positive output gap,
+output above potential output.
+That puts immediate
+inflationary pressure.
+That's what we learned from the
+Phillips curve and all that.
+OK?
+And now for a while,
+the Fed did not
+want to react to this because
+they thought that this was going
+to be mostly a temporary
+phenomenon, that supply would
+recover pretty rapidly,
+and that people would,
+after taking one
+trip, well, they
+wouldn't want to
+take a second one.
+Fiscal support was
+winding down and so on,
+so they thought
+this would go away,
+and they didn't want
+to cool off the economy
+because they thought they didn't
+want to fight a temporary fight.
+Now as a result of new
+shocks, the war and things
+like that, but also that the
+initial call was not right,
+was incorrect, that there was
+a lot of inertia in demand
+and that pick-up in demand
+lasted a lot longer than they
+expected.
+Is that inflation
+really began to rise,
+and the Fed was really caught
+what is called behind the curve.
+They should have started--
+at least exposed, it's
+easy to see it that way.
+Remember what you have.
+If you have a
+situation where output
+is above potential
+output, the interest rate
+is supposed to be rising.
+So the Fed is supposed to be
+increasing the interest rate,
+but they didn't for a while.
+Assuming that the
+forces that were
+bringing potential output down
+and demand up were transitory.
+When they discovered
+that wasn't the case,
+they had to start catching up.
+As a result of that, they began
+to hike interest rates very,
+very rapidly.
+OK?
+Unusually rapidly for
+an economy like the US.
+There are many reasons
+why policymakers,
+especially monetary
+policy makers,
+prefer to be gradualist, meaning
+to move things in small steps
+rather than in one big bang,
+especially in the way up.
+It is to cut rates, they're
+very willing to be very
+aggressive in cutting rates.
+But raising rates
+is something they
+tend to be reluctant to
+do very, very rapidly.
+And one of the main reasons
+they are reluctant to do that
+very rapidly is
+because something
+may break in the
+process, and there
+are certain things that are
+very important if it breaks.
+There are certain other
+things that are not
+very important if they break.
+But one of the things that is
+very important if they break
+is banks.
+OK?
+And that's typically
+where you run into trouble
+when there is episodes of
+very fast hikes in rates.
+Now, because the US
+banking sector, especially
+the large banks,
+were very resilient,
+they had lots of
+capital and so on, there
+wasn't a lot of concern that
+that would be an issue in the US
+because, again, the big
+banks looked very healthy.
+Deposits were flowing
+out of big banks,
+but it was happening
+all at a normal pace.
+It's normal that deposits go
+out of the banking sector when
+interest rates start to rise.
+But there was no
+sign of any trouble.
+Well, that changed a month
+ago, as you well know,
+and something broke finally.
+The major episode there was
+the Silicon Valley Bank.
+We saw a big bank run there and
+eventually that bank collapsed.
+And since then,
+things have looked
+a little more complicated.
+So here you have, for example,
+commercial bank deposits.
+As I said, as the
+Fed began to hike--
+so focus on the red line.
+The Fed began to hike rates,
+then deposits began to-- people
+began to move their money
+out of deposits into US
+treasuries, money market
+funds, things of that kind.
+But that was normal.
+OK?
+And that didn't
+lead to a big cut
+in lending, which
+is what you worry
+about when banks lose funding.
+But things began to change
+quite rapidly, well,
+in the second half of 2022.
+This was felt mostly
+by large banks.
+And when deposits decline
+gradually in large banks,
+that's not such a big issue
+because deposits are not
+the only funding source
+that big banks have.
+They have many other
+sources of funding.
+But then that's what
+happens this year.
+Things accelerated very,
+very quickly this year.
+And so this is different.
+This is a different
+animal from this sort
+of very controlled
+decline in deposits
+as interest rates were hiking.
+This is a very sharp
+decline in deposits.
+OK?
+So that's a problem because that
+unavoidably will hit lending.
+OK?
+So that's going to show up in
+terms of the models we have had.
+If you were to use
+your IS-LM-PC model,
+it would show up as
+an increase in x.
+Remember, we had risk
+premium and stuff like that.
+Well, that's the way
+you probably could model
+what is happening right now.
+Now, one of the--
+as I said before, these
+are in different scales.
+So small bank deposits
+on the left, large bank
+deposits on the right.
+As I said before, through most
+of these episodes in which
+deposits were declining
+in the banking sector,
+it was mostly a phenomenon
+that affected large banks,
+and it was very gradual.
+OK.
+But what happened since a
+month ago is essentially small
+and medium sized banks
+experienced a very large run
+in deposits.
+Part of that went to money
+market US treasuries and part
+of it-- you don't see
+different scales and so on,
+but it went actually
+to large banks.
+It was relocation.
+That's called flight to quality.
+OK?
+Now even if this has been a
+full relocation of deposits
+from large banks--
+from small banks to
+large banks, and so no
+deposit would have declined in
+the whole banking sector, that
+would have consequences
+for the economy
+because these type
+of banks don't lend
+to the same type of people.
+Small banks, small,
+especially regional banks,
+lend a lot to people that--
+to businesses and people
+that do not have other
+sources of funding.
+They tend to be small
+businesses and so on.
+The only way they can borrow
+is either from the family
+or from a bank.
+But they cannot issue bonds
+and things like that, no?
+And so they don't have
+other sources of funding.
+And so that's a problem because
+what you see here is naturally
+when you start seeing deposits
+going out, there have been also
+losses experienced by
+the banks because they
+had to recognize the
+losses in the asset side
+once they lost deposit is
+that they had to cut lending.
+And you can see here what has
+been happening to lending.
+Large banks, they began
+to slow down here,
+but it's a gradual slow down.
+But you have seen a very
+sharp decline in lending
+over the last three
+or four weeks.
+OK?
+So we're in the early phases
+of what we like to call,
+as described as a credit crunch.
+OK?
+Now that's a problem,
+as I said before,
+because those banks, these
+banks, the banks in gray here,
+are the banks that
+lend primarily
+to small and medium
+sized businesses.
+So you see here the share of
+commercial and industrial loans
+by bank size.
+And this is loans
+to small businesses,
+loan to larger businesses.
+These are the banks that are
+in grave or below $250 billion,
+and you see that they have
+a large share of loans
+to small businesses.
+OK.
+So those sectors are
+going to suffer a lot.
+So there's going to be a
+contraction in the economy,
+and it's going to
+be very concentrated
+on small businesses, medium
+sized businesses, and so on.
+And again, it's
+more problematic,
+a contraction in lending
+to those businesses
+because they don't have
+alternative sources of funding.
+That's it.
+OK?
+It's either return earnings, the
+family is really, really small,
+or banks.
+Again, big corporations,
+these guys,
+probably are borrowing
+from 10 different banks
+and they have issued
+corporate bonds
+and they even have
+commercial paper.
+This is entirely different
+life when you live here
+and when you live here.
+If you look by
+sectors, that also
+is going to have
+implications for sectors.
+So this is going to be
+clearly contractionary,
+but it's not going to be
+equally contractionary.
+It will depend on the
+composition of your sectors.
+Not all sectors have the same
+share of small businesses
+and medium sized businesses.
+You see here the construction
+service has a very large share.
+More than half of the
+businesses in construction
+are really small or
+medium sized businesses.
+OK?
+Big contrast with
+utilities where they are
+all big businesses and so on.
+OK.
+So big dispersion,
+and so this is
+going to be a contraction that
+is going to be very felt--
+is felt very strongly
+here at the top.
+So that's what is
+happening right now.
+And from the point of
+view of the aggregate,
+essentially where we
+have gone is from a path
+like this to a path like that.
+So the economy was
+overheating, so we needed
+to slow down the economy.
+There's no way around that.
+Output was above
+potential output.
+That was causing
+inflationary pressure.
+We needed to bring
+this stuff down,
+and the economy
+was slowing down.
+But it was happening
+at a very slow pace.
+And that was a bit
+exasperating for the Fed,
+but it was happening
+very, very slowly.
+Among other things,
+because the balance
+sheets of the household sector
+and corporations in general
+was very healthy.
+But now things are
+accelerating very quickly
+because once you introduce
+credit crunch, credit
+constraints, and
+things like that,
+the same declines in wealth that
+we were experiencing before that
+were driving aggregate demand
+down have a much larger effect.
+And so we're changing
+from a world that
+looked like that to
+a world that's going
+to look a lot more like this.
+And that's a tricky
+for the central bank
+because now the Fed needs to--
+before there was no way around.
+They had to hike interest rate,
+because the main problem was
+inflation.
+Now they know that as they
+hike interest rate-- they still
+need to hike interest
+rate, I think,
+unless there is a big mess,
+because inflation is still
+way above their target.
+But they have to be very
+worried that this stuff doesn't
+become too steep.
+Things get to be very non-linear
+when the financial sector is
+involved.
+And so probably that means that
+on net, they already did it.
+In the previous
+meeting, everyone
+anticipated 50 basis
+points of hikes.
+Once SVB happened, the
+bets went down dramatically
+and the realization went
+down to 25 basis points.
+And so that's where we are now.
+Now if everything
+works as planned--
+and more or less that's a
+forecast at this moment.
+There isn't any panic and so on.
+Is that we're going to
+experience not a technically
+a recession, but a significant
+slowdown in the next quarter
+or so.
+OK?
+That's sort of the
+consensus expecting
+to see as a result of all
+these combined forces.
+A Fed that still
+needs to tighten
+because of aggregate demand
+reasons and the very negative
+effect of the credit
+crunch, especially
+in certain parts of the economy.
+OK?
+If everything, again, works as
+planned means things continue
+to go fairly smoothly,
+then it's certainly not
+going to be a good year
+for economic activity
+but it shouldn't be
+a disaster either.
+That's sort of where we are at.
+And the tension is, well,
+if the financial crisis
+leaks into the larger
+banks, then these numbers
+are going to get a
+lot worse, of course.
+But that's the
+concern at the moment.
+But it doesn't seem like
+the central scenario.
+Now, there are
+also some good news
+happening because remember
+that the problem we had--
+the problem we have
+comes from two sides.
+One side is too much
+demand, and that the Fed
+can affect very quickly.
+That's what it's doing
+by hiking interest rates.
+Not as quickly as
+they would like,
+but still, they have
+an impact on that.
+But the other problem
+was aggregate supply.
+And in particular, it's that the
+labor market looked very tight.
+And remember when we did
+the Phillips curve and all
+that, the labor market
+is very critical in all
+the process of generating
+inflation and so on.
+That's the reason you try to
+generate more unemployment,
+essentially to lower wage
+pressure, because that
+means less pressure on prices
+and so on and so forth.
+And one of the problems
+is that, again,
+is very nice in principle, that
+we have very low unemployment
+rate.
+But it's very difficult
+to lower wage pressure
+if unemployment is so low.
+Having said this-- and
+this is the part that I say
+is fairly good news.
+Having said this, in the
+model we simplify things
+and we just put unemployment
+as the only variable
+that could adjust and that
+was important for wages
+aside from some institutional.
+Things in practice, there
+are many other indicators.
+And really what really
+matters is employment.
+What happens is
+we took a fixed n,
+we took a fixed the
+participation rate,
+and that's the reason
+unemployment was the variable
+to summarize everything.
+But what really puts
+pressure on labor market
+is shortage of workers.
+If you have an unemployment
+rate that is constant
+but there are lots of workers
+coming into the labor force,
+then that doesn't put as
+much pressure on wages,
+and therefore less
+pressure on inflation.
+And this is exactly
+what we're beginning
+to see in the US economy, and
+I think that's very good news.
+It gives us hope that this
+inflationary process may
+come down a little faster.
+So this is labor
+market participation.
+Remember?
+So this unemployment
+number spiked a lot,
+but it underrepresented
+how much contraction there
+was in labor, in
+employment, and so on,
+because many people simply
+exit the labor force and those,
+remember, we don't
+count as unemployed OK?
+And so that happened.
+It was a very sharp
+decline in the labor force,
+in the labor participation
+rate, so the decline
+in the labor force.
+And then that recovery
+is one of the things
+that happened much slower
+than the Fed anticipated.
+That was part of the mistake is
+they thought that this was going
+to come back quickly and that
+for potential output was going
+to rise very quickly,
+and it didn't.
+That was one of the mistakes,
+the forecast mistakes.
+But now it's clearly
+that it's coming back
+to levels that are
+more consistent
+with historical levels.
+If you look at the employment
+to population ratio,
+also a big decline
+for similar reasons.
+But if you look at employment
+to population ratio today,
+it's clearly getting back
+to the trend it had before.
+OK.
+So that's very good
+news in the sense
+that even if unemployment
+doesn't move a lot,
+this reduces--
+well, it's good for output.
+It expands and so on.
+But it also lowers inflationary
+pressures in the economy.
+And another component
+actually that I
+think I mentioned a couple
+of times in the lecture
+is immigration.
+In a market like the US,
+a lot of the labor forces
+comes from immigration.
+OK?
+And that stopped for a while
+for a variety of reasons,
+but certainly COVID
+had a big effect.
+So that meant about 500,000 less
+people a year coming into the US
+labor force, and
+that has big impacts,
+especially in some
+sectors of the economy.
+OK?
+And that's clearly
+been fixed now.
+OK?
+We may have other problems.
+People may fight for political
+reasons and these things
+and whatever, but from the
+point of view of macro,
+this is certainly helping.
+OK?
+In fact, if you look at where
+the wage pressure is really
+coming from in the US economy,
+it's coming from those sectors
+where immigrants
+play a big role.
+Accommodation, food
+services, stuff like that,
+you see that their sort of
+wages rose pretty dramatically
+because there was a massive
+shortage there for two reasons.
+One, people didn't want to go
+back to those sectors to work,
+close contact and
+stuff like that.
+And the other one is
+that the important flow
+of supply of workers
+into that had slowed down
+quite dramatically.
+OK?
+So that's where we're at.
+And as a result of
+all these good forces,
+despite the fact that we
+have very low unemployment,
+you can see that
+wage pressure is
+beginning to decline in the US.
+OK?
+So it was very high
+there, but those numbers
+are very distorted by
+composition effects and stuff
+like that.
+But these were the numbers
+that were very worrisome.
+I mean, with wage
+inflation of 6%,
+it's going to be very difficult
+to bring inflation to 2% down.
+You need much lower
+wage inflation.
+But you see that is
+beginning to decline.
+2% is still too high
+for a steady state
+if you want to go back
+to 2% inflation rate
+because you can have an
+increase in real wage,
+but that has to be more or less
+aligned with the rate of growth
+of productivity.
+Which is much lower than that.
+I mean, at best it's
+1%, 1 and 1/2 sometimes.
+So you could live with 3.5%
+real nominal wage growth, but 4,
+4 and 1/2 is a bit too much.
+OK.
+Anyway, so that's the
+state of the economy.
+Any questions about the
+state of the economy?
+Open question.
+No?
+No?
+You're happy with it?
+Doing fine?
+OK.
+Good.
+So what I want to do next is
+so this was a summary and all
+that I did here I did
+close economy economics.
+All my description,
+I didn't need
+to tell you what was happening
+in the rest of the world
+and so on.
+That would have
+been a lot harder
+to do if this was Singapore,
+for example, because Singapore
+depends a lot on the
+rest of the world
+and it's very difficult
+to tell a story
+that just depends on what
+happens in Singapore.
+The US is pretty unique in that
+you can tell most of the story
+based on what happens in the US.
+Most.
+Not all, but most of the story.
+And that's what I just did.
+Almost anywhere else,
+you need to think about--
+even if you're in Japan.
+Big economy and so on.
+Effects will play a big role.
+And so when you describe
+the state of the economy,
+you're going to be
+talking about the yen.
+Very high, very low, or not.
+Here you don't worry
+much about the dollar.
+The US is very unique on that.
+I think no other country in
+the world has that feature.
+OK?
+So now we're going to
+open up the economy,
+and again, perhaps it's the
+least important for the US
+but anywhere else it's
+tremendously important.
+More so it's
+becoming increasingly
+important for the US.
+It has been becoming
+increasingly
+important in the US.
+Now we're in the middle
+of a deglobalization mess.
+We shall see where we end up.
+So there has been a bit of a
+reversion of a very strong trend
+towards integrating the
+economies of the world
+through many different channels.
+And so I want to talk about
+what are the key variables when
+you integrate an economy
+to the rest of the world
+and things of that kind.
+I'm going to start
+with some definitions.
+What are variables
+that we're going
+to be talking about that we
+weren't talking about up to now?
+So one of the
+things that's going
+to be very important in an open
+economy is the exchange rate.
+OK?
+And here I'm giving you--
+I'm going to define things
+very formally later on,
+but here you see an
+example of the US dollar
+vis a vis the main
+trading partners.
+The US trades with many
+different parts of the world,
+and there's bilateral
+effects between those things.
+And this measure
+here is something
+that weights by
+the amount of trade
+that we have with different
+economies of the world,
+trades the different
+effects and says, well,
+is the dollar strong,
+weak, or whatever.
+This is a matter of convention.
+There's many ways you can--
+no, there are two ways
+in which you can do it,
+but we're going to do
+it the following way.
+What these effects
+will reflect is
+the price of the domestic
+currency in foreign currency
+terms.
+So that means when this
+goes up, means the dollar
+was becoming very expensive.
+OK?
+And that's a very sharp--
+I'll get back to it, but we
+call that an appreciation
+of the currency.
+OK?
+So here the dollar was becoming
+very expensive in terms
+of other currencies.
+The opposite happens starting
+the second half of 2022.
+Now we have had some cycles
+here during this year.
+That's going to be a very
+important variable, the effects.
+We call it the effects,
+the exchange rate.
+Another variable that
+we haven't talked about
+but that is going to
+be important here is--
+and that politicians
+argue a lot about it
+with the wrong
+arguments, but they do,
+is the trade balance
+of goods and services.
+Of goods and services.
+So this, the trade balance
+of goods and services,
+is simply the difference
+between the exports,
+so what a country sells
+to the rest of the world,
+versus its import.
+That is how much it buys
+from the rest of the world.
+OK?
+So this is monthly
+data for the US.
+The US nowadays
+of runs a deficit,
+a trade balance deficit of the
+order of $70 billion a month.
+That means exports to the rest
+of the world about $70 billion
+less than it imports.
+Sorry.
+Sorry.
+Yeah.
+70 less than it imports.
+Perfect.
+OK.
+You have seen that this is
+pretty sustained, actually.
+Here it looks pretty balanced,
+but the US, on average,
+has a situation like that.
+OK?
+The US tends to export
+less than it imports,
+and then that's when politicians
+get all very worked out.
+They say, this is
+unfair competition
+from the rest of the world
+and so on and so forth.
+I think in general, it has
+very little to do with that.
+It has to do with the
+fact that the US likes
+to save less than the
+rest of the world.
+But let me not get into that
+until much later in the course.
+But anyway, that's the
+situation for the US.
+This is obviously a blip that
+has to do with COVID and so on,
+but you see that
+we're now more or less
+back to where we were before.
+This was a period,
+actually, of lots
+of global political tensions
+because it had one counterpart
+that was very big.
+It was China.
+OK?
+The time of the global
+imbalances in the US
+was learning very
+large trade deficit,
+and then China in particular
+was running very large trade
+surpluses, and so there were
+lots of political quarrels
+because of that.
+So obviously the US has
+many, many trading partners,
+and with respect
+to many of them,
+it has very large deficits.
+So on net.
+And here are the main--
+I ranked the 10 main
+deficits for the US.
+So I don't know when was this.
+But anyways, it looks like that
+for the last eight or so years.
+Remove COVID, it looks more or
+less like this all the time.
+And you see that the US,
+indeed, large exports to China,
+about $153 billion a year, and
+it imports about $536 billion
+a year.
+So the net deficit is
+$380 billion a year.
+That's the reason this
+is a big political thing.
+OK?
+It sounds like a big deficit.
+But there are other countries.
+With respect to Mexico,
+$130 billion, and so on.
+The US exports a
+lot more to Mexico.
+Vietnam.
+A lot of what
+happens from Vietnam
+is really Chinese
+exports in disguise.
+But there you see it.
+OK?
+There are many others.
+Germany is always
+a problem, but--
+a problem for somebody that sees
+deficits as a problem and so on.
+OK.
+Now that's on the good side.
+What I was saying here is
+that one sense of openness
+is in the goods and
+services market.
+So you buy goods from
+the rest of the world,
+the rest of the world
+buys goods from you.
+Sometimes these
+things are balanced,
+sometimes they are not.
+When at the
+aggregate level, they
+are not balanced for a
+very long period of time,
+unless you're the US, that
+often causes problems.
+But at the bilateral level,
+if you look at any country,
+we'll have situations like this.
+Some countries where they
+export a lot to and import very
+little from and vice versa.
+But that's the way the US looks.
+Another sense of openness,
+which is very important
+is financial openness.
+Meaning that you
+can also buy or save
+using foreign assets
+or domestic assets.
+So you can buy foreign
+assets-- perhaps not
+you directly or most
+of you directly,
+but you can do it through
+a broker and so on.
+You can buy foreign
+assets, and foreigners
+buy lots of US assets.
+OK?
+That's a sense of openness
+in financial markets,
+that you can buy--
+you're not stuck with your
+country's financial assets.
+You can also invest in other
+countries' financial assets
+and vice versa.
+Those things probably you as--
+I mean, you know this
+trade openness a lot
+more probably than
+financial openness
+because you're all the time
+buying imported goods and stuff
+like that, while
+you're probably not
+involved in a lot
+of transactions
+of international financial
+instruments and so on.
+But they are very large.
+OK?
+So pension funds
+and so on, they're
+all involved in very
+large transactions.
+In fact, transactions
+in financial markets
+are an order of magnitude
+larger than transactions
+in the goods market.
+Very large.
+And here you have an example
+by origin, the foreign holdings
+of US assets.
+And this is in billions.
+So these guys here--
+this, China and Canada have
+the largest, and the UK,
+those have on the order
+of $2 trillion of US
+assets they're holding
+Japan should be here also.
+Yeah, there it is.
+Yeah.
+Now in these two
+countries here, a lot
+of those holdings actually--
+well, particularly in
+China more than in Japan.
+In China it's a little
+less than Japan.
+Japan, they save
+a lot so they need
+to buy lots of financial
+assets and the US
+is the main producer of
+financial assets in the world.
+They save a lot on that.
+But also the central bank,
+because of currency intervention
+and so on, buys lots
+of US treasuries.
+China, this is mostly
+the central bank
+buying US treasuries,
+foreign reserves,
+large amounts of reserves.
+Canada is private sector,
+pension funds and so on,
+probably.
+But you see, Brazilians also
+buy lots of assets from the US.
+Again, central banks play
+big roles in all this.
+Australia is less a central
+bank, much more private sector.
+UK is all private
+sector, and so on.
+And in Europe.
+OK.
+But the point of that
+picture is that there
+are lots of countries
+in the world
+or residents of different
+countries in the world
+that buy US financial
+assets and in big amounts.
+OK?
+I don't know what the
+total number today is.
+Probably-- eh.
+Actually, let me not
+make up that number.
+You may find it.
+But it is certainly
+in the $20 trillion
+or something like
+that of assets held--
+US assets held by foreigners.
+You can check it and tell me.
+It's probably more.
+Here's the other way around.
+US residents holdings
+of foreign assets.
+OK.
+You see, US residents hold lots
+of Canadian assets and mostly
+developed economies,
+but there you
+have India, China, and so on.
+Lots of Latin American
+assets and so on.
+OK.
+So the US-- so it's not only
+that the rest of the world
+demands US assets,
+but US residents--
+perhaps not directly,
+most of you,
+but indirectly demand
+lots of foreign assets.
+OK.
+There are some very
+fascinating facts
+that happen here because
+the type of assets
+that foreigners tend
+to demand from the US
+are very different from
+the ones the US demands
+from the rest of the world.
+In fact, one of
+the things that--
+the reasons the US can afford
+running those chronic trade
+deficits is because it tends
+to get much higher returns
+on the assets it buys
+abroad than foreigners
+get on the assets
+they buy in the US.
+The difference allows you to
+fund systematic trade deficits.
+And the reason for that
+is a lot of the US assets
+that foreigners buy, they
+do it for safety reasons.
+They are buying US treasuries,
+very safe instruments.
+Just in case there
+is a big mess,
+they want to have those
+assets, so it's almost
+for insurance reason.
+The US treasuries are sort of
+perceived as a main safe assets
+in the world.
+So they hold it for that reason.
+While the US mostly holds assets
+abroad for risky investments.
+Either foreign direct investment
+or equity, stuff like that.
+And typically most fixed
+income investors in the US--
+a lot of what you see
+here is just US residents
+reaching for yield.
+Brazilian sovereign bonds, the
+equivalent of the US treasuries
+give you 9%, 10%.
+It's a lot higher than
+the US tends to give.
+14% even now, and so on.
+So on net, the US
+tends to make--
+has less assets in
+the rest of the world
+than foreigners have
+of the US and it still
+makes sufficiently more return,
+higher return on average
+on an asset it holds on
+the rest of the world
+that it has a surplus which it
+can finance the trade deficit.
+This is complicated.
+You don't need to
+know the details,
+but just to tell you what the
+kind of things are happening.
+So there's three senses in
+which you can have openness.
+The two that have described
+implicitly already, goods.
+In goods market you
+can buy foreign goods
+and you can sell goods
+to the rest of the world.
+And the second one
+is financial markets,
+which is what I just described.
+You can choose between
+domestic and foreign assets.
+The main impediments
+to the former
+typically are
+tariffs and quotas,
+and you have heard a lot about
+tariffs and so on these days.
+The main impediments
+for financial markets
+is what is called
+capital controls.
+Very rarely developed economies
+impose capital controls,
+but emerging markets
+do it regularly.
+OK?
+Limit the amount of--
+especially capital outflows.
+When lots of capital
+is live in the country,
+they try to stop you
+from doing more of that.
+And they sometimes
+do it in the way
+in because they want to avoid
+the macro instability that
+comes from the big
+reversal of capital flows,
+so they don't let
+lots of capital flow
+in during the boom just to
+prevent a reversal later on.
+Thus capital controls.
+And there is a
+third way of opening
+to the rest of the world,
+which is factor markets.
+OK?
+Which is that firms
+can choose location.
+I mean, some plants--
+we're seeing Japanese plants
+that do not export Toyotas
+directly from Japan.
+They have the plant here either
+in Canada or somewhere in the US
+and they sell locally.
+So that's relocation of
+factors of production.
+Japanese capital that relocates
+to some place in Canada
+or in the US, and labor.
+You can also have workers
+that move from one place
+to the other.
+That's another form of openness.
+Free factor mobility.
+In this part of the course we're
+not going to talk about this.
+OK?
+We're going to
+focus on these two.
+The first model we're
+going to look at
+is going to be a model
+of the goods market,
+and that's going to be
+very much like the IS-LM
+but with an open economy.
+And then we're going to
+bring in interest rates,
+but now once you--
+remember what we did in
+the closed economy first?
+We looked at the
+goods market, then
+we look at interest
+rate determination.
+That was our LM.
+And then we put the things
+together, we came up with IS-LM.
+Here the tricky thing is
+that there is not only
+one interest rate.
+There are really two.
+You have to decide
+between the domestic
+and the foreign interest
+rate, and then there
+is an exchange rate in between
+which will also affect.
+So that's the reason
+it's going to get
+a little more complicated,
+because you're
+going to be having two different
+prices, two different goods you
+can buy.
+You're going to have also two
+different assets you can buy.
+And the effects is going
+to affect all those things.
+Whenever I say effects,
+I mean the exchange rate.
+OK?
+Foreign exchange.
+That's the reason
+sometimes it's called FX.
+Now one thing that happens
+is that because economies
+are so integrated in goods
+and financial markets is
+that business cycles tend to--
+especially large
+ones tend to be very
+synchronized around the world.
+You see here emerging markets.
+Sorry.
+Yeah.
+This is the world.
+That's emerging markets and
+that's advanced economies.
+You can see the kind of things
+we discussed in the growth
+section, which is
+these countries tend
+to grow faster than
+these countries
+because they're catching up.
+That's the reason
+they're called emerging.
+But the level of the
+business cycle, they're
+very synchronized.
+I mean, there's 2008, 2009.
+The recession was a
+recession globally.
+This one doesn't have COVID,
+but, well, COVID very naturally
+was very synchronized
+around the world.
+The point I'm making here is
+that once you're very integrated
+to the rest of the world,
+you're also exposed
+to a new source of shocks.
+It may help you
+in many instances,
+but you're also exposed
+to things that come
+from the rest of the world.
+And the evidence is
+that business cycles
+are very synchronized.
+It's very difficult for
+the rest of the world
+to be immune to a US
+recession, for example.
+It's very easy for
+the US to be immune
+to an Argentinian recession.
+That's a different story.
+But when things
+are large, involve
+the large economies,
+typically that
+will leak into the
+rest of the world.
+China has changed a little
+bit the composition.
+It used to be the case that
+that was always the case.
+If the US sank,
+then everyone sank.
+And now you have China, which
+stabilizes-- it's different.
+It's not completely
+correlated with the US,
+and so that has been
+stabilizing, actually,
+for many especially commodity
+producing economies and so on.
+But it's still the case.
+Big mess is a big
+mess everywhere.
+If the economists
+were closed, there
+would be no reason unless you
+have some exogenous shock.
+COVID, even if the economies
+were completely closed,
+would have been a mess because
+as long as the virus is spread,
+then it's a mess regardless.
+But that's not the case here.
+This recession was caused by
+a financial shock in the US.
+OK?
+And still, the global economy
+as a whole suffer a lot.
+So things become very
+synchronized because of that.
+Another thing that has been
+happening is that everywhere--
+again, we shall see where we
+end up after this COVID things.
+There was a slight
+reversion of that.
+But everywhere, even the
+US, which is one of the
+closed economies in the world--
+one of the closed of the
+significant economies,
+there has been a sort of--
+there was a steady trend rise
+towards higher integration
+to the rest of the world.
+And the same is happening
+in financial markets.
+This is just an order
+of money larger.
+But you see here in the US, you
+see that imports and exports
+as a share of GDP, they
+were both rising over time.
+Here shows you what
+I showed you before,
+which is the deficit, chronic
+deficit that the US has had.
+But still, even exports have
+been rising for a while.
+Now this number here, you
+know that about 20% of the US
+produced goods of 15% of GDP,
+The US has about 15% of GDP
+in imports and in exports.
+Some people use that,
+the sum, for example,
+of imports plus exports over
+GDP as a measure of openness,
+how open is an economy.
+And it's OK for comparisons,
+but it's clearly underestimated
+how open economies really are.
+I mean, many of the goods
+that are considered--
+that the US does not import
+are produced domestically
+so they don't count as part
+of imports or anything.
+Their price is really determined
+by international competition.
+OK?
+The price of a Ford
+is very different with
+foreign competition than not.
+So we don't count the
+Fords produced here
+as imports or anything and it
+was part of the non-tradable.
+Not non-tradable.
+It wasn't part of this
+measure of openness.
+But it's clear that the
+price and even the quality
+is being affected by exposure
+to international competition.
+So there are very few sectors
+that are not really exposed
+to international competition.
+Yeah, haircuts.
+They're not.
+I mean, you're not going to--
+unless you live in some
+county at the border of Canada
+and there is a town
+right on the other side,
+that's not going to happen.
+OK.
+So trend is upward,
+and even more so
+than those numbers suggest.
+If you look across
+the world, here
+is what I showed you before--
+what I said before is that the
+US actually certainly looks
+very close relative to others.
+If you look across
+large economies, Japan,
+which is also very closed
+economy for a variety
+of reasons, it's still more open
+than the US, UK, little Chile
+here.
+One thing that this shows,
+this dimension here shows
+is that the smaller you are, the
+more open you're likely to be.
+And it makes sense.
+It's harder to
+produce all the goods
+if you have a small country.
+So that's a pattern.
+The smaller you are, controlling
+for a variety of factors,
+you tend to be more open.
+You need to import
+and export more.
+Import more, in particular.
+Now, that pattern
+is disrupted when
+you look in this direction, no?
+So all these countries,
+which are clearly
+much larger than Chile in
+terms of GDP and so on,
+have very high export ratios.
+Why do you think
+that's the case?
+Yeah?
+AUDIENCE: Europe.
+RICARDO CABALLERO: Exactly.
+They are in Europe.
+Europe is very special.
+Europe as a whole is
+as closed as the US.
+So if you look at the
+whole area together.
+But there is lots of
+intra-Europe exports
+and imports, especially
+in the Eurozone.
+I mean, you have lots of things
+that have the same currency.
+It's right next door.
+So they're very open, but
+they're very open within Europe,
+not so much with the
+rest of the world
+But this doesn't differentiate
+intra-Europe exports and imports
+versus total.
+That's the reason you see these
+numbers are very, very large.
+But even here, within here, you
+see that the smaller countries
+tend to be very open.
+Much more open than
+bigger countries.
+OK?
+Good.
+So as I said, so terminology.
+This picture looks very similar
+to the picture I showed you
+earlier on, but it's not.
+There it was a trade
+weighted dollar,
+and here it's just one
+particular bilateral exchange,
+which is the dollar-yen
+exchange rate.
+What happens is when
+the dollar appreciates,
+typically it appreciates
+against everything and so on.
+That's the reason the
+pictures look very similar.
+But this was pretty dramatic.
+There was a very sharp
+appreciation of the dollar--
+well, strike what I said.
+So anyways, this is the pattern
+of the number of yen's per
+dollar's.
+Meaning we decided
+that that's the way
+we're going to
+define exchange this
+the price of the
+domestic currency
+in terms of foreign currency.
+So the price of the
+US dollar goes up
+when they pay you
+more yen's per dollar.
+And it went up very rapidly
+from close to 100 to 150.
+That was massive.
+There were massive
+interventions here
+because it was clear that this
+was getting totally out of hand.
+But anyway, so that was--
+OK.
+And we say in this case--
+so when a currency
+gains in value,
+we call that, in terms
+of other currencies--
+there's no sense of a
+currency gaining value
+in terms of nothing.
+It has to be in terms
+of other currency.
+That's what an exchange rate is.
+So we say that the
+currency is appreciating.
+OK?
+So in this case, it's a
+nominal exchange rate,
+so it's dollars per dollar.
+When the dollar
+is going up here,
+we say the dollar is
+appreciating relative
+to the Japanese yen.
+OK?
+That means the dollar is
+becoming more expensive.
+They have to give you
+more gains per dollar.
+You can look at it from
+the point of view of Japan,
+and then the picture would
+look the other way around
+and it says in
+this same picture,
+I know that the Japanese
+yen is depreciating relative
+to the US dollar.
+OK?
+So depreciation is when
+your currency loses value.
+Appreciation is when your
+currency gains value.
+I mean, if I tell you--
+unless you more or less know the
+prices in the different places,
+if I tell you that
+the Japanese--
+the US buys 130 Japanese
+yen, you can tell me--
+and then I ask you, where
+would you like to buy your car?
+I assume that the car
+is the same quality.
+No transport costs and so on.
+And I tell you, look,
+the Japanese yen is--
+for each dollar you get
+120, 130 Japanese yen.
+Where do you want
+to buy your cars?
+That's the right answer.
+You have no clue.
+That doesn't tell you anything.
+The nominal exchange
+it tells you
+the relative value
+of currencies,
+but to make the decision
+of where you buy your car,
+you need to know which
+car is more expensive.
+That's not enough to know the
+exchange, the nominal exchange.
+You need to know what is the
+price of the car in each place
+in its own currency.
+And then I'm going to use the
+exchange rate to translate them
+into some common currency.
+Suppose I tell you now
+that the price of--
+I do the opposite experiment.
+I say, look, the price of the
+same car in Japan is a 150,000
+yens.
+Well, there you all have lots
+of zeros, but a 150,000 yens,
+and in the US is 1,500.
+This is a used car.
+$1,500.
+And then I ask you a question.
+Where do you want
+to buy your car?
+You can't answer either because
+you don't know how to compare.
+Unless I give you the
+nominal exchange as well,
+you don't know how to compare
+those 150,000 yens versus
+the $1,500.
+So you need both.
+And that concept
+that captures both
+is what is called the
+real exchange rate.
+The real exchange is
+the sign for that,
+to capture where are you going
+to do your imports and exports.
+OK?
+And it's a relative price of
+two not currencies but goods.
+So that's what the
+real exchange is.
+It's the price of domestic
+goods relative to foreign goods.
+How many Japanese cars you
+give me for one car, US car?
+That's the real
+exchange rate, which
+is different from the
+nominal exchange rate.
+Now, it's related to the
+nominal exchange rate.
+It happens that
+in practice a lot
+of the volatility
+of that price is
+as a result of the volatility
+of the nominal exchange rate.
+Let me end this.
+With this, I will stop.
+So let me call epsilon
+the real exchange rate.
+Let me see how we're going to
+get to that expression here.
+So we want to compare here is
+the relative value of two goods,
+because that's what will matter
+for my consumption decision
+or my purchase decision.
+So suppose we're
+talking about this car,
+and suppose I know that the
+price of the car in the US is p.
+And now I want to
+compare it with--
+well, do I buy it here
+or do I buy it in Japan?
+For that, I'm going to
+have to compare them
+in the same currency.
+So the first thing
+I'm going to do
+is I'm going to
+translate my US dollar
+price to Japanese
+dollar-- to yen pricing.
+OK?
+So say that I'm going
+to have simple numbers
+and they want there.
+So price of the car in
+the US costs $10,000.
+Suppose that for each
+dollar you get 10 yens.
+Then $10,000 times 10, that
+means it's 100,000 yens.
+So if I buy the car in the
+US, I pay 100,000 yens.
+And so now-- ah, sorry.
+This was not Japan
+in this example.
+It's the UK.
+Well, the same story.
+OK.
+And it's even simpler.
+It's say then the car
+in the US cost $10,000.
+Each dollar buys $0.80
+or $0.80 of pounds,
+so that means 8,000 pounds.
+So the US car cost 8,000 pounds.
+Now compare it with a car in
+the UK, say, the same car,
+and the ratio of
+these two things
+is what we call the
+real exchange rate.
+So it's the price of
+the domestic good times
+the exchange rate divided
+by the foreign price,
+and that's the
+real exchange rate.
+If the price of the car in the
+UK was $9,000 and I could buy
+the car in the US for $8,000, I
+would probably buy it in the US.
+In practice, there
+are difference
+between the two currencies.
+That's the kind of thing
+that the real exchange means
+is the relative price of goods.
+OK?
+But the way to go
+from that is you
+have to multiply the nominal
+exchange rate times the price,
+because that converts it into
+the same currency as the price.
+And then you can compare them.
+That's the idea.
+So let's stop here.
+We're going to continue talking
+about open economy next week.
+On Wednesday, what
+I'm going to do
+is a review of
+IS-LM-PC and growth.

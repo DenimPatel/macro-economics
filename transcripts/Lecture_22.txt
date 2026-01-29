@@ -1,0 +1,1698 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+RICARDO CABALLERO:
+Today, we're going
+to talk about a very
+important topic in economics,
+which is expectations.
+We have barely
+mentioned expectations
+when we talk about
+the Phillips curve,
+we talked about expectations
+when we discussed the UIP and so
+on, but expectation is a much
+bigger issue in economics.
+In fact, most
+decisions by firms,
+by consumers,
+governments involve
+considerations of the future.
+And it plays an even bigger role
+in finance in which essentially,
+everything is about the future.
+The price of an asset today
+is meaningless in itself.
+You have to compare it with
+what you expect to get out
+of that asset in the future.
+So it's all about
+expectations and so on.
+So that's what we're
+going to do today
+we're going to talk
+about expectations, how
+to value things that you expect
+to receive in the future,
+and how to compare those
+things with things that you
+have in the present.
+But before doing that, actually,
+let's talk a little bit
+about the news.
+Who knows who first
+Republic Bank is?
+Remember that a few
+weeks ago, I told you
+that the Silicon Valley Bank--
+I mean, you read it.
+I just mentioned it, that the--
+or discuss it that we had the
+second-largest bank by asset
+in US history--
+it was-- Silicon Valley Bank
+was the second-largest asset--
+bank in terms of assets
+to collapse in the US.
+The first one was
+many years ago,
+and then we had this bank that
+had more than $200 billion
+in assets that essentially
+collapsed in a few days.
+It was a run on deposits.
+They had problems
+before, but what really
+did it, as is always
+the case with banks,
+is they have a run on
+deposits-- funding.
+Well, it's no longer.
+The second-largest collapse
+in US bank history,
+now we have on the weekend
+the new second-largest bank
+to collapse, which is First
+Republic Bank that was
+essentially liquidated and
+sold to JPMorgan over--
+today morning, very, very
+early in the morning.
+So you have an account
+in First Republic Bank,
+you soon are likely to have
+an account in JPMorgan.
+But again, what
+made it collapse was
+something very similar to
+what made Silicon Valley Bank
+collapse, which is that they had
+invested on a series of things
+that were very vulnerable to the
+fast pace of hikes in interest
+rates in the US.
+And when they had those
+losses, depositors
+became worried about
+it, and eventually they
+decided not to wait, just
+run and see what happened.
+First Republic Bank
+lost about $100 billion
+in deposits just last week.
+The last few days of last week.
+So it was obvious that it
+was not going to survive,
+and that's the reason something
+was arranged over the weekend
+to avoid the panics associated
+to collapse of the bank
+and so on.
+But anyways, by the way, this
+is all about expectations,
+is if people had expected the
+deposits to remain in the bank,
+then probably this bank
+would not have collapsed.
+It's all about people
+anticipating what other people
+will do and so on and so forth.
+OK, but now let me get into
+the specifics of this lecture.
+So there, you have-- this is the
+most important index of equity--
+equity index in the US, S&P 500.
+It's a very inclusive index
+that captures all the large--
+most of the large
+companies in the US--
+all of the large, I think--
+companies in the US.
+And that's an index, an
+average-- weighted average
+by this capitalization value
+of each of these shares,
+the weighted average of the
+major-- main shares in the US,
+equity shares in the US.
+And one thing you see is
+that it moves a lot around.
+Here, for example,
+when we became aware
+that COVID was going
+to be a serious issue,
+the US equity market
+collapsed by 35% or so.
+That's a very large collapse
+in a very short period of time.
+And then, as a result of
+lots of policy support,
+actually we had a massive rally.
+So up to the end of
+2021, the equity market
+had rallied by
+114%, so big rally.
+Then we got
+inflation and the Fed
+began to worry about inflation,
+so they began to hike interest
+rates, and when they
+hike interest rates,
+that eventually led to
+a very large decline
+in asset prices of the
+order of 30% or so--
+25% or so, actually, from
+the peak to the bottom.
+And then since the bottom,
+which was more or less October
+of last year, we have seen a
+recovery of about 16% or so
+of the equity market.
+And if you look at the NASDAQ,
+which is another one index that
+is very loaded towards
+technology companies,
+and you can see swings
+are even larger than that.
+Now why do these
+prices move so much?
+Well, a lot of it has
+to do with expectations.
+Are things going to get
+worse in the future?
+Will the Fed cause a recession?
+How much higher will
+be the interest rates?
+And things like that
+matter a great deal.
+Another thing that
+matters a great deal
+is how much people want to take
+risk at any moment in time.
+If you're very scared
+about environment,
+you're unlikely to want
+to have something that--
+to invest on something
+that can move so much.
+And so risk is well-known,
+so it's called risk-off, when
+people don't want to take
+risk, these asset prices
+tend to collapse.
+Of Risky assets-- equity
+is a very risky asset.
+But that's not the only thing
+that moves these assets around.
+It's not just the risk that the
+companies underlying companies
+may go bankrupt or
+anything like that.
+Here, you have, for
+example, the movement of a--
+it's an ETF, but
+it doesn't matter.
+It's a portfolio of bonds--
+of US Treasury bonds
+of very long duration,
+maturities beyond
+20 years and so.
+So this is incredibly safe bonds
+because it's US treasuries.
+So there's no risk of default
+or anything like that.
+Still, the price swings
+can be pretty large.
+I mean, over this period, you
+have seen an increase in value
+of 45%, then a decline
+in value of about 20%,
+another increase in 15%.
+Here, there was a huge decline,
+40% since essentially--
+what do you think happened here?
+Why is this big
+decline in bonds?
+You're going to
+be able to answer
+that very precisely later
+on, but I can tell you
+in advance, that was essentially
+the result of monetary policy
+tightening.
+Increasing interest rates
+caused the bonds to decline.
+So even these instruments
+are very safe in the sense
+that if you hold
+them to maturity,
+you'll get your money back
+and all the promised coupons
+along the path, well still,
+the price can move a lot.
+And it's obvious that
+that movement in price
+is something that
+you need to explain
+in terms of expectations, what
+people expect things to happen.
+In this case, it's not whether
+people expect to get paid
+or not because you will get
+paid, but it's expected--
+but in this
+particular case, it's
+about expectations about
+future interest rate.
+You think the interest
+rate will be very high,
+then the price of bonds will
+tend to be very low and so on,
+but it's all about the future.
+So a key concept that we're
+going to discuss today,
+and then you're going to use
+it to price specific assets,
+is a concept of expected
+present discounted value,
+and this is a loaded concept.
+There's lots of
+terms in there and we
+need to understand what
+each of these terms means.
+So the key issue that
+we're going to discuss
+is how do we decide--
+for example, if you see
+the price of an asset
+out there that is
+100, how do you
+decide whether that price is
+fair or not, it looks cheap
+or not?
+And that question means
+you have to decide
+whether that price that
+you're paying today
+is consistent with
+the future cash flows
+that you're going to
+get from these assets.
+And that's the reason
+you buy an asset,
+is because you'll get something
+in return in the future.
+But how do we compare that?
+How do we compare
+the price today
+with those things that
+will happen in the future?
+So answering that
+question, which
+is what we're going
+to do in this lecture,
+involves the following concepts.
+First, expectations.
+Big thing.
+That's it.
+This is expected present
+discounted value.
+The E part is for expectations.
+That comes there.
+The expectations are very
+crucial because these are things
+that happen in the future.
+You need to expect--
+even if it's a bond that
+promises you to pay $0.50 per
+dollar every six months, you
+still may have an expectation
+that if it is a bond issue
+by First Republic Bank,
+it may not pay.
+So you need to have an
+expectation about that.
+So a crucial term
+is expectation.
+Then you need some
+method to compare
+payments received in the future
+with payments made today.
+I mean, if you buy an
+asset you pay today,
+but you're going to
+receive things returns
+for that asset in the future.
+So how do you compare that?
+Suppose I pay one today and I
+receive one one year from now.
+Does that seem
+like a good asset?
+Probably not.
+I mean, probably not.
+And that's what the word
+"discounted" really means.
+When you say expected
+present discounted value,
+it says, somehow that things
+I receive in the future
+are valued less than
+things I have today.
+So if you're going to
+tell me that you're
+going to pay me $1 in the future
+and I have to pay you $1 today,
+most likely I won't
+take that deal.
+So in other words, I'm
+discounting the future.
+How do we discount the future?
+Well, something that we
+now have to figure out.
+So let me first shut down this
+part, the expectations, and then
+we'll introduce it.
+So assume for now
+that the future.
+And I'm going to derive all
+the equations with assuming
+that you know the future.
+So there's no issue of
+trying to figure out what
+the future is, you know it.
+But still, you have
+to decide whether--
+what is the right
+value for an asset.
+OK, so let's start with the
+case where you know the future.
+Sorry.
+And let's do the comparison--
+let's try to understand
+how do we move flows--
+how do we value flows at
+different points in time?
+And the easiest
+thing is think first
+about comparing an
+asset that gives you
+$1 in the future, how much
+do you think is worth today?
+Well, the easiest way
+to get to that value
+is to think on the alternatives.
+Suppose I have a dollar
+today, what can I do with it?
+Well-- in terms of investment?
+Well, suppose that you have
+available 1-year bonds,
+Treasury bonds, and that
+the interest rate is it.
+That's the interest
+rate on a 1-year bond.
+So if you want-- if
+you have a dollar,
+you have the option to
+invest it in that asset,
+in that bond, which will give
+you 1 plus i dollars next year.
+Well, that means that I can
+get $1 next year by investing
+1 over 1 plus i dollars today.
+Because if I invest 1 plus 1--
+rather than $1, I invest
+1 over 1 plus i today,
+then I multiply
+this by 1 plus i,
+and I get my dollar
+in the future.
+So that tells me
+that-- say the interest
+rate is 10%, then with $1 today,
+I can get $1.1 in the future.
+That means that investing
+$0.90 today, more or less,
+I can get a bucket
+in the future.
+That tells me that $1 in the
+future is equivalent to $0.90
+today with that assumption.
+So that's the reason when I
+told you the deal of, look,
+I have an asset
+that costs you $1,
+but it gives you
+$1 in the future,
+and that's not a good deal if
+the interest rate is positive.
+If the interest rate is 10%,
+then a fair comparison is $0.90
+with $1, not $1 with $1.
+So that's a discounting
+of the future.
+The most obvious way of
+discounting the future
+is to discount it by
+the interest rate.
+Which interest rate to pick?
+That's more subtle.
+That depends on risk, it
+depends on many other things,
+which we're going to
+discuss to some extent here.
+But for now, let's
+make it very simple.
+And in a world which you
+really know the future, really,
+the right interest to use
+is the safe interest--
+the interest rate of Treasury
+bonds and things like that.
+So that's that.
+What about the dollar
+that you receive--
+what about if you are
+thinking about what
+is the value of $1
+two years from now?
+Well, if I get a $1,
+can do the same logic.
+If I can use the same logic.
+If I get a $1 today, I
+can convert that into 1
+plus it times 1 plus it plus $1.
+So say 10% and 10%,
+I get 1.1 next year,
+and then I get 1.1 times 1.1,
+1.21 or something like that.
+That's my final result.
+Well, then, how much is
+it worth to have $1--
+$1 asset that gives you
+$1 two years from now?
+Well, it's going
+to be $1 divided
+by the product of
+this interest rate.
+Why is that?
+Well, because with this
+amount of dollars today--
+at this point, $0.80,
+something like that,
+I can generate $1
+two years from now.
+That means $1 two years from
+now is worth about $0.80 today.
+We're going to use a
+lot this type of logic.
+And I know that it may not be
+that intuitive the first time
+you see it, but ask questions.
+You want me to repeat it?
+OK.
+The final goal is the following.
+We're going to-- what comes
+next, we're going to see,
+which happens again with
+many decisions in life,
+but particularly for
+financial assets,
+we're going to try to
+value something that--
+it was payoff happens at
+different times in the future.
+And the question
+is, how do I value
+an asset that pays me
+$5 one year from now,
+$25 three years from now,
+minus $10 10 years from now,
+plus $50 $100 from now?
+What is the value of that?
+Of having an asset like that?
+And so I need some method
+to bring it to today's value
+because today, I have a
+meaning of what $1 is,
+and therefore, I can compare
+it with whatever price.
+People are asking
+me for that asset.
+So what this is doing
+is it's doing that.
+It's telling you how to
+convert $1 at different parts
+in the future into $1 today.
+And by that logic, the recipe
+is, well, use the interest rate
+because you could always
+go the other way around.
+You could always-- you can
+ask a question, with $1
+today, how many dollars can I
+get two years from now, say,
+that?
+Well, say x?
+Well, then I need 1 over
+x, then $1 there is worth 1
+over x dollars today.
+That's the logic.
+Because 1 over x times x is 1.
+So let's do first problem here.
+With $1 today-- oops.
+I can generally say
+$1.1 at t equal 2.
+Then the question I want to
+know is, how much is $1 worth--
+how much is $1 received at
+time t equal 2 worth today?
+That's the question
+I'm trying to answer.
+Because an asset
+will be something
+that will pay you in the future.
+So I want to know, how much is
+$1 received in the future worth
+today?
+And then the answer
+is, well, then it's--
+I know the answer
+from this logic
+because I know that with 1,
+if I have 1 over $1.1 today,
+I can convert it into 1.
+How do I know that?
+Because 1 over 1.1
+times 1.1 is equal to 1.
+If I invest this
+dollars today, I'm
+going to get this
+return on that.
+And the product of this
+thing gives me my dollar.
+So if I tell you, do you prefer
+to have $1 two days from-- two
+years from now or today, you
+say, I prefer it-- obviously
+I prefer it today because I can
+get $1.1 two years from now.
+But then the more relevant
+question is, no, no,
+but then do you prefer to
+have $0.90 today versus $1
+in the future?
+Then I need to do my
+multiplication because then I
+have to multiply the $0.90 by
+the 1.1 and see whether I get
+something comparable
+to $1 or not.
+But that's the
+logic behind that.
+So the interest rate is what
+we discount the future by.
+And it's natural because if the
+interest rate is very high--
+if the interest
+rate is 0, say, then
+$1 received two years from
+now and $1 received today
+is the same because I
+can-- if I invest $1 today
+and the interest rate
+is 0, I'm going to get
+my $1 two years from now.
+If the interest rate is 50%,
+it makes a big difference
+receiving the dollar
+today versus receiving it
+two years from now.
+If you're in Argentina
+and the interest rate--
+I don't know what
+it is, it's 700%.
+It makes a huge difference
+whether you receive it one year
+from now than today.
+And so that's the role
+of the interest rate.
+The higher the
+interest rate, the less
+is $1 received in
+the future worth
+relative to $1 received
+today because you
+can get a much higher return
+from the dollar you have today
+if the interest rate is high.
+The interest rate is low,
+you don't get that much.
+Much difference.
+OK, good.
+So this is a big principle.
+And, I mean,
+everything that I'll
+say next builds on this logic.
+So let me give you
+a general formula.
+So let's ask, what is the
+value of an asset that
+gives payouts of zt
+dollars this year,
+zt plus 1 one year from
+now, zt plus 2 two years
+from now, and so on and so
+forth for n periods more?
+Well, I just need to do
+several of these operations.
+I know that $1 received
+this year is worth $1.
+That's zt.
+$1 received one year from
+now is not the same as $1
+received today.
+It's the same as 1 over 1
+plus it dollar received today.
+So that cash flow I'm going
+to receive from this asset
+is worth this amount.
+For something that I
+received two years from now,
+then it's not--
+certainly it's much less
+than receiving $1 today.
+It's going to be 1 over 1
+plus it 1 plus it plus 1.
+And that I have to multiply
+by the number of dollars
+I will receive two
+years from now.
+And I keep going.
+So that's the present value.
+Present discounted
+value-- present
+because I'm bringing
+all these future cash
+flows to the present.
+That's what each of
+these terms is doing.
+The 1 over that is
+bringing it to the present.
+Discounted because the interest
+rate is discounting things,
+making them smaller.
+And value because I'm
+trying to reduce them
+to the current value.
+That's a general formula,
+so it's a formula
+you need to understand.
+It's just-- so that was
+an asset that gives you
+z dollars today, zt plus
+1 one year from now,
+so you use this formula.
+Zt plus 2 two years from
+now, so you use this formula,
+and then you keep going.
+What if we don't
+know the future?
+I had to remove
+the expected part.
+Well, if we don't know
+the future, then the best
+we can do--
+in fact, we do fancier
+things, but that's
+what we want-- all that
+we'll do in this course.
+All that you can
+do is just replace
+the known quantities we have
+here for the expectations.
+So that's the closest.
+So I know zt, that's
+the cash flow I get now,
+but I don't know zt plus 1, so
+I can replace it by expectation.
+I do know the interest rate on
+a 1-year bond from today to one
+year, so that's the reason I
+don't need an expectation here.
+But I don't know what the 1-year
+rate will be one year from now,
+so that's the reason I
+need an expectation there.
+And so on.
+And I don't know what the cash
+flow will be two years from now.
+I have an expectation about
+what the cash flow will be,
+but I don't know it, so I
+have an expectation there.
+So all that I've
+done here is say, OK,
+acknowledge that this guy
+knew a little bit too much.
+He knew exactly what the
+cash flows were going to be
+in the future, and he knew what
+the 1-year rates were going
+to be in the future.
+This guy here knows less.
+He knows the cash flow today, he
+knows the interest rate today,
+but he doesn't know the cash
+flows-- really has a hunch,
+but he doesn't know the cash
+flows one year, two years,
+three years, and so
+on for the future,
+and it doesn't know the 1-year
+interest rate in the future.
+So all these expectations,
+here is important
+the concept of time.
+These are expectations
+as of time t.
+At time t, you have
+some information
+and you make forecasts
+about the future.
+Use whatever you want.
+Machine learning, whatever.
+But you have
+information at time t,
+and then you have a forecast
+for the future at t plus 1.
+You have more information,
+so you make another forecast,
+and so on and so forth.
+But in this-- we're
+valuing an asset at time t,
+then all these expectations
+are taken as of time t.
+That means given the information
+you have available at time t.
+That's the reason
+these guys don't
+have expectations
+in front of them
+because you know this at time t.
+How do we take in the
+value at t minus 1,
+we would have not known that
+and we had to-- an expectation
+because there would have been
+expectation of t minus 1.
+OK, so that's your
+big formula there.
+So there are some examples
+that are well-known,
+and so let me show you.
+They have nicer expressions.
+So that's an example of
+valuation of the same asset,
+but when the interest
+rate is constant.
+Then obviously I don't
+need all these products
+in the denominator.
+I have a constant
+interest rate, then
+I just get powers of
+that interest rate.
+That's one in which you
+have constant payments.
+So the interest rate
+may be different,
+but the payments are
+the same over time.
+So that's that.
+So those are two easy formulas.
+That's one in which you have
+both constants, the interest
+rate and the payment, then
+you get a nice expression
+that's just that.
+You recognize that-- if you have
+a constant interest rate here,
+you see that the
+value is declining--
+is a geometric series.
+The value of two years from
+now is a square of 1 over 1
+plus some--
+is a square of a
+number less than 1.
+1 over 1 plus i is some
+number less than 1.
+This is the square of that,
+then the cube, and so on.
+So it's a geometric series
+that is declining in the rate 1
+plus i--
+1 over 1 plus i.
+Or declining at
+the rate 1 plus i.
+So that's your geometric series.
+That's the value of that.
+Constant rate and
+payment forever.
+Suppose you have an
+asset that lives forever.
+There are some bonds like that.
+It's called perpetuities.
+The US has an issue--
+the UK has and so on.
+So that's an asset, for
+example, that pays you
+a fixed amount forever.
+And it's the interest
+rate is constant,
+that's a trickier thing, then
+the value of that asset you
+can see, that this is going to
+0, so the value of that asset
+is that.
+And actually, a
+formula that you may
+see that is very often used as a
+first approximation is this one.
+This is the same asset, but it's
+called x dividend or x coupon.
+It's after the coupon of
+this year has been paid.
+So it's an asset that
+starts paying at t plus 1,
+is zt plus 1, plus 2, and so on.
+Well, that is the same as
+this minus the first coupon,
+so it's equal to that.
+That's an interesting
+thing, huh?
+Look, what happened
+to this asset
+as the interest rate goes to 0?
+So this is an asset that
+lasts for a very long time.
+And look, we got to
+a valuation formula.
+What is happening
+as the interest
+rate goes to 0 to the line?
+AUDIENCE: The value
+becomes very large.
+RICARDO CABALLERO: Very large.
+It goes to infinity.
+And a lot of what has happened
+in global financial markets
+in the last few years
+has to do with that.
+Interest rates were
+very, very, very low.
+And so most assets
+that had long-duration
+had very high values.
+And it has a lot
+to do with that--
+monetary policy
+has a lot to do--
+whether it was a right
+monetary policy or not,
+that's something
+to be discussed.
+I think, on average, it was
+the right monetary policy,
+but one of the things
+it did, it increased
+the value of many assets.
+In fact, that's one
+of the mechanisms
+through which monetary
+policy works in practice.
+It's not something
+we have discussed,
+but you can begin to see
+here because if the value
+of all assets go up a
+lot, people feel wealthier
+and that will tend to
+consume more, and so on.
+Well, this is one of the
+channels monetary policy does.
+By the way this
+effect happens also
+to the assets that
+are finite end.
+It's just that this goes--
+it's maximized when this
+asset lasts forever.
+This asset literally
+goes to infinity
+if the interest rate goes to 0.
+Well, if an acid
+lasts for 10 periods,
+it doesn't go to infinity,
+it goes to n times z.
+For some.
+If the interest rate
+is 0, just some things.
+You see that?
+If an asset lasts for n
+periods, and it gives me
+a payment of z in
+every single period,
+then when the interest
+is 0, that asset
+is worth n times z because
+I will receive z coupons.
+And don't discount the future
+because the interest rate is 0.
+What happens is, when
+the asset lasts forever,
+then n times z is a
+very large number.
+And that's what this
+expression captures here.
+OK.
+So let's talk about bonds now.
+We're going to
+start pricing bonds.
+So bonds differ along
+many dimensions,
+but one of them that's
+very important for bones
+is maturity the n
+that I had there
+in the previous expression.
+So maturity means, essentially,
+how long the bond lasts.
+When does it pay you
+back the principal?
+The bonds typically pay
+coupons, and then there
+is a final payment, which we
+call face value of the bond
+or something like that.
+And when that final
+payment takes place,
+that's a maturity of a bond.
+So a bond that promises to make
+a $1,000 final payment in six
+months has a maturity
+of six months.
+A bond that promises to pay $100
+for 20 years and then $1,000--
+a final payment in 20 years
+has a maturity of 20 years.
+Maturity is different
+from duration.
+I don't think I'm going to
+talk about duration here,
+but that's maturity,
+just when it's
+the final payment of a loan--
+of a bond?
+Bonds of different maturities.
+Each have a price and an
+associated interest rate.
+We're going to look
+at those things.
+And the associated interest rate
+is called the yield to maturity,
+or simply the yield of a bond.
+This is terminology, but we are
+going to calculate these things
+later on.
+The relationship between
+maturity and yield
+is called the yield curve.
+Very important concept.
+Big fuss about the
+yield curve these days.
+I'll talk a little
+bit more about that.
+Or sometimes it's called the
+term structure of interest rate.
+Term, in the language of
+bonds, is really maturity.
+So term structure of interest
+rate really tells you what is
+the yield in a 1-year bond,
+2-year bond, 3-year bond, 4-,
+5-, 6-, 7-.
+You plot them, and
+that gives you a curve.
+So for example, look at those--
+these are two
+different yield curves.
+This is November 2000
+and this is June 2001.
+So this tells you what the
+yield is on a 3-month bond.
+So a bond that matures
+in three months.
+On a 6-month bond, so on and
+so forth, up to 30-year bonds.
+What is the big
+difference between these--
+what do you think
+happened here in between?
+Notice that these two
+curves are more or less
+the same long-term
+interest rate,
+but they have very different--
+these curves-- this
+is a very steep curve and this
+is a very flat or even inverted
+curve.
+What do you think may have
+happened there between November
+2000 and June 2001?
+AUDIENCE: People changed
+their expectations
+about interest rates.
+RICARDO CABALLERO: Yeah.
+That's true.
+That's for sure true about that.
+But look also that--
+but that these
+three months, there
+is very little uncertainty
+about three months.
+It was a lot lower than that.
+So yes, people change
+their expectations,
+but why do you think they
+change their expectations?
+AUDIENCE: [INAUDIBLE]
+rising [INAUDIBLE]
+RICARDO CABALLERO: Rising
+inflation from here to here.
+These are nominal
+interest rates.
+Up to now, we've been talking
+about nominal interest rate.
+What happens here is there
+was a mini-recession,
+so the Fed cut interest rates.
+When you are in
+recessions, the curve
+tends to look like this because
+the central bank is cutting
+interest rates in
+the short-run to deal
+with the current recession.
+What happened 30 years
+from now has nothing
+to do with the
+business cycle today,
+so that interest rate
+doesn't need to move a lot.
+But the Fed is bringing
+interest rates down a lot
+in the front end.
+So that's a typical shape
+of a curve in a recession.
+That's a typical
+shape of a curve
+in the opposite situation
+where the inflation is
+too high and so on.
+Because what happens?
+The Fed is trying
+to-- the Fed really
+controls the very
+front end of the curve.
+That's what the Fed really
+controls-- the central bank
+in general, but the Fed, they
+control the very front end
+of the curve because they're
+setting the very short-term
+interest rate.
+So this is a situation
+where they're
+tighten-- the monetary policy
+is very tight because they
+have a situation of
+overheating in the economy.
+And in fact, they
+got too carried away.
+That's the reason that we
+ended up in a recession here.
+OK.
+How do you think it looks today?
+Do you think it looks more
+like this or more like that?
+Is inflation low or high today?
+High.
+I mean, that's a problem.
+The Fed is trying to
+hike interest rates.
+Now recently, because of the
+mess in the banking sector,
+then expectations
+of interest rates
+have begun to decline a
+little, but the situation
+was very inverted.
+Here you are.
+The green line is today.
+OK, so it's very inverted.
+A year ago, it looked like that.
+So you see, the longer
+hasn't changed much,
+but a year ago,
+there was no sense
+that inflation was getting
+so much out of line.
+It happened a little
+later than that.
+There was some concern that
+interest rates would rise,
+but now it's very clear that
+the economy is overheating.
+And this-- I should have plot
+you something for a month ago,
+it would have been even steeper.
+OK.
+Anyways.
+But that's because the Fed is
+trying to slow down the economy.
+It's hiking interest rates.
+That's the reason the curve
+is very, very inverted today.
+So let me calculate these rates.
+How do we go about it?
+So the first thing
+we're going to do
+is we're going to use the
+expected present discounted
+value formula to calculate
+the price of a bond.
+And then we want to start
+doing it for different bonds,
+and we're going to
+construct the yield curve.
+So suppose you have a bond that
+pays $100, nothing in between,
+$100 one year from now.
+So this is a bond with
+maturity, 1-year maturity.
+I'm going to call that
+bond with 1-year maturity--
+the price of a bond with a
+1-year maturity at time t P1t.
+Well, that's easy to calculate.
+It's expected present
+discounted value for you.
+You have the interest
+rate, whatever it--
+say 1-year interest rate, then I
+know that the price of the bond
+is 100 divided by 1
+plus the interest rate,
+the 1-year interest rate today.
+That's the price.
+That's the expected
+discounted value.
+So I tell you--
+what I'm showing you
+is the relationship between
+interest rates and prices.
+Our price of a bond.
+The price of that bond is just
+100 divided by 1 plus the--
+1 plus-- the 1-year
+interest rate today.
+So important observation is
+that the price of a 1-year bond
+varies inversely with the
+current 1-year nominal interest
+rate.
+This is all nominal.
+Why is that inverse
+relationship?
+Why is it the price of a 1-year
+bond is inversely related
+to the 1-year interest rate?
+In other words,
+I'm asking, what do
+you think happens to the
+price as the nominal interest
+rate rises?
+And why do you think that's
+what happens to the price?
+Well, the first question
+doesn't have a--
+I mean, it's very easy,
+you know the answer
+to the first question.
+What happens if i goes up?
+Well, it's obvious that this
+price comes down, but why?
+And use the concepts
+we have developed here.
+Remember, we spent like
+20 minutes in one slide.
+Use that slide for that answer.
+Hint-- this $100 you
+are not receiving today,
+you are receiving
+a year from now.
+What happens with $1
+received a year from now?
+What is the value of a dollar
+received one year from now
+when the interest is high?
+It's low because you'd much
+rather have the dollar today,
+invest it, and get this
+big return on the dollar.
+That means, naturally, a bond
+that is paying you $100 tomorrow
+is going to be worth less when
+the interest rate is very high.
+It's going to be
+worth less today
+when the interest is very high.
+You'd rather have the money
+today, invest it in the interest
+rate and get the interest rate.
+And I need to invest 1 over 1
+plus i1t dollars to get $100.
+That's another way of saying it.
+What about the bond that
+pays $100 in two years?
+Well, I need to
+discount that by this,
+which is-- it's a product
+of the two interest rate.
+And since I don't know what the
+1-year rate will be one year
+from now, I have to use
+expectation here rather than
+the actual rate.
+But look at the notation.
+I'm calling P2t-- $P2t,
+the price of a 2-year bond,
+a bond with maturity of
+two years, as of time t.
+And this is a bond
+that has no coupons.
+Yes, pays you $100 at
+the end of the two years.
+Now note that this price is
+inversely related to both
+the 1-year rate today and the
+expectation of the 1-year rate
+one year from now.
+If either one of these goes up,
+the bond is worthless today.
+You discount more $1
+received two years from now.
+I don't care which one--
+either of them that
+goes up is bad news
+for the price of a bond.
+It's clear?
+So there is an alternative.
+So this is the way you
+price bonds using just
+expected discounted
+value approach.
+Now it turns out that in
+practice, a lot of the asset
+pricing is done by
+arbitrage, meaning
+you compare different assets,
+and that have similar risks,
+they should give you more
+or less the same return.
+That's what you-- so let
+me do this arbitrage thing.
+Suppose you're considering
+investing $1 for one year.
+So that's your decision.
+I'm going to invest one--
+I have a dollar, which I
+want to invest for one year.
+But I have two
+options to do that.
+I can invest $1
+in a 1-year bond.
+I know exactly what I'm
+going to get in that bond.
+Or I can invest in a 2-year
+bond and sell it at the end
+of the first year.
+Those are two ways of
+investing for one year.
+Arbitrage has to be compared
+over the same period of time
+and everything.
+It's not the return
+of a bond that you
+hold for 10 years versus one
+that you hold for one year.
+It has to be something
+a similar investment.
+Suppose I need to
+invest for one year.
+OK.
+Then if I have these
+two bonds, the option
+is not buy one or
+the other and then
+hold to maturity
+because that would
+be comparing an investment of
+one year with an investment
+of two years.
+I need to compare the
+strategies of getting
+my return in one year.
+In the 1-year bond that's
+trivial because I get my return
+at the end at the
+maturity of the bond.
+In the 2-year bond, it means I
+need to sell it in between after
+one year.
+So those are the two
+strategies I want to compare.
+And since I'm not--
+considering risk here
+as a central element,
+those two strategies are
+going to have to give me
+the same expected return.
+That's arbitrage.
+That's what we call arbitrage.
+The two strategies have to give
+me the same expected return.
+So what do we get
+from this strategies?
+Well, if I go through
+the 1-year bond,
+I know I'm going to get my
+dollar times 1 plus i1t.
+That's what I get for one year--
+out of investing $1 in a 1-year
+bond.
+If I go through the
+2-year bond strategy,
+buy it and sell it at
+the end of the year,
+then I'm going to get--
+I invest $1 today,
+I'm going to pay P2t--
+that's what I pay today
+for a 2-year bond,
+that's what I pay here
+for a 2-year bond.
+And I expect to get the price of
+a 1-year bond one year from now.
+I mean, the 2-year bond will be
+a 1-year bond after a year has
+passed.
+It's a 2-year bond today,
+but after one year,
+it's going to have only
+one year to mature.
+So that's the reason the price
+I need to forecast is the price
+of a 1-year bond
+one year from now.
+That's what this is here.
+And that's my return
+on this strategy
+because I'm going to pay
+this today, these dollars,
+and I expect to get
+that one year from now.
+OK so arbitrage means I
+need to set these to equal.
+So that means I have to get the
+same return with two strategies.
+That means I'm
+investing the same.
+So you only need to
+compare the returns.
+This needs to be equal to that.
+That's what I have here.
+Which tells you that you are
+solving from here that the price
+of a 2-year bond at time t is
+equal to the expected price
+of a 1-year bond at t plus 1
+discounted by 1 plus the 1-year
+interest rate.
+This was like my cash flow--
+my cash flow now is
+not the cash flow--
+it's just the price I'm going
+to get a price for that asset.
+That's like the z's
+I had in my formula.
+And for a 1-year strategy, I
+only needed to worry about the z
+plus 1.
+There was no dividend at day 0.
+And that's exactly that formula.
+But notice that at t
+plus 1, that will hold.
+So at t plus 1--
+I'm at t plus 1, I
+don't need expectations.
+I know that P1t plus 1 will be
+equal to 100 divided by 1 plus
+i1, the 1-year
+rate, at t plus 1.
+Therefore, the
+expected is something
+like this, approximately.
+The expected price is
+something like that.
+I expect-- I mean, this
+will be-- without the e,
+will be the price of this
+1-year bond at t plus 1.
+I don't know exactly what the
+interest rate will be next year,
+so I have-- the best I can do
+is have an expectation-- that's
+my expectation, approximately.
+But now I can stick
+this expression in here.
+I have this I'm going out
+and I can stick that in there
+and I get this expression.
+So that's the price
+for the 2-year bond.
+Do you recognize this?
+You saw it before.
+That's the same
+expression that we
+got when we used the expected
+present discounted value
+formula.
+We said we're going to
+go-- say $100 years--
+100 years-- two
+years from now, I
+know that discount factor
+for that is 1 over 1
+plus i1t times 1 plus
+i1t plus 1 expected.
+Well, that's what I got.
+Get some arbitrage.
+OK.
+From an arbitrage logic.
+This is used a lot in finance.
+I'm going to say
+something complicated,
+but just ignore it if it's--
+it's not relevant for
+the quiz or anything.
+But there is a big debate
+in the US today about--
+not big debate, a big concern
+about the US Treasury debt
+because there is a
+debt ceiling, meaning
+there is a maximum amount
+that the government can--
+of debt they can
+issue, and that ceiling
+has been moved over
+time, but every time we
+get close to a deadline, when
+this needs to be agreed again,
+there is a concern and there's
+negotiations and so on, and--
+well, I mean, everyone
+at this moment at least
+thinks that, as in every
+instance in the past,
+they're going to reach some
+sort of agreement the day
+before of the deadline or not.
+But if they don't,
+and there is a mess,
+this is huge for finance.
+It's huge for finance because
+US Treasury bonds, especially
+short-term bonds, are used
+for pricing everything
+through arbitrage and so on.
+So you get a mess there.
+That's a mess in every
+single financial market.
+You wouldn't know how to price
+many financial assets, actually.
+So it would be a disaster.
+But the reason I
+mention this here
+is because, again,
+lots of prices
+are priced in
+reference-- in finance
+are priced in reference,
+especially derivatives, options,
+and stuff like that, you price
+them relative to something
+using this type of logic.
+So if the thing
+you use as a base,
+as a reference becomes
+highly unstable
+and uncertain and risky,
+then obviously everything
+becomes very
+complicated, very risky,
+and financial markets do not
+like risk, that's for sure.
+Anyways, ignore that, that's
+irrelevant for your quiz,
+but that's the reason
+this-- the whole discussion
+can over the summer can
+get to be very, very
+tricky for finance.
+So the yield to maturity--
+remember I mentioned this
+concept before-- of an
+n-year bond is also--
+whenever you hear the
+3-year rate, it's that.
+It's the yield to maturity.
+A which is different from--
+OK, let me tell you--
+show you a formula that's
+easy to explain, then.
+And it's defined--
+it's important--
+as the constant annual interest
+rate that makes the bond price
+today equal to the present
+discounted value or expected
+discounted value.
+So notice the
+highlight there, it's
+defined as the constant
+annual interest
+rate that makes the bond price
+today equal to the present
+discounted value of future
+payments of the bond.
+So, for example, in our
+2-year bond, that's the price.
+This is the price of the asset.
+That we know the price.
+We already got the price from
+the previous slides of the bond,
+which was based on the
+short-term interest rate,
+1-year interest rate, and our
+forecast of the short-term--
+the 1-year interest
+rate one year from now.
+I know that price,
+take that as a number.
+So then the yield
+the yield to maturity
+is calculated as that
+constant interest rate--
+constant-- how do I
+see this constant?
+Because, well, I'm using
+the same interest rate
+for the first period
+and the second period,
+and now I'm calling it i2t.
+It's a 2-year interest
+rate, but it's constant.
+Constant doesn't mean that
+it doesn't move over time.
+It means I'm discounting
+all the cash flows
+as a constant interest rate.
+It means I'm using
+this equation.
+OK.
+So the yield to maturity is find
+an interest rate that allows
+me to use this constant thing--
+constant-- assume--
+use this formula
+and get back the
+same price as I got
+by using the expected discounted
+value or the arbitrage
+or something like that.
+So that's the definition.
+You this price.
+Now you look for that
+interest rate that
+allows you to match that price.
+And that's called the yield.
+That's the thing-- remember,
+I plotted some curves.
+Well, those interest
+rates and those curves
+were computed this way.
+Now notice that we know
+what this price is.
+This price is, by the
+expected discounted value
+or the arbitrage approach, is
+equal to 100 divided by this.
+So I know that these
+two things are--
+this is equal to that, which
+means that this denominator is
+equal to that.
+And that implies, for
+a small interest rate,
+that these two-year interest
+rate is approximately equal
+to the average of the
+expected interest rate--
+1-year rates.
+So this is called actually
+the expectation or hypothesis,
+by the way.
+Is that the 2-year rate
+is approximately equal
+to the average of the 1-year
+rate this year plus the expected
+1-year rate one year from now.
+So that's an important concept.
+I'm going to start from here
+again in the next lecture.

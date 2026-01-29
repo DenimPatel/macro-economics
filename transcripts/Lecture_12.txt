@@ -1,0 +1,1634 @@
+[SQUEAKING]
+[RUSTLING]
+[CLICKING]
+PROFESSOR: So let me continue
+with the IS-LM-PC model.
+In fact, I want to rush a little
+bit because I was overexcited
+with the SVB bank event.
+And I want to make sure that you
+certainly understand this model.
+It's going to be very important.
+And I think it's one of the most
+important models in this course,
+as I said before.
+Also, I want to use it a little
+bit more, this model itself,
+to explain what is
+going on right now.
+Today, we got hit by a second
+shock from the financial system.
+And so it's getting
+exciting these days.
+So let me skip all
+this and remind you
+that that's where we were.
+That's the IS-LM-PC
+model, which I
+said is nothing else than just
+integrating the IS-LM analysis
+with the Phillips curve.
+This is the IS part.
+And I said at this point,
+I will follow the book
+and assume that the central bank
+can control the real interest
+rate, rather than the nominal
+interest rate, which is what
+really controls in practice.
+But I'm going to make that
+assumption so the pictures have
+less curves moving
+around when things are
+moving when we do the dynamics.
+But that's just a IS-LM,
+nothing different.
+And then we look at
+the Phillips curve.
+And I said, well, this
+is not very useful
+because in the IS part I have
+output here and in the Phillips
+curve, I have inflation but
+then I have unemployment
+and I don't want to be carrying
+around three variables,
+endogenous variables.
+And so it's difficult to
+diagram in three dimensions.
+Everything is less clear.
+So I'm going to replace this
+unemployment here for output.
+And it's very easy to do that
+with the production function
+we have because output is
+just equal to employment.
+And the employment is just
+equal to the labor force times 1
+minus the rate of unemployment.
+And we could define a
+concept of potential output
+as simply that output that
+happens when employment
+is equal to the natural
+level of employment, which
+is equal to the
+labor force times 1
+minus the natural
+rate of unemployment.
+And taking the difference,
+subtracting the second line
+from the first one,
+you get a concept
+that is used very frequently
+in macroeconomics, which is
+the concept of the output gap.
+An output gap refers to the
+difference between actual output
+and potential output, in which
+potential output is nothing
+else than the level
+of output that you
+get when unemployment is at the
+natural rate of unemployment.
+So we get the output gap is
+related to the employment gap.
+And now we can replace the
+employment gap from here
+with the output gap.
+And we end up with
+a Phillips curve
+in the space of
+inflation and output gap,
+which is something
+we can integrate
+very easily with the IS-LM
+model that has output in it.
+So the IS-LM model
+is really combining
+this equation with
+that equation,
+and some model about
+expected inflation.
+That's what the
+IS-LM-PC model is.
+So I gave you one example
+here, 1 mole of inflation.
+This is the case of the
+central banks do not like,
+an anchor inflation expectation.
+That's my model of expectation,
+then my Phillips curve.
+I plug this into
+my Phillips curve
+and I get this relationship
+between the change in inflation
+and the output gap.
+And it's an increasing
+relationship.
+And that's what
+I'm plotting here.
+For any given level, for
+any given level of Yn,
+then as I increase output,
+the Phillips curve--
+the change in inflation,
+the left hand side,
+the difference between inflation
+and expected inflation rises.
+That's the reason
+this upward sloping.
+And the reason this rises has
+to do with all the things that
+happen in the labor market.
+If output rises, I mean,
+unemployment is falling.
+You need more employment
+to produce more output.
+If that's the case,
+it's more wage pressure
+that leads to a price
+pressure because there
+is a markup in between
+wages and prices.
+And that's the way you
+get into inflation.
+So I gave you one example.
+It says, OK, suppose that
+we have some equilibrium
+level of output.
+This, which is the result
+of this monetary policy,
+this rate set by
+the central bank.
+And that's the IS, which is a
+function of the fiscal policy
+of the country, how
+confident are consumers,
+and all these kind of things.
+So in quiz one, we really worry
+only about this top diagram.
+And all the shocks we
+had were shocks that
+happened in this top diagram.
+And we look at what happened to
+output, to equilibrium output
+as a result.
+Now, this hasn't changed.
+It hasn't changed.
+That block is the
+same as it used to be.
+The only difference
+that we have here
+is that this level
+of output, which
+is the equilibrium level of
+output at any point in time,
+needs not be equal
+to potential output.
+And if it is not equal
+to potential output,
+that will lead to something
+with inflation-- inflation,
+disinflation, or
+something of that kind.
+In this particular case, the
+equilibrium level of output,
+which is still determined
+as we used to determine,
+happens to be higher than
+the natural rate of output.
+And if output is higher
+than the rate of output,
+that means this is positive,
+which means inflation is rising.
+And that's exactly
+what we see here.
+It means inflation is
+above expected inflation.
+When expected inflation
+is equal to log inflation,
+then that means
+inflation is rising.
+And that's what we have here.
+So any question about that?
+So this is-- we
+just, what we did
+is kept analysis we used to have
+and now we added this diagram
+here at the bottom.
+Because it turns out
+that, yes, any equilibrium
+here, if I move the
+interest rate around,
+I'm going to change
+the level of output.
+All those are equilibrium
+levels output.
+But that doesn't
+mean that they're
+consistent with the natural--
+with potential output.
+And if it's not equal
+to potential output,
+it's a valid equilibrium
+at any point in time.
+But it's going to lead to
+issues on the inflation front.
+That's all.
+The second diagram
+here tells you
+that we get issues on
+the inflation front
+with any equilibrium
+level of output that
+is different from the
+natural rate of output.
+That's what this diagram does.
+And that's what happened.
+In the short run,
+that's what it does.
+So we keep doing what we used to
+do in the first seven lectures
+or so.
+And this diagram just
+tells us what are
+the implications for inflation.
+That's in the short run.
+The medium run, we said, is
+when we start processing,
+which output converges
+back to the natural rate
+to potential output.
+How does that happen?
+Well, it involves
+the central bank.
+But it's not that the central
+bank is doing crazy things.
+The central bank is reacting
+to what the economy is
+telling it needs to do.
+Here is a central bank that was
+before doing whatever change
+in the interest rate or in the
+IS delivered the equilibrium
+output here.
+Had an inflation of around 2%.
+That was consistent
+with the target it had.
+Now suddenly it finds itself
+in a situation like this
+and inflation starts climbing.
+We get 3% one year,
+4%, the next, 6, 9,
+in a situation like that.
+Well, it's very natural
+for that central bank,
+if it's a responsible central
+bank, to react to that.
+And the only reaction the
+central bank can have,
+the main reaction can have,
+is to raise interest rates.
+And that's exactly
+what starts happening.
+The central bank finds
+itself with inflation,
+in this case that
+is accelerating.
+It will start increasing
+interest rate.
+And this process of acceleration
+of inflation in this case
+would only stop when output is
+equal to the natural potential
+output.
+And we can define implicitly
+what that interest rate is.
+And we can call it the
+natural rate of interest rate.
+Sometimes we call
+it [INAUDIBLE] rate
+of interest rate, neutral
+interest rate, R star,
+lots of names for
+this interest rate.
+But this interest
+rate is simply the one
+that gives us an equilibrium
+output in our IS-LM diagram
+that is equal to
+potential output.
+Thus, that's all
+that this Rn means.
+And here I'm solving it as the
+rate that implicitly gives us
+an equilibrium
+output here that is
+equal to the natural rate
+of output that defines it
+implicitly.
+OK, there we are.
+Is all that clear?
+Yes, OK.
+I think you're going to have a
+big chunk of your current pset
+about this model and so on.
+And that's a good thing.
+And you'll see it
+also in the next one.
+Because, again, I think
+this is important.
+Then they talk about the
+difference between anchor
+and unanchor expectations.
+I said, look, here,
+we have a situation
+that suppose we started at 2%.
+And then we found ourselves
+in a situation like that.
+That means inflation
+starts building up.
+We go to 9% or so.
+So now the Fed
+gets scared and it
+starts raising interest rates.
+So that's moving
+up, lowering output.
+And as it lowers output,
+reduces the output gap.
+And therefore, reduces the
+change in inflation here.
+But inflation keeps rising
+in this particular model
+because expected
+inflation is an anchor.
+And I said, well, suppose
+that eventually the Fed gets
+to that interest rate here.
+So we get to a
+situation like that.
+And I ask the question, has
+the Fed solved the problem now?
+OK, finally we
+get to a situation
+where the interest rate is equal
+to the natural rate of interest
+rate.
+That tells me that output is
+equal to potential output.
+That tells me here that
+inflation is not changing.
+Problem is that we already had
+inflation of 9% at some point.
+So here, inflation stops
+rising in this particular model
+with expected inflation and
+anchor expected inflation.
+But stopping is not enough
+because that leaves us
+with a level of inflation of 9%.
+That means that the Fed, in
+order to bring back inflation
+to 2%, it needs to
+go into this region.
+So inflation starts coming down
+from 9%, 7%, 6%, 5% and so on.
+So if you have an
+anchor expectation,
+an inflation
+overshoots, you're going
+to have to cause a recession,
+and probably a severe recession.
+There is no way around that.
+And that's what the Fed
+has been struggling to do,
+is struggling not to.
+Because the Fed, we are in a
+situation-- not only in the US,
+but in the US in
+particular, where inflation
+is way above the target level.
+But expected inflation has
+been more or less stable.
+And so when people
+talk about being
+able to restore sort of
+reasonable levels of inflation
+in a soft landed manner,
+with a soft landing,
+that means that you don't
+need to cause a recession
+to bring inflation back to 2%.
+You just can bring
+it smoothly here.
+With this model of expected,
+inflation doesn't work.
+But if the bank, central bank,
+has credibility and inflation
+remain anchored, people continue
+to believe that the Fed will
+go back to 2%.
+Then you don't need to
+cause a big recession.
+Otherwise, you need to invest
+in bringing expectations down.
+And the only way you
+can invest in doing that
+is causing a recession.
+But that's the reason I said
+central banks worry so much
+about keeping
+inflation credibility,
+because otherwise they
+need to overshoot in order
+to restore a long run balance.
+Good.
+Now, you may wonder, well, I
+mean, this looks pretty simple.
+And just, if you have
+a problem like this,
+just go quickly to
+that point there.
+And then the problem is over.
+You don't let inflation build
+to 9%, or something like that.
+You react immediately.
+The problem is, there's
+a famous sentence that
+was coined by
+Milton Friedman, is
+that monetary policy
+acts on the economy
+with long and variable lags.
+So first of all, it's very
+difficult at any point in time
+to know where is
+potential output
+and what is a natural
+rate of unemployment.
+I mean, you sort of sense it.
+But the truth is that the
+only way you really know
+is by looking at inflation.
+So it's inflation that
+really tells you that you
+are on one side or the other.
+It's very difficult to--
+you have some historical
+average and so on.
+But these things do move around.
+So it's difficult to
+at any point in time
+to know whether you
+are at our end or not.
+The second thing is that here
+everything happens immediately.
+If I move immediately, then
+output immediately jumps here.
+That's not the way monetary
+policy operates in practice.
+It takes time for monetary
+policy to affect the economy.
+And so the situation that
+happened, I would say,
+until last week, was the
+Fed knew that the inflation
+was still too high.
+But it also knew that
+it had done a lot.
+It had hiked rates very
+aggressively by a lot.
+And since there are lags between
+the increase in interest rate
+and the decline in
+output, the Fed's concern
+was, well, it's clear that
+I still have inflation.
+But it may well be the case
+that when this thing finally
+hits the economy,
+it hits it too much
+and we end up in a recession,
+and an unwanted recession.
+That was the concern.
+Now, what is
+happening right now,
+there is a little
+bit of a concern
+that we got to that point
+because things were very
+slow for a variety of reasons.
+But now something broke.
+And the question is, now
+that something has broken,
+will we sort of decelerate
+the economy very, very fast?
+And that's a concern.
+That's what is
+happening right now.
+But that's what makes monetary
+policy much more difficult
+than this little
+diagram, is that you
+have all these lags, these
+uncertainties, and all
+these non-linearities.
+And suddenly things happen.
+Let me tell you when things
+can go really, really wrong.
+It's not the issue now.
+But we were very close to that
+during the global recession.
+Japan has experienced
+several episodes
+like this, which
+is the following.
+Suppose you have a situation
+where your inflation is low.
+Typically, these things
+happen in situations
+where inflation is low.
+And for whatever reason, your
+natural rate of unemployment
+is negative.
+So you have inflation
+close to 0, say.
+And then the natural rate of
+interest rate is negative.
+What's the problem?
+Suppose you have
+a 0 lower bound.
+Well, you have a 0
+lower bound means
+that you're not going
+to hit this rate.
+The best you can do with
+inflation is around 0.
+Then you set the nominal
+interest rate to 0.
+And then the real
+interest rate is around 0.
+Well, the problem is that at 0,
+you generate negative inflation.
+But if you generate
+negative inflation
+and the nominal interest
+rate is fixed at 0, then
+now you get a positive
+real interest rate
+because the real interest rate
+is equal to the nominal interest
+rate, which is 0, minus
+inflation, expected inflation.
+But if your expected inflation
+or inflation is negative,
+minus, minus is positive.
+So that means your real interest
+rate is actually positive.
+So you wanted
+something negative.
+But you end up with
+something positive.
+That means now you
+have a big gap here.
+So inflation, you
+get into deflation.
+Now inflation is very, very low.
+It gets very negative.
+Well, as inflation gets
+more and more negative,
+your real interest
+rate keeps climbing.
+So you keep moving
+further and further away
+from the natural rate
+of interest rate.
+Thus, something that is
+very scary for an economist,
+that deflationary trap.
+And that's the way you
+get into deep recessions.
+In fact, that's what happened
+during the Great Recession
+in the US.
+The no, during the Great
+Depression in the US.
+During the Great Recession,
+we were close to it,
+but we didn't get quite
+there because lots of things
+were done to prevent a repeat
+of the Great Depression.
+One of the biggest problems
+with the Great Depression
+was that monetary policy was
+not against the 0 lower bound.
+But it was very slow to react.
+They were in a situation
+like in this diagram here.
+But they kept the
+interest rate high.
+And they moved very slowly.
+And when they tried to
+catch up, well, they
+went into deflationary
+environment.
+So the real interest rate
+was moving away from them,
+despite the fact that they were
+moving the nominal interest
+rate down.
+And that you can see here.
+So the Great Depression
+starts around 1929.
+It starts really in 1929.
+Unemployment initially was low.
+The nominal interest
+rate was around 5%.
+And inflation rate, growth
+declined very rapidly.
+The inflation rate was around 0.
+So you had a one year--
+the real interest rate
+was around 5%, as well.
+Well, things got worse.
+Unemployment began to
+climb very rapidly.
+And so the Fed began to lower
+interest rates, nominal interest
+rate.
+Went from 5% to 4%.
+Those were unusually low
+interest rates for the time.
+But the problem is that the
+inflation by then was -2.5%.
+So the real interest
+rate-- they were lowering
+the nominal interest rate.
+But the real interest
+rate was rising.
+And unemployment, accordingly,
+was rising, as well.
+It kept going.
+Then they began to cut the
+interest rate more aggressively.
+But we got into real
+deflation, -10% or so.
+So the real interest
+rate kept climbing.
+At that point was a very
+poor time interest rate hike,
+was a disaster for
+unemployment because it really
+hiked the interest rate, real
+interest rates even more.
+And eventually got
+out of it with a bunch
+of policies that were
+non-monetary policies.
+But that's what happened.
+So the Great Depression
+was very much
+a story of this kind
+in which essentially we
+fell into depression so that
+interest rate began to climb
+and got the economy deeper
+and deeper into recession
+and unemployment higher
+and higher and so on.
+And at some point, monetary
+policy just didn't work.
+So that's the reason you
+have to essentially do
+massive fiscal policy
+to get out of it.
+Let me talk about
+some of the shocks
+we have discussed in the context
+of this more complete model now.
+And actually-- OK, let me talk
+about two canonical type shocks.
+You can have two broad
+type of shocks or policies
+in these models that
+you want to analyze.
+Some of them are aggregate
+demand, either policies
+or shocks or whatever.
+Those are things that you know.
+Aggregate demand policies
+move the IS curve--
+IS and LM, but moves
+operates in the goods market.
+So this is one case of a
+contractionary fiscal policy,
+a fiscal consolidation.
+So what happens here?
+Suppose you start an
+equilibrium level of output
+equal to the natural
+rate of output.
+But now, for whatever
+reason, we're
+running deficits
+that are very large.
+You want to reduce the
+size of the deficit.
+Well, you move the
+IS to the left.
+Now you cut government
+expenditure.
+You increase taxes.
+That will bring output below
+the natural rate of output.
+You go to the
+Phillips curve here.
+That means inflation now, you
+get into the deflationary forces
+or inflation starts declining.
+The result of that--
+So in the short run,
+you get exactly what
+we had in lecture
+five, six or whatever.
+You get a contraction
+in real output.
+But on top of that, you
+start getting inflation
+coming down, or
+even going negative.
+And as a result of that,
+the central bank will react.
+And it will react.
+And that reaction will
+stop when in the long run
+when output goes back to
+the initial level of output,
+its natural rate of output.
+So the point of
+this picture that
+is new relative to
+things you already knew
+is that in the short run,
+you get very much the type
+of responses we had early on.
+In the medium run, in the
+medium run, you don't get that.
+A fiscal consolidation does not
+reduce output in the medium run.
+The fiscal consolidation does is
+reduces the real interest rate
+in the medium run.
+So you see here,
+output eventually
+goes back to that level with a
+much lower real interest rate.
+The point is
+sometimes this path,
+this path takes your output down
+initially and then comes back,
+can be very painful.
+It can take a long time to
+generate a procession and so on.
+And sometimes it can happen
+in any sort of conditions
+and be faster and so on.
+Many of the policies,
+agreements that people have,
+people that understand
+what they're talking about,
+had to do with the speed at
+which these things happen.
+So sometimes people
+can agree that you
+need a fiscal consolidation.
+But someone may think, no, this
+stuff is going to be very slow.
+And so I don't want to incur in
+a very deep recession for very
+long just to adjust a little
+bit the fiscal deficit.
+And others may
+think the opposite.
+It's mostly about the speed.
+But shorter response to
+a fiscal consolidation
+or to any aggregate
+demand contraction
+is different than the
+medium term response.
+And again, the signals
+for the central bank
+that it needs to
+move interest rate,
+they all come from this block
+here-- inflation falling.
+That tells the
+central bank, oops,
+we may have a
+problem, and so on.
+Another kind of shock
+that is more complicated
+and that has played
+a role actually
+very much in the
+recovery from COVID
+is some sort of
+supply side shock--
+for example, an oil shock.
+The price of energy goes
+up or something like that.
+Well, that one, how
+do you analyze that?
+A supply side shock is not
+something that comes from,
+that would go to the
+IS-LM part of the model.
+A supply side
+shock, remember, we
+analyze it when we analyze the
+natural rate of unemployment.
+It's something that affects
+the supply side of the economy.
+We can model that as an
+increase in the markup.
+And we know that an
+increase in the markup
+will increase the natural
+rate of unemployment.
+That means that this shock will
+do what to potential output?
+So an energy shock, especially
+if it's a persistent one,
+will operate like
+a markup shock.
+And that we know will
+increase the natural rate
+of unemployment.
+So what happens to
+the potential output?
+Goes down, of course.
+Output is equal to
+employment, to labor force
+times 1 minus the natural
+rate of unemployment.
+If the natural rate of
+unemployment goes up,
+then the potential
+output goes down.
+So that is not a shift
+in the top diagram.
+It's a shift in
+the lower diagram.
+It says, we used to have
+this Phillips curve.
+And now the Phillips curve
+has shifted to the left.
+Because we have a new
+natural rate of an output.
+And remember, the
+natural rate of output
+is at that point when output
+equal to the natural rate
+of output does not produce
+inflationary forces.
+What happened with
+this shock here?
+So suppose the economy was
+in this equilibrium here
+and now it gets hit
+by an oil shock.
+In the short run,
+if no one reacts,
+nothing happens to output.
+Doesn't move much.
+But what happens?
+You see, if I don't
+move something
+in this part of the diagram, I'm
+not moving equilibrium output.
+In the short run,
+equilibrium output
+is determined exactly
+in the same way
+we have determined up to now.
+So if we get a markup shock,
+nothing happens to output.
+If nobody moves, nothing happens
+to output in the short run.
+But what happens
+that we may not like?
+AUDIENCE: [INAUDIBLE]
+PROFESSOR: Exactly.
+What happens is the
+Phillips curve went up.
+Before, that level of output
+was consistent with no changes
+in inflation.
+Now, it's not.
+We get an increase in inflation.
+So the first place where you'll
+see the effect of the oil shock
+here is inflation will pick up.
+Remember, the price of gasoline
+going up and all those things.
+Well, that's where
+you see it first.
+Before activity falls,
+you see it there.
+That's what makes up
+the Phillips curve also,
+in the '70s and '80s.
+You can see lots of
+shocks of this kind.
+Initially, unemployment
+didn't move much,
+but inflation kept climbing.
+So that's what happens.
+Well, obviously,
+when that happens,
+if it persists-- and
+typically central banks,
+if they think is
+very short lived,
+they're not going to
+react to this stuff.
+But if it is persistent and
+they think it's persistent,
+then the reaction is what?
+Well, they need to--
+this only means that the
+natural rate of interest
+has gone up because I
+need, for that same IS,
+I need to bring down
+equilibrium output.
+That means I need a higher
+natural rate of interest rate,
+or a higher R star.
+So what the Fed needs to do,
+the central bank needs to do,
+is just start increasing
+interest rates.
+That's a natural response.
+A lot of what happened
+during the COVID,
+why inflation picked
+up so much in COVID
+is because we had a
+shock of this kind.
+It was not energy.
+The energy shock came later.
+But it was supply side,
+transport costs, and stuff
+like that, the network, the
+production network and things
+like that broke down.
+But they thought it was
+going to be very temporary.
+So understanding this model,
+they thought, OK, look, this,
+this curve will
+come back by itself,
+so better not react right now.
+Why?
+Because a recession
+is really, this curve
+will come down,
+back down by itself.
+Well, the problem is
+that it didn't come back
+by itself that fast.
+Some things came up fairly fast.
+Some others did not.
+In particular, labor
+force participation
+did not come
+sufficiently fast back.
+And so that's the reason
+we stayed too long
+in a situation like this.
+And that's one of the main
+reasons inflation sort crept up
+in the US, and also in
+other places in the world.
+In Europe, the big reason for
+why inflation picked up there
+is because this
+curve moved a lot up.
+Why is that?
+AUDIENCE: [INAUDIBLE]
+PROFESSOR: Exactly.
+They had a massive energy shock.
+And so that moved
+that curve up a lot.
+Good.
+I want to now return to
+what is going on right now.
+Actually first, I'm going
+to-- yeah, right now,
+meaning the last few days.
+So it turns out
+that this diagram
+that I used for the
+fiscal consolidation shock
+can also be used to
+understand a little bit what
+happens with the Silicon
+Valley Bank event.
+Remember, we model
+that as a credit shock.
+We said that x we had
+is like x going up.
+Well, x going up
+does exactly that.
+It moves IS to the left.
+So a shock to x, a panic of
+the kind that we saw, is that.
+It moves IS to the left.
+Why is that?
+So for any given level, the
+safe, real interest rate,
+a panic, a shock to credit and
+so on, moves the IS to the left.
+Why is that?
+AUDIENCE: [INAUDIBLE]
+PROFESSOR: Exactly.
+So the safe interest
+rate doesn't go up.
+But what goes up is the cost
+of borrowing because firms need
+to pay this extra risk premium.
+And then for any given safe
+interest rate, the real interest
+rate, firms have
+to pay more, which
+means there is less
+investment for any given level
+of the real interest rate.
+And so the IS moves to the left.
+And if that happens,
+then you start
+getting deflationary forces.
+So again, all this
+happens very quickly here.
+In reality, I told you there
+are lots of lags and so on.
+But markets begin to
+anticipate what will happen.
+So markets begin to anticipate.
+So in the immediate,
+output doesn't collapse
+immediately or anything.
+And inflation doesn't
+collapse immediately.
+But markets realized
+that there are long lags.
+But there is a shock already.
+So it's likely that
+these things will happen.
+And it's likely that
+this will happen.
+And it's also likely that
+the Fed will react to that.
+What should be the
+reaction of the Fed
+if this stuff gets
+to be persistent?
+How do you get out
+of a shock like that
+if you really want
+to go back there?
+You cut interest rates.
+In the case of the US, they
+were hiking interest rates
+because we dealing
+with high inflation.
+This tells you, well, you should
+slow down the pace of hiking.
+Again, they don't
+do it immediately.
+They meet next week.
+But the markets don't
+need to wait for the Fed.
+They anticipate what
+the Fed is likely to do
+and they start betting on that.
+So let me show you
+next a bunch of charts
+that show you that
+someone in the market
+understands these mechanics--
+a lot of people,
+because the prices
+are moving exactly that way.
+This is something-- this is
+the one year ahead inflation
+expectation, as
+traded in the market.
+It's called Inflation breakeven,
+the one year inflation break.
+So these things are
+traded in the market.
+And you can trade
+expected inflation
+all the maturities you want.
+So this is what the market was
+expecting before this shock.
+We're getting hotter
+and hotter numbers.
+So the economy was-- inflation,
+expected inflation, as price
+in the market, was
+climbing one year out.
+And then the shock came.
+And look what had happened
+to expected inflation.
+Boom.
+It collapsed.
+OK, why is that?
+Well, people thought this
+shock, that leads to that.
+That's what they thought.
+This bounce was markets got
+a little excited yesterday.
+It was a little
+risk on environment.
+Today they lost all
+that already for a shock
+I'm going to tell you
+about in a few minutes.
+But anyways, the point
+I wanted to highlight
+is, again, expected
+inflation was getting
+a little out of control.
+And then this x shock
+came, the panic shock,
+and then immediately
+expected inflation
+declined because people
+anticipated something like this.
+The market anticipates
+something like that.
+What is that?
+This is the market's
+expected next hike.
+So March 22nd, the Fed
+will decide on the increase
+in interest rate.
+Remember, the Fed
+had decided, as I
+said in the previous lecture, to
+go for a path of 50 basis points
+initially, very high.
+But since a couple
+of meetings ago,
+they decided to slow
+down to 25 basis points,
+precisely because they want
+to wait and see a bit what
+[INAUDIBLE] do we have?
+I mean, there's
+long variable lags.
+They have increased
+rates a lot and so on.
+So they have gone
+back to a pace of 25.
+So if you see somewhere
+here, in February 22,
+if you ask the market, what do
+you think will be the next hike?
+There will be lots of answers--
+trades, and so on.
+But when I say answers, I mean
+what is price, what is traded,
+these financial instruments.
+The average answer
+was 30 basis points.
+30 basis point is that
+most of the people
+thought that they were going
+to increase the interest
+rate by 25 basis points.
+And there were a
+few guys out there
+that thought the Fed doesn't
+increase the interest
+rate by 33 basis points.
+That's 25, 50, 75.
+So this 30 meant that
+almost everyone thought
+it was going to be
+25, but there were
+a few people that were concerned
+that it could be higher
+than that.
+What happened here?
+We started getting very
+hot numbers on inflation.
+And so all of a sudden the
+equilibrium changed dramatically
+and we went to 45, which
+means most people then
+thought in the market that
+the next hike on March 22
+was going to be 50 basis points.
+And a few people
+said stay at 25.
+That's the reason this is 0.5.
+But it was almost
+priced in that.
+When people say pricing,
+they are talking about this.
+What is the hike
+that's priced in?
+It's this statistic.
+Look, that's what happened with
+the Silicon Valley bank event,
+a collapse in this thing.
+Now, it's trading at
+around 13 basis points.
+That means most of the people
+think, the traders here think,
+that there will
+be no hike at all.
+So a few days ago,
+they all thought
+there was going to be 50 basis
+points, which is a big hike.
+And now most people think there
+will be no hike whatsoever.
+But a few think that
+it's going to be 25.
+Actually, it's almost 50/50.
+I think today is a
+little lower than that.
+But it's almost 50/50
+that it's 25 or 0.
+That's what it is.
+But had you asked
+anyone around here,
+and certainly around here,
+is there any chance of 0,
+and there will be
+no one, literally.
+That contract was not traded.
+OK well, you see things happen.
+Accidents happen.
+So now that's where we are at.
+Now, if this all lasts a week
+and everything gets resolved,
+it doesn't have a lot of
+macroeconomic consequences.
+It's just a little panic.
+You know, some
+people make money.
+Some people lose
+money, and so on.
+But this can be a very
+problematic shock, actually,
+Because what you see
+here, this is the size,
+this is Silicon Valley Bank.
+These are all the banks
+smaller than that.
+It turns out that all
+this bank at this moment
+are reshuffling
+their portfolios,
+are becoming very conservative.
+Because they don't want to
+be exposed to similar risks.
+They realize that
+the environment
+became very unfriendly to--
+there can be ransomed
+banks in any moment,
+despite the fact that it's a
+big policy package out there.
+But people are still
+withdrawing lots of deposits
+from small banks, small
+and regional banks.
+And they all deposited it in JP
+Morgan, you know, the big banks.
+So there's lots of deposits
+that, despite the insurance,
+the blanket insurance
+that is implicit,
+at least at the moment, lots
+of deposits from these sectors
+are moving to these
+major banks here.
+That's called a
+flight to quality.
+Now, the problem of that
+for the economy as a whole
+is that small banks
+and regional banks
+play a huge role in lending.
+I think a little more
+than 50%, for example,
+of the commercial and industrial
+loans are made by small banks.
+80% of the mortgages are
+given by a small bank.
+So it has a big
+potential consequence.
+What I'm trying to say
+is that x may stay high
+for quite a bit of time.
+And that's the reason,
+there is anticipation
+that this will have
+macroeconomic consequences.
+And as a result of that,
+that the Fed will react,
+that inflation will
+change, and all that.
+So that's where we
+were at on Monday.
+Remember when we
+had the lecture,
+I was telling you more
+or less that the story.
+What is this?
+You can read it there, but
+it may not mean much to you.
+But what I'm
+highlighting is this.
+This is pretty big.
+35% decline.
+This is an equity.
+It's a share.
+So this is the value of the
+equity of a pretty major bank,
+Credit Suisse.
+So Credit Suisse has been
+in trouble for a while.
+But today got into
+really big trouble
+and saw a massive collapse
+in the equity shares.
+In fact, they stopped trading
+for a while and so on.
+This thing here-- you know, I
+updated your slides many times
+today because I began to look
+at this event around here.
+And then the thing kept going
+and they stopped, kept going,
+and so on.
+And I'm not sure
+where he's at now.
+I stopped-- at what
+time did I stop?
+9:00 in the morning.
+And I was awake at 4:45 today.
+So they tell you this
+was pretty intense.
+But what this is is the credit
+default swaps on Credit Suisse.
+Credit default swap is whenever
+it's a bond issued by a bank,
+you can buy an
+insurance on that bond.
+So if the bond defaults on
+you, you then use the insurance
+and you get paid.
+So these things
+for banks normally
+are very small numbers,
+but for Credit Suisse,
+bigger than for other
+big banks because they've
+been in trouble for a
+while, all sorts of trouble.
+But look at that spike there.
+I mean, that's pretty big
+for these kind of things.
+It's not Lehman yet, but big.
+So anyway, that caused
+a little panic today.
+This is the stock prices
+of the main European banks.
+It's sold today.
+So look at this.
+It was a little rally
+yesterday and so on.
+I mean, this is the decline
+as a result of the US problem,
+the Silicon Valley Bank's.
+Then a rally yesterday.
+And then Credit Suisse happened.
+And you had a big decline in
+all the major banks in Europe.
+The US banks are also declining.
+But that was bigger
+for the major banks.
+The Vix, remember I
+told you last week,
+last Monday, about
+this indicator of
+fear in the market, which is
+really the price of put options?
+I'm simplifying things.
+I mean, protection for big
+declines on the equity market.
+Again, it began to spike very,
+very sharply as a result.
+This is what happened
+with the US event.
+Then yesterday we got a
+rally, risk on type thing.
+And then today we
+got a new event.
+Look at this.
+I like this picture.
+What this is.
+Let me tell you what
+the blue line is.
+The blue line is the market
+expected federal funds rate
+at different dates
+in the future.
+Today the federal funds
+rate is around 4 and 1/2.
+And this is what
+the market expects.
+So they expected the Fed to
+continue to hike interest rates
+and to reach a peak around
+in June 14 in that meeting
+of the order of 5.3% or so.
+That's what's the average.
+There's lots of dispersion.
+That people are betting on
+6%, but that's the average.
+That's what people expected.
+The yellow things is
+the number of hikes
+that you're likely to see.
+So you're likely to see one
+hike in the next meeting,
+another one in the next
+meeting, and another one
+in the next meeting.
+And then stop and begin
+sort of cutting rates.
+That was expected
+path on Friday--
+10th was Friday.
+More or less around there.
+Maybe Thursday,
+I don't remember.
+But anyway, that
+was expected path.
+So still, hike
+rates reach a peak
+of 5.3% and still pretty
+high interest rates
+by the end of the year.
+That was expected path.
+That's the way it looks now.
+Very different.
+Now people are expecting very
+small changes now, I showed you.
+It's like 13 basis points
+what people expect.
+Still people expect sort
+of a hike, but small one.
+Now they expect the peak to be
+sort of in May and then the Fed
+to start cutting
+very aggressively
+to at the end of
+the year, end up
+with much lower
+rates than today.
+So this is exactly what
+I was telling you before.
+The market is
+anticipating that we
+had a huge contraction in the
+IS because x went up a lot.
+The major consequences, that
+is going to be lower inflation.
+Yes, we have a problem.
+I mean, if the US did not
+have 5.5% of inflation today,
+I can assure you that the Fed
+would have come out and said,
+we cut the rates right now.
+The only reason they're
+not cutting right now
+is because we have two problems.
+We have the financial
+panic on one side
+and we have the high
+inflation on the other side.
+So they have to balance
+these two forces.
+But the expectation
+of the market
+is that the balance
+of two forces
+is going to be dominated by the
+contraction in aggregate demand
+much sooner than
+people were expecting.
+So that's what the market
+is pricing at the moment.
+And what I'm saying
+is, I was trying
+to highlight that this is
+very consistent with that.
+It's just the market
+looking ahead,
+but what is likely to happen.
+It started from
+a situation which
+is a little bit more
+complicated, again, because we
+already had high inflation.
+Well, I do not know, really.
+I mean, it is on one
+hand, more complicated
+because we have a problem
+of high inflation.
+On the other hand,
+having high inflation
+allows you to cut the real
+interest rate much more
+aggressively.
+Because if you bring the
+nominal interest rate to 0
+and you have
+inflation of 5%, that
+allows you to cut the
+real interest rate to -5%.
+Well, if you start
+with a situation
+where your inflation is 0,
+you don't have any space
+to cut the real interest rate.
+So the Fed can be
+very aggressive here.
+And the only reason is not
+being very, very aggressive--
+They were very aggressive in
+terms of supporting deposits
+and all that.
+But they can be very aggressive
+in terms of interest rate cuts
+if the need arises.
+Hopefully we won't.
+But they have a
+space because we're
+starting from a much
+higher level of inflation.
+That helps.
+It hurts in the sense that
+it will delay the reaction.
+But it helps in the
+sense that they have
+much more space for policy.
+What is this?
+This is just one
+year interest rates.
+That reflects the
+previous picture, as well.
+One year out rates were over
+5% a few days ago and now are
+in the low 4s.
+And this picture I kept
+updating, as you can see.
+It was really dropping fast.
+That's a big change.
+The one year rate, 60 basis
+points, that's a big change.
+So that's where we're at.
+And from the next lecture, I'm
+going to start with growth.
+But any questions about this?
+OK.
+I don't want to start
+growth now in four minutes.
+But so the set of
+topics we're going
+to discuss from the next
+lecture are very different,
+subject to not having
+any major events.
+If there is a major event,
+I'm going to reshuffle things
+so we can talk about financial
+panics and things of that kind.
+Let's hope that it can
+stick to the program
+and do growth in the next week.
+OK, good.
+Have a good weekend.

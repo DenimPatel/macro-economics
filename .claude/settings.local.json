@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Read(//Users/denimpatel/Desktop/macro-economics/**)"
+    ]
+  }
+}
