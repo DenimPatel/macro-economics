@@ -126,6 +126,104 @@ export default function IsLmExplorer() {
         badge="beginner"
       />
 
+      {/* EDUCATIONAL SECTION 1: IS CURVE */}
+      <div style={{ marginBottom: '2.5rem', padding: '1.5rem', backgroundColor: '#ecfdf5', borderRadius: '6px', borderLeft: '4px solid #10b981' }}>
+        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem', color: '#047857' }}>📚 Lesson 1: The IS Curve (Investment = Saving)</h3>
+        
+        <div style={{ marginBottom: '1rem', fontSize: '0.95rem', lineHeight: '1.7', color: '#1e293b' }}>
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong>What is the IS Curve?</strong> The IS curve shows the relationship between output (Y) and interest rate (r) in the goods market when investment equals saving. It's derived from the equilibrium condition Y = C + I + G.
+          </p>
+          
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong>Key Formula:</strong> Y = C(Y-T) + I(r) + G
+          </p>
+          
+          <ul style={{ marginLeft: '1.5rem', marginBottom: '0.75rem', lineHeight: '1.8' }}>
+            <li><strong>C = C₀ + c₁(Y - T)</strong>: Consumption increases with income</li>
+            <li><strong>I = I₀ - β·r</strong>: Investment <em>decreases</em> with interest rate (higher rates → fewer projects are profitable)</li>
+            <li><strong>G:</strong> Government spending (exogenous)</li>
+          </ul>
+
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong>Why does IS slope downward?</strong> When interest rates rise → Investment falls → Aggregate demand falls → Output must fall to restore equilibrium. Hence, higher r ↔ lower Y.
+          </p>
+
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong>What shifts the IS curve?</strong> Changes in fiscal policy (G or T) shift the IS curve:
+          </p>
+          <ul style={{ marginLeft: '1.5rem', lineHeight: '1.8' }}>
+            <li><strong>↑G (expansionary)</strong>: IS shifts RIGHT (output ↑ at each interest rate)</li>
+            <li><strong>↑T (contractionary)</strong>: IS shifts LEFT (output ↓ at each interest rate)</li>
+            <li><strong>↓I₀ (worse investment climate)</strong>: IS shifts LEFT</li>
+          </ul>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL SECTION 2: LM CURVE */}
+      <div style={{ marginBottom: '2.5rem', padding: '1.5rem', backgroundColor: '#eff6ff', borderRadius: '6px', borderLeft: '4px solid #3b82f6' }}>
+        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem', color: '#1e40af' }}>📚 Lesson 2: The LM Curve (Liquidity Money)</h3>
+        
+        <div style={{ marginBottom: '1rem', fontSize: '0.95rem', lineHeight: '1.7', color: '#1e293b' }}>
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong>What is the LM Curve?</strong> The LM curve shows the relationship between output (Y) and interest rate (r) in the money market when money supply equals money demand. It's derived from the equilibrium condition M/P = L.
+          </p>
+          
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong>Key Formula:</strong> M/P = L(Y, r)
+          </p>
+          
+          <ul style={{ marginLeft: '1.5rem', marginBottom: '0.75rem', lineHeight: '1.8' }}>
+            <li><strong>M/P:</strong> Real money supply (fixed by central bank)</li>
+            <li><strong>L(Y):</strong> Money demand <em>increases</em> with output (higher income → more spending → more money needed)</li>
+            <li><strong>L(r):</strong> Money demand <em>decreases</em> with interest rate (higher rates → higher cost of holding money → hold less)</li>
+          </ul>
+
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong>Why does LM slope upward?</strong> When output increases → Money demand rises → Interest rate must rise (to clear money market). Hence, higher Y ↔ higher r.
+          </p>
+
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong>What shifts the LM curve?</strong> Changes in monetary policy (M or P) shift the LM curve:
+          </p>
+          <ul style={{ marginLeft: '1.5rem', lineHeight: '1.8' }}>
+            <li><strong>↑M (expansionary)</strong>: LM shifts RIGHT (lower rates at each output level)</li>
+            <li><strong>↓M (contractionary)</strong>: LM shifts LEFT (higher rates at each output level)</li>
+            <li><strong>↑P (inflation)</strong>: LM shifts LEFT (real money supply falls)</li>
+          </ul>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL SECTION 3: IS-LM EQUILIBRIUM */}
+      <div style={{ marginBottom: '2.5rem', padding: '1.5rem', backgroundColor: '#fef3c7', borderRadius: '6px', borderLeft: '4px solid #f59e0b' }}>
+        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem', color: '#92400e' }}>📚 Lesson 3: IS-LM Equilibrium</h3>
+        
+        <div style={{ marginBottom: '1rem', fontSize: '0.95rem', lineHeight: '1.7', color: '#1e293b' }}>
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong>What is IS-LM Equilibrium?</strong> The intersection of the IS and LM curves determines the equilibrium output (Y*) and interest rate (r*) where both the goods market and money market clear simultaneously.
+          </p>
+
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong>Graphical Intuition:</strong>
+          </p>
+          <ul style={{ marginLeft: '1.5rem', marginBottom: '0.75rem', lineHeight: '1.8' }}>
+            <li>Points <em>above</em> IS: Investment {'>'} Saving (excess demand → excess output → demand pushes output up)</li>
+            <li>Points <em>below</em> IS: Investment {'<'} Saving (excess saving → insufficient demand → output falls)</li>
+            <li>Points <em>above</em> LM: Money demand {'>'} Money supply (interest rates rise to equilibrate)</li>
+            <li>Points <em>below</em> LM: Money demand {'<'} Money supply (interest rates fall to equilibrate)</li>
+          </ul>
+
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong>Policy Implications:</strong>
+          </p>
+          <ul style={{ marginLeft: '1.5rem', lineHeight: '1.8' }}>
+            <li><strong>Fiscal Policy (↑G):</strong> Shifts IS right → Output ↑, Interest rate ↑ (crowding out: higher rates discourage investment)</li>
+            <li><strong>Monetary Policy (↑M):</strong> Shifts LM right → Output ↑, Interest rate ↓ (less crowding out)</li>
+            <li><strong>Combined:</strong> Fiscal + Monetary can amplify output increases with minimal rate increases</li>
+          </ul>
+        </div>
+      </div>
+
       {/* Toggle Comparison Mode */}
       <div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
         <label style={{ fontSize: '0.95rem', fontWeight: '500' }}>
@@ -299,6 +397,31 @@ export default function IsLmExplorer() {
         </div>
       )}
 
+      {/* INSIGHT: Crowding Out */}
+      {comparisonMode && (
+        <div style={{ marginBottom: '2rem', padding: '1rem', backgroundColor: '#fecaca', borderRadius: '6px', borderLeft: '4px solid #dc2626' }}>
+          <h4 style={{ fontSize: '0.95rem', fontWeight: '600', marginBottom: '0.75rem', color: '#7f1d1d' }}>⚠️ Crowding Out Effect</h4>
+          <p style={{ fontSize: '0.875rem', lineHeight: '1.6', color: '#5a1a1a', marginBottom: '0.5rem' }}>
+            When fiscal policy increases without accompanying monetary expansion, interest rates rise, discouraging private investment. This is "crowding out."
+          </p>
+          <p style={{ fontSize: '0.875rem', lineHeight: '1.6', color: '#5a1a1a' }}>
+            <strong>Your results:</strong> If Δr &gt; 0 (rates rose), look for the output gain to be smaller than predicted by the multiplier alone, because investment fell.
+          </p>
+        </div>
+      )}
+
+      {/* INSIGHT: Policy Effectiveness */}
+      {comparisonMode && (
+        <div style={{ marginBottom: '2rem', padding: '1rem', backgroundColor: '#dbeafe', borderRadius: '6px', borderLeft: '4px solid #0284c7' }}>
+          <h4 style={{ fontSize: '0.95rem', fontWeight: '600', marginBottom: '0.75rem', color: '#0c2d6b' }}>💡 Policy Effectiveness Comparison</h4>
+          <ul style={{ fontSize: '0.875rem', lineHeight: '1.8', color: '#1e3a8a', marginLeft: '1.5rem' }}>
+            <li><strong>Fiscal policy alone:</strong> Raises output but also raises rates (crowding out reduces gains)</li>
+            <li><strong>Monetary policy alone:</strong> Raises output and lowers rates (no crowding out, investment encouraged)</li>
+            <li><strong>Combined policy:</strong> Maximum output gain with minimal rate increases (best of both worlds)</li>
+          </ul>
+        </div>
+      )}
+
       {/* Chart */}
       <div className="visualization-container" style={{ marginBottom: '2rem' }}>
         <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
@@ -431,6 +554,33 @@ export default function IsLmExplorer() {
         </ul>
       </div>
 
+      {/* Detailed Curve Explanations */}
+      <div style={{ marginBottom: '2rem', padding: '1rem', backgroundColor: '#f0fdf4', borderRadius: '6px', borderLeft: '4px solid #10b981' }}>
+        <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem', color: '#15803d' }}>
+          📈 Understanding the Curves
+        </h3>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.875rem', color: '#15803d' }}>
+          <div>
+            <h4 style={{ fontWeight: '600', marginBottom: '0.5rem', color: '#15803d' }}>IS Curve Characteristics</h4>
+            <ul style={{ marginLeft: '1.5rem', lineHeight: '1.6' }}>
+              <li><strong>Slope:</strong> Negative (downward sloping)</li>
+              <li><strong>Reason:</strong> Higher interest rates reduce investment, decreasing aggregate demand and output</li>
+              <li><strong>Shifts:</strong> Due to changes in G, T, C₀, I₀, or consumer confidence</li>
+              <li><strong>Shape:</strong> Typically linear but can be curved depending on model assumptions</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style={{ fontWeight: '600', marginBottom: '0.5rem', color: '#15803d' }}>LM Curve Characteristics</h4>
+            <ul style={{ marginLeft: '1.5rem', lineHeight: '1.6' }}>
+              <li><strong>Slope:</strong> Positive (upward sloping)</li>
+              <li><strong>Reason:</strong> Higher income increases money demand, requiring higher interest rates to maintain equilibrium</li>
+              <li><strong>Shifts:</strong> Due to changes in M or P</li>
+              <li><strong>Shape:</strong> Typically linear but can be curved in more advanced models</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       {/* Policy Effects */}
       <div style={{ marginBottom: '2rem', padding: '1rem', backgroundColor: '#fef08a', borderRadius: '6px', borderLeft: "4px solid #ca8a04" }}>
         <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem', color: '#854d0e' }}>
@@ -479,6 +629,60 @@ export default function IsLmExplorer() {
             Fiscal expansion + monetary expansion keeps rates stable and multiplier strong.
           </li>
         </ul>
+      </div>
+
+      {/* Try This Section */}
+      <div style={{ marginBottom: '2rem', padding: '1rem', backgroundColor: '#f3e8ff', borderRadius: '6px', borderLeft: '4px solid #a855f7' }}>
+        <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem', color: '#6b21a8' }}>
+          💡 Try These Experiments
+        </h3>
+        <div style={{ fontSize: '0.875rem', lineHeight: '1.8', color: '#6b21a8', marginLeft: '0.5rem' }}>
+          <p style={{ marginBottom: '1rem', fontWeight: '500' }}>Click "Compare Two Scenarios" and try these experiments:</p>
+          <ol style={{ marginLeft: '1.5rem' }}>
+            <li style={{ marginBottom: '0.75rem' }}>
+              <strong>Fiscal Stimulus Alone:</strong> Keep Scenario A as baseline. In Scenario B, increase G by 30. Watch output rise but interest rate rise too (crowding out effect visible).
+            </li>
+            <li style={{ marginBottom: '0.75rem' }}>
+              <strong>Monetary Response to Fiscal:</strong> Same as above, but also increase M by 30 in Scenario B. Output rises more and rate increase is smaller!
+            </li>
+            <li style={{ marginBottom: '0.75rem' }}>
+              <strong>Monetary Policy Alone:</strong> Keep Scenario A as baseline. In Scenario B, increase M by 40 only (keep G unchanged). Output rises and rates FALL—investment is encouraged!
+            </li>
+            <li style={{ marginBottom: '0.75rem' }}>
+              <strong>Tax Cut vs. Spending Increase:</strong> In Scenario B, decrease T by 20 (instead of increasing G). Output rises but by less than the same dollar amount in spending—this is the tax multiplier effect.
+            </li>
+            <li style={{ marginBottom: '0.75rem' }}>
+              <strong>Inflation Effect on Money:</strong> In Scenario B, increase P (price level) with M unchanged. This reduces real money supply (M/P falls), raising rates and crowding out private investment.
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      {/* Applications and Uses */}
+      <div style={{ marginBottom: '2rem', padding: '1rem', backgroundColor: '#fff7ed', borderRadius: '6px', borderLeft: '4px solid #f97316' }}>
+        <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem', color: '#ea580c' }}>
+          🎯 Applications of IS-LM Model
+        </h3>
+        <ul style={{ fontSize: '0.875rem', lineHeight: '1.6', marginLeft: '1.5rem', color: '#ea580c' }}>
+          <li>
+            <strong>Economic Analysis:</strong> Analyze the effects of fiscal and monetary policy on output and interest rates
+          </li>
+          <li>
+            <strong>Policy Design:</strong> Determine optimal combinations of fiscal and monetary policy to achieve desired outcomes
+          </li>
+          <li>
+            <strong>Recession Analysis:</strong> Understand how to stimulate the economy during downturns
+          </li>
+          <li>
+            <strong>Inflation Control:</strong> Analyze how to cool down overheating economies
+          </li>
+          <li>
+            <strong>International Policy:</strong> Basis for Mundell-Fleming model in open economies
+          </li>
+        </ul>
+        <p style={{ fontSize: '0.875rem', marginTop: '1rem', color: '#ea580c' }}>
+          The IS-LM model is a fundamental tool for understanding how the goods market and money market interact to determine national income and interest rates in the short run.
+        </p>
       </div>
     </div>
   )

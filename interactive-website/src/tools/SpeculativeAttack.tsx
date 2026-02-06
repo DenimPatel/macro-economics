@@ -219,7 +219,7 @@ export default function SpeculativeAttack() {
             max={0.15}
             step={0.01}
             onChange={setMoneyGrowthRate}
-            unit="%" !== 'crisis'}
+            unit="%"
           />
           <SliderControl
             label="Domestic Policy Rate"
@@ -228,7 +228,7 @@ export default function SpeculativeAttack() {
             max={0.25}
             step={0.01}
             onChange={setPolicyRate}
-            unit="%" !== 'crisis'}
+            unit="%"
           />
           <SliderControl
             label="Capital Controls Strength"
@@ -237,7 +237,7 @@ export default function SpeculativeAttack() {
             max={1}
             step={0.1}
             onChange={setCapitalControls}
-            unit="" !== 'crisis'}
+            unit=""
           />
           <SliderControl
             label="Initial Reserves (% of money supply)"
@@ -246,7 +246,7 @@ export default function SpeculativeAttack() {
             max={150}
             step={10}
             onChange={setInitialReserves}
-            unit="%" !== 'crisis'}
+            unit="%"
           />
           <SliderControl
             label="Speculator Aggressiveness"
@@ -255,7 +255,7 @@ export default function SpeculativeAttack() {
             max={1}
             step={0.1}
             onChange={setSpecAggressiveness}
-            unit="" !== 'crisis'}
+            unit=""
           />
         </div>
       </div>

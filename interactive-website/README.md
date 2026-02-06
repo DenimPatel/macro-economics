@@ -92,10 +92,12 @@ npm run preview
   - See consumption feedback rounds amplify GDP impact
   - Adjust MPC to understand multiplier strength
 
-- **IS-LM Equilibrium Explorer** (Placeholder)
+- **IS-LM Equilibrium Explorer** ✅
   - Fiscal & monetary policy controls
-  - Watch curves shift in real-time
+  - Watch IS and LM curves shift in real-time
   - Compare equilibrium across scenarios
+  - Understand curve slopes and economic intuition
+  - Explore crowding out, multiplier effects, and policy effectiveness
 
 - **Phillips Curve Trade-Off** (Placeholder)
   - Unemployment vs. inflation trade-off

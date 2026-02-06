@@ -3,6 +3,7 @@ import { create } from 'zustand'
 export type ToolId = 
   | 'gdp-visualizer'
   | 'multiplier-simulator'
+  | 'fiscal-policy-experiments'
   | 'is-lm-explorer'
   | 'phillips-curve'
   | 'phillips-curve-tradeoff'
@@ -46,6 +47,11 @@ export const TOOLS: Record<ToolId, { title: string; category: Category; descript
     title: 'Multiplier Effect Simulator',
     category: 'beginner',
     description: 'Watch government spending cascade through rounds of consumption. See how multiplier effects amplify initial shocks.',
+  },
+  'fiscal-policy-experiments': {
+    title: 'Keynesian Cross Policy Experiments',
+    category: 'beginner',
+    description: 'Explore the three foundational fiscal policy experiments from Lecture 3: consumption shocks, government spending changes, and tax policy.',
   },
   'is-lm-explorer': {
     title: 'IS-LM Equilibrium Explorer',

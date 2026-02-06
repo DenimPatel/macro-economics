@@ -700,6 +700,21 @@ export default function GdpMeasurement() {
               the same GDP. Discrepancies indicate measurement errors. The existence of three independent methods
               is powerful: it's a built-in check on data quality. If the income approach and expenditure approach diverge,
               statisticians investigate to find the error.
+              <br />
+              <br />
+              <strong>Understanding Discrepancies:</strong> Small discrepancies (typically &lt; 2%) are normal in practice due to:
+              <br />
+              <br />
+              • Statistical differences in methodology
+              <br />
+              • Timing issues in data collection
+              <br />
+              • Double counting in some approaches
+              <br />
+              • Missing transactions in official statistics
+              <br />
+              <br />
+              Large discrepancies (&gt; 5%) suggest measurement problems that require investigation.
             </InfoBox>
           </div>
 

@@ -73,6 +73,12 @@ const moneyDemand = (output: number, rate: number) =>
 
 **Chart Library**: Recharts LineChart with dual axes (Y, r)
 
+**Educational Content**:
+- Detailed explanation of why IS curve is downward sloping
+- Explanation of why LM curve is upward sloping
+- Discussion of policy effectiveness and crowding out
+- Real-world applications of IS-LM model
+
 ---
 
 #### Tool 3: Phillips Curve Trade-Off (Partial)

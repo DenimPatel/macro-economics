@@ -4,6 +4,7 @@ import { lazy, Suspense } from 'react'
 
 const GdpMeasurement = lazy(() => import('./tools/GdpMeasurement'))
 const MultiplicerSimulator = lazy(() => import('./tools/MultiplicerSimulator'))
+const FiscalPolicyExperiments = lazy(() => import('./tools/FiscalPolicyExperiments'))
 const IsLmExplorer = lazy(() => import('./tools/IsLmExplorer'))
 const PhillipsCurveTradeOff = lazy(() => import('./tools/PhillipsCurveTradeOff'))
 const PhillipsCurve = lazy(() => import('./tools/PhillipsCurve'))
@@ -44,6 +45,7 @@ export default function App() {
     const cases: Record<string, JSX.Element> = {
       'gdp-visualizer': <GdpMeasurement />,
       'multiplier-simulator': <MultiplicerSimulator />,
+      'fiscal-policy-experiments': <FiscalPolicyExperiments />,
       'is-lm-explorer': <IsLmExplorer />,
       'phillips-curve': <PhillipsCurve />,
       'phillips-curve-tradeoff': <PhillipsCurveTradeOff />,
