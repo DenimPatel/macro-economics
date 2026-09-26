@@ -25,24 +25,30 @@ export default function Glossary() {
         description="Key terms, each linked to the lecture where it is introduced."
       />
 
-      <input
-        type="search"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search terms…"
-        className="mb-6 w-full max-w-md rounded-lg border border-border bg-surface px-3 py-2 text-sm text-fg outline-none placeholder:text-fg-subtle focus:border-accent"
-      />
+      <label className="mb-6 block max-w-md">
+        <span className="sr-only">Search glossary terms</span>
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search terms…"
+          className="w-full rounded-card border border-border bg-surface px-3.5 py-2.5 text-sm text-fg placeholder:text-fg-subtle focus:border-accent"
+        />
+      </label>
 
       <dl className="grid gap-3 md:grid-cols-2">
         {entries.map((entry) => (
           <div key={entry.term} className="card p-4">
-            <dt className="text-sm font-bold text-fg">{entry.term}</dt>
-            <dd className="mt-1 text-sm text-fg-muted">
+            <dt className="font-serif text-sm font-bold text-fg">{entry.term}</dt>
+            <dd className="mt-1.5 text-sm leading-relaxed text-fg-muted">
               {entry.definition}
               {entry.lecture != null && (
                 <>
                   {' '}
-                  <Link to={`/lecture/${entry.lecture}`} className="whitespace-nowrap text-xs">
+                  <Link
+                    to={`/lecture/${entry.lecture}`}
+                    className="whitespace-nowrap text-xs text-accent-ink no-underline hover:underline"
+                  >
                     Lecture {entry.lecture}
                   </Link>
                 </>
@@ -52,7 +58,15 @@ export default function Glossary() {
         ))}
       </dl>
 
-      {entries.length === 0 && <p className="text-sm text-fg-muted">No terms match “{query}”.</p>}
+      {entries.length === 0 && (
+        <p className="text-sm text-fg-muted">
+          No terms match “{query}”. Try a shorter search, or browse the{' '}
+          <Link to="/concepts" className="text-accent-ink">
+            concept map
+          </Link>
+          .
+        </p>
+      )}
     </div>
   )
 }

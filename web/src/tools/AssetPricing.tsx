@@ -6,18 +6,29 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   BarChart,
   Bar,
 } from 'recharts'
 import {
   ToolHeader,
+  ToolCallout,
   SliderControl,
   StatBox,
   Button,
-  InfoBox,
 } from '../components/ToolComponents'
+import { chartTheme, chartColor } from '../design/chartTheme'
+
+/** Series keep a fixed economic identity across every chart in this tool. */
+const BOND_PRICE_STROKE = chartColor(0)
+const STOCK_PRICE_STROKE = chartColor(1)
+const VALUATION_BAR_FILL = chartColor(3)
+
+/** Layout shared by the chart and readout blocks. */
+const CONTROL_GRID = 'grid gap-6 sm:grid-cols-2'
+const CHART_BOX = 'h-[300px]'
+const SPLIT = 'grid gap-6 lg:grid-cols-2'
+const STAT_GRID = 'mb-6 grid grid-cols-2 gap-3'
 
 interface BondDataPoint {
   rate: number
@@ -82,7 +93,7 @@ export default function AssetPricing() {
       />
 
       <div className="control-panel">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
+        <div className={CONTROL_GRID}>
           <SliderControl
             label="Bond Coupon Rate"
             value={coupon}
@@ -130,7 +141,7 @@ export default function AssetPricing() {
           />
         </div>
         
-        <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+        <div className="button-group">
           <Button
             onClick={() => setShowDataOverlay(!showDataOverlay)}
             variant={showDataOverlay ? 'primary' : 'secondary'}
@@ -140,21 +151,21 @@ export default function AssetPricing() {
         </div>
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Bond Price vs. Discount Rate
         </h3>
-        <div style={{ height: '300px' }}>
+        <div className={CHART_BOX}>
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={bondData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="rate" />
-              <YAxis />
-              <Tooltip />
-              <Line 
-                type="monotone" 
-                dataKey="price" 
-                stroke="#3b82f6" 
+            <LineChart data={bondData} margin={chartTheme.margin}>
+              <CartesianGrid {...chartTheme.grid} />
+              <XAxis dataKey="rate" {...chartTheme.axis} />
+              <YAxis {...chartTheme.axis} />
+              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+              <Line
+                type="monotone"
+                dataKey="price"
+                stroke={BOND_PRICE_STROKE}
                 strokeWidth={2}
                 dot={{ r: 4 }}
                 name="Bond Price"
@@ -164,21 +175,21 @@ export default function AssetPricing() {
         </div>
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Stock Price vs. Discount Rate
         </h3>
-        <div style={{ height: '300px' }}>
+        <div className={CHART_BOX}>
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={equityData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="rate" />
-              <YAxis />
-              <Tooltip />
-              <Line 
-                type="monotone" 
-                dataKey="price" 
-                stroke="#10b981" 
+            <LineChart data={equityData} margin={chartTheme.margin}>
+              <CartesianGrid {...chartTheme.grid} />
+              <XAxis dataKey="rate" {...chartTheme.axis} />
+              <YAxis {...chartTheme.axis} />
+              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+              <Line
+                type="monotone"
+                dataKey="price"
+                stroke={STOCK_PRICE_STROKE}
                 strokeWidth={2}
                 dot={{ r: 4 }}
                 name="Stock Price"
@@ -188,74 +199,65 @@ export default function AssetPricing() {
         </div>
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Current Asset Valuation
         </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-          <div style={{ height: '300px' }}>
+        <div className={SPLIT}>
+          <div className={CHART_BOX}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={[
                 { name: 'Bond Price', value: bondPrice },
                 { name: 'Stock Price', value: stockPrice },
-              ]}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="value" fill="#8b5cf6" />
+              ]} margin={chartTheme.margin}>
+                <CartesianGrid {...chartTheme.grid} />
+                <XAxis dataKey="name" {...chartTheme.axis} />
+                <YAxis {...chartTheme.axis} />
+                <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+                <Bar dataKey="value" fill={VALUATION_BAR_FILL} />
               </BarChart>
             </ResponsiveContainer>
           </div>
-          
+
           <div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+            <div className={STAT_GRID}>
               <StatBox label="Bond Price" value={bondPrice.toFixed(2)} />
               <StatBox label="Stock Price" value={stockPrice.toFixed(2)} />
             </div>
-            
-            <div style={{ padding: '1rem', backgroundColor: '#f0f9ff', borderRadius: '6px', borderLeft: '4px solid #0284c7' }}>
-              <h4 style={{ margin: '0 0 0.5rem 0', color: '#0c4a6e', fontWeight: '600' }}>
-                Present Value Principle
-              </h4>
-              <p style={{ margin: '0.5rem 0', fontSize: '0.85rem', color: '#0c4a6e', lineHeight: '1.5' }}>
+
+            <ToolCallout label="Reference" variant="info" title="Present Value Principle">
+              <p>
                 Assets are valued based on the present value of their expected future cash flows.
                 Higher discount rates reduce present values, making assets less valuable.
                 Lower discount rates increase present values, making assets more valuable.
               </p>
-            </div>
+            </ToolCallout>
           </div>
         </div>
       </div>
 
-      <div style={{ marginTop: '2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-        <InfoBox type="info">
-          <strong>📉 Bond Valuation</strong>
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ToolCallout label="Info" variant="info" title="Bond Valuation">
           <p>Bonds pay fixed coupon payments and return principal at maturity</p>
           <p>As discount rates rise, bond prices fall (inverse relationship)</p>
           <p>Longer maturity bonds are more sensitive to interest rate changes</p>
-        </InfoBox>
+        </ToolCallout>
 
-        <InfoBox type="warning">
-          <strong>⚠️ Stock Valuation</strong>
+        <ToolCallout label="Watch out" variant="warning" title="Stock Valuation">
           <p>Stocks pay dividends and are valued based on expected future dividends</p>
           <p>Gordon Growth Model assumes constant dividend growth</p>
           <p>Higher growth rates increase stock values, but also increase risk</p>
-        </InfoBox>
+        </ToolCallout>
 
-        <InfoBox type="success">
-          <strong>✅ Practical Applications</strong>
+        <ToolCallout label="Note" variant="lesson" title="Practical Applications">
           <p>Investors use these models to compare asset values</p>
           <p>Central banks monitor asset prices for financial stability</p>
           <p>Companies use valuation models for investment decisions</p>
-        </InfoBox>
+        </ToolCallout>
       </div>
 
-      <div style={{ marginTop: '2rem', padding: '1.5rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-        <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>
-          📊 Key Insights from Asset Pricing
-        </h3>
-        <ul style={{ fontSize: '0.875rem', lineHeight: '1.8', marginLeft: '1.5rem', color: '#475569' }}>
+      <ToolCallout label="Reference" variant="info" title="Key Insights from Asset Pricing">
+        <ul>
           <li>
             <strong>Present Value:</strong> The fundamental principle that all assets are valued based on the present value of their expected future cash flows.
           </li>
@@ -275,7 +277,7 @@ export default function AssetPricing() {
             <strong>Valuation Models:</strong> Different models (bond pricing, Gordon Growth, DCF) are used depending on the asset type and characteristics.
           </li>
         </ul>
-      </div>
+      </ToolCallout>
     </div>
   )
 }

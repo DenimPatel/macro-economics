@@ -17,22 +17,29 @@ export default function CasesIndex() {
             .map((n) => LECTURES.find((l) => l.n === n))
             .filter((l): l is NonNullable<typeof l> => Boolean(l))
           return (
-            <Link key={study.id} to={`/case/${study.slug}`} className="card p-5 no-underline hover:border-accent">
+            <Link
+              key={study.id}
+              to={`/case/${study.slug}`}
+              className="card section-band section-band--case p-5 no-underline transition-colors hover:border-accent"
+            >
               <div className="mb-2 flex items-center gap-2">
                 <TierBadge tier="case-study" />
                 <span className="text-xs text-fg-subtle">{study.period}</span>
               </div>
-              <h2 className="text-base font-bold text-fg">{study.title}</h2>
-              <p className="mt-1.5 text-sm text-fg-muted">{study.summary}</p>
-              <div className="mt-3 flex flex-wrap gap-1.5">
+              <h2 className="font-serif text-base font-bold text-fg">{study.title}</h2>
+              <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{study.summary}</p>
+              <div className="mt-3.5 flex flex-wrap gap-1.5">
                 {lectures.map((lecture) => (
-                  <span key={lecture.n} className="rounded-full bg-surface-2 px-2 py-0.5 text-[0.7rem] text-fg-muted">
+                  <span
+                    key={lecture.n}
+                    className="rounded-pill bg-surface-2 px-2 py-0.5 text-micro text-fg-muted"
+                  >
                     Lecture {lecture.n}
                   </span>
                 ))}
               </div>
-              <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-accent">
-                Open case <ArrowRight size={13} />
+              <span className="mt-3.5 inline-flex items-center gap-1 text-xs font-semibold text-accent-ink">
+                Open case <ArrowRight size={13} aria-hidden="true" />
               </span>
             </Link>
           )

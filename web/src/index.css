@@ -4,39 +4,111 @@
 
 /* ------------------------------------------------------------------ *
  * Semantic tokens. Light is the default; `.dark` on <html> flips them.
+ *
+ * The palette is a warm "paper" scheme: warm neutrals, a single amber
+ * accent, and a four-stop teal -> sky -> indigo -> violet depth ramp for
+ * the learning paths. Red is deliberately absent so "advanced" reads as
+ * depth rather than as a failure state.
+ *
+ * Colours are stored as space-separated RGB channels in `-ch` vars and
+ * exposed as `rgb()` in the plain `-c-` vars. Both forms are needed: the
+ * channels let Tailwind apply opacity modifiers (`bg-accent/10`), which it
+ * silently drops for a bare `var()` colour, and the `rgb()` form is what the
+ * `color-mix()` rules and Recharts consume. The numbers appear exactly once,
+ * in the `-ch` var; everything else derives from it, so the two cannot drift.
+ *
+ * Every hue that can appear as text on a tinted fill also has an `-ink`
+ * variant. Fills and borders are derived with `color-mix()`; text is NOT,
+ * because mixing toward the surface lightens it and drops it below AA.
  * ------------------------------------------------------------------ */
 :root {
-  --c-bg: #f8fafc;
-  --c-surface: #ffffff;
-  --c-surface-2: #f1f5f9;
-  --c-border: #e2e8f0;
-  --c-fg: #0f172a;
-  --c-fg-muted: #475569;
-  --c-fg-subtle: #94a3b8;
-  --c-accent: #2563eb;
-  --c-accent-fg: #ffffff;
-  --c-tier-beginner: #16a34a;
-  --c-tier-intermediate: #d97706;
-  --c-tier-advanced: #dc2626;
-  --c-tier-case: #7c3aed;
-  --c-code-bg: #f1f5f9;
+  /* Warm paper neutrals */
+  --c-bg-ch: 250 247 242;
+  --c-surface-ch: 255 253 250;
+  --c-surface-raised-ch: 255 255 255;
+  --c-surface-2-ch: 244 239 231;
+  --c-border-ch: 231 223 210;
+  --c-border-strong-ch: 214 202 187;
+  --c-fg-ch: 28 25 23;
+  --c-fg-muted-ch: 87 83 78;
+  --c-fg-subtle-ch: 138 130 122;
+
+  /* Accent: amber/ochre. Kept distinct from every tier hue. */
+  --c-accent-ch: 180 83 9;
+  --c-accent-ink-ch: 146 64 14;
+  --c-accent-fg-ch: 255 253 250;
+
+  /* Tier depth ramp */
+  --c-tier-beginner-ch: 13 148 136;
+  --c-tier-intermediate-ch: 2 132 199;
+  --c-tier-advanced-ch: 79 70 229;
+  --c-tier-case-ch: 124 58 237;
+
+  /* Tier ink: AA text on a tier-tinted fill */
+  --c-tier-beginner-ink-ch: 17 94 89;
+  --c-tier-intermediate-ink-ch: 7 89 133;
+  --c-tier-advanced-ink-ch: 55 48 163;
+  --c-tier-case-ink-ch: 91 33 182;
+
+  --c-code-bg-ch: 244 239 231;
+
+  /* Derived colour forms. Resolved at use time, so the `.dark` overrides
+     below only need to change the `-ch` vars. */
+  --c-bg: rgb(var(--c-bg-ch));
+  --c-surface: rgb(var(--c-surface-ch));
+  --c-surface-raised: rgb(var(--c-surface-raised-ch));
+  --c-surface-2: rgb(var(--c-surface-2-ch));
+  --c-border: rgb(var(--c-border-ch));
+  --c-border-strong: rgb(var(--c-border-strong-ch));
+  --c-fg: rgb(var(--c-fg-ch));
+  --c-fg-muted: rgb(var(--c-fg-muted-ch));
+  --c-fg-subtle: rgb(var(--c-fg-subtle-ch));
+  --c-accent: rgb(var(--c-accent-ch));
+  --c-accent-ink: rgb(var(--c-accent-ink-ch));
+  --c-accent-fg: rgb(var(--c-accent-fg-ch));
+  --c-tier-beginner: rgb(var(--c-tier-beginner-ch));
+  --c-tier-intermediate: rgb(var(--c-tier-intermediate-ch));
+  --c-tier-advanced: rgb(var(--c-tier-advanced-ch));
+  --c-tier-case: rgb(var(--c-tier-case-ch));
+  --c-tier-beginner-ink: rgb(var(--c-tier-beginner-ink-ch));
+  --c-tier-intermediate-ink: rgb(var(--c-tier-intermediate-ink-ch));
+  --c-tier-advanced-ink: rgb(var(--c-tier-advanced-ink-ch));
+  --c-tier-case-ink: rgb(var(--c-tier-case-ink-ch));
+  --c-code-bg: rgb(var(--c-code-bg-ch));
+
+  /* Decorative paper grain. Data URI, so no image asset is added. */
+  --c-paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
 }
 
 .dark {
-  --c-bg: #0b1220;
-  --c-surface: #111827;
-  --c-surface-2: #1e293b;
-  --c-border: #263349;
-  --c-fg: #e5e7eb;
-  --c-fg-muted: #9aa7bd;
-  --c-fg-subtle: #6b7a93;
-  --c-accent: #60a5fa;
-  --c-accent-fg: #0b1220;
-  --c-tier-beginner: #4ade80;
-  --c-tier-intermediate: #fbbf24;
-  --c-tier-advanced: #f87171;
-  --c-tier-case: #a78bfa;
-  --c-code-bg: #1e293b;
+  /* Warm neutral dark, re-derived from the light paper rather than inverted. */
+  --c-bg-ch: 20 17 15;
+  --c-surface-ch: 28 25 23;
+  --c-surface-raised-ch: 36 33 30;
+  --c-surface-2-ch: 41 37 36;
+  --c-border-ch: 58 51 48;
+  --c-border-strong-ch: 77 68 64;
+  --c-fg-ch: 245 240 234;
+  --c-fg-muted-ch: 201 192 182;
+  --c-fg-subtle-ch: 155 145 136;
+
+  --c-accent-ch: 251 191 36;
+  --c-accent-ink-ch: 252 211 77;
+  --c-accent-fg-ch: 28 25 23;
+
+  --c-tier-beginner-ch: 45 212 191;
+  --c-tier-intermediate-ch: 56 189 248;
+  --c-tier-advanced-ch: 129 140 248;
+  --c-tier-case-ch: 168 139 250;
+
+  --c-tier-beginner-ink-ch: 94 234 212;
+  --c-tier-intermediate-ink-ch: 125 211 252;
+  --c-tier-advanced-ink-ch: 165 180 252;
+  --c-tier-case-ink-ch: 196 181 253;
+
+  --c-code-bg-ch: 36 33 30;
+
+  --c-paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
 }
 
 * {
@@ -45,27 +117,62 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-    Arial, sans-serif;
+  font-family: 'Inter Variable', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--c-bg);
+  background-image: var(--c-paper-grain);
   color: var(--c-fg);
   line-height: 1.6;
 }
 
 a {
-  color: var(--c-accent);
+  color: var(--c-accent-ink);
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------ *
+ * Focus + skip link
+ * ------------------------------------------------------------------ */
+/* `:where()` keeps specificity at 0 so component rules still win. The
+ * outline follows each element's own border-radius. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  z-index: 60;
+  transform: translateY(-250%);
+  border-radius: 10px;
+  background-color: var(--c-accent);
+  color: var(--c-accent-fg);
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 10px 30px -12px rgba(28, 25, 23, 0.5);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  text-decoration: none;
 }
 
 /* Scrollbars */
@@ -77,7 +184,7 @@ a:hover {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--c-border);
+  background: var(--c-border-strong);
   border-radius: 6px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -108,17 +215,17 @@ a:hover {
   flex: 1;
   min-width: 0;
   padding: 2rem;
-  background-color: var(--c-bg);
+  background-color: transparent;
 }
 
 .section-title {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   color: var(--c-fg-subtle);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 1rem 1rem 0.5rem;
-  margin-top: 0.75rem;
+  letter-spacing: 0.08em;
+  padding: 1.25rem 1rem 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .nav-link {
@@ -147,42 +254,44 @@ a:hover {
 .nav-link.active {
   border-left-color: var(--c-accent);
   background-color: var(--c-surface);
-  color: var(--c-accent);
+  color: var(--c-accent-ink);
   font-weight: 600;
 }
 
 /* ------------------------------------------------------------------ *
- * Cards / tool chrome (retained for the existing tools)
+ * Cards / tool chrome
  * ------------------------------------------------------------------ */
 .card {
   background: var(--c-surface);
   border: 1px solid var(--c-border);
-  border-radius: 12px;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(28, 25, 23, 0.04);
 }
 
 .tool-card {
   background: var(--c-surface);
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 1.5rem;
   margin-bottom: 2rem;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 1px 2px rgba(28, 25, 23, 0.04);
   border: 1px solid var(--c-border);
 }
 
 .tool-title {
-  font-size: 1.5rem;
+  font-family: 'Literata Variable', Literata, Georgia, serif;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--c-fg);
   margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 .tool-description {
   font-size: 0.95rem;
   color: var(--c-fg-muted);
   margin-bottom: 1.5rem;
-  line-height: 1.6;
+  line-height: 1.65;
+  max-width: 62ch;
 }
 
 .control-panel {
@@ -192,7 +301,7 @@ a:hover {
   margin-bottom: 2rem;
   background-color: var(--c-surface-2);
   padding: 1.5rem;
-  border-radius: 10px;
+  border-radius: 14px;
   border: 1px solid var(--c-border);
 }
 
@@ -203,7 +312,7 @@ a:hover {
 }
 
 .control-label {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--c-fg-muted);
 }
@@ -220,7 +329,6 @@ a:hover {
   height: 6px;
   border-radius: 3px;
   background: var(--c-border);
-  outline: none;
   -webkit-appearance: none;
   appearance: none;
 }
@@ -246,9 +354,23 @@ a:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Range inputs take a ring on the thumb rather than an outline, because a
+   native outline around a 6px-tall track is almost invisible. */
+.slider-input:focus-visible {
+  outline: none;
+}
+
+.slider-input:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--c-accent) 35%, transparent);
+}
+
+.slider-input:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--c-accent) 35%, transparent);
+}
+
 .visualization-container {
   background: var(--c-surface);
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 1.5rem;
   border: 1px solid var(--c-border);
   margin-bottom: 2rem;
@@ -267,13 +389,20 @@ a:hover {
 }
 
 .button {
+  display: inline-flex;
+  align-items: center;
   padding: 0.6rem 1.1rem;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid transparent;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease;
   font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.button:hover {
+  text-decoration: none;
 }
 
 .button-primary {
@@ -304,6 +433,7 @@ a:hover {
 
 .comparison-panel h3 {
   grid-column: 1 / -1;
+  font-family: 'Literata Variable', Literata, Georgia, serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--c-fg);
@@ -314,29 +444,118 @@ a:hover {
   display: inline-block;
   padding: 0.2rem 0.6rem;
   border-radius: 999px;
-  font-size: 0.7rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   background-color: var(--c-surface-2);
   color: var(--c-fg-muted);
 }
 
 .badge.beginner {
   background-color: color-mix(in srgb, var(--c-tier-beginner) 15%, transparent);
-  color: var(--c-tier-beginner);
+  color: var(--c-tier-beginner-ink);
 }
 .badge.intermediate {
   background-color: color-mix(in srgb, var(--c-tier-intermediate) 15%, transparent);
-  color: var(--c-tier-intermediate);
+  color: var(--c-tier-intermediate-ink);
 }
 .badge.advanced {
   background-color: color-mix(in srgb, var(--c-tier-advanced) 15%, transparent);
-  color: var(--c-tier-advanced);
+  color: var(--c-tier-advanced-ink);
 }
 .badge.case-study {
   background-color: color-mix(in srgb, var(--c-tier-case) 15%, transparent);
-  color: var(--c-tier-case);
+  color: var(--c-tier-case-ink);
+}
+
+/* ------------------------------------------------------------------ *
+ * Tier chips
+ *
+ * Component classes, not Tailwind utilities: an opacity modifier such as
+ * `bg-tier-beginner/15` is silently dropped when the colour is a bare
+ * `var(...)`, so the utility compiles to nothing. Backgrounds are mixed from
+ * the base hue; text uses the dedicated `-ink` variant to clear AA.
+ * ------------------------------------------------------------------ */
+.tier-chip {
+  display: inline-block;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.tier-chip--beginner {
+  background-color: color-mix(in srgb, var(--c-tier-beginner) 14%, var(--c-surface));
+  border-color: color-mix(in srgb, var(--c-tier-beginner) 32%, transparent);
+  color: var(--c-tier-beginner-ink);
+}
+
+.tier-chip--intermediate {
+  background-color: color-mix(in srgb, var(--c-tier-intermediate) 14%, var(--c-surface));
+  border-color: color-mix(in srgb, var(--c-tier-intermediate) 32%, transparent);
+  color: var(--c-tier-intermediate-ink);
+}
+
+.tier-chip--advanced {
+  background-color: color-mix(in srgb, var(--c-tier-advanced) 14%, var(--c-surface));
+  border-color: color-mix(in srgb, var(--c-tier-advanced) 32%, transparent);
+  color: var(--c-tier-advanced-ink);
+}
+
+.tier-chip--case {
+  background-color: color-mix(in srgb, var(--c-tier-case) 14%, var(--c-surface));
+  border-color: color-mix(in srgb, var(--c-tier-case) 32%, transparent);
+  color: var(--c-tier-case-ink);
+}
+
+/* Tinted band used to give each learning path its own section identity on the
+   landing page and the syllabus. */
+.section-band {
+  border-top: 3px solid transparent;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.section-band--beginner {
+  border-top-color: var(--c-tier-beginner);
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--c-tier-beginner) 9%, transparent),
+    transparent 88px
+  );
+}
+
+.section-band--intermediate {
+  border-top-color: var(--c-tier-intermediate);
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--c-tier-intermediate) 9%, transparent),
+    transparent 88px
+  );
+}
+
+.section-band--advanced {
+  border-top-color: var(--c-tier-advanced);
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--c-tier-advanced) 9%, transparent),
+    transparent 88px
+  );
+}
+
+.section-band--case {
+  border-top-color: var(--c-tier-case);
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--c-tier-case) 9%, transparent),
+    transparent 88px
+  );
 }
 
 /* ------------------------------------------------------------------ *
@@ -344,42 +563,48 @@ a:hover {
  * ------------------------------------------------------------------ */
 .prose-lecture {
   color: var(--c-fg);
-  font-size: 1.0625rem;
+  font-family: 'Literata Variable', Literata, Iowan Old Style, Palatino, Georgia, serif;
+  font-size: 1.125rem;
   line-height: 1.75;
-  max-width: 72ch;
+  max-width: 68ch;
+  /* Literata's vertical metrics need a little more air than Inter's. */
+  hanging-punctuation: first last;
 }
 
 .prose-lecture > * + * {
-  margin-top: 1rem;
+  margin-top: 1.15rem;
 }
 
 .prose-lecture h1 {
-  font-size: 2rem;
-  line-height: 1.2;
-  font-weight: 800;
+  font-size: 2.125rem;
+  line-height: 1.15;
+  font-weight: 700;
   letter-spacing: -0.02em;
   margin-top: 0;
 }
 
 .prose-lecture h2 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  line-height: 1.25;
   font-weight: 700;
-  letter-spacing: -0.01em;
-  margin-top: 2.5rem;
-  padding-bottom: 0.35rem;
+  letter-spacing: -0.015em;
+  margin-top: 2.75rem;
+  padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--c-border);
 }
 
 .prose-lecture h3 {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
+  line-height: 1.3;
   font-weight: 700;
-  margin-top: 1.75rem;
+  letter-spacing: -0.01em;
+  margin-top: 2rem;
 }
 
 .prose-lecture h4 {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 700;
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
   color: var(--c-fg-muted);
 }
 
@@ -389,27 +614,68 @@ a:hover {
 }
 
 .prose-lecture li + li {
-  margin-top: 0.35rem;
+  margin-top: 0.4rem;
 }
 
 .prose-lecture strong {
   font-weight: 700;
 }
 
+/* Long-form prose: links carry a persistent underline so they are
+   distinguishable without relying on colour alone. */
+.prose-lecture a {
+  color: var(--c-accent-ink);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--c-accent) 40%, transparent);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+.prose-lecture a:hover {
+  text-decoration-color: var(--c-accent);
+}
+
 .prose-lecture blockquote {
   border-left: 4px solid var(--c-accent);
-  background: color-mix(in srgb, var(--c-accent) 8%, transparent);
-  padding: 0.85rem 1.1rem;
-  border-radius: 0 8px 8px 0;
+  background: color-mix(in srgb, var(--c-accent) 8%, var(--c-surface));
+  padding: 0.9rem 1.2rem;
+  border-radius: 0 10px 10px 0;
   color: var(--c-fg-muted);
+  font-style: italic;
 }
 
 .prose-lecture code {
   background: var(--c-code-bg);
-  padding: 0.15rem 0.4rem;
+  border: 1px solid var(--c-border);
+  padding: 0.12em 0.38em;
   border-radius: 5px;
-  font-size: 0.9em;
+  font-size: 0.86em;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* Fenced code blocks. There was no `pre` rule at all before this, so
+   fenced blocks fell back to the unstyled browser default. */
+.prose-lecture pre {
+  background: var(--c-code-bg);
+  border: 1px solid var(--c-border);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--c-fg);
+  tab-size: 2;
+}
+
+.prose-lecture pre code {
+  /* Reset the inline-code treatment for code nested in a block. */
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
 }
 
 .prose-lecture table {
@@ -418,30 +684,44 @@ a:hover {
   font-size: 0.95rem;
   display: block;
   overflow-x: auto;
+  font-variant-numeric: tabular-nums;
 }
 
 .prose-lecture th,
 .prose-lecture td {
   border: 1px solid var(--c-border);
-  padding: 0.5rem 0.75rem;
+  padding: 0.55rem 0.8rem;
   text-align: left;
 }
 
 .prose-lecture th {
   background: var(--c-surface-2);
   font-weight: 700;
+  font-family: 'Inter Variable', Inter, -apple-system, sans-serif;
+  font-size: 0.8125rem;
 }
 
 .prose-lecture hr {
   border: none;
   border-top: 1px solid var(--c-border);
-  margin: 2rem 0;
+  margin: 2.5rem 0;
 }
 
+/* KaTeX inherits `currentColor` (verified: katex.min.css declares no colour
+   of its own), so equations already theme correctly. This only handles
+   presentation. */
 .prose-lecture .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 0.25rem 0;
+  padding: 1.1rem 0.75rem;
+  margin: 0.5rem 0;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--c-surface-2) 60%, transparent);
+  border: 1px solid var(--c-border);
+}
+
+.prose-lecture .katex {
+  font-size: 1.03em;
 }
 
 .anchor-link {
@@ -451,12 +731,201 @@ a:hover {
   text-decoration: none;
 }
 .prose-lecture h2:hover .anchor-link,
-.prose-lecture h3:hover .anchor-link {
+.prose-lecture h3:hover .anchor-link,
+.anchor-link:focus-visible {
   opacity: 1;
 }
 
 /* ------------------------------------------------------------------ *
+ * Tool callouts, stat tiles, and inputs
+ *
+ * These back the shared primitives in components/ToolComponents.tsx and
+ * replace the hand-rolled panels the tools used to build from inline hex
+ * styles. Backgrounds are mixed from the hue; text uses the `-ink` variant
+ * so it clears AA against the tinted fill.
+ * ------------------------------------------------------------------ */
+.tool-callout {
+  margin-bottom: 2.25rem;
+  padding: 1.4rem 1.6rem;
+  border-radius: 14px;
+  border: 1px solid var(--c-border);
+  border-left: 4px solid var(--callout-hue, var(--c-accent));
+  background-color: color-mix(in srgb, var(--callout-hue, var(--c-accent)) 7%, var(--c-surface));
+}
+
+.tool-callout--lesson {
+  --callout-hue: var(--c-tier-beginner);
+  --callout-ink: var(--c-tier-beginner-ink);
+}
+
+.tool-callout--try {
+  --callout-hue: var(--c-accent);
+  --callout-ink: var(--c-accent-ink);
+}
+
+.tool-callout--insight {
+  --callout-hue: var(--c-tier-advanced);
+  --callout-ink: var(--c-tier-advanced-ink);
+}
+
+.tool-callout--info {
+  --callout-hue: var(--c-tier-intermediate);
+  --callout-ink: var(--c-tier-intermediate-ink);
+}
+
+.tool-callout--warning {
+  --callout-hue: var(--c-tier-case);
+  --callout-ink: var(--c-tier-case-ink);
+}
+
+.tool-callout-label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--callout-ink, var(--c-accent-ink));
+  margin-bottom: 0.65rem;
+}
+
+.tool-callout-title {
+  font-family: 'Literata Variable', Literata, Georgia, serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--c-fg);
+  margin-bottom: 0.75rem;
+}
+
+.tool-callout-body {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--c-fg-muted);
+  max-width: 64ch;
+}
+
+.tool-callout-body p + p {
+  margin-top: 0.75rem;
+}
+
+.tool-callout-body strong {
+  color: var(--c-fg);
+  font-weight: 600;
+}
+
+.tool-callout-body ul,
+.tool-callout-body ol {
+  padding-left: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.tool-callout-body li + li {
+  margin-top: 0.3rem;
+}
+
+/* Tiles */
+
+.stat-tile {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--c-tile-border, var(--c-border));
+  background-color: var(--c-tile-bg, var(--c-surface-2));
+  text-align: center;
+}
+
+.stat-tile--accent {
+  --c-tile-bg: color-mix(in srgb, var(--c-accent) 12%, var(--c-surface));
+  --c-tile-border: color-mix(in srgb, var(--c-accent) 28%, transparent);
+  --c-tile-ink: var(--c-accent-ink);
+}
+
+.stat-tile--positive {
+  --c-tile-bg: color-mix(in srgb, var(--c-tier-beginner) 12%, var(--c-surface));
+  --c-tile-border: color-mix(in srgb, var(--c-tier-beginner) 28%, transparent);
+  --c-tile-ink: var(--c-tier-beginner-ink);
+}
+
+.stat-tile--negative {
+  --c-tile-bg: color-mix(in srgb, var(--c-tier-case) 12%, var(--c-surface));
+  --c-tile-border: color-mix(in srgb, var(--c-tier-case) 28%, transparent);
+  --c-tile-ink: var(--c-tier-case-ink);
+}
+
+.stat-tile--caution {
+  --c-tile-bg: color-mix(in srgb, var(--c-tier-intermediate) 12%, var(--c-surface));
+  --c-tile-border: color-mix(in srgb, var(--c-tier-intermediate) 28%, transparent);
+  --c-tile-ink: var(--c-tier-intermediate-ink);
+}
+
+.stat-tile--neutral {
+  --c-tile-bg: var(--c-surface-2);
+  --c-tile-border: var(--c-border);
+  --c-tile-ink: var(--c-fg);
+}
+
+.stat-tile-label {
+  font-size: 0.8125rem;
+  color: var(--c-fg-muted);
+  margin-bottom: 0.4rem;
+}
+
+.stat-tile-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--c-tile-ink, var(--c-fg));
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.stat-tile-change {
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+  color: var(--c-tile-ink, var(--c-fg-muted));
+  opacity: 0.85;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Number input */
+
+.number-input {
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid var(--c-border-strong);
+  background-color: var(--c-surface);
+  color: var(--c-fg);
+  font-size: 1rem;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+}
+
+.number-input:focus-visible {
+  border-color: var(--c-accent);
+}
+
+/* Tool heading block */
+
+.tool-heading {
+  margin-bottom: 2rem;
+}
+
+.tool-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* ------------------------------------------------------------------ *
  * Responsive
+ *
+ * These breakpoints are deliberately the same as the Tailwind scale
+ * (`md` 768, `lg` 1024) because they target the handful of legacy global
+ * classes that Tailwind utilities do not cover. If one moves, the other
+ * must too.
  * ------------------------------------------------------------------ */
 @media (max-width: 1024px) {
   .sidebar {

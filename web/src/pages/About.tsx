@@ -67,7 +67,7 @@ npm run build          # type-check and build`}</code>
         </p>
       </section>
 
-      <div className="mt-6 flex flex-wrap gap-2">
+      <div className="mt-8 flex flex-wrap gap-2.5">
         <Link to="/syllabus" className="button button-primary no-underline">
           Syllabus
         </Link>

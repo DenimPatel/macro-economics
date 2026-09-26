@@ -2,7 +2,6 @@ import { useState } from 'react'
 import {
   BarChart,
   Bar,
-  LineChart,
   Line,
   XAxis,
   YAxis,
@@ -14,11 +13,12 @@ import {
 } from 'recharts'
 import {
   ToolHeader,
+  ToolCallout,
   SliderControl,
   StatBox,
-  Button,
   InfoBox,
 } from '../components/ToolComponents'
+import { chartTheme, chartColor } from '../design/chartTheme'
 
 interface Scenario {
   name: string
@@ -45,9 +45,9 @@ export default function RealInterestRate() {
 
   // Cost classification
   const getCostLevel = (rate: number) => {
-    if (rate < 5) return { label: 'Attractive', color: '#10b981' }
-    if (rate <= 7) return { label: 'Moderate', color: '#f59e0b' }
-    return { label: 'Expensive', color: '#ef4444' }
+    if (rate < 5) return { label: 'Attractive', tone: 'positive' as const }
+    if (rate <= 7) return { label: 'Moderate', tone: 'caution' as const }
+    return { label: 'Expensive', tone: 'negative' as const }
   }
 
   const costLevel = getCostLevel(realRate)
@@ -132,130 +132,84 @@ export default function RealInterestRate() {
       </div>
 
       {/* Fisher Equation Results */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
+      <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatBox label="Nominal Rate (i)" value={nominalRate.toFixed(1)} unit="%" />
         <StatBox label="Expected Inflation (π^e)" value={expectedInflation.toFixed(1)} unit="%" />
-        <StatBox label="Real Interest Rate (r)" value={realRate.toFixed(1)} unit="%" highlight />
-        <StatBox label="Cost Assessment" value={costLevel.label} />
+        <StatBox label="Real Interest Rate (r)" value={realRate.toFixed(1)} unit="%" tone="accent" />
+        <StatBox label="Cost Assessment" value={costLevel.label} tone={costLevel.tone} />
       </div>
 
       {/* Fisher Equation Explanation */}
-      <div style={{ marginBottom: '2rem' }}>
-        <InfoBox type="info">
-          <strong>Fisher Equation: r = i - π^e</strong>
-          <br />
-          Your nominal rate ({nominalRate.toFixed(1)}%) minus expected inflation ({expectedInflation.toFixed(1)}%) equals a real rate of{' '}
-          <strong>{realRate.toFixed(1)}%</strong>. This is what savers actually earn and what borrowers truly pay in
-          purchasing power terms.
+      <div className="mb-8">
+        <InfoBox type="info" title="Fisher Equation: r = i − π^e">
+          <p>
+            Your nominal rate ({nominalRate.toFixed(1)}%) minus expected inflation (
+            {expectedInflation.toFixed(1)}%) equals a real rate of{' '}
+            <strong>{realRate.toFixed(1)}%</strong>. This is what savers actually earn and what
+            borrowers truly pay in purchasing power terms.
+          </p>
         </InfoBox>
       </div>
 
       {/* Investment Decision Indicator */}
-      <div
-        style={{
-          padding: '1.5rem',
-          backgroundColor: isAttractive ? '#dcfce7' : '#fee2e2',
-          borderLeft: `4px solid ${isAttractive ? '#16a34a' : '#dc2626'}`,
-          borderRadius: '4px',
-          marginBottom: '2rem',
-        }}
+      <ToolCallout
+        label="Investment decision"
+        variant={isAttractive ? 'insight' : 'warning'}
+        title="Project viability at the current real rate"
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-          <div
-            style={{
-              fontSize: '2rem',
-              fontWeight: 'bold',
-              color: isAttractive ? '#16a34a' : '#dc2626',
-              minWidth: '60px',
-            }}
+        <div className="mb-3 flex items-center gap-4">
+          <span
+            className={`font-serif text-display-sm font-bold tabular-nums ${
+              isAttractive ? 'text-tier-beginner-ink' : 'text-tier-case-ink'
+            }`}
           >
             {investmentDecision}
-          </div>
+          </span>
           <div>
-            <div style={{ fontWeight: '600', color: isAttractive ? '#15803d' : '#991b1b', marginBottom: '0.25rem' }}>
-              Investment Decision
-            </div>
-            <div style={{ fontSize: '0.875rem', color: isAttractive ? '#15803d' : '#7f1d1d' }}>
-              {investmentReason}
-            </div>
+            <p className="font-semibold text-fg">vs. a {projectReturn}% project return</p>
+            <p className="text-sm">{investmentReason}</p>
           </div>
         </div>
-        <div style={{ fontSize: '0.85rem', color: isAttractive ? '#166534' : '#7f1d1d', fontStyle: 'italic' }}>
-          Firms compare the real interest rate (their borrowing cost) to expected project returns. When real rates are
-          low, projects become more attractive.
-        </div>
-      </div>
+        <p className="text-sm italic opacity-90">
+          Firms compare the real interest rate (their borrowing cost) to expected project returns. When
+          real rates are low, projects become more attractive.
+        </p>
+      </ToolCallout>
 
       {/* Comparison Mode Selection */}
-      <div style={{ marginBottom: '2rem' }}>
-        <div style={{ marginBottom: '1rem' }}>
-          <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.75rem', color: '#1e293b' }}>
-            Compare Scenarios:
-          </label>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.75rem' }}>
-            <button
-              onClick={() => setComparisonMode('none')}
-              style={{
-                padding: '0.75rem',
-                borderRadius: '6px',
-                border: `2px solid ${comparisonMode === 'none' ? '#3b82f6' : '#cbd5e1'}`,
-                backgroundColor: comparisonMode === 'none' ? '#eff6ff' : '#f8fafc',
-                color: comparisonMode === 'none' ? '#1e40af' : '#64748b',
-                fontWeight: comparisonMode === 'none' ? '600' : '500',
-                cursor: 'pointer',
-              }}
-            >
-              No Comparison
-            </button>
-            <button
-              onClick={() => setComparisonMode('same-real')}
-              style={{
-                padding: '0.75rem',
-                borderRadius: '6px',
-                border: `2px solid ${comparisonMode === 'same-real' ? '#3b82f6' : '#cbd5e1'}`,
-                backgroundColor: comparisonMode === 'same-real' ? '#eff6ff' : '#f8fafc',
-                color: comparisonMode === 'same-real' ? '#1e40af' : '#64748b',
-                fontWeight: comparisonMode === 'same-real' ? '600' : '500',
-                cursor: 'pointer',
-              }}
-            >
-              Same Real Rate
-            </button>
-            <button
-              onClick={() => setComparisonMode('same-nominal')}
-              style={{
-                padding: '0.75rem',
-                borderRadius: '6px',
-                border: `2px solid ${comparisonMode === 'same-nominal' ? '#3b82f6' : '#cbd5e1'}`,
-                backgroundColor: comparisonMode === 'same-nominal' ? '#eff6ff' : '#f8fafc',
-                color: comparisonMode === 'same-nominal' ? '#1e40af' : '#64748b',
-                fontWeight: comparisonMode === 'same-nominal' ? '600' : '500',
-                cursor: 'pointer',
-              }}
-            >
-              Same Nominal Rate
-            </button>
-            <button
-              onClick={() => setComparisonMode('historical')}
-              style={{
-                padding: '0.75rem',
-                borderRadius: '6px',
-                border: `2px solid ${comparisonMode === 'historical' ? '#3b82f6' : '#cbd5e1'}`,
-                backgroundColor: comparisonMode === 'historical' ? '#eff6ff' : '#f8fafc',
-                color: comparisonMode === 'historical' ? '#1e40af' : '#64748b',
-                fontWeight: comparisonMode === 'historical' ? '600' : '500',
-                cursor: 'pointer',
-              }}
-            >
-              Historical
-            </button>
+      <div className="mb-8">
+        <div className="mb-3">
+          <span className="control-label mb-3 block">Compare Scenarios</span>
+          <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
+            {(
+              [
+                ['none', 'No Comparison'],
+                ['same-real', 'Same Real Rate'],
+                ['same-nominal', 'Same Nominal Rate'],
+                ['historical', 'Historical'],
+              ] as const
+            ).map(([mode, label]) => (
+              <button
+                key={mode}
+                type="button"
+                onClick={() => setComparisonMode(mode)}
+                aria-pressed={comparisonMode === mode}
+                className={`rounded-card border-2 p-3 font-medium transition-colors ${
+                  comparisonMode === mode
+                    ? 'border-accent bg-accent/10 text-accent-ink'
+                    : 'border-border bg-surface text-fg-muted hover:border-accent/50'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
           </div>
         </div>
 
         {/* Scenario Comparison Visualization */}
         {comparisonMode !== 'none' && comparisonData.length > 0 && (
           <div className="visualization-container">
-            <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+            <h3 className="mb-4 font-serif text-lg font-bold text-fg">
               {comparisonMode === 'same-real'
                 ? 'Same Real Rate (3%), Different Nominal + Inflation'
                 : comparisonMode === 'same-nominal'
@@ -263,45 +217,59 @@ export default function RealInterestRate() {
                   : 'Historical Real Interest Rates'}
             </h3>
             <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={comparisonData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis label={{ value: 'Rate (%)', angle: -90, position: 'insideLeft' }} />
-                <Tooltip formatter={(value: number) => value.toFixed(2)} />
-                <Legend />
+              <BarChart data={comparisonData} margin={chartTheme.margin}>
+                <CartesianGrid {...chartTheme.grid} />
+                <XAxis dataKey="name" {...chartTheme.axis} />
+                <YAxis
+                  label={{ value: 'Rate (%)', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
+                  {...chartTheme.axis}
+                />
+                <Tooltip
+                  {...chartTheme.tooltip}
+                  cursor={chartTheme.cursor}
+                  formatter={(value: number) => value.toFixed(2)}
+                />
+                <Legend {...chartTheme.legend} />
                 {comparisonMode !== 'historical' && (
                   <>
-                    <Bar dataKey="nominal" fill="#3b82f6" name="Nominal Rate" />
-                    <Bar dataKey="inflation" fill="#f59e0b" name="Expected Inflation" />
+                    <Bar dataKey="nominal" fill={chartColor(0)} name="Nominal Rate" />
+                    <Bar dataKey="inflation" fill={chartColor(2)} name="Expected Inflation" />
                   </>
                 )}
-                <Bar dataKey="real" fill="#10b981" name="Real Rate" />
+                <Bar dataKey="real" fill={chartColor(1)} name="Real Rate" />
               </BarChart>
             </ResponsiveContainer>
 
             {/* Comparison Insights */}
-            <div style={{ marginTop: '1.5rem' }}>
+            <div className="mt-6">
               {comparisonMode === 'same-real' && (
-                <InfoBox type="success">
-                  <strong>Key Insight:</strong> Even though nominal rates differ, all three scenarios produce a 3% real
-                  rate. Firms care about REAL borrowing costs, not nominal rates. A 6% nominal rate with 3% inflation
-                  is equivalent to 3% nominal with 0% inflation—both cost the same in real terms.
+                <InfoBox type="success" title="Key insight">
+                  <p>
+                    Even though nominal rates differ, all three scenarios produce a 3% real rate. Firms
+                    care about REAL borrowing costs, not nominal rates. A 6% nominal rate with 3%
+                    inflation is equivalent to 3% nominal with 0% inflation&mdash;both cost the same in
+                    real terms.
+                  </p>
                 </InfoBox>
               )}
               {comparisonMode === 'same-nominal' && (
-                <InfoBox type="warning">
-                  <strong>Inflation Expectations Matter:</strong> The same 5% nominal rate yields different real rates
-                  (3%, 1%, -1%) depending on inflation expectations. If people expect 6% inflation, the real cost of
-                  borrowing becomes NEGATIVE—lenders actually pay borrowers in real terms! This happened during the
-                  1970s stagflation.
+                <InfoBox type="warning" title="Inflation expectations matter">
+                  <p>
+                    The same 5% nominal rate yields different real rates (3%, 1%, -1%) depending on
+                    inflation expectations. If people expect 6% inflation, the real cost of borrowing
+                    becomes NEGATIVE&mdash;lenders actually pay borrowers in real terms! This happened
+                    during the 1970s stagflation.
+                  </p>
                 </InfoBox>
               )}
               {comparisonMode === 'historical' && (
-                <InfoBox type="info">
-                  <strong>Historical Context:</strong> Notice the 2010s: 0.25% nominal with 1.5% inflation created a
-                  -1.25% real rate. Savers were being punished! This low-rate regime (2008-2021) boosted asset prices
-                  (wealth effect) but squeezed savers. By 2023, the Fed raised rates to fight inflation, normalizing
-                  real rates.
+                <InfoBox type="info" title="Historical context">
+                  <p>
+                    Notice the 2010s: 0.25% nominal with 1.5% inflation created a -1.25% real rate. Savers
+                    were being punished! This low-rate regime (2008-2021) boosted asset prices (wealth
+                    effect) but squeezed savers. By 2023, the Fed raised rates to fight inflation,
+                    normalizing real rates.
+                  </p>
                 </InfoBox>
               )}
             </div>
@@ -311,20 +279,27 @@ export default function RealInterestRate() {
 
       {/* Historical Real Rates Timeline */}
       <div className="visualization-container">
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Historical Real Interest Rates (1950s–2023)
         </h3>
         <ResponsiveContainer width="100%" height={320}>
-          <ComposedChart data={historicalContext}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="period" />
-            <YAxis label={{ value: 'Rate (%)', angle: -90, position: 'insideLeft' }} />
-            <Tooltip formatter={(value: number) => value.toFixed(2)} />
-            <Legend />
+          <ComposedChart data={historicalContext} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
+            <XAxis dataKey="period" {...chartTheme.axis} />
+            <YAxis
+              label={{ value: 'Rate (%)', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
+              {...chartTheme.axis}
+            />
+            <Tooltip
+              {...chartTheme.tooltip}
+              cursor={chartTheme.cursor}
+              formatter={(value: number) => value.toFixed(2)}
+            />
+            <Legend {...chartTheme.legend} />
             <Line
               type="monotone"
               dataKey="nominal"
-              stroke="#3b82f6"
+              stroke={chartColor(0)}
               strokeWidth={2}
               name="Nominal Rate"
               connectNulls
@@ -332,7 +307,7 @@ export default function RealInterestRate() {
             <Line
               type="monotone"
               dataKey="inflation"
-              stroke="#f59e0b"
+              stroke={chartColor(2)}
               strokeWidth={2}
               name="Inflation"
               connectNulls
@@ -340,7 +315,7 @@ export default function RealInterestRate() {
             <Line
               type="monotone"
               dataKey="real"
-              stroke="#10b981"
+              stroke={chartColor(1)}
               strokeWidth={3}
               name="Real Rate"
               connectNulls
@@ -350,55 +325,54 @@ export default function RealInterestRate() {
       </div>
 
       {/* Educational Insights Section */}
-      <div style={{ marginTop: '2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-        <div style={{ padding: '1rem', backgroundColor: '#f0f9ff', borderRadius: '6px', borderLeft: '4px solid #0284c7' }}>
-          <h4 style={{ margin: '0 0 0.5rem 0', color: '#0c4a6e', fontWeight: '600' }}>🏦 Why SVB Failed (2023)</h4>
-          <p style={{ margin: '0.5rem 0', fontSize: '0.85rem', color: '#0c4a6e', lineHeight: '1.5' }}>
-            SVB locked in low-coupon bonds when real rates were negative (2010s). When real rates rose from -1% to
-            +2%, bond values plummeted. The bank faced a real rate squeeze: liabilities (deposits) now demanded higher
-            returns than their assets could provide.
+      <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <ToolCallout label="Case study" variant="warning" title="Why SVB failed (2023)">
+          <p>
+            SVB locked in low-coupon bonds when real rates were negative (2010s). When real rates rose
+            from -1% to +2%, bond values plummeted. The bank faced a real rate squeeze: liabilities
+            (deposits) now demanded higher returns than their assets could provide.
           </p>
-        </div>
+        </ToolCallout>
 
-        <div style={{ padding: '1rem', backgroundColor: '#fef3c7', borderRadius: '6px', borderLeft: '4px solid #ca8a04' }}>
-          <h4 style={{ margin: '0 0 0.5rem 0', color: '#854d0e', fontWeight: '600' }}>📊 Wealth Effect & Asset Prices</h4>
-          <p style={{ margin: '0.5rem 0', fontSize: '0.85rem', color: '#854d0e', lineHeight: '1.5' }}>
-            Low real rates → Lower discount rates → Higher stock/real estate prices. When real rates rise, asset
-            valuations fall. This is how Fed policy transmits to household wealth and consumption. Higher real rates
-            make future cash flows worth less in today's dollars.
+        <ToolCallout label="Markets" variant="insight" title="Wealth effect & asset prices">
+          <p>
+            Low real rates → Lower discount rates → Higher stock/real estate prices. When real rates
+            rise, asset valuations fall. This is how Fed policy transmits to household wealth and
+            consumption. Higher real rates make future cash flows worth less in today's dollars.
           </p>
-        </div>
+        </ToolCallout>
 
-        <div style={{ padding: '1rem', backgroundColor: '#f0fdf4', borderRadius: '6px', borderLeft: '4px solid #16a34a' }}>
-          <h4 style={{ margin: '0 0 0.5rem 0', color: '#15803d', fontWeight: '600' }}>💰 Savers vs. Borrowers</h4>
-          <p style={{ margin: '0.5rem 0', fontSize: '0.85rem', color: '#15803d', lineHeight: '1.5' }}>
-            Negative real rates (like 2010s) punish savers but help borrowers. Retired people living on savings lose
-            purchasing power. Young borrowers (students, first-time homebuyers) thrive. Positive real rates reverse
-            this: savers benefit, but debt becomes expensive.
+        <ToolCallout label="Distribution" variant="info" title="Savers vs. borrowers">
+          <p>
+            Negative real rates (like 2010s) punish savers but help borrowers. Retired people living on
+            savings lose purchasing power. Young borrowers (students, first-time homebuyers) thrive.
+            Positive real rates reverse this: savers benefit, but debt becomes expensive.
           </p>
-        </div>
+        </ToolCallout>
       </div>
 
       {/* Fisher Equation Deep Dive */}
-      <div style={{ marginTop: '2rem' }}>
-        <InfoBox type="info">
-          <strong>The Fisher Equation in Action:</strong>
-          <br />
-          <br />
-          <strong>Scenario 1: Current Market</strong> - Nominal: {nominalRate.toFixed(1)}%, Inflation: {expectedInflation.toFixed(1)}% →
-          Real: <strong>{realRate.toFixed(1)}%</strong>
-          {realRate < 0 && ' (NEGATIVE! Lenders lose to inflation)'}
-          {realRate > 7 && ' (HIGH! Investment becomes expensive)'}
-          <br />
-          <br />
-          <strong>Policy Insight:</strong> Central banks can't directly control real rates—only nominal rates. Real
-          rates depend on expectations. If the Fed raises nominal rates but inflation expectations rise equally, real
-          rates stay flat. This happened in the 1970s when inflation expectations became unanchored.
-          <br />
-          <br />
-          <strong>Forward Guidance:</strong> Modern central banks shape real rates by managing inflation <em>expectations</em>.
-          If people believe the Fed will keep inflation at 2%, expected inflation stays low, real rates rise when the
-          Fed tightens. This credibility is everything.
+      <div className="mt-8">
+        <InfoBox type="info" title="The Fisher Equation in Action">
+          <p>
+            <strong>Scenario 1: Current Market</strong> — Nominal: {nominalRate.toFixed(1)}%,
+            Inflation: {expectedInflation.toFixed(1)}% → Real:{' '}
+            <strong>{realRate.toFixed(1)}%</strong>
+            {realRate < 0 && ' (NEGATIVE! Lenders lose to inflation)'}
+            {realRate > 7 && ' (HIGH! Investment becomes expensive)'}
+          </p>
+          <p>
+            <strong>Policy Insight:</strong> Central banks can't directly control real rates—only
+            nominal rates. Real rates depend on expectations. If the Fed raises nominal rates but
+            inflation expectations rise equally, real rates stay flat. This happened in the 1970s when
+            inflation expectations became unanchored.
+          </p>
+          <p>
+            <strong>Forward Guidance:</strong> Modern central banks shape real rates by managing
+            inflation <em>expectations</em>. If people believe the Fed will keep inflation at 2%,
+            expected inflation stays low, real rates rise when the Fed tightens. This credibility is
+            everything.
+          </p>
         </InfoBox>
       </div>
     </div>

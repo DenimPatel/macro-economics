@@ -13,11 +13,13 @@ import {
 } from 'recharts'
 import {
   ToolHeader,
+  ToolCallout,
   SliderControl,
   StatBox,
   Button,
   InfoBox,
 } from '../components/ToolComponents'
+import { chartTheme, chartColor } from '../design/chartTheme'
 
 interface MundellFlemingDataPoint {
   year: number
@@ -63,7 +65,7 @@ export default function MundellFleming() {
     let outputChange = 0
     let interestRateChange = 0
     let exchangeRateChange = 0
-    let inflationChange = 0
+    const inflationChange = 0
     
     if (policyType === 'monetary') {
       // Monetary expansion
@@ -108,12 +110,10 @@ export default function MundellFleming() {
       />
 
       <div className="control-panel">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>
-              Policy Type
-            </label>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <span className="control-label mb-2 block">Policy Type</span>
+            <div className="flex gap-2">
               <Button
                 onClick={() => setPolicyType('monetary')}
                 variant={policyType === 'monetary' ? 'primary' : 'secondary'}
@@ -128,7 +128,7 @@ export default function MundellFleming() {
               </Button>
             </div>
           </div>
-          
+
           <SliderControl
             label="Policy Effect"
             value={policyEffect}
@@ -136,14 +136,11 @@ export default function MundellFleming() {
             max={100}
             step={5}
             onChange={setPolicyEffect}
-            unit=""
           />
-          
+
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>
-              Exchange Rate Regime
-            </label>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <span className="control-label mb-2 block">Exchange Rate Regime</span>
+            <div className="flex gap-2">
               <Button
                 onClick={() => setExchangeRateType('fixed')}
                 variant={exchangeRateType === 'fixed' ? 'primary' : 'secondary'}
@@ -159,8 +156,8 @@ export default function MundellFleming() {
             </div>
           </div>
         </div>
-        
-        <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+
+        <div className="mt-4 flex gap-2">
           <Button
             onClick={() => setShowDataOverlay(!showDataOverlay)}
             variant={showDataOverlay ? 'primary' : 'secondary'}
@@ -170,43 +167,45 @@ export default function MundellFleming() {
         </div>
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
-          Policy Effectiveness Comparison
-        </h3>
-        <div style={{ height: '300px' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Policy Effectiveness Comparison</h3>
+        <div className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={mfData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="year" />
-              <YAxis />
-              <Tooltip />
-              <Area 
-                type="monotone" 
-                dataKey="output" 
-                stroke="#3b82f6" 
-                fill="#dbeafe" 
+            <AreaChart data={mfData} margin={chartTheme.margin}>
+              <CartesianGrid {...chartTheme.grid} />
+              <XAxis dataKey="year" {...chartTheme.axis} />
+              <YAxis {...chartTheme.axis} />
+              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+              <Area
+                type="monotone"
+                dataKey="output"
+                stroke={chartColor(0)}
+                fill={chartColor(0)}
+                fillOpacity={0.15}
                 name="Output (Y)"
               />
-              <Area 
-                type="monotone" 
-                dataKey="interestRate" 
-                stroke="#f59e0b" 
-                fill="#fef3c7" 
+              <Area
+                type="monotone"
+                dataKey="interestRate"
+                stroke={chartColor(2)}
+                fill={chartColor(2)}
+                fillOpacity={0.15}
                 name="Interest Rate (r)"
               />
-              <Area 
-                type="monotone" 
-                dataKey="exchangeRate" 
-                stroke="#10b981" 
-                fill="#d1fae5" 
+              <Area
+                type="monotone"
+                dataKey="exchangeRate"
+                stroke={chartColor(1)}
+                fill={chartColor(1)}
+                fillOpacity={0.15}
                 name="Exchange Rate"
               />
-              <Area 
-                type="monotone" 
-                dataKey="inflation" 
-                stroke="#8b5cf6" 
-                fill="#ede9fe" 
+              <Area
+                type="monotone"
+                dataKey="inflation"
+                stroke={chartColor(3)}
+                fill={chartColor(3)}
+                fillOpacity={0.15}
                 name="Inflation (π)"
               />
             </AreaChart>
@@ -214,38 +213,37 @@ export default function MundellFleming() {
         </div>
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
-          Policy Impact Summary
-        </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-          <div style={{ height: '300px' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Policy Impact Summary</h3>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={mfData.slice(0, 5)}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="year" />
-                <YAxis />
-                <Tooltip />
-                <Line 
-                  type="monotone" 
-                  dataKey="output" 
-                  stroke="#3b82f6" 
+              <LineChart data={mfData.slice(0, 5)} margin={chartTheme.margin}>
+                <CartesianGrid {...chartTheme.grid} />
+                <XAxis dataKey="year" {...chartTheme.axis} />
+                <YAxis {...chartTheme.axis} />
+                <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+                <Legend {...chartTheme.legend} />
+                <Line
+                  type="monotone"
+                  dataKey="output"
+                  stroke={chartColor(0)}
                   strokeWidth={2}
                   dot={{ r: 4 }}
                   name="Output"
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="interestRate" 
-                  stroke="#f59e0b" 
+                <Line
+                  type="monotone"
+                  dataKey="interestRate"
+                  stroke={chartColor(2)}
                   strokeWidth={2}
                   dot={{ r: 4 }}
                   name="Interest Rate"
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="exchangeRate" 
-                  stroke="#10b981" 
+                <Line
+                  type="monotone"
+                  dataKey="exchangeRate"
+                  stroke={chartColor(1)}
                   strokeWidth={2}
                   dot={{ r: 4 }}
                   name="Exchange Rate"
@@ -253,21 +251,18 @@ export default function MundellFleming() {
               </LineChart>
             </ResponsiveContainer>
           </div>
-          
+
           <div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
-              <StatBox label="Output" value={policyResult.output.toFixed(1)} />
+            <div className="mb-6 grid grid-cols-2 gap-3">
+              <StatBox label="Output" value={policyResult.output.toFixed(1)} tone="accent" />
               <StatBox label="Interest Rate" value={policyResult.interestRate.toFixed(1)} unit="%" />
               <StatBox label="Exchange Rate" value={policyResult.exchangeRate.toFixed(2)} />
               <StatBox label="Inflation" value={policyResult.inflation.toFixed(1)} unit="%" />
             </div>
-            
-            <div style={{ padding: '1rem', backgroundColor: '#f0f9ff', borderRadius: '6px', borderLeft: '4px solid #0284c7' }}>
-              <h4 style={{ margin: '0 0 0.5rem 0', color: '#0c4a6e', fontWeight: '600' }}>
-                Policy Effectiveness
-              </h4>
-              <p style={{ margin: '0.5rem 0', fontSize: '0.85rem', color: '#0c4a6e', lineHeight: '1.5' }}>
-                {policyType === 'monetary' 
+
+            <ToolCallout label="Current setting" variant="info" title="Policy Effectiveness">
+              <p>
+                {policyType === 'monetary'
                   ? (exchangeRateType === 'floating'
                       ? "Monetary expansion is highly effective in a floating exchange rate system. Output increases, interest rates fall, and the currency depreciates."
                       : "Monetary expansion is less effective in a fixed exchange rate system. The central bank must sterilize the policy to maintain the peg, limiting its impact.")
@@ -275,39 +270,33 @@ export default function MundellFleming() {
                       ? "Fiscal expansion is moderately effective in a floating exchange rate system. Output increases, interest rates rise, and the currency appreciates."
                       : "Fiscal expansion is less effective in a fixed exchange rate system. The central bank must raise interest rates to defend the peg, offsetting the fiscal stimulus.")}
               </p>
-            </div>
+            </ToolCallout>
           </div>
         </div>
       </div>
 
-      <div style={{ marginTop: '2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-        <InfoBox type="info">
-          <strong>📉 Mundell-Fleming Framework</strong>
+      <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <InfoBox type="info" title="Mundell-Fleming Framework">
           <p>Small open economy with perfect capital mobility</p>
           <p>IS-LM-PC model extended to international capital flows</p>
           <p>Exchange rate regime determines policy effectiveness</p>
         </InfoBox>
 
-        <InfoBox type="warning">
-          <strong>⚠️ Impossible Trinity</strong>
+        <InfoBox type="warning" title="Impossible Trinity">
           <p>Cannot simultaneously have fixed exchange rates, free capital mobility, and independent monetary policy</p>
           <p>Must choose two of three options</p>
           <p>Fixed exchange rates require sacrificing monetary independence</p>
         </InfoBox>
 
-        <InfoBox type="success">
-          <strong>✅ Policy Implications</strong>
+        <InfoBox type="success" title="Policy Implications">
           <p>Floating rates allow monetary policy to focus on domestic objectives</p>
           <p>Fixed rates require coordination with international monetary policy</p>
           <p>Capital controls can provide alternative policy flexibility</p>
         </InfoBox>
       </div>
 
-      <div style={{ marginTop: '2rem', padding: '1.5rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-        <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>
-          📊 Key Insights from Mundell-Fleming
-        </h3>
-        <ul style={{ fontSize: '0.875rem', lineHeight: '1.8', marginLeft: '1.5rem', color: '#475569' }}>
+      <ToolCallout label="Key insights" variant="insight" title="Insights from Mundell-Fleming">
+        <ul>
           <li>
             <strong>Exchange Rate Regimes:</strong> The choice of exchange rate regime fundamentally affects policy effectiveness.
             Fixed rates limit monetary autonomy but provide exchange rate stability.
@@ -327,7 +316,7 @@ export default function MundellFleming() {
             The Mundell-Fleming model helps understand these interactions.
           </li>
         </ul>
-      </div>
+      </ToolCallout>
     </div>
   )
 }

@@ -4,8 +4,12 @@ import { PageHeader } from '../components/ui'
 export default function NotFound() {
   return (
     <div className="card max-w-xl p-8">
-      <PageHeader title="Page not found" description="That route does not exist." />
-      <div className="flex flex-wrap gap-2">
+      <PageHeader
+        eyebrow="404"
+        title="Page not found"
+        description="That route does not exist. It may have been renamed, or the link may be mistyped."
+      />
+      <div className="flex flex-wrap gap-2.5">
         <Link to="/" className="button button-primary no-underline">
           Home
         </Link>

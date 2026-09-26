@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import {
-  LineChart,
   Line,
   XAxis,
   YAxis,
@@ -14,11 +13,26 @@ import {
 } from 'recharts'
 import {
   ToolHeader,
+  ToolCallout,
   SliderControl,
   StatBox,
   Button,
   InfoBox,
 } from '../components/ToolComponents'
+import { chartTheme, chartColor } from '../design/chartTheme'
+
+/** Each concept keeps one stable palette slot across every chart in this tool. */
+const TRADITIONAL_STROKE = chartColor(3)
+const EXPECTATIONS_STROKE = chartColor(0)
+const LOW_EXPECTATIONS_STROKE = chartColor(1)
+const HIGH_EXPECTATIONS_STROKE = chartColor(4)
+const CURRENT_STROKE = chartColor(2)
+const NATURAL_RATE_STROKE = chartColor(5)
+const DECADE_1960S = chartColor(3)
+const DECADE_1970S = chartColor(4)
+const DECADE_1980S = chartColor(1)
+const DECADE_2000S = chartColor(6)
+const DECADE_2020S = chartColor(2)
 
 export default function PhillipsCurve() {
   const [expectedInflation, setExpectedInflation] = useState(2)
@@ -52,22 +66,22 @@ export default function PhillipsCurve() {
   // Historical data points to overlay
   const historicalData = [
     // 1960s: Phillips curve trade-off was clear
-    { unemployment: 3.5, inflation: 3.5, period: '1960s', color: '#8b5cf6' },
-    { unemployment: 4.0, inflation: 4.2, period: '1960s', color: '#8b5cf6' },
-    { unemployment: 4.5, inflation: 5.0, period: '1960s', color: '#8b5cf6' },
+    { unemployment: 3.5, inflation: 3.5, period: '1960s', color: DECADE_1960S },
+    { unemployment: 4.0, inflation: 4.2, period: '1960s', color: DECADE_1960S },
+    { unemployment: 4.5, inflation: 5.0, period: '1960s', color: DECADE_1960S },
     // 1970s: Stagflation breaks Phillips Curve
-    { unemployment: 5.5, inflation: 8.5, period: '1970s', color: '#dc2626' },
-    { unemployment: 6.0, inflation: 11.0, period: '1970s', color: '#dc2626' },
-    { unemployment: 7.5, inflation: 9.5, period: '1970s', color: '#dc2626' },
+    { unemployment: 5.5, inflation: 8.5, period: '1970s', color: DECADE_1970S },
+    { unemployment: 6.0, inflation: 11.0, period: '1970s', color: DECADE_1970S },
+    { unemployment: 7.5, inflation: 9.5, period: '1970s', color: DECADE_1970S },
     // 1980s: Volcker disinflation
-    { unemployment: 8.0, inflation: 5.5, period: '1980s', color: '#059669' },
-    { unemployment: 7.0, inflation: 4.2, period: '1980s', color: '#059669' },
+    { unemployment: 8.0, inflation: 5.5, period: '1980s', color: DECADE_1980S },
+    { unemployment: 7.0, inflation: 4.2, period: '1980s', color: DECADE_1980S },
     // 2000s: Great Moderation
-    { unemployment: 4.5, inflation: 2.5, period: '2000s', color: '#0891b2' },
-    { unemployment: 5.0, inflation: 3.0, period: '2000s', color: '#0891b2' },
+    { unemployment: 4.5, inflation: 2.5, period: '2000s', color: DECADE_2000S },
+    { unemployment: 5.0, inflation: 3.0, period: '2000s', color: DECADE_2000S },
     // 2020s: Pandemic/Post-pandemic
-    { unemployment: 3.5, inflation: 3.5, period: '2020s', color: '#ea580c' },
-    { unemployment: 4.0, inflation: 4.2, period: '2020s', color: '#ea580c' },
+    { unemployment: 3.5, inflation: 3.5, period: '2020s', color: DECADE_2020S },
+    { unemployment: 4.0, inflation: 4.2, period: '2020s', color: DECADE_2020S },
   ]
 
   const curveData = generateCurveData()
@@ -99,7 +113,7 @@ export default function PhillipsCurve() {
       />
 
       <div className="control-panel">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
+        <div className="grid gap-6 lg:grid-cols-2">
           <SliderControl
             label="Expected Inflation (π^e)"
             value={expectedInflation}
@@ -138,40 +152,40 @@ export default function PhillipsCurve() {
           />
         </div>
 
-        <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
+        <div className="mt-6 flex flex-wrap gap-4">
           <Button
             onClick={() => setShowTraditional(!showTraditional)}
             variant={showTraditional ? 'primary' : 'secondary'}
           >
-            {showTraditional ? '📊 Traditional PC' : 'Expectations-Augmented PC'}
+            {showTraditional ? 'Traditional PC' : 'Expectations-Augmented PC'}
           </Button>
           <Button
             onClick={() => setShowHistorical(!showHistorical)}
             variant={showHistorical ? 'primary' : 'secondary'}
           >
-            {showHistorical ? '📈 Hide Historical' : 'Show Historical'}
+            {showHistorical ? 'Hide Historical' : 'Show Historical'}
           </Button>
           <Button
             onClick={() => setComparisonMode(!comparisonMode)}
             variant={comparisonMode ? 'primary' : 'secondary'}
           >
-            {comparisonMode ? '🔄 Comparison ON' : 'Comparison OFF'}
+            {comparisonMode ? 'Comparison ON' : 'Comparison OFF'}
           </Button>
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
+      <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatBox
           label="Current Unemployment"
           value={currentUnemployment.toFixed(1)}
           unit="%"
-          highlight
+          tone="accent"
         />
         <StatBox
           label="Implied Inflation"
           value={impliedInflation.toFixed(2)}
           unit="%"
-          highlight
+          tone="accent"
         />
         <StatBox
           label="Expected Inflation"
@@ -182,22 +196,22 @@ export default function PhillipsCurve() {
           label="Inflation Surprise"
           value={inflationSurprise.toFixed(2)}
           unit="%"
-          highlight={Math.abs(inflationSurprise) > 0.5}
+          tone={Math.abs(inflationSurprise) > 0.5 ? 'accent' : undefined}
         />
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
+      <div className="mb-8">
         <InfoBox type="info">
-          <strong>📌 What's shown:</strong> The{' '}
+          <strong>What's shown:</strong> The{' '}
           {showTraditional ? (
             <>
-              <span style={{ fontWeight: 'bold' }}>Traditional Phillips Curve</span> (1960s) assumes a
+              <span className="font-semibold text-fg">Traditional Phillips Curve</span> (1960s) assumes a
               stable trade-off: lower unemployment → higher inflation. Policy makers can permanently exploit this
               trade-off.
             </>
           ) : (
             <>
-              <span style={{ fontWeight: 'bold' }}>Expectations-Augmented Phillips Curve</span> shows that
+              <span className="font-semibold text-fg">Expectations-Augmented Phillips Curve</span> shows that
               inflation depends on both unemployment AND expected inflation. As expectations change (due to
               central bank credibility), the entire curve shifts.
             </>
@@ -206,34 +220,48 @@ export default function PhillipsCurve() {
       </div>
 
       <div className="visualization-container">
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           {showTraditional ? 'Traditional vs Expectations-Augmented Phillips Curves' : 'Phillips Curve Analysis'}
         </h3>
         <ResponsiveContainer width="100%" height={400}>
-          <ComposedChart data={comparisonMode ? comparisonData : curveData}>
-            <CartesianGrid strokeDasharray="3 3" />
+          <ComposedChart data={comparisonMode ? comparisonData : curveData} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
             <XAxis
               dataKey="unemployment"
               type="number"
-              label={{ value: 'Unemployment Rate (%)', position: 'insideBottomRight', offset: -10 }}
+              label={{
+                value: 'Unemployment Rate (%)',
+                position: 'insideBottomRight',
+                offset: -10,
+                fill: chartTheme.axis.tick.fill,
+              }}
               domain={[0, 10]}
+              {...chartTheme.axis}
             />
             <YAxis
-              label={{ value: 'Inflation Rate (%)', angle: -90, position: 'insideLeft' }}
+              label={{
+                value: 'Inflation Rate (%)',
+                angle: -90,
+                position: 'insideLeft',
+                fill: chartTheme.axis.tick.fill,
+              }}
               domain={[-3, 10]}
+              {...chartTheme.axis}
             />
             <Tooltip
+              {...chartTheme.tooltip}
+              cursor={chartTheme.cursor}
               formatter={(value) => (typeof value === 'number' ? `${value.toFixed(2)}%` : value)}
               labelFormatter={(label) => `Unemployment: ${label.toFixed(1)}%`}
             />
-            <Legend />
+            <Legend {...chartTheme.legend} />
 
             {showTraditional ? (
               <>
                 <Line
                   type="monotone"
                   dataKey="traditional"
-                  stroke="#8b5cf6"
+                  stroke={TRADITIONAL_STROKE}
                   name="Traditional PC (1960s)"
                   strokeWidth={2}
                   dot={false}
@@ -242,7 +270,7 @@ export default function PhillipsCurve() {
                 <Line
                   type="monotone"
                   dataKey="expectations"
-                  stroke="#3b82f6"
+                  stroke={EXPECTATIONS_STROKE}
                   name="Expectations-Augmented PC"
                   strokeWidth={2}
                   strokeDasharray="5 5"
@@ -255,7 +283,7 @@ export default function PhillipsCurve() {
                 <Line
                   type="monotone"
                   dataKey="expectations"
-                  stroke="#3b82f6"
+                  stroke={EXPECTATIONS_STROKE}
                   name={`Phillips Curve (π^e = ${expectedInflation.toFixed(1)}%)`}
                   strokeWidth={3}
                   dot={false}
@@ -266,7 +294,7 @@ export default function PhillipsCurve() {
                     <Line
                       type="monotone"
                       dataKey="lowExpectations"
-                      stroke="#10b981"
+                      stroke={LOW_EXPECTATIONS_STROKE}
                       name="Low Expectations (π^e - 2%)"
                       strokeWidth={2}
                       strokeDasharray="5 5"
@@ -276,7 +304,7 @@ export default function PhillipsCurve() {
                     <Line
                       type="monotone"
                       dataKey="highExpectations"
-                      stroke="#dc2626"
+                      stroke={HIGH_EXPECTATIONS_STROKE}
                       name="High Expectations (π^e + 2%)"
                       strokeWidth={2}
                       strokeDasharray="5 5"
@@ -293,8 +321,8 @@ export default function PhillipsCurve() {
               x={currentUnemployment}
               y={impliedInflation}
               r={6}
-              fill="#fbbf24"
-              stroke="#f59e0b"
+              fill={CURRENT_STROKE}
+              stroke={CURRENT_STROKE}
               strokeWidth={2}
               name="Current Position"
             />
@@ -304,8 +332,8 @@ export default function PhillipsCurve() {
               x={naturalUnemployment}
               y={-2.5}
               r={3}
-              fill="#6366f1"
-              stroke="#6366f1"
+              fill={NATURAL_RATE_STROKE}
+              stroke={NATURAL_RATE_STROKE}
               name={`Natural Rate (u_n = ${naturalUnemployment.toFixed(1)}%)`}
             />
 
@@ -334,70 +362,69 @@ export default function PhillipsCurve() {
       </div>
 
       {showHistorical && (
-        <div style={{ marginTop: '1.5rem', padding: '1rem', backgroundColor: '#f0f9ff', borderRadius: '6px' }}>
-          <p style={{ fontSize: '0.875rem', color: '#0c4a6e', marginBottom: '0.5rem' }}>
+        <div className="mt-6 rounded-card border border-tier-intermediate/30 bg-tier-intermediate/5 p-4">
+          <p className="mb-2 text-sm text-fg">
             <strong>Historical Periods:</strong>
           </p>
-          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', fontSize: '0.875rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <div style={{ width: '12px', height: '12px', backgroundColor: '#8b5cf6', borderRadius: '2px' }} />
+          <div className="flex flex-wrap gap-6 text-sm">
+            <div className="flex items-center gap-2">
+              <div className="h-3 w-3 rounded-sm bg-tier-case" />
               <span>1960s: Stable trade-off</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <div style={{ width: '12px', height: '12px', backgroundColor: '#dc2626', borderRadius: '2px' }} />
+            <div className="flex items-center gap-2">
+              <div className="h-3 w-3 rounded-sm bg-tier-advanced" />
               <span>1970s: Stagflation</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <div style={{ width: '12px', height: '12px', backgroundColor: '#059669', borderRadius: '2px' }} />
+            <div className="flex items-center gap-2">
+              <div className="h-3 w-3 rounded-sm bg-tier-beginner" />
               <span>1980s: Disinflation</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <div style={{ width: '12px', height: '12px', backgroundColor: '#0891b2', borderRadius: '2px' }} />
+            <div className="flex items-center gap-2">
+              <div className="h-3 w-3 rounded-sm bg-tier-intermediate" />
               <span>2000s: Great Moderation</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <div style={{ width: '12px', height: '12px', backgroundColor: '#ea580c', borderRadius: '2px' }} />
+            <div className="flex items-center gap-2">
+              <div className="h-3 w-3 rounded-sm bg-accent" />
               <span>2020s: Post-pandemic</span>
             </div>
           </div>
         </div>
       )}
 
-      <div style={{ marginTop: '2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+      <div className="mt-8 grid gap-6 lg:grid-cols-3">
         <InfoBox type="info">
-          <strong>🔍 The Phillips Curve Trade-Off</strong>
+          <strong>The Phillips Curve Trade-Off</strong>
           <p>In the 1960s, economist A.W. Phillips found an inverse relationship: lower unemployment led to higher inflation. Policy makers thought they could choose points on this curve to maximize employment or minimize inflation.</p>
         </InfoBox>
 
         <InfoBox type="warning">
-          <strong>⚠️ The 1970s Problem: Stagflation</strong>
+          <strong>The 1970s Problem: Stagflation</strong>
           <p>The Phillips Curve broke down. High inflation AND high unemployment coexisted (stagflation). Economists realized expectations matter: when workers expect inflation, they demand higher wages, shifting the entire curve.</p>
         </InfoBox>
 
         <InfoBox type="success">
-          <strong>✓ Modern Understanding: NAIRU</strong>
+          <strong>Modern Understanding: NAIRU</strong>
           <p>The Non-Accelerating Inflation Rate of Unemployment (NAIRU) is the unemployment rate consistent with stable inflation. Below NAIRU, inflation rises. Above NAIRU, inflation falls. The curve shifts with expected inflation.</p>
         </InfoBox>
 
         <InfoBox type="info">
-          <strong>💡 Why Expectations Matter</strong>
+          <strong>Why Expectations Matter</strong>
           <p>When the Fed commits to low inflation and gains credibility, workers expect low inflation. Firms don't raise prices as aggressively. The Phillips Curve shifts down, allowing lower unemployment without runaway inflation.</p>
         </InfoBox>
 
         <InfoBox type="warning">
-          <strong>⚡ Policy Implication: No Long-Run Trade-Off</strong>
+          <strong>Policy Implication: No Long-Run Trade-Off</strong>
           <p>In the long run, the Phillips Curve becomes vertical at the natural rate. Policymakers cannot permanently reduce unemployment below NAIRU via inflation—any attempt just raises expected inflation and shifts the curve.</p>
         </InfoBox>
 
         <InfoBox type="success">
-          <strong>🎯 Optimal Policy</strong>
+          <strong>Optimal Policy</strong>
           <p>Keep inflation expectations anchored near target via credible communication and follow-through. This keeps the Phillips Curve stable and predictable, allowing stable low inflation with sustainable employment.</p>
         </InfoBox>
       </div>
 
-      <div style={{ marginTop: '2rem', padding: '1.5rem', backgroundColor: '#ecfdf5', borderRadius: '6px', borderLeft: '4px solid #10b981' }}>
-        <h4 style={{ fontWeight: '600', marginBottom: '1rem' }}>📊 Key Insights & Experiments</h4>
-        <ul style={{ fontSize: '0.875rem', lineHeight: '1.8', marginLeft: '1.5rem', color: '#15803d' }}>
+      <ToolCallout label="Key Insights & Experiments" variant="insight">
+        <ul>
           <li>
             <strong>Shift Expected Inflation:</strong> Increase π^e to 6%. Notice the entire curve shifts up. At
             the same unemployment rate, inflation is now 4% higher. Central bank credibility matters!
@@ -423,7 +450,7 @@ export default function PhillipsCurve() {
             had to raise rates aggressively to restore credibility and shift expectations back down.
           </li>
         </ul>
-      </div>
+      </ToolCallout>
     </div>
   )
 }

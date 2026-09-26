@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Target } from 'lucide-react'
 import {
   LineChart,
   Line,
@@ -18,9 +19,19 @@ import {
   SliderControl,
   StatBox,
   Button,
+  ToggleDot,
   InfoBox,
 } from '../components/ToolComponents'
 import { formatNumber } from '../lib/calculations'
+import { chartTheme, chartColor } from '../design/chartTheme'
+
+/**
+ * Each economic concept keeps one stable series index across every chart in
+ * this tool, so a colour always means the same thing.
+ */
+const TEXTBOOK_STROKE = chartColor(0)
+const NK_STROKE = chartColor(1)
+const DECOMPOSITION_FILL = chartColor(2)
 
 interface ISCurveData {
   realRate: number
@@ -139,10 +150,12 @@ export default function ModernISCurve() {
         badge="advanced"
       />
 
-      <div className="controls-section">
-        <h3 className="section-title">📊 Monetary & Financial Conditions</h3>
+      <div>
+        <h3 className="mb-3 text-label-sm font-semibold text-fg">
+          Monetary &amp; Financial Conditions
+        </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <SliderControl
             label="Nominal Policy Rate (i)"
             value={nominalRate}
@@ -203,9 +216,11 @@ export default function ModernISCurve() {
           />
         </div>
 
-        <h3 className="section-title mt-6">💰 Fiscal & Real Sector</h3>
+        <h3 className="mb-3 mt-6 text-label-sm font-semibold text-fg">
+          Fiscal &amp; Real Sector
+        </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <SliderControl
             label="Government Spending (G)"
             value={G}
@@ -256,37 +271,40 @@ export default function ModernISCurve() {
           />
         </div>
 
-        <div className="flex gap-2 mt-4 flex-wrap">
+        <div className="mt-4 flex flex-wrap gap-2">
           <Button
             onClick={() => setShowTextbook(!showTextbook)}
             variant={showTextbook ? 'primary' : 'secondary'}
+            aria-pressed={showTextbook}
           >
-            {showTextbook ? '✓ Textbook IS' : 'Textbook IS'}
+            <ToggleDot on={showTextbook} /> Textbook IS
           </Button>
           <Button
             onClick={() => setShowModern(!showModern)}
             variant={showModern ? 'primary' : 'secondary'}
+            aria-pressed={showModern}
           >
-            {showModern ? '✓ Modern NK IS' : 'Modern NK IS'}
+            <ToggleDot on={showModern} /> Modern NK IS
           </Button>
           <Button
             onClick={() => setShowFinancialConditions(!showFinancialConditions)}
             variant={showFinancialConditions ? 'primary' : 'secondary'}
+            aria-pressed={showFinancialConditions}
           >
-            {showFinancialConditions ? '✓ Fin. Conditions' : 'Fin. Conditions'}
+            <ToggleDot on={showFinancialConditions} /> Fin. Conditions
           </Button>
         </div>
       </div>
 
       {/* === TAB NAVIGATION === */}
-      <div className="tabs-section mt-4">
-        <div className="flex gap-2 border-b-2 border-gray-200">
+      <div className="mt-4">
+        <div className="flex gap-2 border-b-2 border-border">
           <button
             onClick={() => setTab('curves')}
             className={`px-4 py-2 font-medium ${
               tab === 'curves'
-                ? 'border-b-2 border-blue-500 text-blue-600'
-                : 'text-gray-600 hover:text-gray-800'
+                ? 'border-b-2 border-accent text-accent-ink'
+                : 'text-fg-muted hover:text-fg'
             }`}
           >
             IS Curves
@@ -295,8 +313,8 @@ export default function ModernISCurve() {
             onClick={() => setTab('decomposition')}
             className={`px-4 py-2 font-medium ${
               tab === 'decomposition'
-                ? 'border-b-2 border-blue-500 text-blue-600'
-                : 'text-gray-600 hover:text-gray-800'
+                ? 'border-b-2 border-accent text-accent-ink'
+                : 'text-fg-muted hover:text-fg'
             }`}
           >
             Output Gap Decomposition
@@ -305,8 +323,8 @@ export default function ModernISCurve() {
             onClick={() => setTab('conditions')}
             className={`px-4 py-2 font-medium ${
               tab === 'conditions'
-                ? 'border-b-2 border-blue-500 text-blue-600'
-                : 'text-gray-600 hover:text-gray-800'
+                ? 'border-b-2 border-accent text-accent-ink'
+                : 'text-fg-muted hover:text-fg'
             }`}
           >
             Financial Conditions
@@ -318,9 +336,11 @@ export default function ModernISCurve() {
 
       {tab === 'curves' && (
         <div className="mt-6">
-          <div className="chart-container">
-            <h3 className="chart-title">Textbook vs. Modern IS Curves</h3>
-            <p className="text-sm text-gray-600 mb-4">
+          <div>
+            <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+              Textbook vs. Modern IS Curves
+            </h3>
+            <p className="mb-4 text-sm text-fg-muted">
               <strong>Textbook IS:</strong> Negatively sloped; output is a function of real interest rate via
               investment and multiplier.
               <br />
@@ -328,22 +348,44 @@ export default function ModernISCurve() {
               Steeper (more sensitive) when σ is low.
             </p>
             <ResponsiveContainer width="100%" height={400}>
-              <LineChart data={curveData}>
-                <CartesianGrid strokeDasharray="3 3" />
+              <LineChart data={curveData} margin={chartTheme.margin}>
+                <CartesianGrid {...chartTheme.grid} />
                 <XAxis
                   dataKey="realRate"
-                  label={{ value: 'Real Interest Rate (%)', position: 'insideBottomRight', offset: -5 }}
+                  label={{
+                    value: 'Real Interest Rate (%)',
+                    position: 'insideBottomRight',
+                    offset: -5,
+                    fill: chartTheme.axis.tick.fill,
+                  }}
                   type="number"
+                  {...chartTheme.axis}
                 />
-                <YAxis label={{ value: 'Output Gap (%) or Output Level', angle: -90, position: 'insideLeft' }} />
-                <Tooltip formatter={(val: any) => val.toFixed(2)} />
-                <Legend />
-                <ReferenceLine x={rNatural} stroke="#999" strokeDasharray="5 5" label={`r^n = ${rNatural}%`} />
+                <YAxis
+                  label={{
+                    value: 'Output Gap (%) or Output Level',
+                    angle: -90,
+                    position: 'insideLeft',
+                    fill: chartTheme.axis.tick.fill,
+                  }}
+                  {...chartTheme.axis}
+                />
+                <Tooltip
+                  {...chartTheme.tooltip}
+                  cursor={chartTheme.cursor}
+                  formatter={(val: number) => val.toFixed(2)}
+                />
+                <Legend {...chartTheme.legend} />
+                <ReferenceLine
+                  {...chartTheme.reference}
+                  x={rNatural}
+                  label={`r^n = ${rNatural}%`}
+                />
                 {showTextbook && (
                   <Line
                     type="monotone"
                     dataKey="outputGapTextbook"
-                    stroke="#ef4444"
+                    stroke={TEXTBOOK_STROKE}
                     dot={false}
                     name="Textbook IS (Output Gap %)"
                     strokeWidth={2}
@@ -354,7 +396,7 @@ export default function ModernISCurve() {
                   <Line
                     type="monotone"
                     dataKey="outputGapNK"
-                    stroke="#3b82f6"
+                    stroke={NK_STROKE}
                     dot={false}
                     name="Modern NK IS (Output Gap %)"
                     strokeWidth={2}
@@ -363,9 +405,8 @@ export default function ModernISCurve() {
                 )}
                 {/* Mark current equilibrium */}
                 <ReferenceLine
+                  {...chartTheme.reference}
                   x={realPolicyRate}
-                  stroke="#10b981"
-                  strokeDasharray="5 5"
                   label={`Current r = ${realPolicyRate.toFixed(2)}%`}
                 />
               </LineChart>
@@ -373,104 +414,118 @@ export default function ModernISCurve() {
           </div>
 
           {/* === KEY STATISTICS === */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
             <StatBox
               label="Real Policy Rate"
               value={`${formatNumber(realPolicyRate, 2)}%`}
-              color="blue"
+              tone="accent"
             />
             <StatBox
               label="Real Rate Gap"
               value={`${formatNumber(realRateGap, 2)}%`}
-              color={realRateGap > 0 ? 'red' : 'green'}
+              tone={realRateGap > 0 ? 'negative' : 'positive'}
             />
             <StatBox
               label="NK Output Gap"
               value={`${formatNumber(currentOutputGapNK, 2)}%`}
-              color={Math.abs(currentOutputGapNK) > 2 ? 'red' : 'blue'}
+              tone={Math.abs(currentOutputGapNK) > 2 ? 'negative' : 'accent'}
             />
           </div>
 
           <InfoBox type="info">
-            <h4 style={{fontWeight: 'bold', marginBottom: '0.5rem'}}>💡 Understanding the Curves</h4>
+            <h4 className="mb-2 text-label-sm font-semibold text-fg">Understanding the Curves</h4>
             <p><strong>Textbook IS Curve:</strong> The simple IS curve shows output as a downward-sloping function of the real interest rate. Higher real rates reduce investment, which via the multiplier reduces aggregate demand.</p>
-            <p style={{marginTop: '0.5rem'}}><strong>Modern NK IS Curve:</strong> What matters is not the absolute real rate, but how it compares to the natural rate. When r &gt; rⁿ, monetary policy is restrictive and output falls below potential.</p>
-            <p style={{marginTop: '0.5rem'}}><strong>Why the Difference Matters:</strong> The modern IS directly incorporates expectations of future growth and rates. Financial frictions enter explicitly as wedges tightening conditions independent of the policy rate alone.</p>
+            <p><strong>Modern NK IS Curve:</strong> What matters is not the absolute real rate, but how it compares to the natural rate. When r &gt; rⁿ, monetary policy is restrictive and output falls below potential.</p>
+            <p><strong>Why the Difference Matters:</strong> The modern IS directly incorporates expectations of future growth and rates. Financial frictions enter explicitly as wedges tightening conditions independent of the policy rate alone.</p>
           </InfoBox>
         </div>
       )}
 
       {tab === 'decomposition' && (
         <div className="mt-6">
-          <div className="chart-container">
-            <h3 className="chart-title">What Drives the Output Gap? (NK IS Decomposition)</h3>
-            <p className="text-sm text-gray-600 mb-4">
+          <div>
+            <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+              What Drives the Output Gap? (NK IS Decomposition)
+            </h3>
+            <p className="mb-4 text-sm text-fg-muted">
               The modern IS curve shows output gap = -(1/σ) × (r - rⁿ). Break down the sources of tightness/looseness.
             </p>
             <ResponsiveContainer width="100%" height={400}>
-              <BarChart data={decompositionData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="component" />
-                <YAxis label={{ value: 'Contribution to Output Gap (%)', angle: -90, position: 'insideLeft' }} />
-                <Tooltip formatter={(val: any) => val.toFixed(2)} />
-                <Bar dataKey="contribution" fill="#3b82f6" />
+              <BarChart data={decompositionData} margin={chartTheme.margin}>
+                <CartesianGrid {...chartTheme.grid} />
+                <XAxis dataKey="component" {...chartTheme.axis} />
+                <YAxis
+                  label={{
+                    value: 'Contribution to Output Gap (%)',
+                    angle: -90,
+                    position: 'insideLeft',
+                    fill: chartTheme.axis.tick.fill,
+                  }}
+                  {...chartTheme.axis}
+                />
+                <Tooltip
+                  {...chartTheme.tooltip}
+                  cursor={chartTheme.cursor}
+                  formatter={(val: number) => val.toFixed(2)}
+                />
+                <Bar dataKey="contribution" fill={DECOMPOSITION_FILL} />
               </BarChart>
             </ResponsiveContainer>
           </div>
 
           {/* === DECOMPOSITION DETAILS === */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-            <div className="stat-box-custom bg-blue-50 p-4 rounded">
-              <h4 className="font-bold text-blue-900">Policy Rate Effect</h4>
-              <p className="text-2xl font-bold text-blue-600">
+          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="rounded-card border border-tier-intermediate/30 bg-tier-intermediate/5 p-4">
+              <h4 className="font-bold text-tier-intermediate-ink">Policy Rate Effect</h4>
+              <p className="text-2xl font-bold tabular-nums text-tier-intermediate">
                 {formatNumber(-(1 / sigma) * (realPolicyRate - rNatural), 2)}%
               </p>
-              <p className="text-sm text-gray-700 mt-2">
+              <p className="mt-2 text-sm text-fg-muted">
                 Real policy rate ({formatNumber(realPolicyRate, 2)}%) is {formatNumber(realRateGap, 2)}% above natural.
               </p>
             </div>
 
-            <div className="stat-box-custom bg-purple-50 p-4 rounded">
-              <h4 className="font-bold text-purple-900">Financial Frictions</h4>
-              <p className="text-2xl font-bold text-purple-600">
+            <div className="rounded-card border border-tier-case/30 bg-tier-case/5 p-4">
+              <h4 className="font-bold text-tier-case-ink">Financial Frictions</h4>
+              <p className="text-2xl font-bold tabular-nums text-tier-case">
                 {formatNumber(-(1 / sigma) * (termPremium + creditSpread), 2)}%
               </p>
-              <p className="text-sm text-gray-700 mt-2">
+              <p className="mt-2 text-sm text-fg-muted">
                 Term premium + Credit spread add {formatNumber(termPremium + creditSpread, 2)}% to tightness.
               </p>
             </div>
 
-            <div className="stat-box-custom bg-green-50 p-4 rounded">
-              <h4 className="font-bold text-green-900">Fiscal Impulse</h4>
-              <p className="text-2xl font-bold text-green-600">
+            <div className="rounded-card border border-tier-beginner/30 bg-tier-beginner/5 p-4">
+              <h4 className="font-bold text-tier-beginner-ink">Fiscal Impulse</h4>
+              <p className="text-2xl font-bold tabular-nums text-tier-beginner">
                 {formatNumber(demandEffect, 1)} units
               </p>
-              <p className="text-sm text-gray-700 mt-2">
+              <p className="mt-2 text-sm text-fg-muted">
                 G = {formatNumber(G, 0)} generates {formatNumber(demandEffect, 1)} units via multiplier.
               </p>
             </div>
 
-            <div className="stat-box-custom bg-orange-50 p-4 rounded">
-              <h4 className="font-bold text-orange-900">Growth Expectations</h4>
-              <p className="text-2xl font-bold text-orange-600">
+            <div className="rounded-card border border-accent/30 bg-accent/5 p-4">
+              <h4 className="font-bold text-accent-ink">Growth Expectations</h4>
+              <p className="text-2xl font-bold tabular-nums text-accent">
                 {formatNumber(expectedGrowth, 2)}%
               </p>
-              <p className="text-sm text-gray-700 mt-2">
+              <p className="mt-2 text-sm text-fg-muted">
                 Baseline = 2.5%. Higher expectations raise permanent income and natural rate.
               </p>
             </div>
           </div>
 
           <InfoBox type="warning">
-            <h4 style={{fontWeight: 'bold', marginBottom: '0.5rem'}}>📌 Key Insights from Decomposition</h4>
+            <h4 className="mb-2 text-label-sm font-semibold text-fg">Key Insights from Decomposition</h4>
             <p><strong>The output gap is determined by:</strong></p>
-            <ol style={{listStylePosition: 'inside', marginTop: '0.5rem'}}>
+            <ol className="list-inside">
               <li><strong>Real Rate Gap (r - rⁿ):</strong> The fundamental IS driver.</li>
               <li><strong>Financial Frictions:</strong> Term premiums, credit spreads, liquidity conditions.</li>
               <li><strong>Fiscal Impulse:</strong> Government spending and taxes shift IS directly.</li>
               <li><strong>Growth Expectations:</strong> If households expect stronger future growth, permanent income rises.</li>
             </ol>
-            <p style={{marginTop: '0.5rem'}}><strong>Implication:</strong> Central banks cannot look only at the policy rate. When spreads spike, the economy tightens even if i falls.</p>
+            <p><strong>Implication:</strong> Central banks cannot look only at the policy rate. When spreads spike, the economy tightens even if i falls.</p>
           </InfoBox>
         </div>
       )}
@@ -479,94 +534,117 @@ export default function ModernISCurve() {
         <div className="mt-6">
           <div className="chart-container">
             <h3 className="chart-title">Financial Conditions Index & Components</h3>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="mb-4 text-sm leading-relaxed text-fg-muted">
               Real financing conditions = Policy rate + Term premium + Credit spread, all relative to natural rate.
               Tighter conditions (positive values) imply lower output gaps.
             </p>
 
             <ResponsiveContainer width="100%" height={300}>
-              <ComposedChart data={[{ name: 'Current', realRate: realPolicyRate, termPrem: termPremium, credSpread: creditSpread }]}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis label={{ value: 'Rate Level (%)', angle: -90, position: 'insideLeft' }} />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="realRate" fill="#3b82f6" name="Real Policy Rate" stackId="a" />
-                <Bar dataKey="termPrem" fill="#f59e0b" name="Term Premium" stackId="a" />
-                <Bar dataKey="credSpread" fill="#ef4444" name="Credit Spread" stackId="a" />
+              <ComposedChart data={[{ name: 'Current', realRate: realPolicyRate, termPrem: termPremium, credSpread: creditSpread }]} margin={chartTheme.margin}>
+                <CartesianGrid {...chartTheme.grid} />
+                <XAxis dataKey="name" {...chartTheme.axis} />
+                <YAxis
+                  label={{ value: 'Rate Level (%)', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
+                  {...chartTheme.axis}
+                />
+                <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+                <Legend {...chartTheme.legend} />
+                <Bar dataKey="realRate" fill={chartColor(0)} name="Real Policy Rate" stackId="a" />
+                <Bar dataKey="termPrem" fill={chartColor(2)} name="Term Premium" stackId="a" />
+                <Bar dataKey="credSpread" fill={chartColor(4)} name="Credit Spread" stackId="a" />
               </ComposedChart>
             </ResponsiveContainer>
           </div>
 
           {/* === FINANCIAL CONDITIONS SCORECARD === */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+          <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
             <StatBox
               label="Effective Real Rate"
               value={`${formatNumber(effectiveRealRate, 2)}%`}
-              color="blue"
+              tone="accent"
             />
             <StatBox
               label="Financial Conditions Index"
               value={`${formatNumber(financialConditionsIndex, 2)}`}
-              color={financialConditionsIndex > 0 ? 'red' : 'green'}
+              tone={financialConditionsIndex > 0 ? 'negative' : 'positive'}
             />
             <StatBox
               label="Term Premium Effect"
               value={`${formatNumber(termPremium, 2)}%`}
-              color={termPremium > 1 ? 'red' : 'blue'}
+              tone={termPremium > 1 ? 'negative' : 'accent'}
             />
             <StatBox
               label="Credit Spread Effect"
               value={`${formatNumber(creditSpread, 2)}%`}
-              color={creditSpread > 0.5 ? 'red' : 'green'}
+              tone={creditSpread > 0.5 ? 'negative' : 'positive'}
             />
           </div>
 
-          <InfoBox type="warning">
-            <h4 style={{fontWeight: 'bold', marginBottom: '0.5rem'}}>🏦 Modern Macro View: Beyond the Policy Rate</h4>
-            <p><strong>Why Central Banks Care About Financial Conditions, Not Just i:</strong></p>
-            <ol style={{listStylePosition: 'inside', marginTop: '0.5rem'}}>
+          <InfoBox type="warning" title="Modern macro view: beyond the policy rate">
+            <p>
+              <strong>Why central banks care about financial conditions, not just i:</strong>
+            </p>
+            <ol className="mt-2 list-decimal space-y-1.5 pl-5">
               <li><strong>Term Premium:</strong> When investors demand higher yields (flight to safety), the 10y-2y spread widens. This tightens conditions for long-term borrowers even if the 2y stays flat.</li>
               <li><strong>Credit Spreads:</strong> In crisis, BAA–UST spreads blow out. Companies face a wedge between the Fed rate and their actual cost of capital.</li>
               <li><strong>Liquidity:</strong> During March 2020, even short-term money markets froze. The policy rate was irrelevant if no lending happened.</li>
             </ol>
-            <p style={{marginTop: '0.5rem'}}><strong>Modern Central Banking Toolkit:</strong> Policy rate, QE/QT, lending facilities, forward guidance, and macroprudential policy all work together to control financial conditions.</p>
+            <p className="mt-2">
+              <strong>Modern central banking toolkit:</strong> Policy rate, QE/QT, lending facilities, forward guidance, and macroprudential policy all work together to control financial conditions.
+            </p>
           </InfoBox>
 
-          <div className="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
-            <h4 className="font-bold text-yellow-900 mb-2">🎯 2022–2024 Tightening Cycle Example</h4>
-            <p className="text-sm text-gray-700">
-              The Fed raised i from ~0% to 5.5% to fight inflation. But the output gap didn't fall as much as the
-              textbook IS suggested because:
+          <div className="tool-callout tool-callout--insight mt-6">
+            <p className="tool-callout-label">
+              <Target size={15} aria-hidden="true" />
+              Example
             </p>
-            <ul className="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
-              <li>
-                <strong>Expectations anchored:</strong> After 2020 surge, expectations settled ~2%. Real rate = 3.5%
-                relative to rⁿ ≈ 0.5%.
-              </li>
-              <li>
-                <strong>Natural rate rose:</strong> Tighter labor market, fiscal support, green capex → rⁿ moved up,
-                so r - rⁿ was less dramatic.
-              </li>
-              <li>
-                <strong>Financial resilience:</strong> Banks, corporates had strong balance sheets. Credit spreads
-                never spiked (unlike 2008, 2020). So lending continued.
-              </li>
-              <li>
-                <strong>Fiscal drag built in:</strong> Student loan pause ended, COVID transfers wound down. This
-                fiscal headwind partially offset monetary tightening.
-              </li>
-            </ul>
+            <h4 className="tool-callout-title">2022–2024 tightening cycle</h4>
+            <div className="tool-callout-body">
+              <p>
+                The Fed raised i from ~0% to 5.5% to fight inflation. But the output gap didn't fall as much as the
+                textbook IS suggested because:
+              </p>
+              <ul className="mt-2 list-disc space-y-1 pl-5">
+                <li>
+                  <strong>Expectations anchored:</strong> After 2020 surge, expectations settled ~2%. Real rate = 3.5%
+                  relative to rⁿ ≈ 0.5%.
+                </li>
+                <li>
+                  <strong>Natural rate rose:</strong> Tighter labor market, fiscal support, green capex → rⁿ moved up,
+                  so r - rⁿ was less dramatic.
+                </li>
+                <li>
+                  <strong>Financial resilience:</strong> Banks, corporates had strong balance sheets. Credit spreads
+                  never spiked (unlike 2008, 2020). So lending continued.
+                </li>
+                <li>
+                  <strong>Fiscal drag built in:</strong> Student loan pause ended, COVID transfers wound down. This
+                  fiscal headwind partially offset monetary tightening.
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       )}
 
       {/* === FOOTER: BRIDGE TO POLICY === */}
-      <InfoBox type="success">
-        <h4 style={{fontWeight: 'bold', marginBottom: '0.5rem'}}>🔗 How to Use This Tool as a Trader/Policymaker</h4>
-        <p><strong>For Central Bankers:</strong> Estimate rⁿ, monitor term premiums and credit spreads in real-time. Calibrate policy using the NK IS. Recognize that QE, forward guidance, and lending facilities also tighten/loosen financial conditions beyond i alone.</p>
-        <p style={{marginTop: '0.5rem'}}><strong>For Macro Traders:</strong> When spreads widen, expect demand destruction even if i is unchanged. When policy rate is above natural AND spreads are tight, the economy is double-squeezed. Use decomposition to ask: "Is tightening from policy rates, spreads, or growth expectations?"</p>
-        <p style={{marginTop: '0.5rem'}}><strong>For Investors:</strong> Evaluate whether current financial conditions are restrictive (output gap negative) or supportive. Real rate 2–3% above natural = growth likely slowing. Credit spread {'>'} 400 bps = significant tail risk.</p>
+      <InfoBox type="success" title="How to use this tool as a trader or policymaker">
+        <p>
+          <strong>For central bankers:</strong> Estimate rⁿ, monitor term premiums and credit spreads in real-time.
+          Calibrate policy using the NK IS. Recognize that QE, forward guidance, and lending facilities also
+          tighten or loosen financial conditions beyond i alone.
+        </p>
+        <p className="mt-2">
+          <strong>For macro traders:</strong> When spreads widen, expect demand destruction even if i is unchanged.
+          When the policy rate is above natural AND spreads are tight, the economy is double-squeezed. Use
+          decomposition to ask: "Is tightening from policy rates, spreads, or growth expectations?"
+        </p>
+        <p className="mt-2">
+          <strong>For investors:</strong> Evaluate whether current financial conditions are restrictive (output gap
+          negative) or supportive. Real rate 2–3% above natural = growth likely slowing. Credit spread &gt; 400 bps =
+          significant tail risk.
+        </p>
       </InfoBox>
     </div>
   )

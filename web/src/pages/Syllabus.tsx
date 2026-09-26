@@ -17,6 +17,19 @@ export default function Syllabus() {
 
   const total = LECTURES.length
   const done = completedLectures.length
+  const pct = Math.round((done / total) * 100)
+
+  // Derived from the lecture data rather than hard-coded, so adding or
+  // re-tagging a review lecture cannot leave this note stale.
+  const reviewNumbers = LECTURES.filter((l) => l.review)
+    .map((l) => l.n)
+    .sort((a, b) => a - b)
+  const reviewList =
+    reviewNumbers.length === 0
+      ? 'None'
+      : reviewNumbers.length === 1
+        ? `${reviewNumbers[0]}`
+        : `${reviewNumbers.slice(0, -1).join(', ')} and ${reviewNumbers[reviewNumbers.length - 1]}`
 
   return (
     <div>
@@ -26,27 +39,33 @@ export default function Syllabus() {
         description="Twenty-five lectures in four tiers, each linked to its source video, its tools, and a short quiz. Progress is saved on this device."
       />
 
-      <div className="mb-6 max-w-md">
-        <div className="mb-1 flex justify-between text-xs text-fg-muted">
+      <div className="mb-10 max-w-md">
+        <div className="mb-2 flex justify-between text-xs text-fg-muted">
           <span>
             {done} of {total} lectures complete
           </span>
-          <span>{Math.round((done / total) * 100)}%</span>
+          <span className="tabular-nums">{pct}%</span>
         </div>
-        <div className="h-2 overflow-hidden rounded-full bg-surface-2">
-          <div
-            className="h-full rounded-full bg-accent transition-all"
-            style={{ width: `${(done / total) * 100}%` }}
-          />
+        <div
+          className="h-2 overflow-hidden rounded-full bg-surface-2"
+          role="progressbar"
+          aria-valuenow={pct}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label="Course completion"
+        >
+          <div className="h-full rounded-full bg-accent transition-all" style={{ width: `${pct}%` }} />
         </div>
       </div>
 
       {groups.map(({ tier, meta, lectures }) => (
-        <section key={tier} className="mb-8">
-          <div className="mb-3 flex items-center gap-2">
-            <span className={`h-3 w-3 rounded-full ${meta.stripe}`} />
-            <h2 className="text-lg font-bold text-fg">{meta.label}</h2>
-            <span className="text-xs text-fg-subtle">{lectures.length} lectures</span>
+        <section key={tier} className="mb-10">
+          <div className="mb-4 flex items-center gap-2.5">
+            <span className={`h-2.5 w-2.5 rounded-full ${meta.stripe}`} aria-hidden="true" />
+            <h2 className="font-serif text-xl font-bold text-fg">{meta.label}</h2>
+            <span className="text-xs text-fg-subtle">
+              {lectures.length} lecture{lectures.length === 1 ? '' : 's'}
+            </span>
           </div>
           <div className="space-y-2">
             {lectures.map((lecture) => {
@@ -54,14 +73,14 @@ export default function Syllabus() {
               return (
                 <div
                   key={lecture.n}
-                  className="card flex flex-wrap items-center gap-x-3 gap-y-2 p-3.5"
+                  className="card flex flex-wrap items-center gap-x-3 gap-y-2 p-3.5 transition-colors hover:border-accent"
                 >
                   <span
-                    className={`grid h-7 w-7 shrink-0 place-items-center rounded-full text-xs font-bold ${
-                      isDone ? 'bg-tier-beginner/15 text-tier-beginner' : 'bg-surface-2 text-fg-muted'
+                    className={`grid h-7 w-7 shrink-0 place-items-center rounded-full text-xs font-bold tabular-nums ${
+                      isDone ? 'bg-tier-beginner/15 text-tier-beginner-ink' : 'bg-surface-2 text-fg-muted'
                     }`}
                   >
-                    {isDone ? <Check size={14} /> : lecture.n}
+                    {isDone ? <Check size={14} aria-hidden="true" /> : lecture.n}
                   </span>
                   <div className="min-w-0 flex-1">
                     <Link
@@ -78,7 +97,7 @@ export default function Syllabus() {
                       <Link
                         key={toolId}
                         to={`/tool/${toolId}`}
-                        className="rounded-full bg-surface-2 px-2 py-0.5 text-[0.7rem] text-fg-muted no-underline hover:text-accent"
+                        className="rounded-pill bg-surface-2 px-2 py-0.5 text-micro text-fg-muted no-underline hover:text-accent"
                       >
                         {TOOLS[toolId]?.title ?? toolId}
                       </Link>
@@ -87,10 +106,10 @@ export default function Syllabus() {
                       href={lecture.videoUrl}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="inline-flex items-center gap-1 text-[0.7rem] text-fg-subtle no-underline hover:text-accent"
+                      className="inline-flex items-center gap-1 text-micro text-fg-subtle no-underline hover:text-accent"
                       title="Source video"
                     >
-                      Video <ExternalLink size={11} />
+                      Video <ExternalLink size={11} aria-hidden="true" />
                     </a>
                   </div>
                 </div>
@@ -101,7 +120,7 @@ export default function Syllabus() {
       ))}
 
       <p className="text-xs text-fg-subtle">
-        Review lectures (10, 18, 25) consolidate earlier material and have no new tools.
+        Review lectures ({reviewList}) consolidate earlier material and have no new tools.
       </p>
     </div>
   )

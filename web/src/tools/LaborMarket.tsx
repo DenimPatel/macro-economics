@@ -12,11 +12,14 @@ import {
 } from 'recharts'
 import {
   ToolHeader,
+  ToolCallout,
   SliderControl,
   StatBox,
   Button,
+  ToggleDot,
   InfoBox,
 } from '../components/ToolComponents'
+import { chartTheme, chartColor } from '../design/chartTheme'
 
 interface EquilibriumPoint {
   unemployment: number
@@ -164,24 +167,17 @@ export default function LaborMarket() {
         />
       </div>
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '1rem',
-          marginBottom: '2rem',
-        }}
-      >
+      <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatBox
           label="Equilibrium Unemployment (u*)"
           value={(equilibrium.unemployment * 100).toFixed(2)}
           unit="%"
-          highlight
+          tone="accent"
         />
         <StatBox
           label="Equilibrium Real Wage (W/P)*"
           value={equilibrium.realWage.toFixed(3)}
-          highlight
+          tone="accent"
         />
         <StatBox
           label="Natural Rate (NAIRU)"
@@ -192,36 +188,40 @@ export default function LaborMarket() {
           label="Employment Level"
           value={(laborForce * (1 - equilibrium.unemployment)).toFixed(1)}
           unit="millions"
-          highlight
+          tone="accent"
         />
       </div>
 
       <div className="visualization-container">
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
-          WS/PS Equilibrium Diagram
-        </h3>
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">WS/PS Equilibrium Diagram</h3>
         <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={curveData}>
-            <CartesianGrid strokeDasharray="3 3" />
+          <LineChart data={curveData} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
             <XAxis
               dataKey="unemployment"
               label={{
                 value: 'Unemployment Rate (%)',
                 position: 'insideBottomRight',
                 offset: -5,
+                fill: chartTheme.axis.tick.fill,
               }}
               type="number"
               domain={[0, 12]}
+              {...chartTheme.axis}
             />
             <YAxis
               label={{
                 value: 'Real Wage (W/P)',
                 angle: -90,
                 position: 'insideLeft',
+                fill: chartTheme.axis.tick.fill,
               }}
               domain={[0.4, 1.2]}
+              {...chartTheme.axis}
             />
             <Tooltip
+              {...chartTheme.tooltip}
+              cursor={chartTheme.cursor}
               formatter={(value: number) =>
                 typeof value === 'number' ? value.toFixed(3) : value
               }
@@ -229,12 +229,12 @@ export default function LaborMarket() {
                 `u = ${typeof label === 'number' ? label.toFixed(1) : label}%`
               }
             />
-            <Legend />
+            <Legend {...chartTheme.legend} />
             {/* PS Curve (horizontal) */}
             <Line
               type="monotone"
               dataKey="ps"
-              stroke="#ef4444"
+              stroke={chartColor(4)}
               strokeWidth={2}
               name="PS Curve (Price-Setting)"
               dot={false}
@@ -244,7 +244,7 @@ export default function LaborMarket() {
             <Line
               type="monotone"
               dataKey="ws"
-              stroke="#3b82f6"
+              stroke={chartColor(0)}
               strokeWidth={2}
               name="WS Curve (Wage-Setting)"
               dot={false}
@@ -253,12 +253,12 @@ export default function LaborMarket() {
             {/* Natural rate marker */}
             <ReferenceLine
               x={naturalRate * 100}
-              stroke="#8b5cf6"
+              stroke={chartColor(3)}
               strokeDasharray="5 5"
               label={{
                 value: `NAIRU (${(naturalRate * 100).toFixed(1)}%)`,
                 position: 'top',
-                fill: '#8b5cf6',
+                fill: chartColor(3),
                 fontSize: 12,
               }}
             />
@@ -266,12 +266,12 @@ export default function LaborMarket() {
             {equilibrium.exists && (
               <ReferenceLine
                 x={equilibrium.unemployment * 100}
-                stroke="#10b981"
+                stroke={chartColor(1)}
                 strokeWidth={0}
                 label={{
                   value: `Equilibrium (u*: ${(equilibrium.unemployment * 100).toFixed(1)}%)`,
                   position: 'right',
-                  fill: '#10b981',
+                  fill: chartColor(1),
                   fontSize: 12,
                   fontWeight: 'bold',
                 }}
@@ -281,208 +281,141 @@ export default function LaborMarket() {
         </ResponsiveContainer>
       </div>
 
-      <div style={{ marginBottom: '2rem', padding: '1rem', backgroundColor: '#ecfdf5', borderRadius: '6px', borderLeft: '4px solid #10b981' }}>
-        <h4 style={{ fontWeight: '600', marginBottom: '0.5rem' }}>📊 Inflation Pressures</h4>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '1rem',
-            fontSize: '0.875rem',
-          }}
-        >
+      <ToolCallout label="Diagnosis" variant="insight" title="Inflation Pressures">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div>
-            <strong>Unemployment vs NAIRU:</strong>
-            <p style={{ margin: '0.5rem 0 0 0', color: '#15803d' }}>
+            <strong className="text-fg">Unemployment vs NAIRU:</strong>
+            <p className="mt-2 text-tier-beginner-ink">
               {equilibrium.unemployment < naturalRate
                 ? `u* (${(equilibrium.unemployment * 100).toFixed(1)}%) < NAIRU (${(naturalRate * 100).toFixed(1)}%) → Tight labor market`
                 : `u* (${(equilibrium.unemployment * 100).toFixed(1)}%) > NAIRU (${(naturalRate * 100).toFixed(1)}%) → Slack labor market`}
             </p>
           </div>
           <div>
-            <strong>Wage Inflation Pressure:</strong>
-            <p style={{ margin: '0.5rem 0 0 0', color: '#15803d' }}>
+            <strong className="text-fg">Wage Inflation Pressure:</strong>
+            <p className="mt-2 text-tier-beginner-ink">
               {unemploymentPressure} {wageInflationSign}
             </p>
           </div>
           <div>
-            <strong>Expected Impact:</strong>
-            <p style={{ margin: '0.5rem 0 0 0', color: '#15803d' }}>
+            <strong className="text-fg">Expected Impact:</strong>
+            <p className="mt-2 text-tier-beginner-ink">
               {equilibrium.unemployment < naturalRate
                 ? 'Wages rising faster than productivity → Inflation'
                 : 'Wage growth below productivity → Disinflation'}
             </p>
           </div>
         </div>
-      </div>
+      </ToolCallout>
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '1rem',
-          marginBottom: '2rem',
-        }}
-      >
+      <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
         <Button
           variant={compareScenarios ? 'primary' : 'secondary'}
           onClick={() => setCompareScenarios(true)}
+          pressed={compareScenarios}
         >
-          {compareScenarios ? '✓ ' : ''}Scenario Analysis
+          <ToggleDot on={compareScenarios} /> Scenario Analysis
         </Button>
         <Button
           variant={!compareScenarios ? 'primary' : 'secondary'}
           onClick={() => setCompareScenarios(false)}
+          pressed={!compareScenarios}
         >
-          {!compareScenarios ? '✓ ' : ''}Policy Experiments
+          <ToggleDot on={!compareScenarios} /> Policy Experiments
         </Button>
       </div>
 
       {compareScenarios ? (
         <div>
-          <div className="visualization-container" style={{ marginBottom: '2rem' }}>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
-              Scenario A: Weak vs Strong Unions
-            </h3>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '1rem',
-              }}
-            >
-              <div
-                style={{
-                  padding: '1rem',
-                  backgroundColor: '#fef3c7',
-                  borderRadius: '6px',
-                  borderLeft: '4px solid #f59e0b',
-                }}
-              >
-                <h4 style={{ fontWeight: '600', marginBottom: '0.5rem' }}>
-                  Weak Unions (β = 0.2)
-                </h4>
-                <p style={{ fontSize: '0.875rem', margin: '0.5rem 0' }}>
-                  <strong>u*:</strong> {(weakUnionsEquilibrium.unemployment * 100).toFixed(2)}%
+          <div className="visualization-container mb-8">
+            <h3 className="mb-4 font-serif text-lg font-bold text-fg">Scenario A: Weak vs Strong Unions</h3>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <ToolCallout label="Scenario A" variant="try" title="Weak Unions (β = 0.2)">
+                <p>
+                  <strong className="text-fg">u*:</strong>{' '}
+                  {(weakUnionsEquilibrium.unemployment * 100).toFixed(2)}%
                 </p>
-                <p style={{ fontSize: '0.875rem', margin: '0.5rem 0' }}>
-                  <strong>W/P:</strong> {weakUnionsEquilibrium.realWage.toFixed(3)}
+                <p>
+                  <strong className="text-fg">W/P:</strong>{' '}
+                  {weakUnionsEquilibrium.realWage.toFixed(3)}
                 </p>
-                <p style={{ fontSize: '0.75rem', color: '#78350f', marginTop: '1rem' }}>
+                <p className="mt-3 text-xs opacity-90">
                   Limited bargaining power → Lower real wages, Lower unemployment
                 </p>
-              </div>
-              <div
-                style={{
-                  padding: '1rem',
-                  backgroundColor: '#dbeafe',
-                  borderRadius: '6px',
-                  borderLeft: '4px solid #0284c7',
-                }}
-              >
-                <h4 style={{ fontWeight: '600', marginBottom: '0.5rem' }}>
-                  Strong Unions (β = 0.8)
-                </h4>
-                <p style={{ fontSize: '0.875rem', margin: '0.5rem 0' }}>
-                  <strong>u*:</strong> {(strongUnionsEquilibrium.unemployment * 100).toFixed(2)}%
+              </ToolCallout>
+              <ToolCallout label="Scenario B" variant="info" title="Strong Unions (β = 0.8)">
+                <p>
+                  <strong className="text-fg">u*:</strong>{' '}
+                  {(strongUnionsEquilibrium.unemployment * 100).toFixed(2)}%
                 </p>
-                <p style={{ fontSize: '0.875rem', margin: '0.5rem 0' }}>
-                  <strong>W/P:</strong> {strongUnionsEquilibrium.realWage.toFixed(3)}
+                <p>
+                  <strong className="text-fg">W/P:</strong>{' '}
+                  {strongUnionsEquilibrium.realWage.toFixed(3)}
                 </p>
-                <p style={{ fontSize: '0.75rem', color: '#0c2340', marginTop: '1rem' }}>
+                <p className="mt-3 text-xs opacity-90">
                   Strong bargaining power → Higher real wages, Higher unemployment
                 </p>
-              </div>
+              </ToolCallout>
             </div>
           </div>
 
-          <InfoBox type="info">
-            <strong>Key Insight:</strong> Strong unions increase real wages but at the cost of higher equilibrium unemployment. There is an inherent trade-off: workers in unions get higher wages, but fewer workers are employed overall. This explains why more unionized labor markets (like Nordic countries) often have higher structural unemployment rates compared to more competitive labor markets.
+          <InfoBox type="info" title="Key insight">
+            <p>
+              Strong unions increase real wages but at the cost of higher equilibrium unemployment.
+              There is an inherent trade-off: workers in unions get higher wages, but fewer workers are
+              employed overall. This explains why more unionized labor markets (like Nordic countries)
+              often have higher structural unemployment rates compared to more competitive labor
+              markets.
+            </p>
           </InfoBox>
         </div>
       ) : (
         <div>
-          <div className="visualization-container" style={{ marginBottom: '2rem' }}>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+          <div className="visualization-container mb-8">
+            <h3 className="mb-4 font-serif text-lg font-bold text-fg">
               Policy Experiment: Firm Markup Effects
             </h3>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '1rem',
-              }}
-            >
-              <div
-                style={{
-                  padding: '1rem',
-                  backgroundColor: '#dcfce7',
-                  borderRadius: '6px',
-                  borderLeft: '4px solid #22c55e',
-                }}
-              >
-                <h4 style={{ fontWeight: '600', marginBottom: '0.5rem' }}>
-                  Low Markup (μ = 0.1)
-                </h4>
-                <p style={{ fontSize: '0.875rem', margin: '0.5rem 0' }}>
-                  <strong>u*:</strong> {(lowMarkupEquilibrium.unemployment * 100).toFixed(2)}%
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <ToolCallout label="Scenario A" variant="insight" title="Low Markup (μ = 0.1)">
+                <p>
+                  <strong className="text-fg">u*:</strong>{' '}
+                  {(lowMarkupEquilibrium.unemployment * 100).toFixed(2)}%
                 </p>
-                <p style={{ fontSize: '0.875rem', margin: '0.5rem 0' }}>
-                  <strong>W/P:</strong> {lowMarkupEquilibrium.realWage.toFixed(3)}
+                <p>
+                  <strong className="text-fg">W/P:</strong> {lowMarkupEquilibrium.realWage.toFixed(3)}
                 </p>
-                <p style={{ fontSize: '0.75rem', color: '#15803d', marginTop: '1rem' }}>
+                <p className="mt-3 text-xs opacity-90">
                   Competitive market → Higher real wages, Lower unemployment
                 </p>
-              </div>
-              <div
-                style={{
-                  padding: '1rem',
-                  backgroundColor: '#fee2e2',
-                  borderRadius: '6px',
-                  borderLeft: '4px solid #ef4444',
-                }}
-              >
-                <h4 style={{ fontWeight: '600', marginBottom: '0.5rem' }}>
-                  High Markup (μ = 0.4)
-                </h4>
-                <p style={{ fontSize: '0.875rem', margin: '0.5rem 0' }}>
-                  <strong>u*:</strong> {(highMarkupEquilibrium.unemployment * 100).toFixed(2)}%
+              </ToolCallout>
+              <ToolCallout label="Scenario B" variant="warning" title="High Markup (μ = 0.4)">
+                <p>
+                  <strong className="text-fg">u*:</strong>{' '}
+                  {(highMarkupEquilibrium.unemployment * 100).toFixed(2)}%
                 </p>
-                <p style={{ fontSize: '0.875rem', margin: '0.5rem 0' }}>
-                  <strong>W/P:</strong> {highMarkupEquilibrium.realWage.toFixed(3)}
+                <p>
+                  <strong className="text-fg">W/P:</strong> {highMarkupEquilibrium.realWage.toFixed(3)}
                 </p>
-                <p style={{ fontSize: '0.75rem', color: '#991b1b', marginTop: '1rem' }}>
+                <p className="mt-3 text-xs opacity-90">
                   Monopoly power → Lower real wages, Higher unemployment
                 </p>
-              </div>
+              </ToolCallout>
             </div>
           </div>
 
-          <InfoBox type="warning">
-            <strong>Policy Implication:</strong> Increasing firm markups (through reduced competition or monopoly power) shifts the PS curve down, reducing both real wages AND equilibrium employment. Antitrust enforcement and removing barriers to entry improve both wage levels and employment. This explains why regulatory capture and monopolistic behavior can harm workers.
+          <InfoBox type="warning" title="Policy implication">
+            <p>
+              Increasing firm markups (through reduced competition or monopoly power) shifts the PS
+              curve down, reducing both real wages AND equilibrium employment. Antitrust enforcement
+              and removing barriers to entry improve both wage levels and employment. This explains why
+              regulatory capture and monopolistic behavior can harm workers.
+            </p>
           </InfoBox>
         </div>
       )}
 
-      <div
-        style={{
-          marginTop: '2rem',
-          padding: '1.5rem',
-          backgroundColor: '#f1f5f9',
-          borderRadius: '6px',
-        }}
-      >
-        <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>
-          🎓 Educational Insights
-        </h3>
-        <ul
-          style={{
-            fontSize: '0.875rem',
-            lineHeight: '1.8',
-            marginLeft: '1.5rem',
-            color: '#475569',
-          }}
-        >
+      <ToolCallout label="Educational insights" variant="lesson" title="Reading the WS/PS model">
+        <ul>
           <li>
             <strong>WS Curve Intuition:</strong> Higher unemployment weakens workers' bargaining position (fewer outside options). Also, more generous unemployment benefits raise the reservation wage, shifting WS up.
           </li>
@@ -502,7 +435,7 @@ export default function LaborMarket() {
             <strong>Natural Rate of Unemployment:</strong> The NAIRU is determined by institutional factors (union strength, benefits, markups), not demand. Demand-side policies cannot permanently lower it—they only create inflation.
           </li>
         </ul>
-      </div>
+      </ToolCallout>
     </div>
   )
 }

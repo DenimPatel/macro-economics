@@ -1,8 +1,13 @@
 /**
- * Design tokens. One source of truth for the palette, tier colours, and chart
- * theme. Consumed by the Tailwind theme (via the CSS variables in index.css)
- * and by Recharts through `chartTheme.ts`. Do not hard-code colours in
- * components.
+ * Design tokens. One source of truth for the tier metadata and the chart
+ * series palette. The colour values themselves live as CSS custom properties
+ * in `index.css`, which is what the Tailwind theme maps onto.
+ *
+ * Do not hard-code colours in components.
+ *
+ * Note: the tier ramp is deliberately teal -> sky -> indigo -> violet. There
+ * is no red, because red in this context reads as a failure state and
+ * "advanced" is not one.
  */
 
 import type { Tier } from '../../../content/lectures'
@@ -12,56 +17,66 @@ export type { Tier }
 export interface TierMeta {
   id: Tier
   label: string
-  /** Tailwind classes for a badge/pill in the current theme. */
+  /**
+   * Classes for a badge/pill in the current theme. These are component
+   * classes rather than Tailwind colour utilities on purpose: Tailwind
+   * silently drops an opacity modifier (`bg-x/15`) when the colour is a bare
+   * `var(...)`, so those utilities compile to nothing.
+   */
   badge: string
   /** Tailwind classes for a left border / accent stripe. */
   stripe: string
-  /** Hex used for charts and inline SVG. */
-  color: string
+  /** Tailwind classes for a tinted section band, used on the landing page. */
+  band: string
 }
 
 export const TIER_META: Record<Tier, TierMeta> = {
   beginner: {
     id: 'beginner',
     label: 'Beginner',
-    badge: 'bg-tier-beginner/15 text-tier-beginner border border-tier-beginner/30',
+    badge: 'tier-chip tier-chip--beginner',
     stripe: 'bg-tier-beginner',
-    color: '#16a34a',
+    band: 'section-band section-band--beginner',
   },
   intermediate: {
     id: 'intermediate',
     label: 'Intermediate',
-    badge: 'bg-tier-intermediate/15 text-tier-intermediate border border-tier-intermediate/30',
+    badge: 'tier-chip tier-chip--intermediate',
     stripe: 'bg-tier-intermediate',
-    color: '#d97706',
+    band: 'section-band section-band--intermediate',
   },
   advanced: {
     id: 'advanced',
     label: 'Advanced',
-    badge: 'bg-tier-advanced/15 text-tier-advanced border border-tier-advanced/30',
+    badge: 'tier-chip tier-chip--advanced',
     stripe: 'bg-tier-advanced',
-    color: '#dc2626',
+    band: 'section-band section-band--advanced',
   },
   'case-study': {
     id: 'case-study',
     label: 'Case Study',
-    badge: 'bg-tier-case/15 text-tier-case border border-tier-case/30',
+    badge: 'tier-chip tier-chip--case',
     stripe: 'bg-tier-case',
-    color: '#7c3aed',
+    band: 'section-band section-band--case',
   },
 }
 
 export const TIER_ORDER: Tier[] = ['beginner', 'intermediate', 'advanced', 'case-study']
 
-/** Categorical palette for multi-series charts. */
+/**
+ * Categorical palette for multi-series charts. Chosen to hold at least 3:1
+ * contrast against both the light surface (#fffdfa) and the dark surface
+ * (#1c1917), since chart strokes are non-text UI and must clear 3:1 in
+ * either theme.
+ */
 export const SERIES_COLORS = [
-  '#2563eb',
-  '#16a34a',
-  '#d97706',
-  '#dc2626',
+  '#0369a1',
+  '#0d9488',
+  '#b45309',
   '#7c3aed',
-  '#0891b2',
-  '#db2777',
+  '#be123c',
+  '#4d7c0f',
+  '#0e7490',
 ] as const
 
 export function seriesColor(i: number): string {

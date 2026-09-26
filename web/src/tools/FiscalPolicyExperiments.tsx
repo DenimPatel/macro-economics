@@ -15,10 +15,12 @@ import {
 } from 'recharts'
 import {
   ToolHeader,
+  ToolCallout,
   SliderControl,
   StatBox,
   InfoBox,
 } from '../components/ToolComponents'
+import { chartTheme, chartColor } from '../design/chartTheme'
 
 type ExperimentType = 'consumption' | 'government' | 'taxes' | 'combined'
 
@@ -32,6 +34,8 @@ interface ScenarioData {
   government: number
   demand: number
 }
+
+/** Each concept keeps one stable palette slot across every chart in this tool. */
 
 export default function FiscalPolicyExperiments() {
   // Base parameters
@@ -171,23 +175,22 @@ export default function FiscalPolicyExperiments() {
         badge="beginner"
       />
 
-      <div style={{ marginBottom: '2rem', padding: '1rem', backgroundColor: '#fef3c7', borderRadius: '6px', borderLeft: '4px solid #f59e0b' }}>
-        <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.75rem' }}>📚 What are these experiments?</h3>
-        <p style={{ fontSize: '0.875rem', lineHeight: '1.6', marginBottom: '0.75rem' }}>
+      <ToolCallout label="What are these experiments?" variant="lesson">
+        <p>
           In Lecture 3, we explored three key policy scenarios using the Keynesian cross diagram:
         </p>
-        <ul style={{ fontSize: '0.875rem', lineHeight: '1.6', marginLeft: '1.5rem' }}>
+        <ul>
           <li><strong>Experiment 1:</strong> Increase in autonomous consumption (consumer confidence improves)</li>
           <li><strong>Experiment 2:</strong> Expansionary fiscal policy (government spending increases)</li>
           <li><strong>Experiment 3:</strong> Tax increase (reduces disposable income)</li>
         </ul>
-        <p style={{ fontSize: '0.875rem', lineHeight: '1.6', marginTop: '0.75rem', color: '#7c2d12' }}>
+        <p>
           All work through the same multiplier mechanism: initial shock → income change → consumption change → demand change → output adjustment.
         </p>
-      </div>
+      </ToolCallout>
 
       <div className="control-panel">
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>Base Economy Parameters</h3>
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Base Economy Parameters</h3>
         <SliderControl
           label="Marginal Propensity to Consume (MPC)"
           value={mpc}
@@ -235,9 +238,9 @@ export default function FiscalPolicyExperiments() {
         />
       </div>
 
-      <div className="control-panel" style={{ marginTop: '1.5rem', backgroundColor: '#ecfdf5' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>Choose Experiment</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.5rem', marginBottom: '1rem' }}>
+      <div className="control-panel mt-6 bg-tier-beginner/5">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Choose Experiment</h3>
+        <div className="mb-4 grid grid-cols-2 gap-2 lg:grid-cols-4">
           {(['consumption', 'government', 'taxes', 'combined'] as const).map((exp) => (
             <button
               key={exp}
@@ -246,20 +249,16 @@ export default function FiscalPolicyExperiments() {
                 setGovernmentSpendingChange(0)
                 setTaxChange(0)
               }}
-              style={{
-                padding: '0.75rem 1rem',
-                borderRadius: '6px',
-                border: experimentType === exp ? '2px solid #10b981' : '1px solid #cbd5e1',
-                backgroundColor: experimentType === exp ? '#d1fae5' : '#ffffff',
-                fontWeight: experimentType === exp ? '600' : '400',
-                cursor: 'pointer',
-                fontSize: '0.875rem',
-              }}
+              className={`cursor-pointer rounded-card px-4 py-3 text-sm ${
+                experimentType === exp
+                  ? 'border-2 border-tier-beginner bg-tier-beginner/10 font-semibold text-tier-beginner-ink'
+                  : 'border border-border-strong bg-surface font-normal text-fg-muted'
+              }`}
             >
-              {exp === 'consumption' && '🛍️ Exp 1: Consumption'}
-              {exp === 'government' && '🏛️ Exp 2: Gov Spending'}
-              {exp === 'taxes' && '💰 Exp 3: Taxes'}
-              {exp === 'combined' && '⚡ Combined'}
+              {exp === 'consumption' && 'Exp 1: Consumption'}
+              {exp === 'government' && 'Exp 2: Gov Spending'}
+              {exp === 'taxes' && 'Exp 3: Taxes'}
+              {exp === 'combined' && 'Combined'}
             </button>
           ))}
         </div>
@@ -324,174 +323,238 @@ export default function FiscalPolicyExperiments() {
         )}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', marginBottom: '2rem', marginTop: '2rem' }}>
+      <div className="my-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatBox label="Baseline Output (Y)" value={baselineY.toFixed(1)} unit="$ billions" />
-        <StatBox label="New Output (Y')" value={newY.toFixed(1)} unit="$ billions" highlight />
-        <StatBox label="Output Change (ΔY)" value={outputChange.toFixed(1)} unit="$ billions" highlight={outputChange !== 0} />
+        <StatBox label="New Output (Y')" value={newY.toFixed(1)} unit="$ billions" tone="accent" />
+        <StatBox label="Output Change (ΔY)" value={outputChange.toFixed(1)} unit="$ billions" tone={outputChange !== 0 ? 'accent' : undefined} />
         <StatBox label="Multiplier" value={(1 / (1 - mpc)).toFixed(2)} unit="×" />
         <StatBox label="Initial Shock" value={initialShock.toFixed(1)} unit="$ billions" />
-        <StatBox label="Expected Effect" value={expectedMultipliedEffect.toFixed(1)} unit="$ billions" highlight />
+        <StatBox label="Expected Effect" value={expectedMultipliedEffect.toFixed(1)} unit="$ billions" tone="accent" />
       </div>
 
       {Math.abs(outputChange - expectedMultipliedEffect) > 0.1 && (
         <InfoBox type="warning">
-          <strong>⚠️ Note:</strong> The actual change ({outputChange.toFixed(1)}B) closely matches the multiplier prediction ({expectedMultipliedEffect.toFixed(1)}B), confirming the multiplier mechanism.
+          <strong>Note:</strong> The actual change ({outputChange.toFixed(1)}B) closely matches the multiplier prediction ({expectedMultipliedEffect.toFixed(1)}B), confirming the multiplier mechanism.
         </InfoBox>
       )}
 
       <div className="visualization-container">
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Keynesian Cross Diagram: Aggregate Demand & Output
         </h3>
         <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={keysianCrossData} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="y" 
+          <LineChart data={keysianCrossData} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
+            <XAxis
+              dataKey="y"
               type="number"
               domain={[0, 800]}
-              label={{ value: 'Output (Y)', position: 'insideBottomRight', offset: -5 }} 
+              label={{ value: 'Output (Y)', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
+              {...chartTheme.axis}
             />
-            <YAxis 
+            <YAxis
               domain={[0, 800]}
-              label={{ value: 'Aggregate Demand (Z)', angle: -90, position: 'insideLeft' }} 
+              label={{ value: 'Aggregate Demand (Z)', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
+              {...chartTheme.axis}
             />
-            <Tooltip formatter={(value: number) => value.toFixed(1)} />
-            <Legend />
+            <Tooltip
+              {...chartTheme.tooltip}
+              cursor={chartTheme.cursor}
+              formatter={(value: number) => value.toFixed(1)}
+            />
+            <Legend {...chartTheme.legend} />
             {/* Main curves */}
-            <Line type="monotone" dataKey="yEqualsZ" name="45° Line (Y = Z)" stroke="#94a3b8" strokeWidth={2} strokeDasharray="5 5" dot={false} />
-            <Line type="monotone" dataKey="baselineDemand" name="Baseline ZZ Curve" stroke="#3b82f6" strokeWidth={2} dot={false} />
-            <Line type="monotone" dataKey="newDemand" name="New ZZ Curve" stroke="#10b981" strokeWidth={2} dot={false} />
-            
+            <Line
+              type="monotone"
+              dataKey="yEqualsZ"
+              name="45° Line (Y = Z)"
+              stroke={chartTheme.axis.stroke}
+              strokeWidth={2}
+              strokeDasharray="5 5"
+              dot={false}
+            />
+            <Line
+              type="monotone"
+              dataKey="baselineDemand"
+              name="Baseline ZZ Curve"
+              stroke={chartColor(0)}
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              type="monotone"
+              dataKey="newDemand"
+              name="New ZZ Curve"
+              stroke={chartColor(1)}
+              strokeWidth={2}
+              dot={false}
+            />
+
             {/* Vertical reference lines for equilibrium outputs */}
-            <ReferenceLine 
-              x={baselineY} 
-              stroke="#3b82f6" 
-              strokeDasharray="3 3" 
+            <ReferenceLine
+              x={baselineY}
+              stroke={chartColor(0)}
+              strokeDasharray="3 3"
               strokeOpacity={0.5}
-              label={{ 
-                value: `Y₀=${baselineY.toFixed(0)}B`, 
-                position: 'top', 
-                fill: '#3b82f6',
+              label={{
+                value: `Y₀=${baselineY.toFixed(0)}B`,
+                position: 'top',
+                fill: chartColor(0),
                 fontSize: 12,
-                offset: 10
-              }} 
+                offset: 10,
+              }}
             />
-            <ReferenceLine 
-              x={newY} 
-              stroke="#10b981" 
-              strokeDasharray="3 3" 
+            <ReferenceLine
+              x={newY}
+              stroke={chartColor(1)}
+              strokeDasharray="3 3"
               strokeOpacity={0.5}
-              label={{ 
-                value: `Y'=${newY.toFixed(0)}B`, 
-                position: 'bottom', 
-                fill: '#10b981',
+              label={{
+                value: `Y'=${newY.toFixed(0)}B`,
+                position: 'bottom',
+                fill: chartColor(1),
                 fontSize: 12,
-                offset: 10
-              }} 
+                offset: 10,
+              }}
             />
-            
+
             {/* Equilibrium points - intersection of demand curves with 45° line */}
-            <ReferenceDot 
-              x={baselineY} 
-              y={baselineY} 
-              r={5} 
-              fill="#3b82f6" 
-              stroke="#1e40af" 
+            <ReferenceDot
+              x={baselineY}
+              y={baselineY}
+              r={5}
+              fill={chartColor(0)}
+              stroke={chartTheme.reference.stroke}
               strokeWidth={2}
               name="Baseline Equilibrium"
             />
-            <ReferenceDot 
-              x={newY} 
-              y={newY} 
-              r={5} 
-              fill="#10b981" 
-              stroke="#047857" 
+            <ReferenceDot
+              x={newY}
+              y={newY}
+              r={5}
+              fill={chartColor(1)}
+              stroke={chartTheme.reference.stroke}
               strokeWidth={2}
               name="New Equilibrium"
             />
           </LineChart>
         </ResponsiveContainer>
-        <div style={{ marginTop: '1rem', fontSize: '0.875rem', color: '#64748b' }}>
-          <p><strong>How to read:</strong> The equilibrium occurs where the ZZ curve meets the 45° line. The blue point shows baseline equilibrium at Y₀, while the green point shows new equilibrium at Y'. The vertical dashed lines help identify the output levels.</p>
-        </div>
+        <p className="mt-4 text-sm leading-relaxed text-fg-muted">
+          <strong>How to read:</strong> The equilibrium occurs where the ZZ curve meets the 45° line. The blue point shows baseline equilibrium at Y₀, while the green point shows new equilibrium at Y'. The vertical dashed lines help identify the output levels.
+        </p>
       </div>
 
-      <div className="visualization-container" style={{ marginTop: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="visualization-container mt-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Multiplier Effect: Round-by-Round Breakdown
         </h3>
         {roundsData.length > 0 ? (
           <>
             <ResponsiveContainer width="100%" height={350}>
-              <BarChart data={roundsData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="round" label={{ value: 'Round', position: 'insideBottomRight', offset: -5 }} />
-                <YAxis label={{ value: '$ Billions', angle: -90, position: 'insideLeft' }} />
-                <Tooltip formatter={(value: number) => value.toFixed(2)} />
-                <Bar dataKey="thisRound" fill="#8b5cf6" name="This Round's Impact" />
+              <BarChart data={roundsData} margin={chartTheme.margin}>
+                <CartesianGrid {...chartTheme.grid} />
+                <XAxis
+                  dataKey="round"
+                  label={{ value: 'Round', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
+                  {...chartTheme.axis}
+                />
+                <YAxis
+                  label={{ value: '$ Billions', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
+                  {...chartTheme.axis}
+                />
+                <Tooltip
+                  {...chartTheme.tooltip}
+                  cursor={chartTheme.cursor}
+                  formatter={(value: number) => value.toFixed(2)}
+                />
+                <Bar dataKey="thisRound" fill={chartColor(3)} name="This Round's Impact" />
               </BarChart>
             </ResponsiveContainer>
-            <div style={{ marginTop: '1rem', fontSize: '0.875rem', color: '#64748b' }}>
-              <p><strong>How to read:</strong> Each round represents one iteration of the feedback loop. With MPC = {mpc.toFixed(2)}, each round's impact is {mpc.toFixed(2)}x the previous round's, converging to total multiplier effect.</p>
-            </div>
+            <p className="mt-4 text-sm leading-relaxed text-fg-muted">
+              <strong>How to read:</strong> Each round represents one iteration of the feedback loop. With MPC = {mpc.toFixed(2)}, each round's impact is {mpc.toFixed(2)}x the previous round's, converging to total multiplier effect.
+            </p>
           </>
         ) : (
-          <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
+          <div className="rounded-card border border-border bg-surface-2 p-8 text-center text-fg-subtle">
             <p>Adjust policy parameters above to see the multiplier effect breakdown.</p>
           </div>
         )}
       </div>
 
-      <div className="visualization-container" style={{ marginTop: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
-          Cumulative Multiplier Effect
-        </h3>
+      <div className="visualization-container mt-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Cumulative Multiplier Effect</h3>
         {roundsData.length > 0 ? (
           <>
             <ResponsiveContainer width="100%" height={350}>
-              <LineChart data={roundsData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="round" label={{ value: 'Round', position: 'insideBottomRight', offset: -5 }} />
-                <YAxis label={{ value: 'Cumulative Change ($B)', angle: -90, position: 'insideLeft' }} />
-                <Tooltip formatter={(value: number) => value.toFixed(2)} />
-                <Line type="monotone" dataKey="cumulative" stroke="#f59e0b" strokeWidth={2} name="Cumulative Effect" />
+              <LineChart data={roundsData} margin={chartTheme.margin}>
+                <CartesianGrid {...chartTheme.grid} />
+                <XAxis
+                  dataKey="round"
+                  label={{ value: 'Round', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
+                  {...chartTheme.axis}
+                />
+                <YAxis
+                  label={{
+                    value: 'Cumulative Change ($B)',
+                    angle: -90,
+                    position: 'insideLeft',
+                    fill: chartTheme.axis.tick.fill,
+                  }}
+                  {...chartTheme.axis}
+                />
+                <Tooltip
+                  {...chartTheme.tooltip}
+                  cursor={chartTheme.cursor}
+                  formatter={(value: number) => value.toFixed(2)}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="cumulative"
+                  stroke={chartColor(2)}
+                  strokeWidth={2}
+                  name="Cumulative Effect"
+                />
               </LineChart>
             </ResponsiveContainer>
-            <div style={{ marginTop: '1rem', fontSize: '0.875rem', color: '#64748b' }}>
-              <p><strong>How to read:</strong> This chart shows how the total output effect accumulates across rounds. The curve flattens as each successive round becomes smaller, approaching the final multiplier-adjusted equilibrium.</p>
-            </div>
+            <p className="mt-4 text-sm leading-relaxed text-fg-muted">
+              <strong>How to read:</strong> This chart shows how the total output effect accumulates across rounds. The curve flattens as each successive round becomes smaller, approaching the final multiplier-adjusted equilibrium.
+            </p>
           </>
         ) : (
-          <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
+          <div className="rounded-card border border-border bg-surface-2 p-8 text-center text-fg-subtle">
             <p>Adjust policy parameters above to see the cumulative multiplier effect.</p>
           </div>
         )}
       </div>
 
-      <div style={{ marginTop: '2rem', padding: '1.5rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-        <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>Policy Impact Summary</h3>
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
+      <div className="card mt-8 p-6">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Policy Impact Summary</h3>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-sm tabular-nums">
             <thead>
-              <tr style={{ borderBottom: '2px solid #cbd5e1' }}>
-                <th style={{ padding: '0.75rem', textAlign: 'left', fontWeight: '600' }}>Scenario</th>
-                <th style={{ padding: '0.75rem', textAlign: 'right', fontWeight: '600' }}>Output (Y)</th>
-                <th style={{ padding: '0.75rem', textAlign: 'right', fontWeight: '600' }}>Consumption (C)</th>
-                <th style={{ padding: '0.75rem', textAlign: 'right', fontWeight: '600' }}>Investment (I)</th>
-                <th style={{ padding: '0.75rem', textAlign: 'right', fontWeight: '600' }}>Government (G)</th>
-                <th style={{ padding: '0.75rem', textAlign: 'right', fontWeight: '600' }}>Aggregate Demand (Z)</th>
+              <tr className="border-b-2 border-border-strong">
+                <th className="px-3 py-2 text-left font-semibold text-fg">Scenario</th>
+                <th className="px-3 py-2 text-right font-semibold text-fg">Output (Y)</th>
+                <th className="px-3 py-2 text-right font-semibold text-fg">Consumption (C)</th>
+                <th className="px-3 py-2 text-right font-semibold text-fg">Investment (I)</th>
+                <th className="px-3 py-2 text-right font-semibold text-fg">Government (G)</th>
+                <th className="px-3 py-2 text-right font-semibold text-fg">Aggregate Demand (Z)</th>
               </tr>
             </thead>
             <tbody>
               {scenarioData.map((row, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid #e2e8f0', backgroundColor: i === 1 ? '#ecfdf5' : '#ffffff' }}>
-                  <td style={{ padding: '0.75rem', textAlign: 'left', fontWeight: i === 1 ? '600' : '400' }}>{row.label}</td>
-                  <td style={{ padding: '0.75rem', textAlign: 'right' }}>${row.newY.toFixed(1)}B</td>
-                  <td style={{ padding: '0.75rem', textAlign: 'right' }}>${row.consumption.toFixed(1)}B</td>
-                  <td style={{ padding: '0.75rem', textAlign: 'right' }}>${row.investment.toFixed(1)}B</td>
-                  <td style={{ padding: '0.75rem', textAlign: 'right' }}>${row.government.toFixed(1)}B</td>
-                  <td style={{ padding: '0.75rem', textAlign: 'right' }}>${row.demand.toFixed(1)}B</td>
+                <tr
+                  key={i}
+                  className={`border-b border-border ${i === 1 ? 'bg-tier-beginner/10' : 'bg-surface'}`}
+                >
+                  <td className={`px-3 py-2.5 text-left ${i === 1 ? 'font-semibold' : ''} text-fg`}>
+                    {row.label}
+                  </td>
+                  <td className="px-3 py-2.5 text-right">${row.newY.toFixed(1)}B</td>
+                  <td className="px-3 py-2.5 text-right">${row.consumption.toFixed(1)}B</td>
+                  <td className="px-3 py-2.5 text-right">${row.investment.toFixed(1)}B</td>
+                  <td className="px-3 py-2.5 text-right">${row.government.toFixed(1)}B</td>
+                  <td className="px-3 py-2.5 text-right">${row.demand.toFixed(1)}B</td>
                 </tr>
               ))}
             </tbody>
@@ -499,26 +562,24 @@ export default function FiscalPolicyExperiments() {
         </div>
       </div>
 
-      <div style={{ marginTop: '2rem', padding: '1rem', backgroundColor: '#ecfdf5', borderRadius: '6px', borderLeft: '4px solid #10b981' }}>
-        <h4 style={{ fontWeight: '600', marginBottom: '0.75rem' }}>🔑 Key Takeaways</h4>
-        <ul style={{ fontSize: '0.875rem', lineHeight: '1.8', marginLeft: '1.5rem' }}>
+      <ToolCallout label="Key takeaways" variant="insight" title="What the multiplier implies">
+        <ul>
           <li><strong>Fiscal multipliers amplify shocks:</strong> A $1B spending increase leads to ${(1 / (1 - mpc)).toFixed(1)}B output increase (with MPC = {mpc.toFixed(2)}).</li>
           <li><strong>Tax multipliers are smaller:</strong> Consumers only spend {(mpc * 100).toFixed(0)}% of tax relief, so tax changes have weaker effects than spending changes.</li>
-          <li><strong>Paradox of Savings:</strong> If households try to save more (c₀ ↓), the economy contracts more than the initial cutback—perverse!</li>
+          <li><strong>Paradox of Savings:</strong> If households try to save more (c₀ ↓), the economy contracts more than the initial cutback&mdash;perverse!</li>
           <li><strong>Consumer confidence matters:</strong> Changes in autonomous consumption (sentiment) trigger the full multiplier, making consumer confidence crucial for forecasts.</li>
           <li><strong>Multiplier size matters for policy:</strong> Larger multipliers mean fiscal stimulus is more powerful (but also means recessions can spiral).</li>
         </ul>
-      </div>
+      </ToolCallout>
 
-      <div style={{ marginTop: '2rem', padding: '1rem', backgroundColor: '#f3e8ff', borderRadius: '6px' }}>
-        <h4 style={{ fontWeight: '600', marginBottom: '0.75rem' }}>💡 Try This</h4>
-        <ul style={{ fontSize: '0.875rem', lineHeight: '1.8', marginLeft: '1.5rem' }}>
+      <ToolCallout label="Try this" variant="try" title="Experiments">
+        <ul>
           <li>Increase MPC to 0.9, then increase government spending by $10B. Notice the large output effect.</li>
-          <li>Switch to "Exp 3: Taxes" and increase taxes by $20B. Compare to increasing spending by $20B—the tax effect is smaller!</li>
+          <li>Switch to "Exp 3: Taxes" and increase taxes by $20B. Compare to increasing spending by $20B&mdash;the tax effect is smaller!</li>
           <li>Adjust autonomous consumption downward (simulating loss of confidence) and watch output contract via the multiplier.</li>
           <li>Use "Combined" to try a balanced budget expansion: spending up $20B, taxes up $20B. Output still rises due to the tax multiplier being smaller than spending multiplier.</li>
         </ul>
-      </div>
+      </ToolCallout>
     </div>
   )
 }

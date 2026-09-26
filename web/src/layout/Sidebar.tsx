@@ -21,13 +21,17 @@ export default function Sidebar({ onNavigate }: SidebarProps) {
   return (
     <nav className="sidebar" aria-label="Course navigation">
       <div className="px-4 pb-2 pt-5">
-        <NavLink to="/" className="flex items-center gap-2 no-underline" onClick={onNavigate}>
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-accent text-sm font-bold text-accent-fg">
+        <NavLink to="/" className="flex items-center gap-2.5 no-underline" onClick={onNavigate}>
+          <span className="grid h-8 w-8 place-items-center rounded-card bg-accent font-serif text-base font-bold text-accent-fg">
             M
           </span>
-          <span className="text-[0.95rem] font-bold tracking-tight text-fg">MacroEconomics</span>
+          <span className="font-serif text-[0.95rem] font-bold tracking-tight text-fg">
+            MacroEconomics
+          </span>
         </NavLink>
-        <p className="mt-1 text-xs text-fg-subtle">Interactive course</p>
+        <p className="mt-1 pl-[2.625rem] text-micro uppercase tracking-widest text-fg-subtle">
+          Interactive course
+        </p>
       </div>
 
       <div className="pb-6">
@@ -47,7 +51,10 @@ export default function Sidebar({ onNavigate }: SidebarProps) {
 
         {tierLectures.map(({ tier, meta, lectures }) => (
           <div key={tier}>
-            <div className="section-title">{meta.label}</div>
+            <div className="section-title flex items-center gap-1.5">
+              <span className={`h-1.5 w-1.5 rounded-full ${meta.stripe}`} aria-hidden="true" />
+              {meta.label}
+            </div>
             {lectures.map((lecture) => (
               <NavLink
                 key={lecture.n}
@@ -55,8 +62,8 @@ export default function Sidebar({ onNavigate }: SidebarProps) {
                 className={linkClass}
                 onClick={onNavigate}
               >
-                <span className="text-[0.8rem]">
-                  <span className="mr-1.5 text-fg-subtle">{lecture.n}.</span>
+                <span className="text-[0.8125rem]">
+                  <span className="mr-1.5 tabular-nums text-fg-subtle">{lecture.n}.</span>
                   {lecture.title}
                 </span>
               </NavLink>

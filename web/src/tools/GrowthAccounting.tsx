@@ -14,11 +14,24 @@ import {
 } from 'recharts'
 import {
   ToolHeader,
+  ToolCallout,
   SliderControl,
   StatBox,
   Button,
-  InfoBox,
 } from '../components/ToolComponents'
+import { chartTheme, chartColor } from '../design/chartTheme'
+
+/** Series keep a fixed economic identity across every chart in this tool. */
+const CAPITAL_FILL = chartColor(0)
+const LABOR_FILL = chartColor(1)
+const TFP_FILL = chartColor(2)
+const TOTAL_GROWTH_FILL = chartColor(3)
+
+/** Layout shared by the chart and readout blocks. */
+const CONTROL_GRID = 'grid gap-6 sm:grid-cols-2'
+const CHART_BOX = 'h-[300px]'
+const SPLIT = 'grid gap-6 lg:grid-cols-2'
+const STAT_GRID = 'mb-6 grid grid-cols-2 gap-3'
 
 interface GrowthDataPoint {
   year: number
@@ -78,7 +91,7 @@ export default function GrowthAccounting() {
     { name: 'TFP', value: currentData.tfpContribution },
   ]
 
-  const COLORS = ['#3b82f6', '#10b981', '#f59e0b']
+  const COLORS = [CAPITAL_FILL, LABOR_FILL, TFP_FILL]
 
   return (
     <div className="tool-card">
@@ -89,12 +102,12 @@ export default function GrowthAccounting() {
       />
 
       <div className="control-panel">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
+        <div className={CONTROL_GRID}>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>
+            <label className="mb-2 block font-medium">
               Country
             </label>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div className="flex gap-2">
               <Button
                 onClick={() => setCountry('us')}
                 variant={country === 'us' ? 'primary' : 'secondary'}
@@ -115,7 +128,7 @@ export default function GrowthAccounting() {
               </Button>
             </div>
           </div>
-          
+
           <SliderControl
             label="Time Period"
             value={timePeriod}
@@ -126,8 +139,8 @@ export default function GrowthAccounting() {
             unit=""
           />
         </div>
-        
-        <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+
+        <div className="button-group">
           <Button
             onClick={() => setShowDataOverlay(!showDataOverlay)}
             variant={showDataOverlay ? 'primary' : 'secondary'}
@@ -137,42 +150,42 @@ export default function GrowthAccounting() {
         </div>
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Growth Decomposition Over Time
         </h3>
-        <div style={{ height: '300px' }}>
+        <div className={CHART_BOX}>
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={currentCountryData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="year" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="capitalContribution" fill="#3b82f6" name="Capital Contribution" />
-              <Bar dataKey="laborContribution" fill="#10b981" name="Labor Contribution" />
-              <Bar dataKey="tfpContribution" fill="#f59e0b" name="TFP Contribution" />
-              <Bar dataKey="growthRate" fill="#8b5cf6" name="Total Growth" />
+            <BarChart data={currentCountryData} margin={chartTheme.margin}>
+              <CartesianGrid {...chartTheme.grid} />
+              <XAxis dataKey="year" {...chartTheme.axis} />
+              <YAxis {...chartTheme.axis} />
+              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+              <Legend {...chartTheme.legend} />
+              <Bar dataKey="capitalContribution" fill={CAPITAL_FILL} name="Capital Contribution" />
+              <Bar dataKey="laborContribution" fill={LABOR_FILL} name="Labor Contribution" />
+              <Bar dataKey="tfpContribution" fill={TFP_FILL} name="TFP Contribution" />
+              <Bar dataKey="growthRate" fill={TOTAL_GROWTH_FILL} name="Total Growth" />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Contribution Shares (2000)
         </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-          <div style={{ height: '300px' }}>
+        <div className={SPLIT}>
+          <div className={CHART_BOX}>
             <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
+              <PieChart margin={chartTheme.margin}>
                 <Pie
                   data={pieData}
                   cx="50%"
                   cy="50%"
                   labelLine={true}
                   outerRadius={80}
-                  fill="#8884d8"
+                  fill={CAPITAL_FILL}
                   dataKey="value"
                   label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
                 >
@@ -180,25 +193,22 @@ export default function GrowthAccounting() {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip />
-                <Legend />
+                <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+                <Legend {...chartTheme.legend} />
               </PieChart>
             </ResponsiveContainer>
           </div>
-          
+
           <div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+            <div className={STAT_GRID}>
               <StatBox label="Capital Contribution" value={currentData.capitalContribution.toFixed(1)} unit="%" />
               <StatBox label="Labor Contribution" value={currentData.laborContribution.toFixed(1)} unit="%" />
               <StatBox label="TFP Contribution" value={currentData.tfpContribution.toFixed(1)} unit="%" />
               <StatBox label="Total Growth" value={currentData.growthRate.toFixed(1)} unit="%" />
             </div>
-            
-            <div style={{ padding: '1rem', backgroundColor: '#f0f9ff', borderRadius: '6px', borderLeft: '4px solid #0284c7' }}>
-              <h4 style={{ margin: '0 0 0.5rem 0', color: '#0c4a6e', fontWeight: '600' }}>
-                Growth Accounting Principles
-              </h4>
-              <p style={{ margin: '0.5rem 0', fontSize: '0.85rem', color: '#0c4a6e', lineHeight: '1.5' }}>
+
+            <ToolCallout label="Reference" variant="info" title="Growth Accounting Principles">
+              <p>
                 Growth accounting decomposes total economic growth into contributions from:
                 <br />
                 - Capital accumulation (investment)
@@ -207,39 +217,33 @@ export default function GrowthAccounting() {
                 <br />
                 - Total Factor Productivity (TFP) improvements
               </p>
-            </div>
+            </ToolCallout>
           </div>
         </div>
       </div>
 
-      <div style={{ marginTop: '2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-        <InfoBox type="info">
-          <strong>📈 Growth Patterns by Country</strong>
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ToolCallout label="Info" variant="info" title="Growth Patterns by Country">
           <p>United States: Stable growth with TFP contributing more in recent decades</p>
           <p>China: Rapid growth driven by capital accumulation and labor force expansion</p>
           <p>Japan: Declining growth with TFP becoming increasingly important</p>
-        </InfoBox>
+        </ToolCallout>
 
-        <InfoBox type="warning">
-          <strong>⚠️ The Role of TFP</strong>
+        <ToolCallout label="Watch out" variant="warning" title="The Role of TFP">
           <p>Total Factor Productivity (TFP) represents technological progress and efficiency improvements</p>
           <p>TFP growth is often the most important driver of long-term economic growth</p>
           <p>It's harder to measure and explain than capital or labor contributions</p>
-        </InfoBox>
+        </ToolCallout>
 
-        <InfoBox type="success">
-          <strong>✅ Policy Implications</strong>
+        <ToolCallout label="Note" variant="lesson" title="Policy Implications">
           <p>Investment in R&D and innovation drives TFP growth</p>
           <p>Education and training improve labor productivity</p>
           <p>Infrastructure investments enhance capital efficiency</p>
-        </InfoBox>
+        </ToolCallout>
       </div>
 
-      <div style={{ marginTop: '2rem', padding: '1.5rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-        <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>
-          📊 Key Insights from Growth Accounting
-        </h3>
-        <ul style={{ fontSize: '0.875rem', lineHeight: '1.8', marginLeft: '1.5rem', color: '#475569' }}>
+      <ToolCallout label="Reference" variant="info" title="Key Insights from Growth Accounting">
+        <ul>
           <li>
             <strong>Capital vs. Labor:</strong> In developing economies, capital accumulation typically contributes more to growth than labor.
             In developed economies, TFP becomes the dominant factor.
@@ -260,7 +264,7 @@ export default function GrowthAccounting() {
             These measurements can be imperfect, affecting conclusions.
           </li>
         </ul>
-      </div>
+      </ToolCallout>
     </div>
   )
 }

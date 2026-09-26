@@ -17,9 +17,9 @@ export default function Prediction({ question, options, answer, explanation }: P
   const [revealed, setRevealed] = useState(false)
 
   return (
-    <section className="rounded-xl border border-accent/30 bg-accent/5 p-4">
-      <div className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-accent">
-        <Lightbulb size={14} /> Predict first
+    <section className="rounded-card border border-accent/30 bg-accent/5 p-4">
+      <div className="mb-2 flex items-center gap-2 text-micro font-bold uppercase tracking-widest text-accent-ink">
+        <Lightbulb size={14} aria-hidden="true" /> Predict first
       </div>
       <p className="mb-3 font-medium text-fg">{question}</p>
 
@@ -31,7 +31,7 @@ export default function Prediction({ question, options, answer, explanation }: P
                 key={i}
                 type="button"
                 onClick={() => setChosen(i)}
-                className={`rounded-lg border px-3 py-1.5 text-sm transition-colors ${
+                className={`rounded-card border px-3 py-1.5 text-sm transition-colors ${
                   chosen === i
                     ? 'border-accent bg-accent text-accent-fg'
                     : 'border-border bg-surface text-fg-muted hover:border-accent/50'
@@ -51,15 +51,15 @@ export default function Prediction({ question, options, answer, explanation }: P
           </button>
         </>
       ) : (
-        <div className="rounded-lg bg-surface px-3 py-2 text-sm text-fg-muted">
+        <div className="rounded-card bg-surface px-3 py-2 text-sm text-fg-muted">
           <p className="mb-1 flex items-center gap-2 font-semibold text-fg">
             {chosen === answer ? (
               <>
-                <CheckCircle2 size={16} className="text-tier-beginner" /> Correct
+                <CheckCircle2 size={16} className="text-tier-beginner" aria-hidden="true" /> Correct
               </>
             ) : (
               <>
-                <XCircle size={16} className="text-tier-advanced" /> The answer is{' '}
+                <XCircle size={16} className="text-tier-case" aria-hidden="true" /> The answer is{' '}
                 {String.fromCharCode(65 + answer)}
               </>
             )}

@@ -6,18 +6,30 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   BarChart,
   Bar,
 } from 'recharts'
 import {
   ToolHeader,
+  ToolCallout,
   SliderControl,
   StatBox,
   Button,
-  InfoBox,
 } from '../components/ToolComponents'
+import { chartTheme, chartColor } from '../design/chartTheme'
+
+/** Series keep a fixed economic identity across every chart in this tool. */
+const OUTPUT_STROKE = chartColor(0)
+const UNEMPLOYMENT_STROKE = chartColor(2)
+const INFLATION_STROKE = chartColor(1)
+const POLICY_BAR_FILL = chartColor(3)
+
+/** Layout shared by the chart and readout blocks. */
+const CONTROL_GRID = 'grid gap-6 sm:grid-cols-2'
+const CHART_BOX = 'h-[300px]'
+const SPLIT = 'grid gap-6 lg:grid-cols-2'
+const STAT_GRID = 'mb-6 grid grid-cols-2 gap-3'
 
 interface CovidDataPoint {
   year: number
@@ -33,7 +45,6 @@ export default function CrisisCovid() {
   const [showDataOverlay, setShowDataOverlay] = useState(true)
   const [fiscalPolicy, setFiscalPolicy] = useState(100)
   const [monetaryPolicy, setMonetaryPolicy] = useState(50)
-  const [timePeriod, setTimePeriod] = useState(2020)
 
   // Historical data for 2020-2023
   const covidData: CovidDataPoint[] = [
@@ -88,7 +99,7 @@ export default function CrisisCovid() {
       />
 
       <div className="control-panel">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
+        <div className={CONTROL_GRID}>
           <SliderControl
             label="Policy Response: Fiscal Stimulus"
             value={fiscalPolicy}
@@ -108,10 +119,10 @@ export default function CrisisCovid() {
             unit=""
           />
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>
+            <label className="mb-2 block font-medium">
               Shock Type
             </label>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div className="flex gap-2">
               <Button
                 onClick={() => setShockType('demand')}
                 variant={shockType === 'demand' ? 'primary' : 'secondary'}
@@ -133,8 +144,8 @@ export default function CrisisCovid() {
             </div>
           </div>
         </div>
-        
-        <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+
+        <div className="button-group">
           <Button
             onClick={() => setShowDataOverlay(!showDataOverlay)}
             variant={showDataOverlay ? 'primary' : 'secondary'}
@@ -144,46 +155,46 @@ export default function CrisisCovid() {
         </div>
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Output, Unemployment, and Inflation Path
         </h3>
-        <div style={{ height: '300px' }}>
+        <div className={CHART_BOX}>
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={covidData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="year" />
-              <YAxis />
-              <Tooltip />
-              <Line 
-                type="monotone" 
-                dataKey="output" 
-                stroke="#3b82f6" 
+            <LineChart data={covidData} margin={chartTheme.margin}>
+              <CartesianGrid {...chartTheme.grid} />
+              <XAxis dataKey="year" {...chartTheme.axis} />
+              <YAxis {...chartTheme.axis} />
+              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+              <Line
+                type="monotone"
+                dataKey="output"
+                stroke={OUTPUT_STROKE}
                 strokeWidth={2}
                 dot={{ r: 4 }}
                 name="Output (Y)"
               />
-              <Line 
-                type="monotone" 
-                dataKey="unemployment" 
-                stroke="#f59e0b" 
+              <Line
+                type="monotone"
+                dataKey="unemployment"
+                stroke={UNEMPLOYMENT_STROKE}
                 strokeWidth={2}
                 dot={{ r: 4 }}
                 name="Unemployment Rate"
               />
-              <Line 
-                type="monotone" 
-                dataKey="inflation" 
-                stroke="#10b981" 
+              <Line
+                type="monotone"
+                dataKey="inflation"
+                stroke={INFLATION_STROKE}
                 strokeWidth={2}
                 dot={{ r: 4 }}
                 name="Inflation Rate"
               />
               {showDataOverlay && (
-                <Line 
-                  type="monotone" 
-                  dataKey="output" 
-                  stroke="#3b82f6" 
+                <Line
+                  type="monotone"
+                  dataKey="output"
+                  stroke={OUTPUT_STROKE}
                   strokeWidth={2}
                   dot={{ r: 4 }}
                   name="Actual Data"
@@ -194,80 +205,71 @@ export default function CrisisCovid() {
         </div>
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Policy Response Comparison
         </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-          <div style={{ height: '300px' }}>
+        <div className={SPLIT}>
+          <div className={CHART_BOX}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={[
                 { name: 'Output', value: policyResult.output },
                 { name: 'Unemployment', value: policyResult.unemployment },
                 { name: 'Inflation', value: policyResult.inflation },
-              ]}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="value" fill="#8b5cf6" />
+              ]} margin={chartTheme.margin}>
+                <CartesianGrid {...chartTheme.grid} />
+                <XAxis dataKey="name" {...chartTheme.axis} />
+                <YAxis {...chartTheme.axis} />
+                <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+                <Bar dataKey="value" fill={POLICY_BAR_FILL} />
               </BarChart>
             </ResponsiveContainer>
           </div>
-          
+
           <div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+            <div className={STAT_GRID}>
               <StatBox label="Output" value={policyResult.output.toFixed(1)} />
               <StatBox label="Unemployment" value={policyResult.unemployment.toFixed(1)} unit="%" />
               <StatBox label="Inflation" value={policyResult.inflation.toFixed(1)} unit="%" />
             </div>
-            
-            <div style={{ padding: '1rem', backgroundColor: '#f0f9ff', borderRadius: '6px', borderLeft: '4px solid #0284c7' }}>
-              <h4 style={{ margin: '0 0 0.5rem 0', color: '#0c4a6e', fontWeight: '600' }}>
-                Policy Response Effects
-              </h4>
-              <p style={{ margin: '0.5rem 0', fontSize: '0.85rem', color: '#0c4a6e', lineHeight: '1.5' }}>
-                {shockType === 'demand' && 
+
+            <ToolCallout label="Reference" variant="info" title="Policy Response Effects">
+              <p>
+                {shockType === 'demand' &&
                   "Demand shock (lockdowns) reduced output by 15% and increased unemployment by 3 points. Fiscal and monetary policy helped offset these effects."}
-                {shockType === 'supply' && 
+                {shockType === 'supply' &&
                   "Supply shock (supply chain disruptions) reduced output by 10% and increased inflation by 4 points. Monetary policy alone couldn't address this."}
-                {shockType === 'combined' && 
+                {shockType === 'combined' &&
                   "Combined shock reduced output by 12% and increased unemployment by 2 points. Both fiscal and monetary policy were needed to stabilize the economy."}
               </p>
-            </div>
+            </ToolCallout>
           </div>
         </div>
       </div>
 
-      <div style={{ marginTop: '2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-        <InfoBox type="info">
-          <strong>📉 The 2020-2023 Shock</strong>
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ToolCallout label="Info" variant="info" title="The 2020-2023 Shock">
           <p>2020: Global pandemic caused massive demand shock with lockdowns and reduced consumption</p>
           <p>2021: Recovery began with fiscal stimulus and monetary easing</p>
           <p>2022: Supply chain disruptions created stagflationary pressure</p>
           <p>2023: Gradual normalization with continued policy support</p>
-        </InfoBox>
+        </ToolCallout>
 
-        <InfoBox type="warning">
-          <strong>⚠️ Dual Nature of the Shock</strong>
+        <ToolCallout label="Watch out" variant="warning" title="Dual Nature of the Shock">
           <p>The pandemic created both demand and supply shocks simultaneously.</p>
           <p>Demand shock from lockdowns reduced consumption and investment.</p>
           <p>Supply shock from disrupted supply chains increased costs and reduced production.</p>
-        </InfoBox>
+        </ToolCallout>
 
-        <InfoBox type="success">
-          <strong>✅ Policy Response</strong>
+        <ToolCallout label="Note" variant="lesson" title="Policy Response">
           <p>Massive fiscal stimulus (trillions in government spending)</p>
           <p>Unprecedented monetary easing (near-zero rates, QE programs)</p>
           <p>Central banks coordinated internationally to prevent systemic collapse</p>
-        </InfoBox>
+        </ToolCallout>
       </div>
 
-      <div style={{ marginTop: '2rem', padding: '1.5rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-        <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>
-          📊 Key Lessons from the Pandemic
-        </h3>
-        <ul style={{ fontSize: '0.875rem', lineHeight: '1.8', marginLeft: '1.5rem', color: '#475569' }}>
+      <ToolCallout label="Reference" variant="info" title="Key Lessons from the Pandemic">
+        <ul>
           <li>
             <strong>Unprecedented Policy Response:</strong> The scale of fiscal and monetary policy response was unprecedented in peacetime.
           </li>
@@ -284,7 +286,7 @@ export default function CrisisCovid() {
             <strong>Technology Acceleration:</strong> The crisis accelerated digital transformation and remote work adoption.
           </li>
         </ul>
-      </div>
+      </ToolCallout>
     </div>
   )
 }

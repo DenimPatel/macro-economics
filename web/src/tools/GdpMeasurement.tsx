@@ -9,10 +9,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
-  LineChart,
-  Line,
 } from 'recharts'
 import {
   ToolHeader,
@@ -21,6 +18,18 @@ import {
   Button,
   InfoBox,
 } from '../components/ToolComponents'
+import { chartTheme, chartColor } from '../design/chartTheme'
+
+/**
+ * Chart series colours. The legacy inline palette mapped slot-for-slot across
+ * all three approaches (first component blue, second green, third amber), so the
+ * slots stay stable and each one is reused by every chart in this file.
+ */
+const SERIES_1 = chartColor(0)
+const SERIES_2 = chartColor(1)
+const SERIES_3 = chartColor(2)
+const SERIES_4 = chartColor(3)
+const SERIES_5 = chartColor(4)
 
 /**
  * Interface for expenditure approach data
@@ -127,10 +136,10 @@ export default function GdpMeasurement() {
   const gdpExpenditure = consumption + investment + governmentSpending + netExports
 
   const expenditureData: ExpenditureData[] = [
-    { name: 'Consumption (C)', value: consumption, color: '#3b82f6' },
-    { name: 'Investment (I)', value: investment, color: '#10b981' },
-    { name: 'Government (G)', value: governmentSpending, color: '#f59e0b' },
-    { name: 'Net Exports (X-M)', value: netExports, color: netExports >= 0 ? '#8b5cf6' : '#ef4444' },
+    { name: 'Consumption (C)', value: consumption, color: SERIES_1 },
+    { name: 'Investment (I)', value: investment, color: SERIES_2 },
+    { name: 'Government (G)', value: governmentSpending, color: SERIES_3 },
+    { name: 'Net Exports (X-M)', value: netExports, color: netExports >= 0 ? SERIES_4 : SERIES_5 },
   ]
 
   // ============================================
@@ -139,9 +148,9 @@ export default function GdpMeasurement() {
   const gdpIncome = wages + profits + rent
 
   const incomeData: IncomeData[] = [
-    { name: 'Wages (Labor Income)', value: wages, color: '#3b82f6' },
-    { name: 'Profits (Capital Income)', value: profits, color: '#10b981' },
-    { name: 'Rent (Land/Property)', value: rent, color: '#f59e0b' },
+    { name: 'Wages (Labor Income)', value: wages, color: SERIES_1 },
+    { name: 'Profits (Capital Income)', value: profits, color: SERIES_2 },
+    { name: 'Rent (Land/Property)', value: rent, color: SERIES_3 },
   ]
 
   // ============================================
@@ -150,9 +159,9 @@ export default function GdpMeasurement() {
   const gdpProduction = agriculture + manufacturing + services
 
   const productionData: ProductionData[] = [
-    { sector: 'Agriculture', valueAdded: agriculture, color: '#10b981' },
-    { sector: 'Manufacturing', valueAdded: manufacturing, color: '#3b82f6' },
-    { sector: 'Services', valueAdded: services, color: '#f59e0b' },
+    { sector: 'Agriculture', valueAdded: agriculture, color: SERIES_2 },
+    { sector: 'Manufacturing', valueAdded: manufacturing, color: SERIES_1 },
+    { sector: 'Services', valueAdded: services, color: SERIES_3 },
   ]
 
   // ============================================
@@ -218,9 +227,9 @@ export default function GdpMeasurement() {
       />
 
       {/* Scenario Selection */}
-      <div style={{ marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>Economy Scenarios</h2>
-        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+      <div className="mb-8">
+        <h2 className="mb-4 font-serif text-lg font-bold text-fg">Economy Scenarios</h2>
+        <div className="flex flex-wrap gap-2">
           <Button
             onClick={() => applyScenario('balanced')}
             variant={scenarioMode === 'balanced' ? 'primary' : 'secondary'}
@@ -249,77 +258,57 @@ export default function GdpMeasurement() {
       </div>
 
       {/* Tab Navigation */}
-      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem', borderBottom: '1px solid #e2e8f0', flexWrap: 'wrap' }}>
+      <div className="mb-8 flex flex-wrap gap-2 border-b border-border">
         <button
           onClick={() => setActiveTab('expenditure')}
-          style={{
-            padding: '0.75rem 1.5rem',
-            backgroundColor: activeTab === 'expenditure' ? '#3b82f6' : 'transparent',
-            color: activeTab === 'expenditure' ? 'white' : '#64748b',
-            border: 'none',
-            borderBottom: activeTab === 'expenditure' ? '2px solid #3b82f6' : 'none',
-            cursor: 'pointer',
-            fontSize: '0.95rem',
-            fontWeight: activeTab === 'expenditure' ? '600' : '400',
-          }}
+          className={`cursor-pointer px-6 py-3 text-[0.95rem] ${
+            activeTab === 'expenditure'
+              ? 'border-b-2 border-accent bg-accent font-semibold text-accent-fg'
+              : 'border-b-2 border-transparent font-normal text-fg-muted'
+          }`}
         >
-          📊 Expenditure Approach
+          Expenditure Approach
         </button>
         <button
           onClick={() => setActiveTab('income')}
-          style={{
-            padding: '0.75rem 1.5rem',
-            backgroundColor: activeTab === 'income' ? '#3b82f6' : 'transparent',
-            color: activeTab === 'income' ? 'white' : '#64748b',
-            border: 'none',
-            borderBottom: activeTab === 'income' ? '2px solid #3b82f6' : 'none',
-            cursor: 'pointer',
-            fontSize: '0.95rem',
-            fontWeight: activeTab === 'income' ? '600' : '400',
-          }}
+          className={`cursor-pointer px-6 py-3 text-[0.95rem] ${
+            activeTab === 'income'
+              ? 'border-b-2 border-accent bg-accent font-semibold text-accent-fg'
+              : 'border-b-2 border-transparent font-normal text-fg-muted'
+          }`}
         >
-          💰 Income Approach
+          Income Approach
         </button>
         <button
           onClick={() => setActiveTab('production')}
-          style={{
-            padding: '0.75rem 1.5rem',
-            backgroundColor: activeTab === 'production' ? '#3b82f6' : 'transparent',
-            color: activeTab === 'production' ? 'white' : '#64748b',
-            border: 'none',
-            borderBottom: activeTab === 'production' ? '2px solid #3b82f6' : 'none',
-            cursor: 'pointer',
-            fontSize: '0.95rem',
-            fontWeight: activeTab === 'production' ? '600' : '400',
-          }}
+          className={`cursor-pointer px-6 py-3 text-[0.95rem] ${
+            activeTab === 'production'
+              ? 'border-b-2 border-accent bg-accent font-semibold text-accent-fg'
+              : 'border-b-2 border-transparent font-normal text-fg-muted'
+          }`}
         >
-          🏭 Production Approach
+          Production Approach
         </button>
         <button
           onClick={() => setActiveTab('comparison')}
-          style={{
-            padding: '0.75rem 1.5rem',
-            backgroundColor: activeTab === 'comparison' ? '#3b82f6' : 'transparent',
-            color: activeTab === 'comparison' ? 'white' : '#64748b',
-            border: 'none',
-            borderBottom: activeTab === 'comparison' ? '2px solid #3b82f6' : 'none',
-            cursor: 'pointer',
-            fontSize: '0.95rem',
-            fontWeight: activeTab === 'comparison' ? '600' : '400',
-          }}
+          className={`cursor-pointer px-6 py-3 text-[0.95rem] ${
+            activeTab === 'comparison'
+              ? 'border-b-2 border-accent bg-accent font-semibold text-accent-fg'
+              : 'border-b-2 border-transparent font-normal text-fg-muted'
+          }`}
         >
-          ⚖️ Comparison
+          Comparison
         </button>
       </div>
 
       {/* EXPENDITURE APPROACH TAB */}
       {activeTab === 'expenditure' && (
         <div>
-          <h2 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+          <h2 className="mb-4 font-serif text-lg font-bold text-fg">
             Expenditure Approach: GDP = C + I + G + (X - M)
           </h2>
 
-          <div style={{ marginBottom: '2rem' }}>
+          <div className="mb-8">
             <InfoBox type="info">
               <strong>Expenditure Approach:</strong> Measures GDP by summing all final expenditures in the economy.
               Consumption (C) is what households spend, Investment (I) is business capital spending, Government (G) is public spending,
@@ -328,8 +317,8 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Controls */}
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>Adjust Components ($ trillions)</h3>
+          <div className="mb-8">
+            <h3 className="mb-4 font-serif text-base font-bold text-fg">Adjust Components ($ trillions)</h3>
             <div className="control-panel">
               <SliderControl
                 label="Consumption (C)"
@@ -380,23 +369,40 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Key Results */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
+          <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-5">
             <StatBox label="Consumption (C)" value={consumption.toFixed(1)} unit="T" />
             <StatBox label="Investment (I)" value={investment.toFixed(1)} unit="T" />
             <StatBox label="Government (G)" value={governmentSpending.toFixed(1)} unit="T" />
-            <StatBox label="Net Exports (X-M)" value={netExports.toFixed(1)} unit="T" highlight={netExports > 0} />
-            <StatBox label="Total GDP" value={gdpExpenditure.toFixed(1)} unit="T" highlight />
+            <StatBox
+              label="Net Exports (X-M)"
+              value={netExports.toFixed(1)}
+              unit="T"
+              tone={netExports > 0 ? 'accent' : undefined}
+            />
+            <StatBox label="Total GDP" value={gdpExpenditure.toFixed(1)} unit="T" tone="accent" />
           </div>
 
           {/* Bar Chart */}
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>Composition of GDP</h3>
+          <div className="mb-8">
+            <h3 className="mb-4 font-serif text-base font-bold text-fg">Composition of GDP</h3>
             <ResponsiveContainer width="100%" height={350}>
-              <BarChart data={expenditureData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis label={{ value: 'Amount ($ Trillions)', angle: -90, position: 'insideLeft' }} />
-                <Tooltip formatter={(value: any) => `$${value.toFixed(1)}T`} />
+              <BarChart data={expenditureData} margin={chartTheme.margin}>
+                <CartesianGrid {...chartTheme.grid} />
+                <XAxis dataKey="name" {...chartTheme.axis} />
+                <YAxis
+                  label={{
+                    value: 'Amount ($ Trillions)',
+                    angle: -90,
+                    position: 'insideLeft',
+                    fill: chartTheme.axis.tick.fill,
+                  }}
+                  {...chartTheme.axis}
+                />
+                <Tooltip
+                  {...chartTheme.tooltip}
+                  cursor={chartTheme.cursor}
+                  formatter={(value: number) => `${value.toFixed(1)}T`}
+                />
                 <Bar dataKey="value" radius={[8, 8, 0, 0]}>
                   {expenditureData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
@@ -408,39 +414,35 @@ export default function GdpMeasurement() {
 
           {/* Breakdown Percentages */}
           {showBreakdown && (
-            <div style={{ marginBottom: '2rem' }}>
-              <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>Component Breakdown (%)</h3>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem' }}>
-                <div style={{ padding: '1rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-                  <div style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '0.5rem' }}>Consumption</div>
-                  <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#3b82f6' }}>
-                    {componentPcts.consumptionPct}%
-                  </div>
+            <div className="mb-8">
+              <h3 className="mb-4 font-serif text-base font-bold text-fg">Component Breakdown (%)</h3>
+              <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+                <div className="stat-tile stat-tile--accent">
+                  <div className="stat-tile-label">Consumption</div>
+                  <div className="stat-tile-value">{componentPcts.consumptionPct}%</div>
                 </div>
-                <div style={{ padding: '1rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-                  <div style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '0.5rem' }}>Investment</div>
-                  <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#10b981' }}>
-                    {componentPcts.investmentPct}%
-                  </div>
+                <div className="stat-tile stat-tile--positive">
+                  <div className="stat-tile-label">Investment</div>
+                  <div className="stat-tile-value">{componentPcts.investmentPct}%</div>
                 </div>
-                <div style={{ padding: '1rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-                  <div style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '0.5rem' }}>Government</div>
-                  <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#f59e0b' }}>
-                    {componentPcts.governmentPct}%
-                  </div>
+                <div className="stat-tile stat-tile--caution">
+                  <div className="stat-tile-label">Government</div>
+                  <div className="stat-tile-value">{componentPcts.governmentPct}%</div>
                 </div>
-                <div style={{ padding: '1rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-                  <div style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '0.5rem' }}>Net Exports</div>
-                  <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: netExports >= 0 ? '#8b5cf6' : '#ef4444' }}>
-                    {componentPcts.exportsPct}%
-                  </div>
+                <div
+                  className={`stat-tile ${
+                    netExports >= 0 ? 'stat-tile--accent' : 'stat-tile--negative'
+                  }`}
+                >
+                  <div className="stat-tile-label">Net Exports</div>
+                  <div className="stat-tile-value">{componentPcts.exportsPct}%</div>
                 </div>
               </div>
             </div>
           )}
 
           {/* Economic Insights */}
-          <div style={{ marginBottom: '1rem' }}>
+          <div className="mb-4">
             <InfoBox type="success">
               <strong>Economic Insight:</strong> In the US economy, consumption typically accounts for 65-70% of GDP.
               This makes sense: in a market economy, household spending is the largest component. Notice that
@@ -454,11 +456,11 @@ export default function GdpMeasurement() {
       {/* INCOME APPROACH TAB */}
       {activeTab === 'income' && (
         <div>
-          <h2 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+          <h2 className="mb-4 font-serif text-lg font-bold text-fg">
             Income Approach: GDP = Wages + Profits + Rent
           </h2>
 
-          <div style={{ marginBottom: '2rem' }}>
+          <div className="mb-8">
             <InfoBox type="info">
               <strong>Income Approach:</strong> Measures GDP by summing all incomes earned in producing output.
               Every dollar of production must be paid out as income to someone—either workers (wages),
@@ -468,8 +470,8 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Controls */}
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>Adjust Income Components ($ trillions)</h3>
+          <div className="mb-8">
+            <h3 className="mb-4 font-serif text-base font-bold text-fg">Adjust Income Components ($ trillions)</h3>
             <div className="control-panel">
               <SliderControl
                 label="Wages (Labor Income)"
@@ -502,18 +504,18 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Key Results */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
+          <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
             <StatBox label="Wages (Labor)" value={wages.toFixed(1)} unit="T" />
             <StatBox label="Profits (Capital)" value={profits.toFixed(1)} unit="T" />
             <StatBox label="Rent (Land)" value={rent.toFixed(1)} unit="T" />
-            <StatBox label="Total GDP" value={gdpIncome.toFixed(1)} unit="T" highlight />
+            <StatBox label="Total GDP" value={gdpIncome.toFixed(1)} unit="T" tone="accent" />
           </div>
 
           {/* Pie Chart */}
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>Income Distribution Breakdown</h3>
+          <div className="mb-8">
+            <h3 className="mb-4 font-serif text-base font-bold text-fg">Income Distribution Breakdown</h3>
             <ResponsiveContainer width="100%" height={350}>
-              <PieChart>
+              <PieChart margin={chartTheme.margin}>
                 <Pie
                   data={incomeData}
                   cx="50%"
@@ -521,47 +523,45 @@ export default function GdpMeasurement() {
                   labelLine={false}
                   label={({ name, value }) => `${name}: $${value.toFixed(1)}T`}
                   outerRadius={100}
-                  fill="#8884d8"
+                  fill={SERIES_1}
                   dataKey="value"
                 >
                   {incomeData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: any) => `$${value.toFixed(1)}T`} />
+                <Tooltip
+                  {...chartTheme.tooltip}
+                  cursor={chartTheme.cursor}
+                  formatter={(value: number) => `${value.toFixed(1)}T`}
+                />
               </PieChart>
             </ResponsiveContainer>
           </div>
 
           {/* Income Distribution */}
           {showBreakdown && (
-            <div style={{ marginBottom: '2rem' }}>
-              <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>Income Share (% of GDP)</h3>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem' }}>
-                <div style={{ padding: '1rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-                  <div style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '0.5rem' }}>Labor's Share</div>
-                  <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#3b82f6' }}>
-                    {incomePcts.wagesPct}%
-                  </div>
+            <div className="mb-8">
+              <h3 className="mb-4 font-serif text-base font-bold text-fg">Income Share (% of GDP)</h3>
+              <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
+                <div className="stat-tile stat-tile--accent">
+                  <div className="stat-tile-label">Labor's Share</div>
+                  <div className="stat-tile-value">{incomePcts.wagesPct}%</div>
                 </div>
-                <div style={{ padding: '1rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-                  <div style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '0.5rem' }}>Capital's Share</div>
-                  <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#10b981' }}>
-                    {incomePcts.profitsPct}%
-                  </div>
+                <div className="stat-tile stat-tile--positive">
+                  <div className="stat-tile-label">Capital's Share</div>
+                  <div className="stat-tile-value">{incomePcts.profitsPct}%</div>
                 </div>
-                <div style={{ padding: '1rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-                  <div style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '0.5rem' }}>Land's Share</div>
-                  <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#f59e0b' }}>
-                    {incomePcts.rentPct}%
-                  </div>
+                <div className="stat-tile stat-tile--caution">
+                  <div className="stat-tile-label">Land's Share</div>
+                  <div className="stat-tile-value">{incomePcts.rentPct}%</div>
                 </div>
               </div>
             </div>
           )}
 
           {/* Economic Insights */}
-          <div style={{ marginBottom: '1rem' }}>
+          <div className="mb-4">
             <InfoBox type="success">
               <strong>Economic Insight:</strong> Labor income typically accounts for 65-70% of GDP in developed economies
               (slightly higher than 50% due to inclusion of fringe benefits). This reflects that labor is the primary factor of production.
@@ -575,11 +575,11 @@ export default function GdpMeasurement() {
       {/* PRODUCTION APPROACH TAB */}
       {activeTab === 'production' && (
         <div>
-          <h2 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+          <h2 className="mb-4 font-serif text-lg font-bold text-fg">
             Production Approach: GDP = Sum of Value Added by Sector
           </h2>
 
-          <div style={{ marginBottom: '2rem' }}>
+          <div className="mb-8">
             <InfoBox type="info">
               <strong>Production Approach:</strong> Measures GDP by summing the value added at each stage of production.
               Each firm's value added = its revenue minus what it paid for intermediate inputs from other firms.
@@ -589,8 +589,8 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Controls */}
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>Adjust Sector Value Added ($ trillions)</h3>
+          <div className="mb-8">
+            <h3 className="mb-4 font-serif text-base font-bold text-fg">Adjust Sector Value Added ($ trillions)</h3>
             <div className="control-panel">
               <SliderControl
                 label="Agriculture & Mining"
@@ -623,22 +623,34 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Key Results */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
+          <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
             <StatBox label="Agriculture & Mining" value={agriculture.toFixed(1)} unit="T" />
             <StatBox label="Manufacturing" value={manufacturing.toFixed(1)} unit="T" />
             <StatBox label="Services" value={services.toFixed(1)} unit="T" />
-            <StatBox label="Total GDP" value={gdpProduction.toFixed(1)} unit="T" highlight />
+            <StatBox label="Total GDP" value={gdpProduction.toFixed(1)} unit="T" tone="accent" />
           </div>
 
           {/* Bar Chart */}
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>Value Added by Sector</h3>
+          <div className="mb-8">
+            <h3 className="mb-4 font-serif text-base font-bold text-fg">Value Added by Sector</h3>
             <ResponsiveContainer width="100%" height={350}>
-              <BarChart data={productionData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="sector" />
-                <YAxis label={{ value: 'Value Added ($ Trillions)', angle: -90, position: 'insideLeft' }} />
-                <Tooltip formatter={(value: any) => `$${value.toFixed(1)}T`} />
+              <BarChart data={productionData} margin={chartTheme.margin}>
+                <CartesianGrid {...chartTheme.grid} />
+                <XAxis dataKey="sector" {...chartTheme.axis} />
+                <YAxis
+                  label={{
+                    value: 'Value Added ($ Trillions)',
+                    angle: -90,
+                    position: 'insideLeft',
+                    fill: chartTheme.axis.tick.fill,
+                  }}
+                  {...chartTheme.axis}
+                />
+                <Tooltip
+                  {...chartTheme.tooltip}
+                  cursor={chartTheme.cursor}
+                  formatter={(value: number) => `${value.toFixed(1)}T`}
+                />
                 <Bar dataKey="valueAdded" radius={[8, 8, 0, 0]}>
                   {productionData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
@@ -650,33 +662,27 @@ export default function GdpMeasurement() {
 
           {/* Sector Structure */}
           {showBreakdown && (
-            <div style={{ marginBottom: '2rem' }}>
-              <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>Economic Structure (% of GDP)</h3>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem' }}>
-                <div style={{ padding: '1rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-                  <div style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '0.5rem' }}>Agriculture</div>
-                  <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#10b981' }}>
-                    {productionPcts.agriculturePct}%
-                  </div>
+            <div className="mb-8">
+              <h3 className="mb-4 font-serif text-base font-bold text-fg">Economic Structure (% of GDP)</h3>
+              <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
+                <div className="stat-tile stat-tile--positive">
+                  <div className="stat-tile-label">Agriculture</div>
+                  <div className="stat-tile-value">{productionPcts.agriculturePct}%</div>
                 </div>
-                <div style={{ padding: '1rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-                  <div style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '0.5rem' }}>Manufacturing</div>
-                  <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#3b82f6' }}>
-                    {productionPcts.manufacturingPct}%
-                  </div>
+                <div className="stat-tile stat-tile--accent">
+                  <div className="stat-tile-label">Manufacturing</div>
+                  <div className="stat-tile-value">{productionPcts.manufacturingPct}%</div>
                 </div>
-                <div style={{ padding: '1rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-                  <div style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '0.5rem' }}>Services</div>
-                  <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#f59e0b' }}>
-                    {productionPcts.servicesPct}%
-                  </div>
+                <div className="stat-tile stat-tile--caution">
+                  <div className="stat-tile-label">Services</div>
+                  <div className="stat-tile-value">{productionPcts.servicesPct}%</div>
                 </div>
               </div>
             </div>
           )}
 
           {/* Economic Insights */}
-          <div style={{ marginBottom: '1rem' }}>
+          <div className="mb-4">
             <InfoBox type="success">
               <strong>Economic Insight:</strong> Modern developed economies are dominated by services
               ({productionPcts.servicesPct}% in this example), reflecting deindustrialization and the rise of finance, healthcare,
@@ -690,11 +696,11 @@ export default function GdpMeasurement() {
       {/* COMPARISON TAB */}
       {activeTab === 'comparison' && (
         <div>
-          <h2 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+          <h2 className="mb-4 font-serif text-lg font-bold text-fg">
             Cross-Method Verification
           </h2>
 
-          <div style={{ marginBottom: '2rem' }}>
+          <div className="mb-8">
             <InfoBox type="info">
               <strong>Why All Three Methods?</strong> In a well-measured economy, all three approaches should yield
               the same GDP. Discrepancies indicate measurement errors. The existence of three independent methods
@@ -719,162 +725,145 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Key Results - All Approaches */}
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>GDP by Approach</h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-              <div style={{ padding: '1rem', backgroundColor: '#dbeafe', borderRadius: '6px', border: '1px solid #bfdbfe' }}>
-                <div style={{ fontSize: '0.875rem', color: '#0c4a6e', marginBottom: '0.5rem' }}>Expenditure Approach</div>
-                <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#0c4a6e' }}>
-                  ${gdpExpenditure.toFixed(1)}T
-                </div>
+          <div className="mb-8">
+            <h3 className="mb-4 font-serif text-base font-bold text-fg">GDP by Approach</h3>
+            <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
+              <div className="stat-tile stat-tile--accent">
+                <div className="stat-tile-label">Expenditure Approach</div>
+                <div className="stat-tile-value">${gdpExpenditure.toFixed(1)}T</div>
               </div>
-              <div style={{ padding: '1rem', backgroundColor: '#dcfce7', borderRadius: '6px', border: '1px solid #bbf7d0' }}>
-                <div style={{ fontSize: '0.875rem', color: '#15803d', marginBottom: '0.5rem' }}>Income Approach</div>
-                <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#15803d' }}>
-                  ${gdpIncome.toFixed(1)}T
-                </div>
+              <div className="stat-tile stat-tile--positive">
+                <div className="stat-tile-label">Income Approach</div>
+                <div className="stat-tile-value">${gdpIncome.toFixed(1)}T</div>
               </div>
-              <div style={{ padding: '1rem', backgroundColor: '#fef08a', borderRadius: '6px', border: '1px solid #fcd34d' }}>
-                <div style={{ fontSize: '0.875rem', color: '#854d0e', marginBottom: '0.5rem' }}>Production Approach</div>
-                <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#854d0e' }}>
-                  ${gdpProduction.toFixed(1)}T
-                </div>
+              <div className="stat-tile stat-tile--caution">
+                <div className="stat-tile-label">Production Approach</div>
+                <div className="stat-tile-value">${gdpProduction.toFixed(1)}T</div>
               </div>
             </div>
           </div>
 
           {/* Discrepancy Analysis */}
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>Measurement Consistency</h3>
+          <div className="mb-8">
+            <h3 className="mb-4 font-serif text-base font-bold text-fg">Measurement Consistency</h3>
             <div
-              style={{
-                padding: '1.5rem',
-                backgroundColor: discrepancyPercent < 2 ? '#dcfce7' : discrepancyPercent < 5 ? '#fef08a' : '#fee2e2',
-                borderRadius: '6px',
-                border:
-                  discrepancyPercent < 2
-                    ? '1px solid #bbf7d0'
-                    : discrepancyPercent < 5
-                      ? '1px solid #fcd34d'
-                      : '1px solid #fecaca',
-              }}
+              className={`stat-tile ${
+                discrepancyPercent < 2
+                  ? 'stat-tile--positive'
+                  : discrepancyPercent < 5
+                    ? 'stat-tile--caution'
+                    : 'stat-tile--negative'
+              }`}
             >
-              <div style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '0.5rem' }}>
-                Max Discrepancy Across Approaches
-              </div>
-              <div
-                style={{
-                  fontSize: '2rem',
-                  fontWeight: 'bold',
-                  color: discrepancyPercent < 2 ? '#15803d' : discrepancyPercent < 5 ? '#854d0e' : '#991b1b',
-                }}
-              >
-                {discrepancyPercent.toFixed(2)}%
-              </div>
+              <div className="stat-tile-label">Max Discrepancy Across Approaches</div>
+              <div className="stat-tile-value">{discrepancyPercent.toFixed(2)}%</div>
               {discrepancyPercent < 2 && (
-                <div style={{ fontSize: '0.875rem', color: '#15803d', marginTop: '0.5rem' }}>
-                  ✓ Excellent consistency (typical for real-world GDP data)
+                <div className="stat-tile-change">
+                  Excellent consistency (typical for real-world GDP data)
                 </div>
               )}
               {discrepancyPercent >= 2 && discrepancyPercent < 5 && (
-                <div style={{ fontSize: '0.875rem', color: '#854d0e', marginTop: '0.5rem' }}>
-                  ⚠ Good consistency but some discrepancy—adjust components to align approaches
+                <div className="stat-tile-change">
+                  Good consistency but some discrepancy—adjust components to align approaches
                 </div>
               )}
               {discrepancyPercent >= 5 && (
-                <div style={{ fontSize: '0.875rem', color: '#991b1b', marginTop: '0.5rem' }}>
-                  ⚠ Significant discrepancy—align the three approaches for proper GDP measurement
+                <div className="stat-tile-change">
+                  Significant discrepancy—align the three approaches for proper GDP measurement
                 </div>
               )}
             </div>
           </div>
 
           {/* Comparison Chart */}
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>GDP Comparison Across Methods</h3>
+          <div className="mb-8">
+            <h3 className="mb-4 font-serif text-base font-bold text-fg">GDP Comparison Across Methods</h3>
             <ResponsiveContainer width="100%" height={350}>
-              <BarChart data={comparisonData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="approach" />
-                <YAxis label={{ value: 'GDP ($ Trillions)', angle: -90, position: 'insideLeft' }} />
-                <Tooltip formatter={(value: any) => `$${value.toFixed(1)}T`} />
-                <Bar dataKey="gdp" fill="#3b82f6" radius={[8, 8, 0, 0]} />
+              <BarChart data={comparisonData} margin={chartTheme.margin}>
+                <CartesianGrid {...chartTheme.grid} />
+                <XAxis dataKey="approach" {...chartTheme.axis} />
+                <YAxis
+                  label={{
+                    value: 'GDP ($ Trillions)',
+                    angle: -90,
+                    position: 'insideLeft',
+                    fill: chartTheme.axis.tick.fill,
+                  }}
+                  {...chartTheme.axis}
+                />
+                <Tooltip
+                  {...chartTheme.tooltip}
+                  cursor={chartTheme.cursor}
+                  formatter={(value: number) => `${value.toFixed(1)}T`}
+                />
+                <Bar dataKey="gdp" fill={SERIES_1} radius={[8, 8, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
 
           {/* Detailed Breakdown Table */}
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>Detailed Breakdown Table</h3>
-            <div style={{ overflowX: 'auto' }}>
-              <table
-                style={{
-                  width: '100%',
-                  borderCollapse: 'collapse',
-                  fontSize: '0.875rem',
-                  backgroundColor: '#f8fafc',
-                  borderRadius: '6px',
-                  overflow: 'hidden',
-                }}
-              >
+          <div className="mb-8">
+            <h3 className="mb-4 font-serif text-base font-bold text-fg">Detailed Breakdown Table</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full overflow-hidden rounded-card border-collapse bg-surface text-sm">
                 <thead>
-                  <tr style={{ backgroundColor: '#e2e8f0', fontWeight: '600' }}>
-                    <th style={{ padding: '0.75rem', textAlign: 'left', borderBottom: '1px solid #cbd5e1' }}>Method</th>
-                    <th style={{ padding: '0.75rem', textAlign: 'center', borderBottom: '1px solid #cbd5e1' }}>Component 1</th>
-                    <th style={{ padding: '0.75rem', textAlign: 'center', borderBottom: '1px solid #cbd5e1' }}>Component 2</th>
-                    <th style={{ padding: '0.75rem', textAlign: 'center', borderBottom: '1px solid #cbd5e1' }}>Component 3</th>
-                    <th style={{ padding: '0.75rem', textAlign: 'right', borderBottom: '1px solid #cbd5e1' }}>Total GDP</th>
+                  <tr className="bg-surface-2 font-semibold">
+                    <th className="border-b border-border px-3 py-3 text-left">Method</th>
+                    <th className="border-b border-border px-3 py-3 text-center">Component 1</th>
+                    <th className="border-b border-border px-3 py-3 text-center">Component 2</th>
+                    <th className="border-b border-border px-3 py-3 text-center">Component 3</th>
+                    <th className="border-b border-border px-3 py-3 text-right">Total GDP</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style={{ backgroundColor: '#dbeafe' }}>
-                    <td style={{ padding: '0.75rem', textAlign: 'left', borderBottom: '1px solid #cbd5e1', fontWeight: '600' }}>
+                  <tr className="bg-tier-intermediate/5">
+                    <td className="border-b border-border px-3 py-3 text-left font-semibold">
                       Expenditure
                     </td>
-                    <td style={{ padding: '0.75rem', textAlign: 'center', borderBottom: '1px solid #cbd5e1' }}>
+                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
                       C: ${consumption.toFixed(1)}T
                     </td>
-                    <td style={{ padding: '0.75rem', textAlign: 'center', borderBottom: '1px solid #cbd5e1' }}>
+                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
                       I: ${investment.toFixed(1)}T
                     </td>
-                    <td style={{ padding: '0.75rem', textAlign: 'center', borderBottom: '1px solid #cbd5e1' }}>
+                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
                       G: ${governmentSpending.toFixed(1)}T
                     </td>
-                    <td style={{ padding: '0.75rem', textAlign: 'right', borderBottom: '1px solid #cbd5e1', fontWeight: '600', color: '#0c4a6e' }}>
+                    <td className="border-b border-border px-3 py-3 text-right font-semibold tabular-nums text-tier-intermediate-ink">
                       ${gdpExpenditure.toFixed(1)}T
                     </td>
                   </tr>
-                  <tr style={{ backgroundColor: '#dcfce7' }}>
-                    <td style={{ padding: '0.75rem', textAlign: 'left', borderBottom: '1px solid #cbd5e1', fontWeight: '600' }}>
+                  <tr className="bg-tier-beginner/5">
+                    <td className="border-b border-border px-3 py-3 text-left font-semibold">
                       Income
                     </td>
-                    <td style={{ padding: '0.75rem', textAlign: 'center', borderBottom: '1px solid #cbd5e1' }}>
+                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
                       Wages: ${wages.toFixed(1)}T
                     </td>
-                    <td style={{ padding: '0.75rem', textAlign: 'center', borderBottom: '1px solid #cbd5e1' }}>
+                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
                       Profits: ${profits.toFixed(1)}T
                     </td>
-                    <td style={{ padding: '0.75rem', textAlign: 'center', borderBottom: '1px solid #cbd5e1' }}>
+                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
                       Rent: ${rent.toFixed(1)}T
                     </td>
-                    <td style={{ padding: '0.75rem', textAlign: 'right', borderBottom: '1px solid #cbd5e1', fontWeight: '600', color: '#15803d' }}>
+                    <td className="border-b border-border px-3 py-3 text-right font-semibold tabular-nums text-tier-beginner-ink">
                       ${gdpIncome.toFixed(1)}T
                     </td>
                   </tr>
-                  <tr style={{ backgroundColor: '#fef08a' }}>
-                    <td style={{ padding: '0.75rem', textAlign: 'left', borderBottom: '1px solid #cbd5e1', fontWeight: '600' }}>
+                  <tr className="bg-accent/5">
+                    <td className="border-b border-border px-3 py-3 text-left font-semibold">
                       Production
                     </td>
-                    <td style={{ padding: '0.75rem', textAlign: 'center', borderBottom: '1px solid #cbd5e1' }}>
+                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
                       Ag: ${agriculture.toFixed(1)}T
                     </td>
-                    <td style={{ padding: '0.75rem', textAlign: 'center', borderBottom: '1px solid #cbd5e1' }}>
+                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
                       Mfg: ${manufacturing.toFixed(1)}T
                     </td>
-                    <td style={{ padding: '0.75rem', textAlign: 'center', borderBottom: '1px solid #cbd5e1' }}>
+                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
                       Svc: ${services.toFixed(1)}T
                     </td>
-                    <td style={{ padding: '0.75rem', textAlign: 'right', borderBottom: '1px solid #cbd5e1', fontWeight: '600', color: '#854d0e' }}>
+                    <td className="border-b border-border px-3 py-3 text-right font-semibold tabular-nums text-accent-ink">
                       ${gdpProduction.toFixed(1)}T
                     </td>
                   </tr>
@@ -884,7 +873,7 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Key Learning */}
-          <div style={{ marginBottom: '1rem' }}>
+          <div className="mb-4">
             <InfoBox type="success">
               <strong>Fundamental Macro Identity:</strong> In a closed economy with perfect measurement:
               <br />
@@ -901,9 +890,9 @@ export default function GdpMeasurement() {
       )}
 
       {/* Toggle Breakdown */}
-      <div style={{ marginTop: '2rem', paddingTop: '1rem', borderTop: '1px solid #e2e8f0' }}>
+      <div className="mt-8 border-t border-border pt-4">
         <Button onClick={() => setShowBreakdown(!showBreakdown)} variant="secondary">
-          {showBreakdown ? '📊 Hide' : '📊 Show'} Percentage Breakdown
+          {showBreakdown ? 'Hide' : 'Show'} Percentage Breakdown
         </Button>
       </div>
     </div>

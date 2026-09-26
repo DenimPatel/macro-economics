@@ -6,18 +6,29 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   AreaChart,
   Area,
 } from 'recharts'
 import {
   ToolHeader,
+  ToolCallout,
   SliderControl,
   StatBox,
   Button,
-  InfoBox,
 } from '../components/ToolComponents'
+import { chartTheme, chartColor } from '../design/chartTheme'
+
+/** Series keep a fixed economic identity across every chart in this tool. */
+const CREDIT_SPREAD_STROKE = chartColor(4)
+const OUTPUT_STROKE = chartColor(0)
+const UNEMPLOYMENT_STROKE = chartColor(2)
+const INFLATION_STROKE = chartColor(1)
+
+/** Layout shared by the chart and readout blocks. */
+const CHART_BOX = 'h-[300px]'
+const SPLIT = 'grid gap-6 lg:grid-cols-2'
+const STAT_GRID = 'mb-6 grid grid-cols-2 gap-3'
 
 interface CrisisDataPoint {
   quarter: string
@@ -32,7 +43,6 @@ export default function Crisis2008() {
   const [timePeriod, setTimePeriod] = useState(2007.5)
   const [showDataOverlay, setShowDataOverlay] = useState(true)
   const [showISLM, setShowISLM] = useState(true)
-  const [showUnemployment, setShowUnemployment] = useState(true)
 
   // Historical data for 2007-2013
   const crisisData: CrisisDataPoint[] = [
@@ -65,10 +75,10 @@ export default function Crisis2008() {
   const currentData = crisisData.find(d => d.quarter === '2008Q3') || crisisData[0]
   
   // IS-LM model for crisis period
-  const [g, setG] = useState(100)
-  const [m, setM] = useState(150)
-  const [tax, setTax] = useState(50)
-  const [interestRate, setInterestRate] = useState(5)
+  const [g] = useState(100)
+  const [m] = useState(150)
+  const [tax] = useState(50)
+  const [interestRate] = useState(5)
   
   // Simulate IS-LM model during crisis
   const simulateISLM = () => {
@@ -112,7 +122,7 @@ export default function Crisis2008() {
           onChange={setTimePeriod}
           unit=""
         />
-        <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+        <div className="button-group">
           <Button
             onClick={() => setShowDataOverlay(!showDataOverlay)}
             variant={showDataOverlay ? 'primary' : 'secondary'}
@@ -128,29 +138,30 @@ export default function Crisis2008() {
         </div>
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Credit Spreads Over Time
         </h3>
-        <div style={{ height: '300px' }}>
+        <div className={CHART_BOX}>
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={crisisData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="quarter" />
-              <YAxis />
-              <Tooltip />
-              <Area 
-                type="monotone" 
-                dataKey="creditSpread" 
-                stroke="#dc2626" 
-                fill="#fee2e2" 
+            <AreaChart data={crisisData} margin={chartTheme.margin}>
+              <CartesianGrid {...chartTheme.grid} />
+              <XAxis dataKey="quarter" {...chartTheme.axis} />
+              <YAxis {...chartTheme.axis} />
+              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+              <Area
+                type="monotone"
+                dataKey="creditSpread"
+                stroke={CREDIT_SPREAD_STROKE}
+                fill={CREDIT_SPREAD_STROKE}
+                fillOpacity={0.15}
                 name="Credit Spread (BAA-AAA)"
               />
               {showDataOverlay && (
-                <Line 
-                  type="monotone" 
-                  dataKey="creditSpread" 
-                  stroke="#ef4444" 
+                <Line
+                  type="monotone"
+                  dataKey="creditSpread"
+                  stroke={CREDIT_SPREAD_STROKE}
                   strokeWidth={2}
                   dot={{ r: 4 }}
                   name="Actual Data"
@@ -162,30 +173,30 @@ export default function Crisis2008() {
       </div>
 
       {showISLM && (
-        <div style={{ marginBottom: '2rem' }}>
-          <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+        <div className="mb-8">
+          <h3 className="mb-4 font-serif text-lg font-bold text-fg">
             IS-LM Analysis During Crisis
           </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-            <div style={{ height: '300px' }}>
+          <div className={SPLIT}>
+            <div className={CHART_BOX}>
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={crisisData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="quarter" />
-                  <YAxis />
-                  <Tooltip />
-                  <Line 
-                    type="monotone" 
-                    dataKey="output" 
-                    stroke="#3b82f6" 
+                <LineChart data={crisisData} margin={chartTheme.margin}>
+                  <CartesianGrid {...chartTheme.grid} />
+                  <XAxis dataKey="quarter" {...chartTheme.axis} />
+                  <YAxis {...chartTheme.axis} />
+                  <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+                  <Line
+                    type="monotone"
+                    dataKey="output"
+                    stroke={OUTPUT_STROKE}
                     strokeWidth={2}
                     dot={{ r: 4 }}
                     name="Output (Y)"
                   />
-                  <Line 
-                    type="monotone" 
-                    dataKey="unemployment" 
-                    stroke="#f59e0b" 
+                  <Line
+                    type="monotone"
+                    dataKey="unemployment"
+                    stroke={UNEMPLOYMENT_STROKE}
                     strokeWidth={2}
                     dot={{ r: 4 }}
                     name="Unemployment Rate"
@@ -193,52 +204,49 @@ export default function Crisis2008() {
                 </LineChart>
               </ResponsiveContainer>
             </div>
-            
+
             <div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+              <div className={STAT_GRID}>
                 <StatBox label="Output" value={islmResult.output.toFixed(1)} />
                 <StatBox label="Interest Rate" value={islmResult.interestRate.toFixed(1)} unit="%" />
                 <StatBox label="Money Demand" value={islmResult.moneyDemand.toFixed(1)} />
                 <StatBox label="Money Supply" value={islmResult.moneySupply.toFixed(1)} />
               </div>
-              
-              <div style={{ padding: '1rem', backgroundColor: '#f0f9ff', borderRadius: '6px', borderLeft: '4px solid #0284c7' }}>
-                <h4 style={{ margin: '0 0 0.5rem 0', color: '#0c4a6e', fontWeight: '600' }}>
-                  Crisis Impact on IS-LM
-                </h4>
-                <p style={{ margin: '0.5rem 0', fontSize: '0.85rem', color: '#0c4a6e', lineHeight: '1.5' }}>
+
+              <ToolCallout label="Reference" variant="info" title="Crisis Impact on IS-LM">
+                <p>
                   The 2008 crisis caused credit spreads to widen dramatically (from 1.5% to 6.0%), reducing investment and shifting the IS curve left.
                   This led to lower output and higher unemployment as shown in the IS-LM diagram.
                 </p>
-              </div>
+              </ToolCallout>
             </div>
           </div>
         </div>
       )}
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Unemployment and Inflation Path
         </h3>
-        <div style={{ height: '300px' }}>
+        <div className={CHART_BOX}>
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={crisisData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="quarter" />
-              <YAxis />
-              <Tooltip />
-              <Line 
-                type="monotone" 
-                dataKey="unemployment" 
-                stroke="#f59e0b" 
+            <LineChart data={crisisData} margin={chartTheme.margin}>
+              <CartesianGrid {...chartTheme.grid} />
+              <XAxis dataKey="quarter" {...chartTheme.axis} />
+              <YAxis {...chartTheme.axis} />
+              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+              <Line
+                type="monotone"
+                dataKey="unemployment"
+                stroke={UNEMPLOYMENT_STROKE}
                 strokeWidth={2}
                 dot={{ r: 4 }}
                 name="Unemployment Rate"
               />
-              <Line 
-                type="monotone" 
-                dataKey="inflation" 
-                stroke="#10b981" 
+              <Line
+                type="monotone"
+                dataKey="inflation"
+                stroke={INFLATION_STROKE}
                 strokeWidth={2}
                 dot={{ r: 4 }}
                 name="Inflation Rate"
@@ -248,33 +256,27 @@ export default function Crisis2008() {
         </div>
       </div>
 
-      <div style={{ marginTop: '2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-        <InfoBox type="info">
-          <strong>📉 The Crisis Timeline</strong>
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ToolCallout label="Info" variant="info" title="The Crisis Timeline">
           <p>2007: Subprime mortgage crisis begins with rising defaults</p>
           <p>2008Q3-Q4: Lehman Brothers collapse triggers credit market freeze</p>
           <p>2009: Sharp recession with unemployment reaching 10%</p>
           <p>2010-2013: Slow recovery with continued high unemployment</p>
-        </InfoBox>
+        </ToolCallout>
 
-        <InfoBox type="warning">
-          <strong>⚠️ Credit Market Freeze</strong>
+        <ToolCallout label="Watch out" variant="warning" title="Credit Market Freeze">
           <p>As credit spreads widened from 1.5% to 6.0%, businesses and consumers found it increasingly difficult to borrow.</p>
           <p>This reduced investment and consumption, shifting the IS curve left and causing a recession.</p>
-        </InfoBox>
+        </ToolCallout>
 
-        <InfoBox type="success">
-          <strong>✅ Policy Response</strong>
+        <ToolCallout label="Note" variant="lesson" title="Policy Response">
           <p>Fed responded with quantitative easing (QE) and fiscal stimulus (TARP, stimulus package).</p>
           <p>These measures helped stabilize credit markets and support aggregate demand.</p>
-        </InfoBox>
+        </ToolCallout>
       </div>
 
-      <div style={{ marginTop: '2rem', padding: '1.5rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-        <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>
-          📊 Key Lessons from the Crisis
-        </h3>
-        <ul style={{ fontSize: '0.875rem', lineHeight: '1.8', marginLeft: '1.5rem', color: '#475569' }}>
+      <ToolCallout label="Reference" variant="info" title="Key Lessons from the Crisis">
+        <ul>
           <li>
             <strong>Financial Intermediation Matters:</strong> When banks stop lending, the entire economy suffers.
             The crisis showed how credit market dysfunction can cause severe real economic consequences.
@@ -295,7 +297,7 @@ export default function Crisis2008() {
             <strong>Global Spillovers:</strong> The crisis quickly spread globally, demonstrating the importance of international financial stability.
           </li>
         </ul>
-      </div>
+      </ToolCallout>
     </div>
   )
 }

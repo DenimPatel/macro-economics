@@ -22,17 +22,5 @@ module.exports = {
         'react-refresh/only-export-components': 'off',
       },
     },
-    {
-      // Legacy tools predate the shared design system (see Phase 6 of the
-      // migration plan). They are being moved onto chartTheme/primitives one at
-      // a time; unused-vars is relaxed here until each is touched.
-      files: ['src/tools/**/*.tsx'],
-      rules: {
-        '@typescript-eslint/no-unused-vars': 'off',
-        '@typescript-eslint/no-explicit-any': 'off',
-        'prefer-const': 'off',
-        'react-hooks/exhaustive-deps': 'off',
-      },
-    },
   ],
 }

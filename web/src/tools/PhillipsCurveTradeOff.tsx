@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import {
-  LineChart,
   Line,
   ScatterChart,
   Scatter,
@@ -14,12 +13,12 @@ import {
 } from 'recharts'
 import {
   ToolHeader,
+  ToolCallout,
   SliderControl,
   StatBox,
-  Button,
   InfoBox,
 } from '../components/ToolComponents'
-import { formatNumber } from '../lib/calculations'
+import { chartTheme, chartColor } from '../design/chartTheme'
 
 /**
  * PhillipsCurveTradeOff Component
@@ -206,10 +205,10 @@ export default function PhillipsCurveTradeOff() {
         badge="Macro"
       />
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
+      <div className="mb-8 grid gap-8 lg:grid-cols-2">
         {/* Control Panel */}
-        <div style={{ backgroundColor: '#f8fafc', padding: '1.5rem', borderRadius: '8px' }}>
-          <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#1e293b' }}>Controls</h3>
+        <div className="control-panel block">
+          <h3 className="mb-4 font-serif text-lg font-bold text-fg">Controls</h3>
 
           <SliderControl
             label="Expected Inflation Rate"
@@ -248,7 +247,6 @@ export default function PhillipsCurveTradeOff() {
             max={2}
             step={0.1}
             onChange={setDemandShock}
-            unit=""
           />
 
           <SliderControl
@@ -258,28 +256,22 @@ export default function PhillipsCurveTradeOff() {
             max={1.5}
             step={0.1}
             onChange={setPhillipsSensitivity}
-            unit=""
           />
 
-          <div style={{ marginTop: '1.5rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>
-              Historical Period
-            </label>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <div className="mt-6">
+            <span className="control-label mb-2 block">Historical Period</span>
+            <div className="flex flex-wrap gap-2">
               {(['modern', 'pre1970', 'stagflation'] as const).map((mode) => (
                 <button
                   key={mode}
+                  type="button"
                   onClick={() => setHistoricalMode(mode)}
-                  style={{
-                    padding: '0.5rem 1rem',
-                    backgroundColor: historicalMode === mode ? '#3b82f6' : '#e2e8f0',
-                    color: historicalMode === mode ? 'white' : '#1e293b',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontSize: '0.875rem',
-                    fontWeight: 500,
-                  }}
+                  aria-pressed={historicalMode === mode}
+                  className={`rounded-pill px-4 py-2 text-sm font-medium transition-colors ${
+                    historicalMode === mode
+                      ? 'bg-accent text-accent-fg'
+                      : 'bg-surface text-fg-muted hover:border-accent'
+                  }`}
                 >
                   {mode === 'modern' && 'Modern'}
                   {mode === 'pre1970' && 'Pre-1970s'}
@@ -289,21 +281,22 @@ export default function PhillipsCurveTradeOff() {
             </div>
           </div>
 
-          <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem' }}>
+          <div className="mt-4 flex items-center gap-2">
             <input
               type="checkbox"
               id="annotations"
               checked={showAnnotations}
               onChange={(e) => setShowAnnotations(e.target.checked)}
+              className="h-4 w-4 cursor-pointer accent-accent"
             />
-            <label htmlFor="annotations" style={{ cursor: 'pointer', fontSize: '0.875rem' }}>
+            <label htmlFor="annotations" className="cursor-pointer text-sm text-fg-muted">
               Show Annotations
             </label>
           </div>
         </div>
 
         {/* Key Statistics */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div className="flex flex-col gap-3">
           <StatBox
             label="Current Unemployment"
             value={`${equilibrium.unemployment.toFixed(2)}%`}
@@ -314,6 +307,7 @@ export default function PhillipsCurveTradeOff() {
                   ? `↑ ${(equilibrium.unemployment - naturalUnemployment).toFixed(2)}pp above natural rate`
                   : `= Natural rate of ${naturalUnemployment.toFixed(2)}%`
             }
+            tone="accent"
           />
 
           <StatBox
@@ -344,20 +338,14 @@ export default function PhillipsCurveTradeOff() {
                 ? `Costs ${tradeOff.inflationIncrease.toFixed(2)}pp inflation increase`
                 : 'Use demand shock slider'
             }
+            tone={tradeOff.unemploymentReduction > 0 ? 'caution' : 'neutral'}
           />
         </div>
       </div>
 
       {/* Main Chart */}
-      <div
-        style={{
-          backgroundColor: '#f8fafc',
-          padding: '1.5rem',
-          borderRadius: '8px',
-          marginBottom: '2rem',
-        }}
-      >
-        <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#1e293b' }}>
+      <div className="visualization-container mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Phillips Curve {historicalMode === 'modern' ? '(Modern)' : ''}
         </h3>
 
@@ -366,41 +354,48 @@ export default function PhillipsCurveTradeOff() {
             margin={{ top: 20, right: 30, left: 0, bottom: 20 }}
             data={phillipsCurveData}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+            <CartesianGrid {...chartTheme.grid} />
             <XAxis
               dataKey="unemployment"
               name="Unemployment Rate (%)"
-              label={{ value: 'Unemployment Rate (%)', position: 'insideBottom', offset: -5 }}
+              label={{
+                value: 'Unemployment Rate (%)',
+                position: 'insideBottom',
+                offset: -5,
+                fill: chartTheme.axis.tick.fill,
+              }}
               domain={[Math.max(1, naturalUnemployment - 4), naturalUnemployment + 4]}
+              {...chartTheme.axis}
             />
             <YAxis
               dataKey="inflation"
               name="Inflation Rate (%)"
-              label={{ value: 'Inflation Rate (%)', angle: -90, position: 'insideLeft' }}
+              label={{
+                value: 'Inflation Rate (%)',
+                angle: -90,
+                position: 'insideLeft',
+                fill: chartTheme.axis.tick.fill,
+              }}
               domain={[-2, 12]}
+              {...chartTheme.axis}
             />
 
             <Tooltip
-              contentStyle={{
-                backgroundColor: '#ffffff',
-                border: '1px solid #cbd5e1',
-                borderRadius: '4px',
-              }}
-              cursor={{ strokeDasharray: '3 3' }}
-              formatter={(value: any) => {
-                if (typeof value === 'number') return value.toFixed(2)
-                return value
-              }}
+              {...chartTheme.tooltip}
+              cursor={chartTheme.cursor}
+              formatter={(value: number) =>
+                typeof value === 'number' ? value.toFixed(2) : String(value)
+              }
             />
 
-            <Legend />
+            <Legend {...chartTheme.legend} />
 
             {/* Original Phillips Curve (without supply shocks) */}
             {supplyShock !== 0 && (
               <Line
                 type="monotone"
                 dataKey="originalCurve"
-                stroke="#9ca3af"
+                stroke={chartTheme.axis.stroke}
                 strokeDasharray="5 5"
                 name="Original Curve (no shock)"
                 isAnimationActive={false}
@@ -411,7 +406,7 @@ export default function PhillipsCurveTradeOff() {
             <Line
               type="monotone"
               dataKey="inflation"
-              stroke="#3b82f6"
+              stroke={chartColor(0)}
               strokeWidth={2}
               name="Phillips Curve"
               isAnimationActive={false}
@@ -426,8 +421,8 @@ export default function PhillipsCurveTradeOff() {
                   unemployment: p.unemployment,
                   inflation: p.inflation,
                 }))}
-                fill="#f97316"
-                opacity={0.6}
+                fill={chartColor(2)}
+                fillOpacity={0.6}
               />
             )}
 
@@ -435,39 +430,45 @@ export default function PhillipsCurveTradeOff() {
             <Scatter
               name="Current Equilibrium"
               data={[{ unemployment: equilibrium.unemployment, inflation: equilibrium.inflation }]}
-              fill="#dc2626"
+              fill={chartColor(4)}
               shape="circle"
             />
 
             {/* Natural rate of unemployment line */}
             <ReferenceLine
               x={naturalUnemployment}
-              stroke="#6b7280"
+              stroke={chartTheme.reference.stroke}
               strokeDasharray="3 3"
-              label={{ value: `NAIRU (${naturalUnemployment.toFixed(1)}%)`, position: 'top' }}
+              label={{
+                value: `NAIRU (${naturalUnemployment.toFixed(1)}%)`,
+                position: 'top',
+                fill: chartTheme.reference.fill,
+              }}
             />
 
             {/* Expected inflation line */}
             <ReferenceLine
               y={expectedInflation}
-              stroke="#8b5cf6"
+              stroke={chartTheme.reference.stroke}
               strokeDasharray="3 3"
-              label={{ value: `Expected Inflation (${expectedInflation.toFixed(1)}%)`, position: 'right' }}
+              label={{
+                value: `Expected Inflation (${expectedInflation.toFixed(1)}%)`,
+                position: 'right',
+                fill: chartTheme.reference.fill,
+              }}
             />
           </ScatterChart>
         </ResponsiveContainer>
 
         {showAnnotations && (
-          <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#eff6ff', borderRadius: '4px' }}>
-            <p style={{ margin: 0, color: '#1e40af', fontSize: '0.875rem' }}>
-              <strong>Current Movement:</strong> {getMovementExplanation()}
-            </p>
-          </div>
+          <ToolCallout label="Annotation" variant="info" title="Current Movement">
+            <p>{getMovementExplanation()}</p>
+          </ToolCallout>
         )}
       </div>
 
       {/* Explanation Sections */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
+      <div className="mb-8 grid gap-4 lg:grid-cols-2">
         <InfoBox
           title="Phillips Curve Equation"
           content={`
@@ -538,9 +539,8 @@ PRE-1970s: STABLE TRADE-OFF
       />
 
       {/* Policy Implications */}
-      <div style={{ backgroundColor: '#fef2f2', padding: '1.5rem', borderRadius: '8px' }}>
-        <h3 style={{ marginTop: 0, color: '#7f1d1d' }}>Policy Implications</h3>
-        <ul style={{ marginBottom: 0, color: '#991b1b' }}>
+      <ToolCallout label="Policy" variant="warning" title="Policy Implications">
+        <ul>
           <li>
             <strong>Expectations Matter:</strong> Anchoring inflation expectations prevents the
             Phillips Curve from shifting up, allowing better policy trade-offs.
@@ -562,7 +562,7 @@ PRE-1970s: STABLE TRADE-OFF
             education, labor market policies, etc.
           </li>
         </ul>
-      </div>
+      </ToolCallout>
     </div>
   )
 }

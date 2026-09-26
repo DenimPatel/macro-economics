@@ -30,7 +30,7 @@ export default function LecturePage() {
   if (!lecture) {
     return (
       <div className="card p-6">
-        <h1 className="text-xl font-bold text-fg">Lecture not found</h1>
+        <h1 className="font-serif text-xl font-bold text-fg">Lecture not found</h1>
         <p className="mt-2 text-sm text-fg-muted">
           That lecture number does not exist. <Link to="/syllabus">Back to the syllabus</Link>.
         </p>
@@ -45,15 +45,15 @@ export default function LecturePage() {
 
   return (
     <div>
-      <nav className="mb-4 text-xs text-fg-subtle">
+      <nav className="mb-5 text-xs text-fg-subtle" aria-label="Breadcrumb">
         <Link to="/syllabus" className="text-fg-subtle no-underline hover:text-accent">
           Syllabus
         </Link>{' '}
-        / Lecture {lecture.n}
+        <span aria-hidden="true">/</span> Lecture {lecture.n}
       </nav>
 
-      <header className="mb-6 max-w-3xl">
-        <div className="mb-2 flex flex-wrap items-center gap-2">
+      <header className="mb-8 max-w-3xl">
+        <div className="mb-3 flex flex-wrap items-center gap-2">
           <TierBadge tier={lecture.tier} />
           {lecture.review && <span className="badge">Review</span>}
           <a
@@ -62,23 +62,25 @@ export default function LecturePage() {
             rel="noreferrer noopener"
             className="inline-flex items-center gap-1 text-xs text-fg-subtle no-underline hover:text-accent"
           >
-            <Youtube size={13} /> Source video <ExternalLink size={11} />
+            <Youtube size={13} aria-hidden="true" /> Source video{' '}
+            <ExternalLink size={11} aria-hidden="true" />
           </a>
         </div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-fg">
+        <h1 className="font-serif text-display-md font-bold text-fg">
           {lecture.n}. {lecture.title}
         </h1>
-        <p className="mt-2 text-base text-fg-muted">{lecture.summary}</p>
+        <p className="mt-3 text-base leading-relaxed text-fg-muted">{lecture.summary}</p>
         <button
           type="button"
           onClick={() => toggleLectureComplete(lecture.n)}
-          className={`mt-4 inline-flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-semibold transition-colors ${
+          aria-pressed={isDone}
+          className={`mt-5 inline-flex items-center gap-2 rounded-card border px-3.5 py-1.5 text-sm font-semibold transition-colors ${
             isDone
-              ? 'border-tier-beginner/40 bg-tier-beginner/10 text-tier-beginner'
-              : 'border-border bg-surface text-fg-muted hover:text-fg'
+              ? 'border-tier-beginner/40 bg-tier-beginner/10 text-tier-beginner-ink'
+              : 'border-border bg-surface text-fg-muted hover:border-accent hover:text-fg'
           }`}
         >
-          <Check size={15} /> {isDone ? 'Completed' : 'Mark as complete'}
+          <Check size={15} aria-hidden="true" /> {isDone ? 'Completed' : 'Mark as complete'}
         </button>
       </header>
 
@@ -96,17 +98,17 @@ export default function LecturePage() {
       <div className="flex gap-8">
         <div className="min-w-0 flex-1">
           {loading && <p className="text-sm text-fg-muted">Loading lecture…</p>}
-          {error && <p className="text-sm text-tier-advanced">Could not load the lecture: {error}</p>}
+          {error && <p className="text-sm text-tier-case-ink">Could not load the lecture: {error}</p>}
           {markdown && <Markdown>{markdown}</Markdown>}
 
           {videoId && (
-            <details className="mt-8 max-w-3xl rounded-xl border border-border bg-surface p-4">
+            <details className="mt-8 max-w-3xl rounded-card border border-border bg-surface p-4">
               <summary className="cursor-pointer text-sm font-semibold text-fg">
                 Watch the source lecture
               </summary>
-              <div className="mt-3 aspect-video">
+              <div className="mt-3 aspect-video overflow-hidden rounded-card">
                 <iframe
-                  className="h-full w-full rounded-lg"
+                  className="h-full w-full"
                   src={`https://www.youtube.com/embed/${videoId}`}
                   title={`Lecture ${lecture.n}: ${lecture.title}`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -118,8 +120,8 @@ export default function LecturePage() {
 
           {lecture.miniTools.length > 0 && (
             <section className="mt-10 max-w-3xl">
-              <h2 className="text-xl font-bold text-fg">Try it</h2>
-              <p className="mb-2 text-sm text-fg-muted">
+              <h2 className="font-serif text-xl font-bold text-fg">Try it</h2>
+              <p className="mb-4 mt-1 text-sm leading-relaxed text-fg-muted">
                 Move the controls and watch the model respond. The full tool opens a larger view.
               </p>
               {lecture.miniTools.map((spec) => (
@@ -134,10 +136,16 @@ export default function LecturePage() {
             </div>
           )}
 
-          <nav className="mt-10 flex max-w-3xl items-center justify-between gap-3 border-t border-border pt-5">
+          <nav
+            className="mt-10 flex max-w-3xl items-center justify-between gap-3 border-t border-border pt-5"
+            aria-label="Lecture navigation"
+          >
             {prev ? (
-              <Link to={`/lecture/${prev.n}`} className="inline-flex items-center gap-1 text-sm no-underline hover:underline">
-                <ArrowLeft size={14} /> {prev.n}. {prev.title}
+              <Link
+                to={`/lecture/${prev.n}`}
+                className="inline-flex items-center gap-1 text-sm no-underline hover:underline"
+              >
+                <ArrowLeft size={14} aria-hidden="true" /> {prev.n}. {prev.title}
               </Link>
             ) : (
               <span />
@@ -147,7 +155,7 @@ export default function LecturePage() {
                 to={`/lecture/${next.n}`}
                 className="inline-flex items-center gap-1 text-right text-sm no-underline hover:underline"
               >
-                {next.n}. {next.title} <ArrowRight size={14} />
+                {next.n}. {next.title} <ArrowRight size={14} aria-hidden="true" />
               </Link>
             )}
           </nav>

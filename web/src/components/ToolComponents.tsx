@@ -1,4 +1,69 @@
 import React from 'react'
+import { AlertTriangle, BookOpen, Info, Lightbulb, Target } from 'lucide-react'
+
+/**
+ * Shared tool primitives.
+ *
+ * Every one of the 20 tools imports from this module, so it is the single
+ * choke point for the tool design migration. Colour here is expressed as
+ * `color-mix()` over the CSS custom properties in `index.css`, never as hex:
+ *
+ *   fill / border  ->  color-mix(in srgb, var(--c-X) N%, var(--c-surface))
+ *   text           ->  var(--c-X-ink)
+ *
+ * Text must not use `color-mix`, because mixing toward the surface lightens
+ * it and drops it below the AA contrast threshold.
+ */
+
+/* ------------------------------------------------------------------ *
+ * Callout
+ * ------------------------------------------------------------------ */
+
+export type CalloutVariant = 'lesson' | 'try' | 'insight' | 'warning' | 'info'
+
+const CALLOUT_STYLE: Record<CalloutVariant, { chip: string; icon: React.ElementType }> = {
+  lesson: { chip: 'tool-callout tool-callout--lesson', icon: BookOpen },
+  try: { chip: 'tool-callout tool-callout--try', icon: Target },
+  insight: { chip: 'tool-callout tool-callout--insight', icon: Lightbulb },
+  warning: { chip: 'tool-callout tool-callout--warning', icon: AlertTriangle },
+  info: { chip: 'tool-callout tool-callout--info', icon: Info },
+}
+
+interface ToolCalloutProps {
+  /** Eyebrow label above the body, e.g. "Lesson 1". */
+  label: string
+  variant?: CalloutVariant
+  /** Optional heading rendered inside the callout body. */
+  title?: string
+  children?: React.ReactNode
+}
+
+/**
+ * Replaces the ad-hoc "Lesson" / "Try It" / insight panels the tools used to
+ * hand-roll with inline styles and emoji headers.
+ */
+export const ToolCallout: React.FC<ToolCalloutProps> = ({
+  label,
+  variant = 'lesson',
+  title,
+  children,
+}) => {
+  const { chip, icon: Icon } = CALLOUT_STYLE[variant]
+  return (
+    <section className={chip}>
+      <p className="tool-callout-label">
+        <Icon size={15} aria-hidden="true" />
+        {label}
+      </p>
+      {title && <h3 className="tool-callout-title">{title}</h3>}
+      <div className="tool-callout-body">{children}</div>
+    </section>
+  )
+}
+
+/* ------------------------------------------------------------------ *
+ * Header
+ * ------------------------------------------------------------------ */
 
 interface ToolHeaderProps {
   title: string
@@ -7,14 +72,30 @@ interface ToolHeaderProps {
 }
 
 export const ToolHeader: React.FC<ToolHeaderProps> = ({ title, description, badge }) => (
-  <div style={{ marginBottom: '2rem' }}>
-    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+  <header className="tool-heading">
+    <div className="tool-heading-row">
       <h1 className="tool-title">{title}</h1>
       {badge && <span className={`badge ${badge}`}>{badge}</span>}
     </div>
     <p className="tool-description">{description}</p>
-  </div>
+  </header>
 )
+
+/* ------------------------------------------------------------------ *
+ * Controls
+ * ------------------------------------------------------------------ */
+
+/**
+ * Derive a sensible display precision from the control's step, so a step of
+ * 0.005 does not render as "0.01" and a step of 5 does not render "5.00".
+ */
+function decimalsForStep(step: number): number {
+  if (!Number.isFinite(step) || step <= 0) return 2
+  if (step >= 1) return 0
+  if (step >= 0.1) return 1
+  if (step >= 0.01) return 2
+  return 3
+}
 
 interface SliderControlProps {
   label: string
@@ -24,6 +105,8 @@ interface SliderControlProps {
   step?: number
   onChange: (value: number) => void
   unit?: string
+  /** Overrides the precision inferred from `step`. */
+  decimals?: number
 }
 
 export const SliderControl: React.FC<SliderControlProps> = ({
@@ -34,24 +117,31 @@ export const SliderControl: React.FC<SliderControlProps> = ({
   step = 1,
   onChange,
   unit,
-}) => (
-  <div className="control-group">
-    <label className="control-label">{label}</label>
-    <input
-      type="range"
-      min={min}
-      max={max}
-      step={step}
-      value={value}
-      onChange={(e) => onChange(parseFloat(e.target.value))}
-      className="slider-input"
-    />
-    <div className="control-value">
-      {value.toFixed(2)}
-      {unit && ` ${unit}`}
+  decimals,
+}) => {
+  const id = `slider-${label.replace(/\W+/g, '-').toLowerCase()}`
+  return (
+    <div className="control-group">
+      <label className="control-label" htmlFor={id}>
+        {label}
+      </label>
+      <input
+        id={id}
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(e) => onChange(parseFloat(e.target.value))}
+        className="slider-input"
+      />
+      <output className="control-value" htmlFor={id}>
+        {value.toFixed(decimals ?? decimalsForStep(step))}
+        {unit && ` ${unit}`}
+      </output>
     </div>
-  </div>
-)
+  )
+}
 
 interface NumberInputProps {
   label: string
@@ -61,6 +151,8 @@ interface NumberInputProps {
   step?: number
   onChange: (value: number) => void
   unit?: string
+  /** Overrides the precision inferred from `step`. */
+  decimals?: number
 }
 
 export const NumberInput: React.FC<NumberInputProps> = ({
@@ -71,35 +163,39 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   step = 0.01,
   onChange,
   unit,
-}) => (
-  <div className="control-group">
-    <label className="control-label">{label}</label>
-    <input
-      type="number"
-      value={value}
-      onChange={(e) => onChange(parseFloat(e.target.value))}
-      min={min}
-      max={max}
-      step={step}
-      style={{
-        padding: '0.5rem',
-        borderRadius: '4px',
-        border: '1px solid #cbd5e1',
-        fontSize: '1rem',
-      }}
-    />
-    <div className="control-value">
-      {value.toFixed(2)}
-      {unit && ` ${unit}`}
+  decimals,
+}) => {
+  const id = `number-${label.replace(/\W+/g, '-').toLowerCase()}`
+  return (
+    <div className="control-group">
+      <label className="control-label" htmlFor={id}>
+        {label}
+      </label>
+      <input
+        id={id}
+        type="number"
+        value={value}
+        onChange={(e) => onChange(parseFloat(e.target.value))}
+        min={min}
+        max={max}
+        step={step}
+        className="number-input"
+      />
+      <output className="control-value" htmlFor={id}>
+        {value.toFixed(decimals ?? decimalsForStep(step))}
+        {unit && ` ${unit}`}
+      </output>
     </div>
-  </div>
-)
+  )
+}
 
 interface ButtonProps {
   children: React.ReactNode
   onClick?: () => void
   variant?: 'primary' | 'secondary'
   disabled?: boolean
+  /** Marks the button as a toggle and reflects its state. */
+  pressed?: boolean
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -107,62 +203,64 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   variant = 'primary',
   disabled = false,
+  pressed,
 }) => (
   <button
     onClick={onClick}
     disabled={disabled}
+    aria-pressed={pressed}
     className={`button button-${variant}`}
-    style={{ opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer' }}
   >
     {children}
   </button>
 )
 
+/**
+ * State dot for a toggle button. Replaces a literal checkmark character so
+ * the indicator is styled by the theme rather than baked into the text, and
+ * so no emoji-like glyph ends up in source.
+ */
+export const ToggleDot: React.FC<{ on: boolean }> = ({ on }) => (
+  <span
+    aria-hidden="true"
+    className={`mr-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full align-middle ${
+      on ? 'bg-accent-fg' : 'bg-border-strong'
+    }`}
+  />
+)
+
+/* ------------------------------------------------------------------ *
+ * Readouts
+ * ------------------------------------------------------------------ */
+
+export type StatTone = 'accent' | 'positive' | 'negative' | 'caution' | 'neutral'
+
+const STAT_TONE_CLASS: Record<StatTone, string> = {
+  accent: 'stat-tile stat-tile--accent',
+  positive: 'stat-tile stat-tile--positive',
+  negative: 'stat-tile stat-tile--negative',
+  caution: 'stat-tile stat-tile--caution',
+  neutral: 'stat-tile stat-tile--neutral',
+}
+
 interface StatBoxProps {
   label: string
   value: string | number
   unit?: string
-  highlight?: boolean
   change?: string
-  color?: 'blue' | 'green' | 'red' | 'amber' | 'purple'
+  tone?: StatTone
 }
 
-export const StatBox: React.FC<StatBoxProps> = ({ label, value, unit, highlight, change, color = 'blue' }) => {
-  const colorMap: Record<string, { bg: string; border: string; text: string }> = {
-    blue: { bg: '#dbeafe', border: '#bfdbfe', text: '#0c4a6e' },
-    green: { bg: '#dcfce7', border: '#bbf7d0', text: '#15803d' },
-    red: { bg: '#fee2e2', border: '#fecaca', text: '#7f1d1d' },
-    amber: { bg: '#fef3c7', border: '#fcd34d', text: '#92400e' },
-    purple: { bg: '#e9d5ff', border: '#d8b4fe', text: '#6b21a8' },
-  }
-
-  const colorStyle = highlight ? colorMap[color] : { bg: '#f1f5f9', border: '#e2e8f0', text: '#1e293b' }
-
-  return (
-    <div
-      style={{
-        padding: '1rem',
-        backgroundColor: colorStyle.bg,
-        borderRadius: '6px',
-        border: `1px solid ${colorStyle.border}`,
-        textAlign: 'center',
-      }}
-    >
-      <div style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '0.5rem' }}>
-        {label}
-      </div>
-      <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: colorStyle.text }}>
-        {value}
-        {unit && ` ${unit}`}
-      </div>
-      {change && (
-        <div style={{ fontSize: '0.8rem', marginTop: '0.25rem', color: colorStyle.text, opacity: 0.85 }}>
-          {change}
-        </div>
-      )}
+export const StatBox: React.FC<StatBoxProps> = ({ label, value, unit, change, tone = 'neutral' }) => (
+  <div className={STAT_TONE_CLASS[tone]}>
+    <div className="stat-tile-label">{label}</div>
+    <div className="stat-tile-value">
+      {value}
+      {unit && ` ${unit}`}
     </div>
-  )
-}
+    {change && <div className="stat-tile-change">{change}</div>}
+  </div>
+)
 
 interface InfoBoxProps {
   children?: React.ReactNode
@@ -171,37 +269,26 @@ interface InfoBoxProps {
   type?: 'info' | 'warning' | 'success'
 }
 
-export const InfoBox: React.FC<InfoBoxProps> = ({ children, title, content, type = 'info' }) => {
-  const bgColor: Record<string, string> = {
-    info: '#dbeafe',
-    warning: '#fef08a',
-    success: '#dcfce7',
-  }
-  const textColor: Record<string, string> = {
-    info: '#0c4a6e',
-    warning: '#854d0e',
-    success: '#15803d',
-  }
-  const borderColor: Record<string, string> = {
-    info: '#bfdbfe',
-    warning: '#fcd34d',
-    success: '#bbf7d0',
-  }
+const INFO_BOX_CLASS = {
+  info: 'tool-callout tool-callout--info',
+  warning: 'tool-callout tool-callout--warning',
+  success: 'tool-callout tool-callout--lesson',
+} as const
 
+export const InfoBox: React.FC<InfoBoxProps> = ({
+  children,
+  title,
+  content,
+  type = 'info',
+}) => {
+  const Icon = type === 'warning' ? AlertTriangle : type === 'success' ? Lightbulb : Info
   return (
-    <div
-      style={{
-        padding: '1rem',
-        backgroundColor: bgColor[type],
-        borderLeft: `4px solid ${borderColor[type]}`,
-        borderRadius: '4px',
-        color: textColor[type],
-        fontSize: '0.875rem',
-        lineHeight: '1.5',
-      }}
-      >
-        {title && <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>{title}</div>}
-        {content ?? children}
-      </div>
-    )
-  }
+    <aside className={INFO_BOX_CLASS[type]}>
+      <p className="tool-callout-label">
+        <Icon size={15} aria-hidden="true" />
+        {title ?? (type === 'warning' ? 'Watch out' : type === 'success' ? 'Note' : 'Info')}
+      </p>
+      <div className="tool-callout-body">{content ?? children}</div>
+    </aside>
+  )
+}

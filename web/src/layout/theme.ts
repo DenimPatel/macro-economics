@@ -4,6 +4,21 @@ export type Theme = 'light' | 'dark'
 
 const STORAGE_KEY = 'macro-theme'
 
+/**
+ * Browser-chrome tint per theme. Kept in sync with the `--c-bg` values in
+ * `index.css`; a hardcoded value here shows up as a wrong-coloured mobile
+ * address bar.
+ */
+const THEME_COLOR: Record<Theme, string> = {
+  light: '#faf7f2',
+  dark: '#14110f',
+}
+
+function syncThemeColor(theme: Theme): void {
+  const meta = document.querySelector('meta[name="theme-color"]')
+  if (meta) meta.setAttribute('content', THEME_COLOR[theme])
+}
+
 export function getInitialTheme(): Theme {
   if (typeof window === 'undefined') return 'light'
   try {
@@ -23,6 +38,7 @@ export function applyTheme(theme: Theme): void {
   const root = document.documentElement
   root.classList.toggle('dark', theme === 'dark')
   root.style.colorScheme = theme
+  syncThemeColor(theme)
 }
 
 /** Read and toggle the persisted theme. */

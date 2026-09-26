@@ -18,6 +18,7 @@ import {
   Button,
   InfoBox,
 } from '../components/ToolComponents'
+import { chartTheme, chartColor } from '../design/chartTheme'
 
 interface SolowData {
   k: number
@@ -44,9 +45,9 @@ export default function SolowSimulator() {
   // Apply scenario presets
   let activeS = savingsRate
   let activeN = populationGrowth
-  let activeD = depreciationRate
-  let activeAlpha = capitalShare
-  let activeK0 = initialK
+  const activeD = depreciationRate
+  const activeAlpha = capitalShare
+  const activeK0 = initialK
 
   if (scenarioMode === 'high-savings') {
     activeS = 0.35
@@ -59,7 +60,6 @@ export default function SolowSimulator() {
   const yStar = Math.pow(kStar, activeAlpha)
   const cStar = (1 - activeS) * yStar
   const investmentRateSS = activeS * yStar
-  const depreciationSS = (activeN + activeD) * kStar
 
   // Calculate time to 90% of steady state
   let timeToConvergence = 0
@@ -184,8 +184,8 @@ export default function SolowSimulator() {
         badge="advanced"
       />
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>Model Parameters</h2>
+      <div className="mb-8">
+        <h2 className="mb-4 font-serif text-lg font-bold text-fg">Model Parameters</h2>
         <div className="control-panel">
           <SliderControl
             label="Savings Rate (s)"
@@ -194,7 +194,6 @@ export default function SolowSimulator() {
             max={0.4}
             step={0.05}
             onChange={setSavingsRate}
-            unit=""
           />
           <SliderControl
             label="Population Growth (n)"
@@ -203,7 +202,6 @@ export default function SolowSimulator() {
             max={0.05}
             step={0.005}
             onChange={setPopulationGrowth}
-            unit=""
           />
           <SliderControl
             label="Depreciation Rate (δ)"
@@ -212,7 +210,6 @@ export default function SolowSimulator() {
             max={0.1}
             step={0.01}
             onChange={setDepreciationRate}
-            unit=""
           />
           <SliderControl
             label="Capital Share (α)"
@@ -221,7 +218,6 @@ export default function SolowSimulator() {
             max={0.4}
             step={0.05}
             onChange={setCapitalShare}
-            unit=""
           />
           <SliderControl
             label="Initial Capital per Worker (k₀)"
@@ -230,14 +226,13 @@ export default function SolowSimulator() {
             max={3.0}
             step={0.1}
             onChange={setInitialK}
-            unit=""
           />
         </div>
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>Scenario Analysis</h2>
-        <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
+      <div className="mb-8">
+        <h2 className="mb-4 font-serif text-lg font-bold text-fg">Scenario Analysis</h2>
+        <div className="flex flex-wrap gap-2">
           <Button
             onClick={() => setScenarioMode('custom')}
             variant={scenarioMode === 'custom' ? 'primary' : 'secondary'}
@@ -263,104 +258,173 @@ export default function SolowSimulator() {
       </div>
 
       {/* Key Results */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
-        <StatBox label="Steady State k*" value={kStar.toFixed(2)} highlight />
-        <StatBox label="Steady State y*" value={yStar.toFixed(3)} highlight />
-        <StatBox label="Steady State Growth Rate" value={(populationGrowth * 100).toFixed(2)} unit="%" highlight />
+      <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-3">
+        <StatBox label="Steady State k*" value={kStar.toFixed(2)} tone="accent" />
+        <StatBox label="Steady State y*" value={yStar.toFixed(3)} tone="accent" />
+        <StatBox
+          label="Steady State Growth Rate"
+          value={(populationGrowth * 100).toFixed(2)}
+          unit="%"
+          tone="accent"
+        />
         <StatBox label="Consumption per Worker (c*)" value={cStar.toFixed(3)} />
-        <StatBox label="Investment Rate (ss)" value={(investmentRateSS).toFixed(3)} />
+        <StatBox label="Investment Rate (ss)" value={investmentRateSS.toFixed(3)} />
         <StatBox label="Time to 90% Convergence" value={timeToConvergence} unit="years" />
       </div>
 
       {/* Educational Insight */}
-      <div style={{ marginBottom: '2rem' }}>
-        <InfoBox type="success">
-          <strong>Key Insight:</strong> The steady-state growth rate equals the population growth rate (n = {(populationGrowth * 100).toFixed(2)}%). 
-          Notice that changing the savings rate shifts the level of steady-state capital and output but does NOT change the long-run growth rate! 
-          Only technological progress (not modeled here) can increase long-run per-capita growth.
+      <div className="mb-8">
+        <InfoBox type="success" title="Key Insight">
+          <p>
+            The steady-state growth rate equals the population growth rate (n ={' '}
+            {(populationGrowth * 100).toFixed(2)}%). Notice that changing the savings rate shifts the
+            level of steady-state capital and output but does NOT change the long-run growth rate!
+            Only technological progress (not modeled here) can increase long-run per-capita growth.
+          </p>
         </InfoBox>
       </div>
 
       {/* Solow Diagram */}
-      <div className="visualization-container" style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="visualization-container mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Solow Diagram: Capital per Worker Dynamics
         </h3>
-        <p style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '1rem' }}>
+        <p className="mb-4 text-sm leading-relaxed text-fg-muted">
           Investment line (sf(k)) shows capital investment. Depreciation line ((n+δ)k) shows capital wearing away and dilution from population growth.
           At k* where lines intersect, investment = depreciation, and capital per worker is stable.
         </p>
         <ResponsiveContainer width="100%" height={400}>
-          <AreaChart data={solowDiagram}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="k" label={{ value: 'Capital per Worker (k)', position: 'insideBottomRight', offset: -5 }} />
-            <YAxis label={{ value: 'Output/Capital per Worker', angle: -90, position: 'insideLeft' }} />
-            <Tooltip formatter={(value: any) => value.toFixed(3)} />
-            <Legend />
-            <Area type="monotone" dataKey="y" stroke="#3b82f6" fill="#93c5fd" name="Production (y = k^α)" />
-            <Area type="monotone" dataKey="investment" stroke="#10b981" fill="#a7f3d0" name="Investment (sy)" />
-            <Line type="monotone" dataKey="depreciation" stroke="#ef4444" strokeWidth={2} name="Depreciation ((n+δ)k)" />
+          <AreaChart data={solowDiagram} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
+            <XAxis
+              dataKey="k"
+              label={{
+                value: 'Capital per Worker (k)',
+                position: 'insideBottomRight',
+                offset: -5,
+                fill: chartTheme.axis.tick.fill,
+              }}
+              {...chartTheme.axis}
+            />
+            <YAxis
+              label={{
+                value: 'Output/Capital per Worker',
+                angle: -90,
+                position: 'insideLeft',
+                fill: chartTheme.axis.tick.fill,
+              }}
+              {...chartTheme.axis}
+            />
+            <Tooltip
+              {...chartTheme.tooltip}
+              cursor={chartTheme.cursor}
+              formatter={(value: number) => value.toFixed(3)}
+            />
+            <Legend {...chartTheme.legend} />
+            <Area
+              type="monotone"
+              dataKey="y"
+              stroke={chartColor(0)}
+              fill={chartColor(0)}
+              fillOpacity={0.2}
+              name="Production (y = k^α)"
+            />
+            <Area
+              type="monotone"
+              dataKey="investment"
+              stroke={chartColor(1)}
+              fill={chartColor(1)}
+              fillOpacity={0.2}
+              name="Investment (sy)"
+            />
+            <Line
+              type="monotone"
+              dataKey="depreciation"
+              stroke={chartColor(4)}
+              strokeWidth={2}
+              name="Depreciation ((n+δ)k)"
+            />
           </AreaChart>
         </ResponsiveContainer>
-        <p style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.5rem' }}>
+        <p className="mt-2 text-xs text-fg-subtle tabular-nums">
           Steady state k* = {kStar.toFixed(2)} (marked where investment line crosses depreciation line)
         </p>
       </div>
 
       {/* Time Path */}
-      <div className="visualization-container" style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="visualization-container mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Capital Accumulation Over Time: Path to Steady State
         </h3>
-        <p style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '1rem' }}>
+        <p className="mb-4 text-sm leading-relaxed text-fg-muted">
           The economy converges to steady state. If below k*, investment exceeds depreciation, capital grows.
           If above k*, depreciation exceeds investment, capital shrinks. The convergence speed depends on distance from k*.
         </p>
         <ResponsiveContainer width="100%" height={350}>
-          <LineChart data={timePath}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" label={{ value: 'Years', position: 'insideBottomRight', offset: -5 }} />
-            <YAxis label={{ value: 'Capital per Worker (k)', angle: -90, position: 'insideLeft' }} />
-            <Tooltip formatter={(value: any) => value.toFixed(3)} />
-            <Legend />
-            <Line type="monotone" dataKey="k" stroke="#3b82f6" strokeWidth={2} name="Capital per Worker (k)" />
-            <Line type="monotone" dataKey="y" stroke="#10b981" strokeWidth={2} name="Output per Worker (y)" />
+          <LineChart data={timePath} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
+            <XAxis
+              dataKey="year"
+              label={{ value: 'Years', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
+              {...chartTheme.axis}
+            />
+            <YAxis
+              label={{
+                value: 'Capital per Worker (k)',
+                angle: -90,
+                position: 'insideLeft',
+                fill: chartTheme.axis.tick.fill,
+              }}
+              {...chartTheme.axis}
+            />
+            <Tooltip
+              {...chartTheme.tooltip}
+              cursor={chartTheme.cursor}
+              formatter={(value: number) => value.toFixed(3)}
+            />
+            <Legend {...chartTheme.legend} />
+            <Line
+              type="monotone"
+              dataKey="k"
+              stroke={chartColor(0)}
+              strokeWidth={2}
+              name="Capital per Worker (k)"
+            />
+            <Line
+              type="monotone"
+              dataKey="y"
+              stroke={chartColor(1)}
+              strokeWidth={2}
+              name="Output per Worker (y)"
+            />
           </LineChart>
         </ResponsiveContainer>
-        <p style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.5rem' }}>
+        <p className="mt-2 text-xs text-fg-subtle tabular-nums">
           Starting from k₀ = {activeK0.toFixed(1)}, the economy reaches 90% of steady state in {timeToConvergence} years.
           Steady states: k* = {kStar.toFixed(2)}, y* = {yStar.toFixed(3)}
         </p>
       </div>
 
       {/* Scenario Comparison */}
-      <div className="visualization-container" style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="visualization-container mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Scenario Comparison: Effects on Steady State
         </h3>
-        <p style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '1rem' }}>
+        <p className="mb-4 text-sm leading-relaxed text-fg-muted">
           Compare different parameter combinations. Notice that higher savings raises k* and y* but growth rate stays at n.
           Lower population growth increases both k* and y*, AND increases long-run per-capita growth rate!
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
           {scenarios.map((scenario) => (
-            <div
-              key={scenario.name}
-              style={{
-                padding: '1rem',
-                backgroundColor: '#f1f5f9',
-                borderRadius: '6px',
-                border: '1px solid #e2e8f0',
-              }}
-            >
-              <div style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem', color: '#1e293b' }}>
-                {scenario.name}
+            <div key={scenario.name} className="stat-tile stat-tile--neutral p-4 text-left">
+              <div className="font-serif text-base font-semibold text-fg">{scenario.name}</div>
+              <div className="mt-1.5 text-sm text-fg-muted tabular-nums">
+                Steady State k*:{' '}
+                <span className="font-semibold text-accent-ink">{scenario.k.toFixed(2)}</span>
               </div>
-              <div style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '0.25rem' }}>
-                Steady State k*: <span style={{ fontWeight: '600', color: '#0c4a6e' }}>{scenario.k.toFixed(2)}</span>
-              </div>
-              <div style={{ fontSize: '0.875rem', color: '#64748b' }}>
-                Steady State y*: <span style={{ fontWeight: '600', color: '#0c4a6e' }}>{scenario.y.toFixed(3)}</span>
+              <div className="text-sm text-fg-muted tabular-nums">
+                Steady State y*:{' '}
+                <span className="font-semibold text-accent-ink">{scenario.y.toFixed(3)}</span>
               </div>
             </div>
           ))}
@@ -368,45 +432,68 @@ export default function SolowSimulator() {
       </div>
 
       {/* Educational Boxes */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
-        <InfoBox type="info">
-          <strong>📊 Diminishing Returns to Capital:</strong> As capital grows, each additional unit of capital produces less output.
-          This is why the production function y = k^α curves (α &lt; 1). Rich countries with high k grow slower than poor countries
-          catching up, all else equal.
+      <div className="mb-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <InfoBox type="info" title="Diminishing Returns to Capital">
+          <p>
+            As capital grows, each additional unit of capital produces less output.
+            This is why the production function y = k^α curves (α &lt; 1). Rich countries with high k
+            grow slower than poor countries catching up, all else equal.
+          </p>
         </InfoBox>
 
-        <InfoBox type="info">
-          <strong>🔄 Convergence Hypothesis:</strong> Poor countries can catch up to rich countries if they have the same savings rates,
-          population growth, and depreciation rates. This happens because returns to capital are highest when capital is scarce!
-          Limited data supports absolute convergence, but conditional convergence (controlling for differences) is strong.
+        <InfoBox type="info" title="Convergence Hypothesis">
+          <p>
+            Poor countries can catch up to rich countries if they have the same savings rates,
+            population growth, and depreciation rates. This happens because returns to capital are
+            highest when capital is scarce! Limited data supports absolute convergence, but conditional
+            convergence (controlling for differences) is strong.
+          </p>
         </InfoBox>
 
-        <InfoBox type="success">
-          <strong>🚀 Technology is Key:</strong> The Solow model shows that in steady state, output per worker grows only with
-          technological progress (A in Y = A·K^α·L^(1-α)). Long-run growth is "exogenous" - driven by technology, not savings.
-          This explains why all countries eventually grow at similar rates despite different savings behavior.
+        <InfoBox type="success" title="Technology is Key">
+          <p>
+            The Solow model shows that in steady state, output per worker grows only with
+            technological progress (A in Y = A·K^α·L^(1-α)). Long-run growth is &quot;exogenous&quot; —
+            driven by technology, not savings. This explains why all countries eventually grow at
+            similar rates despite different savings behavior.
+          </p>
         </InfoBox>
 
-        <InfoBox type="warning">
-          <strong>⚠️ Capital Deepening vs. Growth:</strong> Increasing savings rate causes temporary acceleration (transition to higher k*),
-          but long-run per-capita growth remains at n. To permanently accelerate growth, need technological progress. This explains why
-          Asian "growth miracles" eventually slowed as they caught up.
+        <InfoBox type="warning" title="Capital Deepening vs. Growth">
+          <p>
+            Increasing savings rate causes temporary acceleration (transition to higher k*),
+            but long-run per-capita growth remains at n. To permanently accelerate growth, need
+            technological progress. This explains why Asian &quot;growth miracles&quot; eventually slowed
+            as they caught up.
+          </p>
         </InfoBox>
       </div>
 
       {/* Technical Details */}
-      <div style={{ marginBottom: '2rem' }}>
-        <details style={{ cursor: 'pointer' }}>
-          <summary style={{ fontSize: '0.9rem', fontWeight: '600', color: '#64748b', userSelect: 'none' }}>
-            📐 Model Equations
+      <div className="mb-8">
+        <details className="group cursor-pointer">
+          <summary className="text-label-sm select-none font-semibold text-fg-muted transition-colors hover:text-fg">
+            Model Equations
           </summary>
-          <div style={{ padding: '1rem', backgroundColor: '#f8fafc', borderRadius: '4px', marginTop: '0.5rem', fontSize: '0.85rem', fontFamily: 'monospace' }}>
-            <div>Production function: Y<sub>t</sub> = K<sub>t</sub><sup>α</sup> · L<sub>t</sub><sup>1-α</sup></div>
-            <div style={{ marginTop: '0.5rem' }}>Capital accumulation: K<sub>t+1</sub> = sY<sub>t</sub> + (1-δ)K<sub>t</sub></div>
-            <div style={{ marginTop: '0.5rem' }}>Per-worker form: k<sub>t+1</sub> = sy<sub>t</sub>/(1+n) + (1-δ)k<sub>t</sub>/(1+n)</div>
-            <div style={{ marginTop: '0.5rem' }}>Steady state: k* = (s/(n+δ))<sup>1/(1-α)</sup></div>
-            <div style={{ marginTop: '0.5rem' }}>Steady state output: y* = (k*)<sup>α</sup></div>
-            <div style={{ marginTop: '0.5rem' }}>Convergence speed: Higher when further from k*; Slower near steady state</div>
+          <div className="prose-lecture mt-3 text-sm">
+            <div>
+              Production function: Y<sub>t</sub> = K<sub>t</sub><sup>α</sup> · L<sub>t</sub><sup>1-α</sup>
+            </div>
+            <div className="mt-2">
+              Capital accumulation: K<sub>t+1</sub> = sY<sub>t</sub> + (1-δ)K<sub>t</sub>
+            </div>
+            <div className="mt-2">
+              Per-worker form: k<sub>t+1</sub> = sy<sub>t</sub>/(1+n) + (1-δ)k<sub>t</sub>/(1+n)
+            </div>
+            <div className="mt-2">
+              Steady state: k* = (s/(n+δ))<sup>1/(1-α)</sup>
+            </div>
+            <div className="mt-2">
+              Steady state output: y* = (k*)<sup>α</sup>
+            </div>
+            <div className="mt-2">
+              Convergence speed: Higher when further from k*; Slower near steady state
+            </div>
           </div>
         </details>
       </div>

@@ -30,15 +30,17 @@ export default function Quiz({ lectureKey, questions }: QuizProps) {
   }
 
   return (
-    <section className="card p-5" aria-label="Check your understanding">
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <h2 className="text-base font-bold text-fg">Check your understanding</h2>
+    <section className="card p-6" aria-label="Check your understanding">
+      <div className="mb-5 flex items-center justify-between gap-3">
+        <h2 className="font-serif text-lg font-bold text-fg">Check your understanding</h2>
         {submitted ? (
-          <span className="rounded-full bg-accent/15 px-3 py-1 text-xs font-bold text-accent">
+          <span className="rounded-pill bg-accent/12 px-3 py-1 text-xs font-bold tabular-nums text-accent-ink">
             {correctCount} / {questions.length}
           </span>
         ) : (
-          <span className="text-xs text-fg-subtle">{questions.length} questions</span>
+          <span className="text-xs text-fg-subtle tabular-nums">
+            {questions.length} question{questions.length === 1 ? '' : 's'}
+          </span>
         )}
       </div>
 
@@ -55,7 +57,7 @@ export default function Quiz({ lectureKey, questions }: QuizProps) {
                   const isChosen = chosen === oi
                   const isAnswer = question.answer === oi
                   let cls =
-                    'flex w-full items-start gap-2 rounded-lg border px-3 py-2 text-left text-sm transition-colors'
+                    'flex w-full items-start gap-2 rounded-card border px-3 py-2 text-left text-sm transition-colors'
                   if (!submitted) {
                     cls += isChosen
                       ? ' border-accent bg-accent/10 text-fg'
@@ -63,7 +65,7 @@ export default function Quiz({ lectureKey, questions }: QuizProps) {
                   } else if (isAnswer) {
                     cls += ' border-tier-beginner/60 bg-tier-beginner/10 text-fg'
                   } else if (isChosen) {
-                    cls += ' border-tier-advanced/60 bg-tier-advanced/10 text-fg'
+                    cls += ' border-tier-case/60 bg-tier-case/10 text-fg'
                   } else {
                     cls += ' border-border bg-surface text-fg-subtle'
                   }
@@ -75,22 +77,30 @@ export default function Quiz({ lectureKey, questions }: QuizProps) {
                       onClick={() => setSelected((s) => ({ ...s, [question.id]: oi }))}
                       className={cls}
                     >
-                      <span className="mt-0.5 w-5 shrink-0 text-xs font-bold text-fg-subtle">
+                      <span className="mt-0.5 w-5 shrink-0 text-xs font-bold tabular-nums text-fg-subtle">
                         {'ABCD'[oi]}
                       </span>
                       <span>{option}</span>
                       {submitted && isAnswer && (
-                        <CheckCircle2 size={16} className="ml-auto mt-0.5 shrink-0 text-tier-beginner" />
+                        <CheckCircle2
+                          size={16}
+                          className="ml-auto mt-0.5 shrink-0 text-tier-beginner"
+                          aria-label="Correct answer"
+                        />
                       )}
                       {submitted && isChosen && !isAnswer && (
-                        <XCircle size={16} className="ml-auto mt-0.5 shrink-0 text-tier-advanced" />
+                        <XCircle
+                          size={16}
+                          className="ml-auto mt-0.5 shrink-0 text-tier-case"
+                          aria-label="Your answer"
+                        />
                       )}
                     </button>
                   )
                 })}
               </div>
               {submitted && (
-                <p className="mt-2 rounded-lg bg-surface-2 px-3 py-2 text-sm text-fg-muted">
+                <p className="mt-2 rounded-card bg-surface-2 px-3.5 py-2.5 text-sm leading-relaxed text-fg-muted">
                   {selected[question.id] === question.answer ? 'Correct. ' : 'Not quite. '}
                   {question.explanation}
                 </p>
@@ -111,8 +121,12 @@ export default function Quiz({ lectureKey, questions }: QuizProps) {
             Check answers
           </button>
         ) : (
-          <button type="button" onClick={reset} className="button button-secondary inline-flex items-center gap-2">
-            <RotateCcw size={14} /> Try again
+          <button
+            type="button"
+            onClick={reset}
+            className="button button-secondary inline-flex items-center gap-2"
+          >
+            <RotateCcw size={14} aria-hidden="true" /> Try again
           </button>
         )}
         {!submitted && !allAnswered && (

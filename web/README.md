@@ -19,16 +19,20 @@ npm run format      # prettier --write
 
 ```
 src/
-  design/     tokens + chart theme (all colours live here)
+  design/     tier metadata, series palette, chart theme
   layout/     shell, sidebar, header, theme toggle, table of contents
   pages/      one component per route
   content/    lecture loader, markdown renderer, metadata re-exports
   learning/   quiz, prediction, mini-tool, progress, concept map
   tools/      the simulations, lazy-loaded via registry.tsx
-  components/ shared primitives
+  components/ shared primitives (ui.tsx, ToolComponents.tsx)
   lib/        calculations, csv, scenario links, sharing helpers
   tests/      vitest
+  index.css   token definitions and global styles
 ```
+
+The actual colour values live in `src/index.css`, not in `design/`. See
+**Design tokens** below.
 
 ## Adding a route
 
@@ -44,9 +48,34 @@ Declare it in `src/router.tsx`. Build internal links with `react-router-dom`
 3. Link it from a lecture in `../content/lectures.ts`.
 4. Add a test in `src/tests/`.
 
-## Legacy tools
+## Design tokens
 
-Tools under `src/tools/` predate the shared design system. They are being moved
-onto `design/chartTheme.ts` and the `components/` primitives one at a time;
-their stricter lint rules are relaxed in `.eslintrc.cjs` until each is touched.
-New code must satisfy the full rule set.
+Colours are defined once in `src/index.css` as space-separated RGB channels
+(`--c-fg-ch: 28 25 23`) and exposed twice:
+
+- `rgb(var(--c-fg-ch) / <alpha-value>)` in `tailwind.config.ts`, so Tailwind's
+  opacity modifier works. Pointing the theme at the plain `var(--c-fg)` instead
+  makes every `bg-x/10` utility compile to **nothing**, silently.
+- `rgb(var(--c-fg-ch))` as `--c-fg`, which is what `color-mix()` rules and
+  Recharts consume.
+
+The numbers appear exactly once, in the `-ch` var, so the two forms cannot
+drift. `.dark` only overrides the `-ch` vars.
+
+Rules for anything themed:
+
+- **Fills and borders** are derived with
+  `color-mix(in srgb, var(--c-X) N%, var(--c-surface))`.
+- **Text on a tint** must use a dedicated `-ink` var (`--c-accent-ink`,
+  `--c-tier-advanced-ink`, …), never `color-mix`. Mixing toward the surface
+  lightens the text and drops it below AA.
+- **Recharts series strokes** must be a plain hex from `SERIES_COLORS` via
+  `chartColor(i)`. Recharts cannot resolve a `var(--…)` for a stroke, so CSS
+  variables work for chart *chrome* but not for series *colours*.
+- **No emoji** in source. Panels use `ToolCallout`, whose variants supply a
+  lucide icon.
+
+`src/tests/tokens.test.ts` and `src/tests/contrast.test.ts` enforce all of the
+above; they fail the build if a hex literal or emoji reappears, or if a token
+pair drops below its contrast floor.
+

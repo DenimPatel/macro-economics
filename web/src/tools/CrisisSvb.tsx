@@ -6,18 +6,29 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   BarChart,
   Bar,
 } from 'recharts'
 import {
   ToolHeader,
+  ToolCallout,
   SliderControl,
   StatBox,
   Button,
-  InfoBox,
 } from '../components/ToolComponents'
+import { chartTheme, chartColor } from '../design/chartTheme'
+
+/** Series keep a fixed economic identity across every chart in this tool. */
+const REAL_RATE_STROKE = chartColor(0)
+const NOMINAL_RATE_STROKE = chartColor(2)
+const INFLATION_STROKE = chartColor(1)
+const BOND_VALUE_FILL = chartColor(3)
+
+/** Layout shared by the "controls beside chart" and "chart beside readouts" blocks. */
+const CONTROL_GRID = 'grid gap-6 sm:grid-cols-2'
+const SPLIT = 'grid gap-6 lg:grid-cols-2'
+const STAT_GRID = 'mb-6 grid grid-cols-2 gap-3'
 
 interface BondDataPoint {
   year: number
@@ -70,7 +81,7 @@ export default function CrisisSvb() {
       />
 
       <div className="control-panel">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
+        <div className={CONTROL_GRID}>
           <SliderControl
             label="Federal Funds Rate"
             value={fedRate}
@@ -109,7 +120,7 @@ export default function CrisisSvb() {
           />
         </div>
         
-        <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+        <div className="button-group">
           <Button
             onClick={() => setShowDataOverlay(!showDataOverlay)}
             variant={showDataOverlay ? 'primary' : 'secondary'}
@@ -119,38 +130,38 @@ export default function CrisisSvb() {
         </div>
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Real Interest Rate Analysis
         </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-          <div style={{ height: '300px' }}>
+        <div className={SPLIT}>
+          <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={svbData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="year" />
-                <YAxis />
-                <Tooltip />
-                <Line 
-                  type="monotone" 
-                  dataKey="realRate" 
-                  stroke="#3b82f6" 
+              <LineChart data={svbData} margin={chartTheme.margin}>
+                <CartesianGrid {...chartTheme.grid} />
+                <XAxis dataKey="year" {...chartTheme.axis} />
+                <YAxis {...chartTheme.axis} />
+                <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+                <Line
+                  type="monotone"
+                  dataKey="realRate"
+                  stroke={REAL_RATE_STROKE}
                   strokeWidth={2}
                   dot={{ r: 4 }}
                   name="Real Interest Rate"
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="nominalRate" 
-                  stroke="#f59e0b" 
+                <Line
+                  type="monotone"
+                  dataKey="nominalRate"
+                  stroke={NOMINAL_RATE_STROKE}
                   strokeWidth={2}
                   dot={{ r: 4 }}
                   name="Nominal Interest Rate"
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="inflation" 
-                  stroke="#10b981" 
+                <Line
+                  type="monotone"
+                  dataKey="inflation"
+                  stroke={INFLATION_STROKE}
                   strokeWidth={2}
                   dot={{ r: 4 }}
                   name="Inflation Rate"
@@ -158,95 +169,83 @@ export default function CrisisSvb() {
               </LineChart>
             </ResponsiveContainer>
           </div>
-          
+
           <div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+            <div className={STAT_GRID}>
               <StatBox label="Nominal Rate" value={fedRate.toFixed(1)} unit="%" />
               <StatBox label="Inflation" value={inflation.toFixed(1)} unit="%" />
-              <StatBox label="Real Rate" value={realRate.toFixed(1)} unit="%" highlight />
+              <StatBox label="Real Rate" value={realRate.toFixed(1)} unit="%" tone="accent" />
             </div>
-            
-            <div style={{ padding: '1rem', backgroundColor: '#f0f9ff', borderRadius: '6px', borderLeft: '4px solid #0284c7' }}>
-              <h4 style={{ margin: '0 0 0.5rem 0', color: '#0c4a6e', fontWeight: '600' }}>
-                Fisher Equation: r = i - π
-              </h4>
-              <p style={{ margin: '0.5rem 0', fontSize: '0.85rem', color: '#0c4a6e', lineHeight: '1.5' }}>
+
+            <ToolCallout label="Formula" variant="info" title="Fisher Equation: r = i - π">
+              <p>
                 The real interest rate is the nominal rate minus expected inflation.
                 When inflation expectations are low but Fed raises rates, real rates rise significantly.
               </p>
-            </div>
+            </ToolCallout>
           </div>
         </div>
       </div>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Bond Portfolio Value Analysis
         </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-          <div style={{ height: '300px' }}>
+        <div className={SPLIT}>
+          <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={[
                 { name: 'Initial Value', value: 100 },
                 { name: 'Current Value', value: portfolioValue },
-              ]}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="value" fill="#8b5cf6" />
+              ]} margin={chartTheme.margin}>
+                <CartesianGrid {...chartTheme.grid} />
+                <XAxis dataKey="name" {...chartTheme.axis} />
+                <YAxis {...chartTheme.axis} />
+                <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+                <Bar dataKey="value" fill={BOND_VALUE_FILL} />
               </BarChart>
             </ResponsiveContainer>
           </div>
-          
+
           <div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+            <div className={STAT_GRID}>
               <StatBox label="Bond Value" value={portfolioValue.toFixed(2)} />
               <StatBox label="Portfolio Loss" value={portfolioLoss.toFixed(2)} unit="%" />
             </div>
-            
-            <div style={{ padding: '1rem', backgroundColor: '#fef3c7', borderRadius: '6px', borderLeft: '4px solid #ca8a04' }}>
-              <h4 style={{ margin: '0 0 0.5rem 0', color: '#854d0e', fontWeight: '600' }}>
-                SVB's Real Rate Squeeze
-              </h4>
-              <p style={{ margin: '0.5rem 0', fontSize: '0.85rem', color: '#854d0e', lineHeight: '1.5' }}>
+
+            <ToolCallout label="Insight" variant="insight" title="SVB's Real Rate Squeeze">
+              <p>
                 SVB had long-term bonds locked in at 1.5% coupons when real rates were low (2010s).
                 When Fed raised rates to 5% with 4% inflation, real rates rose to 1%.
                 The bond portfolio's market value fell significantly, causing losses.
               </p>
-            </div>
+            </ToolCallout>
           </div>
         </div>
       </div>
 
-      <div style={{ marginTop: '2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-        <InfoBox type="info">
-          <strong>📉 The SVB Crisis</strong>
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ToolCallout label="Info" variant="info" title="The SVB Crisis">
           <p>SVB had a large portfolio of long-term bonds with low coupons (1.5%) from the 2010s</p>
           <p>When Fed raised rates to combat inflation, real rates rose significantly</p>
           <p>These bonds lost substantial market value, creating losses for the bank</p>
-        </InfoBox>
+        </ToolCallout>
 
-        <InfoBox type="warning">
-          <strong>⚠️ Real Rate Squeeze</strong>
+        <ToolCallout label="Watch out" variant="warning" title="Real Rate Squeeze">
           <p>When real rates rise above the coupon rate on existing bonds, their market value falls</p>
           <p>SVB's bonds were worth less than their book value, triggering a liquidity crisis</p>
           <p>This illustrates how interest rate risk can devastate financial institutions</p>
-        </InfoBox>
+        </ToolCallout>
 
-        <InfoBox type="success">
-          <strong>✅ Policy Lessons</strong>
+        <ToolCallout label="Note" variant="lesson" title="Policy Lessons">
           <p>Central banks must carefully consider the impact of rate changes on financial stability</p>
           <p>Financial institutions need robust risk management for interest rate exposure</p>
           <p>Regulators should monitor institutions with large bond portfolios</p>
-        </InfoBox>
+        </ToolCallout>
       </div>
 
-      <div style={{ marginTop: '2rem', padding: '1.5rem', backgroundColor: '#f1f5f9', borderRadius: '6px' }}>
-        <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem' }}>
-          📊 Key Insights from SVB
-        </h3>
-        <ul style={{ fontSize: '0.875rem', lineHeight: '1.8', marginLeft: '1.5rem', color: '#475569' }}>
+      <ToolCallout label="Reference" variant="info" title="Key Insights from SVB">
+        <ul>
           <li>
             <strong>Interest Rate Risk:</strong> Banks with large bond portfolios face significant interest rate risk.
             When rates rise, bond values fall, potentially creating losses that exceed capital.
@@ -267,7 +266,7 @@ export default function CrisisSvb() {
             Rapid rate increases can create instability in financial markets.
           </li>
         </ul>
-      </div>
+      </ToolCallout>
     </div>
   )
 }

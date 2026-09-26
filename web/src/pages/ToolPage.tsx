@@ -4,7 +4,6 @@ import { Check, Link2, RotateCcw } from 'lucide-react'
 import { LECTURES, type ToolId } from '../../../content/lectures'
 import { TOOLS } from '../store'
 import { ToolRenderer } from '../tools/registry'
-import { TierBadge } from '../components/ui'
 import { scenarioFromSearch, scenarioUrl } from '../lib/scenario'
 import { useAppStore } from '../store'
 
@@ -25,7 +24,7 @@ export default function ToolPage() {
   if (!info) {
     return (
       <div className="card p-6">
-        <h1 className="text-xl font-bold text-fg">Tool not found</h1>
+        <h1 className="font-serif text-xl font-bold text-fg">Tool not found</h1>
         <p className="mt-2 text-sm text-fg-muted">
           That tool does not exist. <Link to="/tools">Browse all tools</Link>.
         </p>
@@ -48,49 +47,56 @@ export default function ToolPage() {
 
   return (
     <div>
-      <nav className="mb-4 text-xs text-fg-subtle">
+      <nav className="mb-5 text-xs text-fg-subtle" aria-label="Breadcrumb">
         <Link to="/tools" className="text-fg-subtle no-underline hover:text-accent">
           Tools
         </Link>{' '}
-        / {info.title}
+        <span aria-hidden="true">/</span> {info.title}
       </nav>
 
       <header className="mb-6">
-        <div className="mb-2 flex flex-wrap items-center gap-2">
-          <TierBadge tier={info.category} />
-          <button
-            type="button"
-            onClick={copyLink}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-surface px-2.5 py-1 text-xs font-medium text-fg-muted hover:text-fg"
+        <div className="mb-4 flex flex-wrap items-center gap-2">
+          <Link
+            to="/tools"
+            className="rounded-pill border border-border bg-surface px-3 py-1.5 text-xs text-fg-muted no-underline transition-colors hover:border-accent hover:text-accent"
           >
-            {copied ? <Check size={13} /> : <Link2 size={13} />}
-            {copied ? 'Link copied' : 'Copy scenario link'}
-          </button>
+            All tools
+          </Link>
           {showDataOverlay !== undefined && (
             <label className="inline-flex cursor-pointer items-center gap-1.5 text-xs text-fg-muted">
               <input
                 type="checkbox"
                 checked={showDataOverlay}
                 onChange={(e) => setShowDataOverlay(e.target.checked)}
-                className="accent-[var(--c-accent)]"
+                className="h-3.5 w-3.5 cursor-pointer accent-accent"
               />
               Show real-data overlay where available
             </label>
           )}
+          <button
+            type="button"
+            onClick={copyLink}
+            className="ml-auto inline-flex items-center gap-1.5 rounded-pill border border-border bg-surface px-3 py-1.5 text-xs font-medium text-fg-muted transition-colors hover:border-accent hover:text-fg"
+          >
+            {copied ? <Check size={13} aria-hidden="true" /> : <Link2 size={13} aria-hidden="true" />}
+            {copied ? 'Link copied' : 'Copy scenario link'}
+          </button>
         </div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-fg">{info.title}</h1>
-        <p className="mt-2 max-w-3xl text-base text-fg-muted">{info.description}</p>
+        {/* The tool's own ToolHeader renders the page <h1>; repeating the title
+            and description here just showed them twice in a row. */}
       </header>
 
       {related.length > 0 && (
-        <div className="mb-6 rounded-xl border border-border bg-surface-2 p-4">
-          <p className="mb-2 text-xs font-bold uppercase tracking-wide text-fg-subtle">Taught in</p>
+        <div className="mb-7 rounded-card border border-border bg-surface-2 p-4">
+          <p className="mb-2.5 text-micro font-bold uppercase tracking-widest text-fg-subtle">
+            Taught in
+          </p>
           <div className="flex flex-wrap gap-2">
             {related.map((lecture) => (
               <Link
                 key={lecture.n}
                 to={`/lecture/${lecture.n}`}
-                className="rounded-full border border-border bg-surface px-3 py-1 text-xs text-fg-muted no-underline hover:text-accent"
+                className="rounded-pill border border-border bg-surface px-3 py-1 text-xs text-fg-muted no-underline transition-colors hover:border-accent hover:text-accent"
               >
                 {lecture.n}. {lecture.title}
               </Link>
@@ -99,12 +105,13 @@ export default function ToolPage() {
         </div>
       )}
 
-      <div className="rounded-xl border border-border bg-surface p-3">
+      <div className="rounded-plate border border-border bg-surface p-3">
         <ToolRenderer toolId={toolId} />
       </div>
 
       <p className="mt-4 flex items-center gap-1.5 text-xs text-fg-subtle">
-        <RotateCcw size={12} /> Scenario links preserve the parameters you set here.
+        <RotateCcw size={12} aria-hidden="true" /> Scenario links preserve the parameters you set
+        here.
       </p>
     </div>
   )

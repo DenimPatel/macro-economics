@@ -12,15 +12,16 @@ import {
   ResponsiveContainer,
   ComposedChart,
   Area,
-  AreaChart,
 } from 'recharts'
 import {
   ToolHeader,
+  ToolCallout,
   SliderControl,
   StatBox,
   Button,
   InfoBox,
 } from '../components/ToolComponents'
+import { chartTheme, chartColor } from '../design/chartTheme'
 
 interface ScenarioData {
   scenario: string
@@ -206,13 +207,7 @@ export default function RealInterestRateCalculator() {
       />
 
       <div className="control-panel">
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '1.5rem',
-          }}
-        >
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <SliderControl
             label="Nominal Interest Rate (i)"
             value={activeNominal}
@@ -242,7 +237,7 @@ export default function RealInterestRateCalculator() {
           />
         </div>
 
-        <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
+        <div className="mt-6 flex flex-wrap gap-2">
           <Button
             onClick={() => setScenarioMode('custom')}
             variant={scenarioMode === 'custom' ? 'primary' : 'secondary'}
@@ -277,123 +272,119 @@ export default function RealInterestRateCalculator() {
       </div>
 
       {/* Key Statistics */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
-          gap: '1rem',
-          marginBottom: '2rem',
-        }}
-      >
-        <StatBox label="Nominal Rate" value={activeNominal.toFixed(2)} unit="%" highlight />
+      <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-3">
+        <StatBox label="Nominal Rate" value={activeNominal.toFixed(2)} unit="%" tone="accent" />
         <StatBox label="Actual Inflation" value={activeActual.toFixed(2)} unit="%" />
         <StatBox label="Expected Inflation" value={activeExpected.toFixed(2)} unit="%" />
-        <StatBox label="Real Rate (Actual)" value={realRate.toFixed(2)} unit="%" highlight />
-        <StatBox label="Expected Real Rate" value={expectedRealRate.toFixed(2)} unit="%" highlight />
+        <StatBox label="Real Rate (Actual)" value={realRate.toFixed(2)} unit="%" tone="accent" />
+        <StatBox
+          label="Expected Real Rate"
+          value={expectedRealRate.toFixed(2)}
+          unit="%"
+          tone="accent"
+        />
         <StatBox
           label="Inflation Surprise"
           value={(activeActual - activeExpected).toFixed(2)}
           unit="%"
-          highlight={Math.abs(activeActual - activeExpected) > 0.5}
+          tone={Math.abs(activeActual - activeExpected) > 0.5 ? 'accent' : undefined}
         />
       </div>
 
       {/* Fisher Equation Explanation */}
-      <div style={{ marginBottom: '2rem' }}>
-        <InfoBox type="info">
-          <strong>📐 Fisher Equation:</strong>
-          <br />
-          <span style={{ fontFamily: 'monospace', fontSize: '0.95rem', marginTop: '0.5rem', display: 'block' }}>
-            Real Interest Rate (r) = Nominal Rate (i) − Inflation (π)
-          </span>
-          <br />
-          The <strong>real interest rate</strong> measures the true economic cost of borrowing and benefit of
-          saving, <strong>after accounting for inflation</strong>. A 5% nominal rate with 4% inflation only gives you
-          1% real return!
+      <div className="mb-8">
+        <InfoBox type="info" title="Fisher Equation">
+          <p className="font-mono text-[0.95rem] text-fg">
+            Real Interest Rate (r) = Nominal Rate (i) &minus; Inflation (π)
+          </p>
+          <p className="mt-3">
+            The <strong>real interest rate</strong> measures the true economic cost of borrowing and
+            benefit of saving, <strong>after accounting for inflation</strong>. A 5% nominal rate with
+            4% inflation only gives you 1% real return!
+          </p>
         </InfoBox>
       </div>
 
       {/* Economic Implications */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
-        <div
-          style={{
-            padding: '1rem',
-            backgroundColor: realRate < 0 ? '#fee2e2' : '#dcfce7',
-            border: `2px solid ${realRate < 0 ? '#fca5a5' : '#86efac'}`,
-            borderRadius: '0.5rem',
-          }}
+      <div className="mb-8 grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <ToolCallout
+          label="Borrowers"
+          variant={realRate < 0 ? 'warning' : 'insight'}
+          title="Borrowing Incentive"
         >
-          <strong>💰 Borrowing Incentive:</strong>
-          <div style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}>{borrowingIncentive}</div>
+          <p>{borrowingIncentive}</p>
           {realRate < 0 && (
-            <div style={{ marginTop: '0.5rem', fontSize: '0.85rem', fontStyle: 'italic' }}>
-              Negative real rates make borrowing highly attractive—you pay back less in real terms than you borrowed!
-            </div>
+            <p className="italic">
+              Negative real rates make borrowing highly attractive&mdash;you pay back less in real terms
+              than you borrowed!
+            </p>
           )}
-        </div>
+        </ToolCallout>
 
-        <div
-          style={{
-            padding: '1rem',
-            backgroundColor: realRate < 2 ? '#fef3c7' : '#e0e7ff',
-            border: `2px solid ${realRate < 2 ? '#fcd34d' : '#a5b4fc'}`,
-            borderRadius: '0.5rem',
-          }}
+        <ToolCallout
+          label="Savers"
+          variant={realRate < 2 ? 'insight' : 'try'}
+          title="Saving Incentive"
         >
-          <strong>🏦 Saving Incentive:</strong>
-          <div style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}>{savingIncentive}</div>
+          <p>{savingIncentive}</p>
           {realRate < 0 && (
-            <div style={{ marginTop: '0.5rem', fontSize: '0.85rem', fontStyle: 'italic' }}>
-              Negative real rates punish savers—your money loses purchasing power!
-            </div>
+            <p className="italic">
+              Negative real rates punish savers&mdash;your money loses purchasing power!
+            </p>
           )}
-        </div>
+        </ToolCallout>
 
-        <div
-          style={{
-            padding: '1rem',
-            backgroundColor: '#f0f9ff',
-            border: '2px solid #0ea5e9',
-            borderRadius: '0.5rem',
-          }}
-        >
-          <strong>📊 Real vs. Expected:</strong>
-          <div style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}>
+        <ToolCallout label="Expectations" variant="info" title="Real vs. Expected">
+          <p>
             {Math.abs(activeActual - activeExpected) < 0.5
-              ? '✓ Inflation close to expectations (good forecasting)'
-              : `✗ Inflation ${
+              ? 'Inflation close to expectations (good forecasting)'
+              : `Inflation ${
                   activeActual > activeExpected ? 'higher' : 'lower'
                 } than expected (unexpected changes hurt planning)`}
-          </div>
-        </div>
+          </p>
+        </ToolCallout>
       </div>
 
       {/* Fisher Equation Visualization */}
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           How Real Rates Change with Nominal Rates (at current {activeActual.toFixed(1)}% inflation)
         </h3>
         <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={nominalComparison}>
-            <CartesianGrid strokeDasharray="3 3" />
+          <LineChart data={nominalComparison} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
             <XAxis
               dataKey="nominalRate"
               type="number"
-              label={{ value: 'Nominal Interest Rate (%)', position: 'insideBottomRight', offset: -10 }}
+              label={{
+                value: 'Nominal Interest Rate (%)',
+                position: 'insideBottomRight',
+                offset: -10,
+                fill: chartTheme.axis.tick.fill,
+              }}
+              {...chartTheme.axis}
             />
             <YAxis
-              label={{ value: 'Real Interest Rate (%)', angle: -90, position: 'insideLeft' }}
+              label={{
+                value: 'Real Interest Rate (%)',
+                angle: -90,
+                position: 'insideLeft',
+                fill: chartTheme.axis.tick.fill,
+              }}
               domain={[-5, 8]}
+              {...chartTheme.axis}
             />
             <Tooltip
+              {...chartTheme.tooltip}
+              cursor={chartTheme.cursor}
               formatter={(value) => (typeof value === 'number' ? `${value.toFixed(2)}%` : value)}
               labelFormatter={(label) => `Nominal Rate: ${label.toFixed(1)}%`}
             />
-            <Legend />
+            <Legend {...chartTheme.legend} />
             <Line
               type="monotone"
               dataKey="realRateActual"
-              stroke="#ef4444"
+              stroke={chartColor(4)}
               name={`Real Rate = i − ${activeActual.toFixed(1)}%`}
               strokeWidth={3}
               dot={false}
@@ -402,7 +393,7 @@ export default function RealInterestRateCalculator() {
             <Line
               type="monotone"
               dataKey="realRateExpected"
-              stroke="#3b82f6"
+              stroke={chartColor(0)}
               name={`Expected Real Rate = i − ${activeExpected.toFixed(1)}%`}
               strokeWidth={2}
               strokeDasharray="5 5"
@@ -414,70 +405,92 @@ export default function RealInterestRateCalculator() {
       </div>
 
       {/* Scenario Comparison */}
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
           Real Rates Across Economic Scenarios
         </h3>
         <ResponsiveContainer width="100%" height={350}>
-          <BarChart data={scenarioComparison}>
-            <CartesianGrid strokeDasharray="3 3" />
+          <BarChart data={scenarioComparison} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
             <XAxis
               dataKey="scenario"
               angle={-45}
               textAnchor="end"
               height={100}
               interval={0}
-              tick={{ fontSize: 12 }}
+              {...chartTheme.axis}
+              tick={{ ...chartTheme.axis.tick, fontSize: 12 }}
             />
             <YAxis
-              label={{ value: 'Interest Rate (%)', angle: -90, position: 'insideLeft' }}
+              label={{
+                value: 'Interest Rate (%)',
+                angle: -90,
+                position: 'insideLeft',
+                fill: chartTheme.axis.tick.fill,
+              }}
               domain={[-6, 6]}
+              {...chartTheme.axis}
             />
             <Tooltip
+              {...chartTheme.tooltip}
+              cursor={chartTheme.cursor}
               formatter={(value) => (typeof value === 'number' ? `${value.toFixed(1)}%` : value)}
               labelFormatter={(label) => `Scenario: ${label}`}
             />
-            <Legend />
-            <Bar dataKey="nominalRate" fill="#0ea5e9" name="Nominal Rate" />
-            <Bar dataKey="inflationRate" fill="#f97316" name="Inflation Rate" />
-            <Bar dataKey="realRate" fill="#10b981" name="Real Rate" />
+            <Legend {...chartTheme.legend} />
+            <Bar dataKey="nominalRate" fill={chartColor(0)} name="Nominal Rate" />
+            <Bar dataKey="inflationRate" fill={chartColor(2)} name="Inflation Rate" />
+            <Bar dataKey="realRate" fill={chartColor(1)} name="Real Rate" />
           </BarChart>
         </ResponsiveContainer>
       </div>
 
       {/* Historical Context */}
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem' }}>
-          Historical Real Interest Rates
-        </h3>
+      <div className="mb-8">
+        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Historical Real Interest Rates</h3>
         <ResponsiveContainer width="100%" height={350}>
-          <ComposedChart data={timeSeriesData}>
-            <CartesianGrid strokeDasharray="3 3" />
+          <ComposedChart data={timeSeriesData} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
             <XAxis
               dataKey="period"
-              label={{ value: 'Time Period', position: 'insideBottomRight', offset: -10 }}
+              label={{
+                value: 'Time Period',
+                position: 'insideBottomRight',
+                offset: -10,
+                fill: chartTheme.axis.tick.fill,
+              }}
+              {...chartTheme.axis}
             />
             <YAxis
-              label={{ value: 'Interest Rate (%)', angle: -90, position: 'insideLeft' }}
+              label={{
+                value: 'Interest Rate (%)',
+                angle: -90,
+                position: 'insideLeft',
+                fill: chartTheme.axis.tick.fill,
+              }}
               domain={[-6, 6]}
+              {...chartTheme.axis}
             />
             <Tooltip
+              {...chartTheme.tooltip}
+              cursor={chartTheme.cursor}
               formatter={(value) => (typeof value === 'number' ? `${value.toFixed(2)}%` : value)}
             />
-            <Legend />
+            <Legend {...chartTheme.legend} />
             <Area
               type="monotone"
               dataKey="realRate"
-              fill="#ef4444"
-              stroke="#dc2626"
+              fill={chartColor(4)}
+              stroke={chartColor(4)}
               name="Actual Real Rate"
-              opacity={0.3}
+              fillOpacity={0.3}
+              strokeOpacity={0.9}
               isAnimationActive={true}
             />
             <Line
               type="monotone"
               dataKey="nominalRate"
-              stroke="#0ea5e9"
+              stroke={chartColor(0)}
               name="Nominal Rate"
               strokeWidth={2}
               dot={{ r: 3 }}
@@ -486,7 +499,7 @@ export default function RealInterestRateCalculator() {
             <Line
               type="monotone"
               dataKey="actualInflation"
-              stroke="#f97316"
+              stroke={chartColor(2)}
               name="Inflation"
               strokeWidth={2}
               dot={{ r: 3 }}
@@ -494,9 +507,8 @@ export default function RealInterestRateCalculator() {
             />
           </ComposedChart>
         </ResponsiveContainer>
-        <div style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#666' }}>
-          <strong>Key Observations:</strong>
-          <ul style={{ marginTop: '0.5rem', paddingLeft: '1.5rem' }}>
+        <ToolCallout label="Key observations" variant="insight" title="Reading the history">
+          <ul>
             <li>
               <strong>2010s:</strong> Near-zero or negative real rates supported economic recovery but kept savers
               underwater.
@@ -510,14 +522,13 @@ export default function RealInterestRateCalculator() {
               savers.
             </li>
           </ul>
-        </div>
+        </ToolCallout>
       </div>
 
       {/* Educational Content */}
-      <div style={{ marginBottom: '1rem' }}>
-        <InfoBox type="warning">
-          <strong>⚡ Why Real Rates Matter for Economic Decisions:</strong>
-          <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem' }}>
+      <div className="mb-4">
+        <InfoBox type="warning" title="Why real rates matter for economic decisions">
+          <ul className="mt-2">
             <li>
               <strong>Savers:</strong> Negative real rates erode purchasing power. If you save at 1% nominal but
               inflation is 4%, you lose 3% in real buying power annually.
@@ -543,9 +554,8 @@ export default function RealInterestRateCalculator() {
       </div>
 
       <div>
-        <InfoBox type="info">
-          <strong>📚 Expected vs. Actual Real Rates:</strong>
-          <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem' }}>
+        <InfoBox type="info" title="Expected vs. actual real rates">
+          <ul className="mt-2">
             <li>
               <strong>Expected Real Rate (r^e = i − π^e):</strong> What borrowers and savers expect when making
               decisions. Forward-looking.
