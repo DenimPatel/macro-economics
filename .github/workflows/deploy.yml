@@ -47,7 +47,9 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          # Actions run from the repo root; `working-directory` only affects
+          # `run` steps, so the built output is web/dist.
+          path: web/dist
 
   deploy:
     needs: build
