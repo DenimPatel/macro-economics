@@ -2,13 +2,38 @@ import { NavLink } from 'react-router-dom'
 import { LECTURES, type Tier } from '../../../content/lectures'
 import { TOOLS } from '../store'
 import { TIER_META, TIER_ORDER } from '../design/tokens'
+import BrandMark from '../components/BrandMark'
+import { LevelMeter } from '../components/ui'
+import { useProgress } from '../learning/progress'
 
-const linkClass = ({ isActive }: { isActive: boolean }) =>
-  `nav-link${isActive ? ' active' : ''}`
+const linkClass = ({ isActive }: { isActive: boolean }) => `nav-link${isActive ? ' active' : ''}`
 
 interface SidebarProps {
   /** Called after a navigation click (used to close the mobile drawer). */
   onNavigate?: () => void
+}
+
+function CourseProgress() {
+  const { completedLectures } = useProgress()
+  const done = completedLectures.length
+  const total = LECTURES.length
+  const pct = total === 0 ? 0 : Math.round((done / total) * 100)
+  return (
+    <div className="sticky bottom-0 border-t border-border bg-surface px-4 py-3.5">
+      <div className="mb-2 flex items-baseline justify-between text-micro font-semibold uppercase tracking-wider text-fg-subtle">
+        <span>Your progress</span>
+        <span className="tabular-nums normal-case tracking-normal text-fg-muted">
+          {done} / {total}
+        </span>
+      </div>
+      <div className="h-1 overflow-hidden rounded-full bg-surface-2">
+        <div
+          className="h-full rounded-full bg-accent transition-[width] duration-300"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+    </div>
+  )
 }
 
 export default function Sidebar({ onNavigate }: SidebarProps) {
@@ -22,14 +47,10 @@ export default function Sidebar({ onNavigate }: SidebarProps) {
     <nav className="sidebar" aria-label="Course navigation">
       <div className="px-4 pb-2 pt-5">
         <NavLink to="/" className="flex items-center gap-2.5 no-underline" onClick={onNavigate}>
-          <span className="grid h-8 w-8 place-items-center rounded-card bg-accent font-serif text-base font-bold text-accent-fg">
-            M
-          </span>
-          <span className="font-serif text-[0.95rem] font-bold tracking-tight text-fg">
-            MacroEconomics
-          </span>
+          <BrandMark />
+          <span className="text-[0.95rem] font-bold tracking-tight text-fg">MacroEconomics</span>
         </NavLink>
-        <p className="mt-1 pl-[2.625rem] text-micro uppercase tracking-widest text-fg-subtle">
+        <p className="mt-1 pl-[2.125rem] text-micro uppercase tracking-widest text-fg-subtle">
           Interactive course
         </p>
       </div>
@@ -51,8 +72,8 @@ export default function Sidebar({ onNavigate }: SidebarProps) {
 
         {tierLectures.map(({ tier, meta, lectures }) => (
           <div key={tier}>
-            <div className="section-title flex items-center gap-1.5">
-              <span className={`h-1.5 w-1.5 rounded-full ${meta.stripe}`} aria-hidden="true" />
+            <div className="section-title">
+              <LevelMeter tier={tier} />
               {meta.label}
             </div>
             {lectures.map((lecture) => (
@@ -87,6 +108,8 @@ export default function Sidebar({ onNavigate }: SidebarProps) {
           About &amp; sources
         </NavLink>
       </div>
+
+      <CourseProgress />
     </nav>
   )
 }

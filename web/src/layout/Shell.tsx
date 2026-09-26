@@ -1,9 +1,28 @@
 import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { Link, Outlet, useLocation } from 'react-router-dom'
+import { Github, Menu, X } from 'lucide-react'
 import Sidebar from './Sidebar'
 import ThemeToggle from './ThemeToggle'
+import ErrorBoundary from '../components/ErrorBoundary'
 import { recordVisit } from '../learning/progress'
+import { LECTURES } from '../../../content/lectures'
+import { TOOLS } from '../store'
+
+/** Human label for the current route, shown in the header. */
+function sectionName(pathname: string): string {
+  if (pathname === '/') return 'Course home'
+  if (pathname.startsWith('/lecture/')) {
+    const n = Number(pathname.split('/')[2])
+    const lecture = LECTURES.find((l) => l.n === n)
+    return lecture ? `Lecture ${lecture.n}. ${lecture.title}` : 'Lecture'
+  }
+  if (pathname.startsWith('/tool/')) {
+    const id = pathname.split('/')[2]
+    return TOOLS[id as keyof typeof TOOLS]?.title ?? 'Tool'
+  }
+  const leaf = pathname.replace(/^\//, '')
+  return leaf.charAt(0).toUpperCase() + leaf.slice(1)
+}
 
 function Header({
   onOpenMenu,
@@ -12,28 +31,28 @@ function Header({
   onOpenMenu: () => void
   menuButtonRef: RefObject<HTMLButtonElement>
 }) {
+  const { pathname } = useLocation()
   return (
-    <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-border bg-surface/85 px-3 py-2.5 backdrop-blur md:px-6">
+    <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-border bg-surface/85 px-3 backdrop-blur md:px-6">
       <button
         ref={menuButtonRef}
         type="button"
         onClick={onOpenMenu}
-        className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border text-fg-muted transition-colors hover:text-fg md:hidden"
+        className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border text-fg-muted transition-colors hover:text-fg md:hidden"
         aria-label="Open navigation"
       >
         <Menu size={18} />
       </button>
-      <p className="truncate text-xs text-fg-subtle">
-        MIT-style macroeconomics, made interactive. Type nothing you can break.
-      </p>
+      <p className="truncate text-sm font-medium text-fg-muted">{sectionName(pathname)}</p>
       <div className="ml-auto flex items-center gap-2">
         <a
           href="https://github.com/DenimPatel/macro-economics"
           target="_blank"
           rel="noreferrer noopener"
-          className="hidden rounded-lg border border-border px-2.5 py-1.5 text-xs font-medium text-fg-muted no-underline transition-colors hover:border-border-strong hover:text-fg sm:inline-block"
+          className="hidden items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-xs font-medium text-fg-muted no-underline transition-colors hover:border-border-strong hover:text-fg sm:inline-flex"
         >
-          GitHub
+          <Github size={14} aria-hidden="true" />
+          Source
         </a>
         <ThemeToggle />
       </div>
@@ -43,11 +62,76 @@ function Header({
 
 function Footer() {
   return (
-    <footer className="border-t border-border px-4 py-6 text-xs text-fg-subtle md:px-8">
-      <p>
-        Built for learning. Lecture content follows the MIT OpenCourseWare macroeconomics series;
-        tools and notes are original implementations. MIT licensed.
-      </p>
+    <footer className="border-t border-border bg-surface px-4 py-8 text-xs text-fg-subtle md:px-8">
+      <div className="grid gap-6 sm:grid-cols-3">
+        <div>
+          <p className="mb-2 text-micro font-bold uppercase tracking-widest text-fg-muted">
+            This course
+          </p>
+          <ul className="space-y-1.5">
+            <li>
+              <Link to="/syllabus" className="text-fg-muted no-underline hover:text-accent-ink">
+                Syllabus
+              </Link>
+            </li>
+            <li>
+              <Link to="/tools" className="text-fg-muted no-underline hover:text-accent-ink">
+                Interactive tools
+              </Link>
+            </li>
+            <li>
+              <Link to="/cases" className="text-fg-muted no-underline hover:text-accent-ink">
+                Case studies
+              </Link>
+            </li>
+            <li>
+              <Link to="/data" className="text-fg-muted no-underline hover:text-accent-ink">
+                Data explorer
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <p className="mb-2 text-micro font-bold uppercase tracking-widest text-fg-muted">
+            Reference
+          </p>
+          <ul className="space-y-1.5">
+            <li>
+              <Link to="/concepts" className="text-fg-muted no-underline hover:text-accent-ink">
+                Concept map
+              </Link>
+            </li>
+            <li>
+              <Link to="/glossary" className="text-fg-muted no-underline hover:text-accent-ink">
+                Glossary
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className="text-fg-muted no-underline hover:text-accent-ink">
+                About &amp; sources
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <p className="mb-2 text-micro font-bold uppercase tracking-widest text-fg-muted">
+            Attribution
+          </p>
+          <p className="leading-relaxed">
+            Lecture content follows the MIT OpenCourseWare macroeconomics series, MIT licensed. Tools,
+            notes, and design are original. Progress is stored in this browser only.
+          </p>
+          <a
+            href="https://github.com/DenimPatel/macro-economics"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="mt-3 inline-flex items-center gap-1.5 text-fg-muted no-underline hover:text-accent-ink"
+          >
+            <Github size={13} aria-hidden="true" />
+            github.com/DenimPatel/macro-economics
+          </a>
+        </div>
+      </div>
     </footer>
   )
 }
@@ -64,6 +148,15 @@ export default function Shell() {
 
   useEffect(() => {
     recordVisit(location.pathname)
+  }, [location.pathname])
+
+  // Scroll restoration. `<main key={pathname}>` remounts on navigation, but
+  // remounting does not move the scroll position, so moving from the middle of
+  // one lecture to another used to land you halfway down the new one.
+  // `instant` rather than the CSS default, which is `smooth` and would animate
+  // every route change.
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior })
   }, [location.pathname])
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
@@ -129,7 +222,7 @@ export default function Shell() {
           <div className="absolute inset-0 bg-black/50" onClick={closeMenu} />
           <div
             ref={drawerRef}
-            className="absolute left-0 top-0 h-full w-72 max-w-[85%] overflow-y-auto bg-surface-2 shadow-pop"
+            className="absolute left-0 top-0 h-full w-72 max-w-[85%] overflow-y-auto bg-surface shadow-pop"
           >
             <div className="flex justify-end p-2">
               <button
@@ -153,9 +246,11 @@ export default function Shell() {
           id="main-content"
           tabIndex={-1}
           key={location.pathname}
-          className="min-w-0 flex-1 px-4 py-6 outline-none md:px-8 md:py-8"
+          className="min-w-0 flex-1 px-4 py-7 outline-none md:px-8 md:py-9"
         >
-          <Outlet />
+          <ErrorBoundary>
+            <Outlet />
+          </ErrorBoundary>
         </main>
         <Footer />
       </div>

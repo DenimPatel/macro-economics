@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import { PageHeader } from '../components/ui'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 export default function NotFound() {
+  useDocumentTitle('Page not found')
   return (
     <div className="card max-w-xl p-8">
       <PageHeader

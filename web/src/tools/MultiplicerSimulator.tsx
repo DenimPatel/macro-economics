@@ -1,16 +1,9 @@
 import { useState } from 'react'
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts'
+import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { ChartBar } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   InfoBox,
@@ -81,7 +74,7 @@ export default function MultiplicerSimulator() {
       </div>
 
       <div className="visualization-container">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Multiplier Rounds: Cumulative GDP Impact
         </h3>
         <ResponsiveContainer width="100%" height={350}>
@@ -102,13 +95,13 @@ export default function MultiplicerSimulator() {
               {...chartTheme.axis}
             />
             <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-            <Bar dataKey="cumulative" fill={CUMULATIVE_STROKE} name="Cumulative GDP Impact" />
+            <ChartBar dataKey="cumulative" fill={CUMULATIVE_STROKE} name="Cumulative GDP Impact" />
           </BarChart>
         </ResponsiveContainer>
       </div>
 
       <div className="visualization-container mt-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Round-by-Round Breakdown</h3>
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Round-by-Round Breakdown</h3>
         <ResponsiveContainer width="100%" height={350}>
           <BarChart data={roundsData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
@@ -122,13 +115,13 @@ export default function MultiplicerSimulator() {
               {...chartTheme.axis}
             />
             <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-            <Bar dataKey="change" fill={PER_ROUND_STROKE} name="Spending This Round" />
+            <ChartBar dataKey="change" fill={PER_ROUND_STROKE} name="Spending This Round" />
           </BarChart>
         </ResponsiveContainer>
       </div>
 
       <div className="card mt-8 p-6">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Rounds Detail Table</h3>
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Rounds Detail Table</h3>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-sm tabular-nums">
             <thead>
@@ -156,7 +149,7 @@ export default function MultiplicerSimulator() {
         </div>
       </div>
 
-      <ToolCallout label="Key insights" variant="insight" title="What the model implies">
+      <ToolNote label="Key insights" variant="insight" title="What the model implies">
         <ul>
           <li>
             Higher MPC means a stronger multiplier. If people spend 80¢ of each $1 earned, the
@@ -169,7 +162,7 @@ export default function MultiplicerSimulator() {
           <li>In open economies, imports leak demand out, reducing the multiplier.</li>
           <li>This model assumes sticky prices and excess capacity (short-run assumption).</li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
     </div>
   )
 }

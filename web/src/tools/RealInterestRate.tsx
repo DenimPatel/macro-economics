@@ -1,19 +1,9 @@
 import { useState } from 'react'
-import {
-  BarChart,
-  Bar,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  ComposedChart,
-} from 'recharts'
+import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart } from 'recharts'
+import { ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   InfoBox,
@@ -152,14 +142,14 @@ export default function RealInterestRate() {
       </div>
 
       {/* Investment Decision Indicator */}
-      <ToolCallout
+      <ToolNote
         label="Investment decision"
         variant={isAttractive ? 'insight' : 'warning'}
         title="Project viability at the current real rate"
       >
         <div className="mb-3 flex items-center gap-4">
           <span
-            className={`font-serif text-display-sm font-bold tabular-nums ${
+            className={`text-display-sm font-bold tabular-nums ${
               isAttractive ? 'text-tier-beginner-ink' : 'text-tier-case-ink'
             }`}
           >
@@ -174,7 +164,7 @@ export default function RealInterestRate() {
           Firms compare the real interest rate (their borrowing cost) to expected project returns. When
           real rates are low, projects become more attractive.
         </p>
-      </ToolCallout>
+      </ToolNote>
 
       {/* Comparison Mode Selection */}
       <div className="mb-8">
@@ -209,7 +199,7 @@ export default function RealInterestRate() {
         {/* Scenario Comparison Visualization */}
         {comparisonMode !== 'none' && comparisonData.length > 0 && (
           <div className="visualization-container">
-            <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+            <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
               {comparisonMode === 'same-real'
                 ? 'Same Real Rate (3%), Different Nominal + Inflation'
                 : comparisonMode === 'same-nominal'
@@ -232,11 +222,11 @@ export default function RealInterestRate() {
                 <Legend {...chartTheme.legend} />
                 {comparisonMode !== 'historical' && (
                   <>
-                    <Bar dataKey="nominal" fill={chartColor(0)} name="Nominal Rate" />
-                    <Bar dataKey="inflation" fill={chartColor(2)} name="Expected Inflation" />
+                    <ChartBar dataKey="nominal" fill={chartColor(0)} name="Nominal Rate" />
+                    <ChartBar dataKey="inflation" fill={chartColor(2)} name="Expected Inflation" />
                   </>
                 )}
-                <Bar dataKey="real" fill={chartColor(1)} name="Real Rate" />
+                <ChartBar dataKey="real" fill={chartColor(1)} name="Real Rate" />
               </BarChart>
             </ResponsiveContainer>
 
@@ -279,7 +269,7 @@ export default function RealInterestRate() {
 
       {/* Historical Real Rates Timeline */}
       <div className="visualization-container">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Historical Real Interest Rates (1950s–2023)
         </h3>
         <ResponsiveContainer width="100%" height={320}>
@@ -296,7 +286,7 @@ export default function RealInterestRate() {
               formatter={(value: number) => value.toFixed(2)}
             />
             <Legend {...chartTheme.legend} />
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="nominal"
               stroke={chartColor(0)}
@@ -304,7 +294,7 @@ export default function RealInterestRate() {
               name="Nominal Rate"
               connectNulls
             />
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="inflation"
               stroke={chartColor(2)}
@@ -312,7 +302,7 @@ export default function RealInterestRate() {
               name="Inflation"
               connectNulls
             />
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="real"
               stroke={chartColor(1)}
@@ -326,29 +316,29 @@ export default function RealInterestRate() {
 
       {/* Educational Insights Section */}
       <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <ToolCallout label="Case study" variant="warning" title="Why SVB failed (2023)">
+        <ToolNote label="Case study" variant="warning" title="Why SVB failed (2023)">
           <p>
             SVB locked in low-coupon bonds when real rates were negative (2010s). When real rates rose
             from -1% to +2%, bond values plummeted. The bank faced a real rate squeeze: liabilities
             (deposits) now demanded higher returns than their assets could provide.
           </p>
-        </ToolCallout>
+        </ToolNote>
 
-        <ToolCallout label="Markets" variant="insight" title="Wealth effect & asset prices">
+        <ToolNote label="Markets" variant="insight" title="Wealth effect & asset prices">
           <p>
             Low real rates → Lower discount rates → Higher stock/real estate prices. When real rates
             rise, asset valuations fall. This is how Fed policy transmits to household wealth and
             consumption. Higher real rates make future cash flows worth less in today's dollars.
           </p>
-        </ToolCallout>
+        </ToolNote>
 
-        <ToolCallout label="Distribution" variant="info" title="Savers vs. borrowers">
+        <ToolNote label="Distribution" variant="info" title="Savers vs. borrowers">
           <p>
             Negative real rates (like 2010s) punish savers but help borrowers. Retired people living on
             savings lose purchasing power. Young borrowers (students, first-time homebuyers) thrive.
             Positive real rates reverse this: savers benefit, but debt becomes expensive.
           </p>
-        </ToolCallout>
+        </ToolNote>
       </div>
 
       {/* Fisher Equation Deep Dive */}

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { CheckCircle2, RotateCcw, XCircle } from 'lucide-react'
+import { Check, RotateCcw, X } from 'lucide-react'
 import type { QuizQuestion } from '../../../content/lectures'
 import { recordQuizScore } from './progress'
 
@@ -32,24 +32,30 @@ export default function Quiz({ lectureKey, questions }: QuizProps) {
   return (
     <section className="card p-6" aria-label="Check your understanding">
       <div className="mb-5 flex items-center justify-between gap-3">
-        <h2 className="font-serif text-lg font-bold text-fg">Check your understanding</h2>
+        <h2 className="text-lg font-semibold text-fg">Check your understanding</h2>
         {submitted ? (
-          <span className="rounded-pill bg-accent/12 px-3 py-1 text-xs font-bold tabular-nums text-accent-ink">
+          <span
+            className={`rounded-pill border px-3 py-1 text-xs font-bold tabular-nums ${
+              correctCount === questions.length
+                ? 'border-ok/40 bg-ok/10 text-ok-ink'
+                : 'border-border bg-surface-2 text-fg-muted'
+            }`}
+          >
             {correctCount} / {questions.length}
           </span>
         ) : (
-          <span className="text-xs text-fg-subtle tabular-nums">
+          <span className="text-xs tabular-nums text-fg-subtle">
             {questions.length} question{questions.length === 1 ? '' : 's'}
           </span>
         )}
       </div>
 
-      <ol className="space-y-5">
+      <ol className="space-y-6">
         {questions.map((question, qi) => {
           const chosen = selected[question.id]
           return (
             <li key={question.id}>
-              <p className="mb-2 font-medium text-fg">
+              <p className="mb-2.5 font-medium text-fg">
                 {qi + 1}. {question.question}
               </p>
               <div className="space-y-1.5">
@@ -57,15 +63,15 @@ export default function Quiz({ lectureKey, questions }: QuizProps) {
                   const isChosen = chosen === oi
                   const isAnswer = question.answer === oi
                   let cls =
-                    'flex w-full items-start gap-2 rounded-card border px-3 py-2 text-left text-sm transition-colors'
+                    'flex w-full items-start gap-2.5 rounded-card border px-3 py-2.5 text-left text-sm transition-colors'
                   if (!submitted) {
                     cls += isChosen
                       ? ' border-accent bg-accent/10 text-fg'
-                      : ' border-border bg-surface text-fg-muted hover:border-accent/50'
+                      : ' border-border bg-surface text-fg-muted hover:border-border-strong hover:text-fg'
                   } else if (isAnswer) {
-                    cls += ' border-tier-beginner/60 bg-tier-beginner/10 text-fg'
+                    cls += ' border-ok/50 bg-ok/8 text-fg'
                   } else if (isChosen) {
-                    cls += ' border-tier-case/60 bg-tier-case/10 text-fg'
+                    cls += ' border-bad/50 bg-bad/8 text-fg'
                   } else {
                     cls += ' border-border bg-surface text-fg-subtle'
                   }
@@ -82,16 +88,16 @@ export default function Quiz({ lectureKey, questions }: QuizProps) {
                       </span>
                       <span>{option}</span>
                       {submitted && isAnswer && (
-                        <CheckCircle2
-                          size={16}
-                          className="ml-auto mt-0.5 shrink-0 text-tier-beginner"
+                        <Check
+                          size={15}
+                          className="ml-auto mt-0.5 shrink-0 text-ok"
                           aria-label="Correct answer"
                         />
                       )}
                       {submitted && isChosen && !isAnswer && (
-                        <XCircle
-                          size={16}
-                          className="ml-auto mt-0.5 shrink-0 text-tier-case"
+                        <X
+                          size={15}
+                          className="ml-auto mt-0.5 shrink-0 text-bad"
                           aria-label="Your answer"
                         />
                       )}
@@ -100,8 +106,14 @@ export default function Quiz({ lectureKey, questions }: QuizProps) {
                 })}
               </div>
               {submitted && (
-                <p className="mt-2 rounded-card bg-surface-2 px-3.5 py-2.5 text-sm leading-relaxed text-fg-muted">
-                  {selected[question.id] === question.answer ? 'Correct. ' : 'Not quite. '}
+                <p className="mt-2.5 rounded-card bg-surface-2 px-3.5 py-2.5 text-sm leading-relaxed text-fg-muted">
+                  <span
+                    className={`font-semibold ${
+                      selected[question.id] === question.answer ? 'text-ok-ink' : 'text-bad-ink'
+                    }`}
+                  >
+                    {selected[question.id] === question.answer ? 'Correct. ' : 'Not quite. '}
+                  </span>
                   {question.explanation}
                 </p>
               )}
@@ -110,7 +122,7 @@ export default function Quiz({ lectureKey, questions }: QuizProps) {
         })}
       </ol>
 
-      <div className="mt-5 flex gap-2">
+      <div className="mt-6 flex gap-2">
         {!submitted ? (
           <button
             type="button"

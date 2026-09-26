@@ -1,18 +1,9 @@
 import { useState } from 'react'
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-} from 'recharts'
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart } from 'recharts'
+import { ChartArea, ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   Button,
@@ -139,7 +130,7 @@ export default function Crisis2008() {
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Credit Spreads Over Time
         </h3>
         <div className={CHART_BOX}>
@@ -149,7 +140,7 @@ export default function Crisis2008() {
               <XAxis dataKey="quarter" {...chartTheme.axis} />
               <YAxis {...chartTheme.axis} />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-              <Area
+              <ChartArea
                 type="monotone"
                 dataKey="creditSpread"
                 stroke={CREDIT_SPREAD_STROKE}
@@ -158,7 +149,7 @@ export default function Crisis2008() {
                 name="Credit Spread (BAA-AAA)"
               />
               {showDataOverlay && (
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="creditSpread"
                   stroke={CREDIT_SPREAD_STROKE}
@@ -174,7 +165,7 @@ export default function Crisis2008() {
 
       {showISLM && (
         <div className="mb-8">
-          <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+          <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
             IS-LM Analysis During Crisis
           </h3>
           <div className={SPLIT}>
@@ -185,7 +176,7 @@ export default function Crisis2008() {
                   <XAxis dataKey="quarter" {...chartTheme.axis} />
                   <YAxis {...chartTheme.axis} />
                   <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-                  <Line
+                  <ChartLine
                     type="monotone"
                     dataKey="output"
                     stroke={OUTPUT_STROKE}
@@ -193,7 +184,7 @@ export default function Crisis2008() {
                     dot={{ r: 4 }}
                     name="Output (Y)"
                   />
-                  <Line
+                  <ChartLine
                     type="monotone"
                     dataKey="unemployment"
                     stroke={UNEMPLOYMENT_STROKE}
@@ -213,19 +204,19 @@ export default function Crisis2008() {
                 <StatBox label="Money Supply" value={islmResult.moneySupply.toFixed(1)} />
               </div>
 
-              <ToolCallout label="Reference" variant="info" title="Crisis Impact on IS-LM">
+              <ToolNote label="Reference" variant="info" title="Crisis Impact on IS-LM">
                 <p>
                   The 2008 crisis caused credit spreads to widen dramatically (from 1.5% to 6.0%), reducing investment and shifting the IS curve left.
                   This led to lower output and higher unemployment as shown in the IS-LM diagram.
                 </p>
-              </ToolCallout>
+              </ToolNote>
             </div>
           </div>
         </div>
       )}
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Unemployment and Inflation Path
         </h3>
         <div className={CHART_BOX}>
@@ -235,7 +226,7 @@ export default function Crisis2008() {
               <XAxis dataKey="quarter" {...chartTheme.axis} />
               <YAxis {...chartTheme.axis} />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-              <Line
+              <ChartLine
                 type="monotone"
                 dataKey="unemployment"
                 stroke={UNEMPLOYMENT_STROKE}
@@ -243,7 +234,7 @@ export default function Crisis2008() {
                 dot={{ r: 4 }}
                 name="Unemployment Rate"
               />
-              <Line
+              <ChartLine
                 type="monotone"
                 dataKey="inflation"
                 stroke={INFLATION_STROKE}
@@ -257,25 +248,25 @@ export default function Crisis2008() {
       </div>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <ToolCallout label="Info" variant="info" title="The Crisis Timeline">
+        <ToolNote label="Info" variant="info" title="The Crisis Timeline">
           <p>2007: Subprime mortgage crisis begins with rising defaults</p>
           <p>2008Q3-Q4: Lehman Brothers collapse triggers credit market freeze</p>
           <p>2009: Sharp recession with unemployment reaching 10%</p>
           <p>2010-2013: Slow recovery with continued high unemployment</p>
-        </ToolCallout>
+        </ToolNote>
 
-        <ToolCallout label="Watch out" variant="warning" title="Credit Market Freeze">
+        <ToolNote label="Watch out" variant="warning" title="Credit Market Freeze">
           <p>As credit spreads widened from 1.5% to 6.0%, businesses and consumers found it increasingly difficult to borrow.</p>
           <p>This reduced investment and consumption, shifting the IS curve left and causing a recession.</p>
-        </ToolCallout>
+        </ToolNote>
 
-        <ToolCallout label="Note" variant="lesson" title="Policy Response">
+        <ToolNote label="Note" variant="lesson" title="Policy Response">
           <p>Fed responded with quantitative easing (QE) and fiscal stimulus (TARP, stimulus package).</p>
           <p>These measures helped stabilize credit markets and support aggregate demand.</p>
-        </ToolCallout>
+        </ToolNote>
       </div>
 
-      <ToolCallout label="Reference" variant="info" title="Key Lessons from the Crisis">
+      <ToolNote label="Reference" variant="info" title="Key Lessons from the Crisis">
         <ul>
           <li>
             <strong>Financial Intermediation Matters:</strong> When banks stop lending, the entire economy suffers.
@@ -297,7 +288,7 @@ export default function Crisis2008() {
             <strong>Global Spillovers:</strong> The crisis quickly spread globally, demonstrating the importance of international financial stability.
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
     </div>
   )
 }

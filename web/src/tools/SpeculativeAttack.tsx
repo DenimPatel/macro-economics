@@ -1,22 +1,9 @@
 import { useState } from 'react'
-import {
-  LineChart,
-  Line,
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  ReferenceLine,
-  ComposedChart,
-  Bar,
-} from 'recharts'
+import { LineChart, AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine, ComposedChart } from 'recharts'
+import { ChartArea, ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   Button,
@@ -223,7 +210,7 @@ export default function SpeculativeAttack() {
 
       {/* Control Panel */}
       <div className="mb-8">
-        <h2 className="mb-4 font-serif text-lg font-bold text-fg">Crisis Parameters</h2>
+        <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">Crisis Parameters</h2>
         <div className="control-panel">
           <SliderControl
             label="Domestic Money Growth Rate"
@@ -275,7 +262,7 @@ export default function SpeculativeAttack() {
 
       {/* Scenario Buttons */}
       <div className="mb-8">
-        <h2 className="mb-4 font-serif text-lg font-bold text-fg">Scenario Analysis</h2>
+        <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">Scenario Analysis</h2>
         <div className="mb-4 flex flex-wrap gap-2">
           <Button
             onClick={() => setScenarioMode('crisis')}
@@ -390,7 +377,7 @@ export default function SpeculativeAttack() {
 
       {/* Reserve Depletion Chart */}
       <div className="visualization-container mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Central Bank Reserves: The Countdown to Crisis
         </h3>
         <p className="mb-4 text-sm leading-relaxed text-fg-muted">
@@ -442,7 +429,7 @@ export default function SpeculativeAttack() {
                 label={{ value: 'PEG BREAKS', position: 'top', fill: CRISIS_STROKE, fontSize: 12, fontWeight: 'bold' }}
               />
             )}
-            <Area
+            <ChartArea
               type="monotone"
               dataKey="reserves"
               stroke={DOMESTIC_STROKE}
@@ -459,7 +446,7 @@ export default function SpeculativeAttack() {
 
       {/* Interest Rate Defense */}
       <div className="visualization-container mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Interest Rate Defense: The Cost of Defending the Peg
         </h3>
         <p className="mb-4 text-sm leading-relaxed text-fg-muted">
@@ -499,14 +486,14 @@ export default function SpeculativeAttack() {
                 label={{ value: 'PEG BREAKS', position: 'top', fill: CRISIS_STROKE, fontSize: 12, fontWeight: 'bold' }}
               />
             )}
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="domesticRate"
               stroke={DOMESTIC_STROKE}
               strokeWidth={2}
               name="Domestic Rate (defense effort)"
             />
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="foreignRate"
               stroke={FOREIGN_STROKE}
@@ -522,7 +509,7 @@ export default function SpeculativeAttack() {
 
       {/* Capital Outflows and Speculative Attack */}
       <div className="visualization-container mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Capital Outflows and Speculative Attack
         </h3>
         <p className="mb-4 text-sm leading-relaxed text-fg-muted">
@@ -557,13 +544,13 @@ export default function SpeculativeAttack() {
                 label={{ value: 'PEG BREAKS', position: 'top', fill: CRISIS_STROKE, fontSize: 12, fontWeight: 'bold' }}
               />
             )}
-            <Bar
+            <ChartBar
               dataKey="capitalOutflow"
               stackId="a"
               fill={OUTFLOW_STROKE}
               name="Normal Outflow (rate differential)"
             />
-            <Bar
+            <ChartBar
               dataKey="speculatorAttack"
               stackId="a"
               fill={CRISIS_STROKE}
@@ -578,7 +565,7 @@ export default function SpeculativeAttack() {
 
       {/* GDP Contraction from Defense */}
       <div className="visualization-container mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Real Output Contraction: The Recession Cost
         </h3>
         <p className="mb-4 text-sm leading-relaxed text-fg-muted">
@@ -624,7 +611,7 @@ export default function SpeculativeAttack() {
                 label={{ value: 'PEG BREAKS', position: 'top', fill: CRISIS_STROKE, fontSize: 12, fontWeight: 'bold' }}
               />
             )}
-            <Area
+            <ChartArea
               type="monotone"
               dataKey="gdp"
               stroke={DOMESTIC_STROKE}
@@ -641,7 +628,7 @@ export default function SpeculativeAttack() {
 
       {/* Exchange Rate Path */}
       <div className="visualization-container mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Exchange Rate: From Peg to Floating Depreciation
         </h3>
         <p className="mb-4 text-sm leading-relaxed text-fg-muted">
@@ -686,7 +673,7 @@ export default function SpeculativeAttack() {
                 label={{ value: 'PEG BREAKS', position: 'top', fill: CRISIS_STROKE, fontSize: 12, fontWeight: 'bold' }}
               />
             )}
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="exchangeRate"
               stroke={DOMESTIC_STROKE}
@@ -703,7 +690,7 @@ export default function SpeculativeAttack() {
 
       {/* Inflation Expectations */}
       <div className="visualization-container mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Inflation Expectations: The Loss of Price Stability
         </h3>
         <p className="mb-4 text-sm leading-relaxed text-fg-muted">
@@ -738,7 +725,7 @@ export default function SpeculativeAttack() {
                 label={{ value: 'PEG BREAKS', position: 'top', fill: CRISIS_STROKE, fontSize: 12, fontWeight: 'bold' }}
               />
             )}
-            <Area
+            <ChartArea
               type="monotone"
               dataKey="inflationExpectation"
               stroke={CRISIS_STROKE}
@@ -755,59 +742,59 @@ export default function SpeculativeAttack() {
 
       {/* Historical Context */}
       <div className="mb-8">
-        <h2 className="mb-4 font-serif text-lg font-bold text-fg">Historical Examples</h2>
+        <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">Historical Examples</h2>
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
-          <ToolCallout label="1992" variant="warning" title="ERM Crisis (UK)">
+          <ToolNote label="1992" variant="warning" title="ERM Crisis (UK)">
             <p>
               British pound pegged in European Exchange Rate Mechanism. German reunification raised German interest rates.
               UK raised rates to 15% to defend. Speculators (Soros) attacked reserves. Peg broke in hours. GDP contraction
               but long-run recovery after float allowed lower rates. Lesson: Policy inconsistency makes peg indefensible.
             </p>
-          </ToolCallout>
+          </ToolNote>
 
-          <ToolCallout label="1994-95" variant="warning" title="Mexico Crisis">
+          <ToolNote label="1994-95" variant="warning" title="Mexico Crisis">
             <p>
               Peso pegged to USD. Rapid money growth + current account deficit. Peso devaluation expected.
               Mexico tried to defend with high rates but ran out of reserves. Lost peg. Depreciation + domestic recession.
               High inflation followed. Only recovered with IMF bailout + structural reforms + eventual currency stabilization.
             </p>
-          </ToolCallout>
+          </ToolNote>
 
-          <ToolCallout label="1997-98" variant="warning" title="Asian Financial Crisis">
+          <ToolNote label="1997-98" variant="warning" title="Asian Financial Crisis">
             <p>
               Thai baht pegged to USD despite current account deficits and rising interest rates. Speculators attacked.
               Thailand lost reserves and eventually float forced. Contagion spread across Asia. Currencies depreciated 40-80%.
               Severe recessions followed. Shows how pegs can be vulnerable to self-fulfilling speculative attacks
               even with strong fundamentals.
             </p>
-          </ToolCallout>
+          </ToolNote>
 
-          <ToolCallout label="1998" variant="insight" title="Hong Kong: Successful Defense">
+          <ToolNote label="1998" variant="insight" title="Hong Kong: Successful Defense">
             <p>
               Hong Kong dollar pegged to USD via currency board. During Asian crisis, speculators attacked.
               Hong Kong raised interest rates to 300%+ to defend. Government bought stock index to signal commitment.
               Speculators eventually gave up. Peg held. Hong Kong avoided devaluation but suffered severe recession.
               Shows extreme credibility can defend peg even with massive attack.
             </p>
-          </ToolCallout>
+          </ToolNote>
 
-          <ToolCallout label="Post-1999" variant="insight" title="Eurozone: Unified Currency">
+          <ToolNote label="Post-1999" variant="insight" title="Eurozone: Unified Currency">
             <p>
               Countries gave up independent currency for Euro. No devaluation possible—no peg to break!
               However, creates rigidity: deficit countries cannot devalue to regain competitiveness. 2010-2015 Eurozone crisis
               showed danger: Greece, Portugal, Ireland faced very high unemployment because couldn't devalue.
               Fiscal transfers within Eurozone partially compensate. Lesson: Currency union prevents speculative attacks but limits flexibility.
             </p>
-          </ToolCallout>
+          </ToolNote>
 
-          <ToolCallout label="2022" variant="warning" title="Russia: War & Peg Defense">
+          <ToolNote label="2022" variant="warning" title="Russia: War & Peg Defense">
             <p>
               After invasion, ruble faced massive depreciation expectations. Russia raised rates from 4% to 20%+, implemented
               capital controls, and intervened heavily in forex market. Peg successfully defended—ruble stabilized at higher
               level. However, high rates and controls stifle growth. Shows capital controls + extreme rates can work but
               at huge economic cost. Fundamental adjustment (fiscal discipline) ultimately required.
             </p>
-          </ToolCallout>
+          </ToolNote>
         </div>
       </div>
 
@@ -855,7 +842,7 @@ export default function SpeculativeAttack() {
 
       {/* Policy Implications */}
       <div className="mb-8">
-        <h2 className="mb-4 font-serif text-lg font-bold text-fg">Policy Insights</h2>
+        <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">Policy Insights</h2>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           <InfoBox type="warning" title="The fundamental inconsistency trilemma">
             <p>
@@ -908,7 +895,7 @@ export default function SpeculativeAttack() {
       </div>
 
       {/* Summary Box */}
-      <ToolCallout label="In one paragraph" variant="lesson" title="Key Takeaway">
+      <ToolNote label="In one paragraph" variant="lesson" title="Key Takeaway">
         <p>
           <strong>Fixed exchange rate pegs are vulnerable to self-fulfilling speculative attacks</strong> when:
           (1) underlying fundamentals are unsustainable (rapid money growth exceeds foreign rate),
@@ -924,7 +911,7 @@ export default function SpeculativeAttack() {
           (b) massive foreign exchange reserves (Hong Kong, Singapore), or (c) extreme credibility + capital controls (China).
           Most developing countries eventually move to floating rates, which better accommodate shocks and reduce crisis vulnerability.
         </p>
-      </ToolCallout>
+      </ToolNote>
     </div>
   )
 }

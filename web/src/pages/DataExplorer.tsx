@@ -1,19 +1,16 @@
 import { useEffect, useMemo, useState } from 'react'
-import {
-  CartesianGrid,
-  Legend,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts'
+import { CartesianGrid, Legend, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { ChartLine } from '../components/ChartPrimitives'
 import { loadMoneySeries, type MoneySeriesPoint } from '../lib/csv'
 import { chartTheme } from '../design/chartTheme'
 import { PageHeader } from '../components/ui'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 export default function DataExplorer() {
+  useDocumentTitle(
+    'Data explorer',
+    'US M2 money supply and the effective federal funds rate, monthly, with a theory overlay.',
+  )
   const [data, setData] = useState<MoneySeriesPoint[]>([])
   const [error, setError] = useState<string | null>(null)
   const [showM2, setShowM2] = useState(true)
@@ -84,11 +81,11 @@ export default function DataExplorer() {
         </label>
       </div>
 
-      {error && <p className="text-sm text-tier-case-ink">{error}</p>}
-      {!error && data.length === 0 && <p className="text-sm text-fg-muted">Loading data…</p>}
+      {error && <p className="text-sm text-bad-ink">{error}</p>}
+      {!error && data.length === 0 && <p className="text-sm text-fg-subtle">Loading data…</p>}
 
       {data.length > 0 && (
-        <div className="card p-4">
+        <div className="card p-5">
           <div className="h-[420px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={data} margin={chartTheme.margin}>
@@ -133,7 +130,7 @@ export default function DataExplorer() {
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
                 <Legend {...chartTheme.legend} />
                 {showM2 && (
-                  <Line
+                  <ChartLine
                     yAxisId="left"
                     type="monotone"
                     dataKey="m2"
@@ -144,7 +141,7 @@ export default function DataExplorer() {
                   />
                 )}
                 {showRate && (
-                  <Line
+                  <ChartLine
                     yAxisId="right"
                     type="monotone"
                     dataKey="fedFunds"
@@ -162,25 +159,17 @@ export default function DataExplorer() {
 
       {summary && (
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
-          <div className="card p-4">
-            <p className="text-micro uppercase tracking-widest text-fg-subtle">M2, latest</p>
-            <p className="font-serif text-display-sm font-bold text-fg tabular-nums">
-              ${summary.last.m2.toFixed(2)}T
-            </p>
+          <div className="stat-tile">
+            <p className="stat-tile-label">M2, latest</p>
+            <p className="stat-tile-value">${summary.last.m2.toFixed(2)}T</p>
           </div>
-          <div className="card p-4">
-            <p className="text-micro uppercase tracking-widest text-fg-subtle">
-              M2 growth since 2000
-            </p>
-            <p className="font-serif text-display-sm font-bold text-fg tabular-nums">
-              +{summary.m2Growth.toFixed(0)}%
-            </p>
+          <div className="stat-tile">
+            <p className="stat-tile-label">M2 growth since 2000</p>
+            <p className="stat-tile-value">+{summary.m2Growth.toFixed(0)}%</p>
           </div>
-          <div className="card p-4">
-            <p className="text-micro uppercase tracking-widest text-fg-subtle">
-              Rate change since 2000
-            </p>
-            <p className="font-serif text-display-sm font-bold text-fg tabular-nums">
+          <div className="stat-tile">
+            <p className="stat-tile-label">Rate change since 2000</p>
+            <p className="stat-tile-value">
               {summary.rateChange >= 0 ? '+' : ''}
               {summary.rateChange.toFixed(2)} pp
             </p>
@@ -190,7 +179,7 @@ export default function DataExplorer() {
 
       {showTheory && (
         <div className="card mt-4 p-5 text-sm leading-relaxed text-fg-muted">
-          <h2 className="mb-2 font-serif text-base font-bold text-fg">What the models say</h2>
+          <h2 className="mb-2 text-base font-semibold text-fg">What the models say</h2>
           <ul className="list-disc space-y-2 pl-5">
             <li>
               The quantity equation <em>MV = PY</em> links money growth to inflation and real growth.

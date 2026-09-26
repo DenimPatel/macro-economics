@@ -1,21 +1,9 @@
 import { useState } from 'react'
-import { Target } from 'lucide-react'
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  ReferenceLine,
-  ComposedChart,
-  Bar,
-  BarChart,
-} from 'recharts'
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine, ComposedChart, BarChart } from 'recharts'
+import { ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
+  ToolNote,
   SliderControl,
   StatBox,
   Button,
@@ -337,7 +325,7 @@ export default function ModernISCurve() {
       {tab === 'curves' && (
         <div className="mt-6">
           <div>
-            <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+            <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
               Textbook vs. Modern IS Curves
             </h3>
             <p className="mb-4 text-sm text-fg-muted">
@@ -382,25 +370,23 @@ export default function ModernISCurve() {
                   label={`r^n = ${rNatural}%`}
                 />
                 {showTextbook && (
-                  <Line
+                  <ChartLine
                     type="monotone"
                     dataKey="outputGapTextbook"
                     stroke={TEXTBOOK_STROKE}
                     dot={false}
                     name="Textbook IS (Output Gap %)"
                     strokeWidth={2}
-                    isAnimationActive={false}
                   />
                 )}
                 {showModern && (
-                  <Line
+                  <ChartLine
                     type="monotone"
                     dataKey="outputGapNK"
                     stroke={NK_STROKE}
                     dot={false}
                     name="Modern NK IS (Output Gap %)"
                     strokeWidth={2}
-                    isAnimationActive={false}
                   />
                 )}
                 {/* Mark current equilibrium */}
@@ -444,7 +430,7 @@ export default function ModernISCurve() {
       {tab === 'decomposition' && (
         <div className="mt-6">
           <div>
-            <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+            <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
               What Drives the Output Gap? (NK IS Decomposition)
             </h3>
             <p className="mb-4 text-sm text-fg-muted">
@@ -468,7 +454,7 @@ export default function ModernISCurve() {
                   cursor={chartTheme.cursor}
                   formatter={(val: number) => val.toFixed(2)}
                 />
-                <Bar dataKey="contribution" fill={DECOMPOSITION_FILL} />
+                <ChartBar dataKey="contribution" fill={DECOMPOSITION_FILL} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -549,9 +535,9 @@ export default function ModernISCurve() {
                 />
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
                 <Legend {...chartTheme.legend} />
-                <Bar dataKey="realRate" fill={chartColor(0)} name="Real Policy Rate" stackId="a" />
-                <Bar dataKey="termPrem" fill={chartColor(2)} name="Term Premium" stackId="a" />
-                <Bar dataKey="credSpread" fill={chartColor(4)} name="Credit Spread" stackId="a" />
+                <ChartBar dataKey="realRate" fill={chartColor(0)} name="Real Policy Rate" stackId="a" />
+                <ChartBar dataKey="termPrem" fill={chartColor(2)} name="Term Premium" stackId="a" />
+                <ChartBar dataKey="credSpread" fill={chartColor(4)} name="Credit Spread" stackId="a" />
               </ComposedChart>
             </ResponsiveContainer>
           </div>
@@ -594,37 +580,30 @@ export default function ModernISCurve() {
             </p>
           </InfoBox>
 
-          <div className="tool-callout tool-callout--insight mt-6">
-            <p className="tool-callout-label">
-              <Target size={15} aria-hidden="true" />
-              Example
+          <ToolNote label="Example" variant="info" title="2022–2024 tightening cycle">
+            <p>
+              The Fed raised i from ~0% to 5.5% to fight inflation. But the output gap didn't fall as much as the
+              textbook IS suggested because:
             </p>
-            <h4 className="tool-callout-title">2022–2024 tightening cycle</h4>
-            <div className="tool-callout-body">
-              <p>
-                The Fed raised i from ~0% to 5.5% to fight inflation. But the output gap didn't fall as much as the
-                textbook IS suggested because:
-              </p>
-              <ul className="mt-2 list-disc space-y-1 pl-5">
-                <li>
-                  <strong>Expectations anchored:</strong> After 2020 surge, expectations settled ~2%. Real rate = 3.5%
-                  relative to rⁿ ≈ 0.5%.
-                </li>
-                <li>
-                  <strong>Natural rate rose:</strong> Tighter labor market, fiscal support, green capex → rⁿ moved up,
-                  so r - rⁿ was less dramatic.
-                </li>
-                <li>
-                  <strong>Financial resilience:</strong> Banks, corporates had strong balance sheets. Credit spreads
-                  never spiked (unlike 2008, 2020). So lending continued.
-                </li>
-                <li>
-                  <strong>Fiscal drag built in:</strong> Student loan pause ended, COVID transfers wound down. This
-                  fiscal headwind partially offset monetary tightening.
-                </li>
-              </ul>
-            </div>
-          </div>
+            <ul className="mt-2 list-disc space-y-1 pl-5">
+              <li>
+                <strong>Expectations anchored:</strong> After 2020 surge, expectations settled ~2%. Real rate = 3.5%
+                relative to rⁿ ≈ 0.5%.
+              </li>
+              <li>
+                <strong>Natural rate rose:</strong> Tighter labor market, fiscal support, green capex → rⁿ moved up,
+                so r - rⁿ was less dramatic.
+              </li>
+              <li>
+                <strong>Financial resilience:</strong> Banks, corporates had strong balance sheets. Credit spreads
+                never spiked (unlike 2008, 2020). So lending continued.
+              </li>
+              <li>
+                <strong>Fiscal drag built in:</strong> Student loan pause ended, COVID transfers wound down. This
+                fiscal headwind partially offset monetary tightening.
+              </li>
+            </ul>
+          </ToolNote>
         </div>
       )}
 

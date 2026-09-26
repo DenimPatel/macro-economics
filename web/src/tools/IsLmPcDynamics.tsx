@@ -1,19 +1,9 @@
 import { useState } from 'react'
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-} from 'recharts'
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart } from 'recharts'
+import { ChartArea, ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   Button,
@@ -126,7 +116,7 @@ export default function IsLmPcDynamics() {
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Dynamic Adjustment Path</h3>
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Dynamic Adjustment Path</h3>
         <div className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={dynamicData} margin={chartTheme.margin}>
@@ -134,7 +124,7 @@ export default function IsLmPcDynamics() {
               <XAxis dataKey="quarter" {...chartTheme.axis} />
               <YAxis {...chartTheme.axis} />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-              <Area
+              <ChartArea
                 type="monotone"
                 dataKey="output"
                 stroke={chartColor(0)}
@@ -142,7 +132,7 @@ export default function IsLmPcDynamics() {
                 fillOpacity={0.15}
                 name="Output (Y)"
               />
-              <Area
+              <ChartArea
                 type="monotone"
                 dataKey="interestRate"
                 stroke={chartColor(2)}
@@ -150,7 +140,7 @@ export default function IsLmPcDynamics() {
                 fillOpacity={0.15}
                 name="Interest Rate (r)"
               />
-              <Area
+              <ChartArea
                 type="monotone"
                 dataKey="inflation"
                 stroke={chartColor(1)}
@@ -158,7 +148,7 @@ export default function IsLmPcDynamics() {
                 fillOpacity={0.15}
                 name="Inflation (π)"
               />
-              <Area
+              <ChartArea
                 type="monotone"
                 dataKey="unemployment"
                 stroke={chartColor(3)}
@@ -172,7 +162,7 @@ export default function IsLmPcDynamics() {
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Quarter-by-Quarter Dynamics</h3>
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Quarter-by-Quarter Dynamics</h3>
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -182,7 +172,7 @@ export default function IsLmPcDynamics() {
                 <YAxis {...chartTheme.axis} />
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
                 <Legend {...chartTheme.legend} />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="output"
                   stroke={chartColor(0)}
@@ -190,7 +180,7 @@ export default function IsLmPcDynamics() {
                   dot={{ r: 4 }}
                   name="Output"
                 />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="interestRate"
                   stroke={chartColor(2)}
@@ -198,7 +188,7 @@ export default function IsLmPcDynamics() {
                   dot={{ r: 4 }}
                   name="Interest Rate"
                 />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="inflation"
                   stroke={chartColor(1)}
@@ -218,13 +208,13 @@ export default function IsLmPcDynamics() {
               <StatBox label="Unemployment" value={fedResult.unemployment.toFixed(1)} unit="%" />
             </div>
 
-            <ToolCallout label="Current setting" variant="info" title="Dynamic Adjustment Process">
+            <ToolNote label="Current setting" variant="info" title="Dynamic Adjustment Process">
               <p>
                 {fedReaction === 'aggressive'
                   ? "Aggressive Fed reaction (tightening) reduces inflation but also slows output growth. The economy converges to a new equilibrium with lower inflation and slightly lower output."
                   : "Passive Fed reaction allows inflation to rise more but keeps output growth higher. The economy converges to a higher inflation equilibrium."}
               </p>
-            </ToolCallout>
+            </ToolNote>
           </div>
         </div>
       </div>
@@ -249,7 +239,7 @@ export default function IsLmPcDynamics() {
         </InfoBox>
       </div>
 
-      <ToolCallout
+      <ToolNote
         label="Key insights"
         variant="insight"
         title="Insights from Dynamic Adjustment"
@@ -276,7 +266,7 @@ export default function IsLmPcDynamics() {
             This provides a framework for understanding economic fluctuations and policy responses.
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
     </div>
   )
 }

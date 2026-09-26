@@ -10,8 +10,8 @@ const STORAGE_KEY = 'macro-theme'
  * address bar.
  */
 const THEME_COLOR: Record<Theme, string> = {
-  light: '#faf7f2',
-  dark: '#14110f',
+  light: '#f7f8fa',
+  dark: '#090c11',
 }
 
 function syncThemeColor(theme: Theme): void {

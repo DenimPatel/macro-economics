@@ -1,19 +1,9 @@
 import { useState } from 'react'
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-} from 'recharts'
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart } from 'recharts'
+import { ChartArea, ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   Button,
@@ -168,7 +158,7 @@ export default function MundellFleming() {
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Policy Effectiveness Comparison</h3>
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Policy Effectiveness Comparison</h3>
         <div className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={mfData} margin={chartTheme.margin}>
@@ -176,7 +166,7 @@ export default function MundellFleming() {
               <XAxis dataKey="year" {...chartTheme.axis} />
               <YAxis {...chartTheme.axis} />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-              <Area
+              <ChartArea
                 type="monotone"
                 dataKey="output"
                 stroke={chartColor(0)}
@@ -184,7 +174,7 @@ export default function MundellFleming() {
                 fillOpacity={0.15}
                 name="Output (Y)"
               />
-              <Area
+              <ChartArea
                 type="monotone"
                 dataKey="interestRate"
                 stroke={chartColor(2)}
@@ -192,7 +182,7 @@ export default function MundellFleming() {
                 fillOpacity={0.15}
                 name="Interest Rate (r)"
               />
-              <Area
+              <ChartArea
                 type="monotone"
                 dataKey="exchangeRate"
                 stroke={chartColor(1)}
@@ -200,7 +190,7 @@ export default function MundellFleming() {
                 fillOpacity={0.15}
                 name="Exchange Rate"
               />
-              <Area
+              <ChartArea
                 type="monotone"
                 dataKey="inflation"
                 stroke={chartColor(3)}
@@ -214,7 +204,7 @@ export default function MundellFleming() {
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Policy Impact Summary</h3>
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Policy Impact Summary</h3>
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -224,7 +214,7 @@ export default function MundellFleming() {
                 <YAxis {...chartTheme.axis} />
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
                 <Legend {...chartTheme.legend} />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="output"
                   stroke={chartColor(0)}
@@ -232,7 +222,7 @@ export default function MundellFleming() {
                   dot={{ r: 4 }}
                   name="Output"
                 />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="interestRate"
                   stroke={chartColor(2)}
@@ -240,7 +230,7 @@ export default function MundellFleming() {
                   dot={{ r: 4 }}
                   name="Interest Rate"
                 />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="exchangeRate"
                   stroke={chartColor(1)}
@@ -260,7 +250,7 @@ export default function MundellFleming() {
               <StatBox label="Inflation" value={policyResult.inflation.toFixed(1)} unit="%" />
             </div>
 
-            <ToolCallout label="Current setting" variant="info" title="Policy Effectiveness">
+            <ToolNote label="Current setting" variant="info" title="Policy Effectiveness">
               <p>
                 {policyType === 'monetary'
                   ? (exchangeRateType === 'floating'
@@ -270,7 +260,7 @@ export default function MundellFleming() {
                       ? "Fiscal expansion is moderately effective in a floating exchange rate system. Output increases, interest rates rise, and the currency appreciates."
                       : "Fiscal expansion is less effective in a fixed exchange rate system. The central bank must raise interest rates to defend the peg, offsetting the fiscal stimulus.")}
               </p>
-            </ToolCallout>
+            </ToolNote>
           </div>
         </div>
       </div>
@@ -295,7 +285,7 @@ export default function MundellFleming() {
         </InfoBox>
       </div>
 
-      <ToolCallout label="Key insights" variant="insight" title="Insights from Mundell-Fleming">
+      <ToolNote label="Key insights" variant="insight" title="Insights from Mundell-Fleming">
         <ul>
           <li>
             <strong>Exchange Rate Regimes:</strong> The choice of exchange rate regime fundamentally affects policy effectiveness.
@@ -316,7 +306,7 @@ export default function MundellFleming() {
             The Mundell-Fleming model helps understand these interactions.
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
     </div>
   )
 }

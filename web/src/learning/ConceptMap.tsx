@@ -4,10 +4,16 @@ import { LECTURES } from '../../../content/lectures'
 import { TIER_META, TIER_ORDER, type Tier } from '../design/tokens'
 import { useProgress } from './progress'
 import { TOOLS } from '../store'
+import { LevelMeter } from '../components/ui'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 /** Grid of concepts, each linking to where it is taught and practised. */
 export default function ConceptMap() {
   const { completedLectures } = useProgress()
+  useDocumentTitle(
+    'Concept map',
+    'Every concept in the course, linked to the lecture that teaches it and the tool that practises it.',
+  )
 
   const groups = TIER_ORDER.map((tier: Tier) => ({
     tier,
@@ -23,8 +29,8 @@ export default function ConceptMap() {
       {groups.map(({ tier, meta, entries }) => (
         <section key={tier}>
           <div className="mb-4 flex items-center gap-2.5">
-            <span className={`h-2.5 w-2.5 rounded-full ${meta.stripe}`} aria-hidden="true" />
-            <h2 className="font-serif text-xl font-bold text-fg">{meta.label}</h2>
+            <LevelMeter tier={tier} />
+            <h2 className="text-xl font-semibold tracking-tight text-fg">{meta.label}</h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {entries.map(({ lecture, concepts }) => {
@@ -34,14 +40,14 @@ export default function ConceptMap() {
                   <div className="mb-2.5 flex items-start gap-2">
                     <Link
                       to={`/lecture/${lecture.n}`}
-                      className="font-serif text-sm font-bold text-fg no-underline hover:text-accent"
+                      className="text-sm font-semibold text-fg no-underline hover:text-accent-ink"
                     >
                       {lecture.n}. {lecture.title}
                     </Link>
                     {done && (
                       <Check
                         size={15}
-                        className="ml-auto mt-0.5 shrink-0 text-tier-beginner"
+                        className="ml-auto mt-0.5 shrink-0 text-ok"
                         aria-label="Completed"
                       />
                     )}

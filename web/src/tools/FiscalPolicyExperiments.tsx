@@ -1,21 +1,9 @@
 import { useState } from 'react'
-import {
-  LineChart,
-  Line,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  ReferenceLine,
-  ReferenceDot,
-} from 'recharts'
+import { LineChart, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine, ReferenceDot } from 'recharts'
+import { ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   InfoBox,
@@ -175,7 +163,7 @@ export default function FiscalPolicyExperiments() {
         badge="beginner"
       />
 
-      <ToolCallout label="What are these experiments?" variant="lesson">
+      <ToolNote label="What are these experiments?" variant="lesson">
         <p>
           In Lecture 3, we explored three key policy scenarios using the Keynesian cross diagram:
         </p>
@@ -187,10 +175,10 @@ export default function FiscalPolicyExperiments() {
         <p>
           All work through the same multiplier mechanism: initial shock → income change → consumption change → demand change → output adjustment.
         </p>
-      </ToolCallout>
+      </ToolNote>
 
       <div className="control-panel">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Base Economy Parameters</h3>
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Base Economy Parameters</h3>
         <SliderControl
           label="Marginal Propensity to Consume (MPC)"
           value={mpc}
@@ -239,7 +227,7 @@ export default function FiscalPolicyExperiments() {
       </div>
 
       <div className="control-panel mt-6 bg-tier-beginner/5">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Choose Experiment</h3>
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Choose Experiment</h3>
         <div className="mb-4 grid grid-cols-2 gap-2 lg:grid-cols-4">
           {(['consumption', 'government', 'taxes', 'combined'] as const).map((exp) => (
             <button
@@ -339,7 +327,7 @@ export default function FiscalPolicyExperiments() {
       )}
 
       <div className="visualization-container">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Keynesian Cross Diagram: Aggregate Demand & Output
         </h3>
         <ResponsiveContainer width="100%" height={400}>
@@ -364,7 +352,7 @@ export default function FiscalPolicyExperiments() {
             />
             <Legend {...chartTheme.legend} />
             {/* Main curves */}
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="yEqualsZ"
               name="45° Line (Y = Z)"
@@ -373,7 +361,7 @@ export default function FiscalPolicyExperiments() {
               strokeDasharray="5 5"
               dot={false}
             />
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="baselineDemand"
               name="Baseline ZZ Curve"
@@ -381,7 +369,7 @@ export default function FiscalPolicyExperiments() {
               strokeWidth={2}
               dot={false}
             />
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="newDemand"
               name="New ZZ Curve"
@@ -445,7 +433,7 @@ export default function FiscalPolicyExperiments() {
       </div>
 
       <div className="visualization-container mt-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Multiplier Effect: Round-by-Round Breakdown
         </h3>
         {roundsData.length > 0 ? (
@@ -467,7 +455,7 @@ export default function FiscalPolicyExperiments() {
                   cursor={chartTheme.cursor}
                   formatter={(value: number) => value.toFixed(2)}
                 />
-                <Bar dataKey="thisRound" fill={chartColor(3)} name="This Round's Impact" />
+                <ChartBar dataKey="thisRound" fill={chartColor(3)} name="This Round's Impact" />
               </BarChart>
             </ResponsiveContainer>
             <p className="mt-4 text-sm leading-relaxed text-fg-muted">
@@ -482,7 +470,7 @@ export default function FiscalPolicyExperiments() {
       </div>
 
       <div className="visualization-container mt-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Cumulative Multiplier Effect</h3>
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Cumulative Multiplier Effect</h3>
         {roundsData.length > 0 ? (
           <>
             <ResponsiveContainer width="100%" height={350}>
@@ -507,7 +495,7 @@ export default function FiscalPolicyExperiments() {
                   cursor={chartTheme.cursor}
                   formatter={(value: number) => value.toFixed(2)}
                 />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="cumulative"
                   stroke={chartColor(2)}
@@ -528,7 +516,7 @@ export default function FiscalPolicyExperiments() {
       </div>
 
       <div className="card mt-8 p-6">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">Policy Impact Summary</h3>
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Policy Impact Summary</h3>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-sm tabular-nums">
             <thead>
@@ -562,7 +550,7 @@ export default function FiscalPolicyExperiments() {
         </div>
       </div>
 
-      <ToolCallout label="Key takeaways" variant="insight" title="What the multiplier implies">
+      <ToolNote label="Key takeaways" variant="insight" title="What the multiplier implies">
         <ul>
           <li><strong>Fiscal multipliers amplify shocks:</strong> A $1B spending increase leads to ${(1 / (1 - mpc)).toFixed(1)}B output increase (with MPC = {mpc.toFixed(2)}).</li>
           <li><strong>Tax multipliers are smaller:</strong> Consumers only spend {(mpc * 100).toFixed(0)}% of tax relief, so tax changes have weaker effects than spending changes.</li>
@@ -570,16 +558,16 @@ export default function FiscalPolicyExperiments() {
           <li><strong>Consumer confidence matters:</strong> Changes in autonomous consumption (sentiment) trigger the full multiplier, making consumer confidence crucial for forecasts.</li>
           <li><strong>Multiplier size matters for policy:</strong> Larger multipliers mean fiscal stimulus is more powerful (but also means recessions can spiral).</li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
 
-      <ToolCallout label="Try this" variant="try" title="Experiments">
+      <ToolNote label="Try this" variant="try" title="Experiments">
         <ul>
           <li>Increase MPC to 0.9, then increase government spending by $10B. Notice the large output effect.</li>
           <li>Switch to "Exp 3: Taxes" and increase taxes by $20B. Compare to increasing spending by $20B&mdash;the tax effect is smaller!</li>
           <li>Adjust autonomous consumption downward (simulating loss of confidence) and watch output contract via the multiplier.</li>
           <li>Use "Combined" to try a balanced budget expansion: spending up $20B, taxes up $20B. Output still rises due to the tax multiplier being smaller than spending multiplier.</li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
     </div>
   )
 }

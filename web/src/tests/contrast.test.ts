@@ -50,6 +50,9 @@ function contrast(a: Channels, b: Channels): number {
 
 const TIER_KEYS = ['tier-beginner', 'tier-intermediate', 'tier-advanced', 'tier-case'] as const
 
+/** Status hues: correctness and caution, independent of the tier ramp. */
+const STATUS_KEYS = ['ok', 'warn', 'bad'] as const
+
 const THEMES = [
   ['light', LIGHT],
   ['dark', DARK],
@@ -78,11 +81,18 @@ describe('palette contrast', () => {
       expect(vars[tier], `${name}: --c-${tier}-ch`).toBeDefined()
       expect(vars[`${tier}-ink`], `${name}: --c-${tier}-ink-ch`).toBeDefined()
     }
+    for (const status of STATUS_KEYS) {
+      expect(vars[status], `${name}: --c-${status}-ch`).toBeDefined()
+      expect(vars[`${status}-ink`], `${name}: --c-${status}-ink-ch`).toBeDefined()
+    }
   })
 
-  it.each(THEMES)('%s theme: body text clears 4.5:1 on every surface', (_name, vars) => {
+  it.each(THEMES)('%s theme: every text token clears 4.5:1 on every surface', (_name, vars) => {
+    // `fg-subtle` used to be exempt, and the old warm value was ~3.5:1 on
+    // white — real small text below AA. It carries eyebrows and metadata, so
+    // it is held to the same bar as body copy now.
     for (const surface of ['bg', 'surface', 'surface-raised', 'surface-2', 'code-bg']) {
-      for (const fg of ['fg', 'fg-muted']) {
+      for (const fg of ['fg', 'fg-muted', 'fg-subtle']) {
         expect(
           contrast(vars[fg], vars[surface]),
           `${fg} on ${surface}`,
@@ -99,6 +109,21 @@ describe('palette contrast', () => {
       ).toBeGreaterThanOrEqual(4.5)
     }
     expect(contrast(vars['accent-ink'], vars.surface), 'accent-ink on surface').toBeGreaterThanOrEqual(4.5)
+  })
+
+  it.each(THEMES)('%s theme: status ink clears 4.5:1 and its base clears 3:1', (_name, vars) => {
+    // Status text sits on a 8-15% tint of its own base, which is close enough
+    // to the surface that testing against the surface is the safe bound.
+    for (const status of STATUS_KEYS) {
+      expect(
+        contrast(vars[`${status}-ink`], vars.surface),
+        `${status}-ink on surface`,
+      ).toBeGreaterThanOrEqual(4.5)
+      expect(
+        contrast(vars[status], vars.surface),
+        `${status} base vs surface`,
+      ).toBeGreaterThanOrEqual(3)
+    }
   })
 
   it.each(THEMES)('%s theme: accent clears 4.5:1 on surface (links, active nav)', (_name, vars) => {
@@ -126,13 +151,43 @@ describe('palette contrast', () => {
     }
   })
 
-  it.each(THEMES)('%s theme: tier hues clear 3:1 as chart strokes', (_name, vars) => {
+  it.each(THEMES)('%s theme: tier hues clear 3:1 as small UI', (_name, vars) => {
+    // Not chart strokes — every series comes from `SERIES_COLORS` via
+    // `chartColor()`. The tier hues are the level meters, the swatches, and
+    // the tiny filled cells on the tools index, all of which are non-text UI
+    // and so held to 3:1.
     for (const tier of TIER_KEYS) {
-      expect(contrast(vars[tier], vars.surface), `${tier} stroke vs surface`).toBeGreaterThanOrEqual(3)
+      expect(contrast(vars[tier], vars.surface), `${tier} vs surface`).toBeGreaterThanOrEqual(3)
     }
   })
 
   it('light and dark are genuinely different themes', () => {
     expect(contrast(LIGHT.bg, DARK.bg)).toBeGreaterThan(10)
+  })
+
+  it('the tier ramp is one hue family, not a rainbow', () => {
+    // The four tiers are four ordinal steps of a single azure. If this fails,
+    // someone has reintroduced a hue to carry difficulty — which is what the
+    // level meter exists to prevent.
+    const hue = ([r, g, b]: Channels) => {
+      const max = Math.max(r, g, b)
+      const min = Math.min(r, g, b)
+      if (max === min) return 0
+      const d = max - min
+      const h =
+        max === r
+          ? ((g - b) / d + (g < b ? 6 : 0)) * 60
+          : max === g
+            ? ((b - r) / d + 2) * 60
+            : ((r - g) / d + 4) * 60
+      return h
+    }
+    for (const [name, vars] of THEMES) {
+      const hues = TIER_KEYS.map((tier) => hue(vars[tier]))
+      for (const h of hues) {
+        expect(h, `${name}: tier hue ${Math.round(h)}deg`).toBeGreaterThan(170)
+        expect(h, `${name}: tier hue ${Math.round(h)}deg`).toBeLessThan(260)
+      }
+    }
   })
 })

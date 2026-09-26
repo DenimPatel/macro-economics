@@ -1,17 +1,9 @@
 import { useState } from 'react'
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts'
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   InfoBox,
@@ -134,7 +126,7 @@ export default function IsLmExplorer() {
       />
 
       {/* Lesson 1 */}
-      <ToolCallout
+      <ToolNote
         label="Lesson 1"
         variant="lesson"
         title="The IS Curve (Investment = Saving)"
@@ -180,10 +172,10 @@ export default function IsLmExplorer() {
             <strong>I₀ down (worse investment climate)</strong>: IS shifts LEFT
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
 
       {/* Interactive: IS */}
-      <ToolCallout label="Try it" variant="try" title="Adjust IS Curve Parameters">
+      <ToolNote label="Try it" variant="try" title="Adjust IS Curve Parameters">
         <div className={SPLIT}>
           <div>
             <h4 className="mb-4 text-label-sm font-semibold text-fg">IS Curve Parameters</h4>
@@ -258,7 +250,7 @@ export default function IsLmExplorer() {
                     formatter={(value: number) => value.toFixed(2)}
                     labelFormatter={(label: number) => `Y = ${label.toFixed(1)}`}
                   />
-                  <Line
+                  <ChartLine
                     type="monotone"
                     dataKey="r"
                     stroke={IS_STROKE}
@@ -275,10 +267,10 @@ export default function IsLmExplorer() {
             )}
           </div>
         </div>
-      </ToolCallout>
+      </ToolNote>
 
       {/* Lesson 2 */}
-      <ToolCallout
+      <ToolNote
         label="Lesson 2"
         variant="lesson"
         title="The LM Curve (Liquidity Money)"
@@ -325,10 +317,10 @@ export default function IsLmExplorer() {
             <strong>P up (inflation)</strong>: LM shifts LEFT (real money supply falls)
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
 
       {/* Interactive: LM */}
-      <ToolCallout label="Try it" variant="try" title="Adjust LM Curve Parameters">
+      <ToolNote label="Try it" variant="try" title="Adjust LM Curve Parameters">
         <div className={SPLIT}>
           <div>
             <h4 className="mb-4 text-label-sm font-semibold text-fg">LM Curve Parameters</h4>
@@ -403,7 +395,7 @@ export default function IsLmExplorer() {
                     formatter={(value: number) => value.toFixed(2)}
                     labelFormatter={(label: number) => `Y = ${label.toFixed(1)}`}
                   />
-                  <Line
+                  <ChartLine
                     type="monotone"
                     dataKey="r"
                     stroke={LM_STROKE}
@@ -420,10 +412,10 @@ export default function IsLmExplorer() {
             )}
           </div>
         </div>
-      </ToolCallout>
+      </ToolNote>
 
       {/* Lesson 3 */}
-      <ToolCallout label="Lesson 3" variant="lesson" title="IS-LM Equilibrium">
+      <ToolNote label="Lesson 3" variant="lesson" title="IS-LM Equilibrium">
         <p>
           <strong>What is IS-LM Equilibrium?</strong> The intersection of the IS and LM curves
           determines the equilibrium output (Y*) and interest rate (r*) where both the goods market
@@ -466,7 +458,7 @@ export default function IsLmExplorer() {
             minimal rate increases
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
 
       {/* Comparison toggle */}
       <label className="mb-8 flex cursor-pointer items-center gap-2 text-sm font-medium text-fg">
@@ -481,7 +473,7 @@ export default function IsLmExplorer() {
 
       <div className="mb-8 grid gap-8 lg:grid-cols-2">
         <div>
-          <h3 className="mb-5 font-serif text-lg font-bold text-fg">Scenario A</h3>
+          <h3 className="mb-5 text-lg font-semibold tracking-tight text-fg">Scenario A</h3>
           <div className="control-panel">
             <SliderControl
               label="Government Spending (G)"
@@ -532,7 +524,7 @@ export default function IsLmExplorer() {
 
         {comparisonMode && (
           <div>
-            <h3 className="mb-5 font-serif text-lg font-bold text-fg">Scenario B</h3>
+            <h3 className="mb-5 text-lg font-semibold tracking-tight text-fg">Scenario B</h3>
             <div className="control-panel">
               <SliderControl
                 label="Government Spending (G)"
@@ -617,7 +609,7 @@ export default function IsLmExplorer() {
             </div>
           </div>
 
-          <ToolCallout label="Watch out" variant="warning" title="Crowding Out Effect">
+          <ToolNote label="Watch out" variant="warning" title="Crowding Out Effect">
             <p>
               When fiscal policy increases without accompanying monetary expansion, interest rates
               rise, discouraging private investment. This is &quot;crowding out.&quot;
@@ -626,9 +618,9 @@ export default function IsLmExplorer() {
               <strong>Your results:</strong> If Δr is positive (rates rose), look for the output gain
               to be smaller than predicted by the multiplier alone, because investment fell.
             </p>
-          </ToolCallout>
+          </ToolNote>
 
-          <ToolCallout label="Insight" variant="insight" title="Policy Effectiveness Comparison">
+          <ToolNote label="Insight" variant="insight" title="Policy Effectiveness Comparison">
             <ul>
               <li>
                 <strong>Fiscal policy alone:</strong> Raises output but also raises rates (crowding
@@ -643,13 +635,13 @@ export default function IsLmExplorer() {
                 (best of both worlds)
               </li>
             </ul>
-          </ToolCallout>
+          </ToolNote>
         </>
       )}
 
       {/* IS-LM diagram */}
       <figure className="visualization-container">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">IS-LM Diagram</h3>
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">IS-LM Diagram</h3>
         <ResponsiveContainer width="100%" height={400}>
           <LineChart data={comparisonMode ? chartData_comparison : chartData_a} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
@@ -679,7 +671,7 @@ export default function IsLmExplorer() {
             <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
             {!comparisonMode ? (
               <>
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="r"
                   stroke={IS_STROKE}
@@ -687,9 +679,8 @@ export default function IsLmExplorer() {
                   name="IS Curve"
                   data={isCurveA}
                   strokeWidth={2}
-                  isAnimationActive={false}
                 />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="r"
                   stroke={LM_STROKE}
@@ -697,12 +688,11 @@ export default function IsLmExplorer() {
                   name="LM Curve"
                   data={lmCurveA}
                   strokeWidth={2}
-                  isAnimationActive={false}
                 />
               </>
             ) : (
               <>
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="r"
                   stroke={IS_STROKE}
@@ -710,9 +700,8 @@ export default function IsLmExplorer() {
                   name="IS-A"
                   data={isCurveA}
                   strokeWidth={2}
-                  isAnimationActive={false}
                 />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="r"
                   stroke={LM_STROKE}
@@ -720,9 +709,8 @@ export default function IsLmExplorer() {
                   name="LM-A"
                   data={lmCurveA}
                   strokeWidth={2}
-                  isAnimationActive={false}
                 />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="r"
                   stroke={IS_STROKE}
@@ -731,10 +719,9 @@ export default function IsLmExplorer() {
                   name="IS-B"
                   data={isCurveB}
                   strokeWidth={2}
-                  isAnimationActive={false}
                   strokeDasharray="5 5"
                 />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="r"
                   stroke={LM_STROKE}
@@ -743,7 +730,6 @@ export default function IsLmExplorer() {
                   name="LM-B"
                   data={lmCurveB}
                   strokeWidth={2}
-                  isAnimationActive={false}
                   strokeDasharray="5 5"
                 />
               </>
@@ -776,7 +762,7 @@ export default function IsLmExplorer() {
       </figure>
 
       {/* Explanations */}
-      <ToolCallout label="Overview" variant="info" title="How IS-LM Works">
+      <ToolNote label="Overview" variant="info" title="How IS-LM Works">
         <ul>
           <li>
             <strong>IS Curve (Investment-Saving):</strong> Shows combinations of Y and r where the
@@ -793,9 +779,9 @@ export default function IsLmExplorer() {
             money markets are in equilibrium.
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
 
-      <ToolCallout label="Reference" variant="lesson" title="Understanding the Curves">
+      <ToolNote label="Reference" variant="lesson" title="Understanding the Curves">
         <div className="grid gap-6 sm:grid-cols-2">
           <div>
             <h4 className="mb-2 text-label-sm font-semibold text-fg">IS Curve Characteristics</h4>
@@ -835,9 +821,9 @@ export default function IsLmExplorer() {
             </ul>
           </div>
         </div>
-      </ToolCallout>
+      </ToolNote>
 
-      <ToolCallout label="Insight" variant="insight" title="Policy Effects">
+      <ToolNote label="Insight" variant="insight" title="Policy Effects">
         <div className="grid gap-6 sm:grid-cols-2">
           <div>
             <strong>Fiscal Expansion (G up or T down):</strong>
@@ -858,9 +844,9 @@ export default function IsLmExplorer() {
             </ul>
           </div>
         </div>
-      </ToolCallout>
+      </ToolNote>
 
-      <ToolCallout label="Go deeper" variant="info" title="Advanced Concepts">
+      <ToolNote label="Go deeper" variant="info" title="Advanced Concepts">
         <ul>
           <li>
             <strong>Crowding Out:</strong> Fiscal expansion raises interest rates, crowding out
@@ -883,9 +869,9 @@ export default function IsLmExplorer() {
             the multiplier strong.
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
 
-      <ToolCallout label="Try it" variant="try" title="Experiments">
+      <ToolNote label="Try it" variant="try" title="Experiments">
         <p>Enable &quot;Compare Two Scenarios&quot; and try these:</p>
         <ol>
           <li>
@@ -913,7 +899,7 @@ export default function IsLmExplorer() {
             private investment.
           </li>
         </ol>
-      </ToolCallout>
+      </ToolNote>
 
       <InfoBox title="Applications of the IS-LM Model" type="info">
         <ul>

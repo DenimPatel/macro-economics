@@ -53,6 +53,50 @@ describe('design token contract', () => {
     expect(files).toEqual([])
   })
 
+  it('uses one type family', () => {
+    // The site previously set every heading in a second, warm display face,
+    // which is most of what made it read as a reading nook rather than an
+    // instrument. `font-serif` would now compile to nothing anyway, since
+    // `fontFamily.serif` is gone from tailwind.config.ts — but a silently
+    // empty utility is exactly the kind of drift these tests exist to catch.
+    const serif = sourceFiles()
+      .filter((file) => /\.(tsx|css)$/.test(file))
+      .filter((file) => /font-serif/.test(readFileSync(file, 'utf8')))
+      .map((file) => relative(SRC, file))
+    expect(serif).toEqual([])
+
+    const family = sourceFiles()
+      .filter((file) => /literata/i.test(readFileSync(file, 'utf8')))
+      .map((file) => relative(SRC, file))
+    expect(family).toEqual([])
+  })
+
+  it('has no accent-coloured left or top rules', () => {
+    // A coloured left rule on a callout or an active nav row is the single
+    // most recognisable tell of the previous identity. Variants now separate
+    // by icon tile and label, and the active route is a filled row.
+    //
+    // A plain `border-t` / `border-b` is allowed: those are the ordinary
+    // horizontal separators the layout is built from.
+    const rules = sourceFiles()
+      .filter((file) => /\.(tsx|css)$/.test(file))
+      .filter((file) => /\bborder-l(?:-|\b)|\bborder-t-[1-9]/.test(readFileSync(file, 'utf8')))
+      .map((file) => relative(SRC, file))
+    expect(rules).toEqual([])
+  })
+
+  it('keeps status meaning off the tier ramp', () => {
+    // `tier-beginner` used to mean "correct answer" and `tier-case` "wrong
+    // answer". Correctness and caution now live on ok / warn / bad.
+    const files = ['learning', 'pages']
+      .map((dir) => join(SRC, dir))
+      .flatMap((dir) => walk(dir))
+      .filter((file) => /\.(tsx|ts)$/.test(file))
+      .filter((file) => /tier-(beginner|intermediate|advanced|case)\b/.test(readFileSync(file, 'utf8')))
+      .map((file) => relative(SRC, file))
+    expect(files).toEqual([])
+  })
+
   it('has no emoji in source', () => {
     // AGENTS.md forbids emoji in committed source. The variation selector is
     // matched outside the class: including it inside a `/u` character class is
@@ -64,13 +108,20 @@ describe('design token contract', () => {
     expect(withEmoji).toEqual([])
   })
 
-  it('defines a chip and band class for every tier', () => {
+  it('defines a chip, meter, and band class for every tier', () => {
     for (const tier of TIER_ORDER) {
       const meta = TIER_META[tier]
-      expect(meta.badge, `${tier} badge`).toMatch(/^tier-chip /)
-      expect(meta.band, `${tier} band`).toMatch(/^section-band /)
+      expect(meta.badge, `${tier} badge`).toMatch(/^tier-chip/)
+      expect(meta.dot, `${tier} dot`).toMatch(/^level-meter level-meter--\d$/)
+      expect(meta.band, `${tier} band`).toMatch(/^section-band/)
       expect(meta.stripe, `${tier} stripe`).toMatch(/^bg-tier-/)
     }
+  })
+
+  it('numbers the tiers so ordering does not depend on colour', () => {
+    // The four tiers are one ordinal azure ramp on purpose. If the levels stop
+    // being 1..4 in `TIER_ORDER`, the level meters read as noise again.
+    expect(TIER_ORDER.map((tier) => TIER_META[tier].level)).toEqual([1, 2, 3, 4])
   })
 
   it('has enough distinct series colors for multi-series charts', () => {

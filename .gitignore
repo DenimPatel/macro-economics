@@ -21,6 +21,7 @@ Thumbs.db
 .idea/
 *.local
 .claude/
+.playwright-mcp/
 .kilo/agent-manager.json
 
 # Env

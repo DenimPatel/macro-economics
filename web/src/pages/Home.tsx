@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, BookOpen, Compass } from 'lucide-react'
-import { CASE_STUDIES, LECTURES } from '../../../content/lectures'
+import { ArrowRight, BookOpen } from 'lucide-react'
+import { CASE_STUDIES, LECTURES, type ToolId } from '../../../content/lectures'
 import { TOOLS } from '../store'
-import { ContinueBanner, PageHeader, Stat, TierBadge, ToolCard } from '../components/ui'
+import { ContinueBanner, LevelMeter, Stat, TierBadge, ToolCard } from '../components/ui'
+import HeroFigure from '../components/HeroFigure'
 import { TIER_META, TIER_ORDER, type Tier } from '../design/tokens'
-import type { ToolId } from '../../../content/lectures'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 const FEATURED: ToolId[] = [
   'multiplier-simulator',
@@ -15,7 +16,16 @@ const FEATURED: ToolId[] = [
   'crisis-2008',
 ]
 
+const STEPS: string[] = [
+  'Read a lecture. Each one opens with a prediction you commit to before the answer.',
+  'Try the embedded mini-tool right where the idea appears.',
+  'Check your understanding with the quiz; your progress is saved on this device.',
+  'Use the concept map to find the lecture or tool for any term you meet again.',
+]
+
 export default function Home() {
+  useDocumentTitle()
+
   const tierGroups = TIER_ORDER.map((tier: Tier) => ({
     tier,
     meta: TIER_META[tier],
@@ -25,78 +35,89 @@ export default function Home() {
   return (
     <div>
       <ContinueBanner />
-      <PageHeader
-        eyebrow="Interactive macroeconomics"
-        title="Read the lecture, then move the curves yourself"
-        description="Twenty-five lectures, twenty simulation tools, four crisis case studies, and real US data — one course, built so that every idea has something to try."
-      >
-        <div className="flex flex-wrap gap-2.5">
-          <Link to="/syllabus" className="button button-primary no-underline">
-            Start the course
-          </Link>
-          <Link to="/tools" className="button button-secondary no-underline">
-            Browse the tools
-          </Link>
-        </div>
-      </PageHeader>
 
-      <div className="mb-12 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <Stat value={LECTURES.length} label="Lectures" />
-        <Stat value={Object.keys(TOOLS).length} label="Interactive tools" />
-        <Stat value={CASE_STUDIES.length} label="Case studies" />
-        <Stat value={tierGroups.length} label="Difficulty tiers" />
-      </div>
-
-      <section className="mb-12">
-        <div className="mb-5 flex items-center gap-2">
-          <Compass size={18} className="text-accent" aria-hidden="true" />
-          <h2 className="font-serif text-xl font-bold text-fg">Learning paths</h2>
+      <section className="mb-14 grid items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+        <div>
+          <p className="mb-3 text-micro font-bold uppercase tracking-widest text-accent-ink">
+            Interactive macroeconomics
+          </p>
+          <h1 className="text-display-lg font-bold text-fg">
+            Read the lecture, then move the curves yourself
+          </h1>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-fg-muted">
+            {LECTURES.length} lectures, {Object.keys(TOOLS).length} simulation tools,{' '}
+            {CASE_STUDIES.length} crisis case studies, and real US data — one course, built so
+            that every idea has something to try.
+          </p>
+          <div className="mt-7 flex flex-wrap gap-2.5">
+            <Link to="/syllabus" className="button button-primary no-underline">
+              Start the course
+            </Link>
+            <Link to="/tools" className="button button-secondary no-underline">
+              Browse the tools
+            </Link>
+          </div>
         </div>
-        <div className="grid gap-4 md:grid-cols-2">
-          {tierGroups.map(({ tier, meta, lectures }) => (
-            <div key={tier} className={`card ${meta.band} p-5`}>
-              <div className="mb-2 flex items-center gap-2">
-                <span className={`h-2.5 w-2.5 rounded-full ${meta.stripe}`} aria-hidden="true" />
-                <h3 className="font-serif text-base font-bold text-fg">{meta.label}</h3>
-                <span className="ml-auto text-xs text-fg-subtle">
-                  Lectures {lectures[0].n}–{lectures[lectures.length - 1].n}
-                </span>
-              </div>
-              <p className="mb-3 text-sm text-fg-muted">
-                {lectures.length} lecture{lectures.length === 1 ? '' : 's'} ·{' '}
-                {lectures.reduce((sum, l) => sum + l.tools.length, 0)} linked tools
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {lectures.slice(0, 4).map((lecture) => (
-                  <Link
-                    key={lecture.n}
-                    to={`/lecture/${lecture.n}`}
-                    className="rounded-pill bg-surface-2 px-2.5 py-0.5 text-xs text-fg-muted no-underline transition-colors hover:bg-border hover:text-accent"
-                  >
-                    {lecture.n}.{' '}
-                    {lecture.title.length > 28 ? `${lecture.title.slice(0, 28)}…` : lecture.title}
-                  </Link>
-                ))}
-              </div>
-              <Link
-                to={`/lecture/${lectures[0].n}`}
-                className="mt-4 inline-flex items-center gap-1 text-sm font-semibold no-underline hover:underline"
-              >
-                Begin path <ArrowRight size={14} aria-hidden="true" />
-              </Link>
-            </div>
-          ))}
+
+        <div className="rounded-plate border border-border bg-surface p-5 shadow-card">
+          <HeroFigure />
         </div>
       </section>
 
-      <section className="mb-12">
-        <div className="mb-5 flex items-center justify-between">
-          <h2 className="font-serif text-xl font-bold text-fg">Featured tools</h2>
+      <dl className="mb-14 grid grid-cols-2 gap-x-6 gap-y-4 border-y border-border py-5 sm:grid-cols-4">
+        <Stat value={LECTURES.length} label="Lectures" />
+        <Stat value={Object.keys(TOOLS).length} label="Interactive tools" />
+        <Stat value={CASE_STUDIES.length} label="Case studies" />
+        <Stat value={tierGroups.length} label="Lecture tiers" />
+      </dl>
+
+      <section className="mb-14">
+        <div className="mb-6 flex items-baseline justify-between gap-4">
+          <h2 className="text-xl font-semibold tracking-tight text-fg">Learning paths</h2>
+          <Link
+            to="/syllabus"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-fg-muted no-underline hover:text-accent-ink"
+          >
+            Full syllabus <ArrowRight size={14} aria-hidden="true" />
+          </Link>
+        </div>
+
+        {/* The level rail replaces four tinted cards. The four tier hues are one
+            ordinal ramp, so identity comes from the meter and the ordering,
+            not from a block of colour. */}
+        <ul className="space-y-3">
+          {tierGroups.map(({ tier, meta, lectures }) => (
+            <li key={tier} className="card p-4">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <LevelMeter tier={tier} />
+                <span className="text-sm font-semibold text-fg">{meta.label}</span>
+                <span className="text-xs tabular-nums text-fg-subtle">
+                  Lectures {lectures[0].n}–{lectures[lectures.length - 1].n}
+                </span>
+                <span className="text-xs text-fg-subtle">
+                  {lectures.length} lecture{lectures.length === 1 ? '' : 's'} ·{' '}
+                  {lectures.reduce((sum, l) => sum + l.tools.length, 0)} linked tools
+                </span>
+                <Link
+                  to={`/lecture/${lectures[0].n}`}
+                  className="ml-auto inline-flex items-center gap-1 text-sm font-semibold text-accent-ink no-underline hover:underline"
+                >
+                  Begin path <ArrowRight size={14} aria-hidden="true" />
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mb-14">
+        <div className="mb-6 flex items-baseline justify-between gap-4">
+          <h2 className="text-xl font-semibold tracking-tight text-fg">Featured tools</h2>
           <Link
             to="/tools"
-            className="inline-flex items-center gap-1 text-sm font-semibold no-underline hover:underline"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-fg-muted no-underline hover:text-accent-ink"
           >
-            All tools <ArrowRight size={14} aria-hidden="true" />
+            All {Object.keys(TOOLS).length} tools <ArrowRight size={14} aria-hidden="true" />
           </Link>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -106,12 +127,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mb-12">
-        <div className="mb-5 flex items-center justify-between">
-          <h2 className="font-serif text-xl font-bold text-fg">Case studies</h2>
+      <section className="mb-14">
+        <div className="mb-6 flex items-baseline justify-between gap-4">
+          <h2 className="text-xl font-semibold tracking-tight text-fg">Case studies</h2>
           <Link
             to="/cases"
-            className="inline-flex items-center gap-1 text-sm font-semibold no-underline hover:underline"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-fg-muted no-underline hover:text-accent-ink"
           >
             All cases <ArrowRight size={14} aria-hidden="true" />
           </Link>
@@ -121,29 +142,33 @@ export default function Home() {
             <Link
               key={study.id}
               to={`/case/${study.slug}`}
-              className="card p-4 no-underline transition-colors hover:border-accent"
+              className="card p-4 no-underline transition-shadow hover:shadow-plate"
             >
-              <div className="mb-1.5 flex items-center gap-2">
+              <div className="mb-2 flex items-center gap-2">
                 <TierBadge tier="case-study" />
-                <span className="text-xs text-fg-subtle">{study.period}</span>
+                <span className="text-xs tabular-nums text-fg-subtle">{study.period}</span>
               </div>
-              <h3 className="font-serif text-sm font-bold text-fg">{study.title}</h3>
-              <p className="mt-1 text-xs leading-relaxed text-fg-muted">{study.summary}</p>
+              <h3 className="text-sm font-semibold text-fg">{study.title}</h3>
+              <p className="mt-1.5 text-xs leading-relaxed text-fg-muted">{study.summary}</p>
             </Link>
           ))}
         </div>
       </section>
 
       <section className="card p-6">
-        <div className="mb-3 flex items-center gap-2">
-          <BookOpen size={18} className="text-accent" aria-hidden="true" />
-          <h2 className="font-serif text-lg font-bold text-fg">How to use this site</h2>
+        <div className="mb-4 flex items-center gap-2">
+          <BookOpen size={17} className="text-fg-subtle" aria-hidden="true" />
+          <h2 className="text-lg font-semibold text-fg">How to use this site</h2>
         </div>
-        <ol className="list-decimal space-y-2 pl-5 text-sm leading-relaxed text-fg-muted">
-          <li>Read a lecture. Each one opens with a prediction you commit to before the answer.</li>
-          <li>Try the embedded mini-tool right where the idea appears.</li>
-          <li>Check your understanding with the quiz; your progress is saved on this device.</li>
-          <li>Use the concept map to find the lecture or tool for any term you meet again.</li>
+        <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {STEPS.map((step, i) => (
+            <li key={step} className="flex gap-3">
+              <span className="shrink-0 text-sm font-bold tabular-nums text-fg-subtle">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <p className="text-sm leading-relaxed text-fg-muted">{step}</p>
+            </li>
+          ))}
         </ol>
       </section>
     </div>

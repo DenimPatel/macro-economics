@@ -1,16 +1,6 @@
 import { useState } from 'react'
-import {
-  LineChart,
-  Line,
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts'
+import { LineChart, AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { ChartArea, ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
   SliderControl,
@@ -185,7 +175,7 @@ export default function SolowSimulator() {
       />
 
       <div className="mb-8">
-        <h2 className="mb-4 font-serif text-lg font-bold text-fg">Model Parameters</h2>
+        <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">Model Parameters</h2>
         <div className="control-panel">
           <SliderControl
             label="Savings Rate (s)"
@@ -231,7 +221,7 @@ export default function SolowSimulator() {
       </div>
 
       <div className="mb-8">
-        <h2 className="mb-4 font-serif text-lg font-bold text-fg">Scenario Analysis</h2>
+        <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">Scenario Analysis</h2>
         <div className="flex flex-wrap gap-2">
           <Button
             onClick={() => setScenarioMode('custom')}
@@ -286,7 +276,7 @@ export default function SolowSimulator() {
 
       {/* Solow Diagram */}
       <div className="visualization-container mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Solow Diagram: Capital per Worker Dynamics
         </h3>
         <p className="mb-4 text-sm leading-relaxed text-fg-muted">
@@ -321,7 +311,7 @@ export default function SolowSimulator() {
               formatter={(value: number) => value.toFixed(3)}
             />
             <Legend {...chartTheme.legend} />
-            <Area
+            <ChartArea
               type="monotone"
               dataKey="y"
               stroke={chartColor(0)}
@@ -329,7 +319,7 @@ export default function SolowSimulator() {
               fillOpacity={0.2}
               name="Production (y = k^α)"
             />
-            <Area
+            <ChartArea
               type="monotone"
               dataKey="investment"
               stroke={chartColor(1)}
@@ -337,7 +327,7 @@ export default function SolowSimulator() {
               fillOpacity={0.2}
               name="Investment (sy)"
             />
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="depreciation"
               stroke={chartColor(4)}
@@ -353,7 +343,7 @@ export default function SolowSimulator() {
 
       {/* Time Path */}
       <div className="visualization-container mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Capital Accumulation Over Time: Path to Steady State
         </h3>
         <p className="mb-4 text-sm leading-relaxed text-fg-muted">
@@ -383,14 +373,14 @@ export default function SolowSimulator() {
               formatter={(value: number) => value.toFixed(3)}
             />
             <Legend {...chartTheme.legend} />
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="k"
               stroke={chartColor(0)}
               strokeWidth={2}
               name="Capital per Worker (k)"
             />
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="y"
               stroke={chartColor(1)}
@@ -407,7 +397,7 @@ export default function SolowSimulator() {
 
       {/* Scenario Comparison */}
       <div className="visualization-container mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Scenario Comparison: Effects on Steady State
         </h3>
         <p className="mb-4 text-sm leading-relaxed text-fg-muted">
@@ -417,7 +407,7 @@ export default function SolowSimulator() {
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
           {scenarios.map((scenario) => (
             <div key={scenario.name} className="stat-tile stat-tile--neutral p-4 text-left">
-              <div className="font-serif text-base font-semibold text-fg">{scenario.name}</div>
+              <div className="text-base font-semibold text-fg">{scenario.name}</div>
               <div className="mt-1.5 text-sm text-fg-muted tabular-nums">
                 Steady State k*:{' '}
                 <span className="font-semibold text-accent-ink">{scenario.k.toFixed(2)}</span>

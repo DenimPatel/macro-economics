@@ -1,18 +1,9 @@
 import { useState } from 'react'
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-} from 'recharts'
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart } from 'recharts'
+import { ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   Button,
@@ -156,7 +147,7 @@ export default function CrisisCovid() {
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Output, Unemployment, and Inflation Path
         </h3>
         <div className={CHART_BOX}>
@@ -166,7 +157,7 @@ export default function CrisisCovid() {
               <XAxis dataKey="year" {...chartTheme.axis} />
               <YAxis {...chartTheme.axis} />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-              <Line
+              <ChartLine
                 type="monotone"
                 dataKey="output"
                 stroke={OUTPUT_STROKE}
@@ -174,7 +165,7 @@ export default function CrisisCovid() {
                 dot={{ r: 4 }}
                 name="Output (Y)"
               />
-              <Line
+              <ChartLine
                 type="monotone"
                 dataKey="unemployment"
                 stroke={UNEMPLOYMENT_STROKE}
@@ -182,7 +173,7 @@ export default function CrisisCovid() {
                 dot={{ r: 4 }}
                 name="Unemployment Rate"
               />
-              <Line
+              <ChartLine
                 type="monotone"
                 dataKey="inflation"
                 stroke={INFLATION_STROKE}
@@ -191,7 +182,7 @@ export default function CrisisCovid() {
                 name="Inflation Rate"
               />
               {showDataOverlay && (
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="output"
                   stroke={OUTPUT_STROKE}
@@ -206,7 +197,7 @@ export default function CrisisCovid() {
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Policy Response Comparison
         </h3>
         <div className={SPLIT}>
@@ -221,7 +212,7 @@ export default function CrisisCovid() {
                 <XAxis dataKey="name" {...chartTheme.axis} />
                 <YAxis {...chartTheme.axis} />
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-                <Bar dataKey="value" fill={POLICY_BAR_FILL} />
+                <ChartBar dataKey="value" fill={POLICY_BAR_FILL} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -233,7 +224,7 @@ export default function CrisisCovid() {
               <StatBox label="Inflation" value={policyResult.inflation.toFixed(1)} unit="%" />
             </div>
 
-            <ToolCallout label="Reference" variant="info" title="Policy Response Effects">
+            <ToolNote label="Reference" variant="info" title="Policy Response Effects">
               <p>
                 {shockType === 'demand' &&
                   "Demand shock (lockdowns) reduced output by 15% and increased unemployment by 3 points. Fiscal and monetary policy helped offset these effects."}
@@ -242,33 +233,33 @@ export default function CrisisCovid() {
                 {shockType === 'combined' &&
                   "Combined shock reduced output by 12% and increased unemployment by 2 points. Both fiscal and monetary policy were needed to stabilize the economy."}
               </p>
-            </ToolCallout>
+            </ToolNote>
           </div>
         </div>
       </div>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <ToolCallout label="Info" variant="info" title="The 2020-2023 Shock">
+        <ToolNote label="Info" variant="info" title="The 2020-2023 Shock">
           <p>2020: Global pandemic caused massive demand shock with lockdowns and reduced consumption</p>
           <p>2021: Recovery began with fiscal stimulus and monetary easing</p>
           <p>2022: Supply chain disruptions created stagflationary pressure</p>
           <p>2023: Gradual normalization with continued policy support</p>
-        </ToolCallout>
+        </ToolNote>
 
-        <ToolCallout label="Watch out" variant="warning" title="Dual Nature of the Shock">
+        <ToolNote label="Watch out" variant="warning" title="Dual Nature of the Shock">
           <p>The pandemic created both demand and supply shocks simultaneously.</p>
           <p>Demand shock from lockdowns reduced consumption and investment.</p>
           <p>Supply shock from disrupted supply chains increased costs and reduced production.</p>
-        </ToolCallout>
+        </ToolNote>
 
-        <ToolCallout label="Note" variant="lesson" title="Policy Response">
+        <ToolNote label="Note" variant="lesson" title="Policy Response">
           <p>Massive fiscal stimulus (trillions in government spending)</p>
           <p>Unprecedented monetary easing (near-zero rates, QE programs)</p>
           <p>Central banks coordinated internationally to prevent systemic collapse</p>
-        </ToolCallout>
+        </ToolNote>
       </div>
 
-      <ToolCallout label="Reference" variant="info" title="Key Lessons from the Pandemic">
+      <ToolNote label="Reference" variant="info" title="Key Lessons from the Pandemic">
         <ul>
           <li>
             <strong>Unprecedented Policy Response:</strong> The scale of fiscal and monetary policy response was unprecedented in peacetime.
@@ -286,7 +277,7 @@ export default function CrisisCovid() {
             <strong>Technology Acceleration:</strong> The crisis accelerated digital transformation and remote work adoption.
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
     </div>
   )
 }

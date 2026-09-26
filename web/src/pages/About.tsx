@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom'
 import { CASE_STUDIES, LECTURES } from '../../../content/lectures'
 import { PageHeader } from '../components/ui'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 export default function About() {
+  useDocumentTitle(
+    'About & sources',
+    'What is in this course, how the repository is organised, and where the material comes from.',
+  )
   return (
     <div className="max-w-3xl">
       <PageHeader

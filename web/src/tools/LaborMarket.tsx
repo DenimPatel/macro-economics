@@ -1,18 +1,9 @@
 import { useState } from 'react'
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  ReferenceLine,
-} from 'recharts'
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts'
+import { ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   Button,
@@ -193,7 +184,7 @@ export default function LaborMarket() {
       </div>
 
       <div className="visualization-container">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">WS/PS Equilibrium Diagram</h3>
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">WS/PS Equilibrium Diagram</h3>
         <ResponsiveContainer width="100%" height={400}>
           <LineChart data={curveData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
@@ -231,24 +222,22 @@ export default function LaborMarket() {
             />
             <Legend {...chartTheme.legend} />
             {/* PS Curve (horizontal) */}
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="ps"
               stroke={chartColor(4)}
               strokeWidth={2}
               name="PS Curve (Price-Setting)"
               dot={false}
-              isAnimationActive={false}
             />
             {/* WS Curve (upward sloping) */}
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="ws"
               stroke={chartColor(0)}
               strokeWidth={2}
               name="WS Curve (Wage-Setting)"
               dot={false}
-              isAnimationActive={false}
             />
             {/* Natural rate marker */}
             <ReferenceLine
@@ -281,7 +270,7 @@ export default function LaborMarket() {
         </ResponsiveContainer>
       </div>
 
-      <ToolCallout label="Diagnosis" variant="insight" title="Inflation Pressures">
+      <ToolNote label="Diagnosis" variant="insight" title="Inflation Pressures">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div>
             <strong className="text-fg">Unemployment vs NAIRU:</strong>
@@ -306,7 +295,7 @@ export default function LaborMarket() {
             </p>
           </div>
         </div>
-      </ToolCallout>
+      </ToolNote>
 
       <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
         <Button
@@ -328,9 +317,9 @@ export default function LaborMarket() {
       {compareScenarios ? (
         <div>
           <div className="visualization-container mb-8">
-            <h3 className="mb-4 font-serif text-lg font-bold text-fg">Scenario A: Weak vs Strong Unions</h3>
+            <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Scenario A: Weak vs Strong Unions</h3>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              <ToolCallout label="Scenario A" variant="try" title="Weak Unions (β = 0.2)">
+              <ToolNote label="Scenario A" variant="try" title="Weak Unions (β = 0.2)">
                 <p>
                   <strong className="text-fg">u*:</strong>{' '}
                   {(weakUnionsEquilibrium.unemployment * 100).toFixed(2)}%
@@ -342,8 +331,8 @@ export default function LaborMarket() {
                 <p className="mt-3 text-xs opacity-90">
                   Limited bargaining power → Lower real wages, Lower unemployment
                 </p>
-              </ToolCallout>
-              <ToolCallout label="Scenario B" variant="info" title="Strong Unions (β = 0.8)">
+              </ToolNote>
+              <ToolNote label="Scenario B" variant="info" title="Strong Unions (β = 0.8)">
                 <p>
                   <strong className="text-fg">u*:</strong>{' '}
                   {(strongUnionsEquilibrium.unemployment * 100).toFixed(2)}%
@@ -355,7 +344,7 @@ export default function LaborMarket() {
                 <p className="mt-3 text-xs opacity-90">
                   Strong bargaining power → Higher real wages, Higher unemployment
                 </p>
-              </ToolCallout>
+              </ToolNote>
             </div>
           </div>
 
@@ -372,11 +361,11 @@ export default function LaborMarket() {
       ) : (
         <div>
           <div className="visualization-container mb-8">
-            <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+            <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
               Policy Experiment: Firm Markup Effects
             </h3>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              <ToolCallout label="Scenario A" variant="insight" title="Low Markup (μ = 0.1)">
+              <ToolNote label="Scenario A" variant="insight" title="Low Markup (μ = 0.1)">
                 <p>
                   <strong className="text-fg">u*:</strong>{' '}
                   {(lowMarkupEquilibrium.unemployment * 100).toFixed(2)}%
@@ -387,8 +376,8 @@ export default function LaborMarket() {
                 <p className="mt-3 text-xs opacity-90">
                   Competitive market → Higher real wages, Lower unemployment
                 </p>
-              </ToolCallout>
-              <ToolCallout label="Scenario B" variant="warning" title="High Markup (μ = 0.4)">
+              </ToolNote>
+              <ToolNote label="Scenario B" variant="warning" title="High Markup (μ = 0.4)">
                 <p>
                   <strong className="text-fg">u*:</strong>{' '}
                   {(highMarkupEquilibrium.unemployment * 100).toFixed(2)}%
@@ -399,7 +388,7 @@ export default function LaborMarket() {
                 <p className="mt-3 text-xs opacity-90">
                   Monopoly power → Lower real wages, Higher unemployment
                 </p>
-              </ToolCallout>
+              </ToolNote>
             </div>
           </div>
 
@@ -414,7 +403,7 @@ export default function LaborMarket() {
         </div>
       )}
 
-      <ToolCallout label="Educational insights" variant="lesson" title="Reading the WS/PS model">
+      <ToolNote label="Educational insights" variant="lesson" title="Reading the WS/PS model">
         <ul>
           <li>
             <strong>WS Curve Intuition:</strong> Higher unemployment weakens workers' bargaining position (fewer outside options). Also, more generous unemployment benefits raise the reservation wage, shifting WS up.
@@ -435,7 +424,7 @@ export default function LaborMarket() {
             <strong>Natural Rate of Unemployment:</strong> The NAIRU is determined by institutional factors (union strength, benefits, markups), not demand. Demand-side policies cannot permanently lower it—they only create inflation.
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
     </div>
   )
 }

@@ -6,11 +6,13 @@ import { TOOLS } from '../store'
 import { ToolRenderer } from '../tools/registry'
 import { scenarioFromSearch, scenarioUrl } from '../lib/scenario'
 import { useAppStore } from '../store'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
 
 export default function ToolPage() {
   const { id } = useParams<{ id: string }>()
   const toolId = id as ToolId
   const info = TOOLS[toolId]
+  useDocumentTitle(info?.title ?? 'Tool', info?.description)
   const [copied, setCopied] = useState(false)
   const setScenario = useAppStore((s) => s.setScenario)
   const setShowDataOverlay = useAppStore((s) => s.setShowDataOverlay)
@@ -24,7 +26,7 @@ export default function ToolPage() {
   if (!info) {
     return (
       <div className="card p-6">
-        <h1 className="font-serif text-xl font-bold text-fg">Tool not found</h1>
+        <h1 className="text-xl font-semibold tracking-tight text-fg">Tool not found</h1>
         <p className="mt-2 text-sm text-fg-muted">
           That tool does not exist. <Link to="/tools">Browse all tools</Link>.
         </p>
@@ -48,7 +50,7 @@ export default function ToolPage() {
   return (
     <div>
       <nav className="mb-5 text-xs text-fg-subtle" aria-label="Breadcrumb">
-        <Link to="/tools" className="text-fg-subtle no-underline hover:text-accent">
+        <Link to="/tools" className="text-fg-subtle no-underline hover:text-accent-ink">
           Tools
         </Link>{' '}
         <span aria-hidden="true">/</span> {info.title}
@@ -58,7 +60,7 @@ export default function ToolPage() {
         <div className="mb-4 flex flex-wrap items-center gap-2">
           <Link
             to="/tools"
-            className="rounded-pill border border-border bg-surface px-3 py-1.5 text-xs text-fg-muted no-underline transition-colors hover:border-accent hover:text-accent"
+            className="rounded-pill border border-border bg-surface px-3 py-1.5 text-xs text-fg-muted no-underline transition-colors hover:border-border-strong hover:text-fg"
           >
             All tools
           </Link>
@@ -76,7 +78,7 @@ export default function ToolPage() {
           <button
             type="button"
             onClick={copyLink}
-            className="ml-auto inline-flex items-center gap-1.5 rounded-pill border border-border bg-surface px-3 py-1.5 text-xs font-medium text-fg-muted transition-colors hover:border-accent hover:text-fg"
+            className="ml-auto inline-flex items-center gap-1.5 rounded-pill border border-border bg-surface px-3 py-1.5 text-xs font-medium text-fg-muted transition-colors hover:border-border-strong hover:text-fg"
           >
             {copied ? <Check size={13} aria-hidden="true" /> : <Link2 size={13} aria-hidden="true" />}
             {copied ? 'Link copied' : 'Copy scenario link'}
@@ -87,25 +89,23 @@ export default function ToolPage() {
       </header>
 
       {related.length > 0 && (
-        <div className="mb-7 rounded-card border border-border bg-surface-2 p-4">
-          <p className="mb-2.5 text-micro font-bold uppercase tracking-widest text-fg-subtle">
+        <div className="mb-7 flex flex-wrap items-center gap-x-2 gap-y-2 rounded-card border border-border bg-surface-2 px-4 py-3">
+          <p className="mr-1 text-micro font-bold uppercase tracking-widest text-fg-subtle">
             Taught in
           </p>
-          <div className="flex flex-wrap gap-2">
-            {related.map((lecture) => (
-              <Link
-                key={lecture.n}
-                to={`/lecture/${lecture.n}`}
-                className="rounded-pill border border-border bg-surface px-3 py-1 text-xs text-fg-muted no-underline transition-colors hover:border-accent hover:text-accent"
-              >
-                {lecture.n}. {lecture.title}
-              </Link>
-            ))}
-          </div>
+          {related.map((lecture) => (
+            <Link
+              key={lecture.n}
+              to={`/lecture/${lecture.n}`}
+              className="rounded-pill border border-border bg-surface px-2.5 py-0.5 text-xs text-fg-muted no-underline transition-colors hover:border-border-strong hover:text-accent-ink"
+            >
+              {lecture.n}. {lecture.title}
+            </Link>
+          ))}
         </div>
       )}
 
-      <div className="rounded-plate border border-border bg-surface p-3">
+      <div className="rounded-plate border border-border bg-surface p-4">
         <ToolRenderer toolId={toolId} />
       </div>
 

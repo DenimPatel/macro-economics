@@ -1,18 +1,9 @@
 import { useState } from 'react'
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-} from 'recharts'
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart } from 'recharts'
+import { ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   Button,
@@ -131,7 +122,7 @@ export default function CrisisSvb() {
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Real Interest Rate Analysis
         </h3>
         <div className={SPLIT}>
@@ -142,7 +133,7 @@ export default function CrisisSvb() {
                 <XAxis dataKey="year" {...chartTheme.axis} />
                 <YAxis {...chartTheme.axis} />
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="realRate"
                   stroke={REAL_RATE_STROKE}
@@ -150,7 +141,7 @@ export default function CrisisSvb() {
                   dot={{ r: 4 }}
                   name="Real Interest Rate"
                 />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="nominalRate"
                   stroke={NOMINAL_RATE_STROKE}
@@ -158,7 +149,7 @@ export default function CrisisSvb() {
                   dot={{ r: 4 }}
                   name="Nominal Interest Rate"
                 />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="inflation"
                   stroke={INFLATION_STROKE}
@@ -177,18 +168,18 @@ export default function CrisisSvb() {
               <StatBox label="Real Rate" value={realRate.toFixed(1)} unit="%" tone="accent" />
             </div>
 
-            <ToolCallout label="Formula" variant="info" title="Fisher Equation: r = i - π">
+            <ToolNote label="Formula" variant="info" title="Fisher Equation: r = i - π">
               <p>
                 The real interest rate is the nominal rate minus expected inflation.
                 When inflation expectations are low but Fed raises rates, real rates rise significantly.
               </p>
-            </ToolCallout>
+            </ToolNote>
           </div>
         </div>
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Bond Portfolio Value Analysis
         </h3>
         <div className={SPLIT}>
@@ -202,7 +193,7 @@ export default function CrisisSvb() {
                 <XAxis dataKey="name" {...chartTheme.axis} />
                 <YAxis {...chartTheme.axis} />
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-                <Bar dataKey="value" fill={BOND_VALUE_FILL} />
+                <ChartBar dataKey="value" fill={BOND_VALUE_FILL} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -213,38 +204,38 @@ export default function CrisisSvb() {
               <StatBox label="Portfolio Loss" value={portfolioLoss.toFixed(2)} unit="%" />
             </div>
 
-            <ToolCallout label="Insight" variant="insight" title="SVB's Real Rate Squeeze">
+            <ToolNote label="Insight" variant="insight" title="SVB's Real Rate Squeeze">
               <p>
                 SVB had long-term bonds locked in at 1.5% coupons when real rates were low (2010s).
                 When Fed raised rates to 5% with 4% inflation, real rates rose to 1%.
                 The bond portfolio's market value fell significantly, causing losses.
               </p>
-            </ToolCallout>
+            </ToolNote>
           </div>
         </div>
       </div>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <ToolCallout label="Info" variant="info" title="The SVB Crisis">
+        <ToolNote label="Info" variant="info" title="The SVB Crisis">
           <p>SVB had a large portfolio of long-term bonds with low coupons (1.5%) from the 2010s</p>
           <p>When Fed raised rates to combat inflation, real rates rose significantly</p>
           <p>These bonds lost substantial market value, creating losses for the bank</p>
-        </ToolCallout>
+        </ToolNote>
 
-        <ToolCallout label="Watch out" variant="warning" title="Real Rate Squeeze">
+        <ToolNote label="Watch out" variant="warning" title="Real Rate Squeeze">
           <p>When real rates rise above the coupon rate on existing bonds, their market value falls</p>
           <p>SVB's bonds were worth less than their book value, triggering a liquidity crisis</p>
           <p>This illustrates how interest rate risk can devastate financial institutions</p>
-        </ToolCallout>
+        </ToolNote>
 
-        <ToolCallout label="Note" variant="lesson" title="Policy Lessons">
+        <ToolNote label="Note" variant="lesson" title="Policy Lessons">
           <p>Central banks must carefully consider the impact of rate changes on financial stability</p>
           <p>Financial institutions need robust risk management for interest rate exposure</p>
           <p>Regulators should monitor institutions with large bond portfolios</p>
-        </ToolCallout>
+        </ToolNote>
       </div>
 
-      <ToolCallout label="Reference" variant="info" title="Key Insights from SVB">
+      <ToolNote label="Reference" variant="info" title="Key Insights from SVB">
         <ul>
           <li>
             <strong>Interest Rate Risk:</strong> Banks with large bond portfolios face significant interest rate risk.
@@ -266,7 +257,7 @@ export default function CrisisSvb() {
             Rapid rate increases can create instability in financial markets.
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
     </div>
   )
 }

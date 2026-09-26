@@ -1,19 +1,9 @@
 import { useState } from 'react'
-import {
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  ReferenceDot,
-  ComposedChart,
-  Scatter,
-} from 'recharts'
+import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceDot, ComposedChart } from 'recharts'
+import { ChartLine, ChartScatter } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   Button,
@@ -220,7 +210,7 @@ export default function PhillipsCurve() {
       </div>
 
       <div className="visualization-container">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           {showTraditional ? 'Traditional vs Expectations-Augmented Phillips Curves' : 'Phillips Curve Analysis'}
         </h3>
         <ResponsiveContainer width="100%" height={400}>
@@ -258,16 +248,15 @@ export default function PhillipsCurve() {
 
             {showTraditional ? (
               <>
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="traditional"
                   stroke={TRADITIONAL_STROKE}
                   name="Traditional PC (1960s)"
                   strokeWidth={2}
                   dot={false}
-                  isAnimationActive={true}
                 />
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="expectations"
                   stroke={EXPECTATIONS_STROKE}
@@ -275,23 +264,21 @@ export default function PhillipsCurve() {
                   strokeWidth={2}
                   strokeDasharray="5 5"
                   dot={false}
-                  isAnimationActive={true}
                 />
               </>
             ) : (
               <>
-                <Line
+                <ChartLine
                   type="monotone"
                   dataKey="expectations"
                   stroke={EXPECTATIONS_STROKE}
                   name={`Phillips Curve (π^e = ${expectedInflation.toFixed(1)}%)`}
                   strokeWidth={3}
                   dot={false}
-                  isAnimationActive={true}
                 />
                 {comparisonMode && (
                   <>
-                    <Line
+                    <ChartLine
                       type="monotone"
                       dataKey="lowExpectations"
                       stroke={LOW_EXPECTATIONS_STROKE}
@@ -299,9 +286,8 @@ export default function PhillipsCurve() {
                       strokeWidth={2}
                       strokeDasharray="5 5"
                       dot={false}
-                      isAnimationActive={true}
                     />
-                    <Line
+                    <ChartLine
                       type="monotone"
                       dataKey="highExpectations"
                       stroke={HIGH_EXPECTATIONS_STROKE}
@@ -309,7 +295,6 @@ export default function PhillipsCurve() {
                       strokeWidth={2}
                       strokeDasharray="5 5"
                       dot={false}
-                      isAnimationActive={true}
                     />
                   </>
                 )}
@@ -339,7 +324,7 @@ export default function PhillipsCurve() {
 
             {/* Historical data overlay */}
             {showHistorical && (
-              <Scatter
+              <ChartScatter
                 data={historicalData}
                 fill="transparent"
                 name="Historical Data"
@@ -355,7 +340,7 @@ export default function PhillipsCurve() {
                     fillOpacity={0.6}
                   />
                 ))}
-              </Scatter>
+              </ChartScatter>
             )}
           </ComposedChart>
         </ResponsiveContainer>
@@ -423,7 +408,7 @@ export default function PhillipsCurve() {
         </InfoBox>
       </div>
 
-      <ToolCallout label="Key Insights & Experiments" variant="insight">
+      <ToolNote label="Key Insights & Experiments" variant="insight">
         <ul>
           <li>
             <strong>Shift Expected Inflation:</strong> Increase π^e to 6%. Notice the entire curve shifts up. At
@@ -450,7 +435,7 @@ export default function PhillipsCurve() {
             had to raise rates aggressively to restore credibility and shift expectations back down.
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
     </div>
   )
 }

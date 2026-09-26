@@ -1,18 +1,9 @@
 import { useState } from 'react'
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-} from 'recharts'
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart } from 'recharts'
+import { ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   Button,
@@ -152,7 +143,7 @@ export default function AssetPricing() {
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Bond Price vs. Discount Rate
         </h3>
         <div className={CHART_BOX}>
@@ -162,7 +153,7 @@ export default function AssetPricing() {
               <XAxis dataKey="rate" {...chartTheme.axis} />
               <YAxis {...chartTheme.axis} />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-              <Line
+              <ChartLine
                 type="monotone"
                 dataKey="price"
                 stroke={BOND_PRICE_STROKE}
@@ -176,7 +167,7 @@ export default function AssetPricing() {
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Stock Price vs. Discount Rate
         </h3>
         <div className={CHART_BOX}>
@@ -186,7 +177,7 @@ export default function AssetPricing() {
               <XAxis dataKey="rate" {...chartTheme.axis} />
               <YAxis {...chartTheme.axis} />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-              <Line
+              <ChartLine
                 type="monotone"
                 dataKey="price"
                 stroke={STOCK_PRICE_STROKE}
@@ -200,7 +191,7 @@ export default function AssetPricing() {
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Current Asset Valuation
         </h3>
         <div className={SPLIT}>
@@ -214,7 +205,7 @@ export default function AssetPricing() {
                 <XAxis dataKey="name" {...chartTheme.axis} />
                 <YAxis {...chartTheme.axis} />
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-                <Bar dataKey="value" fill={VALUATION_BAR_FILL} />
+                <ChartBar dataKey="value" fill={VALUATION_BAR_FILL} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -225,38 +216,38 @@ export default function AssetPricing() {
               <StatBox label="Stock Price" value={stockPrice.toFixed(2)} />
             </div>
 
-            <ToolCallout label="Reference" variant="info" title="Present Value Principle">
+            <ToolNote label="Reference" variant="info" title="Present Value Principle">
               <p>
                 Assets are valued based on the present value of their expected future cash flows.
                 Higher discount rates reduce present values, making assets less valuable.
                 Lower discount rates increase present values, making assets more valuable.
               </p>
-            </ToolCallout>
+            </ToolNote>
           </div>
         </div>
       </div>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <ToolCallout label="Info" variant="info" title="Bond Valuation">
+        <ToolNote label="Info" variant="info" title="Bond Valuation">
           <p>Bonds pay fixed coupon payments and return principal at maturity</p>
           <p>As discount rates rise, bond prices fall (inverse relationship)</p>
           <p>Longer maturity bonds are more sensitive to interest rate changes</p>
-        </ToolCallout>
+        </ToolNote>
 
-        <ToolCallout label="Watch out" variant="warning" title="Stock Valuation">
+        <ToolNote label="Watch out" variant="warning" title="Stock Valuation">
           <p>Stocks pay dividends and are valued based on expected future dividends</p>
           <p>Gordon Growth Model assumes constant dividend growth</p>
           <p>Higher growth rates increase stock values, but also increase risk</p>
-        </ToolCallout>
+        </ToolNote>
 
-        <ToolCallout label="Note" variant="lesson" title="Practical Applications">
+        <ToolNote label="Note" variant="lesson" title="Practical Applications">
           <p>Investors use these models to compare asset values</p>
           <p>Central banks monitor asset prices for financial stability</p>
           <p>Companies use valuation models for investment decisions</p>
-        </ToolCallout>
+        </ToolNote>
       </div>
 
-      <ToolCallout label="Reference" variant="info" title="Key Insights from Asset Pricing">
+      <ToolNote label="Reference" variant="info" title="Key Insights from Asset Pricing">
         <ul>
           <li>
             <strong>Present Value:</strong> The fundamental principle that all assets are valued based on the present value of their expected future cash flows.
@@ -277,7 +268,7 @@ export default function AssetPricing() {
             <strong>Valuation Models:</strong> Different models (bond pricing, Gordon Growth, DCF) are used depending on the asset type and characteristics.
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
     </div>
   )
 }

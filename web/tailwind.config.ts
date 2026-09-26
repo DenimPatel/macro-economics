@@ -29,8 +29,19 @@ export default {
         'tier-intermediate-ink': 'rgb(var(--c-tier-intermediate-ink-ch) / <alpha-value>)',
         'tier-advanced-ink': 'rgb(var(--c-tier-advanced-ink-ch) / <alpha-value>)',
         'tier-case-ink': 'rgb(var(--c-tier-case-ink-ch) / <alpha-value>)',
+        // Status semantics. Distinct from the tier ramp, which is ordinal:
+        // these mean correct / wrong / caution and nothing else.
+        ok: 'rgb(var(--c-ok-ch) / <alpha-value>)',
+        'ok-ink': 'rgb(var(--c-ok-ink-ch) / <alpha-value>)',
+        warn: 'rgb(var(--c-warn-ch) / <alpha-value>)',
+        'warn-ink': 'rgb(var(--c-warn-ink-ch) / <alpha-value>)',
+        bad: 'rgb(var(--c-bad-ch) / <alpha-value>)',
+        'bad-ink': 'rgb(var(--c-bad-ink-ch) / <alpha-value>)',
       },
       fontFamily: {
+        // One family, deliberately. A second display face is what made this
+        // read as a warm reading nook; Inter carries prose, chrome, and
+        // numbers without a size or weight jump at the seams.
         sans: [
           'Inter Variable',
           'Inter',
@@ -42,32 +53,31 @@ export default {
           'Arial',
           'sans-serif',
         ],
-        serif: ['Literata Variable', 'Literata', 'Iowan Old Style', 'Palatino', 'Georgia', 'serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'],
       },
       fontSize: {
-        // Editorial scale. `micro` is the uppercase small-caps label size used by
-        // eyebrows, section rules, and tier micro-labels.
-        micro: ['0.6875rem', { lineHeight: '1.4', letterSpacing: '0.04em' }],
+        // `micro` is the uppercase label size used by eyebrows, section rules,
+        // and tier micro-labels.
+        micro: ['0.6875rem', { lineHeight: '1.4', letterSpacing: '0.06em' }],
         'label-sm': ['0.8125rem', { lineHeight: '1.45' }],
-        prose: ['1.0625rem', { lineHeight: '1.7' }],
-        'prose-lg': ['1.125rem', { lineHeight: '1.75' }],
-        'display-sm': ['1.75rem', { lineHeight: '1.2', letterSpacing: '-0.015em' }],
-        'display-md': ['2.125rem', { lineHeight: '1.15', letterSpacing: '-0.02em' }],
-        'display-lg': ['2.75rem', { lineHeight: '1.1', letterSpacing: '-0.025em' }],
+        prose: ['1.0625rem', { lineHeight: '1.75' }],
+        'display-sm': ['1.5rem', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
+        'display-md': ['2.125rem', { lineHeight: '1.12', letterSpacing: '-0.028em' }],
+        'display-lg': ['3rem', { lineHeight: '1.06', letterSpacing: '-0.032em' }],
       },
       borderRadius: {
-        card: '14px',
-        plate: '18px',
+        card: '10px',
+        plate: '12px',
         pill: '999px',
       },
       maxWidth: {
-        prose: '68ch',
+        prose: '70ch',
       },
       boxShadow: {
-        card: '0 1px 2px rgba(28, 25, 23, 0.04), 0 1px 3px rgba(28, 25, 23, 0.05)',
-        plate: '0 1px 2px rgba(28, 25, 23, 0.04), 0 10px 30px -14px rgba(28, 25, 23, 0.22)',
-        pop: '0 8px 24px -6px rgba(28, 25, 23, 0.18), 0 18px 48px -24px rgba(28, 25, 23, 0.3)',
+        // Live in index.css so the dark theme can re-derive them.
+        card: 'var(--shadow-card)',
+        plate: 'var(--shadow-plate)',
+        pop: 'var(--shadow-pop)',
       },
     },
   },

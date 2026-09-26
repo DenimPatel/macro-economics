@@ -1,20 +1,9 @@
 import { useState } from 'react'
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-} from 'recharts'
+import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Cell } from 'recharts'
+import { ChartBar, ChartPie } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   Button,
@@ -151,7 +140,7 @@ export default function GrowthAccounting() {
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Growth Decomposition Over Time
         </h3>
         <div className={CHART_BOX}>
@@ -162,24 +151,24 @@ export default function GrowthAccounting() {
               <YAxis {...chartTheme.axis} />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
               <Legend {...chartTheme.legend} />
-              <Bar dataKey="capitalContribution" fill={CAPITAL_FILL} name="Capital Contribution" />
-              <Bar dataKey="laborContribution" fill={LABOR_FILL} name="Labor Contribution" />
-              <Bar dataKey="tfpContribution" fill={TFP_FILL} name="TFP Contribution" />
-              <Bar dataKey="growthRate" fill={TOTAL_GROWTH_FILL} name="Total Growth" />
+              <ChartBar dataKey="capitalContribution" fill={CAPITAL_FILL} name="Capital Contribution" />
+              <ChartBar dataKey="laborContribution" fill={LABOR_FILL} name="Labor Contribution" />
+              <ChartBar dataKey="tfpContribution" fill={TFP_FILL} name="TFP Contribution" />
+              <ChartBar dataKey="growthRate" fill={TOTAL_GROWTH_FILL} name="Total Growth" />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Contribution Shares (2000)
         </h3>
         <div className={SPLIT}>
           <div className={CHART_BOX}>
             <ResponsiveContainer width="100%" height="100%">
               <PieChart margin={chartTheme.margin}>
-                <Pie
+                <ChartPie
                   data={pieData}
                   cx="50%"
                   cy="50%"
@@ -192,7 +181,7 @@ export default function GrowthAccounting() {
                   {pieData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
-                </Pie>
+                </ChartPie>
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
                 <Legend {...chartTheme.legend} />
               </PieChart>
@@ -207,7 +196,7 @@ export default function GrowthAccounting() {
               <StatBox label="Total Growth" value={currentData.growthRate.toFixed(1)} unit="%" />
             </div>
 
-            <ToolCallout label="Reference" variant="info" title="Growth Accounting Principles">
+            <ToolNote label="Reference" variant="info" title="Growth Accounting Principles">
               <p>
                 Growth accounting decomposes total economic growth into contributions from:
                 <br />
@@ -217,32 +206,32 @@ export default function GrowthAccounting() {
                 <br />
                 - Total Factor Productivity (TFP) improvements
               </p>
-            </ToolCallout>
+            </ToolNote>
           </div>
         </div>
       </div>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <ToolCallout label="Info" variant="info" title="Growth Patterns by Country">
+        <ToolNote label="Info" variant="info" title="Growth Patterns by Country">
           <p>United States: Stable growth with TFP contributing more in recent decades</p>
           <p>China: Rapid growth driven by capital accumulation and labor force expansion</p>
           <p>Japan: Declining growth with TFP becoming increasingly important</p>
-        </ToolCallout>
+        </ToolNote>
 
-        <ToolCallout label="Watch out" variant="warning" title="The Role of TFP">
+        <ToolNote label="Watch out" variant="warning" title="The Role of TFP">
           <p>Total Factor Productivity (TFP) represents technological progress and efficiency improvements</p>
           <p>TFP growth is often the most important driver of long-term economic growth</p>
           <p>It's harder to measure and explain than capital or labor contributions</p>
-        </ToolCallout>
+        </ToolNote>
 
-        <ToolCallout label="Note" variant="lesson" title="Policy Implications">
+        <ToolNote label="Note" variant="lesson" title="Policy Implications">
           <p>Investment in R&D and innovation drives TFP growth</p>
           <p>Education and training improve labor productivity</p>
           <p>Infrastructure investments enhance capital efficiency</p>
-        </ToolCallout>
+        </ToolNote>
       </div>
 
-      <ToolCallout label="Reference" variant="info" title="Key Insights from Growth Accounting">
+      <ToolNote label="Reference" variant="info" title="Key Insights from Growth Accounting">
         <ul>
           <li>
             <strong>Capital vs. Labor:</strong> In developing economies, capital accumulation typically contributes more to growth than labor.
@@ -264,7 +253,7 @@ export default function GrowthAccounting() {
             These measurements can be imperfect, affecting conclusions.
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
     </div>
   )
 }

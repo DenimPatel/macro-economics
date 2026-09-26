@@ -1,10 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
-// Variable fonts, self-hosted. The `opsz` build of Literata carries both the
-// optical-size and weight axes, which is what long-form prose wants.
+// One family, self-hosted. Inter Variable carries prose, chrome, and the
+// tabular numerals every readout depends on.
 import '@fontsource-variable/inter/wght.css'
-import '@fontsource-variable/literata/opsz.css'
+// Applies the shared Recharts series defaults before any tool renders.
+import './components/ChartPrimitives'
 import './index.css'
 
 const container = document.getElementById('root')

@@ -46,15 +46,26 @@ web/src/
 
 ## Rules
 
-- TypeScript strict; no `any` in new code. The existing `as any` in
-  `Sidebar.tsx` should be removed when touched.
+- TypeScript strict; no `any` in new code.
 - Route paths are declared in `web/src/router.tsx`; build links with
   `react-router-dom`, never raw `<a href>` for internal navigation.
 - The Pages base path is `/macro-economics/`. Reference static assets from
   `public/` with `import.meta.env.BASE_URL`, never a leading `/`.
-- Keep charts consistent: use `design/chartTheme.ts`; migrate tools
-  incrementally rather than rewriting them.
-- Do not commit `node_modules/`, `dist/`, `venv/`, or `.DS_Store`.
+- Keep charts consistent: use `design/chartTheme.ts` for chrome and
+  `chartColor(i)` from `design/tokens.ts` for series strokes. Import the
+  series from `components/ChartPrimitives.tsx`; they are identity aliases
+  because Recharts detects series by component reference.
+- Colour lives in `web/src/index.css` as `-ch` channel vars plus an azure
+  accent. The accent means interaction only: never a background wash, never a
+  primary-button fill. Do not add `border-l` or a numbered `border-t` as an
+  accent — a test rejects both.
+- Status meaning (correct / wrong / caution) uses `--c-ok`, `--c-warn`,
+  `--c-bad`. The four `--c-tier-*` values are one ordinal azure ramp and
+  encode difficulty, never correctness.
+- One type family. There is no display serif; `font-serif` is rejected by a
+  test.
+- Do not commit `node_modules/`, `dist/`, `venv/`, `.DS_Store`, or
+  `.playwright-mcp/`.
 - No emojis in committed source or docs unless explicitly requested.
 
 ## Adding a tool

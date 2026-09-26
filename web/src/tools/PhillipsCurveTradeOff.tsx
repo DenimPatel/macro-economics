@@ -1,19 +1,9 @@
 import { useState } from 'react'
-import {
-  Line,
-  ScatterChart,
-  Scatter,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  ReferenceLine,
-} from 'recharts'
+import { ScatterChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts'
+import { ChartLine, ChartScatter } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   InfoBox,
@@ -202,13 +192,13 @@ export default function PhillipsCurveTradeOff() {
       <ToolHeader
         title="Phillips Curve Trade-Off"
         description="Explore the relationship between inflation and unemployment, supply shocks, expectations, and policy trade-offs"
-        badge="Macro"
+        badge="intermediate"
       />
 
       <div className="mb-8 grid gap-8 lg:grid-cols-2">
         {/* Control Panel */}
         <div className="control-panel block">
-          <h3 className="mb-4 font-serif text-lg font-bold text-fg">Controls</h3>
+          <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Controls</h3>
 
           <SliderControl
             label="Expected Inflation Rate"
@@ -345,7 +335,7 @@ export default function PhillipsCurveTradeOff() {
 
       {/* Main Chart */}
       <div className="visualization-container mb-8">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Phillips Curve {historicalMode === 'modern' ? '(Modern)' : ''}
         </h3>
 
@@ -392,30 +382,28 @@ export default function PhillipsCurveTradeOff() {
 
             {/* Original Phillips Curve (without supply shocks) */}
             {supplyShock !== 0 && (
-              <Line
+              <ChartLine
                 type="monotone"
                 dataKey="originalCurve"
                 stroke={chartTheme.axis.stroke}
                 strokeDasharray="5 5"
                 name="Original Curve (no shock)"
-                isAnimationActive={false}
               />
             )}
 
             {/* Current Phillips Curve */}
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="inflation"
               stroke={chartColor(0)}
               strokeWidth={2}
               name="Phillips Curve"
-              isAnimationActive={false}
               dot={false}
             />
 
             {/* Historical data points */}
             {historicalData.length > 0 && (
-              <Scatter
+              <ChartScatter
                 name={`Historical Data (${historicalMode})`}
                 data={historicalData.map((p) => ({
                   unemployment: p.unemployment,
@@ -427,7 +415,7 @@ export default function PhillipsCurveTradeOff() {
             )}
 
             {/* Current equilibrium point */}
-            <Scatter
+            <ChartScatter
               name="Current Equilibrium"
               data={[{ unemployment: equilibrium.unemployment, inflation: equilibrium.inflation }]}
               fill={chartColor(4)}
@@ -461,9 +449,9 @@ export default function PhillipsCurveTradeOff() {
         </ResponsiveContainer>
 
         {showAnnotations && (
-          <ToolCallout label="Annotation" variant="info" title="Current Movement">
+          <ToolNote label="Annotation" variant="info" title="Current Movement">
             <p>{getMovementExplanation()}</p>
-          </ToolCallout>
+          </ToolNote>
         )}
       </div>
 
@@ -539,7 +527,7 @@ PRE-1970s: STABLE TRADE-OFF
       />
 
       {/* Policy Implications */}
-      <ToolCallout label="Policy" variant="warning" title="Policy Implications">
+      <ToolNote label="Policy" variant="warning" title="Policy Implications">
         <ul>
           <li>
             <strong>Expectations Matter:</strong> Anchoring inflation expectations prevents the
@@ -562,7 +550,7 @@ PRE-1970s: STABLE TRADE-OFF
             education, labor market policies, etc.
           </li>
         </ul>
-      </ToolCallout>
+      </ToolNote>
     </div>
   )
 }

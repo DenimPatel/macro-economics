@@ -1,19 +1,9 @@
 import { useCallback, useMemo, useState } from 'react'
-import {
-  Line,
-  Scatter,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  ReferenceLine,
-  ComposedChart,
-} from 'recharts'
+import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine, ComposedChart } from 'recharts'
+import { ChartLine, ChartScatter } from '../components/ChartPrimitives'
 import {
   ToolHeader,
-  ToolCallout,
+  ToolNote,
   SliderControl,
   StatBox,
   Button,
@@ -267,7 +257,7 @@ export default function LaborMarketWsPs() {
 
       {/* Main Chart */}
       <div className="visualization-container">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">WS/PS Equilibrium Diagram</h3>
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">WS/PS Equilibrium Diagram</h3>
 
         <ResponsiveContainer width="100%" height={400}>
           <ComposedChart
@@ -303,25 +293,23 @@ export default function LaborMarketWsPs() {
             <Legend {...chartTheme.legend} />
 
             {/* WS Curve */}
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="wsWage"
               stroke={WS_STROKE}
               strokeWidth={3}
               dot={false}
               name="WS Curve (Workers' Demands)"
-              isAnimationActive={false}
             />
 
             {/* PS Curve */}
-            <Line
+            <ChartLine
               type="monotone"
               dataKey="psWage"
               stroke={PS_STROKE}
               strokeWidth={3}
               dot={false}
               name="PS Curve (Firms' Offers)"
-              isAnimationActive={false}
             />
 
             {/* Equilibrium Point */}
@@ -349,7 +337,7 @@ export default function LaborMarketWsPs() {
             />
 
             {/* Equilibrium point marker */}
-            <Scatter
+            <ChartScatter
               dataKey="wsWage"
               data={[{
                 unemployment: equilibrium.unemployment,
@@ -371,7 +359,7 @@ export default function LaborMarketWsPs() {
       {/* Control Panel */}
       <div className="mb-8 grid gap-8 lg:grid-cols-2">
         <div className="control-panel block">
-          <h3 className="mb-4 font-serif text-lg font-bold text-fg">Worker Bargaining</h3>
+          <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Worker Bargaining</h3>
 
           <SliderControl
             label="Bargaining Power"
@@ -399,7 +387,7 @@ export default function LaborMarketWsPs() {
         </div>
 
         <div className="control-panel block">
-          <h3 className="mb-4 font-serif text-lg font-bold text-fg">Firm Pricing</h3>
+          <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Firm Pricing</h3>
 
           <SliderControl
             label="Markup (μ)"
@@ -428,7 +416,7 @@ export default function LaborMarketWsPs() {
       </div>
 
       {/* Scenario Buttons */}
-      <ToolCallout label="Experiments" variant="try" title="Policy Scenarios">
+      <ToolNote label="Experiments" variant="try" title="Policy Scenarios">
         <div className="flex flex-wrap gap-2">
           <Button
             onClick={() => {
@@ -467,7 +455,7 @@ export default function LaborMarketWsPs() {
             More Competition
           </Button>
         </div>
-      </ToolCallout>
+      </ToolNote>
 
       {/* Key Statistics */}
       <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
@@ -487,7 +475,7 @@ export default function LaborMarketWsPs() {
 
       {/* Detailed Analysis Table */}
       <div className="card mb-8 p-6">
-        <h3 className="mb-4 font-serif text-lg font-bold text-fg">
+        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
           Labor Market Dynamics at Different Unemployment Rates
         </h3>
         <div className="overflow-x-auto">

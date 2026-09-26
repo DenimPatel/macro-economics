@@ -1,16 +1,6 @@
 import { useState } from 'react'
-import {
-  BarChart,
-  Bar,
-  PieChart,
-  Pie,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts'
+import { BarChart, PieChart, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { ChartBar, ChartPie } from '../components/ChartPrimitives'
 import {
   ToolHeader,
   SliderControl,
@@ -228,7 +218,7 @@ export default function GdpMeasurement() {
 
       {/* Scenario Selection */}
       <div className="mb-8">
-        <h2 className="mb-4 font-serif text-lg font-bold text-fg">Economy Scenarios</h2>
+        <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">Economy Scenarios</h2>
         <div className="flex flex-wrap gap-2">
           <Button
             onClick={() => applyScenario('balanced')}
@@ -304,7 +294,7 @@ export default function GdpMeasurement() {
       {/* EXPENDITURE APPROACH TAB */}
       {activeTab === 'expenditure' && (
         <div>
-          <h2 className="mb-4 font-serif text-lg font-bold text-fg">
+          <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">
             Expenditure Approach: GDP = C + I + G + (X - M)
           </h2>
 
@@ -318,7 +308,7 @@ export default function GdpMeasurement() {
 
           {/* Controls */}
           <div className="mb-8">
-            <h3 className="mb-4 font-serif text-base font-bold text-fg">Adjust Components ($ trillions)</h3>
+            <h3 className="mb-4 text-base font-semibold text-fg">Adjust Components ($ trillions)</h3>
             <div className="control-panel">
               <SliderControl
                 label="Consumption (C)"
@@ -384,7 +374,7 @@ export default function GdpMeasurement() {
 
           {/* Bar Chart */}
           <div className="mb-8">
-            <h3 className="mb-4 font-serif text-base font-bold text-fg">Composition of GDP</h3>
+            <h3 className="mb-4 text-base font-semibold text-fg">Composition of GDP</h3>
             <ResponsiveContainer width="100%" height={350}>
               <BarChart data={expenditureData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
@@ -403,11 +393,11 @@ export default function GdpMeasurement() {
                   cursor={chartTheme.cursor}
                   formatter={(value: number) => `${value.toFixed(1)}T`}
                 />
-                <Bar dataKey="value" radius={[8, 8, 0, 0]}>
+                <ChartBar dataKey="value" radius={[8, 8, 0, 0]}>
                   {expenditureData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
-                </Bar>
+                </ChartBar>
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -415,7 +405,7 @@ export default function GdpMeasurement() {
           {/* Breakdown Percentages */}
           {showBreakdown && (
             <div className="mb-8">
-              <h3 className="mb-4 font-serif text-base font-bold text-fg">Component Breakdown (%)</h3>
+              <h3 className="mb-4 text-base font-semibold text-fg">Component Breakdown (%)</h3>
               <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
                 <div className="stat-tile stat-tile--accent">
                   <div className="stat-tile-label">Consumption</div>
@@ -456,7 +446,7 @@ export default function GdpMeasurement() {
       {/* INCOME APPROACH TAB */}
       {activeTab === 'income' && (
         <div>
-          <h2 className="mb-4 font-serif text-lg font-bold text-fg">
+          <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">
             Income Approach: GDP = Wages + Profits + Rent
           </h2>
 
@@ -471,7 +461,7 @@ export default function GdpMeasurement() {
 
           {/* Controls */}
           <div className="mb-8">
-            <h3 className="mb-4 font-serif text-base font-bold text-fg">Adjust Income Components ($ trillions)</h3>
+            <h3 className="mb-4 text-base font-semibold text-fg">Adjust Income Components ($ trillions)</h3>
             <div className="control-panel">
               <SliderControl
                 label="Wages (Labor Income)"
@@ -513,10 +503,10 @@ export default function GdpMeasurement() {
 
           {/* Pie Chart */}
           <div className="mb-8">
-            <h3 className="mb-4 font-serif text-base font-bold text-fg">Income Distribution Breakdown</h3>
+            <h3 className="mb-4 text-base font-semibold text-fg">Income Distribution Breakdown</h3>
             <ResponsiveContainer width="100%" height={350}>
               <PieChart margin={chartTheme.margin}>
-                <Pie
+                <ChartPie
                   data={incomeData}
                   cx="50%"
                   cy="50%"
@@ -529,7 +519,7 @@ export default function GdpMeasurement() {
                   {incomeData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
-                </Pie>
+                </ChartPie>
                 <Tooltip
                   {...chartTheme.tooltip}
                   cursor={chartTheme.cursor}
@@ -542,7 +532,7 @@ export default function GdpMeasurement() {
           {/* Income Distribution */}
           {showBreakdown && (
             <div className="mb-8">
-              <h3 className="mb-4 font-serif text-base font-bold text-fg">Income Share (% of GDP)</h3>
+              <h3 className="mb-4 text-base font-semibold text-fg">Income Share (% of GDP)</h3>
               <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
                 <div className="stat-tile stat-tile--accent">
                   <div className="stat-tile-label">Labor's Share</div>
@@ -575,7 +565,7 @@ export default function GdpMeasurement() {
       {/* PRODUCTION APPROACH TAB */}
       {activeTab === 'production' && (
         <div>
-          <h2 className="mb-4 font-serif text-lg font-bold text-fg">
+          <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">
             Production Approach: GDP = Sum of Value Added by Sector
           </h2>
 
@@ -590,7 +580,7 @@ export default function GdpMeasurement() {
 
           {/* Controls */}
           <div className="mb-8">
-            <h3 className="mb-4 font-serif text-base font-bold text-fg">Adjust Sector Value Added ($ trillions)</h3>
+            <h3 className="mb-4 text-base font-semibold text-fg">Adjust Sector Value Added ($ trillions)</h3>
             <div className="control-panel">
               <SliderControl
                 label="Agriculture & Mining"
@@ -632,7 +622,7 @@ export default function GdpMeasurement() {
 
           {/* Bar Chart */}
           <div className="mb-8">
-            <h3 className="mb-4 font-serif text-base font-bold text-fg">Value Added by Sector</h3>
+            <h3 className="mb-4 text-base font-semibold text-fg">Value Added by Sector</h3>
             <ResponsiveContainer width="100%" height={350}>
               <BarChart data={productionData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
@@ -651,11 +641,11 @@ export default function GdpMeasurement() {
                   cursor={chartTheme.cursor}
                   formatter={(value: number) => `${value.toFixed(1)}T`}
                 />
-                <Bar dataKey="valueAdded" radius={[8, 8, 0, 0]}>
+                <ChartBar dataKey="valueAdded" radius={[8, 8, 0, 0]}>
                   {productionData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
-                </Bar>
+                </ChartBar>
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -663,7 +653,7 @@ export default function GdpMeasurement() {
           {/* Sector Structure */}
           {showBreakdown && (
             <div className="mb-8">
-              <h3 className="mb-4 font-serif text-base font-bold text-fg">Economic Structure (% of GDP)</h3>
+              <h3 className="mb-4 text-base font-semibold text-fg">Economic Structure (% of GDP)</h3>
               <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
                 <div className="stat-tile stat-tile--positive">
                   <div className="stat-tile-label">Agriculture</div>
@@ -696,7 +686,7 @@ export default function GdpMeasurement() {
       {/* COMPARISON TAB */}
       {activeTab === 'comparison' && (
         <div>
-          <h2 className="mb-4 font-serif text-lg font-bold text-fg">
+          <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">
             Cross-Method Verification
           </h2>
 
@@ -726,7 +716,7 @@ export default function GdpMeasurement() {
 
           {/* Key Results - All Approaches */}
           <div className="mb-8">
-            <h3 className="mb-4 font-serif text-base font-bold text-fg">GDP by Approach</h3>
+            <h3 className="mb-4 text-base font-semibold text-fg">GDP by Approach</h3>
             <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
               <div className="stat-tile stat-tile--accent">
                 <div className="stat-tile-label">Expenditure Approach</div>
@@ -745,7 +735,7 @@ export default function GdpMeasurement() {
 
           {/* Discrepancy Analysis */}
           <div className="mb-8">
-            <h3 className="mb-4 font-serif text-base font-bold text-fg">Measurement Consistency</h3>
+            <h3 className="mb-4 text-base font-semibold text-fg">Measurement Consistency</h3>
             <div
               className={`stat-tile ${
                 discrepancyPercent < 2
@@ -777,7 +767,7 @@ export default function GdpMeasurement() {
 
           {/* Comparison Chart */}
           <div className="mb-8">
-            <h3 className="mb-4 font-serif text-base font-bold text-fg">GDP Comparison Across Methods</h3>
+            <h3 className="mb-4 text-base font-semibold text-fg">GDP Comparison Across Methods</h3>
             <ResponsiveContainer width="100%" height={350}>
               <BarChart data={comparisonData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
@@ -796,14 +786,14 @@ export default function GdpMeasurement() {
                   cursor={chartTheme.cursor}
                   formatter={(value: number) => `${value.toFixed(1)}T`}
                 />
-                <Bar dataKey="gdp" fill={SERIES_1} radius={[8, 8, 0, 0]} />
+                <ChartBar dataKey="gdp" fill={SERIES_1} radius={[8, 8, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
 
           {/* Detailed Breakdown Table */}
           <div className="mb-8">
-            <h3 className="mb-4 font-serif text-base font-bold text-fg">Detailed Breakdown Table</h3>
+            <h3 className="mb-4 text-base font-semibold text-fg">Detailed Breakdown Table</h3>
             <div className="overflow-x-auto">
               <table className="w-full overflow-hidden rounded-card border-collapse bg-surface text-sm">
                 <thead>
