@@ -1,0 +1,19 @@
+{
+  "name": "macro-economics",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Interactive macroeconomics course: lecture notes, simulations, and case studies.",
+  "homepage": "https://denimpatel.github.io/macro-economics/",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npm --prefix web run dev",
+    "build": "npm --prefix web run build",
+    "preview": "npm --prefix web run preview",
+    "lint": "npm --prefix web run lint",
+    "format": "npm --prefix web run format",
+    "typecheck": "npm --prefix web run typecheck",
+    "test": "npm --prefix web run test",
+    "install:web": "npm --prefix web install",
+    "data:export": "python3 analysis/export.py"
+  }
+}
