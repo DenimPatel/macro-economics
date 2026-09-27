@@ -2,13 +2,15 @@ import { useState } from 'react'
 import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart } from 'recharts'
 import { ChartArea, ChartLine } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
+  Button,
   SliderControl,
   StatBox,
-  Button,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
 
 /** Series keep a fixed economic identity across every chart in this tool. */
 const CREDIT_SPREAD_STROKE = chartColor(4)
@@ -18,8 +20,8 @@ const INFLATION_STROKE = chartColor(1)
 
 /** Layout shared by the chart and readout blocks. */
 const CHART_BOX = 'h-[300px]'
-const SPLIT = 'grid gap-6 lg:grid-cols-2'
-const STAT_GRID = 'mb-6 grid grid-cols-2 gap-3'
+const SPLIT = 'grid gap-s-6 lg:grid-cols-2'
+const STAT_GRID = 'mb-s-6 grid grid-cols-2 gap-s-3'
 
 interface CrisisDataPoint {
   quarter: string
@@ -30,10 +32,47 @@ interface CrisisDataPoint {
   isShock: boolean
 }
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  timePeriod: 2007.5,
+  showDataOverlay: true,
+  showISLM: true,
+}
+
 export default function Crisis2008() {
-  const [timePeriod, setTimePeriod] = useState(2007.5)
-  const [showDataOverlay, setShowDataOverlay] = useState(true)
-  const [showISLM, setShowISLM] = useState(true)
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
+const [timePeriod, setTimePeriod] = useState(DEFAULTS.timePeriod)
+const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
+const [showISLM, setShowISLM] = useState(DEFAULTS.showISLM)
+
+  const { reset, dirty } = useToolReset(
+    {
+    timePeriod: timePeriod,
+    showDataOverlay: showDataOverlay,
+    showISLM: showISLM,
+    },
+    {
+      setTimePeriod,
+      setShowDataOverlay,
+      setShowISLM,
+    },
+    {
+      timePeriod: DEFAULTS.timePeriod,
+      showDataOverlay: DEFAULTS.showDataOverlay,
+      showISLM: DEFAULTS.showISLM,
+    },
+  )
 
   // Historical data for 2007-2013
   const crisisData: CrisisDataPoint[] = [
@@ -129,16 +168,19 @@ export default function Crisis2008() {
         </div>
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <ToolControlBar onReset={reset} dirty={dirty} />
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Credit Spreads Over Time
-        </h3>
+        </h2>
         <div className={CHART_BOX}>
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={crisisData} margin={chartTheme.margin}>
               <CartesianGrid {...chartTheme.grid} />
-              <XAxis dataKey="quarter" {...chartTheme.axis} />
-              <YAxis {...chartTheme.axis} />
+              <XAxis
+                key={chartTheme.axisKey('x')} dataKey="quarter" {...chartTheme.axis} />
+              <YAxis
+                key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
               <ChartArea
                 type="monotone"
@@ -164,17 +206,19 @@ export default function Crisis2008() {
       </div>
 
       {showISLM && (
-        <div className="mb-8">
-          <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+        <div className="mb-s-8">
+          <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
             IS-LM Analysis During Crisis
-          </h3>
+          </h2>
           <div className={SPLIT}>
             <div className={CHART_BOX}>
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={crisisData} margin={chartTheme.margin}>
                   <CartesianGrid {...chartTheme.grid} />
-                  <XAxis dataKey="quarter" {...chartTheme.axis} />
-                  <YAxis {...chartTheme.axis} />
+                  <XAxis
+                    key={chartTheme.axisKey('x')} dataKey="quarter" {...chartTheme.axis} />
+                  <YAxis
+                    key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
                   <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
                   <ChartLine
                     type="monotone"
@@ -215,16 +259,18 @@ export default function Crisis2008() {
         </div>
       )}
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Unemployment and Inflation Path
-        </h3>
+        </h2>
         <div className={CHART_BOX}>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={crisisData} margin={chartTheme.margin}>
               <CartesianGrid {...chartTheme.grid} />
-              <XAxis dataKey="quarter" {...chartTheme.axis} />
-              <YAxis {...chartTheme.axis} />
+              <XAxis
+                key={chartTheme.axisKey('x')} dataKey="quarter" {...chartTheme.axis} />
+              <YAxis
+                key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
               <ChartLine
                 type="monotone"
@@ -247,7 +293,7 @@ export default function Crisis2008() {
         </div>
       </div>
 
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-s-8 grid gap-s-6 sm:grid-cols-2 lg:grid-cols-3">
         <ToolNote label="Info" variant="info" title="The Crisis Timeline">
           <p>2007: Subprime mortgage crisis begins with rising defaults</p>
           <p>2008Q3-Q4: Lehman Brothers collapse triggers credit market freeze</p>

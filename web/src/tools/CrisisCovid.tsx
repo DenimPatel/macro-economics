@@ -2,13 +2,15 @@ import { useState } from 'react'
 import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart } from 'recharts'
 import { ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
+  Button,
   SliderControl,
   StatBox,
-  Button,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
 
 /** Series keep a fixed economic identity across every chart in this tool. */
 const OUTPUT_STROKE = chartColor(0)
@@ -17,10 +19,10 @@ const INFLATION_STROKE = chartColor(1)
 const POLICY_BAR_FILL = chartColor(3)
 
 /** Layout shared by the chart and readout blocks. */
-const CONTROL_GRID = 'grid gap-6 sm:grid-cols-2'
+const CONTROL_GRID = 'grid gap-s-6 sm:grid-cols-2'
 const CHART_BOX = 'h-[300px]'
-const SPLIT = 'grid gap-6 lg:grid-cols-2'
-const STAT_GRID = 'mb-6 grid grid-cols-2 gap-3'
+const SPLIT = 'grid gap-s-6 lg:grid-cols-2'
+const STAT_GRID = 'mb-s-6 grid grid-cols-2 gap-s-3'
 
 interface CovidDataPoint {
   year: number
@@ -31,11 +33,48 @@ interface CovidDataPoint {
   demandShock: boolean
 }
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  showDataOverlay: true,
+  fiscalPolicy: 100,
+  monetaryPolicy: 50,
+}
+
 export default function CrisisCovid() {
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
   const [shockType, setShockType] = useState<'demand' | 'supply' | 'combined'>('combined')
-  const [showDataOverlay, setShowDataOverlay] = useState(true)
-  const [fiscalPolicy, setFiscalPolicy] = useState(100)
-  const [monetaryPolicy, setMonetaryPolicy] = useState(50)
+const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
+const [fiscalPolicy, setFiscalPolicy] = useState(DEFAULTS.fiscalPolicy)
+const [monetaryPolicy, setMonetaryPolicy] = useState(DEFAULTS.monetaryPolicy)
+
+  const { reset, dirty } = useToolReset(
+    {
+    showDataOverlay: showDataOverlay,
+    fiscalPolicy: fiscalPolicy,
+    monetaryPolicy: monetaryPolicy,
+    },
+    {
+      setShowDataOverlay,
+      setFiscalPolicy,
+      setMonetaryPolicy,
+    },
+    {
+      showDataOverlay: DEFAULTS.showDataOverlay,
+      fiscalPolicy: DEFAULTS.fiscalPolicy,
+      monetaryPolicy: DEFAULTS.monetaryPolicy,
+    },
+  )
 
   // Historical data for 2020-2023
   const covidData: CovidDataPoint[] = [
@@ -110,10 +149,10 @@ export default function CrisisCovid() {
             unit=""
           />
           <div>
-            <label className="mb-2 block font-medium">
+            <label className="mb-s-2 block font-medium">
               Shock Type
             </label>
-            <div className="flex gap-2">
+            <div className="flex gap-s-2">
               <Button
                 onClick={() => setShockType('demand')}
                 variant={shockType === 'demand' ? 'primary' : 'secondary'}
@@ -146,16 +185,19 @@ export default function CrisisCovid() {
         </div>
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <ToolControlBar onReset={reset} dirty={dirty} />
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Output, Unemployment, and Inflation Path
-        </h3>
+        </h2>
         <div className={CHART_BOX}>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={covidData} margin={chartTheme.margin}>
               <CartesianGrid {...chartTheme.grid} />
-              <XAxis dataKey="year" {...chartTheme.axis} />
-              <YAxis {...chartTheme.axis} />
+              <XAxis
+                key={chartTheme.axisKey('x')} dataKey="year" {...chartTheme.axis} />
+              <YAxis
+                key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
               <ChartLine
                 type="monotone"
@@ -196,10 +238,10 @@ export default function CrisisCovid() {
         </div>
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Policy Response Comparison
-        </h3>
+        </h2>
         <div className={SPLIT}>
           <div className={CHART_BOX}>
             <ResponsiveContainer width="100%" height="100%">
@@ -209,8 +251,10 @@ export default function CrisisCovid() {
                 { name: 'Inflation', value: policyResult.inflation },
               ]} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
-                <XAxis dataKey="name" {...chartTheme.axis} />
-                <YAxis {...chartTheme.axis} />
+                <XAxis
+                  key={chartTheme.axisKey('x')} dataKey="name" {...chartTheme.axis} />
+                <YAxis
+                  key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
                 <ChartBar dataKey="value" fill={POLICY_BAR_FILL} />
               </BarChart>
@@ -238,7 +282,7 @@ export default function CrisisCovid() {
         </div>
       </div>
 
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-s-8 grid gap-s-6 sm:grid-cols-2 lg:grid-cols-3">
         <ToolNote label="Info" variant="info" title="The 2020-2023 Shock">
           <p>2020: Global pandemic caused massive demand shock with lockdowns and reduced consumption</p>
           <p>2021: Recovery began with fiscal stimulus and monetary easing</p>

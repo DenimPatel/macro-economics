@@ -1,14 +1,18 @@
 import { useState } from 'react'
-import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Cell } from 'recharts'
+import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Cell } from 'recharts'
 import { ChartBar, ChartPie } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
+  Button,
   SliderControl,
   StatBox,
-  Button,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
+import { useHiddenSeries } from '../lib/chartSeries'
+import { ChartLegend } from '../components/ChartLegend'
 
 /** Series keep a fixed economic identity across every chart in this tool. */
 const CAPITAL_FILL = chartColor(0)
@@ -17,10 +21,10 @@ const TFP_FILL = chartColor(2)
 const TOTAL_GROWTH_FILL = chartColor(3)
 
 /** Layout shared by the chart and readout blocks. */
-const CONTROL_GRID = 'grid gap-6 sm:grid-cols-2'
+const CONTROL_GRID = 'grid gap-s-6 sm:grid-cols-2'
 const CHART_BOX = 'h-[300px]'
-const SPLIT = 'grid gap-6 lg:grid-cols-2'
-const STAT_GRID = 'mb-6 grid grid-cols-2 gap-3'
+const SPLIT = 'grid gap-s-6 lg:grid-cols-2'
+const STAT_GRID = 'mb-s-6 grid grid-cols-2 gap-s-3'
 
 interface GrowthDataPoint {
   year: number
@@ -31,10 +35,44 @@ interface GrowthDataPoint {
   totalContribution: number
 }
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  showDataOverlay: true,
+  timePeriod: 2000,
+}
+
 export default function GrowthAccounting() {
+  const decomp = useHiddenSeries(['capital', 'labor', 'tfp', 'total'])
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
   const [country, setCountry] = useState<'us' | 'china' | 'japan'>('us')
-  const [showDataOverlay, setShowDataOverlay] = useState(true)
-  const [timePeriod, setTimePeriod] = useState(2000)
+const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
+const [timePeriod, setTimePeriod] = useState(DEFAULTS.timePeriod)
+
+  const { reset, dirty } = useToolReset(
+    {
+    showDataOverlay: showDataOverlay,
+    timePeriod: timePeriod,
+    },
+    {
+      setShowDataOverlay,
+      setTimePeriod,
+    },
+    {
+      showDataOverlay: DEFAULTS.showDataOverlay,
+      timePeriod: DEFAULTS.timePeriod,
+    },
+  )
 
   // Historical growth data for different countries
   const growthData: Record<string, GrowthDataPoint[]> = {
@@ -93,10 +131,10 @@ export default function GrowthAccounting() {
       <div className="control-panel">
         <div className={CONTROL_GRID}>
           <div>
-            <label className="mb-2 block font-medium">
+            <label className="mb-s-2 block font-medium">
               Country
             </label>
-            <div className="flex gap-2">
+            <div className="flex gap-s-2">
               <Button
                 onClick={() => setCountry('us')}
                 variant={country === 'us' ? 'primary' : 'secondary'}
@@ -139,31 +177,44 @@ export default function GrowthAccounting() {
         </div>
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <ToolControlBar onReset={reset} dirty={dirty} />
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Growth Decomposition Over Time
-        </h3>
+        </h2>
         <div className={CHART_BOX}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={currentCountryData} margin={chartTheme.margin}>
               <CartesianGrid {...chartTheme.grid} />
-              <XAxis dataKey="year" {...chartTheme.axis} />
-              <YAxis {...chartTheme.axis} />
+              <XAxis
+                key={chartTheme.axisKey('x')} dataKey="year" {...chartTheme.axis} includeHidden />
+              <YAxis
+                key={chartTheme.axisKey('y')} {...chartTheme.yAxis} includeHidden />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-              <Legend {...chartTheme.legend} />
-              <ChartBar dataKey="capitalContribution" fill={CAPITAL_FILL} name="Capital Contribution" />
-              <ChartBar dataKey="laborContribution" fill={LABOR_FILL} name="Labor Contribution" />
-              <ChartBar dataKey="tfpContribution" fill={TFP_FILL} name="TFP Contribution" />
-              <ChartBar dataKey="growthRate" fill={TOTAL_GROWTH_FILL} name="Total Growth" />
+              <ChartBar hide={decomp.isHidden('capital')} dataKey="capitalContribution" fill={CAPITAL_FILL} name="Capital Contribution" />
+              <ChartBar hide={decomp.isHidden('labor')} dataKey="laborContribution" fill={LABOR_FILL} name="Labor Contribution" />
+              <ChartBar hide={decomp.isHidden('tfp')} dataKey="tfpContribution" fill={TFP_FILL} name="TFP Contribution" />
+              <ChartBar hide={decomp.isHidden('total')} dataKey="growthRate" fill={TOTAL_GROWTH_FILL} name="Total Growth" />
             </BarChart>
           </ResponsiveContainer>
+          <ChartLegend
+            items={[
+              { key: 'capital', label: 'Capital Contribution', color: CAPITAL_FILL },
+              { key: 'labor', label: 'Labor Contribution', color: LABOR_FILL },
+              { key: 'tfp', label: 'TFP Contribution', color: TFP_FILL },
+              { key: 'total', label: 'Total Growth', color: TOTAL_GROWTH_FILL },
+            ]}
+            hidden={decomp.hidden}
+            onToggle={decomp.toggle}
+            onShowAll={decomp.showAll}
+          />
         </div>
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Contribution Shares (2000)
-        </h3>
+        </h2>
         <div className={SPLIT}>
           <div className={CHART_BOX}>
             <ResponsiveContainer width="100%" height="100%">
@@ -183,7 +234,17 @@ export default function GrowthAccounting() {
                   ))}
                 </ChartPie>
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-                <Legend {...chartTheme.legend} />
+                {/*
+                 * No legend on this one, deliberately. A pie is ONE series cut
+                 * into slices, so there is nothing to hide: `hide` on a slice
+                 * removes part of the quantity being displayed, and a pie with
+                 * a slice missing is not a pie any more. Buttons here would
+                 * also be a lie — clickable, focusable, and inert.
+                 *
+                 * It is not information loss either: every slice already
+                 * carries its own name and percentage as a direct label, so
+                 * the legend repeated, in a column, what the slices say.
+                 */}
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -211,7 +272,7 @@ export default function GrowthAccounting() {
         </div>
       </div>
 
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-s-8 grid gap-s-6 sm:grid-cols-2 lg:grid-cols-3">
         <ToolNote label="Info" variant="info" title="Growth Patterns by Country">
           <p>United States: Stable growth with TFP contributing more in recent decades</p>
           <p>China: Rapid growth driven by capital accumulation and labor force expansion</p>

@@ -36,13 +36,37 @@
  * because mixing toward the surface lightens it and drops it below AA.
  * ------------------------------------------------------------------ */
 :root {
-  /* Cool neutral surfaces */
-  --c-bg-ch: 247 248 250;
+  /* Cool neutral surfaces.
+   *
+   * The canvas (`bg`) is a hair *below* the content surfaces, not a hair
+   * above, and that direction is load-bearing: cards sit on the canvas, so
+   * the canvas has to be the dimmer plane or a card and the page it sits on
+   * collapse into one another. It is as far down as it goes on purpose —
+   * `fg-subtle` has to clear 4.5:1 on the canvas and on `surface-2`, and at
+   * 4.86:1 and 4.64:1 respectively those two are the binding constraints on
+   * how dark any surface in this scheme is allowed to get. The next step down
+   * would put eyebrow text below AA on the canvas.
+   *
+   * `surface-2` therefore moves with the canvas, to keep the canvas/well step
+   * at the same 5/255 it was.
+   *
+   * `surface-raised` is *identical to `surface`* in light, and that is the
+   * correct value, not an oversight: white is already the top of the light
+   * ramp, so there is no lighter fill available and a "raised" surface could
+   * only fake depth by going darker, which reads as recessed. Above white, the
+   * only honest depth signals are the elevation shadow and the lit edge. Dark
+   * does the opposite and really is lighter, because there the ramp has room.
+   * See the elevation scale below. */
+  --c-bg-ch: 242 245 250;
   --c-surface-ch: 255 255 255;
   --c-surface-raised-ch: 255 255 255;
-  --c-surface-2-ch: 241 243 246;
+  --c-surface-2-ch: 237 240 244;
   --c-border-ch: 217 222 230;
   --c-border-strong-ch: 185 193 205;
+  /* The plot grid. One step quieter than the card border, on purpose: a
+     gridline is the reader's ruler, and a ruler that competes with the
+     2.25px data stroke is a second, louder thing saying the same numbers. */
+  --c-grid-ch: 227 231 237;
   --c-fg-ch: 12 17 24;
   --c-fg-muted-ch: 63 72 84;
   --c-fg-subtle-ch: 99 108 122;
@@ -72,15 +96,22 @@
   --c-bad-ch: 190 18 60;
   --c-bad-ink-ch: 159 18 57;
 
-  --c-code-bg-ch: 241 243 246;
+  --c-code-bg-ch: 237 240 244;
 
-  /* Cool elevation. Alphas only — a tinted shadow reads as dirt on a
-     neutral surface. */
-  --shadow-card: 0 1px 2px rgb(12 17 24 / 0.04), 0 1px 3px rgb(12 17 24 / 0.05);
-  --shadow-plate:
-    0 1px 2px rgb(12 17 24 / 0.05), 0 12px 32px -16px rgb(12 17 24 / 0.18);
-  --shadow-pop:
-    0 8px 24px -6px rgb(12 17 24 / 0.14), 0 24px 56px -28px rgb(12 17 24 / 0.28);
+  /* The ink every shadow is mixed from. Alpha-only by rule: a tinted or warm
+     shadow on a neutral plane reads as dirt rather than as distance. Light
+     uses the foreground ink so the shadow belongs to the palette; dark uses
+     pure black, because on a near-black canvas a shadow cast by near-white
+     ink would glow. */
+  --c-shadow-ink-ch: 12 17 24;
+
+  /* The modal veil behind the navigation drawer. Same ink, alpha carried
+     separately because a veil is translucent and the `-ch` channel form only
+     holds three numbers. It darkens the page, it is not a surface: nothing
+     is ever legible on top of it, so it is not part of the text-on-surface
+     contrast contract (see contrast.test.ts). */
+  --c-scrim-ch: 12 17 24;
+  --c-scrim-a: 0.5;
 
   /* Derived colour forms. Resolved at use time, so the `.dark` overrides
      below only need to change the `-ch` vars. */
@@ -90,6 +121,7 @@
   --c-surface-2: rgb(var(--c-surface-2-ch));
   --c-border: rgb(var(--c-border-ch));
   --c-border-strong: rgb(var(--c-border-strong-ch));
+  --c-grid: rgb(var(--c-grid-ch));
   --c-fg: rgb(var(--c-fg-ch));
   --c-fg-muted: rgb(var(--c-fg-muted-ch));
   --c-fg-subtle: rgb(var(--c-fg-subtle-ch));
@@ -111,6 +143,367 @@
   --c-bad: rgb(var(--c-bad-ch));
   --c-bad-ink: rgb(var(--c-bad-ink-ch));
   --c-code-bg: rgb(var(--c-code-bg-ch));
+  --c-scrim: rgb(var(--c-scrim-ch) / var(--c-scrim-a));
+
+  /* ---------------------------------------------------------------- *
+   * Elevation scale
+   *
+   * Depth is the one axis this palette is allowed to vary along besides
+   * hue, and it is one scale rather than a shadow per component, so a
+   * card, a control panel, and a popover always sit at a predictable
+   * distance from the canvas.
+   *
+   * Each step is a PAIR of layers doing two different jobs: a tight
+   * contact layer that says "this touches the surface" and a wider
+   * ambient layer that says "and it is this far above it". As the step
+   * rises the contact layer gets deeper and the ambient layer widens
+   * and deepens faster, so adjacent steps are perceptibly different
+   * rather than cosmetically different. Both layers are the same cool
+   * neutral ink at low alpha, by rule.
+   *
+   *   --elev-0  flush with the canvas
+   *   --elev-1  resting card or plate on the canvas
+   *   --elev-2  raised: hovered cards, control panels, chart plates
+   *   --elev-3  floating: popovers, tooltips, the navigation drawer
+   *   --elev-4  modal, on top of an overlay
+   *
+   * The light alphas are tuned to be *perceptible* against a near-white
+   * card sitting on a near-white canvas, which is the whole difficulty
+   * in light mode: there is no fill difference to fall back on. The
+   * dark alphas stay lower, because in dark the fill is already lighter
+   * than its parent and a heavy shadow on top of that turns to mud.
+   * ---------------------------------------------------------------- */
+  --elev-0: none;
+  --elev-1:
+    0 1px 2px rgb(var(--c-shadow-ink-ch) / 0.07), 0 2px 6px -2px rgb(var(--c-shadow-ink-ch) / 0.1);
+  --elev-2:
+    0 1px 2px rgb(var(--c-shadow-ink-ch) / 0.08),
+    0 6px 16px -6px rgb(var(--c-shadow-ink-ch) / 0.15);
+  --elev-3:
+    0 2px 6px rgb(var(--c-shadow-ink-ch) / 0.1),
+    0 16px 32px -12px rgb(var(--c-shadow-ink-ch) / 0.22);
+  --elev-4:
+    0 4px 10px rgb(var(--c-shadow-ink-ch) / 0.12),
+    0 30px 60px -20px rgb(var(--c-shadow-ink-ch) / 0.3);
+
+  /* The lit edge: a 1px inset highlight along the top of a raised plate.
+   * In dark it is what stops a raised plate from looking like a hole; in
+   * light it does real work on the `surface-2` fills (control panels,
+   * notes, tiles) and is a deliberate no-op on a pure-white fill, since
+   * there is nothing lighter than white to add. It pairs with a shadow,
+   * never replaces one. */
+  --elev-inset-hi: rgb(255 255 255 / 0.9);
+
+  /* The three names components already use, kept alive as indirections so
+   * nothing breaks. They are deliberately NOT redefined in `.dark`: each one
+   * is a `var()` reference, so it re-resolves against whatever the scale
+   * says in the active theme. */
+  --shadow-card: var(--elev-1);
+  --shadow-plate: var(--elev-2);
+  --shadow-pop: var(--elev-3);
+
+  /* ---------------------------------------------------------------- *
+   * User preferences
+   *
+   * Written onto <html> by `lib/preferences.ts` (and by the inline
+   * no-flash script in index.html, before first paint). These defaults
+   * are the values the site used before preferences existed, which is
+   * the whole point of declaring them here: a visitor with nothing
+   * stored, a visitor whose JavaScript never runs, and a visitor who
+   * arrives before the module loads all get the identical page.
+   *
+   * `--pref-text-scale`  unitless, multiplies the root font size
+   * `--pref-measure`     reading column width
+   * `--pref-line-height` unitless, body leading
+   * `--pref-space`       density multiplier for padding and gaps.
+   *                       It is consumed ONLY by the `--space-*` scale
+   *                       below; nothing else multiplies by it.
+   * `--pref-motion-scale` 1 for motion, 0 for a still page
+   * ---------------------------------------------------------------- */
+  --pref-text-scale: 1;
+  --pref-measure: 70ch;
+  --pref-line-height: 1.6;
+  --pref-space: 1;
+  --pref-motion-scale: 1;
+
+  /* ---------------------------------------------------------------- *
+   * Duration scale
+   *
+   * Three steps, and every one of them is the number the site was
+   * already using: `--dur-fast` is the 120ms that `.pref-tap` and
+   * `.button` and `.nav-link` had written by hand, `--dur-base` is
+   * the 150ms the skip link used, `--dur-slow` is the 300ms the
+   * course-progress bar used. Turning them into tokens is not a
+   * retune — at the default every transition resolves to the duration
+   * it had before, which is the only way to add a vocabulary without
+   * changing the page.
+   *
+   * The three are named for what the transition is DOING, which is
+   * the only distinction a reader can perceive:
+   *
+   *   --dur-fast   a control acknowledging a press. Colour, a ring, a
+   *                thumb. Must land before the finger lifts.
+   *   --dur-base   something appearing or arriving. A 4px rise, a
+   *                skip link sliding out from under the header.
+   *   --dur-slow   a value animating to a NEW magnitude — a progress
+   *                bar filling, a cross-fade between two themes. The
+   *                only step where a quarter of a second is right.
+   *
+   * All three multiply `--pref-motion-scale`, which is `0` for an
+   * explicit `motion: 'reduced'` and for the OS asking for less
+   * motion. That is a `0ms` transition rather than a removed
+   * declaration, which is deliberate: `transition: none` would also
+   * remove the `transition-property` list, and an element that
+   * inherited a transition from a class it no longer matches would
+   * keep animating.
+   *
+   * This is the ONLY place in the stylesheet that multiplies
+   * `--pref-motion-scale`. A `calc(120ms * ...)` written into a rule
+   * body is a duration that has forgotten which step it is, and
+   * `tests/motion.test.ts` fails the build on one.
+   * ---------------------------------------------------------------- */
+  --dur-fast: calc(120ms * var(--pref-motion-scale, 1));
+  --dur-base: calc(150ms * var(--pref-motion-scale, 1));
+  --dur-slow: calc(300ms * var(--pref-motion-scale, 1));
+
+  /* ---------------------------------------------------------------- *
+   * Derived reading scale
+   *
+   * `--read-lead` is the reader's chosen leading expressed as a ratio
+   * against the 1.6 this site shipped with, so 1 is exactly "the page
+   * as it looked before preferences existed" and every rule written as
+   * a multiple of it moves with the preference instead of being
+   * re-declared per surface.
+   *
+   * `--read-line` is the same idea for the prose leading. Long-form
+   * reading wants more leading than a UI label does, which is why
+   * `.prose-lecture` was pinned at 1.75 while the body sat at 1.6 — and
+   * pinning it meant the reader's line-height control reached only the
+   * chrome and stopped dead at the first paragraph. 1.6 * 1.09375 is
+   * 1.75, so the default is unchanged and `tight` / `relaxed` now
+   * reach the lecture body as well.
+   *
+   * Nothing writes these two: they are functions of a preference, not
+   * preferences themselves, so they stay out of the persistence
+   * contract in `lib/preferences.ts` and out of the no-flash script.
+   * ---------------------------------------------------------------- */
+  --read-lead: calc(var(--pref-line-height, 1.6) / 1.6);
+  --read-line: calc(var(--pref-line-height, 1.6) * 1.09375);
+
+  /* ---------------------------------------------------------------- *
+   * Reading geometry
+   *
+   * `--read-anchor-offset` is where a `#fragment` link parks its
+   * heading. It has to clear everything stuck to the top of the
+   * viewport while the reader is in the article: the `h-14` header
+   * (3.5rem) and the sticky lecture bar (2.75rem), plus a little air so
+   * the heading is not glued to the chrome. In rem, because both of the
+   * things it clears are in rem and the text-size preference scales the
+   * root font size — a px value is 22px short at 130% text, where the
+   * header alone is 72.8px.
+   *
+   * `--prose-bg` is the colour the prose column sits on. It is not
+   * `--c-bg` by definition: focus mode lifts the article onto a
+   * `--c-surface` plate, and the horizontal scroll shadows blend with
+   * whatever is actually behind them.
+   * ---------------------------------------------------------------- */
+  --read-anchor-offset: 7.5rem;
+  --prose-bg: var(--c-bg);
+
+  /* ---------------------------------------------------------------- *
+   * Spacing scale
+   *
+   * `--pref-space` is the reader's density choice, and a preference that
+   * reaches two rules is a preference that looks broken. So the
+   * multiplier appears in exactly nine places in this stylesheet — one
+   * per step below — and every gap, inset, margin and rhythm on the
+   * site is expressed in those nine steps rather than in its own rem
+   * value. A STEP is the thing that scales. Everything else composes
+   * steps.
+   *
+   * A step is a rem length multiplied by a plain number, which is the one
+   * multiplication here that cannot go wrong:
+   *
+   *   - `rem` is an absolute length, so the product is a length. CSS
+   *     does not need the multiplier to carry a unit, and there is no
+   *     `rem * unitless` ambiguity to guard against.
+   *   - it is NOT `em`. An `em` would resolve against the ELEMENT's own
+   *     computed font size, so a step declared in `em` and inherited
+   *     into a heading would compound with the text-size preference:
+   *     1.3 in the element, times 1.3 at the root. Steps are `rem`,
+   *     exactly like the type scale, and they scale with the root
+   *     (text size) and with `--pref-space` (density) independently.
+   *   - a custom property is substituted, not inherited-as-a-value: every
+   *     descendant re-evaluates `var(--pref-space)` against its own
+   *     inherited copy, so one write on <html> moves the whole page and
+   *     there is nothing to re-declare per surface.
+   *
+   * `--pref-space` can only ever be 0.85, 1, or 1.15. `lib/preferences.ts`
+   * validates `density` against `SPACE_SCALE` before it is stored and
+   * `applyPreferences` is the only writer, and the inline no-flash script
+   * reads the same three values — so a negative or NaN multiplier cannot
+   * reach a `calc()`. Each step also carries its own `, 1` fallback, which
+   * is what makes a bare `var(--space-4)` correct on a page whose
+   * preferences module never loaded.
+   *
+   * `--space-1` .. `--space-12` are a 4px grid at 16px root. Three steps
+   * sit off that grid, and each is off it for one reason:
+   *
+   *   --space-hair   2.4px  the inside of a chip, a badge, a mini label.
+   *                         A 4px inset turns a 11px level meter into a
+   *                         19px pill in a syllabus row.
+   *   --space-tight  6.4px  a nav row's vertical inset and a tile's
+   *                         label-to-value rhythm. Half a grid step of
+   *                         air is what those two already had.
+   *   --space-inset  21.6px the padding of a control panel and a chart
+   *                         plate. It is the most repeated value in the
+   *                         tool chrome, so it is named rather than
+   *                         rounded — two plates depending on 1.35rem is
+   *                         not a reason to redraw them.
+   *
+   * All three are the numbers the site already used, so at the default
+   * (`--pref-space: 1`) every step resolves to a pre-existing value and
+   * converting a declaration to a step is a no-op rather than a redraw.
+   * ---------------------------------------------------------------- */
+  --space-hair: calc(0.15rem * var(--pref-space, 1));
+  --space-tight: calc(0.4rem * var(--pref-space, 1));
+  --space-1: calc(0.25rem * var(--pref-space, 1));
+  --space-2: calc(0.5rem * var(--pref-space, 1));
+  --space-3: calc(0.75rem * var(--pref-space, 1));
+  --space-4: calc(1rem * var(--pref-space, 1));
+  --space-5: calc(1.25rem * var(--pref-space, 1));
+  --space-6: calc(1.5rem * var(--pref-space, 1));
+  --space-8: calc(2rem * var(--pref-space, 1));
+  --space-10: calc(2.5rem * var(--pref-space, 1));
+  --space-inset: calc(1.35rem * var(--pref-space, 1));
+  --space-12: calc(3rem * var(--pref-space, 1));
+
+  /* ---------------------------------------------------------------- *
+   * Dimensions that must NEVER be multiplied by --pref-space
+   *
+   * The scale above is for the space a page spends on itself. These are
+   * not that: they are dimensions whose value is a fact about the thing
+   * being drawn or about how a hand reaches it, and shrinking them
+   * changes what the page means rather than how it looks. Each one is a
+   * bare length on purpose — no var, no calc — so that a later pass
+   * cannot "tidy" one into the scale by accident.
+   *
+   *   height            The chart plot area. A shorter plot re-scales the
+   *                     y-axis, so the same curve sits at a different
+   *                     height and two tools stop being comparable by
+   *                     eye. This is a correctness property, not a
+   *                     taste one. `.recharts-responsive-container` is
+   *                     400px; the tools draw into 300px frames
+   *                     (`h-[300px]` in web/src/tools) and the data
+   *                     explorer into `.plot-frame`, which is 400px as
+   *                     well — one plot geometry across the site, so
+   *                     that a rate of 4 on this page and a rate of 4
+   *                     in a tool are the same number of pixels up
+   *                     the screen. `--plot-h-tall` below is the
+   *                     frame the explorer used to take, kept declared
+   *                     and read by nothing.
+   *
+   *   min hit area      A 44px tap target must not become 37px at
+   *                     compact. The header's buttons and the settings
+   *                     panel's option cells are sized with literal
+   *                     utilities (`h-9 w-9`, `h-7 w-7`, `py-1.5`) and
+   *                     never with the Tailwind default spacing scale,
+   *                     so the density multiplier cannot reach them. The
+   *                     same is true of `.button` and `.number-input`
+   *                     below: their padding is a hit area, and it is
+   *                     the one padding on the site that must not
+   *                     shrink.
+   *
+ *   height            The sticky header, `h-14` = 3.5rem. That is
+ *                     56px at the default text scale and it MOVES with
+ *                     the reader's `--pref-text-scale` — 50.4px at 0.9,
+ *                     72.8px at 1.3 — so every offset that has to clear
+ *                     it is written in `rem` (see `.lecture-bar`'s
+ *                     `top: 3.5rem`) and never in `px`. A px offset
+ *                     would desynchronise from the bar above it the
+ *                     moment a reader changed their text size.
+ *                     `position: sticky; top: 0` on the sidebar pairs
+ *                     with it; a header that changed height would
+ *                     move every `:target` landing under it.
+   *
+   *   layout            KaTeX's internal layout. An equation is one
+   *                     unbreakable box whose vertical extents come from
+   *                     fraction bars and scripts; `.katex-display` also
+   *                     reserves room for a 10px scrollbar in its bottom
+   *                     padding, so its padding is not a rhythm value
+   *                     either and must not be scaled below it.
+   *
+   *   everything        Nothing inside `@media print` is bound to
+   *                     `--pref-space` or to a step. Paper is a fixed
+   *                     width and the print block is written in points.
+   * ---------------------------------------------------------------- */
+  --plot-h: 400px;
+  /* Still declared, still off the scale, and read by nothing. The data
+   * explorer was the last user of a "tall" frame and the reasoning that
+   * justified it did not survive a real chart with a legend on it.
+   *
+   * The site has TWO plot geometries, both deliberate and both guarded by
+   * `tests/density.test.ts`: the twenty-odd tool charts draw into
+   * `h-[300px]` frames, which `DataExplorer` is the only page not to use,
+   * because its second y-axis and its legend need the extra 100px and want
+   * to share a pixel scale with the tools' primary axis. This third value is
+   * a fourth candidate nobody uses, kept only so the next pass cannot
+   * re-derive 420px by accident. */
+  --plot-h-tall: 420px;
+
+  /* ---------------------------------------------------------------- *
+   * Radii
+   *
+   * Three values, one definition, two consumers: `index.css` reads them
+   * directly and `tailwind.config.ts` points its `borderRadius` tokens at
+   * the same vars, so `rounded-card` in TSX and `.card` in the
+   * stylesheet cannot drift apart. Radii do NOT scale with density — a
+   * corner is a shape, and a shape that changes with a spacing
+   * preference is a rendering fault.
+   * ---------------------------------------------------------------- */
+  --radius-control: 8px;
+  --radius-card: 10px;
+  --radius-plate: 12px;
+  --radius-pill: 999px;
+
+  /* ---------------------------------------------------------------- *
+   * Chart chrome
+   *
+   * Three numbers, all of them the last place `--pref-text-scale` did
+   * not reach. Recharts takes a `fontSize` for axis ticks and the
+   * legend and the tooltip, but it writes it as an SVG presentation
+   * attribute, and a presentation attribute cannot be a rem length
+   * against a scaled root — so those three sizes were bare px and
+   * every chart on the site ignored the reader's text size. They are
+   * rem here, and `chartTheme.ts` hands Recharts `var(--chart-*)` as
+   * the attribute value: a presentation attribute accepts `var()` and
+   * resolves it, and the value the browser hands back to
+   * `getComputedStyle` is the used px, which is what Recharts measures
+   * its tick collisions with. That is why the floor is here rather
+   * than in JS.
+   *
+   * Each floor is a legibility floor, not a scale floor. Axis ticks
+   * are the smallest type on the site; below 11px the y gutter starts
+   * costing more plot width than the extra digits buy. The legend and
+   * the tooltip are UI text next to body copy, so they hold 12px.
+   * ---------------------------------------------------------------- */
+  --chart-tick-size: max(11px, 0.6875rem);
+  --chart-legend-size: max(12px, 0.75rem);
+  --chart-tooltip-size: max(12px, 0.75rem);
+
+  /* The plot area is a well, and the well is the canvas colour.
+     A `surface-2` fill was measured and rejected: `surface-2` is
+     *lighter* than `surface` in dark, so a `surface-2` plot would put
+     the series on the lightest plane in the app and force every
+     series colour above a relative luminance of 0.152 to clear 3:1
+     on it. Four of the seven do not clear it, and the four that would
+     have to move are the blue, violet, crimson and cyan cluster,
+     whose mutual separation is currently 1.06-1.19 in luminance. A
+     visible fill was not worth flattening four series into one.
+     The canvas is darker than the surface in *both* themes, so a
+     plot on the canvas is a real recess in both, and it costs the
+     palette nothing. */
+  --plot-bg: var(--c-bg);
 }
 
 .dark {
@@ -121,6 +514,9 @@
   --c-surface-2-ch: 30 36 46;
   --c-border-ch: 39 46 58;
   --c-border-strong-ch: 61 71 87;
+  /* The same one-step-quieter relationship to the card border that light has:
+     1.19:1 against the plate here against 1.24:1 there. */
+  --c-grid-ch: 31 37 50;
   --c-fg-ch: 237 242 248;
   --c-fg-muted-ch: 168 179 194;
   --c-fg-subtle-ch: 134 146 162;
@@ -148,9 +544,33 @@
 
   --c-code-bg-ch: 30 36 46;
 
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 1px 3px rgb(0 0 0 / 0.3);
-  --shadow-plate: 0 1px 2px rgb(0 0 0 / 0.5), 0 12px 32px -16px rgb(0 0 0 / 0.7);
-  --shadow-pop: 0 8px 24px -6px rgb(0 0 0 / 0.6), 0 24px 56px -28px rgb(0 0 0 / 0.8);
+  --c-shadow-ink-ch: 0 0 0;
+  --c-scrim-ch: 0 0 0;
+  /* Higher than light, not lower: the dark canvas is already near-black, so
+     the veil's job here is to push the page *under* the drawer, and it has
+     almost no luminance to work with. */
+  --c-scrim-a: 0.62;
+
+  /* The same five steps at lower alphas. Dark carries most of its depth in
+     the fill — `surface-raised` really is lighter than `surface` here — so
+     these sit a stop quieter than the light set, and they pull back harder
+     (spread -2/-8/-16/-24 against the light set's -2/-6/-12/-20) so the
+     steps stay separated without piling on blur. */
+  --elev-0: none;
+  --elev-1:
+    0 1px 2px rgb(var(--c-shadow-ink-ch) / 0.4), 0 2px 6px -2px rgb(var(--c-shadow-ink-ch) / 0.28);
+  --elev-2:
+    0 1px 2px rgb(var(--c-shadow-ink-ch) / 0.44),
+    0 8px 20px -8px rgb(var(--c-shadow-ink-ch) / 0.5);
+  --elev-3:
+    0 2px 8px rgb(var(--c-shadow-ink-ch) / 0.48),
+    0 20px 44px -16px rgb(var(--c-shadow-ink-ch) / 0.64);
+  --elev-4:
+    0 4px 12px rgb(var(--c-shadow-ink-ch) / 0.52),
+    0 32px 64px -24px rgb(var(--c-shadow-ink-ch) / 0.74);
+
+  /* Near-white at very low alpha: just enough to catch a top edge. */
+  --elev-inset-hi: rgb(255 255 255 / 0.07);
 }
 
 * {
@@ -159,8 +579,24 @@
   box-sizing: border-box;
 }
 
+/* Smooth scrolling, gated TWICE and deliberately so.
+ *
+ * The media query is the half that was already there: the OS asking
+ * for less motion has to be honoured before the document is
+ * interactive, or the very first frame is already moving.
+ *
+ * The `:not()` is the half that was not, and it is a real bug rather
+ * than belt-and-braces. `html { scroll-behavior: smooth }` inside a
+ * media query is specificity (0,0,1), and the in-app preference's
+ * `html[data-pref-motion='reduced']` rule is (0,1,1), so the
+ * attribute rule did win — but only because it happens to sit
+ * LATER in the file than this block. That is not a relationship, it
+ * is a coincidence, and the first edit that moves either block
+ * silently gives a reader who asked for a still page an animated
+ * jump to every `#` anchor in a lecture. Excluding the attribute here
+ * makes the gate independent of source order. */
 @media (prefers-reduced-motion: no-preference) {
-  html {
+  html:not([data-pref-motion='reduced']) {
     scroll-behavior: smooth;
   }
 }
@@ -172,7 +608,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--c-bg);
   color: var(--c-fg);
-  line-height: 1.6;
+  line-height: var(--pref-line-height, 1.6);
   /* Inter's alternates cost nothing and remove the "1" / "l" ambiguity in
      prose that quotes model equations. */
   font-feature-settings: 'cv05' 1, 'ss03' 1;
@@ -185,6 +621,93 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------ *
+ * The reading column
+ *
+ * `--pref-measure` is the width of a line of prose and belongs on every
+ * container that holds prose and nothing else: a page header and its
+ * deck, a case-study summary, a note body, the lecture body itself. It
+ * must NOT reach a chart plate, a control panel, a table of contents or
+ * a tool layout — a 62ch slider panel is not a narrower panel, it is a
+ * broken one.
+ *
+ * It is a class rather than a Tailwind `max-w-*` utility for two
+ * reasons. The value has to be able to come from a custom property, and
+ * a reading measure is a typographic decision that belongs in the
+ * stylesheet next to the prose rules rather than repeated at eight call
+ * sites where one of them would eventually be missed.
+ *
+ * THE FONT SIZE BELOW IS LOAD-BEARING, and it is the fix for a measure
+ * rag that was visible on the page. `ch` resolves against the ELEMENT's
+ * own font size, not against the root's and not against the size of the
+ * text that will eventually be set inside the box. So a `.reading-col`
+ * at 16px and a `.prose-lecture` at 1.0625rem were both "70ch" and both
+ * honest about being 70 characters — of two different sizes. Measured in
+ * Chromium at the default settings, Inter's "0" is 0.6309em, which makes
+ * that 706.56px beside 750.72px: a 44.16px step in the right edge of
+ * every page whose header introduces a `.prose-lecture` body. Two blocks
+ * of the same document, set to the same nominal measure, ending 44px
+ * apart.
+ *
+ * Declaring the reading column's own font size to BE the lecture body
+ * size removes the disagreement at its source instead of hiding it. It
+ * is deliberately not `var(--read-size)` or any other indirection:
+ * `1.0625rem` is written in both this rule and `.prose-lecture`, and
+ * `tests/pages.test.tsx` fails if those two ever drift, so there is one
+ * number in the stylesheet that says what a reading character is.
+ *
+ * The alternative was to resolve the `ch` once, at the root, by
+ * registering `--pref-measure` as a `<length-percentage>` so the
+ * computed absolute px value would inherit. That makes the four
+ * consumers identical by construction, but the basis becomes the ROOT
+ * font size, which narrows the lecture body itself by 44px — a change
+ * to the one column a reader spends an hour in, to fix a header. The
+ * measure a reader chose is 70 characters of the prose they are
+ * actually reading, so the prose keeps its width and the header moves
+ * to meet it.
+ *
+ * Nothing inherits a wrong size from this: every child of a reading
+ * column sets its own type size (`.text-micro`, `text-display-md`,
+ * `.prose-lecture`, and so on), and the one that used to be `text-base`
+ * — the page header's deck — is now the prose size, which is what a
+ * deck that introduces a 1.0625rem paragraph should be.
+ * ------------------------------------------------------------------ */
+.reading-col {
+  max-width: var(--pref-measure, 70ch);
+  font-size: 1.0625rem;
+}
+
+/* Selection. The accent, at an alpha low enough that a double-clicked
+ * paragraph still reads as the paragraph underneath it. `::selection`
+ * cannot be transitioned and only the background/colour pair is
+ * reliably honoured across engines, so nothing else is declared here.
+ *
+ * The explicit `color` is load-bearing rather than decorative. It
+ * applies to `::selection` on EVERY element, including the hundreds of
+ * spans KaTeX builds per display equation, because those spans inherit
+ * and the pseudo-element is painted with the ancestor's own resolved
+ * pair. That is exactly the case where inheriting would go wrong: a
+ * formula selected across a line break could otherwise be half accent
+ * ink and half the surrounding prose colour, and the selection would
+ * read as a rendering fault rather than a highlight. Pinning the
+ * foreground to `--c-fg` means the wash is a BACKGROUND change and
+ * the glyphs on top of it are the normal, contrast-guarded text
+ * colour. `tests/motion.test.ts` checks the resulting pair in both
+ * themes. */
+::selection {
+  background-color: color-mix(in srgb, var(--c-accent) 22%, transparent);
+  color: var(--c-fg);
+}
+
+/* A long unbroken token — a URL, an identifier, a data series name — is
+   the one thing that can make a reading column overflow. `break-word`
+   rather than `anywhere` outside code, because it only breaks a word
+   that genuinely cannot fit instead of changing the intrinsic width of
+   every word and giving the whole column a ragged right edge. */
+:where(a, code, kbd, samp, abbr) {
+  overflow-wrap: break-word;
 }
 
 /* ------------------------------------------------------------------ *
@@ -203,15 +726,22 @@ a:hover {
   top: 0.75rem;
   z-index: 60;
   transform: translateY(-250%);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   background-color: var(--c-fg);
   color: var(--c-bg);
+  /* STRUCTURAL. The offset that hides it and the padding that sizes it are
+   * one number: `translateY(-250%)` is computed against the link's own box,
+   * so scaling the padding would leave a sliver of it on screen. It is also
+   * a hit area. */
   padding: 0.6rem 1rem;
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
-  box-shadow: var(--shadow-pop);
-  transition: transform 0.15s ease;
+  box-shadow: var(--elev-3);
+  transition: transform var(--dur-base) ease;
+  /* The one link on the site that appears out of nowhere, so it needs a
+   * press state and a suppressed UA tap flash of its own. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 .skip-link:focus {
@@ -219,7 +749,43 @@ a:hover {
   text-decoration: none;
 }
 
-/* Scrollbars */
+.skip-link:active {
+  background-color: var(--c-fg-muted);
+  color: var(--c-bg);
+}
+
+/* Scrollbars.
+ *
+ * `::-webkit-scrollbar` is the mechanism the whole layout is tuned
+ * around, and it is deliberately NOT `overflow: auto` plus a fade: a
+ * persistently visible scrollbar is how a reader knows a table or an
+ * equation continues past the measure. 10px, always there, is the
+ * whole signal, and the two places that have to make room for it
+ * (`.table-scroll`, `.katex-display`) reserve 0.9rem of right padding
+ * because of this number.
+ *
+ * Firefox ignores `::-webkit-scrollbar` outright, and its default
+ * scrollbar is around 15px with a completely different footprint — a
+ * wide table on Firefox would have the last column clipped by the
+ * scrollbar rather than merely tight, because the reservation was
+ * budgeted against 10px. The standard properties below fix that.
+ *
+ * The gate on them is a POSITIVE Blink/WebKit check, and that is not a
+ * stylistic choice. The obvious `@supports not
+ * selector(::-webkit-scrollbar)` was written first and is WRONG:
+ * Chromium reports `false` for
+ * `CSS.supports('selector(::webkit-scrollbar)')` even though it
+ * implements the pseudo-elements, so that block applied everywhere. And
+ * since a non-`auto` `scrollbar-width` makes the user agent IGNORE
+ * `::-webkit-scrollbar` — per CSSOM Scrollbars, EITHER standard property
+ * being non-`auto` is enough — it quietly replaced the site's 10px
+ * transparent-track scrollbar with the browser default in every engine.
+ * The block looked right and removed the mechanism it was protecting.
+ *
+ * `:-webkit-any-link` is a real Blink/WebKit-only pseudo-class and
+ * Firefox does not have it, which is exactly the engine that needs the
+ * standard properties. Verified in Chromium that the query is `true`
+ * there, so the block cannot reach it. */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -233,6 +799,17 @@ a:hover {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--c-fg-subtle);
+}
+
+/* Both properties are inherited, so declaring them on the root reaches
+ * every scrollbox on the page, including the ones a reader never
+ * thinks of as scrollboxes: the sidebar, the settings panel, and every
+ * `.table-scroll` in the notes. */
+@supports not (selector(:-webkit-any-link)) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--c-border-strong) transparent;
+  }
 }
 
 /* ------------------------------------------------------------------ *
@@ -250,7 +827,34 @@ a:hover {
   border-right: 1px solid var(--c-border);
   position: sticky;
   top: 0;
+  /* The sticky column, and the viewport unit is decided by what the box is
+   * FOR rather than by what is newest.
+   *
+   * `dvh` and not `vh`, and not `svh`:
+   *
+   *  - `vh` is the LARGE viewport. On iOS Safari and Chrome Android that is
+   *    the height the page would have with the browser chrome retracted, so a
+   *    `height: 100vh` sticky box is TALLER than the visible area whenever the
+   *    URL bar is showing — commonly by 50-90px. The box is pinned at `top: 0`
+   *    and is its own scrollport, so those pixels are at its bottom, below the
+   *    fold, and no amount of page scrolling brings them into view: the
+   *    document scrolls, the sidebar does not. What is lost is the
+   *    `CourseProgress` strip, which is `sticky bottom: 0` and therefore
+   *    pinned to the bottom of a box that is itself partly off screen.
+   *  - `svh` fixes that by being permanently SHORTER than the visible area
+   *    (it assumes the chrome never retracts), which trades a missing strip
+   *    for a band of canvas under a full-bleed column. The sidebar is a
+   *    full-height slab: a gap under it is a visible seam, not a margin.
+   *  - `dvh` is the only unit that means "the box I can actually see right
+   *    now", which is exactly the question a sticky full-height column has to
+   *    answer. It also costs nothing on a desktop, where `dvh === vh`.
+   *
+   * The fallback line is not decoration. It is the declaration an engine that
+   * does not know `dvh` uses, and on that engine the box is the large viewport
+   * — the old behaviour, not a broken one. Order matters: the dynamic unit
+   * comes second so it wins where both parse. */
   height: 100vh;
+  height: 100dvh;
 }
 
 .section-title {
@@ -259,34 +863,61 @@ a:hover {
   color: var(--c-fg-subtle);
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  padding: 1.1rem 0.75rem 0.4rem;
-  margin-top: 0.35rem;
+  /* Block axis from the scale; the side inset is literal, because a
+     narrower nav column changes how a lecture title wraps rather than
+     how much vertical room the label takes. */
+  padding: var(--space-5) 0.75rem var(--space-tight);
+  margin-top: var(--space-1);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 
 .nav-link {
   display: block;
   width: calc(100% - 1rem);
+  /* A 1px hairline between rows. Deliberately not a step: at 0.85 a
+     scaled hairline computes to 0.85px and the browser rounds it to 0 or
+     1 depending on where it lands, so adjacent rows would join and
+     separate at random. */
   margin: 1px 0.5rem;
-  padding: 0.4rem 0.6rem;
+  padding: var(--space-tight) 0.6rem;
   border-radius: 7px;
   color: var(--c-fg-muted);
   text-decoration: none;
-  transition: background-color 0.12s ease, color 0.12s ease;
+  transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
   cursor: pointer;
   background: none;
   border: none;
   font: inherit;
   text-align: left;
   font-size: 0.875rem;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.nav-link:hover {
-  background-color: var(--c-surface-2);
+/* The hover row is an ENHANCEMENT, not the affordance: a nav row is
+ * already a full-width link, it is already focusable, and the current
+ * route is marked by `.active` rather than by hover. That is what lets
+ * the whole rule live behind `(hover: hover) and (pointer: fine)` —
+ * on a touch device `:hover` sticks after the tap, and a navigation
+ * drawer full of rows left lit up is a drawer that looks broken the
+ * moment you use it. */
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover {
+    background-color: var(--c-surface-2);
+    color: var(--c-fg);
+    text-decoration: none;
+  }
+}
+
+/* Pressed. `:active` is NOT inside the hover query: unlike `:hover` it
+ * fires on touch, so it is the state a finger actually gets, which is
+ * the reason it exists. Neutral ink over the hover fill rather than an
+ * accent wash, because a press is a pressure response and not a
+ * selection — `.active` below owns the accent. */
+.nav-link:active:not(.active) {
+  background-color: color-mix(in srgb, var(--c-fg) 9%, var(--c-surface-2));
   color: var(--c-fg);
-  text-decoration: none;
 }
 
 .nav-link.active {
@@ -295,30 +926,100 @@ a:hover {
   font-weight: 600;
 }
 
+.nav-link.active:active {
+  background-color: color-mix(in srgb, var(--c-accent) 18%, transparent);
+}
+
+/* Nothing renders a nav row as a button today, so this is a state with
+ * no consumer rather than a gap. It is declared anyway because the
+ * class resets `border`, `background` and `font` — it was written to
+ * be usable on a `<button>`, and a disabled one has to be visibly so. */
+.nav-link:disabled {
+  color: var(--c-fg-subtle);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* The row as a TARGET, which is a different question from the row as a
+ * piece of navigation.
+ *
+ * A nav row is 35.2px tall at the default settings: 22.4px of line box plus
+ * 6.4px of block inset either side. That clears WCAG 2.5.8 (24px) comfortably
+ * and clears it on the spacing exception too, so nothing is broken — but a
+ * 35px band that a finger has to hit among 28 identical ones is the shell's
+ * largest touch surface, and "which of these did I get" is a navigation
+ * mistake the reader pays for by landing on the wrong lecture.
+ *
+ * So a coarse pointer gets a 44px row. `(pointer: coarse)` rather than
+ * `(hover: none)`: the two usually agree, but the question here is literally
+ * "is this a finger", and hover is not the property being asked about. A
+ * hybrid device with both a mouse and a touch reports `coarse` and keeps the
+ * roomier row, which is the right way round.
+ *
+ * The cost is real and worth naming: 28 rows gain 8.8px each, so the nav
+ * column goes from 1635px to about 1900px. In an 844px phone drawer that is
+ * 2.2 screens of scrolling instead of 1.9. Paying 13% more scrolling for a
+ * 25% taller target, on the surface with 28 adjacent identical rows, is the
+ * trade the guideline is asking for.
+ *
+ * `min-height` rather than more padding, so a two-line lecture title does not
+ * get 8.8px added to BOTH of its insets and become a 53px row. The block inset
+ * above stays `var(--space-tight)`, so the density preference still moves the
+ * row and this only raises the floor. And the floor is a bare `44px`: a
+ * `min-height` is a reach, not a rhythm, and `density.test.ts` fails on one
+ * that reaches for the spacing scale. */
+@media (pointer: coarse) {
+  .nav-link {
+    min-height: 44px;
+    /* `display: flex` + `align-items` is what makes `min-height` centre the
+     * label rather than leave it at the top of the box. It is a one-line
+     * row in every case except a wrapped lecture title, which still wraps
+     * because the text is its own anonymous flex item. */
+    display: flex;
+    align-items: center;
+  }
+}
+
 /* ------------------------------------------------------------------ *
  * Cards / tool chrome
+ *
+ * Each surface here takes its depth from the elevation scale rather than
+ * inventing a shadow: a resting card is `--elev-1`, a control panel or a
+ * chart plate is `--elev-2`. All of them pair the shadow with the lit
+ * edge, so a raised plate is legible in light mode where the fill cannot
+ * do the work. `.elev-plate` further down is this same treatment as a
+ * reusable class; these two are the original surfaces and are spelled out
+ * inline because CSS has no mixin and `.card` predates the utility layer.
+ *
+ * Every one of them writes its two layers into `--elev-shadow` and
+ * `--elev-inset` and composes them in a single `box-shadow`, rather than
+ * pasting `--elev-1, inset 0 1px 0 ...` into the declaration. That is
+ * not a style preference, it is the mechanism that makes hover work: a
+ * `box-shadow` written literally can only be changed by writing another
+ * literal, and the two that follow have to be re-stated every time —
+ * which is how `hover:shadow-plate` on a card used to silently drop the
+ * lit edge. Changing `--elev-shadow` re-resolves the same declaration.
  * ------------------------------------------------------------------ */
-.card {
+.card,
+.tool-card {
   background: var(--c-surface);
   border: 1px solid var(--c-border);
-  border-radius: 10px;
-  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-card);
+  --elev-shadow: var(--elev-1);
+  --elev-inset: inset 0 1px 0 var(--elev-inset-hi);
+  box-shadow: var(--elev-shadow), var(--elev-inset);
 }
 
 .tool-card {
-  background: var(--c-surface);
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow-card);
-  border: 1px solid var(--c-border);
+  padding: var(--space-6);
+  margin-bottom: var(--space-8);
 }
 
 .tool-title {
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--c-fg);
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
   letter-spacing: -0.025em;
   line-height: 1.15;
 }
@@ -326,26 +1027,43 @@ a:hover {
 .tool-description {
   font-size: 0.9375rem;
   color: var(--c-fg-muted);
-  margin-bottom: 1.75rem;
-  line-height: 1.65;
-  max-width: 68ch;
+  /* The gap between the deck and the first control panel. It was 1.75rem,
+     which is equidistant between two grid steps; it rounds UP to 2rem
+     because everything below it is a plate, and a deck that ends 2px
+     further from the plate it introduces reads as a better pairing than
+     one that ends 2px closer. */
+  margin-bottom: var(--space-8);
+  line-height: calc(var(--read-line) * 0.94);
+  /* A tool description is a deck paragraph, so it reads like prose and takes
+     the reading measure and leading. It is not a control panel, so the
+     measure stops here. */
+  max-width: var(--pref-measure, 70ch);
 }
 
+/* The densest surface on a tool page, and the one where `compact` earns its
+ * keep: a control panel can hold six sliders, and its own padding and gap
+ * are 43px of the box before a single control is drawn. All three values
+ * come from the scale, and the panel's own grid is `1fr`, so a tighter
+ * inset hands the reclaimed room to the columns rather than changing how
+ * many of them there are. */
 .control-panel {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.35rem;
-  margin-bottom: 2rem;
+  gap: var(--space-inset);
+  margin-bottom: var(--space-8);
   background-color: var(--c-surface-2);
-  padding: 1.35rem;
-  border-radius: 12px;
+  padding: var(--space-inset);
+  border-radius: var(--radius-plate);
   border: 1px solid var(--c-border);
+  --elev-shadow: var(--elev-2);
+  --elev-inset: inset 0 1px 0 var(--elev-inset-hi);
+  box-shadow: var(--elev-shadow), var(--elev-inset);
 }
 
 .control-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 
 .control-label {
@@ -363,21 +1081,113 @@ a:hover {
   line-height: 1.2;
 }
 
+/* The one line a control prints about itself rather than about its value:
+ * what range is legal. It is `--warn-ink` because it appears only while the
+ * typed value is outside that range, and it is a caution, not an error — the
+ * reader is mid-edit, not stuck. `--warn-ink` clears 4.5:1 on
+ * `surface-2`, which is the plane a control panel is drawn on. */
+.control-hint {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--c-warn-ink);
+  margin-top: calc(-1 * var(--space-1));
+}
+
 /* Range inputs. The filled portion is a gradient driven by `--pct`, which
-   `SliderControl` writes from the current value; a native range track has no
-   way to express "how far along am I" otherwise. */
+ * `SliderControl` writes from the current value; a native range track has no
+ * way to express "how far along am I" otherwise.
+ *
+ * `touch-action: pan-y` rather than `none`, and that is a considered
+ * choice rather than a default. `none` would stop the page from scrolling
+ * at all when a drag started on the slider, and the slider's own box is
+ * only 4px tall — which means every miss is a miss, and on a phone a miss
+ * that refuses to scroll is a dead end. `pan-y` says the opposite: a
+ * vertical swipe here still scrolls the page and a horizontal drag is the
+ * slider's, which is the same split `overscroll-behavior-x: contain` makes
+ * for the scrolling code blocks and wide tables.
+ *
+ * THE HIT AREA, and the four declarations that buy one.
+ *
+ * The obstacle was real: the track is 4px because the gradient IS the track,
+ * and a range input's hit area is its border box, so a 4px target on a
+ * control panel six rows deep is a control a reader has to aim at. Wrapping
+ * the input in a taller transparent box was rejected because the wrapper is
+ * a flex item in `.control-group` and would have re-laid-out every control
+ * panel on the site — a restyle disguised as an interaction fix.
+ *
+ * Padding solves it without a wrapper, and `background-clip` is what keeps
+ * it honest. The padding makes the input's border box 4 + 2x10 = 24px tall,
+ * and a range input's hit area is its border box, so the whole 24px band
+ * grabs the value. The negative block margin then takes exactly the 20px
+ * back out of the flow: an element's outer size is its border box plus its
+ * margins, so `4 + 20 - 20 = 4` and the next element's `y` is unchanged.
+ * The panel does not move by a pixel, and nothing has to be told about it.
+ *
+ * And `background-clip: content-box` is what stops the padding from being
+ * seen. The gradient is the input's background, and a background paints in
+ * the padding box by default — so without the clip, 20px of 4px-tall track
+ * would be painted as a 24px-tall bar. Clipped to the content box it is
+ * drawn in the content box, which is still 4px, in the same place.
+ *
+ * 10px each way is chosen against the real neighbours, not by round number.
+ * `.control-group` is a column with an 8px gap, so a 10px pad reaches 2px
+ * into the label above and 2px into the leading of the 24px value below.
+ * Both overlaps are harmless by construction: the element above is the
+ * `<label htmlFor>` FOR this input, so a click there focuses this input
+ * anyway, and the element below is an `<output>` whose top 2px is leading
+ * above the digits. 12px would reach 4px into the label's text; 8px would
+ * fill the gap exactly and gain nothing over the 4px it replaces on the
+ * sides the thumb already covers. 10px is the largest value that is
+ * provably free.
+ *
+ * `box-sizing: content-box` is the fourth declaration and it is not
+ * optional. Tailwind's preflight sets `border-box` on everything, and under
+ * `border-box` `height: 4px` is the BORDER box — so the padding would eat
+ * the content box and leave it at 0, which with `background-clip:
+ * content-box` means painting the gradient into nothing. Measured in Chrome
+ * before this was added: the input reported a 20px border box, a 0px
+ * content box, and no visible track at all. With `content-box`, `height`
+ * is the content box again: a 4px track inside a 24px border box whose
+ * margin box is 4px, which is the number the layout actually consumes.
+ *
+ * Verified in Chrome, 1280x800, `deviceScaleFactor` 1: before any of this
+ * the input's border box was 4px and its `.control-group` was 66.1px; after,
+ * the border box is 24px and the group is 66.1px. The track is 4px in the
+ * same place. That is the whole claim — a 6x larger target and a layout
+ * that did not move.
+ *
+ * The value 24px is still short of the 44px guideline, and that is a
+ * deliberate trade: the guideline is written for a control a reader cannot
+ * see. This one is a 16px disc on a filled track, it prints its value 8px
+ * below itself, and it is a `type="range"` so the whole range is reachable
+ * from the keyboard. Six times the previous target at zero layout cost. */
 .slider-input {
   --pct: 0%;
   width: 100%;
   height: 4px;
+  /* Hit area. See the note above; the order matters only in that
+   * `background-clip` has to be set for the padding to stay invisible. */
+  box-sizing: content-box;
+  padding-block: 10px;
+  margin-block: -10px;
+  background-clip: content-box;
+  -webkit-background-clip: content-box;
   border-radius: 2px;
-  background: linear-gradient(
+  background-image: linear-gradient(
     to right,
     var(--c-accent) 0 var(--pct),
     var(--c-border-strong) var(--pct) 100%
   );
   -webkit-appearance: none;
   appearance: none;
+  touch-action: pan-y;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slider-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .slider-input::-webkit-slider-thumb {
@@ -390,7 +1200,7 @@ a:hover {
   border: 1px solid var(--c-border-strong);
   box-shadow: 0 0 0 3px var(--c-surface-2);
   cursor: pointer;
-  transition: transform 0.12s ease;
+  transition: transform var(--dur-fast) ease;
 }
 
 .slider-input::-moz-range-thumb {
@@ -401,14 +1211,46 @@ a:hover {
   border: 1px solid var(--c-border-strong);
   box-shadow: 0 0 0 3px var(--c-surface-2);
   cursor: pointer;
-  transition: transform 0.12s ease;
+  transition: transform var(--dur-fast) ease;
 }
 
-.slider-input:hover::-webkit-slider-thumb {
-  transform: scale(1.12);
+/* Hover is an ENHANCEMENT — the thumb is already the filled disc sitting on
+ * the gradient, and the value is already printed underneath it — so it sits
+ * behind the pointer query. `:hover` on a track this thin would otherwise
+ * leave the thumb permanently swollen after the first tap. `:active` is
+ * deliberately OUTSIDE the query, because unlike `:hover` it does fire on
+ * touch: on a range input it means "the drag is live", which is
+ * information the hover state cannot give and which a reader dragging with
+ * a finger needs. */
+@media (hover: hover) and (pointer: fine) {
+  .slider-input:hover::-webkit-slider-thumb {
+    transform: scale(1.12);
+  }
+  .slider-input:hover::-moz-range-thumb {
+    transform: scale(1.12);
+  }
 }
-.slider-input:hover::-moz-range-thumb {
-  transform: scale(1.12);
+
+/* `scale` and not a translate: the thumb is the pointer's own target, and
+ * growing it symmetrically about its centre cannot move it out from under
+ * the pointer the way a translate could. 1.18 rather than 1.12 because a
+ * press is a confirmation, not an invitation. */
+.slider-input:active::-webkit-slider-thumb {
+  transform: scale(1.18);
+}
+
+.slider-input:active::-moz-range-thumb {
+  transform: scale(1.18);
+}
+
+.slider-input:disabled::-webkit-slider-thumb {
+  background: var(--c-fg-subtle);
+  cursor: not-allowed;
+}
+
+.slider-input:disabled::-moz-range-thumb {
+  background: var(--c-fg-subtle);
+  cursor: not-allowed;
 }
 
 /* Range inputs take a ring on the thumb rather than an outline, because a
@@ -431,36 +1273,307 @@ a:hover {
 
 .visualization-container {
   background: var(--c-surface);
-  border-radius: 12px;
-  padding: 1.35rem;
+  border-radius: var(--radius-plate);
+  padding: var(--space-inset);
   border: 1px solid var(--c-border);
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-8);
+  --elev-shadow: var(--elev-2);
+  --elev-inset: inset 0 1px 0 var(--elev-inset-hi);
+  box-shadow: var(--elev-shadow), var(--elev-inset);
 }
 
+/* The plot area. STRUCTURAL — see the note in `:root`. This is the box
+ * Recharts measures itself against and draws the y-axis into; its height
+ * is the scale the data is drawn to. Recharts also accepts `height="100%"`
+ * from the tools, which resolves against whichever parent frame declares
+ * the height, which is why `h-[300px]` in `web/src/tools` is a plot
+ * geometry and not a layout utility. */
 .recharts-responsive-container {
   width: 100%;
-  height: 400px;
+  height: var(--plot-h);
+}
+
+/* The data explorer's plot frame. Same 400px as every tool, and the reason
+ * is a claim about the site rather than about this page.
+ *
+ * `--plot-h-tall` existed for one chart: this one, on the argument that a
+ * second y-axis and a legend need more room. It does not. Recharts draws the
+ * legend absolutely inside the plot box and reserves no height for it, so
+ * adding 20px made the axis *shorter* while pushing the x tick labels down
+ * over the plot, and 400px puts this chart's right-hand rate axis on exactly
+ * the same pixel scale as every tool's left-hand one. The two-argument
+ * position — as close as possible — is what makes a number mean the same
+ * height everywhere, and one chart being 5% out is enough to make the eye
+ * read a difference that is not there. */
+.plot-frame {
+  width: 100%;
+  height: var(--plot-h);
+}
+
+/* -------------------------------------------------------------------- *
+ * Chart chrome
+ *
+ * Everything a chart draws *around* the data. The data itself is
+ * coloured by `SERIES_COLORS` through `seriesColor(i)` and nothing here
+ * may touch it — that is the whole point of the series tokens. What
+ * lives here is the grid, the axis frame, the legend and the tooltip,
+ * and the job of all four is the same: be measurable, be quiet, and
+ * never be the thing the reader looks at first.
+ * -------------------------------------------------------------------- */
+
+/* The `chartGrid` preference, consumed in one place.
+ *
+ * `chartTheme.ts` owns the flag and mirrors it onto `<html>` as
+ * `data-chart-grid`, so a reader who turns the grid off gets every one
+ * of the site's charts repainted at once, without a tool opting in and
+ * without a re-render — the charts on screen are already mounted, and
+ * a preference that only reached them on their next data change would
+ * look like a switch that had not worked. `chartTheme.grid` carries
+ * the same flag for the render path, so a chart that mounts after the
+ * switch is right in the DOM as well as in the props.
+ *
+ * `off` is not `no reference`. It trades the grid for a frame: the two
+ * axis lines are transparent while the grid is doing the work, and they
+ * come back at `--border-strong` when it is not. A gridless chart still
+ * has tick labels at 7:1, a bounded plot, a cursor, and a tooltip, so
+ * a value is still readable — the exact-value channel is the tooltip,
+ * and that is the trade the reader is making. */
+html[data-chart-grid='off'] .recharts-cartesian-grid {
+  display: none;
+}
+
+html[data-chart-grid='off'] .recharts-cartesian-axis-line {
+  stroke: var(--c-border-strong);
+}
+
+/* The legend. Recharts positions it absolutely at the foot of the plot
+ * box and gives the items an inline `margin-right: 10px`, so a legend
+ * that outgrows the width wraps on its own. A wrapped legend has to
+ * keep its rhythm, or the second row collides with the first, and its
+ * gap is inline, so the block side has to be a rule here. */
+.recharts-legend-wrapper {
+  line-height: 1.5;
+  max-width: 100%;
+}
+
+.recharts-legend-item {
+  margin-block-end: var(--space-1);
+}
+
+/* A hidden series is struck through, not just dimmed. Recharts marks the
+ * legend item `inactive` and drops the swatch to `inactiveColor` (wired
+ * to a token in `chartTheme`), so colour alone would be the only signal
+ * left — which is the one signal a reader with two of the seven series
+ * close in luminance cannot use. The strike is the non-colour half.
+ *
+ * The charts whose legend is the interactive `ChartLegend` primitive do not
+ * use Recharts' `<Legend>` at all, so that half of the rule is a second
+ * statement of the same idea on `.chart-legend-item.is-inactive` below: the
+ * state has to survive on whichever element actually renders the label. */
+.recharts-legend-item.inactive .recharts-legend-item-text {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  opacity: 0.7;
+}
+
+/* -------------------------------------------------------------------- *
+ * The interactive legend
+ *
+ * Recharts' `<Legend>` renders a `<li>` with no tabindex, no role and no
+ * handler, so on this site it was a list of names and nothing else: a
+ * reader could not ask a chart to take a series away. `ChartLegend` is a
+ * real `<ul>` of real `<button>`s, which is the whole difference — Tab
+ * reaches it, Enter and Space operate it, and `aria-pressed` states it.
+ *
+ * `aria-pressed` is TRUE when the series is VISIBLE. The button's name is
+ * the series label and it does not change, so the accessible name is
+ * stable across the toggle and only the state moves; the alternative
+ * (name flipping between "hide" and "show") makes the control read as two
+ * different buttons to a screen reader user.
+ * -------------------------------------------------------------------- */
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  /* The list is below the plot box, not inside it, which is a layout
+   * decision with a purpose: Recharts positions its legend absolutely
+   * INSIDE the plot area and then reserves `margin.bottom` for it, so a
+   * legend that grew to two rows would eat the plot. Here the legend takes
+   * its own row and the plot keeps its height. */
+  margin-top: var(--space-3);
+  list-style: none;
+  padding: 0;
+}
+
+.chart-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  /* A pill, sized off the scale but never below a reachable target: the
+   * swatch is a 2px rule, so without a real box around it the hit area
+   * would be a 12px-tall sliver. */
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background: none;
+  font: inherit;
+  font-size: var(--chart-legend-size);
+  line-height: 1.4;
+  color: var(--c-fg);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease;
+}
+
+/* The neutral plate a hovered legend chip takes, so the hover affordance
+ * exists at all: the chip's resting state is invisible by design. */
+.chart-legend-item:hover {
+  background: var(--c-surface-2);
+  border-color: var(--c-border);
+}
+
+.chart-legend-item:active {
+  color: var(--c-fg-muted);
+}
+
+/* The one focus rule on this control, and it is the same accent mix the
+ * slider thumb uses, so "focus is on the chart's interactive part" is one
+ * visual event across the whole tool. */
+.chart-legend-item:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 1px;
+}
+
+.chart-legend-swatch {
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+  flex: none;
+}
+
+/* Hidden. The strike is the state, and the swatch goes to the same
+ * `inactiveColor` token the Recharts legend would have used, so the two
+ * legend implementations agree about what a hidden series looks like. */
+.chart-legend-item.is-inactive {
+  color: var(--c-fg-subtle);
+}
+
+.chart-legend-item.is-inactive .chart-legend-label {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  opacity: 0.85;
+}
+
+.chart-legend-item.is-inactive .chart-legend-swatch {
+  background: var(--c-fg-subtle);
+}
+
+/* The tooltip: the only way to read an exact value off a curve, so it
+ * is the one piece of chart chrome that earns a real elevation. It was
+ * already at `elev-3`; what it had not earned was a type scale, a
+ * hairline, and a value column. */
+.chart-tooltip {
+  min-width: 8.5rem;
+  max-width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-control);
+  background: var(--c-surface-raised);
+  box-shadow: var(--elev-3, 0 0 0 0), var(--elev-inset, 0 0 0 0);
+  font-size: var(--chart-tooltip-size);
+  line-height: 1.45;
+  color: var(--c-fg);
+  text-align: start;
+}
+
+.chart-tooltip-label {
+  color: var(--c-fg-muted);
+  font-weight: 500;
+  padding-block-end: var(--space-1);
+  /* The divider between "which x" and "what is at it". A tooltip without
+   * one is a paragraph of numbers; this is the line that makes the label
+   * a header. */
+  border-block-end: 1px solid var(--c-border);
+  margin-block-end: var(--space-1);
+}
+
+.chart-tooltip-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.chart-tooltip-row {
+  display: grid;
+  grid-template-columns: 0.625rem 1fr auto;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.chart-tooltip-swatch {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 2px;
+  align-self: center;
+}
+
+.chart-tooltip-name {
+  color: var(--c-fg-muted);
+  overflow-wrap: anywhere;
+}
+
+.chart-tooltip-value {
+  color: var(--c-fg);
+  /* The whole point of the column: a reader comparing two series is
+   * comparing digit strings, and proportional figures make that
+   * comparison a guess. */
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  text-align: end;
+}
+
+.chart-tooltip-separator {
+  color: var(--c-fg-subtle);
 }
 
 .button-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1rem;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
 }
 
 .button {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  /* STRUCTURAL: a hit area. A `.button` is 39.2px tall with this padding,
+   * already the smaller side of the 44px guideline, so scaling it would
+   * hand a compact reader a 35px target for the same control. The space a
+   * button is allowed to give back is the space AROUND it, which is
+   * `.button-group`'s gap and margin above. */
   padding: 0.55rem 1rem;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   border: 1px solid transparent;
   font-weight: 550;
   cursor: pointer;
-  transition: background-color 0.12s ease, border-color 0.12s ease, opacity 0.12s ease;
+  /* `color` joins the list: `.button-secondary:hover` changes the label as
+   * well as the fill, and without it the text swapped instantly while the
+   * fill eased, which reads as two different presses. */
+  transition:
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    opacity var(--dur-fast) ease;
   font-size: 0.875rem;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .button:hover {
@@ -488,11 +1601,59 @@ a:hover {
   background-color: var(--c-surface-2);
 }
 
+/* Pressed. Deeper than hover rather than a different hue, because a press is
+ * the same control at more force. The `:not(:disabled)` is load-bearing in a
+ * way that looks redundant: a disabled button still matches `:active` in
+ * both engines while it is being pointed at, so without the guard a disabled
+ * control would brighten at the moment the reader tried to use it. */
+.button-primary:active:not(:disabled) {
+  opacity: 0.7;
+}
+
+.button-secondary:active:not(:disabled) {
+  background-color: color-mix(in srgb, var(--c-fg) 10%, var(--c-surface-2));
+}
+
+/* Disabled. Owned here rather than left to each call site — the quiz and the
+ * prediction prompt were each writing `disabled:opacity-50` by hand, which is
+ * exactly how a third call site comes out at 60%. The two `:disabled:hover`
+ * resets are what stop a disabled control from still answering the pointer. */
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.button-primary:disabled:hover {
+  opacity: 0.5;
+}
+
+.button-secondary:disabled:hover {
+  background-color: transparent;
+}
+
+/* Selected: a toggle button. The shared `Button` primitive takes a `pressed`
+ * prop and forwards it as `aria-pressed`, and until now nothing rendered that
+ * state — a pressed toggle was visually identical to an unpressed one, so the
+ * only signal was the attribute in the accessibility tree. `surface-2` and a
+ * real border, which is the same vocabulary as a selected nav row and a
+ * selected quiz option, and it is not an accent wash. Bare `[aria-pressed]`
+ * is not the target: the primitive omits the attribute entirely when it is
+ * not a toggle. */
+.button[aria-pressed='true'] {
+  background-color: var(--c-surface-2);
+  border-color: var(--c-border-strong);
+  color: var(--c-fg);
+}
+
+.button[aria-pressed='true']:active:not(:disabled) {
+  background-color: color-mix(in srgb, var(--c-fg) 8%, var(--c-surface-2));
+}
+
 .comparison-panel {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 2rem;
+  gap: var(--space-6);
+  margin-top: var(--space-8);
 }
 
 .comparison-panel h3 {
@@ -503,10 +1664,27 @@ a:hover {
   margin-bottom: 0;
 }
 
+/* ------------------------------------------------------------------ *
+ * Badge and tier chip — NOT interactive
+ *
+ * Neither of these is a control. A `.badge` labels a score and a
+ * `.tier-chip` labels a difficulty; neither is a button, neither has a
+ * `href`, and neither is in the tab order, so a `:hover` on them would
+ * be a promise the DOM does not keep — the reader would reach for
+ * something that cannot be pressed. They are called out here, and
+ * asserted in `tests/motion.test.ts`, because "this element has no
+ * hover state" is otherwise indistinguishable from "this element was
+ * missed", and the second reading is the one a later pass will act on.
+ *
+ * The level meter and the tier swatch below are the same: a diagram of
+ * the tier ramp, not a control. What they carry is already covered —
+ * colour is held to 3:1 by the contrast test, and the ordering is
+ * carried by the meter's filled-cell count, not by the hue.
+ * ------------------------------------------------------------------ */
 .badge {
   display: inline-block;
-  padding: 0.15rem 0.5rem;
-  border-radius: 999px;
+  padding: var(--space-hair) var(--space-2);
+  border-radius: var(--radius-pill);
   font-size: 0.6875rem;
   font-weight: 650;
   text-transform: uppercase;
@@ -532,9 +1710,12 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   border: 1px solid var(--c-border);
-  padding: 0.15rem 0.55rem 0.15rem 0.45rem;
+  /* A chip carries an 11px level meter, so its block axis is two
+   * `--space-hair` steps either side of it. Scales: a chip is the most
+   * repeated object on a syllabus row and a tool card. */
+  padding: var(--space-hair) var(--space-2) var(--space-hair) var(--space-1);
   font-size: 0.6875rem;
   font-weight: 650;
   text-transform: uppercase;
@@ -593,7 +1774,7 @@ a:hover {
    top rule — the level meter is the identity. */
 .section-band {
   border-top: 1px solid var(--c-border);
-  padding-top: 1.5rem;
+  padding-top: var(--space-6);
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
@@ -601,23 +1782,62 @@ a:hover {
 /* ------------------------------------------------------------------ *
  * Lecture prose
  *
- * The site's main content type: 25 notes, 436 display equations. Set in
- * Inter at a 70ch measure, which is the point where this face stops
- * comfortably. Display equations are deliberately unboxed — 436 bordered
- * panels down a page reads as a wall, not as mathematics.
+ * The site's main content type: 25 notes, 427 display equations. Set in
+ * Inter at a `ch` measure, which is the point where this face stops
+ * comfortably — the width is a reading preference (`--pref-measure`, 70ch
+ * unless the reader asks otherwise), not a hard-coded constant. Display
+ * equations are deliberately unboxed — 427 bordered panels down a page
+ * reads as a wall, not as mathematics.
+ *
+ * Every length in here is `rem` or `em`, never `px`. That is what makes
+ * `--pref-text-scale` real: the root font size is the one thing the
+ * reader's text-size control moves, so a `rem` multiplies with it and a
+ * `px` would not. The measured consequence of getting this wrong is that
+ * a 130% setting enlarges the body text and leaves every label, tile and
+ * axis at its old size, which reads as a rendering bug rather than a
+ * preference.
+ *
+ * `--read-lead` (the reader's leading as a ratio against the shipped
+ * 1.6) drives the block rhythm and the heading gaps, and `--read-line`
+ * (1.09375x the reader's leading, which is 1.75 at the default) drives
+ * the prose leading itself. Both are functions of `--pref-line-height`,
+ * so choosing `tight` closes the page up and choosing `relaxed` opens
+ * it out in one move, and at the default both resolve to exactly the
+ * values this stylesheet used before preferences existed.
  * ------------------------------------------------------------------ */
 .prose-lecture {
   color: var(--c-fg);
   font-size: 1.0625rem;
-  line-height: 1.75;
-  max-width: 70ch;
+  line-height: var(--read-line);
+  max-width: var(--pref-measure, 70ch);
+  /* Safari only; Chrome and Firefox parse it and do nothing. Kept anyway: it
+     costs one declaration, it is a no-op in the engines that ignore it, and it
+     is right in the one engine that honours it. It applies to the first and
+     last characters of a line, so it has no interaction with the block flow
+     this prose uses — there is no flex or grid inside it. */
   hanging-punctuation: first last;
+  /* Automatic hyphenation, which is what turns a 70ch column of
+     `inter-` and `macro-` into even word spacing instead of rivers.
+     `<html lang="en">` is what makes it possible at all. A browser that
+     does not support it simply does not hyphenate; the column is still
+     70ch. */
+  hyphens: auto;
 }
 
+/* Inter-block spacing, in `em` of the prose size and scaled by the
+   leading. `1.0824em` is the old fixed `1.15rem` expressed against the
+   `1.0625rem` body, so the default page is unchanged, but the gap now
+   grows with the type and breathes with the leading instead of staying
+   a number that was tuned once. */
 .prose-lecture > * + * {
-  margin-top: 1.15rem;
+  margin-top: calc(1.0824em * var(--read-lead));
 }
 
+/* Heading gaps are `em` of the heading's own size, multiplied by
+   `--read-lead`. Each constant is the old `rem` value divided by that
+   heading's size, so `2em` on a `1.5rem` h2 is the `3rem` it was:
+   a heading is now separated from the text above it by a proportion of
+   its own type rather than by a number that cannot move. */
 .prose-lecture h1 {
   font-size: 2rem;
   line-height: 1.15;
@@ -631,7 +1851,10 @@ a:hover {
   line-height: 1.25;
   font-weight: 650;
   letter-spacing: -0.02em;
-  margin-top: 3rem;
+  margin-top: calc(2em * var(--read-lead));
+  /* The only elements in the article that carry an id, so these two rules are
+     the complete set of `#fragment` landing sites. */
+  scroll-margin-top: var(--read-anchor-offset);
 }
 
 .prose-lecture h3 {
@@ -639,13 +1862,14 @@ a:hover {
   line-height: 1.35;
   font-weight: 650;
   letter-spacing: -0.012em;
-  margin-top: 2.25rem;
+  margin-top: calc(1.8947em * var(--read-lead));
+  scroll-margin-top: var(--read-anchor-offset);
 }
 
 .prose-lecture h4 {
   font-size: 0.9375rem;
   font-weight: 650;
-  margin-top: 1.75rem;
+  margin-top: calc(1.8667em * var(--read-lead));
   color: var(--c-fg-muted);
 }
 
@@ -691,7 +1915,7 @@ a:hover {
   color: var(--c-fg);
   font-weight: 500;
   font-size: 1.0625rem;
-  line-height: 1.6;
+  line-height: calc(var(--read-line) * 0.92);
 }
 
 .prose-lecture blockquote::before {
@@ -707,15 +1931,26 @@ a:hover {
   border-radius: 5px;
   font-size: 0.86em;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* `anywhere`, not `break-word`: an inline code span is the one place on
+     the page where a single unbreakable identifier is expected, and
+     `break-word` leaves it overflowing when it is longer than the
+     column. `anywhere` also lowers the span's intrinsic minimum width,
+     which is what stops one long token from widening the whole
+     paragraph. */
+  overflow-wrap: anywhere;
 }
 
 /* Fenced code blocks. */
 .prose-lecture pre {
   background: var(--c-code-bg);
   border: 1px solid var(--c-border);
-  border-radius: 10px;
-  padding: 1rem 1.1rem;
+  border-radius: var(--radius-card);
+  padding: var(--space-4) var(--space-4);
   overflow-x: auto;
+  /* Keep a swipe across a wide code block from chaining to the page
+     behind it, which is what actually happens on a touch device and
+     reads as the page sliding out from under your finger. */
+  overscroll-behavior-x: contain;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.8125rem;
   line-height: 1.7;
@@ -731,23 +1966,49 @@ a:hover {
   padding: 0;
   font-size: inherit;
   color: inherit;
+  overflow-wrap: normal;
 }
 
 /* Tables are horizontal rules only. A full grid of 1px boxes turns a
-   four-column result into a spreadsheet screenshot. */
+   four-column result into a spreadsheet screenshot.
+ *
+ * The scroller is the wrapper the markdown renderer emits, not the
+   table. `display: block` on a `<table>` makes the element a block box
+   with an anonymous table inside it, so a table that also declares
+   `overflow-x: auto` becomes a *second* nested scroll container whose
+   width is pinned to `100%` — the outer wrapper can then never be the
+   thing that scrolls, and the reader gets a scrollbar on an element
+   whose geometry no longer matches the table. A real `display: table`
+   with `width: 100%` cannot shrink below its min-content width, so it
+   overflows the wrapper and the wrapper scrolls, which is what was
+   wanted all along. */
+.prose-lecture .table-scroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  /* Room for the last column to breathe when the table is scrolled; the
+     `pre` and `katex-display` blocks carry the same allowance. STRUCTURAL,
+     and not a step: the stylesheet sizes `::-webkit-scrollbar` at 10px, and
+     `--space-3` at compact is 10.2px — a fifth of a pixel of headroom over
+     a scrollbar that decides whether the last column is reachable. The
+     allowance scales with nothing. */
+  padding-right: 0.9rem;
+}
+
 .prose-lecture table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9375rem;
-  display: block;
-  overflow-x: auto;
   font-variant-numeric: tabular-nums;
 }
 
+/* Row padding only. The type size above is deliberately NOT bound to
+ * anything: a data table is read, not skimmed, and 0.9375rem is the
+ * smallest type the prose column is allowed to use. `compact` gets to take
+ * the air out of a 25-row syllabus table, not out of the numerals. */
 .prose-lecture th,
 .prose-lecture td {
   border-bottom: 1px solid var(--c-border);
-  padding: 0.6rem 0.9rem 0.6rem 0;
+  padding: var(--space-2) var(--space-3) var(--space-2) 0;
   text-align: left;
   vertical-align: top;
 }
@@ -764,16 +2025,35 @@ a:hover {
 .prose-lecture hr {
   border: none;
   border-top: 1px solid var(--c-border);
-  margin: 2.75rem 0;
+  margin: var(--space-10) 0;
 }
 
 /* KaTeX inherits `currentColor` (verified: katex.min.css declares no colour
    of its own), so equations already theme correctly. This only handles
-   presentation — and deliberately adds no chrome. */
+   presentation — and deliberately adds no chrome.
+ *
+ * `overflow-y: hidden` used to sit here next to `overflow-x: auto`, and
+ * it was two bugs in one line. It made the block a clipping container in
+   the block axis, which is exactly what a `\begin{cases}` (Lecture 5) or
+   a nested `\frac` (Lecture 16) needs not to be. And because the
+   stylesheet styles `::-webkit-scrollbar` at 10px, an equation wide
+ * enough to scroll paid that 10px out of its own 8px of bottom padding —
+ * so the gap between an overflowing equation and the paragraph below it
+ * silently halved. Dropping the declaration leaves `overflow-y` to
+ * compute to `auto` from the `auto` on the other axis, which cannot
+ * produce a vertical scrollbar on a box whose height fits its content. */
 .prose-lecture .katex-display {
   overflow-x: auto;
-  overflow-y: hidden;
-  padding: 0.5rem 0;
+  overscroll-behavior-x: contain;
+  /* STRUCTURAL, and not a step: the bottom padding is a scrollbar
+     allowance (see `.table-scroll`) and the block margin is what KaTeX's
+     own vertical extents are measured against. `--read-lead` already opens
+     the block rhythm between elements, so scaling either of these would
+     double-apply a preference to the same gap. */
+  /* The bottom padding is larger than the top one for the same reason as
+     `.table-scroll`: when the equation scrolls, the scrollbar comes out
+     of the bottom of the content box. */
+  padding: 0.5rem 0.9rem 1rem 0;
   margin: 0.5rem 0;
 }
 
@@ -781,16 +2061,222 @@ a:hover {
   font-size: 1.03em;
 }
 
+/* ------------------------------------------------------------------ *
+ * Horizontal scroll affordance
+ *
+ * Ten of Lecture 16's thirty-five display equations overflow at 130% text
+ * on a 390px phone, one of its two tables overflows by 26px, and the
+ * only hint was the global 10px `::-webkit-scrollbar` — a hint a
+ * trackpad user never sees, and no hint at all on an engine with
+ * overlay scrollbars.
+ *
+ * This is the `background-attachment: local` scroll shadow. Four
+ * layers: an opaque cover at each edge attached to the *content*, and
+ * a soft shadow at each edge attached to the *box*. The covers travel
+ * with the equation, so at either end of the scroll they sit on top of
+ * the shadows and nothing shows; in the middle the covers are off the
+ * edge and the shadow appears. The affordance is therefore honest by
+ * construction — it exists exactly when there is something off-screen,
+ * and it costs no script, no `mask-image`, no
+ * `animation-timeline`, and no per-block listener across 25 pages.
+ *
+ * The covers have to blend with whatever is behind, which is
+ * `--prose-bg`: the canvas normally, the focus-mode plate when
+ * focus mode is on. In the default case the fill is the colour
+ * already behind the element, so it is invisible.
+ *
+ * Authored as two rules with identical bodies on purpose. Checked
+ * against the built `dist/assets/*.css`: this repo's minifier
+ * (esbuild, via Vite) MERGES adjacent identical rules rather than
+ * collapsing them to the last selector, and it reconstructs the group
+ * as `.prose-lecture .table-scroll, .prose-lecture .katex-display`
+ * with both selectors intact. So the split is belt-and-braces, not a
+ * fix for a failure observed here: a minifier that truncates would
+ * drop the table affordance, and separate rules are the only authored
+ * form that survives one. `reading.test.tsx` keeps them separate.
+ * ------------------------------------------------------------------ */
+.prose-lecture .table-scroll {
+  background-color: var(--prose-bg);
+  background-image: linear-gradient(to right, var(--prose-bg), rgb(var(--c-shadow-ink-ch) / 0)),
+    linear-gradient(to left, var(--prose-bg), rgb(var(--c-shadow-ink-ch) / 0)),
+    radial-gradient(farthest-side at 0 50%, rgb(var(--c-shadow-ink-ch) / 0.12), rgb(var(--c-shadow-ink-ch) / 0)),
+    radial-gradient(farthest-side at 100% 50%, rgb(var(--c-shadow-ink-ch) / 0.12), rgb(var(--c-shadow-ink-ch) / 0));
+  background-position: left center, right center, left center, right center;
+  background-repeat: no-repeat;
+  background-size: 2.5rem 100%, 2.5rem 100%, 0.75rem 100%, 0.75rem 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+.prose-lecture .katex-display {
+  background-color: var(--prose-bg);
+  background-image: linear-gradient(to right, var(--prose-bg), rgb(var(--c-shadow-ink-ch) / 0)),
+    linear-gradient(to left, var(--prose-bg), rgb(var(--c-shadow-ink-ch) / 0)),
+    radial-gradient(farthest-side at 0 50%, rgb(var(--c-shadow-ink-ch) / 0.12), rgb(var(--c-shadow-ink-ch) / 0)),
+    radial-gradient(farthest-side at 100% 50%, rgb(var(--c-shadow-ink-ch) / 0.12), rgb(var(--c-shadow-ink-ch) / 0));
+  background-position: left center, right center, left center, right center;
+  background-repeat: no-repeat;
+  background-size: 2.5rem 100%, 2.5rem 100%, 0.75rem 100%, 0.75rem 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+/* Anchor targets. Jumping to a heading with the `#` link, or arriving from
+   the table of contents, used to land the heading under the sticky header
+   with nothing to say so. The wash is the accent at 14%, which is the
+   established vocabulary for an interaction state (`.nav-link.active`
+   uses the same token at 10%) — it is not decoration, and it is not
+   applied to anything that is not the thing the reader just asked to go
+   to. Off again in print, where it would be a grey block on every
+   printed page whose URL carries a fragment. */
+.prose-lecture :target {
+  background-color: color-mix(in srgb, var(--c-accent) 14%, transparent);
+  border-radius: 4px;
+}
+
+/* The wrap policy for display type, which is the one place on the site where a
+ * single word can be wider than its column.
+ *
+ * `.text-display-md` is 2.125rem, and it is a `rem`, so it scales with the
+ * reader's `--pref-text-scale`. At 1.3 that is 44.2px, and "Macroeconomics"
+ * measures 357px of it — against a 278px column at a 320px viewport. Measured
+ * across all 25 lecture titles at 320px, 360px and 130% text, that was 57px of
+ * document overflow at 320 and 17px at 360, on the only overflowing document
+ * in the site. Below 130% the longest title just fits, which is why this went
+ * unnoticed: the defect only exists when the reader has asked for larger text,
+ * which is exactly the reader for whom a broken layout hurts most.
+ *
+ * Both declarations, in this order, for two different jobs:
+ *
+ *  - `hyphens: auto` is the typographic answer. It only engages when a word
+ *    cannot fit on a line by itself, so at 100% text — where every title fits
+ *    — it changes nothing at all, and at 130% it breaks the word with a hyphen
+ *    rather than mid-syllable. It is already what `.prose-lecture` does to the
+ *    body, so a hyphenated heading and a hyphenated paragraph are one policy.
+ *    It needs a dictionary, hence the reliance on `<html lang="en">`.
+ *  - `overflow-wrap: break-word` is the backstop for a browser with no
+ *    hyphenation dictionary, where the word must still break somewhere rather
+ *    than push the document sideways. `break-word` and not `anywhere`, for the
+ *    reason given at the `:where(a, code, …)` rule: `anywhere` also lowers the
+ *    box's min-content width, and a heading does not need to shrink to fit —
+ *    it needs to wrap.
+ *
+ * Scoped to the three display sizes rather than to every heading, because a
+ * body-size `h2` at 1.375rem cannot overflow a 70ch column and hyphenating it
+ * would be a change with no defect behind it. */
+:where(.text-display-sm, .text-display-md, .text-display-lg) {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+/* Line breaking that the browser chooses for us, behind a feature query.
+ *
+ * `text-wrap: balance` is for short blocks — a heading, a title, a
+ * caption — and it is actively harmful on a body paragraph, where
+ * evening out the last few lines can leave a single word alone on a
+ * line five lines from the top. `pretty` is the paragraph-safe half of
+ * the same idea: it only fixes the last few lines. Both are guarded
+ * because a browser that does not know the value would drop the whole
+ * declaration, and a `text-wrap: style(...)` fallback is not worth the
+ * extra rule.
+ *
+ * Not a polyfill decision: Firefox had no `text-wrap: pretty` for most
+ * of this project's life, and the page is already correct there
+ * without it. The `@supports` block means the unguarded rules keep
+ * working on a browser that parses neither value. */
+@supports (text-wrap: pretty) {
+  .prose-lecture p,
+  .prose-lecture li,
+  .prose-lecture dd,
+  .prose-lecture blockquote {
+    text-wrap: pretty;
+  }
+
+  .prose-lecture h1,
+  .prose-lecture h2,
+  .prose-lecture h3,
+  .prose-lecture h4 {
+    text-wrap: balance;
+  }
+
+  /* A page title is the same case: one or two lines, and a ragged last
+     line on a 44px face is the most visible kind of rag on the page. */
+  .reading-col > h1,
+  .reading-col > h2 {
+    text-wrap: balance;
+  }
+}
+
+/* Notes are prose too. The note body already takes the reading measure;
+   the leading is applied to the existing `.note__body` rule below, next
+   to the size it belongs with, so there is one of each. */
+
+/* The heading anchor.
+ *
+ * Revealed on heading hover, which is the one place on the site where a
+ * hover rule carries INFORMATION rather than a hint — the `#` is not
+ * visible until the heading is approached. That makes it a touch-device
+ * bug by construction: `:hover` sticks after a tap, so on a phone the
+ * anchor either never appears or appears permanently, depending on what
+ * the reader last touched. Hence the split below.
+ *
+ * Each half of the reveal is its own rule, for a reason that has nothing to
+ * do with the toolchain: `.heading-anchor` is shared by every h2 and h3 in
+ * the prose, and the hover half is a property of the anchor itself. Keeping
+ * them separate means the hover declaration is stated once, next to the
+ * reason it is a hover, instead of being repeated in every rule that needs
+ * the shared half. (An earlier revision of this comment claimed a grouped
+ * selector list here would be truncated to its last selector in production.
+ * That is false: esbuild merges adjacent identical rules and keeps every
+ * selector — see the note on `.elev-N`.)
+ *
+ * The hit area is padded rather than the glyph enlarged. At 1.5rem the `#` is
+ * a 15 x 29.5px target, which clears WCAG 2.2 on height and misses on width;
+ * padding takes it to 26 x 40px while the glyph, its size, its colour and its
+ * distance from the heading text are all unchanged. Vertical padding on an
+ * inline box does not grow the line box, so no heading changes height.
+ */
 .anchor-link {
   opacity: 0;
-  margin-left: 0.4rem;
+  margin-left: 0.05rem;
+  padding: 0.3rem 0.35rem;
   color: var(--c-fg-subtle);
   text-decoration: none;
+  text-underline-offset: 0.18em;
+  transition: opacity var(--dur-fast) ease;
+  -webkit-tap-highlight-color: transparent;
 }
-.prose-lecture h2:hover .anchor-link,
-.prose-lecture h3:hover .anchor-link,
+
+.prose-lecture h2:hover .anchor-link {
+  opacity: 1;
+}
+
+.prose-lecture h3:hover .anchor-link {
+  opacity: 1;
+}
+
+/* Keyboard reaches it whatever the pointer is doing, and this is the only
+ * reason an invisible control is defensible at all. */
 .anchor-link:focus-visible {
   opacity: 1;
+}
+
+.anchor-link:active {
+  opacity: 1;
+}
+
+/* On a coarse pointer there is no "approach", so the anchor is present at
+ * a permanent 0.8 rather than absent. Absent is the failure mode to avoid:
+ * a zero-opacity link is still a focusable, tappable, one-character target
+ * with nothing to tell the reader it is there.
+ *
+ * 0.8 is measured, not chosen. The anchor is a non-text control, so it is
+ * held to 3:1 rather than 4.5:1, and 0.8 of `--c-fg-subtle` over `--c-bg`
+ * composites to 3.30:1 in light and 4.31:1 in dark. 0.7 — the number that
+ * looks the same — is 2.76:1 in light, which is why it is not the one.
+ * `tests/motion.test.ts` recomputes both so the figure cannot drift. */
+@media (hover: none) {
+  .anchor-link {
+    opacity: 0.8;
+  }
 }
 
 /* ------------------------------------------------------------------ *
@@ -802,15 +2288,21 @@ a:hover {
  * variant is carried by the icon tile and the label, and only two of the
  * five variants are coloured at all, so the interactive block is the one
  * that stands out.
+ *
+ * Notes and stat tiles are the one family that takes NO elevation. A
+ * `surface-2` fill is a *recessed* well in this scheme — it is darker than
+ * the surface it sits in — so giving it a cast shadow and a lit top edge
+ * would assert the opposite of what the fill already says. Recessed things
+ * are read by their fill; raised things are read by their shadow.
  * ------------------------------------------------------------------ */
 .note {
   --note-hue: var(--c-fg-subtle);
   --note-ink: var(--c-fg-muted);
   display: grid;
-  gap: 0.85rem;
-  margin-bottom: 2.25rem;
-  padding: 1.15rem 1.25rem;
-  border-radius: 10px;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+  padding: var(--space-5) var(--space-5);
+  border-radius: var(--radius-card);
   border: 1px solid var(--c-border);
   background-color: var(--c-surface-2);
 }
@@ -828,7 +2320,7 @@ a:hover {
 .note__head {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: var(--space-2);
 }
 
 .note__icon {
@@ -860,13 +2352,14 @@ a:hover {
 
 .note__body {
   font-size: 0.9375rem;
-  line-height: 1.7;
+  line-height: calc(var(--read-line) * 0.97);
   color: var(--c-fg-muted);
-  max-width: 70ch;
+  max-width: var(--pref-measure, 70ch);
+  hyphens: auto;
 }
 
 .note__body p + p {
-  margin-top: 0.75rem;
+  margin-top: var(--space-3);
 }
 
 .note__body strong {
@@ -884,20 +2377,22 @@ a:hover {
 
 .note__body ul,
 .note__body ol {
+  /* The list's own indent is a text measure, not a rhythm value, so it
+     stays literal; the gap above the list does scale. */
   padding-left: 1.25rem;
-  margin-top: 0.5rem;
+  margin-top: var(--space-2);
 }
 
 .note__body li + li {
-  margin-top: 0.3rem;
+  margin-top: var(--space-1);
 }
 
 /* Tiles */
 
 .stat-tile {
   --c-tile-ink: var(--c-fg);
-  padding: 0.9rem 1rem;
-  border-radius: 10px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-card);
   border: 1px solid var(--c-border);
   background-color: var(--c-surface-2);
   text-align: center;
@@ -926,7 +2421,11 @@ a:hover {
 .stat-tile-label {
   font-size: 0.8125rem;
   color: var(--c-fg-muted);
-  margin-bottom: 0.35rem;
+  /* The value-plus-label rhythm. A tile is a two-line object whose type
+     does not change, so this is the only thing that can make a row of
+     four tiles shorter or taller — which is exactly what a density
+     preference should be doing. */
+  margin-bottom: var(--space-tight);
 }
 
 .stat-tile-value {
@@ -944,42 +2443,947 @@ a:hover {
   gap: 0.2rem;
   font-size: 0.75rem;
   font-weight: 600;
-  margin-top: 0.35rem;
+  margin-top: var(--space-tight);
   color: var(--c-tile-ink);
   font-variant-numeric: tabular-nums;
 }
 
-/* Number input */
-
+/* Number input. STRUCTURAL padding: this is a hit area and a text field
+ * in one, and 32px is already the height of the control. `.control-group`
+ * is where a tool page gives space back. */
 .number-input {
   width: 100%;
   padding: 0.5rem 0.65rem;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   border: 1px solid var(--c-border-strong);
   background-color: var(--c-surface);
   color: var(--c-fg);
   font-size: 1rem;
   font-family: inherit;
   font-variant-numeric: tabular-nums;
+  transition:
+    border-color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .number-input:focus-visible {
   border-color: var(--c-accent);
 }
 
+/* Hover is a border step toward the ink, not a fill change: a text field
+ * that recoloured on hover would read as a selected value, and the
+ * selection of a number field is a caret, not a background. Half-way to
+ * `--c-fg-subtle` on hover and all the way on press, which is one step
+ * further than the focus ring and so cannot be confused with it. */
+.number-input:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--c-fg-subtle) 55%, var(--c-border-strong));
+}
+
+.number-input:active:not(:disabled) {
+  border-color: var(--c-fg-subtle);
+}
+
+.number-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 /* Tool heading block */
 
 .tool-heading {
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-8);
 }
 
 .tool-heading-row {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
+  gap: var(--space-4);
+  margin-bottom: var(--space-2);
   flex-wrap: wrap;
 }
+
+/* ------------------------------------------------------------------ *
+ * Elevation utilities — THE canonical entry point
+ *
+ * This block is the ONLY sanctioned way to raise something off the canvas.
+ * It sits after every component class on purpose: `.card.elev-3` has to
+ * beat `.card`, and at equal specificity only source order decides.
+ *
+ *   .elev-0        flush with the canvas
+ *   .elev-1        resting card or plate
+ *   .elev-2        raised: hovered cards, control panels, chart plates
+ *   .elev-3        floating: popovers, tooltips, the nav drawer
+ *   .elev-4        modal, on top of an overlay
+ *   .edge-lit      add the 1px lit top edge to any of the above
+ *   .elev-plate    the whole composite for a new raised surface: surface
+ *                  fill, hairline, resting shadow, lit edge
+ *   .elev-panel    the same on a `surface-2` fill, for a control panel
+ *                  sitting inside a recessed well
+ *
+ * `.elev-N` and `.edge-lit` compose through a custom property rather than
+ * by both writing `box-shadow`, so `class="elev-2 edge-lit"` gives the
+ * pair instead of one clobbering the other. They do NOT compose with a
+ * Tailwind `shadow-elevN` utility — that writes `box-shadow` directly and
+ * replaces both layers. Prefer the class pair.
+ *
+ * Each `.elev-N` repeats the same `box-shadow` line instead of sharing one
+ * grouped rule. Earlier revisions of this comment claimed the production
+ * minifier drops every selector but the last, which is FALSE — measured
+ * against the built `dist/assets/*.css`, esbuild 0.21.5 (as driven by
+ * Vite 5.4.21) MERGES adjacent rules with identical declaration blocks and
+ * keeps every selector, so `.elev-1, .elev-2 { … }` next to `.elev-3 { … }`
+ * ships as one rule listing all three. Rules that are not adjacent are left
+ * alone entirely. The separate-per-selector form below is therefore house
+ * style, not a defence: it reads one class at a time, and it minifies to
+ * the same output as the grouped form.
+ * ------------------------------------------------------------------ */
+.elev-0 {
+  box-shadow: none;
+}
+
+.elev-1 {
+  --elev-shadow: var(--elev-1);
+  box-shadow: var(--elev-shadow, 0 0 0 0), var(--elev-inset, 0 0 0 0);
+}
+
+.elev-2 {
+  --elev-shadow: var(--elev-2);
+  box-shadow: var(--elev-shadow, 0 0 0 0), var(--elev-inset, 0 0 0 0);
+}
+
+.elev-3 {
+  --elev-shadow: var(--elev-3);
+  box-shadow: var(--elev-shadow, 0 0 0 0), var(--elev-inset, 0 0 0 0);
+}
+
+.elev-4 {
+  --elev-shadow: var(--elev-4);
+  box-shadow: var(--elev-shadow, 0 0 0 0), var(--elev-inset, 0 0 0 0);
+}
+
+.edge-lit {
+  --elev-inset: inset 0 1px 0 var(--elev-inset-hi);
+}
+
+.elev-plate {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-card);
+  --elev-shadow: var(--elev-1);
+  --elev-inset: inset 0 1px 0 var(--elev-inset-hi);
+  box-shadow: var(--elev-shadow), var(--elev-inset);
+}
+
+/* A raised plate on a recessed well, for a panel that groups controls
+   inside a `surface-2` region. The lit edge does its most visible work
+   here: in light mode the fill is one step below white, so the highlight
+   is the difference between a well and a lid. */
+.elev-panel {
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-plate);
+  --elev-shadow: var(--elev-2);
+  --elev-inset: inset 0 1px 0 var(--elev-inset-hi);
+  box-shadow: var(--elev-shadow), var(--elev-inset);
+}
+
+/* ------------------------------------------------------------------ *
+ * `.lift` — THE canonical way to raise a surface on hover
+ *
+ * The bug this replaces is not a style preference. Every composable
+ * surface in this stylesheet writes its two shadow layers into
+ * `--elev-shadow` and `--elev-inset` and combines them in one
+ * `box-shadow`, which is what lets an element change elevation without
+ * re-stating the lit edge. A Tailwind `shadow-*` utility writes
+ * `box-shadow` WHOLESALE, so `hover:shadow-plate` on a `.card`
+ * replaced the pair with one layer and the lit edge was gone for as
+ * long as the pointer was over it — the card visibly lost its top
+ * highlight on hover, in both themes, and nothing in dev said so.
+ *
+ * `.lift` changes `--elev-shadow` and nothing else. The `box-shadow`
+ * declaration it inherits re-resolves against the new value, so the
+ * inset cannot be dropped by a hover. The Tailwind `boxShadow` tokens
+ * were re-pointed at the same composing form for the same reason, so
+ * the utility and the class cannot disagree.
+ *
+ * The budget, and it is a budget:
+ *
+ *   1 elevation step   `--elev-1` to `--elev-2`, which the scale
+ *                      already names as the "hovered card" step.
+ *   1px                `translateY(-1px)`, inwards-and-up, the
+ *                      direction a thing is picked up in.
+ *   NO scale           A scale re-flows the text inside the card, so a
+ *                      grid of twenty of them would re-wrap every
+ *                      description as the pointer crossed it. It also
+ *                      reads as a toy, not an instrument.
+ *   NO layout property The only animated properties are `transform`
+ *                      and `box-shadow`, both composited and neither
+ *                      of which can reflow a sibling.
+ *
+ * The translate moves the card's bottom edge up by a pixel, which is
+ * why nothing INSIDE a lifted card is animated: a control that moved
+ * under the pointer would stop being the thing the reader pressed.
+ *
+ * Do not combine `.lift` with `.elev-3` or `.elev-4`. Those are
+ * floating and modal steps, and "hover makes it higher" has no meaning
+ * at the top of a five-step scale. `.elev-0` .. `.elev-2` compose.
+ * ------------------------------------------------------------------ */
+.lift {
+  --elev-shadow: var(--elev-1);
+  --elev-inset: inset 0 1px 0 var(--elev-inset-hi);
+  box-shadow: var(--elev-shadow), var(--elev-inset);
+  transition:
+    box-shadow var(--dur-fast) ease,
+    transform var(--dur-fast) ease;
+}
+
+/* One selector per rule: the two halves are two different mechanisms — a
+ * pointer and a script — and reading them apart is how the pair stays
+ * honest. (An earlier version of this comment claimed the production
+ * minifier would ship only the last selector. It does not: esbuild merges
+ * adjacent identical rules and keeps every selector — see `.elev-N`.) */
+.lift:hover {
+  --elev-shadow: var(--elev-2);
+  transform: translateY(-1px);
+}
+
+/* For a surface that cannot use `:hover` at all — one inside a
+ * `touch-action: none` region, or one driven by a pointer in from
+ * script. Nothing on the site needs it today; it is here so the
+ * mechanism has a non-`:hover` half and nobody reaches for a
+ * JS-driven `style.boxShadow` instead. */
+.lift.is-hover {
+  --elev-shadow: var(--elev-2);
+  transform: translateY(-1px);
+}
+
+/* Hover is a DOM state rather than a media state, so it is not gated by
+ * `(hover: none)` the way `.nav-link:hover` is. The asymmetry is
+ * deliberate and worth stating: a stuck hover leaves a NAVIGATION DRAWER
+ * full of lit rows that the reader cannot clear, because the drawer
+ * closes on navigation and the rows are never revisited. A stuck card
+ * lift leaves one card a pixel high until the next tap anywhere. The
+ * first is a broken control, the second is a blemish. */
+
+
+/* ------------------------------------------------------------------ *
+ * Preferences control surface
+ *
+ * Two rules, both reading a duration TOKEN rather than a fixed
+ * duration, so every transition the settings panel adds obeys the
+ * reader's motion preference instead of merely being shorter when it is
+ * reduced. `--dur-fast` is the same 120ms this rule always used; naming
+ * it is what lets a test fail on a duration written here.
+ *
+ * The panel itself sits at `--elev-4`, the top step of the scale: it is the
+ * only thing on the page that is above everything else, so it is the only
+ * honest user of the modal-height step even though it is not modal. Nothing
+ * else in the app should reach for `--elev-4`.
+ * ------------------------------------------------------------------ */
+.pref-tap {
+  transition:
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* A four-pixel rise, which is the difference between "arrived" and "fired
+ * off". `from` and `to` are written out because that is how a keyframe block
+ * reads; they are keyframe selectors, not style-rule selectors, and no CSS
+ * minifier merges or discards them. */
+@keyframes pref-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pref-pop {
+  /* `--dur-fast`, where this used to write 140ms. A 20ms difference on a
+   * four-pixel rise is below the threshold of perception, and having one
+   * step for "a control acknowledged" beats having two. */
+  animation: pref-pop var(--dur-fast) ease-out;
+}
+
+/* ------------------------------------------------------------------ *
+ * Touch feedback
+ *
+ * `-webkit-tap-highlight-color` is the grey box Chrome and Safari flash
+ * under a finger. On a design built from hairlines and flat fills it is
+ * the one piece of chrome that belongs to neither theme, and on a light
+ * card it lands as a dirty grey rectangle over the thing being pressed.
+ *
+ * It is suppressed only where a REAL press state replaces it, which is
+ * what makes `.tap-clear` opt-in rather than global: a link with no
+ * `:active` rule would lose its only touch feedback, and a global
+ * `* { -webkit-tap-highlight-color: transparent }` is exactly that
+ * mistake waiting to happen. Every element carrying this class also
+ * carries an `active:` state — in this stylesheet (`.nav-link`,
+ * `.button`, `.number-input`, `.slider-input`, `.skip-link`,
+ * `.anchor-link`, and everything on `.pref-tap`) or as a Tailwind
+ * `active:` utility at the call site.
+ * ------------------------------------------------------------------ */
+.tap-clear {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ------------------------------------------------------------------ *
+ * Reach without size
+ *
+ * A 44x44 target and a 36x36 control are two different designs, and on a
+ * header that is `3.5rem` tall with three controls in it (56px at the
+ * default text scale, and it scales with the reader's setting), choosing
+ * the first one means either a crowded bar or a compromise. The third
+ * option is that the BOX a reader sees and the BOX a finger gets do not
+ * have to be the same size.
+ *
+ * This is that option: a transparent pseudo-element centred on the control,
+ * sized to `max(100%, 44px)` on both axes. It paints nothing, it is not in the
+ * accessibility tree, and a pointer event on it is delivered to the element
+ * that generated it — so the effective target is 44x44 while the drawn
+ * control, its border, and every neighbour's position are byte-identical to
+ * what they were. Agent 9 solved the 4px slider track with the padding /
+ * negative-margin / `background-clip` family; this is the other half of that
+ * idea, for a control that has a visible box of its own and so cannot spend
+ * its padding on reach.
+ *
+ * Two deliberate details:
+ *
+ *  `max(100%, 44px)` — a control that is ALREADY 44px or wider is left
+ *  alone, so applying this to a whole row of mixed sizes cannot shrink any
+ *  of them and cannot stack two pseudo-elements on one element.
+ *
+ *  `:where()` on the positioning declaration — it holds specificity at 0, so
+ *  an element that is already positioned keeps its own position. The skip link
+ *  is `position: absolute` and puts itself at the top-left of the page; a
+ *  `position: relative` at specificity (0,1,0) would silently demote it to a
+ *  relative box at the top of the flow, which is the one element on the site
+ *  that must not move. Nothing else opts in by accident, either: any
+ *  Tailwind `position-*` utility still wins.
+ *
+ * What it must NOT be used on is anything whose neighbours are closer than
+ * 88px apart in the overlap direction, because then two 44px targets would
+ * share pixels and a tap would have two owners. Every call site in the shell
+ * is a header control in a `gap-2` (8px) row — 4px of slop each side leaves
+ * the neighbour's own 4px and touches nothing.
+ * ------------------------------------------------------------------ */
+:where(.hit-44) {
+  position: relative;
+}
+
+:where(.hit-44)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, 44px);
+  height: max(100%, 44px);
+  transform: translate(-50%, -50%);
+}
+
+/* The footer's link list. Its own rows, not a shared primitive, because a
+ * footer row is a different object from a page link: it is a destination in a
+ * list of destinations, and 16px of text with a 6px gap is a 22px target on
+ * the one surface a reader is guaranteed to reach for at the bottom of every
+ * page.
+ *
+ * `min-height` on an inline-flex row rather than padding, for the same reason
+ * `.nav-link` uses it: the box grows, the type does not, and a wrapped
+ * repository URL does not get its block inset doubled. 44 is the floor and the
+ * number, chosen over the 24px that would clear WCAG 2.5.8, because these
+ * rows have room to give (the footer is the last thing on the page) and
+ * because the alternative — seven 24px targets in a column — reads as a list
+ * of hairlines rather than as something to press.
+ *
+ * It is `inline-flex` because that is what lets `align-items` and
+ * `min-height` work together on a link, and the price of that is the flex
+ * line's automatic minimum size, which is why the repository URL in the third
+ * column needs a `min-w-0` span inside it. The class is not a general-purpose
+ * "big link" and should not be put on one that carries a long unbreakable
+ * token without it. */
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* The repository URL in the footer's third column, and the only place on the
+ * site where a link is asked to break inside a word on purpose.
+ *
+ * `overflow-wrap: anywhere` and NOT `break-word`, and the difference is the
+ * whole fix. `break-word` changes where a LINE breaks; it does not change the
+ * box's min-content width, which is why a single 196.8px token in a 141px
+ * column still made the column 190.8px wide and pushed 20px of the document
+ * past the right edge of a 768px window. `anywhere` also lowers the intrinsic
+ * minimum, so the flex line's min-content contribution collapses to the icon
+ * and the anchor's shrink-to-fit width becomes the column it is offered.
+ *
+ * `min-width: 0` is the matching half on the flex side, and it is not
+ * redundant: without it the item's automatic minimum size is reinstated as a
+ * clamp on the contribution and the intrinsic width comes straight back.
+ *
+ * Measured at 768px: 20px of horizontal overflow before, 0 after. At 130% text
+ * the same line is 244.2px wide before and 130.6px — the column — after. */
+.footer-url {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* The app frame. `min-h-screen` is `min-height: 100vh`, and on a page shorter
+ * than the large viewport that is the classic phantom scroll: the document is
+ * 100vh of canvas with a real footer sitting above the fold, and the reader
+ * can scroll down into nothing. It is invisible on a long page and obvious on
+ * a short one, and the shortest pages on this site (404, About, Cases index, a
+ * case study) are exactly the ones a lost reader lands on.
+ *
+ * `dvh` and not `svh`: the document is NOT a scroll container, so there is no
+ * sticky box to keep on the visible edge — the question is only "is the frame
+ * at least as tall as what I can see", and `dvh` answers that exactly at every
+ * scroll position, where `svh` would leave a band of canvas under the footer
+ * once the browser chrome retracts.
+ *
+ * The trade, stated: `dvh` makes the document height itself depend on the
+ * toolbar, so on a page where `min-height` is the binding constraint the
+ * bottom edge moves as the reader scrolls. That only happens on pages shorter
+ * than the screen, where the alternative is a footer that is either cut off
+ * (`vh`) or floating above a seam (`svh`).
+ *
+ * A class rather than a utility because a Tailwind arbitrary value cannot
+ * express a fallback pair, and the pair is the whole mechanism: an engine
+ * without `dvh` takes the `vh` line and behaves as it always has. */
+.app-frame {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* The header's section name, below the width where it can say anything.
+ *
+ * This is the one element in the header that is allowed to disappear, and the
+ * reason it has to is arithmetic rather than taste. The header is a row of
+ * three fixed-width controls in a `gap-2` (8px) with the hamburger on the left
+ * and 12px of header padding either side, so the breadcrumb gets whatever is
+ * left over. Measured:
+ *
+ *   390px, 100% text            226px of 407 needed   fine
+ *   390px, 130% text            177px of 529 needed   fine
+ *   390px, 130%, focus mode on  102px of 116 needed   short, but usable
+ *   320px, 130%, focus mode on   32px of 116 needed    two characters
+ *
+ * Focus mode is what tips it, because its exit button is a third control with
+ * a text-labelled box in the row. At 32px the breadcrumb is not a truncated
+ * label, it is a smudge that reads as a rendering fault, and the information
+ * is on screen anyway: the page prints its own `h1` immediately below, and the
+ * lecture page has a real breadcrumb in the article header.
+ *
+ * 360px is the threshold because it is where the arithmetic runs out, not
+ * because 360 is a round number: at 360 and 130% with focus mode the crumb
+ * still gets 72px, which is "Course…". Below that it is not a label any more.
+ *
+ * A `px` query and not a `rem` one, which is the opposite of the site's usual
+ * rule and has to be said: a media query in `rem` resolves against the ROOT
+ * font size, which is exactly the thing that is scaling here. `24rem` would
+ * have hidden the breadcrumb below 499px at 130% text and below 384px at
+ * 100% — the preference would have moved the threshold in the wrong direction. */
+@media (max-width: 360px) {
+  .shell-crumb {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Theme cross-fade
+ *
+ * Flipping `.dark` repaints every custom property in the document on the
+ * same frame, so the page used to snap from white to black. The fix
+ * cannot be a transition on the colours themselves: `transition` is not
+ * an inherited property, and the number of elements that set their own
+ * `color` or `background-color` on this site is in the hundreds. The
+ * only rule that can cover all of them is a rule on `*`, and a
+ * transition on `*` is the documented way to leave a permanent
+ * compositing layer behind on every element in the document.
+ *
+ * So the cross-fade is one full-viewport veil in the DESTINATION canvas
+ * colour, over the top, `pointer-events: none`:
+ *
+ *   theme-shift-out   the veil fades IN, covering the old theme
+ *   <flip happens>
+ *   theme-shift-in    the veil fades OUT, uncovering the new one
+ *
+ * Which is a cross-fade, and has none of the properties that make a
+ * colour transition a bad idea:
+ *
+ *   no layout          `position: fixed` on a pseudo-element of
+ *                      `body`, which has no transform ancestor.
+ *   one layer          one element, for ~270ms, and only when the
+ *                      theme is actually toggled.
+ *   first paint        the classes are added by `lib/themeShift.ts` at
+ *                      the moment of the toggle, never at boot, and
+ *                      the no-flash script in index.html has never
+ *                      heard of them — so a cold load paints exactly
+ *                      as it did before this existed.
+ *   `color-scheme`     untouched. `applyTheme` writes it inline on
+ *                      `<html>`, the veil is a pseudo-element, and the
+ *                      two cannot see each other. The consequence,
+ *                      accepted: the SCROLLBAR tint snaps while the
+ *                      page fades. It is a 10px object at the edge of
+ *                      the viewport and the alternative is animating
+ *                      it, which is not a thing you can do.
+ *
+ * Gated twice, and the gate is not optional bookkeeping. Under reduced
+ * motion the duration tokens compute to `0ms`, and a 0ms animation with
+ * `forwards` holds its LAST keyframe — which for the out-phase is
+ * `opacity: 1`. A theme switch that was only half-guarded in script
+ * would therefore black the page out permanently instead of merely
+ * failing to fade. The selector excludes both ways of asking for
+ * stillness, so the veil cannot exist in either.
+ */
+@keyframes theme-veil-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes theme-veil-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-pref-motion='reduced']) body.theme-shift-out::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    /* Above the nav drawer (40), the skip link (60) and the settings
+       panel (50): a cross-fade that leaves the chrome behind is not a
+       cross-fade. Below nothing, and `pointer-events: none` so the
+       270ms cannot swallow a click. */
+    z-index: 90;
+    pointer-events: none;
+    background-color: var(--c-bg);
+    animation: theme-veil-in var(--dur-fast) ease-in forwards;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-pref-motion='reduced']) body.theme-shift-in::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+    background-color: var(--c-bg);
+    animation: theme-veil-out var(--dur-base) ease-out forwards;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * User preferences — the consumption side of the contract
+ *
+ * Everything here reads a `--pref-*` property or a `data-pref-*` attribute
+ * written by `lib/preferences.ts`. The neutral defaults are in `:root`
+ * above, so each rule below resolves to exactly the value it had before
+ * preferences existed unless the reader changed it.
+ *
+ * `prefers-reduced-motion` is honoured here rather than in JavaScript, and
+ * deliberately so: a media query is evaluated by the browser before the
+ * document is interactive, so the very first frame is already still.
+ *
+ * The motion reset is written as one rule per selector because that is how
+ * the reset reads — the three pseudo-class targets are the same declaration
+ * stated three times, and a reader looking for the `::after` arm should not
+ * have to find it inside a selector list. (An earlier version cited the
+ * production minifier dropping all but the last selector, which is false:
+ * esbuild merges adjacent identical rules and keeps every selector — see
+ * `.elev-N`.)
+ * ------------------------------------------------------------------ */
+html {
+  /* Percent, not `16px * scale`. A bare `16px` here would overwrite a
+     reader who has changed their browser's default font size, and a text
+     scale control that fixes their font size as a side effect is not a text
+     scale control. `1rem` here would be circular — on the root element it
+     resolves to the root's own size. */
+  font-size: calc(100% * var(--pref-text-scale, 1));
+}
+
+/* An explicit request for a still page, regardless of what the OS says.
+   `--pref-motion-scale` is the hook for components that want to scale a
+   duration rather than have it removed: `var(--dur-fast)` and its two
+   siblings, which are the only three declarations in this stylesheet that
+   multiply it.
+
+   The `!important` resets are repeated on the root element itself, and that
+   is not duplication for its own sake. `html[data-pref-motion='reduced'] *`
+   does NOT match `html` — the universal selector is the descendants only —
+   so before this the root was the one element in the document whose own
+   transitions kept running under an explicit reduced-motion preference. It
+   happens to declare none today, which is precisely why the hole was worth
+   closing rather than documenting. */
+html[data-pref-motion='reduced'] {
+  --pref-motion-scale: 0;
+  scroll-behavior: auto;
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+html[data-pref-motion='reduced'] * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+html[data-pref-motion='reduced'] *::before {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+html[data-pref-motion='reduced'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* The OS asking for less motion, which `motion: 'full'` does NOT override:
+   that query is an accessibility setting the reader set somewhere they
+   cannot see, and a per-site toggle is not a substitute for it. `full` and
+   `system` are therefore the same thing on the wire — the difference between
+   them is the reason a user has for arriving, not the rendered result. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    --pref-motion-scale: 0;
+    scroll-behavior: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *::before {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Focus (reader) mode
+ *
+ * Deliberately REDUCES chrome rather than removing it. Hiding the sidebar or
+ * the header would be the bigger win, and it is not done, because the only
+ * way out of focus mode would be a control that focus mode itself hid — a
+ * keyboard user who entered it could not leave. `tokens.test.ts` enforces the
+ * ban, and `layout/FocusModeExit.tsx` is the answer it forced: a labelled
+ * button in the header that only exists while focus mode is on, carrying the
+ * same Escape chord the document listener implements. Immediacy, not
+ * necessity, is what the visible exit buys.
+ *
+ * So "calm the page" had to be earned without hiding anything, and it is
+ * earned two ways:
+ *
+ *  1. The frame recedes. In light mode the sidebar's `--c-surface` is the
+ *     brightest thing on screen — brighter than the article — so moving it and
+ *     the footer to the canvas colour takes two large slabs out of the reading
+ *     field without touching a single text colour, and therefore without
+ *     putting any contrast pair at risk. The hairline stays, so the structure
+ *     is still legible.
+ *  2. The article becomes the only raised thing. Every plate inside the main
+ *     column drops to `--elev-0` and the prose is lifted to `--elev-2` on a
+ *     surface plate. That is the load-bearing part: with one raised object on
+ *     the page, the eye has nowhere else to go. The quiz, the tool and the
+ *     prediction all keep their fill, so nothing becomes unreadable.
+ *
+ * The measure compensation in the prose rule is not incidental. Padding on a
+ * `max-width: 70ch` box comes straight out of the measure, so the plate is
+ * inset and the box is widened by exactly the inset plus the hairline, which
+ * leaves the text column at 70ch. `typography.test.ts` still reads the
+ * original declaration off `.prose-lecture` because the focus rule is a
+ * different selector.
+ *
+ * Reversible by definition: every rule is scoped to the attribute.
+ * ------------------------------------------------------------------ */
+:root[data-pref-focus='on'] {
+  --prose-bg: var(--c-surface);
+}
+
+:root[data-pref-focus='on'] #main-content {
+  max-width: 72rem;
+  margin-inline: auto;
+  /* `width: 100%` is load-bearing, not tidiness. `#main-content` is a flex
+     item on the cross axis of a column container, and auto cross-axis margins
+     cancel the default `align-self: stretch` — the column becomes shrink-to-fit
+     and its width becomes min-content instead of the space available. On a
+     390px phone the prose's min-content is 401px, so focus mode alone was
+     widening the page to 433px and giving the reader a horizontal scrollbar on
+     a viewport they were already reading comfortably. With the plate's inset
+     it was 483px. `width: 100%` restores the stretch, and the auto margins
+     then do the job they were meant to do: centring the 72rem cap. */
+  width: 100%;
+}
+
+:root[data-pref-focus='on'] .prose-lecture {
+  margin-inline: auto;
+  max-width: calc(var(--pref-measure, 70ch) + 2 * var(--space-6) + 2px);
+  padding-block: var(--space-8);
+  padding-inline: var(--space-6);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-plate);
+  background-color: var(--c-surface);
+  --elev-shadow: var(--elev-2);
+  --elev-inset: inset 0 1px 0 var(--elev-inset-hi);
+  box-shadow: var(--elev-shadow), var(--elev-inset);
+}
+
+:root[data-pref-focus='on'] .sidebar {
+  background-color: var(--c-bg);
+}
+
+:root[data-pref-focus='on'] footer {
+  background-color: var(--c-bg);
+}
+
+:root[data-pref-focus='on'] #main-content .card {
+  box-shadow: none;
+}
+
+:root[data-pref-focus='on'] #main-content .elev-panel {
+  box-shadow: none;
+}
+
+:root[data-pref-focus='on'] #main-content .control-panel {
+  box-shadow: none;
+}
+
+:root[data-pref-focus='on'] #main-content .visualization-container {
+  box-shadow: none;
+}
+
+/* The header's blur is a surface effect with no information in it. */
+:root[data-pref-focus='on'] header.sticky {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background-color: var(--c-bg);
+}
+
+/* ------------------------------------------------------------------ *
+ * Reading chrome
+ *
+ * The three pieces of furniture that surround the prose: a progress rail
+ * on the header's bottom edge, a lecture bar that parks under it, and the
+ * contents list. All of it is elevation-neutral on purpose — the article
+ * is the only raised surface in the reading view, and giving the progress
+ * rail a shadow would make a 2px line look like a card.
+ * ------------------------------------------------------------------ */
+.read-progress {
+  /* Absolutely positioned inside the sticky header, which is a positioned
+     element, so this shifts no layout and cannot overlap the article at any
+     width. `bottom: 0` puts it inside the header's padding box, above its own
+     1px border, so it reads as a hairline the header grew. */
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  z-index: 1;
+  pointer-events: none;
+  background-color: color-mix(in srgb, var(--c-fg) 6%, transparent);
+  --read-progress: 0;
+}
+
+.read-progress-fill {
+  height: 100%;
+  transform: scaleX(var(--read-progress));
+  transform-origin: 0 50%;
+  background-color: var(--c-accent);
+  /* The only motion in the reading view, and it is a token: under reduced
+     motion `--pref-motion-scale` is 0, so the bar tracks the scroll exactly
+     instead of easing behind it. */
+  transition: transform var(--dur-fast) linear;
+}
+
+/* The lecture bar's position rail: the same two-part object as
+ * `.read-progress`, at a different size, for a different quantity. It used to
+ * carry two class names that no rule in this stylesheet ever declared, so the
+ * rail drew nothing at all and the inner fill had no height — a 64%-full
+ * progress bar that is invisible on every one of the 25 lecture pages. Both
+ * names are kept because the component is the one that chose them; what was
+ * missing was the other end of the contract.
+ *
+ * It is a TRACK plus a FILL, not a single bar. `.read-progress` gets away with
+ * one object because it is 2px tall and full-bleed, where a track would be
+ * indistinguishable from the accent. This one is 4px in a 48-80px pill, so the
+ * unfilled part has to be visible or the bar reads as a decoration.
+ *
+ * `--surface-2` for the track, to match the course-progress strip in the
+ * sidebar: two progress bars on one screen that are made of different greys
+ * read as two different quantities, and they are the same quantity in two
+ * places. */
+.progress-fill {
+  display: block;
+  height: 4px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background-color: var(--c-surface-2);
+}
+
+.progress-bar {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background-color: var(--c-accent);
+  transition: width var(--dur-slow);
+}
+
+.lecture-bar {
+  position: sticky;
+  top: 3.5rem;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-5);
+  padding-block: var(--space-2);
+  border-bottom: 1px solid var(--c-border);
+  background-color: var(--c-bg);
+}
+
+.lecture-bar-link {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: var(--radius-control);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  color: var(--c-fg-muted);
+  text-decoration: none;
+  max-width: 40%;
+}
+
+.lecture-bar-link:hover {
+  color: var(--c-accent-ink);
+}
+
+.lecture-bar-link:active {
+  background-color: var(--c-surface-2);
+}
+
+.toc-disclosure {
+  margin-bottom: var(--space-5);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-plate);
+  background-color: var(--c-surface);
+  padding: var(--space-3) var(--space-4);
+}
+
+.toc-disclosure > summary {
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--c-fg-muted);
+}
+
+.contents-list {
+  position: relative;
+  /* The cap exists so a 63-row list cannot be taller than the reader's
+   * window. Same reasoning as `.sidebar`'s height and for the same reason: it
+   * is a scroll container whose top edge is pinned, so a `vh` cap is measured
+   * against the large viewport and puts the tail of the list below the fold on
+   * a phone in landscape. `dvh` is the visible box. The `7rem` is the header
+   * plus air, in rem, because the header is in rem. Fallback first. */
+  max-height: calc(100vh - 7rem);
+  max-height: calc(100dvh - 7rem);
+  overflow-y: auto;
+  /* Deliberately NOT `overscroll-behavior: contain`. A 63-row list that traps
+     the wheel at its end is a scroll trap; the default lets the page take over
+     once the list is exhausted, and the current entry is kept in view below. */
+  font-size: 0.8125rem;
+  line-height: 1.375;
+}
+
+.contents-list li {
+  margin: 0;
+}
+
+.contents-list a {
+  display: block;
+  border-radius: var(--radius-control);
+  padding: 0.25rem 0.5rem;
+  color: var(--c-fg-muted);
+  text-decoration: none;
+}
+
+/* The accent belongs to the entry the reader is in — that is the
+   interaction. Read and upcoming are separated by a step of neutral
+   lightness instead, so neither of them spends the accent. */
+.contents-list a[data-state='current'] {
+  background-color: color-mix(in srgb, var(--c-accent) 10%, transparent);
+  color: var(--c-accent-ink);
+  font-weight: 600;
+}
+
+.contents-list a[data-state='read'] {
+  color: var(--c-fg-subtle);
+}
+
+.contents-list a:hover {
+  color: var(--c-fg);
+}
+
+.contents-list a:active {
+  background-color: var(--c-surface-2);
+}
+
+.contents-list .contents-sub {
+  padding-left: var(--space-3);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contents-list a:hover {
+    background-color: var(--c-surface-2);
+  }
+
+  .contents-list a[data-state='current']:hover {
+    color: var(--c-accent-ink);
+  }
+}
+
 
 /* ------------------------------------------------------------------ *
  * Print
@@ -990,24 +3394,124 @@ a:hover {
  * ------------------------------------------------------------------ */
 @media print {
   :root {
-    --shadow-card: none;
-    --shadow-plate: none;
-    --shadow-pop: none;
+    /* Zeroing the scale is enough: `--shadow-card` / `--shadow-plate` /
+       `--shadow-pop` are `var()` references into it, and the `.elev-N`
+       utilities read the same vars, so nothing has to be listed twice. */
+    --elev-0: none;
+    --elev-1: none;
+    --elev-2: none;
+    --elev-3: none;
+    --elev-4: none;
+    --elev-inset-hi: transparent;
+
+    /* A printed lecture has to look like a document, not like a screenshot
+       of somebody's preferences.
+
+       `--pref-text-scale` is pinned because the root font size is
+       `calc(100% * var(--pref-text-scale))`: a reader who chose 130% on
+       screen would otherwise print 11pt body text next to headings and
+       table cells at 1.3x, because those are `rem` and `rem` follows the
+       root. Pinning the scale is what makes the single `11pt` below
+       describe the whole document.
+
+       `--pref-line-height` goes to 1.45, not to the screen default of
+       1.6. Screen leading is tuned for a backlit display held at arm's
+       length; 1.45 at 11pt is normal print leading, and it is the
+       difference between a lecture that fits its page budget and one that
+       runs a page long.
+
+       `--pref-measure` goes to `none` for the same reason the prose rule
+       below sets `max-width: none`: paper is a fixed width and the
+       preference's job is done. Setting the property rather than only
+       overriding the one rule means every other reading column on the
+       page follows.
+
+       `--pref-space` is deliberately NOT touched: a reader who asked for
+       roomier padding should not have the print output silently reflowed
+       on top of everything else. */
+    --pref-text-scale: 1;
+    --pref-line-height: 1.45;
+    --pref-measure: none;
   }
 
   /* `.note` is deliberately NOT hidden: its lesson text is content. Only the
-     interactive parts of a tool are dropped. */
-  .sidebar,
-  header.sticky,
-  footer,
-  .skip-link,
-  .button,
-  .button-group,
-  .control-panel,
-  .slider-input,
-  .number-input,
-  .recharts-responsive-container,
+     interactive parts of a tool are dropped.
+
+     One rule per selector, so a reader debugging a print stylesheet can
+     grep for `.sidebar` and find the rule that hides it. (An earlier
+     version attributed this to a minifier that keeps only the last selector
+     of a list. That is false — see the note on `.elev-N` — and the
+     "everything prints on every page" failure it described never happened
+     here.) */
+  .sidebar {
+    display: none !important;
+  }
+
+  header.sticky {
+    display: none !important;
+  }
+
+  footer {
+    display: none !important;
+  }
+
+  .skip-link {
+    display: none !important;
+  }
+
+  .button {
+    display: none !important;
+  }
+
+  .button-group {
+    display: none !important;
+  }
+
+  .control-panel {
+    display: none !important;
+  }
+
+  .slider-input {
+    display: none !important;
+  }
+
+  .number-input {
+    display: none !important;
+  }
+
+  /* A page's search field is chrome with no state worth carrying to paper: it
+     prints as an empty rounded box that a reader filling in a PDF would expect
+     to do something with, next to the results it filtered. The four that carry
+     it — syllabus, glossary, concept map, tools index — share a TYPE and not a
+     class, so the type is what is selected on. A `checkbox` is deliberately
+     left alone: it prints its tick, and whether a reader had "show the real
+     data overlay" on is a fact about the picture they are looking at. */
+  input[type='search'] {
+    display: none !important;
+  }
+
+  .recharts-responsive-container {
+    display: none !important;
+  }
+
   .visualization-container {
+    display: none !important;
+  }
+
+  /* The reading chrome is screen furniture. The lecture bar would otherwise
+     print the same prev/next pair twice — once pinned at the top of the first
+     page, once in its real place at the end — and the contents list is
+     navigation, not prose. The bar at the foot of the lecture is the one that
+     belongs in the document. */
+  .lecture-bar {
+    display: none !important;
+  }
+
+  .toc-disclosure {
+    display: none !important;
+  }
+
+  .read-progress {
     display: none !important;
   }
 
@@ -1016,27 +3520,128 @@ a:hover {
     color: black;
   }
 
+  /* Selection and anchor washes are screen affordances. A `:target` block on
+     paper would be a grey rectangle next to every heading whose id the
+     printed URL happens to name, and it is the one rule above that would
+     follow the URL into the PDF. */
+  ::selection {
+    background: none;
+  }
+
+  .prose-lecture :target {
+    background: none;
+    box-shadow: none;
+  }
+
   .prose-lecture {
     max-width: none;
     font-size: 11pt;
+    /* The focus-mode plate is a screen surface. Printed, it is a bordered,
+       filled, padded rectangle around every paragraph, so the whole well is
+       taken back off. */
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
   }
 
-  .note,
-  .stat-tile,
+  /* Code and rules carry meaning in a lecture note, so they keep their fill
+     rather than printing as unstyled monospace on white. One rule each: see
+     the note in the print block above. */
+  .prose-lecture code {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .prose-lecture pre {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .prose-lecture .katex-display {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .note {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .stat-tile {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
   .card {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
-  .prose-lecture h2,
+  .prose-lecture h2 {
+    break-after: avoid;
+  }
+
   .prose-lecture h3 {
     break-after: avoid;
   }
 
-  .prose-lecture pre,
-  .prose-lecture table,
+  .prose-lecture pre {
+    break-inside: avoid;
+  }
+
+  .prose-lecture table {
+    break-inside: avoid;
+  }
+
   .prose-lecture .katex-display {
     break-inside: avoid;
+  }
+
+  /* A horizontally scrollable box has no scrollbar on paper, so anything
+     wider than the page would be cut off at the right margin with nothing
+     to indicate it. Letting the content wrap is the only honest option.
+     `.katex-display` is excluded because a KaTeX expression cannot wrap:
+     it is a single unbreakable box, `break-inside: avoid` already keeps it
+     on one page, and at print sizes the widest equation in the notes
+     measures about 575px against roughly 624px of A4 text width. */
+  .prose-lecture .table-scroll,
+  .prose-lecture pre {
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  /* The scroll shadows are a screen affordance and they would print: a 2.5rem
+     band of page colour down each edge of every wide table, plus a soft edge
+     that `print-color-adjust: exact` above is explicitly asking the printer to
+     reproduce. On paper nothing is off-screen, so there is nothing to hint at.
+     One rule each, for the same reason as above. */
+  .prose-lecture .table-scroll {
+    background-color: transparent;
+    background-image: none;
+  }
+
+  .prose-lecture .katex-display {
+    background-color: transparent;
+    background-image: none;
+  }
+
+  .prose-lecture pre code {
+    white-space: pre-wrap;
+  }
+
+  /* The theme cross-fade is a screen affordance and a full-viewport one at
+   * that. A reader who printed from the settings panel while the veil was
+   * mid-animation would get a solid rectangle of the destination canvas over
+   * the top of the page, and printing does not animate so it would simply
+   * stay there. */
+  body.theme-shift-out::after {
+    display: none;
+  }
+
+  body.theme-shift-in::after {
+    display: none;
   }
 }
 
@@ -1061,14 +3666,60 @@ a:hover {
 }
 
 @media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: static;
-  }
+  /* `.sidebar` used to be in here too, declaring `width: 100%; height: auto;
+   * position: static`. It has moved to `.sidebar--drawer` below; see the note
+   * there for the one-pixel collision with Tailwind's `md` that made 768px the
+   * worst width on the site. The breakpoint itself did not move. */
+  /* Already a full grid step tighter than the desktop inset; it stays on
+     the scale so a compact phone is not the one surface that ignored the
+     preference. */
   .tool-card,
   .visualization-container,
   .control-panel {
-    padding: 1rem;
+    padding: var(--space-4);
   }
+}
+
+/* ------------------------------------------------------------------ *
+ * The drawer copy of the sidebar
+ *
+ * The fix for a one-pixel collision, and the substantive declaration in it is
+ * `overflow: visible`.
+ *
+ * Tailwind's `md` is `min-width: 768px`, so `hidden md:block` — the wrapper the
+ * desktop sidebar lives in — turns the sidebar ON at exactly 768. A
+ * `max-width: 768px` rule turns OFF at exactly 768 as well, so at 768px both
+ * were in force at once and the max-width rule won on width, height and
+ * position. Measured at 768x1024, on all fourteen routes: a 446px-wide,
+ * 1634px-tall STATIC column holding the whole course outline, in the left
+ * half of the window, beside a 322px content column, with 95px of horizontal
+ * overflow because the footer could no longer fit three columns in what was
+ * left. The one width where the layout is meant to be most conservative was
+ * the one where it collapsed.
+ *
+ * The desktop sidebar only exists at and above `md`, so every one of those
+ * declarations was describing the drawer's copy and never the desktop one.
+ * Scoping them to the drawer is therefore both the fix and the honest
+ * description of what they always were.
+ *
+ * `overflow: visible` is the part that is not a breakpoint fix. The drawer
+ * panel is the scroll container and `.sidebar` is its content; while the
+ * sidebar also declared `overflow-y: auto` it was a scrollport in its own
+ * right, and with `height: auto` it never scrolled. So the
+ * `position: sticky; bottom: 0` `CourseProgress` strip inside it resolved
+ * against an 1859px-tall scrollport instead of the 844px panel, took no
+ * offset, and sat 1798px down the nav — measured off screen in every drawer
+ * case, on a phone and on a 360px-tall landscape phone alike, reachable only
+ * by scrolling past all 28 rows. With the sidebar out of the way the panel is
+ * the nearest scrollport and the strip is pinned to the bottom of the panel,
+ * which is what `position: sticky; bottom: 0` was written to do.
+ *
+ * Declared AFTER the two queries above so it wins on equal specificity, and
+ * the comment is here so the next pass does not move it above them.
+ * ------------------------------------------------------------------ */
+.sidebar--drawer {
+  width: 100%;
+  height: auto;
+  position: static;
+  overflow: visible;
 }

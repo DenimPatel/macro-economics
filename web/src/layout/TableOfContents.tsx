@@ -1,74 +1,135 @@
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useRef } from 'react'
+import type { KeyboardEvent as ReactKeyboardEvent, RefObject } from 'react'
 import type { Heading } from '../content/markdownComponents'
 
+function stateOf(index: number, activeIndex: number): 'read' | 'current' | 'upcoming' {
+  if (index === activeIndex) return 'current'
+  // "Read" here means only that the reader has scrolled past the heading; it is
+  // not the course completion flag, which lives on the lecture itself.
+  return activeIndex > 0 && index < activeIndex ? 'read' : 'upcoming'
+}
+
+interface ListProps {
+  headings: Heading[]
+  activeId: string | null
+}
+
+function onListKeyDown(event: ReactKeyboardEvent<HTMLUListElement>) {
+  // Purely additive: every link is still a normal tab stop. Arrow keys only add
+  // a faster path through a list that can be 63 rows long.
+  const step: Record<string, number> = { ArrowDown: 1, ArrowUp: -1 }
+  const delta = step[event.key]
+  if (delta === undefined) return
+  const links = Array.from(event.currentTarget.children).map(
+    (row) => row.firstElementChild,
+  ) as HTMLAnchorElement[]
+  const from = links.findIndex((link) => link === document.activeElement)
+  if (from < 0) return
+  const next = Math.min(links.length - 1, Math.max(0, from + delta))
+  event.preventDefault()
+  links[next]?.focus()
+}
+
+function ContentsList({ headings, activeId }: ListProps) {
+  const list = useRef<HTMLUListElement>(null)
+  // Fall back to the first row if the spy's id has no row, so the list always
+  // has exactly one current entry and never none.
+  const found = headings.findIndex((heading) => heading.id === activeId)
+  const activeIndex = found >= 0 ? found : 0
+
+  useLayoutEffect(() => {
+    // Keep the current entry in view inside the list's own scroller. The
+    // arithmetic is done by hand rather than with scrollIntoView because that
+    // would also scroll the page, turning a 57-row list into a scroll-hijack.
+    const container = list.current
+    if (!container) return
+    const row = container.children[activeIndex] as HTMLElement | undefined
+    if (!row) return
+    const top = row.offsetTop
+    const bottom = top + row.offsetHeight
+    if (top < container.scrollTop) container.scrollTop = top - 8
+    else if (bottom > container.scrollTop + container.clientHeight) {
+      container.scrollTop = bottom - container.clientHeight + 8
+    }
+  }, [activeIndex])
+
+  return (
+    <ul ref={list} className="contents-list contents-scroll" onKeyDown={onListKeyDown}>
+      {headings.map((heading, i) => {
+        const state = stateOf(i, activeIndex)
+        return (
+          <li
+            key={`${heading.id}-${i}`}
+            className={heading.level === 3 ? 'contents-sub' : undefined}
+          >
+            <a
+              href={`#${heading.id}`}
+              data-state={state}
+              aria-current={state === 'current' ? 'location' : undefined}
+            >
+              {heading.text}
+            </a>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
+export interface TableOfContentsProps {
+  headings: Heading[]
+  activeId: string | null
+}
+
 /**
- * Sticky lecture table of contents built from the rendered headings.
+ * The reading rail: a contents list pinned beside the article from 1280px up.
+ * Below that the same list is rendered inline as a disclosure (see
+ * `ContentsDisclosure`), so a 390px reader is not left without a way to jump
+ * around a 57-heading lecture.
  *
- * Flat and indented rather than a vertical rail, and it tracks the section you
- * are reading with an IntersectionObserver. A table of contents that cannot
- * tell you where you are is a list of links.
+ * The list is its own scroll container capped to the viewport. Before this,
+ * Lecture 16's 57 entries made the sticky block 2079px tall inside a 900px
+ * window: the top stuck and everything below the fold was unreachable, because
+ * `position: sticky` does not clip and does not scroll its own overflow.
  */
-export default function TableOfContents({ headings }: { headings: Heading[] }) {
-  const [active, setActive] = useState<string | null>(null)
-
-  useEffect(() => {
-    if (headings.length === 0) return
-    const elements = headings
-      .map((h) => document.getElementById(h.id))
-      .filter((el): el is HTMLElement => el !== null)
-    if (elements.length === 0) return
-
-    const visible = new Set<string>()
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) visible.add(entry.target.id)
-          else visible.delete(entry.target.id)
-        }
-        // First visible heading in document order wins, so scrolling up does
-        // not latch onto a heading further down the page.
-        const first = elements.find((el) => visible.has(el.id))
-        if (first) setActive(first.id)
-      },
-      // Bias the band towards the top of the viewport: a heading is "current"
-      // once it reaches reading position, not once its last pixel appears.
-      { rootMargin: '-80px 0px -70% 0px', threshold: 0 },
-    )
-
-    for (const el of elements) observer.observe(el)
-    return () => observer.disconnect()
-  }, [headings])
-
+export default function TableOfContents({ headings, activeId }: TableOfContentsProps) {
   if (headings.length === 0) return null
   return (
-    <aside className="hidden w-56 shrink-0 xl:block">
-      <nav aria-label="On this page">
-        <div className="sticky top-20">
-          <p className="mb-2.5 text-micro font-bold uppercase tracking-widest text-fg-subtle">
-            On this page
-          </p>
-          <ul className="space-y-0.5 text-sm">
-            {headings.map((heading, i) => {
-              const isActive = active === heading.id
-              return (
-                <li key={`${heading.id}-${i}`} className={heading.level === 3 ? 'pl-3' : ''}>
-                  <a
-                    href={`#${heading.id}`}
-                    aria-current={isActive ? 'location' : undefined}
-                    className={`block rounded py-0.5 pl-2 leading-snug no-underline transition-colors ${
-                      isActive
-                        ? 'bg-accent/10 font-semibold text-accent-ink'
-                        : 'text-fg-muted hover:bg-surface-2 hover:text-fg'
-                    }`}
-                  >
-                    {heading.text}
-                  </a>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      </nav>
+    <aside className="hidden w-56 shrink-0 xl:block" aria-labelledby="toc-heading">
+      <div className="sticky top-20">
+        <p
+          id="toc-heading"
+          className="mb-3 text-micro uppercase tracking-widest text-fg-subtle"
+        >
+          On this page
+        </p>
+        <nav aria-label="On this page">
+          <ContentsList headings={headings} activeId={activeId} />
+        </nav>
+      </div>
     </aside>
+  )
+}
+
+export interface ContentsDisclosureProps {
+  headings: Heading[]
+  activeId: string | null
+  detailRef: RefObject<HTMLDetailsElement>
+}
+
+/**
+ * The same contents list as a disclosure, for viewports too narrow for the
+ * rail. `<details>` rather than a button wrapping a hidden list, so the open
+ * state is real without script.
+ */
+export function ContentsDisclosure({ headings, activeId, detailRef }: ContentsDisclosureProps) {
+  if (headings.length === 0) return null
+  return (
+    <details ref={detailRef} id="lecture-contents" className="toc-disclosure xl:hidden">
+      <summary>Contents ({headings.length})</summary>
+      <nav aria-label="On this page" className="mt-3">
+        <ContentsList headings={headings} activeId={activeId} />
+      </nav>
+    </details>
   )
 }

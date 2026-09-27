@@ -2,13 +2,15 @@ import { useState } from 'react'
 import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart } from 'recharts'
 import { ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
+  Button,
   SliderControl,
   StatBox,
-  Button,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
 
 /** Series keep a fixed economic identity across every chart in this tool. */
 const BOND_PRICE_STROKE = chartColor(0)
@@ -16,10 +18,10 @@ const STOCK_PRICE_STROKE = chartColor(1)
 const VALUATION_BAR_FILL = chartColor(3)
 
 /** Layout shared by the chart and readout blocks. */
-const CONTROL_GRID = 'grid gap-6 sm:grid-cols-2'
+const CONTROL_GRID = 'grid gap-s-6 sm:grid-cols-2'
 const CHART_BOX = 'h-[300px]'
-const SPLIT = 'grid gap-6 lg:grid-cols-2'
-const STAT_GRID = 'mb-6 grid grid-cols-2 gap-3'
+const SPLIT = 'grid gap-s-6 lg:grid-cols-2'
+const STAT_GRID = 'mb-s-6 grid grid-cols-2 gap-s-3'
 
 interface BondDataPoint {
   rate: number
@@ -31,13 +33,62 @@ interface EquityDataPoint {
   price: number
 }
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  coupon: 5,
+  years: 10,
+  discountRate: 5,
+  dividend: 2,
+  growthRate: 3,
+  showDataOverlay: true,
+}
+
 export default function AssetPricing() {
-  const [coupon, setCoupon] = useState(5)
-  const [years, setYears] = useState(10)
-  const [discountRate, setDiscountRate] = useState(5)
-  const [dividend, setDividend] = useState(2)
-  const [growthRate, setGrowthRate] = useState(3)
-  const [showDataOverlay, setShowDataOverlay] = useState(true)
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
+const [coupon, setCoupon] = useState(DEFAULTS.coupon)
+const [years, setYears] = useState(DEFAULTS.years)
+const [discountRate, setDiscountRate] = useState(DEFAULTS.discountRate)
+const [dividend, setDividend] = useState(DEFAULTS.dividend)
+const [growthRate, setGrowthRate] = useState(DEFAULTS.growthRate)
+const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
+
+  const { reset, dirty } = useToolReset(
+    {
+    coupon: coupon,
+    years: years,
+    discountRate: discountRate,
+    dividend: dividend,
+    growthRate: growthRate,
+    showDataOverlay: showDataOverlay,
+    },
+    {
+      setCoupon,
+      setYears,
+      setDiscountRate,
+      setDividend,
+      setGrowthRate,
+      setShowDataOverlay,
+    },
+    {
+      coupon: DEFAULTS.coupon,
+      years: DEFAULTS.years,
+      discountRate: DEFAULTS.discountRate,
+      dividend: DEFAULTS.dividend,
+      growthRate: DEFAULTS.growthRate,
+      showDataOverlay: DEFAULTS.showDataOverlay,
+    },
+  )
 
   // Calculate bond price using present value formula
   const calculateBondPrice = (coupon: number, years: number, rate: number) => {
@@ -142,16 +193,19 @@ export default function AssetPricing() {
         </div>
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <ToolControlBar onReset={reset} dirty={dirty} />
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Bond Price vs. Discount Rate
-        </h3>
+        </h2>
         <div className={CHART_BOX}>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={bondData} margin={chartTheme.margin}>
               <CartesianGrid {...chartTheme.grid} />
-              <XAxis dataKey="rate" {...chartTheme.axis} />
-              <YAxis {...chartTheme.axis} />
+              <XAxis
+                key={chartTheme.axisKey('x')} dataKey="rate" {...chartTheme.axis} />
+              <YAxis
+                key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
               <ChartLine
                 type="monotone"
@@ -166,16 +220,18 @@ export default function AssetPricing() {
         </div>
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Stock Price vs. Discount Rate
-        </h3>
+        </h2>
         <div className={CHART_BOX}>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={equityData} margin={chartTheme.margin}>
               <CartesianGrid {...chartTheme.grid} />
-              <XAxis dataKey="rate" {...chartTheme.axis} />
-              <YAxis {...chartTheme.axis} />
+              <XAxis
+                key={chartTheme.axisKey('x')} dataKey="rate" {...chartTheme.axis} />
+              <YAxis
+                key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
               <ChartLine
                 type="monotone"
@@ -190,10 +246,10 @@ export default function AssetPricing() {
         </div>
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Current Asset Valuation
-        </h3>
+        </h2>
         <div className={SPLIT}>
           <div className={CHART_BOX}>
             <ResponsiveContainer width="100%" height="100%">
@@ -202,8 +258,10 @@ export default function AssetPricing() {
                 { name: 'Stock Price', value: stockPrice },
               ]} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
-                <XAxis dataKey="name" {...chartTheme.axis} />
-                <YAxis {...chartTheme.axis} />
+                <XAxis
+                  key={chartTheme.axisKey('x')} dataKey="name" {...chartTheme.axis} />
+                <YAxis
+                  key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
                 <ChartBar dataKey="value" fill={VALUATION_BAR_FILL} />
               </BarChart>
@@ -227,7 +285,7 @@ export default function AssetPricing() {
         </div>
       </div>
 
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-s-8 grid gap-s-6 sm:grid-cols-2 lg:grid-cols-3">
         <ToolNote label="Info" variant="info" title="Bond Valuation">
           <p>Bonds pay fixed coupon payments and return principal at maturity</p>
           <p>As discount rates rise, bond prices fall (inverse relationship)</p>

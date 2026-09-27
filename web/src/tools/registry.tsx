@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components -- the registry is a lookup table, not a fast-refresh boundary. */
-import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from 'react'
+import { lazy, Suspense, useEffect, type ComponentType, type LazyExoticComponent } from 'react'
 import type { ToolId } from '../../../content/lectures'
 
 type ToolComponent = LazyExoticComponent<ComponentType>
@@ -39,7 +39,26 @@ export function LoadingTool() {
   )
 }
 
-export function ToolRenderer({ toolId }: { toolId: ToolId }) {
+/**
+ * Fires `onReady` once the tool's own module has actually mounted.
+ *
+ * The caller needs this because a tool's controls register themselves as they
+ * mount, so a page that asks "how many settings are on screen" during the
+ * lazy-load window gets zero — the same answer a tool with no settings gives.
+ * All twenty tools carry at least one control, so that ambiguity is not
+ * theoretical: it put a false "this tool has no settings" on every tool page
+ * for the length of the download. Rendering this inside the boundary means it
+ * mounts in the same commit as the tool itself, so the caller learns "empty"
+ * only once "empty" is real.
+ */
+function ToolReady({ onReady }: { onReady?: () => void }) {
+  useEffect(() => {
+    onReady?.()
+  }, [onReady])
+  return null
+}
+
+export function ToolRenderer({ toolId, onReady }: { toolId: ToolId; onReady?: () => void }) {
   const Component = TOOL_COMPONENTS[toolId]
   if (!Component) {
     return <p className="text-sm text-fg-muted">This tool is not available yet.</p>
@@ -47,6 +66,7 @@ export function ToolRenderer({ toolId }: { toolId: ToolId }) {
   return (
     <Suspense fallback={<LoadingTool />}>
       <Component />
+      <ToolReady onReady={onReady} />
     </Suspense>
   )
 }

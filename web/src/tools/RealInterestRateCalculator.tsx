@@ -1,15 +1,29 @@
 import { useState } from 'react'
-import { LineChart, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart } from 'recharts'
+import {
+  LineChart,
+  BarChart,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  ComposedChart,
+  ReferenceLine,
+} from 'recharts'
 import { ChartArea, ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
-  SliderControl,
-  StatBox,
   Button,
   InfoBox,
+  SliderControl,
+  StatBox,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
+import { useHiddenSeries } from '../lib/chartSeries'
+import { ChartLegend } from '../components/ChartLegend'
 
 interface ScenarioData {
   scenario: string
@@ -29,10 +43,50 @@ interface TimeSeriesData {
   expectedRealRate: number
 }
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  nominalRate: 3.5,
+  actualInflation: 2.5,
+  expectedInflation: 2.2,
+}
+
 export default function RealInterestRateCalculator() {
-  const [nominalRate, setNominalRate] = useState(3.5)
-  const [actualInflation, setActualInflation] = useState(2.5)
-  const [expectedInflation, setExpectedInflation] = useState(2.2)
+  const actualVsExpected = useHiddenSeries(['realActual', 'realExpected'])
+  const scenarios = useHiddenSeries(['nominal', 'inflation', 'real'])
+  const historical = useHiddenSeries(['realHist', 'nominalHist', 'inflationHist'])
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
+const [nominalRate, setNominalRate] = useState(DEFAULTS.nominalRate)
+const [actualInflation, setActualInflation] = useState(DEFAULTS.actualInflation)
+const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInflation)
+
+  const { reset, dirty } = useToolReset(
+    {
+    nominalRate: nominalRate,
+    actualInflation: actualInflation,
+    expectedInflation: expectedInflation,
+    },
+    {
+      setNominalRate,
+      setActualInflation,
+      setExpectedInflation,
+    },
+    {
+      nominalRate: DEFAULTS.nominalRate,
+      actualInflation: DEFAULTS.actualInflation,
+      expectedInflation: DEFAULTS.expectedInflation,
+    },
+  )
   const [scenarioMode, setScenarioMode] = useState<
     'custom' | 'high-inflation' | 'deflation' | 'disinflation' | 'stagflation'
   >('custom')
@@ -195,7 +249,7 @@ export default function RealInterestRateCalculator() {
       />
 
       <div className="control-panel">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-s-6 lg:grid-cols-3">
           <SliderControl
             label="Nominal Interest Rate (i)"
             value={activeNominal}
@@ -225,7 +279,7 @@ export default function RealInterestRateCalculator() {
           />
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-2">
+        <div className="mt-s-6 flex flex-wrap gap-s-2">
           <Button
             onClick={() => setScenarioMode('custom')}
             variant={scenarioMode === 'custom' ? 'primary' : 'secondary'}
@@ -259,8 +313,9 @@ export default function RealInterestRateCalculator() {
         </div>
       </div>
 
+      <ToolControlBar onReset={reset} dirty={dirty} />
       {/* Key Statistics */}
-      <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-3">
+      <div className="mb-s-8 grid grid-cols-2 gap-s-3 lg:grid-cols-3">
         <StatBox label="Nominal Rate" value={activeNominal.toFixed(2)} unit="%" tone="accent" />
         <StatBox label="Actual Inflation" value={activeActual.toFixed(2)} unit="%" />
         <StatBox label="Expected Inflation" value={activeExpected.toFixed(2)} unit="%" />
@@ -280,12 +335,12 @@ export default function RealInterestRateCalculator() {
       </div>
 
       {/* Fisher Equation Explanation */}
-      <div className="mb-8">
+      <div className="mb-s-8">
         <InfoBox type="info" title="Fisher Equation">
           <p className="font-mono text-[0.95rem] text-fg">
             Real Interest Rate (r) = Nominal Rate (i) &minus; Inflation (π)
           </p>
-          <p className="mt-3">
+          <p className="mt-s-3">
             The <strong>real interest rate</strong> measures the true economic cost of borrowing and
             benefit of saving, <strong>after accounting for inflation</strong>. A 5% nominal rate with
             4% inflation only gives you 1% real return!
@@ -294,8 +349,9 @@ export default function RealInterestRateCalculator() {
       </div>
 
       {/* Economic Implications */}
-      <div className="mb-8 grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="mb-s-8 grid grid-cols-1 gap-s-4 lg:grid-cols-3">
         <ToolNote
+          headingLevel={2}
           label="Borrowers"
           variant={realRate < 0 ? 'warning' : 'insight'}
           title="Borrowing Incentive"
@@ -310,6 +366,7 @@ export default function RealInterestRateCalculator() {
         </ToolNote>
 
         <ToolNote
+          headingLevel={2}
           label="Savers"
           variant={realRate < 2 ? 'insight' : 'try'}
           title="Saving Incentive"
@@ -322,7 +379,12 @@ export default function RealInterestRateCalculator() {
           )}
         </ToolNote>
 
-        <ToolNote label="Expectations" variant="info" title="Real vs. Expected">
+        <ToolNote
+          headingLevel={2}
+          label="Expectations"
+          variant="info"
+          title="Real vs. Expected"
+        >
           <p>
             {Math.abs(activeActual - activeExpected) < 0.5
               ? 'Inflation close to expectations (good forecasting)'
@@ -334,14 +396,15 @@ export default function RealInterestRateCalculator() {
       </div>
 
       {/* Fisher Equation Visualization */}
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           How Real Rates Change with Nominal Rates (at current {activeActual.toFixed(1)}% inflation)
-        </h3>
+        </h2>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={nominalComparison} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="nominalRate"
               type="number"
               label={{
@@ -351,8 +414,10 @@ export default function RealInterestRateCalculator() {
                 fill: chartTheme.axis.tick.fill,
               }}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{
                 value: 'Real Interest Rate (%)',
                 angle: -90,
@@ -360,17 +425,23 @@ export default function RealInterestRateCalculator() {
                 fill: chartTheme.axis.tick.fill,
               }}
               domain={[-5, 8]}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
+            {/* Zero real rate. This is the single most load-bearing baseline
+             * on the site: the tool's own copy branches on `realRate < 0`
+             * three times above, and the chart it sits under is where a
+             * reader checks that sign. */}
+            <ReferenceLine y={0} {...chartTheme.baseline} />
             <Tooltip
               {...chartTheme.tooltip}
               cursor={chartTheme.cursor}
               formatter={(value) => (typeof value === 'number' ? `${value.toFixed(2)}%` : value)}
               labelFormatter={(label) => `Nominal Rate: ${label.toFixed(1)}%`}
             />
-            <Legend {...chartTheme.legend} />
             <ChartLine
               type="monotone"
+              hide={actualVsExpected.isHidden('realActual')}
               dataKey="realRateActual"
               stroke={chartColor(4)}
               name={`Real Rate = i − ${activeActual.toFixed(1)}%`}
@@ -379,6 +450,7 @@ export default function RealInterestRateCalculator() {
             />
             <ChartLine
               type="monotone"
+              hide={actualVsExpected.isHidden('realExpected')}
               dataKey="realRateExpected"
               stroke={chartColor(0)}
               name={`Expected Real Rate = i − ${activeExpected.toFixed(1)}%`}
@@ -388,26 +460,46 @@ export default function RealInterestRateCalculator() {
             />
           </LineChart>
         </ResponsiveContainer>
+        <ChartLegend
+          items={[
+            {
+              key: 'realActual',
+              label: `Real Rate = i − ${activeActual.toFixed(1)}%`,
+              color: chartColor(4),
+            },
+            {
+              key: 'realExpected',
+              label: `Expected Real Rate = i − ${activeExpected.toFixed(1)}%`,
+              color: chartColor(0),
+            },
+          ]}
+          hidden={actualVsExpected.hidden}
+          onToggle={actualVsExpected.toggle}
+          onShowAll={actualVsExpected.showAll}
+        />
       </div>
 
       {/* Scenario Comparison */}
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Real Rates Across Economic Scenarios
-        </h3>
+        </h2>
         <ResponsiveContainer width="100%" height={350}>
           <BarChart data={scenarioComparison} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="scenario"
               angle={-45}
               textAnchor="end"
               height={100}
               interval={0}
               {...chartTheme.axis}
+              includeHidden
               tick={{ ...chartTheme.axis.tick, fontSize: 12 }}
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{
                 value: 'Interest Rate (%)',
                 angle: -90,
@@ -415,29 +507,44 @@ export default function RealInterestRateCalculator() {
                 fill: chartTheme.axis.tick.fill,
               }}
               domain={[-6, 6]}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
+            {/* Zero real rate again, on a bar chart whose bars genuinely
+             * cross it: the stagflation scenario sits at -5 and the
+             * disinflation one at +3.5, and the sign is the finding. */}
+            <ReferenceLine y={0} {...chartTheme.baseline} />
             <Tooltip
               {...chartTheme.tooltip}
               cursor={chartTheme.cursor}
               formatter={(value) => (typeof value === 'number' ? `${value.toFixed(1)}%` : value)}
               labelFormatter={(label) => `Scenario: ${label}`}
             />
-            <Legend {...chartTheme.legend} />
-            <ChartBar dataKey="nominalRate" fill={chartColor(0)} name="Nominal Rate" />
-            <ChartBar dataKey="inflationRate" fill={chartColor(2)} name="Inflation Rate" />
-            <ChartBar dataKey="realRate" fill={chartColor(1)} name="Real Rate" />
+            <ChartBar hide={scenarios.isHidden('nominal')} dataKey="nominalRate" fill={chartColor(0)} name="Nominal Rate" />
+            <ChartBar hide={scenarios.isHidden('inflation')} dataKey="inflationRate" fill={chartColor(2)} name="Inflation Rate" />
+            <ChartBar hide={scenarios.isHidden('real')} dataKey="realRate" fill={chartColor(1)} name="Real Rate" />
           </BarChart>
         </ResponsiveContainer>
+        <ChartLegend
+          items={[
+            { key: 'nominal', label: 'Nominal Rate', color: chartColor(0) },
+            { key: 'inflation', label: 'Inflation Rate', color: chartColor(2) },
+            { key: 'real', label: 'Real Rate', color: chartColor(1) },
+          ]}
+          hidden={scenarios.hidden}
+          onToggle={scenarios.toggle}
+          onShowAll={scenarios.showAll}
+        />
       </div>
 
       {/* Historical Context */}
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Historical Real Interest Rates</h3>
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Historical Real Interest Rates</h2>
         <ResponsiveContainer width="100%" height={350}>
           <ComposedChart data={timeSeriesData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="period"
               label={{
                 value: 'Time Period',
@@ -446,8 +553,10 @@ export default function RealInterestRateCalculator() {
                 fill: chartTheme.axis.tick.fill,
               }}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{
                 value: 'Interest Rate (%)',
                 angle: -90,
@@ -455,16 +564,22 @@ export default function RealInterestRateCalculator() {
                 fill: chartTheme.axis.tick.fill,
               }}
               domain={[-6, 6]}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
+            {/* Zero nominal rate, which on this chart is the effective lower
+             * bound: the timeline's lowest values are 0.1% and 0.25%, and
+             * the reader is meant to see how close to zero a policy rate
+             * gets, not to compare two positive rates. */}
+            <ReferenceLine y={0} {...chartTheme.baseline} />
             <Tooltip
               {...chartTheme.tooltip}
               cursor={chartTheme.cursor}
               formatter={(value) => (typeof value === 'number' ? `${value.toFixed(2)}%` : value)}
             />
-            <Legend {...chartTheme.legend} />
             <ChartArea
               type="monotone"
+              hide={historical.isHidden('realHist')}
               dataKey="realRate"
               fill={chartColor(4)}
               stroke={chartColor(4)}
@@ -474,6 +589,7 @@ export default function RealInterestRateCalculator() {
             />
             <ChartLine
               type="monotone"
+              hide={historical.isHidden('nominalHist')}
               dataKey="nominalRate"
               stroke={chartColor(0)}
               name="Nominal Rate"
@@ -482,6 +598,7 @@ export default function RealInterestRateCalculator() {
             />
             <ChartLine
               type="monotone"
+              hide={historical.isHidden('inflationHist')}
               dataKey="actualInflation"
               stroke={chartColor(2)}
               name="Inflation"
@@ -490,6 +607,16 @@ export default function RealInterestRateCalculator() {
             />
           </ComposedChart>
         </ResponsiveContainer>
+        <ChartLegend
+          items={[
+            { key: 'realHist', label: 'Actual Real Rate', color: chartColor(4) },
+            { key: 'nominalHist', label: 'Nominal Rate', color: chartColor(0) },
+            { key: 'inflationHist', label: 'Inflation', color: chartColor(2) },
+          ]}
+          hidden={historical.hidden}
+          onToggle={historical.toggle}
+          onShowAll={historical.showAll}
+        />
         <ToolNote label="Key observations" variant="insight" title="Reading the history">
           <ul>
             <li>
@@ -509,9 +636,9 @@ export default function RealInterestRateCalculator() {
       </div>
 
       {/* Educational Content */}
-      <div className="mb-4">
+      <div className="mb-s-4">
         <InfoBox type="warning" title="Why real rates matter for economic decisions">
-          <ul className="mt-2">
+          <ul className="mt-s-2">
             <li>
               <strong>Savers:</strong> Negative real rates erode purchasing power. If you save at 1% nominal but
               inflation is 4%, you lose 3% in real buying power annually.
@@ -538,7 +665,7 @@ export default function RealInterestRateCalculator() {
 
       <div>
         <InfoBox type="info" title="Expected vs. actual real rates">
-          <ul className="mt-2">
+          <ul className="mt-s-2">
             <li>
               <strong>Expected Real Rate (r^e = i − π^e):</strong> What borrowers and savers expect when making
               decisions. Forward-looking.

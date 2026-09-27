@@ -2,13 +2,15 @@ import { useState } from 'react'
 import { BarChart, PieChart, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import { ChartBar, ChartPie } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  SliderControl,
-  StatBox,
   Button,
   InfoBox,
+  SliderControl,
+  StatBox,
+  ToolControlBar,
+  ToolHeader,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
 
 /**
  * Chart series colours. The legacy inline palette mapped slot-for-slot across
@@ -56,28 +58,116 @@ interface TimeSeriesData {
   gdp: number
 }
 
+/**
+ * One copy of this tool's starting values. The `useState` calls below read
+ * from it, so "Reset to defaults" cannot return to a number the tool no
+ * longer opens at — the failure mode of a hand-written reset that re-typed
+ * every default in a second list.
+ */
+const DEFAULTS = {
+  consumption: 70,
+  investment: 18,
+  governmentSpending: 17,
+  exports: 12,
+  imports: 10,
+  wages: 68,
+  profits: 20,
+  rent: 12,
+  agriculture: 2,
+  manufacturing: 18,
+  services: 80,
+  showBreakdown: true,
+  activeTab: 'expenditure' as GdpTab,
+  scenarioMode: 'balanced' as GdpScenario,
+}
+
+/** Named so the reset record can hold it: a bare inline union in
+ * `useState<...>(DEFAULTS.activeTab)` would widen to `string` and stop
+ * being assignable to the state it resets. */
+type GdpTab = 'expenditure' | 'income' | 'production' | 'comparison'
+
+/** The second tab-shaped control in this tool, named for the same reason. */
+type GdpScenario = 'balanced' | 'consumption-driven' | 'investment-led' | 'export-focused'
+
 export default function GdpMeasurement() {
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
   // State for Expenditure Approach (C + I + G + (X-M))
-  const [consumption, setConsumption] = useState(70)
-  const [investment, setInvestment] = useState(18)
-  const [governmentSpending, setGovernmentSpending] = useState(17)
-  const [exports, setExports] = useState(12)
-  const [imports, setImports] = useState(10)
+  const [consumption, setConsumption] = useState(DEFAULTS.consumption)
+  const [investment, setInvestment] = useState(DEFAULTS.investment)
+  const [governmentSpending, setGovernmentSpending] = useState(DEFAULTS.governmentSpending)
+  const [exports, setExports] = useState(DEFAULTS.exports)
+  const [imports, setImports] = useState(DEFAULTS.imports)
 
   // State for Income Approach (Wages + Profits + Rent)
-  const [wages, setWages] = useState(68)
-  const [profits, setProfits] = useState(20)
-  const [rent, setRent] = useState(12)
+  const [wages, setWages] = useState(DEFAULTS.wages)
+  const [profits, setProfits] = useState(DEFAULTS.profits)
+  const [rent, setRent] = useState(DEFAULTS.rent)
 
   // State for Production Approach (Value Added by Sector)
-  const [agriculture, setAgriculture] = useState(2)
-  const [manufacturing, setManufacturing] = useState(18)
-  const [services, setServices] = useState(80)
+  const [agriculture, setAgriculture] = useState(DEFAULTS.agriculture)
+  const [manufacturing, setManufacturing] = useState(DEFAULTS.manufacturing)
+  const [services, setServices] = useState(DEFAULTS.services)
 
   // UI State
-  const [activeTab, setActiveTab] = useState<'expenditure' | 'income' | 'production' | 'comparison'>('expenditure')
-  const [scenarioMode, setScenarioMode] = useState<'balanced' | 'consumption-driven' | 'investment-led' | 'export-focused'>('balanced')
-  const [showBreakdown, setShowBreakdown] = useState(true)
+  const [activeTab, setActiveTab] = useState<GdpTab>(DEFAULTS.activeTab)
+
+  const [scenarioMode, setScenarioMode] = useState<GdpScenario>(DEFAULTS.scenarioMode)
+  const [showBreakdown, setShowBreakdown] = useState(DEFAULTS.showBreakdown)
+
+  const { reset, dirty } = useToolReset(
+    {
+      consumption: consumption,
+      investment: investment,
+      governmentSpending: governmentSpending,
+      exports: exports,
+      imports: imports,
+      wages: wages,
+      profits: profits,
+      rent: rent,
+      agriculture: agriculture,
+      manufacturing: manufacturing,
+      services: services,
+      showBreakdown: showBreakdown,
+      activeTab: activeTab,
+      scenarioMode: scenarioMode,
+    },
+    {
+      setConsumption,
+      setInvestment,
+      setGovernmentSpending,
+      setExports,
+      setImports,
+      setWages,
+      setProfits,
+      setRent,
+      setAgriculture,
+      setManufacturing,
+      setServices,
+      setShowBreakdown,
+      setActiveTab,
+      setScenarioMode,
+    },
+    {
+      consumption: DEFAULTS.consumption,
+      investment: DEFAULTS.investment,
+      governmentSpending: DEFAULTS.governmentSpending,
+      exports: DEFAULTS.exports,
+      imports: DEFAULTS.imports,
+      wages: DEFAULTS.wages,
+      profits: DEFAULTS.profits,
+      rent: DEFAULTS.rent,
+      agriculture: DEFAULTS.agriculture,
+      manufacturing: DEFAULTS.manufacturing,
+      services: DEFAULTS.services,
+      showBreakdown: DEFAULTS.showBreakdown,
+      activeTab: DEFAULTS.activeTab,
+      scenarioMode: DEFAULTS.scenarioMode,
+    },
+  )
 
   // Apply scenario presets
   const applyScenario = (scenario: typeof scenarioMode) => {
@@ -217,9 +307,9 @@ export default function GdpMeasurement() {
       />
 
       {/* Scenario Selection */}
-      <div className="mb-8">
-        <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">Economy Scenarios</h2>
-        <div className="flex flex-wrap gap-2">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Economy Scenarios</h2>
+        <div className="flex flex-wrap gap-s-2">
           <Button
             onClick={() => applyScenario('balanced')}
             variant={scenarioMode === 'balanced' ? 'primary' : 'secondary'}
@@ -248,10 +338,10 @@ export default function GdpMeasurement() {
       </div>
 
       {/* Tab Navigation */}
-      <div className="mb-8 flex flex-wrap gap-2 border-b border-border">
+      <div className="mb-s-8 flex flex-wrap gap-s-2 border-b border-border">
         <button
           onClick={() => setActiveTab('expenditure')}
-          className={`cursor-pointer px-6 py-3 text-[0.95rem] ${
+          className={`cursor-pointer px-s-6 py-s-3 text-[0.95rem] ${
             activeTab === 'expenditure'
               ? 'border-b-2 border-accent bg-accent font-semibold text-accent-fg'
               : 'border-b-2 border-transparent font-normal text-fg-muted'
@@ -261,7 +351,7 @@ export default function GdpMeasurement() {
         </button>
         <button
           onClick={() => setActiveTab('income')}
-          className={`cursor-pointer px-6 py-3 text-[0.95rem] ${
+          className={`cursor-pointer px-s-6 py-s-3 text-[0.95rem] ${
             activeTab === 'income'
               ? 'border-b-2 border-accent bg-accent font-semibold text-accent-fg'
               : 'border-b-2 border-transparent font-normal text-fg-muted'
@@ -271,7 +361,7 @@ export default function GdpMeasurement() {
         </button>
         <button
           onClick={() => setActiveTab('production')}
-          className={`cursor-pointer px-6 py-3 text-[0.95rem] ${
+          className={`cursor-pointer px-s-6 py-s-3 text-[0.95rem] ${
             activeTab === 'production'
               ? 'border-b-2 border-accent bg-accent font-semibold text-accent-fg'
               : 'border-b-2 border-transparent font-normal text-fg-muted'
@@ -281,7 +371,7 @@ export default function GdpMeasurement() {
         </button>
         <button
           onClick={() => setActiveTab('comparison')}
-          className={`cursor-pointer px-6 py-3 text-[0.95rem] ${
+          className={`cursor-pointer px-s-6 py-s-3 text-[0.95rem] ${
             activeTab === 'comparison'
               ? 'border-b-2 border-accent bg-accent font-semibold text-accent-fg'
               : 'border-b-2 border-transparent font-normal text-fg-muted'
@@ -294,11 +384,11 @@ export default function GdpMeasurement() {
       {/* EXPENDITURE APPROACH TAB */}
       {activeTab === 'expenditure' && (
         <div>
-          <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+          <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
             Expenditure Approach: GDP = C + I + G + (X - M)
           </h2>
 
-          <div className="mb-8">
+          <div className="mb-s-8">
             <InfoBox type="info">
               <strong>Expenditure Approach:</strong> Measures GDP by summing all final expenditures in the economy.
               Consumption (C) is what households spend, Investment (I) is business capital spending, Government (G) is public spending,
@@ -307,8 +397,8 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Controls */}
-          <div className="mb-8">
-            <h3 className="mb-4 text-base font-semibold text-fg">Adjust Components ($ trillions)</h3>
+          <div className="mb-s-8">
+            <h3 className="mb-s-4 text-base font-semibold text-fg">Adjust Components ($ trillions)</h3>
             <div className="control-panel">
               <SliderControl
                 label="Consumption (C)"
@@ -356,10 +446,12 @@ export default function GdpMeasurement() {
                 unit="T"
               />
             </div>
+
+      <ToolControlBar onReset={reset} dirty={dirty} />
           </div>
 
           {/* Key Results */}
-          <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-5">
+          <div className="mb-s-8 grid grid-cols-2 gap-s-3 lg:grid-cols-5">
             <StatBox label="Consumption (C)" value={consumption.toFixed(1)} unit="T" />
             <StatBox label="Investment (I)" value={investment.toFixed(1)} unit="T" />
             <StatBox label="Government (G)" value={governmentSpending.toFixed(1)} unit="T" />
@@ -373,20 +465,23 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Bar Chart */}
-          <div className="mb-8">
-            <h3 className="mb-4 text-base font-semibold text-fg">Composition of GDP</h3>
+          <div className="mb-s-8">
+            <h3 className="mb-s-4 text-base font-semibold text-fg">Composition of GDP</h3>
             <ResponsiveContainer width="100%" height={350}>
               <BarChart data={expenditureData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
-                <XAxis dataKey="name" {...chartTheme.axis} />
+                <XAxis
+                  key={chartTheme.axisKey('x')} dataKey="name" {...chartTheme.axis} />
                 <YAxis
+                  key={chartTheme.axisKey('y')}
                   label={{
                     value: 'Amount ($ Trillions)',
                     angle: -90,
                     position: 'insideLeft',
                     fill: chartTheme.axis.tick.fill,
                   }}
-                  {...chartTheme.axis}
+                  {...chartTheme.yAxis}
+                  includeHidden
                 />
                 <Tooltip
                   {...chartTheme.tooltip}
@@ -404,9 +499,9 @@ export default function GdpMeasurement() {
 
           {/* Breakdown Percentages */}
           {showBreakdown && (
-            <div className="mb-8">
-              <h3 className="mb-4 text-base font-semibold text-fg">Component Breakdown (%)</h3>
-              <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+            <div className="mb-s-8">
+              <h3 className="mb-s-4 text-base font-semibold text-fg">Component Breakdown (%)</h3>
+              <div className="grid grid-cols-2 gap-s-3 lg:grid-cols-4">
                 <div className="stat-tile stat-tile--accent">
                   <div className="stat-tile-label">Consumption</div>
                   <div className="stat-tile-value">{componentPcts.consumptionPct}%</div>
@@ -432,7 +527,7 @@ export default function GdpMeasurement() {
           )}
 
           {/* Economic Insights */}
-          <div className="mb-4">
+          <div className="mb-s-4">
             <InfoBox type="success">
               <strong>Economic Insight:</strong> In the US economy, consumption typically accounts for 65-70% of GDP.
               This makes sense: in a market economy, household spending is the largest component. Notice that
@@ -446,11 +541,11 @@ export default function GdpMeasurement() {
       {/* INCOME APPROACH TAB */}
       {activeTab === 'income' && (
         <div>
-          <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+          <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
             Income Approach: GDP = Wages + Profits + Rent
           </h2>
 
-          <div className="mb-8">
+          <div className="mb-s-8">
             <InfoBox type="info">
               <strong>Income Approach:</strong> Measures GDP by summing all incomes earned in producing output.
               Every dollar of production must be paid out as income to someone—either workers (wages),
@@ -460,8 +555,8 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Controls */}
-          <div className="mb-8">
-            <h3 className="mb-4 text-base font-semibold text-fg">Adjust Income Components ($ trillions)</h3>
+          <div className="mb-s-8">
+            <h3 className="mb-s-4 text-base font-semibold text-fg">Adjust Income Components ($ trillions)</h3>
             <div className="control-panel">
               <SliderControl
                 label="Wages (Labor Income)"
@@ -494,7 +589,7 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Key Results */}
-          <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <div className="mb-s-8 grid grid-cols-2 gap-s-3 lg:grid-cols-4">
             <StatBox label="Wages (Labor)" value={wages.toFixed(1)} unit="T" />
             <StatBox label="Profits (Capital)" value={profits.toFixed(1)} unit="T" />
             <StatBox label="Rent (Land)" value={rent.toFixed(1)} unit="T" />
@@ -502,8 +597,8 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Pie Chart */}
-          <div className="mb-8">
-            <h3 className="mb-4 text-base font-semibold text-fg">Income Distribution Breakdown</h3>
+          <div className="mb-s-8">
+            <h3 className="mb-s-4 text-base font-semibold text-fg">Income Distribution Breakdown</h3>
             <ResponsiveContainer width="100%" height={350}>
               <PieChart margin={chartTheme.margin}>
                 <ChartPie
@@ -531,9 +626,9 @@ export default function GdpMeasurement() {
 
           {/* Income Distribution */}
           {showBreakdown && (
-            <div className="mb-8">
-              <h3 className="mb-4 text-base font-semibold text-fg">Income Share (% of GDP)</h3>
-              <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
+            <div className="mb-s-8">
+              <h3 className="mb-s-4 text-base font-semibold text-fg">Income Share (% of GDP)</h3>
+              <div className="grid grid-cols-2 gap-s-3 lg:grid-cols-3">
                 <div className="stat-tile stat-tile--accent">
                   <div className="stat-tile-label">Labor's Share</div>
                   <div className="stat-tile-value">{incomePcts.wagesPct}%</div>
@@ -551,7 +646,7 @@ export default function GdpMeasurement() {
           )}
 
           {/* Economic Insights */}
-          <div className="mb-4">
+          <div className="mb-s-4">
             <InfoBox type="success">
               <strong>Economic Insight:</strong> Labor income typically accounts for 65-70% of GDP in developed economies
               (slightly higher than 50% due to inclusion of fringe benefits). This reflects that labor is the primary factor of production.
@@ -565,11 +660,11 @@ export default function GdpMeasurement() {
       {/* PRODUCTION APPROACH TAB */}
       {activeTab === 'production' && (
         <div>
-          <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+          <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
             Production Approach: GDP = Sum of Value Added by Sector
           </h2>
 
-          <div className="mb-8">
+          <div className="mb-s-8">
             <InfoBox type="info">
               <strong>Production Approach:</strong> Measures GDP by summing the value added at each stage of production.
               Each firm's value added = its revenue minus what it paid for intermediate inputs from other firms.
@@ -579,8 +674,8 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Controls */}
-          <div className="mb-8">
-            <h3 className="mb-4 text-base font-semibold text-fg">Adjust Sector Value Added ($ trillions)</h3>
+          <div className="mb-s-8">
+            <h3 className="mb-s-4 text-base font-semibold text-fg">Adjust Sector Value Added ($ trillions)</h3>
             <div className="control-panel">
               <SliderControl
                 label="Agriculture & Mining"
@@ -613,7 +708,7 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Key Results */}
-          <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <div className="mb-s-8 grid grid-cols-2 gap-s-3 lg:grid-cols-4">
             <StatBox label="Agriculture & Mining" value={agriculture.toFixed(1)} unit="T" />
             <StatBox label="Manufacturing" value={manufacturing.toFixed(1)} unit="T" />
             <StatBox label="Services" value={services.toFixed(1)} unit="T" />
@@ -621,20 +716,23 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Bar Chart */}
-          <div className="mb-8">
-            <h3 className="mb-4 text-base font-semibold text-fg">Value Added by Sector</h3>
+          <div className="mb-s-8">
+            <h3 className="mb-s-4 text-base font-semibold text-fg">Value Added by Sector</h3>
             <ResponsiveContainer width="100%" height={350}>
               <BarChart data={productionData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
-                <XAxis dataKey="sector" {...chartTheme.axis} />
+                <XAxis
+                  key={chartTheme.axisKey('x')} dataKey="sector" {...chartTheme.axis} />
                 <YAxis
+                  key={chartTheme.axisKey('y')}
                   label={{
                     value: 'Value Added ($ Trillions)',
                     angle: -90,
                     position: 'insideLeft',
                     fill: chartTheme.axis.tick.fill,
                   }}
-                  {...chartTheme.axis}
+                  {...chartTheme.yAxis}
+                  includeHidden
                 />
                 <Tooltip
                   {...chartTheme.tooltip}
@@ -652,9 +750,9 @@ export default function GdpMeasurement() {
 
           {/* Sector Structure */}
           {showBreakdown && (
-            <div className="mb-8">
-              <h3 className="mb-4 text-base font-semibold text-fg">Economic Structure (% of GDP)</h3>
-              <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
+            <div className="mb-s-8">
+              <h3 className="mb-s-4 text-base font-semibold text-fg">Economic Structure (% of GDP)</h3>
+              <div className="grid grid-cols-2 gap-s-3 lg:grid-cols-3">
                 <div className="stat-tile stat-tile--positive">
                   <div className="stat-tile-label">Agriculture</div>
                   <div className="stat-tile-value">{productionPcts.agriculturePct}%</div>
@@ -672,7 +770,7 @@ export default function GdpMeasurement() {
           )}
 
           {/* Economic Insights */}
-          <div className="mb-4">
+          <div className="mb-s-4">
             <InfoBox type="success">
               <strong>Economic Insight:</strong> Modern developed economies are dominated by services
               ({productionPcts.servicesPct}% in this example), reflecting deindustrialization and the rise of finance, healthcare,
@@ -686,11 +784,11 @@ export default function GdpMeasurement() {
       {/* COMPARISON TAB */}
       {activeTab === 'comparison' && (
         <div>
-          <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+          <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
             Cross-Method Verification
           </h2>
 
-          <div className="mb-8">
+          <div className="mb-s-8">
             <InfoBox type="info">
               <strong>Why All Three Methods?</strong> In a well-measured economy, all three approaches should yield
               the same GDP. Discrepancies indicate measurement errors. The existence of three independent methods
@@ -715,9 +813,9 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Key Results - All Approaches */}
-          <div className="mb-8">
-            <h3 className="mb-4 text-base font-semibold text-fg">GDP by Approach</h3>
-            <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
+          <div className="mb-s-8">
+            <h3 className="mb-s-4 text-base font-semibold text-fg">GDP by Approach</h3>
+            <div className="grid grid-cols-2 gap-s-3 lg:grid-cols-3">
               <div className="stat-tile stat-tile--accent">
                 <div className="stat-tile-label">Expenditure Approach</div>
                 <div className="stat-tile-value">${gdpExpenditure.toFixed(1)}T</div>
@@ -734,8 +832,8 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Discrepancy Analysis */}
-          <div className="mb-8">
-            <h3 className="mb-4 text-base font-semibold text-fg">Measurement Consistency</h3>
+          <div className="mb-s-8">
+            <h3 className="mb-s-4 text-base font-semibold text-fg">Measurement Consistency</h3>
             <div
               className={`stat-tile ${
                 discrepancyPercent < 2
@@ -766,20 +864,23 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Comparison Chart */}
-          <div className="mb-8">
-            <h3 className="mb-4 text-base font-semibold text-fg">GDP Comparison Across Methods</h3>
+          <div className="mb-s-8">
+            <h3 className="mb-s-4 text-base font-semibold text-fg">GDP Comparison Across Methods</h3>
             <ResponsiveContainer width="100%" height={350}>
               <BarChart data={comparisonData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
-                <XAxis dataKey="approach" {...chartTheme.axis} />
+                <XAxis
+                  key={chartTheme.axisKey('x')} dataKey="approach" {...chartTheme.axis} />
                 <YAxis
+                  key={chartTheme.axisKey('y')}
                   label={{
                     value: 'GDP ($ Trillions)',
                     angle: -90,
                     position: 'insideLeft',
                     fill: chartTheme.axis.tick.fill,
                   }}
-                  {...chartTheme.axis}
+                  {...chartTheme.yAxis}
+                  includeHidden
                 />
                 <Tooltip
                   {...chartTheme.tooltip}
@@ -792,68 +893,68 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Detailed Breakdown Table */}
-          <div className="mb-8">
-            <h3 className="mb-4 text-base font-semibold text-fg">Detailed Breakdown Table</h3>
+          <div className="mb-s-8">
+            <h3 className="mb-s-4 text-base font-semibold text-fg">Detailed Breakdown Table</h3>
             <div className="overflow-x-auto">
               <table className="w-full overflow-hidden rounded-card border-collapse bg-surface text-sm">
                 <thead>
                   <tr className="bg-surface-2 font-semibold">
-                    <th className="border-b border-border px-3 py-3 text-left">Method</th>
-                    <th className="border-b border-border px-3 py-3 text-center">Component 1</th>
-                    <th className="border-b border-border px-3 py-3 text-center">Component 2</th>
-                    <th className="border-b border-border px-3 py-3 text-center">Component 3</th>
-                    <th className="border-b border-border px-3 py-3 text-right">Total GDP</th>
+                    <th className="border-b border-border px-s-3 py-s-3 text-left">Method</th>
+                    <th className="border-b border-border px-s-3 py-s-3 text-center">Component 1</th>
+                    <th className="border-b border-border px-s-3 py-s-3 text-center">Component 2</th>
+                    <th className="border-b border-border px-s-3 py-s-3 text-center">Component 3</th>
+                    <th className="border-b border-border px-s-3 py-s-3 text-right">Total GDP</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="bg-tier-intermediate/5">
-                    <td className="border-b border-border px-3 py-3 text-left font-semibold">
+                    <td className="border-b border-border px-s-3 py-s-3 text-left font-semibold">
                       Expenditure
                     </td>
-                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
+                    <td className="border-b border-border px-s-3 py-s-3 text-center tabular-nums">
                       C: ${consumption.toFixed(1)}T
                     </td>
-                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
+                    <td className="border-b border-border px-s-3 py-s-3 text-center tabular-nums">
                       I: ${investment.toFixed(1)}T
                     </td>
-                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
+                    <td className="border-b border-border px-s-3 py-s-3 text-center tabular-nums">
                       G: ${governmentSpending.toFixed(1)}T
                     </td>
-                    <td className="border-b border-border px-3 py-3 text-right font-semibold tabular-nums text-tier-intermediate-ink">
+                    <td className="border-b border-border px-s-3 py-s-3 text-right font-semibold tabular-nums text-tier-intermediate-ink">
                       ${gdpExpenditure.toFixed(1)}T
                     </td>
                   </tr>
                   <tr className="bg-tier-beginner/5">
-                    <td className="border-b border-border px-3 py-3 text-left font-semibold">
+                    <td className="border-b border-border px-s-3 py-s-3 text-left font-semibold">
                       Income
                     </td>
-                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
+                    <td className="border-b border-border px-s-3 py-s-3 text-center tabular-nums">
                       Wages: ${wages.toFixed(1)}T
                     </td>
-                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
+                    <td className="border-b border-border px-s-3 py-s-3 text-center tabular-nums">
                       Profits: ${profits.toFixed(1)}T
                     </td>
-                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
+                    <td className="border-b border-border px-s-3 py-s-3 text-center tabular-nums">
                       Rent: ${rent.toFixed(1)}T
                     </td>
-                    <td className="border-b border-border px-3 py-3 text-right font-semibold tabular-nums text-tier-beginner-ink">
+                    <td className="border-b border-border px-s-3 py-s-3 text-right font-semibold tabular-nums text-tier-beginner-ink">
                       ${gdpIncome.toFixed(1)}T
                     </td>
                   </tr>
                   <tr className="bg-accent/5">
-                    <td className="border-b border-border px-3 py-3 text-left font-semibold">
+                    <td className="border-b border-border px-s-3 py-s-3 text-left font-semibold">
                       Production
                     </td>
-                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
+                    <td className="border-b border-border px-s-3 py-s-3 text-center tabular-nums">
                       Ag: ${agriculture.toFixed(1)}T
                     </td>
-                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
+                    <td className="border-b border-border px-s-3 py-s-3 text-center tabular-nums">
                       Mfg: ${manufacturing.toFixed(1)}T
                     </td>
-                    <td className="border-b border-border px-3 py-3 text-center tabular-nums">
+                    <td className="border-b border-border px-s-3 py-s-3 text-center tabular-nums">
                       Svc: ${services.toFixed(1)}T
                     </td>
-                    <td className="border-b border-border px-3 py-3 text-right font-semibold tabular-nums text-accent-ink">
+                    <td className="border-b border-border px-s-3 py-s-3 text-right font-semibold tabular-nums text-accent-ink">
                       ${gdpProduction.toFixed(1)}T
                     </td>
                   </tr>
@@ -863,7 +964,7 @@ export default function GdpMeasurement() {
           </div>
 
           {/* Key Learning */}
-          <div className="mb-4">
+          <div className="mb-s-4">
             <InfoBox type="success">
               <strong>Fundamental Macro Identity:</strong> In a closed economy with perfect measurement:
               <br />
@@ -880,7 +981,7 @@ export default function GdpMeasurement() {
       )}
 
       {/* Toggle Breakdown */}
-      <div className="mt-8 border-t border-border pt-4">
+      <div className="mt-s-8 border-t border-border pt-s-4">
         <Button onClick={() => setShowBreakdown(!showBreakdown)} variant="secondary">
           {showBreakdown ? 'Hide' : 'Show'} Percentage Breakdown
         </Button>

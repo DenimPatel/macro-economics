@@ -204,8 +204,8 @@ Where:
 **Example**:
 - Current price level: $P = 100$
 - Expected price level next year: $P^e = 110$ (10% inflation expected)
-- Workers won't accept $W = \$20/hour$ if they expect prices to rise 10%
-- They'll demand $W = \$22/hour$ to maintain constant real wage ($W/P^e = 22/110 = 0.20$)
+- Workers won't accept $W =$ \$20/hour if they expect prices to rise 10%
+- They'll demand $W =$ \$22/hour to maintain constant real wage ($W/P^e = 22/110 = 0.20$)
 
 **Why $\partial W / \partial P^e > 0$**:
 $$\frac{\partial W}{\partial P^e} > 0$$
@@ -301,9 +301,9 @@ Where:
 - $m > 0$: Positive due to imperfect competition, market power
 
 **Example**:
-- Wage: $W = \$20/hour$
+- Wage: $W =$ \$20/hour
 - Markup: $m = 0.25$ (25%)
-- Price: $P = 1.25 \times 20 = \$25$ per unit
+- Price: $P = 1.25 \times 20 =$ \$25 per unit
 
 **What Determines $m$?**
 1. **Market Structure**: Monopolistic competition, oligopoly (higher $m$), vs. perfect competition ($m \to 0$)

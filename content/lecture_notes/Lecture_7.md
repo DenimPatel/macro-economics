@@ -15,7 +15,7 @@ These extensions are critical for understanding modern macroeconomic crises, par
 
 #### Nominal Interest Rate ($i$)
 - **Definition**: Interest rate expressed in dollar (or currency) terms.
-- **Example**: If you invest $100 in a one-year bond with nominal rate $i = 10\%$, you receive $110 in one year.
+- **Example**: If you invest \$100 in a one-year bond with nominal rate $i = 10\%$, you receive \$110 in one year.
 - **Formula**: $\text{Return} = \text{Principal} \times (1 + i)$
 
 **Characteristics**:

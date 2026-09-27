@@ -147,7 +147,7 @@ $$i_t \approx i^*_t + \frac{E^e_{t+1} - E_t}{E_t}$$
 ### Expected Present Discounted Value (EPDV)
 $$V_t = Z_t + \frac{E_t[Z_{t+1}]}{1 + i_t} + \frac{E_t[Z_{t+2}]}{(1 + i_t)(1 + E_t[i_{t+1}])} + \cdots$$
 
-**Key Insight**: $1 received in $n$ years worth $\frac{1}{\prod_{k=0}^{n-1} (1 + i_{t+k})}$ today.
+**Key Insight**: \$1 received in $n$ years worth $\frac{1}{\prod_{k=0}^{n-1} (1 + i_{t+k})}$ today.
 
 ### Bond Pricing
 - **One-year bond**: $P_{1t} = \frac{100}{1 + i_{1t}}$.

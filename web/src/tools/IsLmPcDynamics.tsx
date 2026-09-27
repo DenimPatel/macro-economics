@@ -1,15 +1,19 @@
 import { useState } from 'react'
-import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart } from 'recharts'
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart } from 'recharts'
 import { ChartArea, ChartLine } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
-  SliderControl,
-  StatBox,
   Button,
   InfoBox,
+  SliderControl,
+  StatBox,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
+import { useHiddenSeries } from '../lib/chartSeries'
+import { ChartLegend } from '../components/ChartLegend'
 
 interface DynamicDataPoint {
   quarter: number
@@ -20,9 +24,43 @@ interface DynamicDataPoint {
   isShock: boolean
 }
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  shockSize: 100,
+  showDataOverlay: true,
+}
+
 export default function IsLmPcDynamics() {
-  const [shockSize, setShockSize] = useState(100)
-  const [showDataOverlay, setShowDataOverlay] = useState(true)
+  const phoenix = useHiddenSeries(['output', 'rate', 'inflation'])
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
+const [shockSize, setShockSize] = useState(DEFAULTS.shockSize)
+const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
+
+  const { reset, dirty } = useToolReset(
+    {
+    shockSize: shockSize,
+    showDataOverlay: showDataOverlay,
+    },
+    {
+      setShockSize,
+      setShowDataOverlay,
+    },
+    {
+      shockSize: DEFAULTS.shockSize,
+      showDataOverlay: DEFAULTS.showDataOverlay,
+    },
+  )
   const [fedReaction, setFedReaction] = useState<'passive' | 'aggressive'>('aggressive')
 
   // Simulated dynamic adjustment path
@@ -77,7 +115,7 @@ export default function IsLmPcDynamics() {
       />
 
       <div className="control-panel">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-s-6 lg:grid-cols-2">
           <SliderControl
             label="Demand Shock Size"
             value={shockSize}
@@ -87,8 +125,8 @@ export default function IsLmPcDynamics() {
             onChange={setShockSize}
           />
           <div>
-            <span className="control-label mb-2 block">Fed Reaction</span>
-            <div className="flex gap-2">
+            <span className="control-label mb-s-2 block">Fed Reaction</span>
+            <div className="flex gap-s-2">
               <Button
                 onClick={() => setFedReaction('passive')}
                 variant={fedReaction === 'passive' ? 'primary' : 'secondary'}
@@ -105,7 +143,7 @@ export default function IsLmPcDynamics() {
           </div>
         </div>
 
-        <div className="mt-4 flex gap-2">
+        <div className="mt-s-4 flex gap-s-2">
           <Button
             onClick={() => setShowDataOverlay(!showDataOverlay)}
             variant={showDataOverlay ? 'primary' : 'secondary'}
@@ -115,14 +153,17 @@ export default function IsLmPcDynamics() {
         </div>
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Dynamic Adjustment Path</h3>
+      <ToolControlBar onReset={reset} dirty={dirty} />
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Dynamic Adjustment Path</h2>
         <div className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={dynamicData} margin={chartTheme.margin}>
               <CartesianGrid {...chartTheme.grid} />
-              <XAxis dataKey="quarter" {...chartTheme.axis} />
-              <YAxis {...chartTheme.axis} />
+              <XAxis
+                key={chartTheme.axisKey('x')} dataKey="quarter" {...chartTheme.axis} includeHidden />
+              <YAxis
+                key={chartTheme.axisKey('y')} {...chartTheme.yAxis} includeHidden />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
               <ChartArea
                 type="monotone"
@@ -161,20 +202,22 @@ export default function IsLmPcDynamics() {
         </div>
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Quarter-by-Quarter Dynamics</h3>
-        <div className="grid gap-6 lg:grid-cols-2">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Quarter-by-Quarter Dynamics</h2>
+        <div className="grid gap-s-6 lg:grid-cols-2">
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={dynamicData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
-                <XAxis dataKey="quarter" {...chartTheme.axis} />
-                <YAxis {...chartTheme.axis} />
+                <XAxis
+                  key={chartTheme.axisKey('x')} dataKey="quarter" {...chartTheme.axis} includeHidden />
+                <YAxis
+                  key={chartTheme.axisKey('y')} {...chartTheme.yAxis} includeHidden />
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-                <Legend {...chartTheme.legend} />
                 <ChartLine
                   type="monotone"
                   dataKey="output"
+                  hide={phoenix.isHidden('output')}
                   stroke={chartColor(0)}
                   strokeWidth={2}
                   dot={{ r: 4 }}
@@ -183,6 +226,7 @@ export default function IsLmPcDynamics() {
                 <ChartLine
                   type="monotone"
                   dataKey="interestRate"
+                  hide={phoenix.isHidden('rate')}
                   stroke={chartColor(2)}
                   strokeWidth={2}
                   dot={{ r: 4 }}
@@ -191,6 +235,7 @@ export default function IsLmPcDynamics() {
                 <ChartLine
                   type="monotone"
                   dataKey="inflation"
+                  hide={phoenix.isHidden('inflation')}
                   stroke={chartColor(1)}
                   strokeWidth={2}
                   dot={{ r: 4 }}
@@ -198,10 +243,20 @@ export default function IsLmPcDynamics() {
                 />
               </LineChart>
             </ResponsiveContainer>
+            <ChartLegend
+              items={[
+                { key: 'output', label: 'Output', color: chartColor(0) },
+                { key: 'inflation', label: 'Inflation', color: chartColor(1) },
+                { key: 'rate', label: 'Interest Rate', color: chartColor(2) },
+              ]}
+              hidden={phoenix.hidden}
+              onToggle={phoenix.toggle}
+              onShowAll={phoenix.showAll}
+            />
           </div>
 
           <div>
-            <div className="mb-6 grid grid-cols-2 gap-3">
+            <div className="mb-s-6 grid grid-cols-2 gap-s-3">
               <StatBox label="Output" value={fedResult.output.toFixed(1)} tone="accent" />
               <StatBox label="Interest Rate" value={fedResult.interestRate.toFixed(1)} unit="%" />
               <StatBox label="Inflation" value={fedResult.inflation.toFixed(1)} unit="%" />
@@ -219,7 +274,7 @@ export default function IsLmPcDynamics() {
         </div>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="mt-s-8 grid grid-cols-1 gap-s-4 lg:grid-cols-3">
         <InfoBox type="info" title="The Adjustment Process">
           <p>Quarter 1-4: Initial demand shock causes output to rise, interest rates to increase, and inflation to rise</p>
           <p>Quarter 5-8: As inflation rises, Fed responds with tighter monetary policy</p>

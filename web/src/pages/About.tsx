@@ -9,7 +9,7 @@ export default function About() {
     'What is in this course, how the repository is organised, and where the material comes from.',
   )
   return (
-    <div className="max-w-3xl">
+    <div className="reading-col">
       <PageHeader
         eyebrow="About"
         title="About this course"
@@ -72,7 +72,7 @@ npm run build          # type-check and build`}</code>
         </p>
       </section>
 
-      <div className="mt-8 flex flex-wrap gap-2.5">
+      <div className="mt-s-8 flex flex-wrap gap-2.5">
         <Link to="/syllabus" className="button button-primary no-underline">
           Syllabus
         </Link>

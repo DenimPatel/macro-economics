@@ -74,6 +74,8 @@ describe('palette contrast', () => {
       'accent-ink',
       'accent-fg',
       'code-bg',
+      'shadow-ink',
+      'scrim',
     ]) {
       expect(vars[key], `${name}: --c-${key}-ch`).toBeDefined()
     }
@@ -163,6 +165,38 @@ describe('palette contrast', () => {
 
   it('light and dark are genuinely different themes', () => {
     expect(contrast(LIGHT.bg, DARK.bg)).toBeGreaterThan(10)
+  })
+
+  it('light: surface-raised is the top of the ramp, and that is intentional', () => {
+    // White is the top of the light ramp, so there is no lighter fill a
+    // "raised" surface could take. Making it anything else would either be
+    // invisible or — if darkened — read as recessed, which is the opposite
+    // of what the token promises. Depth above white in light mode is carried
+    // by the elevation shadow and the lit edge instead. This assertion is
+    // here so the "identical values" cannot later be "fixed" into a lie.
+    expect(LIGHT['surface-raised']).toEqual(LIGHT.surface)
+
+    // Dark is the other way round and genuinely has a lighter step, which is
+    // why it is the theme that can afford the weaker shadow.
+    const raised = DARK['surface-raised']
+    expect(
+      luminance(raised),
+      'dark surface-raised must be lighter than surface',
+    ).toBeGreaterThan(luminance(DARK.surface))
+  })
+
+  it('light: the scrim actually dims the canvas', () => {
+    // The scrim is a veil, not a surface, and it is deliberately absent from
+    // the text-on-surface loop above: nothing is ever legible on top of it,
+    // so there is no foreground/background pair to hold to 4.5:1. What *is*
+    // worth guarding is that the veil still separates the overlay from the
+    // content it covers, which is a contrast between the veil and the canvas
+    // it composites over. Dark is exempt — that canvas is already near-black
+    // and the veil's job there is opacity, not luminance.
+    expect(
+      contrast(LIGHT.scrim, LIGHT.bg),
+      'light scrim vs canvas',
+    ).toBeGreaterThanOrEqual(3)
   })
 
   it('the tier ramp is one hue family, not a rainbow', () => {

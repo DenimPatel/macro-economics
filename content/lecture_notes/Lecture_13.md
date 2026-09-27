@@ -112,7 +112,7 @@ For a single country over time (e.g., 40-70 years):
 ### Cross-Country Comparisons: The PPP Problem
 
 **Problem**: Exchange rate-based comparisons are misleading.
-- Example: US GDP per capita = $70,000; Italy GDP per capita = $50,000.
+- Example: US GDP per capita = \$70,000; Italy GDP per capita = \$50,000.
 - This comparison doesn't capture true differences in living standards.
 
 **Why?**: Prices differ dramatically across countries.
@@ -134,7 +134,7 @@ For a single country over time (e.g., 40-70 years):
 - Cars and food bundles are identical quality in both countries.
 
 **US Household**:
-- Buys: 1 car/year ($10,000) + 1 food bundle/year ($10,000)
+- Buys: 1 car/year (\$10,000) + 1 food bundle/year (\$10,000)
 - **Total**: $20,000/year
 
 **Russian Household**:
@@ -145,14 +145,14 @@ For a single country over time (e.g., 40-70 years):
 
 #### Without PPP Adjustment
 - Convert Russian consumption: 120,000 rubles ÷ 60 = **$2,000/year**
-- **Ratio**: US is 10x richer than Russia ($20,000 ÷ $2,000 = 10).
+- **Ratio**: US is 10x richer than Russia (\$20,000 ÷ \$2,000 = 10).
 
 #### With PPP Adjustment
 - Value Russian consumption at US prices:
-  - 0.07 cars × $10,000 = $700
-  - 1 food bundle × $10,000 = $10,000
+  - 0.07 cars × \$10,000 = \$700
+  - 1 food bundle × \$10,000 = \$10,000
   - **Total**: $10,700/year
-- **Ratio**: US is only 1.87x richer than Russia ($20,000 ÷ $10,700 = 1.87).
+- **Ratio**: US is only 1.87x richer than Russia (\$20,000 ÷ \$10,700 = 1.87).
 - Russia is 53% as rich as the US, not 10%.
 
 **Key Insight**: The Russian household consumes fewer cars (changes less frequently—once every 15 years vs. annually), but the food bundle is the same. Valuing at common prices reveals true consumption differences.

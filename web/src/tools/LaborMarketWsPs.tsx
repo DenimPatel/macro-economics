@@ -1,15 +1,20 @@
 import { useCallback, useMemo, useState } from 'react'
-import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine, ComposedChart } from 'recharts'
+import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ComposedChart } from 'recharts'
 import { ChartLine, ChartScatter } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
-  SliderControl,
-  StatBox,
   Button,
   InfoBox,
+  SliderControl,
+  StatBox,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { dataDomain } from '../lib/chartDomain'
+import { useHiddenSeries } from '../lib/chartSeries'
+import { ChartLegend } from '../components/ChartLegend'
+import { useToolReset } from '../lib/toolReset'
 
 /** WS and PS keep a fixed economic identity across every chart and readout. */
 const WS_STROKE = chartColor(2)
@@ -44,13 +49,62 @@ interface EquilibriumPoint {
   realWage: number
 }
 
+/**
+ * One copy of this tool's starting values. The `useState` calls below read
+ * from it, so "Reset to defaults" cannot return to a number the tool no
+ * longer opens at — the failure mode of a hand-written reset that re-typed
+ * every default in a second list.
+ */
+const DEFAULTS = {
+  bargainingPower: 0.5,
+  firmMarkup: 0.2,
+  benefitRate: 0.4,
+  laborProductivity: 1.0,
+  scenarioMode: 'baseline' as ScenarioMode,
+}
+
+/** Named so the reset record can hold it: a bare inline union in
+ * `useState<...>(DEFAULTS.scenarioMode)` would widen to `string` and stop
+ * being assignable to the state it resets. */
+type ScenarioMode = 'baseline' | 'higher-unions' | 'more-competition'
+
 export default function LaborMarketWsPs() {
+  const wsps = useHiddenSeries(['wsWage', 'psWage'])
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
   // Core parameters
-  const [bargainingPower, setBargainingPower] = useState(0.5)
-  const [firmMarkup, setFirmMarkup] = useState(0.2)
-  const [benefitRate, setBenefitRate] = useState(0.4)
-  const [laborProductivity, setLaborProductivity] = useState(1.0)
-  const [scenarioMode, setScenarioMode] = useState<'baseline' | 'higher-unions' | 'more-competition'>('baseline')
+  const [bargainingPower, setBargainingPower] = useState(DEFAULTS.bargainingPower)
+  const [firmMarkup, setFirmMarkup] = useState(DEFAULTS.firmMarkup)
+  const [benefitRate, setBenefitRate] = useState(DEFAULTS.benefitRate)
+  const [laborProductivity, setLaborProductivity] = useState(DEFAULTS.laborProductivity)
+  const [scenarioMode, setScenarioMode] = useState<ScenarioMode>(DEFAULTS.scenarioMode)
+
+  const { reset, dirty } = useToolReset(
+    {
+    bargainingPower: bargainingPower,
+    firmMarkup: firmMarkup,
+    benefitRate: benefitRate,
+    laborProductivity: laborProductivity,
+    scenarioMode: scenarioMode,
+    },
+    {
+      setBargainingPower,
+      setFirmMarkup,
+      setBenefitRate,
+      setLaborProductivity,
+      setScenarioMode,
+    },
+    {
+      bargainingPower: DEFAULTS.bargainingPower,
+      firmMarkup: DEFAULTS.firmMarkup,
+      benefitRate: DEFAULTS.benefitRate,
+      laborProductivity: DEFAULTS.laborProductivity,
+      scenarioMode: DEFAULTS.scenarioMode,
+    },
+  )
 
   // Apply scenario presets
   let activeBargaining = bargainingPower
@@ -224,8 +278,8 @@ export default function LaborMarketWsPs() {
       const excessPercent = ((excess / data.psWage) * 100).toFixed(1)
 
       return (
-        <div className="stat-tile p-3 text-left text-xs">
-          <p className="mb-1 font-bold text-fg">
+        <div className="stat-tile p-s-3 text-left text-xs">
+          <p className="mb-s-1 font-bold text-fg">
             Unemployment: {(data.unemployment * 100).toFixed(1)}%
           </p>
           <p className="my-0.5" style={{ color: WS_STROKE }}>
@@ -235,7 +289,7 @@ export default function LaborMarketWsPs() {
             PS (Firms offer): {data.psWage.toFixed(3)}
           </p>
           <p
-            className="mt-1 font-bold"
+            className="mt-s-1 font-bold"
             style={{ color: excess > 0 ? EXCESS_HIGH : excess < 0 ? EXCESS_LOW : EXCESS_FLAT }}
           >
             {excess > 0 ? '↑ Wage pressure' : excess < 0 ? '↓ Employment pressure' : 'Equilibrium'}
@@ -257,7 +311,7 @@ export default function LaborMarketWsPs() {
 
       {/* Main Chart */}
       <div className="visualization-container">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">WS/PS Equilibrium Diagram</h3>
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">WS/PS Equilibrium Diagram</h2>
 
         <ResponsiveContainer width="100%" height={400}>
           <ComposedChart
@@ -266,6 +320,7 @@ export default function LaborMarketWsPs() {
           >
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="unemployment"
               label={{
                 value: 'Unemployment Rate (fraction of labor force)',
@@ -274,11 +329,17 @@ export default function LaborMarketWsPs() {
                 fill: chartTheme.axis.tick.fill,
               }}
               type="number"
+              /* A fraction of the labor force, so [0, 1] is a real bound and
+               * the axis stays pinned: it is a percentage the reader
+               * already knows the shape of, and the whole point of the
+               * chart is where the curves cross inside it. */
               domain={[0, 1]}
               tickFormatter={(value) => `${(value * 100).toFixed(0)}%`}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{
                 value: 'Real Wage (W/P)',
                 angle: -90,
@@ -286,16 +347,31 @@ export default function LaborMarketWsPs() {
                 offset: -10,
                 fill: chartTheme.axis.tick.fill,
               }}
-              domain={[0, 1.2]}
-              {...chartTheme.axis}
+              /* Derived, and this was the same D1 defect the sibling
+               * `LaborMarket` tool was checked for and does not have.
+               *
+               * Labor productivity `A` runs 0.5 to 2, and both series are
+               * proportional to it: the WS curve is `A * (z + (1-z)(1-βu))`
+               * and its value at full employment is exactly `A`. So the top
+               * of the WS curve reaches 2.0 and the top of PS is
+               * `2 / 1.1 = 1.82`, against a domain pinned at 1.2. The top
+               * 40% of the WS curve and the PS line itself were drawn past
+               * the frame and clipped, with no cue — and the readouts
+               * beside the chart, which are computed and were never bounded
+               * by the axis, carried the larger numbers the whole time. */
+              domain={dataDomain(
+                [chartData.map((d) => d.wsWage), chartData.map((d) => d.psWage), equilibrium.realWage],
+                { includeZero: true, ticks: 5 },
+              )}
+              {...chartTheme.yAxis}
+              includeHidden
             />
             <Tooltip content={<CustomTooltip />} cursor={chartTheme.cursor} />
-            <Legend {...chartTheme.legend} />
-
             {/* WS Curve */}
             <ChartLine
               type="monotone"
               dataKey="wsWage"
+              hide={wsps.isHidden('wsWage')}
               stroke={WS_STROKE}
               strokeWidth={3}
               dot={false}
@@ -306,6 +382,7 @@ export default function LaborMarketWsPs() {
             <ChartLine
               type="monotone"
               dataKey="psWage"
+              hide={wsps.isHidden('psWage')}
               stroke={PS_STROKE}
               strokeWidth={3}
               dot={false}
@@ -349,17 +426,26 @@ export default function LaborMarketWsPs() {
             />
           </ComposedChart>
         </ResponsiveContainer>
+        <ChartLegend
+          items={[
+            { key: 'wsWage', label: "WS Curve (Workers' Demands)", color: WS_STROKE },
+            { key: 'psWage', label: "PS Curve (Firms' Offers)", color: PS_STROKE },
+          ]}
+          hidden={wsps.hidden}
+          onToggle={wsps.toggle}
+          onShowAll={wsps.showAll}
+        />
 
-        <p className="mt-4 text-sm leading-relaxed text-fg-muted">
+        <p className="mt-s-4 text-sm leading-relaxed text-fg-muted">
           <strong>Equilibrium:</strong> The natural rate of unemployment (u_n) occurs where the WS and PS curves intersect.
           At this point, inflation expectations are realized and the labor market is in equilibrium.
         </p>
       </div>
 
       {/* Control Panel */}
-      <div className="mb-8 grid gap-8 lg:grid-cols-2">
+      <div className="mb-s-8 grid gap-s-8 lg:grid-cols-2">
         <div className="control-panel block">
-          <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Worker Bargaining</h3>
+          <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Worker Bargaining</h2>
 
           <SliderControl
             label="Bargaining Power"
@@ -369,7 +455,7 @@ export default function LaborMarketWsPs() {
             step={0.05}
             onChange={setBargainingPower}
           />
-          <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+          <p className="mt-s-2 text-sm leading-relaxed text-fg-muted">
             Higher values mean workers are more sensitive to unemployment (stronger negotiating position at low unemployment).
           </p>
 
@@ -381,13 +467,15 @@ export default function LaborMarketWsPs() {
             step={0.05}
             onChange={setBenefitRate}
           />
-          <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+          <p className="mt-s-2 text-sm leading-relaxed text-fg-muted">
             Higher benefits raise the wage floor, shifting the WS curve upward.
           </p>
         </div>
 
+      <ToolControlBar onReset={reset} dirty={dirty} />
+
         <div className="control-panel block">
-          <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Firm Pricing</h3>
+          <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Firm Pricing</h2>
 
           <SliderControl
             label="Markup (μ)"
@@ -397,7 +485,7 @@ export default function LaborMarketWsPs() {
             step={0.02}
             onChange={setFirmMarkup}
           />
-          <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+          <p className="mt-s-2 text-sm leading-relaxed text-fg-muted">
             Higher markup increases firm pricing power, lowering the real wage offered (PS curve down).
           </p>
 
@@ -409,7 +497,7 @@ export default function LaborMarketWsPs() {
             step={0.1}
             onChange={setLaborProductivity}
           />
-          <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+          <p className="mt-s-2 text-sm leading-relaxed text-fg-muted">
             Higher productivity allows higher real wages and shifts both curves upward.
           </p>
         </div>
@@ -417,7 +505,7 @@ export default function LaborMarketWsPs() {
 
       {/* Scenario Buttons */}
       <ToolNote label="Experiments" variant="try" title="Policy Scenarios">
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-s-2">
           <Button
             onClick={() => {
               setScenarioMode('baseline')
@@ -458,7 +546,7 @@ export default function LaborMarketWsPs() {
       </ToolNote>
 
       {/* Key Statistics */}
-      <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="mb-s-8 grid grid-cols-2 gap-s-3 lg:grid-cols-4">
         <StatBox
           label="Natural Rate (u_n)"
           value={`${policyImpact.naturalRate}%`}
@@ -474,20 +562,20 @@ export default function LaborMarketWsPs() {
       </div>
 
       {/* Detailed Analysis Table */}
-      <div className="card mb-8 p-6">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="card mb-s-8 p-s-6">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Labor Market Dynamics at Different Unemployment Rates
-        </h3>
+        </h2>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-sm tabular-nums">
             <thead>
               <tr className="border-b-2 border-border-strong">
-                <th className="px-3 py-2 text-left font-semibold text-fg">Scenario</th>
-                <th className="px-3 py-2 text-right font-semibold text-fg">Unemployment</th>
-                <th className="px-3 py-2 text-right font-semibold text-fg">WS (Demand)</th>
-                <th className="px-3 py-2 text-right font-semibold text-fg">PS (Offer)</th>
-                <th className="px-3 py-2 text-right font-semibold text-fg">Gap</th>
-                <th className="px-3 py-2 text-center font-semibold text-fg">Situation</th>
+                <th className="px-s-3 py-s-2 text-left font-semibold text-fg">Scenario</th>
+                <th className="px-s-3 py-s-2 text-right font-semibold text-fg">Unemployment</th>
+                <th className="px-s-3 py-s-2 text-right font-semibold text-fg">WS (Demand)</th>
+                <th className="px-s-3 py-s-2 text-right font-semibold text-fg">PS (Offer)</th>
+                <th className="px-s-3 py-s-2 text-right font-semibold text-fg">Gap</th>
+                <th className="px-s-3 py-s-2 text-center font-semibold text-fg">Situation</th>
               </tr>
             </thead>
             <tbody>
@@ -499,23 +587,23 @@ export default function LaborMarketWsPs() {
                   }`}
                 >
                   <td
-                    className={`px-3 py-2.5 text-left text-fg ${
+                    className={`px-s-3 py-2.5 text-left text-fg ${
                       point.excess === 0 ? 'font-bold' : ''
                     }`}
                   >
                     {point.label}
                   </td>
-                  <td className="px-3 py-2.5 text-right">
+                  <td className="px-s-3 py-2.5 text-right">
                     {(point.unemployment * 100).toFixed(1)}%
                   </td>
-                  <td className="px-3 py-2.5 text-right" style={{ color: WS_STROKE }}>
+                  <td className="px-s-3 py-2.5 text-right" style={{ color: WS_STROKE }}>
                     {point.wsWage.toFixed(3)}
                   </td>
-                  <td className="px-3 py-2.5 text-right" style={{ color: PS_STROKE }}>
+                  <td className="px-s-3 py-2.5 text-right" style={{ color: PS_STROKE }}>
                     {point.psWage.toFixed(3)}
                   </td>
                   <td
-                    className="px-3 py-2.5 text-right font-bold"
+                    className="px-s-3 py-2.5 text-right font-bold"
                     style={{
                       color:
                         point.excess > 0
@@ -528,7 +616,7 @@ export default function LaborMarketWsPs() {
                     {point.excess > 0 ? '+' : ''}
                     {(point.excess * 100).toFixed(1)}%
                   </td>
-                  <td className="px-3 py-2.5 text-center text-fg-muted">
+                  <td className="px-s-3 py-2.5 text-center text-fg-muted">
                     {point.excess > 0.01 && 'Wage pressure'}
                     {point.excess < -0.01 && 'Employment pressure'}
                     {Math.abs(point.excess) < 0.01 && 'Equilibrium'}
@@ -541,7 +629,7 @@ export default function LaborMarketWsPs() {
       </div>
 
       {/* Economic Explanations */}
-      <div className="mb-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <div className="mb-s-8 grid grid-cols-1 gap-s-4 lg:grid-cols-2">
         <InfoBox type="info" title="Wage-Setting (WS) Curve">
           <p>The WS curve shows the real wage workers demand given labor market conditions.</p>
           <p>
@@ -550,13 +638,13 @@ export default function LaborMarketWsPs() {
           <p>
             <strong>Key Properties</strong>:
           </p>
-          <ul className="mt-2">
+          <ul className="mt-s-2">
             <li>Slopes downward: Low unemployment strengthens worker bargaining power</li>
             <li>Shift factors: Unemployment benefits (z), bargaining power (β), productivity (A)</li>
             <li>At u=0: W/P = 1 (workers get all of productivity)</li>
             <li>At high u: W/P ≈ z (workers stuck with benefit level)</li>
           </ul>
-          <p className="mt-2">
+          <p className="mt-s-2">
             <strong>Policy Implications</strong>: Generous benefits and strong unions shift WS up,
             increasing natural rate
           </p>
@@ -570,12 +658,12 @@ export default function LaborMarketWsPs() {
           <p>
             <strong>Key Properties</strong>:
           </p>
-          <ul className="mt-2">
+          <ul className="mt-s-2">
             <li>Horizontal: Doesn't depend on unemployment (firm pricing is exogenous)</li>
             <li>Higher markup → lower real wage offered</li>
             <li>Higher productivity → higher real wage offered</li>
           </ul>
-          <p className="mt-2">
+          <p className="mt-s-2">
             <strong>Policy Implications</strong>: Competition and productivity improvements shift PS,
             affecting natural rate
           </p>
@@ -587,7 +675,7 @@ export default function LaborMarketWsPs() {
           The natural rate is where WS and PS curves intersect. It's not determined by technology, but by
           institutional factors:
         </p>
-        <ul className="mt-2">
+        <ul className="mt-s-2">
           <li>Below u_n: WS &gt; PS → wage pressure → inflation rises</li>
           <li>Above u_n: WS &lt; PS → wage pressure falls → inflation declines</li>
           <li>↑ Bargaining power → ↑ u_n</li>

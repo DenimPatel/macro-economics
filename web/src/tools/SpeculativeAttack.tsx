@@ -1,15 +1,19 @@
 import { useState } from 'react'
-import { LineChart, AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine, ComposedChart } from 'recharts'
+import { LineChart, AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ComposedChart } from 'recharts'
 import { ChartArea, ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
   ToolNote,
   SliderControl,
   StatBox,
+  ToolControlBar,
   Button,
   InfoBox,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartTheme, chartColor, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
+import { useHiddenSeries } from '../lib/chartSeries'
+import { ChartLegend } from '../components/ChartLegend'
 
 /** Each concept keeps one colour across all six charts. */
 const DOMESTIC_STROKE = chartColor(0)
@@ -37,6 +41,41 @@ const CRISIS_STROKE = chartColor(4)
  * - Insufficient reserves cannot sustain defense indefinitely
  */
 
+type ScenarioMode = 'crisis' | 'stable' | 'managed'
+
+/**
+ * The tool's starting point, in one place.
+ *
+ * These are the literals that used to sit next to each `useState`, which is
+ * the copy nobody edits during a model change: the `useState` and the reset
+ * function each carried the number, and a retune fixed one of them. The
+ * initialisers read from here, so the slider a reader starts at and the one
+ * "Reset" returns to are the same value by construction.
+ *
+ * `scenarioMode` is here for the same reason and not because a scenario is a
+ * model input. A scenario is a PRESET of the five values above, so leaving it
+ * out of the reset is what makes Reset inert: pick "Stable Peg", and the five
+ * values under the sliders have not moved, `dirty` is false, and the button
+ * that is supposed to put the tool back does nothing a reader can see. The
+   * scenario row is the third thing a reader detours through, so it belongs in
+   * the thing that undoes detours. The hand-written reset this replaced did
+   * set it, and that is the behaviour being kept.
+   */
+const DEFAULTS = {
+  moneyGrowthRate: 0.08,
+  policyRate: 0.03,
+  capitalControls: 0.3,
+  initialReserves: 100,
+  specAggressiveness: 0.5,
+  scenarioMode: 'crisis' as ScenarioMode,
+  // Deliberately not `as const` and not `satisfies`: either one narrows the
+  // fields to literal types, and `useState(DEFAULTS.x)` would then infer a
+  // union rather than `number`, and the slider's `onChange` would not assign
+  // to it. `scenarioMode` is annotated at the field instead, because a
+  // literal `useState(DEFAULTS.scenarioMode)` would infer the single value
+  // `'crisis'` and a preset button could not assign to it.
+}
+
 interface AttackData {
   period: number
   reserves: number
@@ -52,15 +91,54 @@ interface AttackData {
 }
 
 export default function SpeculativeAttack() {
+  /*
+   * One `useHiddenSeries` per chart, not one per tool. The state is component
+   * state rather than a preference, and two charts on one page must not be able
+   * to hide each other's series: a reader who turns off "Speculative Attack" in
+   * the outflow chart means that stack, not the rate chart.
+   *
+   * The reserves chart is deliberately absent. It has one series and no legend,
+   * so there is nothing to toggle, and a control for a single series would be a
+   * button whose only effect is to hide the only thing on screen.
+   */
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis key carried on every axis below is re-read and Recharts re-measures
+  // its tick labels. Recharts measures them once, in `componentDidMount`, and
+  // there is no other way to refresh that number. Without this line each key
+  // is a string computed once and never again: correct, and inert — and the
+  // symptom is tick labels colliding at 130% with no error anywhere.
+  useChartTextScaleSignal()
+  const ratesChart = useHiddenSeries(['domesticRate', 'foreignRate'])
+  const outflowChart = useHiddenSeries(['capitalOutflow', 'speculatorAttack'])
   // Control parameters
-  const [moneyGrowthRate, setMoneyGrowthRate] = useState(0.08) // 8% domestic money growth
-  const [policyRate, setPolicyRate] = useState(0.03) // 3% domestic policy rate
-  const [capitalControls, setCapitalControls] = useState(0.3) // 30% capital restriction
-  const [initialReserves, setInitialReserves] = useState(100) // Initial reserves as % of money supply
-  const [specAggressiveness, setSpecAggressiveness] = useState(0.5) // How aggressively speculators attack
+  const [moneyGrowthRate, setMoneyGrowthRate] = useState(DEFAULTS.moneyGrowthRate) // 8% domestic money growth
+  const [policyRate, setPolicyRate] = useState(DEFAULTS.policyRate) // 3% domestic policy rate
+  const [capitalControls, setCapitalControls] = useState(DEFAULTS.capitalControls) // 30% capital restriction
+  const [initialReserves, setInitialReserves] = useState(DEFAULTS.initialReserves) // Initial reserves as % of money supply
+  const [specAggressiveness, setSpecAggressiveness] = useState(DEFAULTS.specAggressiveness) // How aggressively speculators attack
   const [isPlaying, setIsPlaying] = useState(false)
   const [playbackSpeed, setPlaybackSpeed] = useState(1)
-  const [scenarioMode, setScenarioMode] = useState<'crisis' | 'stable' | 'managed'>('crisis')
+  const [scenarioMode, setScenarioMode] = useState<ScenarioMode>(DEFAULTS.scenarioMode)
+
+  const { reset, dirty } = useToolReset(
+    {
+      moneyGrowthRate,
+      policyRate,
+      capitalControls,
+      initialReserves,
+      specAggressiveness,
+      scenarioMode,
+    },
+    {
+      setMoneyGrowthRate,
+      setPolicyRate,
+      setCapitalControls,
+      setInitialReserves,
+      setSpecAggressiveness,
+      setScenarioMode,
+    },
+    DEFAULTS,
+  )
 
   // Scenario presets
   let activeMoney = moneyGrowthRate
@@ -190,16 +268,6 @@ export default function SpeculativeAttack() {
   const finalData = attackData[attackData.length - 1]
   const maxOutflow = Math.max(...attackData.map((d) => d.capitalOutflow))
 
-  const resetToDefault = () => {
-    setMoneyGrowthRate(0.08)
-    setPolicyRate(0.03)
-    setCapitalControls(0.3)
-    setInitialReserves(100)
-    setSpecAggressiveness(0.5)
-    setScenarioMode('crisis')
-    setIsPlaying(false)
-  }
-
   return (
     <div className="tool-card">
       <ToolHeader
@@ -209,26 +277,42 @@ export default function SpeculativeAttack() {
       />
 
       {/* Control Panel */}
-      <div className="mb-8">
-        <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">Crisis Parameters</h2>
+
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Crisis Parameters</h2>
         <div className="control-panel">
+          {/* The unit is in the label and `unit` is empty on purpose, and the
+           * number does not move. These two are the only sliders in the
+           * twenty tools whose range is a fraction (0.01–0.15 and 0.01–0.25)
+           * while the same quantity is printed as a percentage everywhere
+           * else on the page — the rate chart's y axis is "Interest Rate (%)",
+           * its caption is `peakRate.toFixed(2)}%`, and `AttackData.domesticRate`
+           * is stored pre-multiplied by 100. So `unit="%"` on a 0.08 value
+           * printed "0.08 %" above a chart reading "8.00 %" for the same
+           * number: two figures for one quantity, 100x apart. Multiplying the
+           * readout by 100 would paper over it and be worse, because every
+           * reader of this tool has learned to type `0.08` to get 8% — a field
+           * that silently stops accepting the number it accepted is a bigger
+           * failure than a unit written in the wrong place. So the label says
+           * (%) and the value stays exactly what the model and the slider
+           * agree on. */}
           <SliderControl
-            label="Domestic Money Growth Rate"
+            label="Domestic Money Growth Rate (%)"
             value={activeMoney}
             min={0.01}
             max={0.15}
             step={0.01}
             onChange={setMoneyGrowthRate}
-            unit="%"
+            unit=""
           />
           <SliderControl
-            label="Domestic Policy Rate"
+            label="Domestic Policy Rate (%)"
             value={activePolicy}
             min={0.01}
             max={0.25}
             step={0.01}
             onChange={setPolicyRate}
-            unit="%"
+            unit=""
           />
           <SliderControl
             label="Capital Controls Strength"
@@ -260,10 +344,12 @@ export default function SpeculativeAttack() {
         </div>
       </div>
 
+      <ToolControlBar onReset={reset} dirty={dirty} />
+
       {/* Scenario Buttons */}
-      <div className="mb-8">
-        <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">Scenario Analysis</h2>
-        <div className="mb-4 flex flex-wrap gap-2">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Scenario Analysis</h2>
+        <div className="mb-s-4 flex flex-wrap gap-s-2">
           <Button
             onClick={() => setScenarioMode('crisis')}
             variant={scenarioMode === 'crisis' ? 'primary' : 'secondary'}
@@ -282,16 +368,13 @@ export default function SpeculativeAttack() {
           >
             Managed Float (Medium Parameters)
           </Button>
-          <Button onClick={resetToDefault} variant="secondary">
-            Reset All
-          </Button>
         </div>
       </div>
 
       {/* Playback Controls */}
-      <div className="mb-8 rounded-card bg-surface-2 p-4">
-        <h3 className="mb-3 text-label-sm font-semibold text-fg">Timeline</h3>
-        <div className="flex flex-wrap items-center gap-2">
+      <div className="mb-s-8 rounded-card bg-surface-2 p-s-4">
+        <h3 className="mb-s-3 text-label-sm font-semibold text-fg">Timeline</h3>
+        <div className="flex flex-wrap items-center gap-s-2">
           <Button onClick={() => setIsPlaying(!isPlaying)} variant="primary">
             {isPlaying ? 'Pause' : 'Play'}
           </Button>
@@ -305,16 +388,16 @@ export default function SpeculativeAttack() {
             unit="x"
           />
         </div>
-        <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+        <p className="mt-s-2 text-sm leading-relaxed text-fg-muted">
           Watch how reserves deplete over 60 periods. The peg breaks when reserves exhausted.
         </p>
       </div>
 
       {/* Critical Metrics */}
-      <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-3">
+      <div className="mb-s-8 grid grid-cols-2 gap-s-3 lg:grid-cols-3">
         <StatBox
           label="Foreign Policy Rate"
-          value={foreignRate.toFixed(1)}
+          value={(foreignRate * 100).toFixed(1)}
           unit="%"
         />
         <StatBox
@@ -348,7 +431,7 @@ export default function SpeculativeAttack() {
       </div>
 
       {/* Educational Boxes */}
-      <div className="mb-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <div className="mb-s-8 grid grid-cols-1 gap-s-4 lg:grid-cols-2">
         <InfoBox type="info" title="The fundamental inconsistency">
           With fixed exchange rates, the domestic interest rate must equal the foreign rate (UIP with no expected depreciation).
           But if domestic money is growing faster than foreign money, this is unsustainable—people expect depreciation eventually.
@@ -376,11 +459,11 @@ export default function SpeculativeAttack() {
       </div>
 
       {/* Reserve Depletion Chart */}
-      <div className="visualization-container mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="visualization-container mb-s-8">
+        <h3 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Central Bank Reserves: The Countdown to Crisis
         </h3>
-        <p className="mb-4 text-sm leading-relaxed text-fg-muted">
+        <p className="mb-s-4 text-sm leading-relaxed text-fg-muted">
           Reserves deplete as speculators exchange domestic currency for hard currency reserves.
           {pegBreakIndex >= 0 && (
             <span>
@@ -396,11 +479,14 @@ export default function SpeculativeAttack() {
           <AreaChart data={attackData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="period"
               label={{ value: 'Time Period', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{
                 value: 'Reserves (% of money supply)',
                 angle: -90,
@@ -408,7 +494,8 @@ export default function SpeculativeAttack() {
                 fill: chartTheme.axis.tick.fill,
               }}
               domain={[0, 'auto']}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
             <Tooltip
               {...chartTheme.tooltip}
@@ -439,17 +526,17 @@ export default function SpeculativeAttack() {
             />
           </AreaChart>
         </ResponsiveContainer>
-        <p className="mt-2 text-xs text-fg-subtle tabular-nums">
+        <p className="mt-s-2 text-xs text-fg-subtle tabular-nums">
           Initial reserves: {initialReserves.toFixed(0)}% of money supply | Final reserves: {finalData.reserves.toFixed(2)}%
         </p>
       </div>
 
       {/* Interest Rate Defense */}
-      <div className="visualization-container mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="visualization-container mb-s-8">
+        <h3 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Interest Rate Defense: The Cost of Defending the Peg
         </h3>
-        <p className="mb-4 text-sm leading-relaxed text-fg-muted">
+        <p className="mb-s-4 text-sm leading-relaxed text-fg-muted">
           As speculators attack and reserves deplete, the central bank must raise interest rates to defend the peg.
           Notice how the domestic rate diverges from the foreign rate when the peg is under threat.
           {pegBreakIndex >= 0 && (
@@ -463,21 +550,24 @@ export default function SpeculativeAttack() {
           <LineChart data={attackData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="period"
               label={{ value: 'Time Period', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{ value: 'Interest Rate (%)', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
               domain={[0, 30]}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
             <Tooltip
               {...chartTheme.tooltip}
               cursor={chartTheme.cursor}
               formatter={(value: number) => value.toFixed(2)}
             />
-            <Legend {...chartTheme.legend} />
             {pegBreakIndex >= 0 && (
               <ReferenceLine
                 x={pegBreakIndex}
@@ -489,6 +579,7 @@ export default function SpeculativeAttack() {
             <ChartLine
               type="monotone"
               dataKey="domesticRate"
+              hide={ratesChart.isHidden('domesticRate')}
               stroke={DOMESTIC_STROKE}
               strokeWidth={2}
               name="Domestic Rate (defense effort)"
@@ -496,23 +587,33 @@ export default function SpeculativeAttack() {
             <ChartLine
               type="monotone"
               dataKey="foreignRate"
+              hide={ratesChart.isHidden('foreignRate')}
               stroke={FOREIGN_STROKE}
               strokeWidth={2}
               name="Foreign Rate (exogenous)"
             />
           </LineChart>
         </ResponsiveContainer>
-        <p className="mt-2 text-xs text-fg-subtle tabular-nums">
+        <ChartLegend
+          items={[
+            { key: 'domesticRate', label: 'Domestic Rate (defense effort)', color: DOMESTIC_STROKE },
+            { key: 'foreignRate', label: 'Foreign Rate (exogenous)', color: FOREIGN_STROKE },
+          ]}
+          hidden={ratesChart.hidden}
+          onToggle={ratesChart.toggle}
+          onShowAll={ratesChart.showAll}
+        />
+        <p className="mt-s-2 text-xs text-fg-subtle tabular-nums">
           Peak domestic rate: {peakRate.toFixed(2)}% | Foreign rate: {(foreignRate * 100).toFixed(2)}%
         </p>
       </div>
 
       {/* Capital Outflows and Speculative Attack */}
-      <div className="visualization-container mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="visualization-container mb-s-8">
+        <h3 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Capital Outflows and Speculative Attack
         </h3>
-        <p className="mb-4 text-sm leading-relaxed text-fg-muted">
+        <p className="mb-s-4 text-sm leading-relaxed text-fg-muted">
           Capital outflows accelerate when speculators sense the peg is doomed. The &quot;speculative
           attack&quot; shows when organized speculators actively rush to exchange the domestic currency,
           hoping to trigger the devaluation they've been anticipating. This self-fulfilling prophecy is
@@ -522,20 +623,23 @@ export default function SpeculativeAttack() {
           <ComposedChart data={attackData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="period"
               label={{ value: 'Time Period', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{ value: 'Outflow per Period', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
             <Tooltip
               {...chartTheme.tooltip}
               cursor={chartTheme.cursor}
               formatter={(value: number) => value.toFixed(2)}
             />
-            <Legend {...chartTheme.legend} />
             {pegBreakIndex >= 0 && (
               <ReferenceLine
                 x={pegBreakIndex}
@@ -546,29 +650,40 @@ export default function SpeculativeAttack() {
             )}
             <ChartBar
               dataKey="capitalOutflow"
+              hide={outflowChart.isHidden('capitalOutflow')}
               stackId="a"
               fill={OUTFLOW_STROKE}
               name="Normal Outflow (rate differential)"
             />
             <ChartBar
               dataKey="speculatorAttack"
+              hide={outflowChart.isHidden('speculatorAttack')}
               stackId="a"
               fill={CRISIS_STROKE}
               name="Speculative Attack"
             />
           </ComposedChart>
         </ResponsiveContainer>
-        <p className="mt-2 text-xs text-fg-subtle tabular-nums">
+        <ChartLegend
+          items={[
+            { key: 'capitalOutflow', label: 'Normal Outflow (rate differential)', color: OUTFLOW_STROKE },
+            { key: 'speculatorAttack', label: 'Speculative Attack', color: CRISIS_STROKE },
+          ]}
+          hidden={outflowChart.hidden}
+          onToggle={outflowChart.toggle}
+          onShowAll={outflowChart.showAll}
+        />
+        <p className="mt-s-2 text-xs text-fg-subtle tabular-nums">
           Max outflow per period: {maxOutflow.toFixed(2)} | Speculator aggressiveness: {(specAggressiveness * 100).toFixed(0)}%
         </p>
       </div>
 
       {/* GDP Contraction from Defense */}
-      <div className="visualization-container mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="visualization-container mb-s-8">
+        <h3 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Real Output Contraction: The Recession Cost
         </h3>
-        <p className="mb-4 text-sm leading-relaxed text-fg-muted">
+        <p className="mb-s-4 text-sm leading-relaxed text-fg-muted">
           Defending the peg requires raising interest rates, which contracts investment and consumption.
           GDP falls as rates rise. Notice the deepest recession occurs right when the peg breaks—the point
           where the fundamental inconsistency becomes unsustainable. After the break, rates can fall and recovery begins
@@ -578,11 +693,14 @@ export default function SpeculativeAttack() {
           <AreaChart data={attackData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="period"
               label={{ value: 'Time Period', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{
                 value: 'Real Output Index (base = 100)',
                 angle: -90,
@@ -590,7 +708,8 @@ export default function SpeculativeAttack() {
                 fill: chartTheme.axis.tick.fill,
               }}
               domain={[0, 120]}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
             <Tooltip
               {...chartTheme.tooltip}
@@ -621,17 +740,17 @@ export default function SpeculativeAttack() {
             />
           </AreaChart>
         </ResponsiveContainer>
-        <p className="mt-2 text-xs text-fg-subtle tabular-nums">
+        <p className="mt-s-2 text-xs text-fg-subtle tabular-nums">
           Minimum GDP: {Math.min(...attackData.map((d) => d.gdp)).toFixed(1)} | Final GDP: {finalData.gdp.toFixed(1)}
         </p>
       </div>
 
       {/* Exchange Rate Path */}
-      <div className="visualization-container mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="visualization-container mb-s-8">
+        <h3 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Exchange Rate: From Peg to Floating Depreciation
         </h3>
-        <p className="mb-4 text-sm leading-relaxed text-fg-muted">
+        <p className="mb-s-4 text-sm leading-relaxed text-fg-muted">
           The exchange rate (in units of foreign currency per unit of domestic currency) is held constant at 1.0 while
           the peg is defended. Once the peg breaks and the currency floats, rapid depreciation occurs—the domestic
           currency weakens as speculators who bet on devaluation are proven right.
@@ -640,11 +759,14 @@ export default function SpeculativeAttack() {
           <LineChart data={attackData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="period"
               label={{ value: 'Time Period', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{
                 value: 'Exchange Rate (units foreign/$)',
                 angle: -90,
@@ -652,7 +774,8 @@ export default function SpeculativeAttack() {
                 fill: chartTheme.axis.tick.fill,
               }}
               domain={[0.95, 'auto']}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
             <Tooltip
               {...chartTheme.tooltip}
@@ -683,17 +806,17 @@ export default function SpeculativeAttack() {
             />
           </LineChart>
         </ResponsiveContainer>
-        <p className="mt-2 text-xs text-fg-subtle tabular-nums">
+        <p className="mt-s-2 text-xs text-fg-subtle tabular-nums">
           Exchange rate at period 0: 1.0 | Final exchange rate: {finalData.exchangeRate.toFixed(3)} ({((finalData.exchangeRate - 1) * 100).toFixed(1)}% depreciation)
         </p>
       </div>
 
       {/* Inflation Expectations */}
-      <div className="visualization-container mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="visualization-container mb-s-8">
+        <h3 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Inflation Expectations: The Loss of Price Stability
         </h3>
-        <p className="mb-4 text-sm leading-relaxed text-fg-muted">
+        <p className="mb-s-4 text-sm leading-relaxed text-fg-muted">
           With the peg in place, inflation expectations remain anchored (based on money growth rate).
           Once the peg breaks and the exchange rate depreciates, inflation expectations rise sharply due to:
           (1) import price increases from depreciation, (2) loss of credibility, (3) continued rapid money growth.
@@ -703,14 +826,18 @@ export default function SpeculativeAttack() {
           <AreaChart data={attackData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="period"
               label={{ value: 'Time Period', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{ value: 'Expected Inflation (%)', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
               domain={[0, 'auto']}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
             <Tooltip
               {...chartTheme.tooltip}
@@ -735,15 +862,15 @@ export default function SpeculativeAttack() {
             />
           </AreaChart>
         </ResponsiveContainer>
-        <p className="mt-2 text-xs text-fg-subtle tabular-nums">
+        <p className="mt-s-2 text-xs text-fg-subtle tabular-nums">
           Initial expected inflation: {(activeMoney * 50).toFixed(1)}% | Final expected inflation: {finalData.inflationExpectation.toFixed(1)}%
         </p>
       </div>
 
       {/* Historical Context */}
-      <div className="mb-8">
-        <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">Historical Examples</h2>
-        <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Historical Examples</h2>
+        <div className="grid grid-cols-1 gap-s-3 lg:grid-cols-2">
           <ToolNote label="1992" variant="warning" title="ERM Crisis (UK)">
             <p>
               British pound pegged in European Exchange Rate Mechanism. German reunification raised German interest rates.
@@ -799,12 +926,12 @@ export default function SpeculativeAttack() {
       </div>
 
       {/* Technical Explanation */}
-      <div className="mb-8">
+      <div className="mb-s-8">
         <details className="group cursor-pointer">
           <summary className="select-none text-label-sm font-semibold text-fg-muted transition-colors hover:text-fg">
             Technical Details: The Math Behind the Crisis
           </summary>
-          <div className="prose-lecture mt-4 text-sm">
+          <div className="prose-lecture mt-s-4 text-sm">
             <p>
               <strong>Uncovered Interest Parity (UIP):</strong> With a fixed peg, the domestic interest rate must satisfy:{' '}
               <code>i_domestic = i_foreign + (expected depreciation)</code>. If peg is credible, expected depreciation = 0, so{' '}
@@ -841,9 +968,9 @@ export default function SpeculativeAttack() {
       </div>
 
       {/* Policy Implications */}
-      <div className="mb-8">
-        <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">Policy Insights</h2>
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Policy Insights</h2>
+        <div className="grid grid-cols-1 gap-s-4 lg:grid-cols-2">
           <InfoBox type="warning" title="The fundamental inconsistency trilemma">
             <p>
               A country cannot simultaneously have: (1) fixed exchange rate, (2) free capital flows, (3) independent monetary policy.

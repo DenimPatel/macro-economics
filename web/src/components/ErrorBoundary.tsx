@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Component, type ErrorInfo, type ReactNode } from 'react'
 import { AlertTriangle } from 'lucide-react'
 
@@ -53,9 +54,18 @@ export default class ErrorBoundary extends Component<Props, State> {
           >
             Reload
           </button>
-          <a href={import.meta.env.BASE_URL} className="button button-secondary no-underline">
+          {/*
+            A router `Link`, not `<a href={import.meta.env.BASE_URL}>`, which
+            is what this was. The boundary sits inside the shell's `<main>` and
+            therefore inside the router, so the course home is a route rather
+            than a document: a raw anchor throws away the loaded bundle and the
+            reader's scroll position to fetch an `index.html` they were already
+            on. `AGENTS.md` requires `react-router-dom` for internal navigation
+            and this is internal navigation.
+          */}
+          <Link to="/" className="button button-secondary no-underline">
             Course home
-          </a>
+          </Link>
         </div>
       </div>
     )

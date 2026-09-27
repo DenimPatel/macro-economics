@@ -1,14 +1,28 @@
 import { useState } from 'react'
-import { LineChart, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine, ReferenceDot } from 'recharts'
+import { ReferenceLine, ReferenceDot } from 'recharts'
+import { BarChart } from 'recharts'
+import {
+  CartesianGrid,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from '../components/ChartPrimitives'
+import { ChartLegend } from '../components/ChartLegend'
 import { ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
+  InfoBox,
   SliderControl,
   StatBox,
-  InfoBox,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { dataDomain } from '../lib/chartDomain'
+import { useHiddenSeries } from '../lib/chartSeries'
+import { useToolReset } from '../lib/toolReset'
 
 type ExperimentType = 'consumption' | 'government' | 'taxes' | 'combined'
 
@@ -25,18 +39,72 @@ interface ScenarioData {
 
 /** Each concept keeps one stable palette slot across every chart in this tool. */
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  mpc: 0.6,
+  baseInvestment: 100,
+  baseTaxes: 150,
+  baseGovernmentSpending: 150,
+  autonomousConsumption: 100,
+  governmentSpendingChange: 0,
+  taxChange: 0,
+}
+
 export default function FiscalPolicyExperiments() {
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
+  const keysianSeries = useHiddenSeries(['z45', 'baselineZZ', 'newZZ'])
   // Base parameters
-  const [mpc, setMpc] = useState(0.6)
-  const [baseInvestment, setBaseInvestment] = useState(100)
-  const [baseTaxes, setBaseTaxes] = useState(150)
-  const [baseGovernmentSpending, setBaseGovernmentSpending] = useState(150)
+const [mpc, setMpc] = useState(DEFAULTS.mpc)
+const [baseInvestment, setBaseInvestment] = useState(DEFAULTS.baseInvestment)
+const [baseTaxes, setBaseTaxes] = useState(DEFAULTS.baseTaxes)
+const [baseGovernmentSpending, setBaseGovernmentSpending] = useState(DEFAULTS.baseGovernmentSpending)
 
   // Experiment parameters
   const [experimentType, setExperimentType] = useState<ExperimentType>('consumption')
-  const [autonomousConsumption, setAutonomousConsumption] = useState(100)
-  const [governmentSpendingChange, setGovernmentSpendingChange] = useState(0)
-  const [taxChange, setTaxChange] = useState(0)
+const [autonomousConsumption, setAutonomousConsumption] = useState(DEFAULTS.autonomousConsumption)
+const [governmentSpendingChange, setGovernmentSpendingChange] = useState(DEFAULTS.governmentSpendingChange)
+const [taxChange, setTaxChange] = useState(DEFAULTS.taxChange)
+
+  const { reset, dirty } = useToolReset(
+    {
+    mpc: mpc,
+    baseInvestment: baseInvestment,
+    baseTaxes: baseTaxes,
+    baseGovernmentSpending: baseGovernmentSpending,
+    autonomousConsumption: autonomousConsumption,
+    governmentSpendingChange: governmentSpendingChange,
+    taxChange: taxChange,
+    },
+    {
+      setMpc,
+      setBaseInvestment,
+      setBaseTaxes,
+      setBaseGovernmentSpending,
+      setAutonomousConsumption,
+      setGovernmentSpendingChange,
+      setTaxChange,
+    },
+    {
+      mpc: DEFAULTS.mpc,
+      baseInvestment: DEFAULTS.baseInvestment,
+      baseTaxes: DEFAULTS.baseTaxes,
+      baseGovernmentSpending: DEFAULTS.baseGovernmentSpending,
+      autonomousConsumption: DEFAULTS.autonomousConsumption,
+      governmentSpendingChange: DEFAULTS.governmentSpendingChange,
+      taxChange: DEFAULTS.taxChange,
+    },
+  )
 
   // Calculate equilibrium output
   const calculateEquilibrium = (c0: number, taxes: number, investment: number, gov: number) => {
@@ -85,8 +153,7 @@ export default function FiscalPolicyExperiments() {
   const newConsumption = newAutonomousConsumption + mpc * (newY - newTaxes)
 
   // Generate Keynesian cross diagram data with fixed ranges
-  const generateKeynesiaCrossData = () => {
-    const maxY = 800 // Fixed max for consistent axis
+  const generateKeynesiaCrossData = (maxY: number) => {
     const data = []
     for (let y = 0; y <= maxY; y += maxY * 0.02) {
       // Baseline demand curve
@@ -128,7 +195,25 @@ export default function FiscalPolicyExperiments() {
     return rounds
   }
 
-  const keysianCrossData = generateKeynesiaCrossData()
+  /**
+   * How far along the output axis the schedule is sampled.
+   *
+   * It used to be a literal 800 with the comment "Fixed max for consistent
+   * axis", and that fixed max is the defect: the 45-degree line and the ZZ
+   * curve cross at the equilibrium, so if the sampling range does not
+   * CONTAIN the equilibrium the chart shows two lines that never visibly
+   * meet while the readouts above them print the answer. At the tool's
+   * defaults the equilibrium is 650 and the crossing is on screen; nudge the
+   * MPC to 0.75 and it is 950, off the end; the sliders run to 0.95, where
+   * the same arithmetic gives 13,000 and the chart is a pair of lines
+   * pressed against the top of the frame.
+   *
+   * So the range is derived from the two equilibria, with a round floor so
+   * the default view is not tighter than it is today, and the AXES are
+   * derived from the data below (there is no `domain` prop on either).
+   */
+  const outputAxisMax = Math.max(800, baselineY, newY) * 1.05
+  const keysianCrossData = generateKeynesiaCrossData(outputAxisMax)
   const roundsData = generateRoundsByRound()
 
   // Policy impact table
@@ -178,7 +263,7 @@ export default function FiscalPolicyExperiments() {
       </ToolNote>
 
       <div className="control-panel">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Base Economy Parameters</h3>
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Base Economy Parameters</h2>
         <SliderControl
           label="Marginal Propensity to Consume (MPC)"
           value={mpc}
@@ -226,9 +311,10 @@ export default function FiscalPolicyExperiments() {
         />
       </div>
 
-      <div className="control-panel mt-6 bg-tier-beginner/5">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Choose Experiment</h3>
-        <div className="mb-4 grid grid-cols-2 gap-2 lg:grid-cols-4">
+      <ToolControlBar onReset={reset} dirty={dirty} />
+      <div className="control-panel mt-s-6 bg-tier-beginner/5">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Choose Experiment</h2>
+        <div className="mb-s-4 grid grid-cols-2 gap-s-2 lg:grid-cols-4">
           {(['consumption', 'government', 'taxes', 'combined'] as const).map((exp) => (
             <button
               key={exp}
@@ -237,7 +323,7 @@ export default function FiscalPolicyExperiments() {
                 setGovernmentSpendingChange(0)
                 setTaxChange(0)
               }}
-              className={`cursor-pointer rounded-card px-4 py-3 text-sm ${
+              className={`cursor-pointer rounded-card px-s-4 py-s-3 text-sm ${
                 experimentType === exp
                   ? 'border-2 border-tier-beginner bg-tier-beginner/10 font-semibold text-tier-beginner-ink'
                   : 'border border-border-strong bg-surface font-normal text-fg-muted'
@@ -311,7 +397,7 @@ export default function FiscalPolicyExperiments() {
         )}
       </div>
 
-      <div className="my-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="my-s-8 grid grid-cols-2 gap-s-3 lg:grid-cols-4">
         <StatBox label="Baseline Output (Y)" value={baselineY.toFixed(1)} unit="$ billions" />
         <StatBox label="New Output (Y')" value={newY.toFixed(1)} unit="$ billions" tone="accent" />
         <StatBox label="Output Change (ΔY)" value={outputChange.toFixed(1)} unit="$ billions" tone={outputChange !== 0 ? 'accent' : undefined} />
@@ -327,34 +413,57 @@ export default function FiscalPolicyExperiments() {
       )}
 
       <div className="visualization-container">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Keynesian Cross Diagram: Aggregate Demand & Output
-        </h3>
+        </h2>
         <ResponsiveContainer width="100%" height={400}>
           <LineChart data={keysianCrossData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="y"
               type="number"
-              domain={[0, 800]}
+              /* Derived. The pinned `[0, 800]` is the D1 defect: the ZZ
+               * curve and the 45-degree line cross AT the equilibrium, which
+               * the readouts compute, and a fixed window that the
+               * equilibrium can leave turns the intersection into two lines
+               * that simply do not meet. The domain carries the data, so the
+               * crossing is on screen at every setting. */
+              domain={dataDomain([keysianCrossData.map((d) => d.y)], {
+                includeZero: true,
+                ticks: 6,
+              })}
               label={{ value: 'Output (Y)', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
-              domain={[0, 800]}
+              key={chartTheme.axisKey('y')}
+              /* Derived from all three plotted series, including the 45
+               * line: with the MPC at 0.95 the demand schedule runs past
+               * 12,000 and a 0-800 frame hides all of it. */
+              domain={dataDomain(
+                [
+                  keysianCrossData.map((d) => d.yEqualsZ),
+                  keysianCrossData.map((d) => d.baselineDemand),
+                  keysianCrossData.map((d) => d.newDemand),
+                ],
+                { includeZero: true, ticks: 6 },
+              )}
               label={{ value: 'Aggregate Demand (Z)', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
             <Tooltip
               {...chartTheme.tooltip}
               cursor={chartTheme.cursor}
               formatter={(value: number) => value.toFixed(1)}
             />
-            <Legend {...chartTheme.legend} />
             {/* Main curves */}
             <ChartLine
               type="monotone"
               dataKey="yEqualsZ"
+              hide={keysianSeries.isHidden('z45')}
               name="45° Line (Y = Z)"
               stroke={chartTheme.axis.stroke}
               strokeWidth={2}
@@ -364,6 +473,7 @@ export default function FiscalPolicyExperiments() {
             <ChartLine
               type="monotone"
               dataKey="baselineDemand"
+              hide={keysianSeries.isHidden('baselineZZ')}
               name="Baseline ZZ Curve"
               stroke={chartColor(0)}
               strokeWidth={2}
@@ -372,6 +482,7 @@ export default function FiscalPolicyExperiments() {
             <ChartLine
               type="monotone"
               dataKey="newDemand"
+              hide={keysianSeries.isHidden('newZZ')}
               name="New ZZ Curve"
               stroke={chartColor(1)}
               strokeWidth={2}
@@ -427,28 +538,42 @@ export default function FiscalPolicyExperiments() {
             />
           </LineChart>
         </ResponsiveContainer>
-        <p className="mt-4 text-sm leading-relaxed text-fg-muted">
+        <ChartLegend
+          items={[
+            { key: 'z45', label: '45° Line (Y = Z)', color: chartTheme.axis.stroke },
+            { key: 'baselineZZ', label: 'Baseline ZZ Curve', color: chartColor(0) },
+            { key: 'newZZ', label: 'New ZZ Curve', color: chartColor(1) },
+          ]}
+          hidden={keysianSeries.hidden}
+          onToggle={keysianSeries.toggle}
+          onShowAll={keysianSeries.showAll}
+        />
+        <p className="mt-s-4 text-sm leading-relaxed text-fg-muted">
           <strong>How to read:</strong> The equilibrium occurs where the ZZ curve meets the 45° line. The blue point shows baseline equilibrium at Y₀, while the green point shows new equilibrium at Y'. The vertical dashed lines help identify the output levels.
         </p>
       </div>
 
-      <div className="visualization-container mt-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="visualization-container mt-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Multiplier Effect: Round-by-Round Breakdown
-        </h3>
+        </h2>
         {roundsData.length > 0 ? (
           <>
             <ResponsiveContainer width="100%" height={350}>
               <BarChart data={roundsData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
                 <XAxis
+                  key={chartTheme.axisKey('x')}
                   dataKey="round"
                   label={{ value: 'Round', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
                   {...chartTheme.axis}
+                  includeHidden
                 />
                 <YAxis
+                  key={chartTheme.axisKey('y')}
                   label={{ value: '$ Billions', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
-                  {...chartTheme.axis}
+                  {...chartTheme.yAxis}
+                  includeHidden
                 />
                 <Tooltip
                   {...chartTheme.tooltip}
@@ -458,37 +583,41 @@ export default function FiscalPolicyExperiments() {
                 <ChartBar dataKey="thisRound" fill={chartColor(3)} name="This Round's Impact" />
               </BarChart>
             </ResponsiveContainer>
-            <p className="mt-4 text-sm leading-relaxed text-fg-muted">
+            <p className="mt-s-4 text-sm leading-relaxed text-fg-muted">
               <strong>How to read:</strong> Each round represents one iteration of the feedback loop. With MPC = {mpc.toFixed(2)}, each round's impact is {mpc.toFixed(2)}x the previous round's, converging to total multiplier effect.
             </p>
           </>
         ) : (
-          <div className="rounded-card border border-border bg-surface-2 p-8 text-center text-fg-subtle">
+          <div className="rounded-card border border-border bg-surface-2 p-s-8 text-center text-fg-subtle">
             <p>Adjust policy parameters above to see the multiplier effect breakdown.</p>
           </div>
         )}
       </div>
 
-      <div className="visualization-container mt-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Cumulative Multiplier Effect</h3>
+      <div className="visualization-container mt-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Cumulative Multiplier Effect</h2>
         {roundsData.length > 0 ? (
           <>
             <ResponsiveContainer width="100%" height={350}>
               <LineChart data={roundsData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
                 <XAxis
+                  key={chartTheme.axisKey('x')}
                   dataKey="round"
                   label={{ value: 'Round', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
                   {...chartTheme.axis}
+                  includeHidden
                 />
                 <YAxis
+                  key={chartTheme.axisKey('y')}
                   label={{
                     value: 'Cumulative Change ($B)',
                     angle: -90,
                     position: 'insideLeft',
                     fill: chartTheme.axis.tick.fill,
                   }}
-                  {...chartTheme.axis}
+                  {...chartTheme.yAxis}
+                  includeHidden
                 />
                 <Tooltip
                   {...chartTheme.tooltip}
@@ -504,29 +633,29 @@ export default function FiscalPolicyExperiments() {
                 />
               </LineChart>
             </ResponsiveContainer>
-            <p className="mt-4 text-sm leading-relaxed text-fg-muted">
+            <p className="mt-s-4 text-sm leading-relaxed text-fg-muted">
               <strong>How to read:</strong> This chart shows how the total output effect accumulates across rounds. The curve flattens as each successive round becomes smaller, approaching the final multiplier-adjusted equilibrium.
             </p>
           </>
         ) : (
-          <div className="rounded-card border border-border bg-surface-2 p-8 text-center text-fg-subtle">
+          <div className="rounded-card border border-border bg-surface-2 p-s-8 text-center text-fg-subtle">
             <p>Adjust policy parameters above to see the cumulative multiplier effect.</p>
           </div>
         )}
       </div>
 
-      <div className="card mt-8 p-6">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Policy Impact Summary</h3>
+      <div className="card mt-s-8 p-s-6">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Policy Impact Summary</h2>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-sm tabular-nums">
             <thead>
               <tr className="border-b-2 border-border-strong">
-                <th className="px-3 py-2 text-left font-semibold text-fg">Scenario</th>
-                <th className="px-3 py-2 text-right font-semibold text-fg">Output (Y)</th>
-                <th className="px-3 py-2 text-right font-semibold text-fg">Consumption (C)</th>
-                <th className="px-3 py-2 text-right font-semibold text-fg">Investment (I)</th>
-                <th className="px-3 py-2 text-right font-semibold text-fg">Government (G)</th>
-                <th className="px-3 py-2 text-right font-semibold text-fg">Aggregate Demand (Z)</th>
+                <th className="px-s-3 py-s-2 text-left font-semibold text-fg">Scenario</th>
+                <th className="px-s-3 py-s-2 text-right font-semibold text-fg">Output (Y)</th>
+                <th className="px-s-3 py-s-2 text-right font-semibold text-fg">Consumption (C)</th>
+                <th className="px-s-3 py-s-2 text-right font-semibold text-fg">Investment (I)</th>
+                <th className="px-s-3 py-s-2 text-right font-semibold text-fg">Government (G)</th>
+                <th className="px-s-3 py-s-2 text-right font-semibold text-fg">Aggregate Demand (Z)</th>
               </tr>
             </thead>
             <tbody>
@@ -535,14 +664,14 @@ export default function FiscalPolicyExperiments() {
                   key={i}
                   className={`border-b border-border ${i === 1 ? 'bg-tier-beginner/10' : 'bg-surface'}`}
                 >
-                  <td className={`px-3 py-2.5 text-left ${i === 1 ? 'font-semibold' : ''} text-fg`}>
+                  <td className={`px-s-3 py-2.5 text-left ${i === 1 ? 'font-semibold' : ''} text-fg`}>
                     {row.label}
                   </td>
-                  <td className="px-3 py-2.5 text-right">${row.newY.toFixed(1)}B</td>
-                  <td className="px-3 py-2.5 text-right">${row.consumption.toFixed(1)}B</td>
-                  <td className="px-3 py-2.5 text-right">${row.investment.toFixed(1)}B</td>
-                  <td className="px-3 py-2.5 text-right">${row.government.toFixed(1)}B</td>
-                  <td className="px-3 py-2.5 text-right">${row.demand.toFixed(1)}B</td>
+                  <td className="px-s-3 py-2.5 text-right">${row.newY.toFixed(1)}B</td>
+                  <td className="px-s-3 py-2.5 text-right">${row.consumption.toFixed(1)}B</td>
+                  <td className="px-s-3 py-2.5 text-right">${row.investment.toFixed(1)}B</td>
+                  <td className="px-s-3 py-2.5 text-right">${row.government.toFixed(1)}B</td>
+                  <td className="px-s-3 py-2.5 text-right">${row.demand.toFixed(1)}B</td>
                 </tr>
               ))}
             </tbody>

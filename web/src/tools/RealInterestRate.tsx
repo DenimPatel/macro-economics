@@ -1,14 +1,18 @@
 import { useState } from 'react'
-import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart } from 'recharts'
+import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ComposedChart } from 'recharts'
 import { ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
+  InfoBox,
   SliderControl,
   StatBox,
-  InfoBox,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
+import { useHiddenSeries } from '../lib/chartSeries'
+import { ChartLegend } from '../components/ChartLegend'
 
 interface Scenario {
   name: string
@@ -16,10 +20,45 @@ interface Scenario {
   inflation: number
 }
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  nominalRate: 6,
+  expectedInflation: 3,
+}
+
 export default function RealInterestRate() {
+  const compare = useHiddenSeries(['nominal', 'inflation', 'real'])
+  const history = useHiddenSeries(['nominalH', 'inflationH', 'realH'])
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
   // Main scenario controls
-  const [nominalRate, setNominalRate] = useState(6)
-  const [expectedInflation, setExpectedInflation] = useState(3)
+const [nominalRate, setNominalRate] = useState(DEFAULTS.nominalRate)
+const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInflation)
+
+  const { reset, dirty } = useToolReset(
+    {
+    nominalRate: nominalRate,
+    expectedInflation: expectedInflation,
+    },
+    {
+      setNominalRate,
+      setExpectedInflation,
+    },
+    {
+      nominalRate: DEFAULTS.nominalRate,
+      expectedInflation: DEFAULTS.expectedInflation,
+    },
+  )
   const [comparisonMode, setComparisonMode] = useState<'none' | 'same-real' | 'same-nominal' | 'historical'>('none')
 
   // Calculated values using Fisher Equation: r = i - π^e
@@ -121,8 +160,9 @@ export default function RealInterestRate() {
         />
       </div>
 
+      <ToolControlBar onReset={reset} dirty={dirty} />
       {/* Fisher Equation Results */}
-      <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="mb-s-8 grid grid-cols-2 gap-s-3 lg:grid-cols-4">
         <StatBox label="Nominal Rate (i)" value={nominalRate.toFixed(1)} unit="%" />
         <StatBox label="Expected Inflation (π^e)" value={expectedInflation.toFixed(1)} unit="%" />
         <StatBox label="Real Interest Rate (r)" value={realRate.toFixed(1)} unit="%" tone="accent" />
@@ -130,7 +170,7 @@ export default function RealInterestRate() {
       </div>
 
       {/* Fisher Equation Explanation */}
-      <div className="mb-8">
+      <div className="mb-s-8">
         <InfoBox type="info" title="Fisher Equation: r = i − π^e">
           <p>
             Your nominal rate ({nominalRate.toFixed(1)}%) minus expected inflation (
@@ -143,11 +183,12 @@ export default function RealInterestRate() {
 
       {/* Investment Decision Indicator */}
       <ToolNote
+        headingLevel={2}
         label="Investment decision"
         variant={isAttractive ? 'insight' : 'warning'}
         title="Project viability at the current real rate"
       >
-        <div className="mb-3 flex items-center gap-4">
+        <div className="mb-s-3 flex items-center gap-s-4">
           <span
             className={`text-display-sm font-bold tabular-nums ${
               isAttractive ? 'text-tier-beginner-ink' : 'text-tier-case-ink'
@@ -167,10 +208,10 @@ export default function RealInterestRate() {
       </ToolNote>
 
       {/* Comparison Mode Selection */}
-      <div className="mb-8">
-        <div className="mb-3">
-          <span className="control-label mb-3 block">Compare Scenarios</span>
-          <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
+      <div className="mb-s-8">
+        <div className="mb-s-3">
+          <span className="control-label mb-s-3 block">Compare Scenarios</span>
+          <div className="grid grid-cols-2 gap-s-2 lg:grid-cols-4">
             {(
               [
                 ['none', 'No Comparison'],
@@ -184,7 +225,7 @@ export default function RealInterestRate() {
                 type="button"
                 onClick={() => setComparisonMode(mode)}
                 aria-pressed={comparisonMode === mode}
-                className={`rounded-card border-2 p-3 font-medium transition-colors ${
+                className={`rounded-card border-2 p-s-3 font-medium transition-colors ${
                   comparisonMode === mode
                     ? 'border-accent bg-accent/10 text-accent-ink'
                     : 'border-border bg-surface text-fg-muted hover:border-accent/50'
@@ -199,39 +240,51 @@ export default function RealInterestRate() {
         {/* Scenario Comparison Visualization */}
         {comparisonMode !== 'none' && comparisonData.length > 0 && (
           <div className="visualization-container">
-            <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
               {comparisonMode === 'same-real'
                 ? 'Same Real Rate (3%), Different Nominal + Inflation'
                 : comparisonMode === 'same-nominal'
                   ? 'Same Nominal Rate (5%), Different Inflation Expectations'
                   : 'Historical Real Interest Rates'}
-            </h3>
+            </h2>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={comparisonData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
-                <XAxis dataKey="name" {...chartTheme.axis} />
+                <XAxis
+                  key={chartTheme.axisKey('x')} dataKey="name" {...chartTheme.axis} includeHidden />
                 <YAxis
+                  key={chartTheme.axisKey('y')}
                   label={{ value: 'Rate (%)', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
-                  {...chartTheme.axis}
+                  {...chartTheme.yAxis}
+                  includeHidden
                 />
                 <Tooltip
                   {...chartTheme.tooltip}
                   cursor={chartTheme.cursor}
                   formatter={(value: number) => value.toFixed(2)}
                 />
-                <Legend {...chartTheme.legend} />
                 {comparisonMode !== 'historical' && (
                   <>
-                    <ChartBar dataKey="nominal" fill={chartColor(0)} name="Nominal Rate" />
-                    <ChartBar dataKey="inflation" fill={chartColor(2)} name="Expected Inflation" />
+                    <ChartBar hide={compare.isHidden('nominal')} dataKey="nominal" fill={chartColor(0)} name="Nominal Rate" />
+                    <ChartBar hide={compare.isHidden('inflation')} dataKey="inflation" fill={chartColor(2)} name="Expected Inflation" />
                   </>
                 )}
-                <ChartBar dataKey="real" fill={chartColor(1)} name="Real Rate" />
+                <ChartBar hide={compare.isHidden('real')} dataKey="real" fill={chartColor(1)} name="Real Rate" />
               </BarChart>
             </ResponsiveContainer>
+            <ChartLegend
+              items={[
+                { key: 'nominal', label: 'Nominal Rate', color: chartColor(0) },
+                { key: 'inflation', label: 'Expected Inflation', color: chartColor(2) },
+                { key: 'real', label: 'Real Rate', color: chartColor(1) },
+              ]}
+              hidden={compare.hidden}
+              onToggle={compare.toggle}
+              onShowAll={compare.showAll}
+            />
 
             {/* Comparison Insights */}
-            <div className="mt-6">
+            <div className="mt-s-6">
               {comparisonMode === 'same-real' && (
                 <InfoBox type="success" title="Key insight">
                   <p>
@@ -269,25 +322,28 @@ export default function RealInterestRate() {
 
       {/* Historical Real Rates Timeline */}
       <div className="visualization-container">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Historical Real Interest Rates (1950s–2023)
-        </h3>
+        </h2>
         <ResponsiveContainer width="100%" height={320}>
           <ComposedChart data={historicalContext} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
-            <XAxis dataKey="period" {...chartTheme.axis} />
+            <XAxis
+              key={chartTheme.axisKey('x')} dataKey="period" {...chartTheme.axis} includeHidden />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{ value: 'Rate (%)', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
             <Tooltip
               {...chartTheme.tooltip}
               cursor={chartTheme.cursor}
               formatter={(value: number) => value.toFixed(2)}
             />
-            <Legend {...chartTheme.legend} />
             <ChartLine
               type="monotone"
+              hide={history.isHidden('nominalH')}
               dataKey="nominal"
               stroke={chartColor(0)}
               strokeWidth={2}
@@ -296,6 +352,7 @@ export default function RealInterestRate() {
             />
             <ChartLine
               type="monotone"
+              hide={history.isHidden('inflationH')}
               dataKey="inflation"
               stroke={chartColor(2)}
               strokeWidth={2}
@@ -304,6 +361,7 @@ export default function RealInterestRate() {
             />
             <ChartLine
               type="monotone"
+              hide={history.isHidden('realH')}
               dataKey="real"
               stroke={chartColor(1)}
               strokeWidth={3}
@@ -312,10 +370,20 @@ export default function RealInterestRate() {
             />
           </ComposedChart>
         </ResponsiveContainer>
+        <ChartLegend
+          items={[
+            { key: 'nominalH', label: 'Nominal Rate', color: chartColor(0) },
+            { key: 'inflationH', label: 'Inflation', color: chartColor(2) },
+            { key: 'realH', label: 'Real Rate', color: chartColor(1) },
+          ]}
+          hidden={history.hidden}
+          onToggle={history.toggle}
+          onShowAll={history.showAll}
+        />
       </div>
 
       {/* Educational Insights Section */}
-      <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="mt-s-8 grid grid-cols-1 gap-s-4 lg:grid-cols-3">
         <ToolNote label="Case study" variant="warning" title="Why SVB failed (2023)">
           <p>
             SVB locked in low-coupon bonds when real rates were negative (2010s). When real rates rose
@@ -342,7 +410,7 @@ export default function RealInterestRate() {
       </div>
 
       {/* Fisher Equation Deep Dive */}
-      <div className="mt-8">
+      <div className="mt-s-8">
         <InfoBox type="info" title="The Fisher Equation in Action">
           <p>
             <strong>Scenario 1: Current Market</strong> — Nominal: {nominalRate.toFixed(1)}%,

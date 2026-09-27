@@ -2,13 +2,15 @@ import { useState } from 'react'
 import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart } from 'recharts'
 import { ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
+  Button,
   SliderControl,
   StatBox,
-  Button,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
 
 /** Series keep a fixed economic identity across every chart in this tool. */
 const REAL_RATE_STROKE = chartColor(0)
@@ -17,9 +19,9 @@ const INFLATION_STROKE = chartColor(1)
 const BOND_VALUE_FILL = chartColor(3)
 
 /** Layout shared by the "controls beside chart" and "chart beside readouts" blocks. */
-const CONTROL_GRID = 'grid gap-6 sm:grid-cols-2'
-const SPLIT = 'grid gap-6 lg:grid-cols-2'
-const STAT_GRID = 'mb-6 grid grid-cols-2 gap-3'
+const CONTROL_GRID = 'grid gap-s-6 sm:grid-cols-2'
+const SPLIT = 'grid gap-s-6 lg:grid-cols-2'
+const STAT_GRID = 'mb-s-6 grid grid-cols-2 gap-s-3'
 
 interface BondDataPoint {
   year: number
@@ -29,12 +31,57 @@ interface BondDataPoint {
   bondValue: number
 }
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  fedRate: 5.0,
+  inflation: 4.0,
+  bondCoupon: 1.5,
+  bondYears: 10,
+  showDataOverlay: true,
+}
+
 export default function CrisisSvb() {
-  const [fedRate, setFedRate] = useState(5.0)
-  const [inflation, setInflation] = useState(4.0)
-  const [bondCoupon, setBondCoupon] = useState(1.5)
-  const [bondYears, setBondYears] = useState(10)
-  const [showDataOverlay, setShowDataOverlay] = useState(true)
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
+const [fedRate, setFedRate] = useState(DEFAULTS.fedRate)
+const [inflation, setInflation] = useState(DEFAULTS.inflation)
+const [bondCoupon, setBondCoupon] = useState(DEFAULTS.bondCoupon)
+const [bondYears, setBondYears] = useState(DEFAULTS.bondYears)
+const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
+
+  const { reset, dirty } = useToolReset(
+    {
+    fedRate: fedRate,
+    inflation: inflation,
+    bondCoupon: bondCoupon,
+    bondYears: bondYears,
+    showDataOverlay: showDataOverlay,
+    },
+    {
+      setFedRate,
+      setInflation,
+      setBondCoupon,
+      setBondYears,
+      setShowDataOverlay,
+    },
+    {
+      fedRate: DEFAULTS.fedRate,
+      inflation: DEFAULTS.inflation,
+      bondCoupon: DEFAULTS.bondCoupon,
+      bondYears: DEFAULTS.bondYears,
+      showDataOverlay: DEFAULTS.showDataOverlay,
+    },
+  )
 
   // Calculate real interest rate using Fisher equation
   const realRate = fedRate - inflation
@@ -121,17 +168,20 @@ export default function CrisisSvb() {
         </div>
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <ToolControlBar onReset={reset} dirty={dirty} />
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Real Interest Rate Analysis
-        </h3>
+        </h2>
         <div className={SPLIT}>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={svbData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
-                <XAxis dataKey="year" {...chartTheme.axis} />
-                <YAxis {...chartTheme.axis} />
+                <XAxis
+                  key={chartTheme.axisKey('x')} dataKey="year" {...chartTheme.axis} />
+                <YAxis
+                  key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
                 <ChartLine
                   type="monotone"
@@ -178,10 +228,10 @@ export default function CrisisSvb() {
         </div>
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Bond Portfolio Value Analysis
-        </h3>
+        </h2>
         <div className={SPLIT}>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -190,8 +240,10 @@ export default function CrisisSvb() {
                 { name: 'Current Value', value: portfolioValue },
               ]} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
-                <XAxis dataKey="name" {...chartTheme.axis} />
-                <YAxis {...chartTheme.axis} />
+                <XAxis
+                  key={chartTheme.axisKey('x')} dataKey="name" {...chartTheme.axis} />
+                <YAxis
+                  key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
                 <ChartBar dataKey="value" fill={BOND_VALUE_FILL} />
               </BarChart>
@@ -215,7 +267,7 @@ export default function CrisisSvb() {
         </div>
       </div>
 
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-s-8 grid gap-s-6 sm:grid-cols-2 lg:grid-cols-3">
         <ToolNote label="Info" variant="info" title="The SVB Crisis">
           <p>SVB had a large portfolio of long-term bonds with low coupons (1.5%) from the 2010s</p>
           <p>When Fed raised rates to combat inflation, real rates rose significantly</p>

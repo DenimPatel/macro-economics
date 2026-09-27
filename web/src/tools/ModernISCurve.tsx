@@ -1,17 +1,21 @@
 import { useState } from 'react'
-import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine, ComposedChart, BarChart } from 'recharts'
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ComposedChart, BarChart } from 'recharts'
 import { ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
+  Button,
+  InfoBox,
   SliderControl,
   StatBox,
-  Button,
   ToggleDot,
-  InfoBox,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
 import { formatNumber } from '../lib/calculations'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
+import { useHiddenSeries } from '../lib/chartSeries'
+import { ChartLegend } from '../components/ChartLegend'
 
 /**
  * Each economic concept keeps one stable series index across every chart in
@@ -28,7 +32,28 @@ interface ISCurveData {
   outputLevel: number
 }
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  showTextbook: true,
+  showModern: true,
+  showFinancialConditions: true,
+}
+
 export default function ModernISCurve() {
+  const isCurves = useHiddenSeries(['textbook', 'modernNK'])
+  const financing = useHiddenSeries(['realRate', 'termPrem', 'credSpread'])
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
   // === Textbook IS Curve Parameters ===
   const [G, setG] = useState(100) // Government spending
   const [T, setT] = useState(50) // Taxes
@@ -47,9 +72,27 @@ export default function ModernISCurve() {
   const [nominalRate, setNominalRate] = useState(4.5) // Nominal policy rate (%)
 
   // === Visualization Parameters ===
-  const [showTextbook, setShowTextbook] = useState(true)
-  const [showModern, setShowModern] = useState(true)
-  const [showFinancialConditions, setShowFinancialConditions] = useState(true)
+const [showTextbook, setShowTextbook] = useState(DEFAULTS.showTextbook)
+const [showModern, setShowModern] = useState(DEFAULTS.showModern)
+const [showFinancialConditions, setShowFinancialConditions] = useState(DEFAULTS.showFinancialConditions)
+
+  const { reset, dirty } = useToolReset(
+    {
+    showTextbook: showTextbook,
+    showModern: showModern,
+    showFinancialConditions: showFinancialConditions,
+    },
+    {
+      setShowTextbook,
+      setShowModern,
+      setShowFinancialConditions,
+    },
+    {
+      showTextbook: DEFAULTS.showTextbook,
+      showModern: DEFAULTS.showModern,
+      showFinancialConditions: DEFAULTS.showFinancialConditions,
+    },
+  )
   const [tab, setTab] = useState<'curves' | 'decomposition' | 'conditions'>('curves')
 
   // === Calculate Textbook IS Curve ===
@@ -138,12 +181,14 @@ export default function ModernISCurve() {
         badge="advanced"
       />
 
-      <div>
-        <h3 className="mb-3 text-label-sm font-semibold text-fg">
-          Monetary &amp; Financial Conditions
-        </h3>
+      <ToolControlBar onReset={reset} dirty={dirty} />
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <h2 className="mb-s-3 text-label-sm font-semibold text-fg">
+          Monetary &amp; Financial Conditions
+        </h2>
+
+        <div className="grid grid-cols-1 gap-s-4 md:grid-cols-2">
           <SliderControl
             label="Nominal Policy Rate (i)"
             value={nominalRate}
@@ -204,11 +249,11 @@ export default function ModernISCurve() {
           />
         </div>
 
-        <h3 className="mb-3 mt-6 text-label-sm font-semibold text-fg">
+        <h2 className="mb-s-3 mt-s-6 text-label-sm font-semibold text-fg">
           Fiscal &amp; Real Sector
-        </h3>
+        </h2>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-s-4 md:grid-cols-2">
           <SliderControl
             label="Government Spending (G)"
             value={G}
@@ -259,7 +304,7 @@ export default function ModernISCurve() {
           />
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-s-4 flex flex-wrap gap-s-2">
           <Button
             onClick={() => setShowTextbook(!showTextbook)}
             variant={showTextbook ? 'primary' : 'secondary'}
@@ -284,12 +329,33 @@ export default function ModernISCurve() {
         </div>
       </div>
 
-      {/* === TAB NAVIGATION === */}
-      <div className="mt-4">
-        <div className="flex gap-2 border-b-2 border-border">
+      {/* === TAB NAVIGATION ===
+          `flex-wrap` is the fix, and `GdpMeasurement`'s tab strip already
+          carries it for the same reason. Without it the three buttons' minimum
+          content width is 414px, so at 390 — a phone, and the width the course
+          is read at most — the strip was 24px wider than the viewport and the
+          WHOLE PAGE scrolled sideways: header, sidebar and all, from one row of
+          buttons. `GdpMeasurement` has four longer labels and does not have the
+          bug, which is the only reason this did too.
+
+          `aria-pressed` on three mutually exclusive buttons is a pressed-button
+          group rather than a tablist, and it is the smaller of the two correct
+          answers: the selected tab was signalled by a border colour and a text
+          colour and nothing else, so a screen-reader user was told there were
+          three buttons and given no way to find out which panel was showing.
+          `role="group"` plus a label is the other half of that — the strip is
+          one control to a screen reader and now says what it is. */}
+      <div className="mt-s-4">
+        <div
+          className="flex flex-wrap gap-s-2 border-b-2 border-border"
+          role="group"
+          aria-label="Modern IS curve views"
+        >
           <button
+            type="button"
+            aria-pressed={tab === 'curves'}
             onClick={() => setTab('curves')}
-            className={`px-4 py-2 font-medium ${
+            className={`px-s-4 py-s-2 font-medium ${
               tab === 'curves'
                 ? 'border-b-2 border-accent text-accent-ink'
                 : 'text-fg-muted hover:text-fg'
@@ -298,8 +364,10 @@ export default function ModernISCurve() {
             IS Curves
           </button>
           <button
+            type="button"
+            aria-pressed={tab === 'decomposition'}
             onClick={() => setTab('decomposition')}
-            className={`px-4 py-2 font-medium ${
+            className={`px-s-4 py-s-2 font-medium ${
               tab === 'decomposition'
                 ? 'border-b-2 border-accent text-accent-ink'
                 : 'text-fg-muted hover:text-fg'
@@ -308,8 +376,10 @@ export default function ModernISCurve() {
             Output Gap Decomposition
           </button>
           <button
+            type="button"
+            aria-pressed={tab === 'conditions'}
             onClick={() => setTab('conditions')}
-            className={`px-4 py-2 font-medium ${
+            className={`px-s-4 py-s-2 font-medium ${
               tab === 'conditions'
                 ? 'border-b-2 border-accent text-accent-ink'
                 : 'text-fg-muted hover:text-fg'
@@ -323,12 +393,12 @@ export default function ModernISCurve() {
       {/* === TAB CONTENT === */}
 
       {tab === 'curves' && (
-        <div className="mt-6">
+        <div className="mt-s-6">
           <div>
-            <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
               Textbook vs. Modern IS Curves
-            </h3>
-            <p className="mb-4 text-sm text-fg-muted">
+            </h2>
+            <p className="mb-s-4 text-sm text-fg-muted">
               <strong>Textbook IS:</strong> Negatively sloped; output is a function of real interest rate via
               investment and multiplier.
               <br />
@@ -339,6 +409,7 @@ export default function ModernISCurve() {
               <LineChart data={curveData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
                 <XAxis
+                  key={chartTheme.axisKey('x')}
                   dataKey="realRate"
                   label={{
                     value: 'Real Interest Rate (%)',
@@ -348,22 +419,24 @@ export default function ModernISCurve() {
                   }}
                   type="number"
                   {...chartTheme.axis}
+                  includeHidden
                 />
                 <YAxis
+                  key={chartTheme.axisKey('y')}
                   label={{
                     value: 'Output Gap (%) or Output Level',
                     angle: -90,
                     position: 'insideLeft',
                     fill: chartTheme.axis.tick.fill,
                   }}
-                  {...chartTheme.axis}
+                  {...chartTheme.yAxis}
+                  includeHidden
                 />
                 <Tooltip
                   {...chartTheme.tooltip}
                   cursor={chartTheme.cursor}
                   formatter={(val: number) => val.toFixed(2)}
                 />
-                <Legend {...chartTheme.legend} />
                 <ReferenceLine
                   {...chartTheme.reference}
                   x={rNatural}
@@ -373,6 +446,7 @@ export default function ModernISCurve() {
                   <ChartLine
                     type="monotone"
                     dataKey="outputGapTextbook"
+                    hide={isCurves.isHidden('textbook')}
                     stroke={TEXTBOOK_STROKE}
                     dot={false}
                     name="Textbook IS (Output Gap %)"
@@ -383,6 +457,7 @@ export default function ModernISCurve() {
                   <ChartLine
                     type="monotone"
                     dataKey="outputGapNK"
+                    hide={isCurves.isHidden('modernNK')}
                     stroke={NK_STROKE}
                     dot={false}
                     name="Modern NK IS (Output Gap %)"
@@ -397,10 +472,19 @@ export default function ModernISCurve() {
                 />
               </LineChart>
             </ResponsiveContainer>
+            <ChartLegend
+              items={[
+                { key: 'textbook', label: 'Textbook IS (Output Gap %)', color: TEXTBOOK_STROKE },
+                { key: 'modernNK', label: 'Modern NK IS (Output Gap %)', color: NK_STROKE },
+              ]}
+              hidden={isCurves.hidden}
+              onToggle={isCurves.toggle}
+              onShowAll={isCurves.showAll}
+            />
           </div>
 
           {/* === KEY STATISTICS === */}
-          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="mt-s-6 grid grid-cols-1 gap-s-4 md:grid-cols-3">
             <StatBox
               label="Real Policy Rate"
               value={`${formatNumber(realPolicyRate, 2)}%`}
@@ -419,7 +503,7 @@ export default function ModernISCurve() {
           </div>
 
           <InfoBox type="info">
-            <h4 className="mb-2 text-label-sm font-semibold text-fg">Understanding the Curves</h4>
+            <h3 className="mb-s-2 text-label-sm font-semibold text-fg">Understanding the Curves</h3>
             <p><strong>Textbook IS Curve:</strong> The simple IS curve shows output as a downward-sloping function of the real interest rate. Higher real rates reduce investment, which via the multiplier reduces aggregate demand.</p>
             <p><strong>Modern NK IS Curve:</strong> What matters is not the absolute real rate, but how it compares to the natural rate. When r &gt; rⁿ, monetary policy is restrictive and output falls below potential.</p>
             <p><strong>Why the Difference Matters:</strong> The modern IS directly incorporates expectations of future growth and rates. Financial frictions enter explicitly as wedges tightening conditions independent of the policy rate alone.</p>
@@ -428,26 +512,29 @@ export default function ModernISCurve() {
       )}
 
       {tab === 'decomposition' && (
-        <div className="mt-6">
+        <div className="mt-s-6">
           <div>
-            <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
               What Drives the Output Gap? (NK IS Decomposition)
-            </h3>
-            <p className="mb-4 text-sm text-fg-muted">
+            </h2>
+            <p className="mb-s-4 text-sm text-fg-muted">
               The modern IS curve shows output gap = -(1/σ) × (r - rⁿ). Break down the sources of tightness/looseness.
             </p>
             <ResponsiveContainer width="100%" height={400}>
               <BarChart data={decompositionData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
-                <XAxis dataKey="component" {...chartTheme.axis} />
+                <XAxis
+                  key={chartTheme.axisKey('x')} dataKey="component" {...chartTheme.axis} includeHidden />
                 <YAxis
+                  key={chartTheme.axisKey('y')}
                   label={{
                     value: 'Contribution to Output Gap (%)',
                     angle: -90,
                     position: 'insideLeft',
                     fill: chartTheme.axis.tick.fill,
                   }}
-                  {...chartTheme.axis}
+                  {...chartTheme.yAxis}
+                  includeHidden
                 />
                 <Tooltip
                   {...chartTheme.tooltip}
@@ -460,50 +547,50 @@ export default function ModernISCurve() {
           </div>
 
           {/* === DECOMPOSITION DETAILS === */}
-          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div className="rounded-card border border-tier-intermediate/30 bg-tier-intermediate/5 p-4">
-              <h4 className="font-bold text-tier-intermediate-ink">Policy Rate Effect</h4>
+          <div className="mt-s-6 grid grid-cols-1 gap-s-4 md:grid-cols-2">
+            <div className="rounded-card border border-tier-intermediate/30 bg-tier-intermediate/5 p-s-4">
+              <h3 className="font-bold text-tier-intermediate-ink">Policy Rate Effect</h3>
               <p className="text-2xl font-bold tabular-nums text-tier-intermediate">
                 {formatNumber(-(1 / sigma) * (realPolicyRate - rNatural), 2)}%
               </p>
-              <p className="mt-2 text-sm text-fg-muted">
+              <p className="mt-s-2 text-sm text-fg-muted">
                 Real policy rate ({formatNumber(realPolicyRate, 2)}%) is {formatNumber(realRateGap, 2)}% above natural.
               </p>
             </div>
 
-            <div className="rounded-card border border-tier-case/30 bg-tier-case/5 p-4">
-              <h4 className="font-bold text-tier-case-ink">Financial Frictions</h4>
+            <div className="rounded-card border border-tier-case/30 bg-tier-case/5 p-s-4">
+              <h3 className="font-bold text-tier-case-ink">Financial Frictions</h3>
               <p className="text-2xl font-bold tabular-nums text-tier-case">
                 {formatNumber(-(1 / sigma) * (termPremium + creditSpread), 2)}%
               </p>
-              <p className="mt-2 text-sm text-fg-muted">
+              <p className="mt-s-2 text-sm text-fg-muted">
                 Term premium + Credit spread add {formatNumber(termPremium + creditSpread, 2)}% to tightness.
               </p>
             </div>
 
-            <div className="rounded-card border border-tier-beginner/30 bg-tier-beginner/5 p-4">
-              <h4 className="font-bold text-tier-beginner-ink">Fiscal Impulse</h4>
+            <div className="rounded-card border border-tier-beginner/30 bg-tier-beginner/5 p-s-4">
+              <h3 className="font-bold text-tier-beginner-ink">Fiscal Impulse</h3>
               <p className="text-2xl font-bold tabular-nums text-tier-beginner">
                 {formatNumber(demandEffect, 1)} units
               </p>
-              <p className="mt-2 text-sm text-fg-muted">
+              <p className="mt-s-2 text-sm text-fg-muted">
                 G = {formatNumber(G, 0)} generates {formatNumber(demandEffect, 1)} units via multiplier.
               </p>
             </div>
 
-            <div className="rounded-card border border-accent/30 bg-accent/5 p-4">
-              <h4 className="font-bold text-accent-ink">Growth Expectations</h4>
+            <div className="rounded-card border border-accent/30 bg-accent/5 p-s-4">
+              <h3 className="font-bold text-accent-ink">Growth Expectations</h3>
               <p className="text-2xl font-bold tabular-nums text-accent">
                 {formatNumber(expectedGrowth, 2)}%
               </p>
-              <p className="mt-2 text-sm text-fg-muted">
+              <p className="mt-s-2 text-sm text-fg-muted">
                 Baseline = 2.5%. Higher expectations raise permanent income and natural rate.
               </p>
             </div>
           </div>
 
           <InfoBox type="warning">
-            <h4 className="mb-2 text-label-sm font-semibold text-fg">Key Insights from Decomposition</h4>
+            <h3 className="mb-s-2 text-label-sm font-semibold text-fg">Key Insights from Decomposition</h3>
             <p><strong>The output gap is determined by:</strong></p>
             <ol className="list-inside">
               <li><strong>Real Rate Gap (r - rⁿ):</strong> The fundamental IS driver.</li>
@@ -517,10 +604,10 @@ export default function ModernISCurve() {
       )}
 
       {tab === 'conditions' && (
-        <div className="mt-6">
+        <div className="mt-s-6">
           <div className="chart-container">
-            <h3 className="chart-title">Financial Conditions Index & Components</h3>
-            <p className="mb-4 text-sm leading-relaxed text-fg-muted">
+            <h2 className="chart-title">Financial Conditions Index & Components</h2>
+            <p className="mb-s-4 text-sm leading-relaxed text-fg-muted">
               Real financing conditions = Policy rate + Term premium + Credit spread, all relative to natural rate.
               Tighter conditions (positive values) imply lower output gaps.
             </p>
@@ -528,22 +615,34 @@ export default function ModernISCurve() {
             <ResponsiveContainer width="100%" height={300}>
               <ComposedChart data={[{ name: 'Current', realRate: realPolicyRate, termPrem: termPremium, credSpread: creditSpread }]} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
-                <XAxis dataKey="name" {...chartTheme.axis} />
+                <XAxis
+                  key={chartTheme.axisKey('x')} dataKey="name" {...chartTheme.axis} includeHidden />
                 <YAxis
+                  key={chartTheme.axisKey('y')}
                   label={{ value: 'Rate Level (%)', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
-                  {...chartTheme.axis}
+                  {...chartTheme.yAxis}
+                  includeHidden
                 />
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-                <Legend {...chartTheme.legend} />
-                <ChartBar dataKey="realRate" fill={chartColor(0)} name="Real Policy Rate" stackId="a" />
-                <ChartBar dataKey="termPrem" fill={chartColor(2)} name="Term Premium" stackId="a" />
-                <ChartBar dataKey="credSpread" fill={chartColor(4)} name="Credit Spread" stackId="a" />
+                <ChartBar hide={financing.isHidden('realRate')} dataKey="realRate" fill={chartColor(0)} name="Real Policy Rate" stackId="a" />
+                <ChartBar hide={financing.isHidden('termPrem')} dataKey="termPrem" fill={chartColor(2)} name="Term Premium" stackId="a" />
+                <ChartBar hide={financing.isHidden('credSpread')} dataKey="credSpread" fill={chartColor(4)} name="Credit Spread" stackId="a" />
               </ComposedChart>
             </ResponsiveContainer>
+            <ChartLegend
+              items={[
+                { key: 'realRate', label: 'Real Policy Rate', color: chartColor(0) },
+                { key: 'termPrem', label: 'Term Premium', color: chartColor(2) },
+                { key: 'credSpread', label: 'Credit Spread', color: chartColor(4) },
+              ]}
+              hidden={financing.hidden}
+              onToggle={financing.toggle}
+              onShowAll={financing.showAll}
+            />
           </div>
 
           {/* === FINANCIAL CONDITIONS SCORECARD === */}
-          <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
+          <div className="mt-s-6 grid grid-cols-1 gap-s-3 md:grid-cols-2">
             <StatBox
               label="Effective Real Rate"
               value={`${formatNumber(effectiveRealRate, 2)}%`}
@@ -570,22 +669,23 @@ export default function ModernISCurve() {
             <p>
               <strong>Why central banks care about financial conditions, not just i:</strong>
             </p>
-            <ol className="mt-2 list-decimal space-y-1.5 pl-5">
+            <ol className="mt-s-2 list-decimal space-y-1.5 pl-s-5">
               <li><strong>Term Premium:</strong> When investors demand higher yields (flight to safety), the 10y-2y spread widens. This tightens conditions for long-term borrowers even if the 2y stays flat.</li>
               <li><strong>Credit Spreads:</strong> In crisis, BAA–UST spreads blow out. Companies face a wedge between the Fed rate and their actual cost of capital.</li>
               <li><strong>Liquidity:</strong> During March 2020, even short-term money markets froze. The policy rate was irrelevant if no lending happened.</li>
             </ol>
-            <p className="mt-2">
+            <p className="mt-s-2">
               <strong>Modern central banking toolkit:</strong> Policy rate, QE/QT, lending facilities, forward guidance, and macroprudential policy all work together to control financial conditions.
             </p>
           </InfoBox>
 
-          <ToolNote label="Example" variant="info" title="2022–2024 tightening cycle">
+          <ToolNote label="Example" variant="info" title="2022–2024 tightening cycle"
+        headingLevel={2}>
             <p>
               The Fed raised i from ~0% to 5.5% to fight inflation. But the output gap didn't fall as much as the
               textbook IS suggested because:
             </p>
-            <ul className="mt-2 list-disc space-y-1 pl-5">
+            <ul className="mt-s-2 list-disc space-y-1.5 pl-s-5">
               <li>
                 <strong>Expectations anchored:</strong> After 2020 surge, expectations settled ~2%. Real rate = 3.5%
                 relative to rⁿ ≈ 0.5%.
@@ -614,12 +714,12 @@ export default function ModernISCurve() {
           Calibrate policy using the NK IS. Recognize that QE, forward guidance, and lending facilities also
           tighten or loosen financial conditions beyond i alone.
         </p>
-        <p className="mt-2">
+        <p className="mt-s-2">
           <strong>For macro traders:</strong> When spreads widen, expect demand destruction even if i is unchanged.
           When the policy rate is above natural AND spreads are tight, the economy is double-squeezed. Use
           decomposition to ask: "Is tightening from policy rates, spreads, or growth expectations?"
         </p>
-        <p className="mt-2">
+        <p className="mt-s-2">
           <strong>For investors:</strong> Evaluate whether current financial conditions are restrictive (output gap
           negative) or supportive. Real rate 2–3% above natural = growth likely slowing. Credit spread &gt; 400 bps =
           significant tail risk.

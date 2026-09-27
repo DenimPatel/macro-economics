@@ -1,16 +1,20 @@
 import { useState } from 'react'
-import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts'
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts'
 import { ChartLine } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
+  Button,
+  InfoBox,
   SliderControl,
   StatBox,
-  Button,
   ToggleDot,
-  InfoBox,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
+import { useHiddenSeries } from '../lib/chartSeries'
+import { ChartLegend } from '../components/ChartLegend'
 
 interface EquilibriumPoint {
   unemployment: number
@@ -18,15 +22,61 @@ interface EquilibriumPoint {
   exists: boolean
 }
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  bargainingPower: 0.5,
+  firmMarkup: 0.2,
+  benefitRate: 0.4,
+  laborForce: 100,
+  compareScenarios: false,
+}
+
 export default function LaborMarket() {
+  const wsps = useHiddenSeries(['ps', 'ws'])
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
   // Core parameters
-  const [bargainingPower, setBargainingPower] = useState(0.5)
-  const [firmMarkup, setFirmMarkup] = useState(0.2)
-  const [benefitRate, setBenefitRate] = useState(0.4)
-  const [laborForce, setLaborForce] = useState(100)
+const [bargainingPower, setBargainingPower] = useState(DEFAULTS.bargainingPower)
+const [firmMarkup, setFirmMarkup] = useState(DEFAULTS.firmMarkup)
+const [benefitRate, setBenefitRate] = useState(DEFAULTS.benefitRate)
+const [laborForce, setLaborForce] = useState(DEFAULTS.laborForce)
 
   // Scenario comparison mode
-  const [compareScenarios, setCompareScenarios] = useState(false)
+const [compareScenarios, setCompareScenarios] = useState(DEFAULTS.compareScenarios)
+
+  const { reset, dirty } = useToolReset(
+    {
+    bargainingPower: bargainingPower,
+    firmMarkup: firmMarkup,
+    benefitRate: benefitRate,
+    laborForce: laborForce,
+    compareScenarios: compareScenarios,
+    },
+    {
+      setBargainingPower,
+      setFirmMarkup,
+      setBenefitRate,
+      setLaborForce,
+      setCompareScenarios,
+    },
+    {
+      bargainingPower: DEFAULTS.bargainingPower,
+      firmMarkup: DEFAULTS.firmMarkup,
+      benefitRate: DEFAULTS.benefitRate,
+      laborForce: DEFAULTS.laborForce,
+      compareScenarios: DEFAULTS.compareScenarios,
+    },
+  )
 
   // WS Curve: W/P = (1 - α*u + β*z) where α captures bargaining elasticity
   // Modified to: W/P = z + (1 - z) * (1 - bargainingPower * u)
@@ -158,7 +208,8 @@ export default function LaborMarket() {
         />
       </div>
 
-      <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <ToolControlBar onReset={reset} dirty={dirty} />
+      <div className="mb-s-8 grid grid-cols-2 gap-s-3 lg:grid-cols-4">
         <StatBox
           label="Equilibrium Unemployment (u*)"
           value={(equilibrium.unemployment * 100).toFixed(2)}
@@ -184,11 +235,12 @@ export default function LaborMarket() {
       </div>
 
       <div className="visualization-container">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">WS/PS Equilibrium Diagram</h3>
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">WS/PS Equilibrium Diagram</h2>
         <ResponsiveContainer width="100%" height={400}>
           <LineChart data={curveData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="unemployment"
               label={{
                 value: 'Unemployment Rate (%)',
@@ -199,8 +251,10 @@ export default function LaborMarket() {
               type="number"
               domain={[0, 12]}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{
                 value: 'Real Wage (W/P)',
                 angle: -90,
@@ -208,7 +262,8 @@ export default function LaborMarket() {
                 fill: chartTheme.axis.tick.fill,
               }}
               domain={[0.4, 1.2]}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
             <Tooltip
               {...chartTheme.tooltip}
@@ -220,11 +275,11 @@ export default function LaborMarket() {
                 `u = ${typeof label === 'number' ? label.toFixed(1) : label}%`
               }
             />
-            <Legend {...chartTheme.legend} />
             {/* PS Curve (horizontal) */}
             <ChartLine
               type="monotone"
               dataKey="ps"
+              hide={wsps.isHidden('ps')}
               stroke={chartColor(4)}
               strokeWidth={2}
               name="PS Curve (Price-Setting)"
@@ -234,6 +289,7 @@ export default function LaborMarket() {
             <ChartLine
               type="monotone"
               dataKey="ws"
+              hide={wsps.isHidden('ws')}
               stroke={chartColor(0)}
               strokeWidth={2}
               name="WS Curve (Wage-Setting)"
@@ -268,13 +324,22 @@ export default function LaborMarket() {
             )}
           </LineChart>
         </ResponsiveContainer>
+        <ChartLegend
+          items={[
+            { key: 'ps', label: 'PS Curve (Price-Setting)', color: chartColor(4) },
+            { key: 'ws', label: 'WS Curve (Wage-Setting)', color: chartColor(0) },
+          ]}
+          hidden={wsps.hidden}
+          onToggle={wsps.toggle}
+          onShowAll={wsps.showAll}
+        />
       </div>
 
       <ToolNote label="Diagnosis" variant="insight" title="Inflation Pressures">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-s-4 sm:grid-cols-3">
           <div>
             <strong className="text-fg">Unemployment vs NAIRU:</strong>
-            <p className="mt-2 text-tier-beginner-ink">
+            <p className="mt-s-2 text-tier-beginner-ink">
               {equilibrium.unemployment < naturalRate
                 ? `u* (${(equilibrium.unemployment * 100).toFixed(1)}%) < NAIRU (${(naturalRate * 100).toFixed(1)}%) → Tight labor market`
                 : `u* (${(equilibrium.unemployment * 100).toFixed(1)}%) > NAIRU (${(naturalRate * 100).toFixed(1)}%) → Slack labor market`}
@@ -282,13 +347,13 @@ export default function LaborMarket() {
           </div>
           <div>
             <strong className="text-fg">Wage Inflation Pressure:</strong>
-            <p className="mt-2 text-tier-beginner-ink">
+            <p className="mt-s-2 text-tier-beginner-ink">
               {unemploymentPressure} {wageInflationSign}
             </p>
           </div>
           <div>
             <strong className="text-fg">Expected Impact:</strong>
-            <p className="mt-2 text-tier-beginner-ink">
+            <p className="mt-s-2 text-tier-beginner-ink">
               {equilibrium.unemployment < naturalRate
                 ? 'Wages rising faster than productivity → Inflation'
                 : 'Wage growth below productivity → Disinflation'}
@@ -297,7 +362,7 @@ export default function LaborMarket() {
         </div>
       </ToolNote>
 
-      <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <div className="mb-s-8 grid grid-cols-1 gap-s-3 sm:grid-cols-2">
         <Button
           variant={compareScenarios ? 'primary' : 'secondary'}
           onClick={() => setCompareScenarios(true)}
@@ -316,9 +381,9 @@ export default function LaborMarket() {
 
       {compareScenarios ? (
         <div>
-          <div className="visualization-container mb-8">
-            <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Scenario A: Weak vs Strong Unions</h3>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="visualization-container mb-s-8">
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Scenario A: Weak vs Strong Unions</h2>
+            <div className="grid grid-cols-1 gap-s-3 sm:grid-cols-2">
               <ToolNote label="Scenario A" variant="try" title="Weak Unions (β = 0.2)">
                 <p>
                   <strong className="text-fg">u*:</strong>{' '}
@@ -328,7 +393,7 @@ export default function LaborMarket() {
                   <strong className="text-fg">W/P:</strong>{' '}
                   {weakUnionsEquilibrium.realWage.toFixed(3)}
                 </p>
-                <p className="mt-3 text-xs opacity-90">
+                <p className="mt-s-3 text-xs opacity-90">
                   Limited bargaining power → Lower real wages, Lower unemployment
                 </p>
               </ToolNote>
@@ -341,7 +406,7 @@ export default function LaborMarket() {
                   <strong className="text-fg">W/P:</strong>{' '}
                   {strongUnionsEquilibrium.realWage.toFixed(3)}
                 </p>
-                <p className="mt-3 text-xs opacity-90">
+                <p className="mt-s-3 text-xs opacity-90">
                   Strong bargaining power → Higher real wages, Higher unemployment
                 </p>
               </ToolNote>
@@ -360,11 +425,11 @@ export default function LaborMarket() {
         </div>
       ) : (
         <div>
-          <div className="visualization-container mb-8">
-            <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+          <div className="visualization-container mb-s-8">
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
               Policy Experiment: Firm Markup Effects
-            </h3>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            </h2>
+            <div className="grid grid-cols-1 gap-s-3 sm:grid-cols-2">
               <ToolNote label="Scenario A" variant="insight" title="Low Markup (μ = 0.1)">
                 <p>
                   <strong className="text-fg">u*:</strong>{' '}
@@ -373,7 +438,7 @@ export default function LaborMarket() {
                 <p>
                   <strong className="text-fg">W/P:</strong> {lowMarkupEquilibrium.realWage.toFixed(3)}
                 </p>
-                <p className="mt-3 text-xs opacity-90">
+                <p className="mt-s-3 text-xs opacity-90">
                   Competitive market → Higher real wages, Lower unemployment
                 </p>
               </ToolNote>
@@ -385,7 +450,7 @@ export default function LaborMarket() {
                 <p>
                   <strong className="text-fg">W/P:</strong> {highMarkupEquilibrium.realWage.toFixed(3)}
                 </p>
-                <p className="mt-3 text-xs opacity-90">
+                <p className="mt-s-3 text-xs opacity-90">
                   Monopoly power → Lower real wages, Higher unemployment
                 </p>
               </ToolNote>

@@ -1,15 +1,19 @@
 import { useState } from 'react'
-import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart } from 'recharts'
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart } from 'recharts'
 import { ChartArea, ChartLine } from '../components/ChartPrimitives'
+import { ChartLegend } from '../components/ChartLegend'
 import {
-  ToolHeader,
-  ToolNote,
-  SliderControl,
-  StatBox,
   Button,
   InfoBox,
+  SliderControl,
+  StatBox,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useHiddenSeries } from '../lib/chartSeries'
+import { useToolReset } from '../lib/toolReset'
 
 interface MundellFlemingDataPoint {
   year: number
@@ -20,11 +24,66 @@ interface MundellFlemingDataPoint {
   isFloating: boolean
 }
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  policyEffect: 50,
+  showDataOverlay: true,
+}
+
+/**
+ * The legend items, declared once for both charts. `chartColor(i)` is the
+ * only way a series colour is written in a tool, and this is the one place
+ * in the file that pairs an index with a name — so a series cannot be drawn
+ * in one colour and labelled as another.
+ */
+const MF_LEGEND = [
+  { key: 'output', label: 'Output (Y)', color: chartColor(0) },
+  { key: 'interestRate', label: 'Interest Rate (r)', color: chartColor(2) },
+  { key: 'exchangeRate', label: 'Exchange Rate', color: chartColor(1) },
+  { key: 'inflation', label: 'Inflation (π)', color: chartColor(3) },
+]
+
 export default function MundellFleming() {
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
   const [policyType, setPolicyType] = useState<'monetary' | 'fiscal'>('monetary')
-  const [policyEffect, setPolicyEffect] = useState(50)
+const [policyEffect, setPolicyEffect] = useState(DEFAULTS.policyEffect)
   const [exchangeRateType, setExchangeRateType] = useState<'fixed' | 'floating'>('floating')
-  const [showDataOverlay, setShowDataOverlay] = useState(true)
+const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
+
+  /**
+   * One hidden-series set for the tool's two charts, deliberately. They plot
+   * the same model at two scales — a ten-year path and a five-point
+   * comparison — so a reader asking to hide the exchange rate means it in
+   * both, and two independent sets would make them press the same control
+   * twice to say one thing.
+   */
+  const series = useHiddenSeries(['output', 'interestRate', 'exchangeRate', 'inflation'])
+
+  const { reset, dirty } = useToolReset(
+    {
+    policyEffect: policyEffect,
+    showDataOverlay: showDataOverlay,
+    },
+    {
+      setPolicyEffect,
+      setShowDataOverlay,
+    },
+    {
+      policyEffect: DEFAULTS.policyEffect,
+      showDataOverlay: DEFAULTS.showDataOverlay,
+    },
+  )
 
   // Simulated Mundell-Fleming model data
   const mfData: MundellFlemingDataPoint[] = [
@@ -100,10 +159,10 @@ export default function MundellFleming() {
       />
 
       <div className="control-panel">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-s-6 lg:grid-cols-3">
           <div>
-            <span className="control-label mb-2 block">Policy Type</span>
-            <div className="flex gap-2">
+            <span className="control-label mb-s-2 block">Policy Type</span>
+            <div className="flex gap-s-2">
               <Button
                 onClick={() => setPolicyType('monetary')}
                 variant={policyType === 'monetary' ? 'primary' : 'secondary'}
@@ -129,8 +188,8 @@ export default function MundellFleming() {
           />
 
           <div>
-            <span className="control-label mb-2 block">Exchange Rate Regime</span>
-            <div className="flex gap-2">
+            <span className="control-label mb-s-2 block">Exchange Rate Regime</span>
+            <div className="flex gap-s-2">
               <Button
                 onClick={() => setExchangeRateType('fixed')}
                 variant={exchangeRateType === 'fixed' ? 'primary' : 'secondary'}
@@ -147,7 +206,7 @@ export default function MundellFleming() {
           </div>
         </div>
 
-        <div className="mt-4 flex gap-2">
+        <div className="mt-s-4 flex gap-s-2">
           <Button
             onClick={() => setShowDataOverlay(!showDataOverlay)}
             variant={showDataOverlay ? 'primary' : 'secondary'}
@@ -157,14 +216,23 @@ export default function MundellFleming() {
         </div>
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Policy Effectiveness Comparison</h3>
+      <ToolControlBar onReset={reset} dirty={dirty} />
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Policy Effectiveness Comparison</h2>
         <div className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={mfData} margin={chartTheme.margin}>
               <CartesianGrid {...chartTheme.grid} />
-              <XAxis dataKey="year" {...chartTheme.axis} />
-              <YAxis {...chartTheme.axis} />
+              {/* `includeHidden` on both axes, on every chart with an
+                * interactive legend. Recharts derives an auto-domain from
+                * the VISIBLE series, so without it, hiding output would
+                * rescale the y axis and the three remaining series would
+                * appear to move — a legend toggle that changes the numbers
+                * on the plot. */}
+              <XAxis
+                key={chartTheme.axisKey('x')} dataKey="year" includeHidden {...chartTheme.axis} />
+              <YAxis
+                key={chartTheme.axisKey('y')} includeHidden {...chartTheme.yAxis} />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
               <ChartArea
                 type="monotone"
@@ -173,6 +241,7 @@ export default function MundellFleming() {
                 fill={chartColor(0)}
                 fillOpacity={0.15}
                 name="Output (Y)"
+                hide={series.isHidden('output')}
               />
               <ChartArea
                 type="monotone"
@@ -181,6 +250,7 @@ export default function MundellFleming() {
                 fill={chartColor(2)}
                 fillOpacity={0.15}
                 name="Interest Rate (r)"
+                hide={series.isHidden('interestRate')}
               />
               <ChartArea
                 type="monotone"
@@ -189,6 +259,7 @@ export default function MundellFleming() {
                 fill={chartColor(1)}
                 fillOpacity={0.15}
                 name="Exchange Rate"
+                hide={series.isHidden('exchangeRate')}
               />
               <ChartArea
                 type="monotone"
@@ -197,23 +268,36 @@ export default function MundellFleming() {
                 fill={chartColor(3)}
                 fillOpacity={0.15}
                 name="Inflation (π)"
+                hide={series.isHidden('inflation')}
               />
             </AreaChart>
           </ResponsiveContainer>
         </div>
+        {/* This chart had NO legend at all — four series, three of them in a
+         * range an order of magnitude below output, and nothing on the plot
+         * naming which line was which. That is the defect a legend is for,
+         * and the fix is the same one everywhere else: the names become
+         * buttons. */}
+        <ChartLegend
+          items={MF_LEGEND}
+          hidden={series.hidden}
+          onToggle={series.toggle}
+          onShowAll={series.showAll}
+        />
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Policy Impact Summary</h3>
-        <div className="grid gap-6 lg:grid-cols-2">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Policy Impact Summary</h2>
+        <div className="grid gap-s-6 lg:grid-cols-2">
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={mfData.slice(0, 5)} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
-                <XAxis dataKey="year" {...chartTheme.axis} />
-                <YAxis {...chartTheme.axis} />
+                <XAxis
+                  key={chartTheme.axisKey('x')} dataKey="year" includeHidden {...chartTheme.axis} />
+                <YAxis
+                  key={chartTheme.axisKey('y')} includeHidden {...chartTheme.yAxis} />
                 <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-                <Legend {...chartTheme.legend} />
                 <ChartLine
                   type="monotone"
                   dataKey="output"
@@ -221,6 +305,7 @@ export default function MundellFleming() {
                   strokeWidth={2}
                   dot={{ r: 4 }}
                   name="Output"
+                  hide={series.isHidden('output')}
                 />
                 <ChartLine
                   type="monotone"
@@ -229,6 +314,7 @@ export default function MundellFleming() {
                   strokeWidth={2}
                   dot={{ r: 4 }}
                   name="Interest Rate"
+                  hide={series.isHidden('interestRate')}
                 />
                 <ChartLine
                   type="monotone"
@@ -237,13 +323,20 @@ export default function MundellFleming() {
                   strokeWidth={2}
                   dot={{ r: 4 }}
                   name="Exchange Rate"
+                  hide={series.isHidden('exchangeRate')}
                 />
               </LineChart>
             </ResponsiveContainer>
+            <ChartLegend
+              items={MF_LEGEND}
+              hidden={series.hidden}
+              onToggle={series.toggle}
+              onShowAll={series.showAll}
+            />
           </div>
 
           <div>
-            <div className="mb-6 grid grid-cols-2 gap-3">
+            <div className="mb-s-6 grid grid-cols-2 gap-s-3">
               <StatBox label="Output" value={policyResult.output.toFixed(1)} tone="accent" />
               <StatBox label="Interest Rate" value={policyResult.interestRate.toFixed(1)} unit="%" />
               <StatBox label="Exchange Rate" value={policyResult.exchangeRate.toFixed(2)} />
@@ -265,7 +358,7 @@ export default function MundellFleming() {
         </div>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="mt-s-8 grid grid-cols-1 gap-s-4 lg:grid-cols-3">
         <InfoBox type="info" title="Mundell-Fleming Framework">
           <p>Small open economy with perfect capital mobility</p>
           <p>IS-LM-PC model extended to international capital flows</p>

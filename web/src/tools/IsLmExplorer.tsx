@@ -1,5 +1,13 @@
 import { useState } from 'react'
-import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import {
+  LineChart,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  ReferenceDot,
+} from 'recharts'
 import { ChartLine } from '../components/ChartPrimitives'
 import {
   ToolHeader,
@@ -7,40 +15,146 @@ import {
   SliderControl,
   StatBox,
   InfoBox,
+  ToolControlBar,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { ChartLegend } from '../components/ChartLegend'
+import { useHiddenSeries } from '../lib/chartSeries'
+import { dataDomain } from '../lib/chartDomain'
+import { useToolReset } from '../lib/toolReset'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
 
 /** IS and LM keep a fixed economic identity across every chart in this tool. */
 const IS_STROKE = chartColor(0)
 const LM_STROKE = chartColor(3)
 
 /** Layout shared by the "controls beside chart" blocks. */
-const SPLIT = 'grid gap-8 lg:grid-cols-2'
+const SPLIT = 'grid gap-s-8 lg:grid-cols-2'
 
-const NOTE_BOX = 'mt-6 rounded-card border border-border bg-surface p-4'
+const NOTE_BOX = 'mt-s-6 rounded-card border border-border bg-surface p-s-4'
+
+/**
+ * One copy of every starting value.
+ *
+ * The upper panels' ranges differ from the Scenario A/B panel's — `beta`
+ * is 2..20 here and `I₀` is 20..100 here against 20..80 there — so the two
+ * sets of sliders are two views of the same state over different windows,
+ * and a reader can park `I₀` at 90 in one panel and find the other panel
+ * has silently moved it to 80. The defaults below are the ones the page
+ * opens at, and `useToolReset` reads the same object the `useState` calls
+ * do, so "Reset to defaults" cannot drift from them.
+ */
+const DEFAULTS = {
+  G_a: 100,
+  T_a: 50,
+  M_a: 150,
+  P_a: 1.0,
+  I0_a: 50,
+  G_b: 120,
+  T_b: 50,
+  M_b: 150,
+  P_b: 1.0,
+  I0_b: 50,
+  beta: 10,
+  gamma: 5,
+  // Deliberately not `as const` and not `satisfies`: either one narrows the
+  // fields to literal types, and `useState(DEFAULTS.G_a)` would then infer
+  // `useState<100>` — a setter that only accepts the number it started as.
+  // The completeness check that matters is the `useToolReset` call below,
+  // whose `defaults: V` has to carry every key `current` does.
+  comparison: false,
+}
+
+/**
+ * The interest-rate range the curves are SAMPLED over, which is a property
+ * of `calculateISCurve` / `calculateLMCurve` and not of the reader's
+ * settings. The charts below put their r axis exactly on it — the first
+ * chart used `[0, 20]` for a curve sampled to 25, so the top fifth of the
+ * IS curve was drawn past the plot edge and clipped.
+ */
+const IS_RATE_RANGE: [number, number] = [0, 25]
+const LM_RATE_RANGE: [number, number] = [0, 20]
+
+/**
+ * A rate is a percentage, and the axis label says `r` rather than `r (%)`, so
+ * the unit has to come with the number. Three of this tool's four charts
+ * print it through this formatter and one — the diagram — did not, which is
+ * the D5 defect: a reader comparing `3.5` on one chart with `3.50` on the
+ * next has no way to know they are the same quantity.
+ */
+const asRate = (value: number) => `${value.toFixed(2)}%`
 
 export default function IsLmExplorer() {
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
   // Scenario A parameters
-  const [G_a, setG_a] = useState(100)
-  const [T_a, setT_a] = useState(50)
-  const [M_a, setM_a] = useState(150)
-  const [P_a, setP_a] = useState(1.0)
-  const [I0_a, setI0_a] = useState(50)
+  const [G_a, setG_a] = useState(DEFAULTS.G_a)
+  const [T_a, setT_a] = useState(DEFAULTS.T_a)
+  const [M_a, setM_a] = useState(DEFAULTS.M_a)
+  const [P_a, setP_a] = useState(DEFAULTS.P_a)
+  const [I0_a, setI0_a] = useState(DEFAULTS.I0_a)
 
   // Scenario B parameters
-  const [G_b, setG_b] = useState(120)
-  const [T_b, setT_b] = useState(50)
-  const [M_b, setM_b] = useState(150)
-  const [P_b, setP_b] = useState(1.0)
-  const [I0_b, setI0_b] = useState(50)
+  const [G_b, setG_b] = useState(DEFAULTS.G_b)
+  const [T_b, setT_b] = useState(DEFAULTS.T_b)
+  const [M_b, setM_b] = useState(DEFAULTS.M_b)
+  const [P_b, setP_b] = useState(DEFAULTS.P_b)
+  const [I0_b, setI0_b] = useState(DEFAULTS.I0_b)
 
   // Model parameters
   const C0 = 40
   const alpha = 0.15 // Investment sensitivity to output (reduced to avoid singularity)
-  const [beta, setBeta] = useState(10) // Investment sensitivity to interest rate (user-adjustable)
-  const [gamma, setGamma] = useState(5) // Money demand sensitivity to interest rate (user-adjustable)
+  const [beta, setBeta] = useState(DEFAULTS.beta) // Investment sensitivity to interest rate (user-adjustable)
+  const [gamma, setGamma] = useState(DEFAULTS.gamma) // Money demand sensitivity to interest rate (user-adjustable)
   const mpc = 0.6
-  const [comparisonMode, setComparisonMode] = useState(false)
+  // Named for the value rather than the verb so `useToolReset`'s derived
+  // setter key (`set` + the value's name) resolves, and so the reset reads
+  // the same way every other control in the tool does.
+  const [comparison, setComparison] = useState<boolean>(DEFAULTS.comparison)
+  const comparisonMode = comparison
+
+  const { reset, dirty } = useToolReset(
+    { G_a, T_a, M_a, P_a, I0_a, G_b, T_b, M_b, P_b, I0_b, beta, gamma, comparison: comparisonMode },
+    {
+      setG_a,
+      setT_a,
+      setM_a,
+      setP_a,
+      setI0_a,
+      setG_b,
+      setT_b,
+      setM_b,
+      setP_b,
+      setI0_b,
+      setBeta,
+      setGamma,
+      setComparison,
+    },
+    {
+      G_a: DEFAULTS.G_a,
+      T_a: DEFAULTS.T_a,
+      M_a: DEFAULTS.M_a,
+      P_a: DEFAULTS.P_a,
+      I0_a: DEFAULTS.I0_a,
+      G_b: DEFAULTS.G_b,
+      T_b: DEFAULTS.T_b,
+      M_b: DEFAULTS.M_b,
+      P_b: DEFAULTS.P_b,
+      I0_b: DEFAULTS.I0_b,
+      beta: DEFAULTS.beta,
+      gamma: DEFAULTS.gamma,
+      comparison: DEFAULTS.comparison,
+    },
+  )
+
+  // The IS-LM diagram's series, keyed so a legend can hide one and so the
+  // tooltip's rows are addressable by key rather than by position. The key
+  // names double as the legend's identity, which is why they are built here
+  // and not inside the JSX.
+  const series = useHiddenSeries(['IS', 'LM', 'IS-B', 'LM-B'])
+  const showB = comparisonMode
 
   // Calculate IS curve: Y = C(Y-T) + I(Y,r) + G
   // => Y = C0 + mpc*(Y-T) + (I0 + alpha*Y - beta*r) + G
@@ -62,13 +176,19 @@ export default function IsLmExplorer() {
   // Calculate LM curve: M/P = L(Y,r)
   // => M/P = Y - gamma*r
   // => Y = M/P + gamma*r
+  //
+  // The `Y >= 0 && Y <= 300` filter this used to carry was a second, hidden
+  // domain: it discarded points rather than clipping them, so the LM chart
+  // showed a shortened curve. It was reachable — the panels let M reach 250
+  // and P reach 0.5, so M/P reaches 500 and EVERY point was discarded and
+  // the chart fell through to "No data to display" while the readout beside
+  // it carried a number. The filter is gone and the axis is derived from the
+  // curve instead, which is where that constraint belonged.
   const calculateLMCurve = (M: number, P: number) => {
     const data = []
     for (let r = 0; r <= 20; r += 0.5) {
       const Y = M / P + gamma * r
-      if (Y >= 0 && Y <= 300) {
-        data.push({ r: parseFloat(r.toFixed(1)), Y: parseFloat(Y.toFixed(2)), curve: 'LM' })
-      }
+      data.push({ r: parseFloat(r.toFixed(1)), Y: parseFloat(Y.toFixed(2)), curve: 'LM' })
     }
     return data
   }
@@ -105,14 +225,60 @@ export default function IsLmExplorer() {
   const lmCurveB = calculateLMCurve(M_b, P_b)
   const equilibrium_b = findEquilibrium(G_b, T_b, M_b, P_b, I0_b)
 
-  // Merge curves for chart
-  const chartData_a = [...isCurveA, ...lmCurveA]
-  const chartData_comparison = [
-    ...isCurveA.map((d) => ({ ...d, scenario: 'A', curve: 'IS-A' })),
-    ...lmCurveA.map((d) => ({ ...d, scenario: 'A', curve: 'LM-A' })),
-    ...isCurveB.map((d) => ({ ...d, scenario: 'B', curve: 'IS-B' })),
-    ...lmCurveB.map((d) => ({ ...d, scenario: 'B', curve: 'LM-B' })),
-  ]
+  /**
+   * The diagram's series, each under its OWN y key.
+   *
+   * All four lines plot the same field — the diagram's vertical axis is the
+   * interest rate — so they were all `dataKey="r"`, and each carried its own
+   * `data` array. Recharts copes: it plots a line per graphical item. But
+   * the tooltip's rows then all claim the same `dataKey`, which is what made
+   * the shared tooltip's React key collide until it was given the row index
+   * as a tiebreak, and it leaves any `dataKey`-keyed formatter — the natural
+   * way to give the IS curve a different precision from the LM curve —
+   * ambiguous. `yIS` / `yLM` are the same number under a name that says
+   * which line it belongs to, which is the whole fix.
+   */
+  const plotIsA = isCurveA.map((d) => ({ ...d, yIS: d.r }))
+  const plotLmA = lmCurveA.map((d) => ({ ...d, yLM: d.r }))
+  const plotIsB = isCurveB.map((d) => ({ ...d, yIS: d.r }))
+  const plotLmB = lmCurveB.map((d) => ({ ...d, yLM: d.r }))
+
+  /**
+   * The diagram plots `(Y, r)` pairs, so every series contributes its `Y` to
+   * the horizontal extent and its `r` to the vertical one. Both are derived,
+   * and the EQUILIBRIUM is included: it used to be a number in a chip
+   * beside the plot, computed and never plotted, so it could sit above the
+   * axis top while the number kept moving. It is in the domain and it is
+   * drawn, as a `ReferenceDot` below.
+   *
+   * Including it is why this domain can be very wide. The sliders admit an
+   * output of four figures — `T` at 100 against `G` at 200 is a deficit far
+   * outside anything the panels suggest — and the honest response to that is
+   * a wider axis, not a clipped curve. The alternative, pinning the domain
+   * and hiding the overflow, is the defect.
+   */
+  const diagramDomain = dataDomain(
+    [
+      isCurveA.map((d) => d.Y),
+      lmCurveA.map((d) => d.Y),
+      equilibrium_a.Y,
+      showB ? isCurveB.map((d) => d.Y) : [],
+      showB ? lmCurveB.map((d) => d.Y) : [],
+      showB ? equilibrium_b.Y : [],
+    ],
+    { includeZero: true, ticks: 6 },
+  )
+  const diagramRateDomain = dataDomain(
+    [
+      isCurveA.map((d) => d.r),
+      lmCurveA.map((d) => d.r),
+      equilibrium_a.r,
+      showB ? isCurveB.map((d) => d.r) : [],
+      showB ? lmCurveB.map((d) => d.r) : [],
+      showB ? equilibrium_b.r : [],
+    ],
+    { includeZero: true, ticks: 5 },
+  )
 
   const outputChange = equilibrium_b.Y - equilibrium_a.Y
   const rateChange = equilibrium_b.r - equilibrium_a.r
@@ -127,6 +293,7 @@ export default function IsLmExplorer() {
 
       {/* Lesson 1 */}
       <ToolNote
+          headingLevel={2}
         label="Lesson 1"
         variant="lesson"
         title="The IS Curve (Investment = Saving)"
@@ -175,14 +342,16 @@ export default function IsLmExplorer() {
       </ToolNote>
 
       {/* Interactive: IS */}
-      <ToolNote label="Try it" variant="try" title="Adjust IS Curve Parameters">
+      <ToolNote label="Try it" variant="try" title="Adjust IS Curve Parameters"
+        headingLevel={2}>
         <div className={SPLIT}>
           <div>
-            <h4 className="mb-4 text-label-sm font-semibold text-fg">IS Curve Parameters</h4>
+            <h3 className="mb-s-4 text-label-sm font-semibold text-fg">IS Curve Parameters</h3>
             <div className="control-panel">
-              <SliderControl label="Government Spending (G)" value={G_a} min={50} max={150} onChange={setG_a} />
-              <SliderControl label="Taxes (T)" value={T_a} min={20} max={80} onChange={setT_a} />
+              <SliderControl paramKey="G_a" label="Government Spending (G)" value={G_a} min={50} max={150} onChange={setG_a} />
+              <SliderControl paramKey="T_a" label="Taxes (T)" value={T_a} min={20} max={80} onChange={setT_a} />
               <SliderControl
+                paramKey="I0_a"
                 label="Base Investment (I₀)"
                 value={I0_a}
                 min={20}
@@ -190,6 +359,7 @@ export default function IsLmExplorer() {
                 onChange={setI0_a}
               />
               <SliderControl
+                paramKey="beta"
                 label="Interest Rate Sensitivity (β)"
                 value={beta}
                 min={2}
@@ -204,7 +374,7 @@ export default function IsLmExplorer() {
                 you increase T, it shifts LEFT. Changes in I₀ shift the curve in the same direction
                 as G changes.
               </p>
-              <p className="mt-2">
+              <p className="mt-s-2">
                 <strong>Curve Slope:</strong> The parameter β (interest rate sensitivity) controls
                 the IS curve's slope. Higher β means a steeper slope (investment less sensitive to
                 rates). Lower β means a flatter slope (investment more sensitive to rates).
@@ -213,17 +383,21 @@ export default function IsLmExplorer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-label-sm font-semibold text-fg">IS Curve</h4>
+            <h3 className="mb-s-4 text-label-sm font-semibold text-fg">IS Curve</h3>
             {isCurveA.length > 0 ? (
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={isCurveA} margin={chartTheme.margin}>
                   <CartesianGrid {...chartTheme.grid} />
                   <XAxis
+                    key={chartTheme.axisKey('x')}
                     dataKey="Y"
                     type="number"
-                    domain={[0, 500]}
-                    ticks={[0, 100, 200, 300, 400, 500]}
-                    allowDataOverflow
+                    /* Derived, and the hard-coded `ticks` go with it: a tick
+                     * list written for `[0, 500]` prints 100-unit labels on
+                     * a domain of `[-400, 700]` and prints almost none on
+                     * one of `[-2000, 1400]`. Recharts picks from the
+                     * domain, and picks it correctly. */
+                    domain={dataDomain([isCurveA.map((d) => d.Y)], { ticks: 5 })}
                     label={{
                       value: 'Output (Y)',
                       position: 'insideBottomRight',
@@ -231,24 +405,29 @@ export default function IsLmExplorer() {
                       fill: chartTheme.axis.tick.fill,
                     }}
                     {...chartTheme.axis}
+                    includeHidden
                   />
                   <YAxis
-                    domain={[0, 20]}
-                    ticks={[0, 5, 10, 15, 20]}
-                    allowDataOverflow
+                    key={chartTheme.axisKey('y')}
+                    /* The rate axis is the curve's own sampling range. It
+                     * used to be `[0, 20]` with `allowDataOverflow` for a
+                     * curve sampled to `r = 25`, so a fifth of the IS curve
+                     * was drawn past the top edge and clipped. */
+                    domain={IS_RATE_RANGE}
                     label={{
                       value: 'Interest Rate (r)',
                       angle: -90,
                       position: 'insideLeft',
                       fill: chartTheme.axis.tick.fill,
                     }}
-                    {...chartTheme.axis}
+                    {...chartTheme.yAxis}
+                    includeHidden
                   />
                   <Tooltip
                     {...chartTheme.tooltip}
                     cursor={chartTheme.cursor}
-                    formatter={(value: number) => value.toFixed(2)}
-                    labelFormatter={(label: number) => `Y = ${label.toFixed(1)}`}
+                    formatter={(value: number) => asRate(value)}
+                    labelFormatter={(label: number) => `Output (Y) = ${label.toFixed(1)}`}
                   />
                   <ChartLine
                     type="monotone"
@@ -271,6 +450,7 @@ export default function IsLmExplorer() {
 
       {/* Lesson 2 */}
       <ToolNote
+          headingLevel={2}
         label="Lesson 2"
         variant="lesson"
         title="The LM Curve (Liquidity Money)"
@@ -320,13 +500,15 @@ export default function IsLmExplorer() {
       </ToolNote>
 
       {/* Interactive: LM */}
-      <ToolNote label="Try it" variant="try" title="Adjust LM Curve Parameters">
+      <ToolNote label="Try it" variant="try" title="Adjust LM Curve Parameters"
+        headingLevel={2}>
         <div className={SPLIT}>
           <div>
-            <h4 className="mb-4 text-label-sm font-semibold text-fg">LM Curve Parameters</h4>
+            <h3 className="mb-s-4 text-label-sm font-semibold text-fg">LM Curve Parameters</h3>
             <div className="control-panel">
-              <SliderControl label="Money Supply (M)" value={M_a} min={80} max={250} onChange={setM_a} />
+              <SliderControl paramKey="M_a" label="Money Supply (M)" value={M_a} min={80} max={250} onChange={setM_a} />
               <SliderControl
+                paramKey="P_a"
                 label="Price Level (P)"
                 value={P_a}
                 min={0.5}
@@ -335,6 +517,7 @@ export default function IsLmExplorer() {
                 onChange={setP_a}
               />
               <SliderControl
+                paramKey="gamma"
                 label="Money Demand Sensitivity (γ)"
                 value={gamma}
                 min={1}
@@ -349,7 +532,7 @@ export default function IsLmExplorer() {
                 (lower interest rates at each output level). As you increase P, the LM curve shifts
                 LEFT (real money supply decreases).
               </p>
-              <p className="mt-2">
+              <p className="mt-s-2">
                 <strong>Curve Slope:</strong> The LM curve's slope is determined by money demand
                 sensitivity (γ). The slope is 1/γ, so higher γ means a steeper LM curve (more
                 interest rate sensitivity to output changes).
@@ -358,17 +541,24 @@ export default function IsLmExplorer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-label-sm font-semibold text-fg">LM Curve</h4>
+            <h3 className="mb-s-4 text-label-sm font-semibold text-fg">LM Curve</h3>
             {lmCurveA.length > 0 ? (
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={lmCurveA} margin={chartTheme.margin}>
                   <CartesianGrid {...chartTheme.grid} />
                   <XAxis
+                    key={chartTheme.axisKey('x')}
                     dataKey="Y"
                     type="number"
-                    domain={[0, 500]}
-                    ticks={[0, 100, 200, 300, 400, 500]}
-                    allowDataOverflow
+                    /* Derived. This is the chart the `Y <= 300` filter used to
+                     * feed: with M at 250 and P at 0.5 the real money supply
+                     * is 500, every point was discarded, and the "No data to
+                     * display" panel appeared while the readout beside it
+                     * carried a live number. */
+                    domain={dataDomain([lmCurveA.map((d) => d.Y)], {
+                      includeZero: true,
+                      ticks: 5,
+                    })}
                     label={{
                       value: 'Output (Y)',
                       position: 'insideBottomRight',
@@ -376,24 +566,27 @@ export default function IsLmExplorer() {
                       fill: chartTheme.axis.tick.fill,
                     }}
                     {...chartTheme.axis}
+                    includeHidden
                   />
                   <YAxis
-                    domain={[0, 20]}
-                    ticks={[0, 5, 10, 15, 20]}
-                    allowDataOverflow
+                    key={chartTheme.axisKey('y')}
+                    /* `calculateLMCurve` samples r to 20, so `[0, 20]` is the
+                     * curve's own range and is not a guess. */
+                    domain={LM_RATE_RANGE}
                     label={{
                       value: 'Interest Rate (r)',
                       angle: -90,
                       position: 'insideLeft',
                       fill: chartTheme.axis.tick.fill,
                     }}
-                    {...chartTheme.axis}
+                    {...chartTheme.yAxis}
+                    includeHidden
                   />
                   <Tooltip
                     {...chartTheme.tooltip}
                     cursor={chartTheme.cursor}
-                    formatter={(value: number) => value.toFixed(2)}
-                    labelFormatter={(label: number) => `Y = ${label.toFixed(1)}`}
+                    formatter={(value: number) => asRate(value)}
+                    labelFormatter={(label: number) => `Output (Y) = ${label.toFixed(1)}`}
                   />
                   <ChartLine
                     type="monotone"
@@ -415,7 +608,8 @@ export default function IsLmExplorer() {
       </ToolNote>
 
       {/* Lesson 3 */}
-      <ToolNote label="Lesson 3" variant="lesson" title="IS-LM Equilibrium">
+      <ToolNote label="Lesson 3" variant="lesson" title="IS-LM Equilibrium"
+        headingLevel={2}>
         <p>
           <strong>What is IS-LM Equilibrium?</strong> The intersection of the IS and LM curves
           determines the equilibrium output (Y*) and interest rate (r*) where both the goods market
@@ -461,19 +655,21 @@ export default function IsLmExplorer() {
       </ToolNote>
 
       {/* Comparison toggle */}
-      <label className="mb-8 flex cursor-pointer items-center gap-2 text-sm font-medium text-fg">
+      <label className="mb-s-8 flex cursor-pointer items-center gap-s-2 text-sm font-medium text-fg">
         <input
           type="checkbox"
-          checked={comparisonMode}
-          onChange={(e) => setComparisonMode(e.target.checked)}
-          className="h-4 w-4 cursor-pointer accent-[rgb(var(--c-accent-ch))]"
+          checked={comparison}
+          onChange={(e) => setComparison(e.target.checked)}
+          className="h-4 w-4 cursor-pointer accent-accent"
         />
         Compare Two Scenarios
       </label>
 
-      <div className="mb-8 grid gap-8 lg:grid-cols-2">
+      <ToolControlBar onReset={reset} dirty={dirty} />
+
+      <div className="mb-s-8 grid gap-s-8 lg:grid-cols-2">
         <div>
-          <h3 className="mb-5 text-lg font-semibold tracking-tight text-fg">Scenario A</h3>
+          <h2 className="mb-s-5 text-lg font-semibold tracking-tight text-fg">Scenario A</h2>
           <div className="control-panel">
             <SliderControl
               label="Government Spending (G)"
@@ -524,9 +720,10 @@ export default function IsLmExplorer() {
 
         {comparisonMode && (
           <div>
-            <h3 className="mb-5 text-lg font-semibold tracking-tight text-fg">Scenario B</h3>
+            <h2 className="mb-s-5 text-lg font-semibold tracking-tight text-fg">Scenario B</h2>
             <div className="control-panel">
               <SliderControl
+                paramKey="G_b"
                 label="Government Spending (G)"
                 value={G_b}
                 min={50}
@@ -536,6 +733,7 @@ export default function IsLmExplorer() {
                 unit="units"
               />
               <SliderControl
+                paramKey="T_b"
                 label="Taxes (T)"
                 value={T_b}
                 min={20}
@@ -545,6 +743,7 @@ export default function IsLmExplorer() {
                 unit="units"
               />
               <SliderControl
+                paramKey="M_b"
                 label="Money Supply (M)"
                 value={M_b}
                 min={50}
@@ -554,6 +753,7 @@ export default function IsLmExplorer() {
                 unit="units"
               />
               <SliderControl
+                paramKey="P_b"
                 label="Price Level (P)"
                 value={P_b}
                 min={0.8}
@@ -562,6 +762,7 @@ export default function IsLmExplorer() {
                 onChange={setP_b}
               />
               <SliderControl
+                paramKey="I0_b"
                 label="Investment Intercept (I₀)"
                 value={I0_b}
                 min={20}
@@ -575,11 +776,11 @@ export default function IsLmExplorer() {
         )}
       </div>
 
-      <div className="mb-8">
-        <h3 className="mb-4 text-micro font-bold uppercase tracking-widest text-fg-subtle">
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-micro font-bold uppercase tracking-widest text-fg-subtle">
           Equilibrium Results
-        </h3>
-        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+        </h2>
+        <div className="grid grid-cols-2 gap-s-3 lg:grid-cols-4">
           <StatBox label="Output (Y*)" value={equilibrium_a.Y.toFixed(2)} tone="accent" />
           <StatBox label="Interest Rate (r*)" value={equilibrium_a.r.toFixed(2)} unit="%" />
           <StatBox label="Investment at Eq." value={equilibrium_a.I.toFixed(2)} unit="units" />
@@ -589,11 +790,11 @@ export default function IsLmExplorer() {
 
       {comparisonMode && (
         <>
-          <div className="mb-8">
-            <h3 className="mb-4 text-micro font-bold uppercase tracking-widest text-fg-subtle">
+          <div className="mb-s-8">
+            <h2 className="mb-s-4 text-micro font-bold uppercase tracking-widest text-fg-subtle">
               Policy Impact Comparison
-            </h3>
-            <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+            </h2>
+            <div className="grid grid-cols-2 gap-s-3 lg:grid-cols-4">
               <StatBox
                 label="Output Change (ΔY)"
                 value={`${outputChange >= 0 ? '+' : ''}${outputChange.toFixed(2)}`}
@@ -609,7 +810,8 @@ export default function IsLmExplorer() {
             </div>
           </div>
 
-          <ToolNote label="Watch out" variant="warning" title="Crowding Out Effect">
+          <ToolNote label="Watch out" variant="warning" title="Crowding Out Effect"
+        headingLevel={2}>
             <p>
               When fiscal policy increases without accompanying monetary expansion, interest rates
               rise, discouraging private investment. This is &quot;crowding out.&quot;
@@ -620,7 +822,8 @@ export default function IsLmExplorer() {
             </p>
           </ToolNote>
 
-          <ToolNote label="Insight" variant="insight" title="Policy Effectiveness Comparison">
+          <ToolNote label="Insight" variant="insight" title="Policy Effectiveness Comparison"
+        headingLevel={2}>
             <ul>
               <li>
                 <strong>Fiscal policy alone:</strong> Raises output but also raises rates (crowding
@@ -641,11 +844,12 @@ export default function IsLmExplorer() {
 
       {/* IS-LM diagram */}
       <figure className="visualization-container">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">IS-LM Diagram</h3>
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">IS-LM Diagram</h2>
         <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={comparisonMode ? chartData_comparison : chartData_a} margin={chartTheme.margin}>
+          <LineChart data={plotIsA} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="Y"
               label={{
                 value: 'Output (Y)',
@@ -654,106 +858,153 @@ export default function IsLmExplorer() {
                 fill: chartTheme.axis.tick.fill,
               }}
               type="number"
-              domain={[0, 700]}
-              ticks={[0, 100, 200, 300, 400, 500, 600, 700]}
-              allowDataOverflow
+              /* Derived from every series AND from the equilibrium, which is
+               * the whole of D1. This axis was pinned to `[0, 700]` with
+               * `allowDataOverflow`, and the equilibrium was a number in a
+               * chip below the plot that nothing bounded: park T at 100
+               * against G at 200 and Y* runs past 700 while the plotted
+               * curves stop at the frame and the number keeps moving. The
+               * axis now contains the answer, and the answer is drawn. */
+              domain={diagramDomain}
+              /* The domain is computed from ALL the series, hidden ones
+               * included. Without this, hiding a series re-scales both axes
+               * and every remaining series appears to move — a legend
+               * toggle that changes the numbers on the plot. */
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{
                 value: 'Interest Rate (r)',
                 angle: -90,
                 position: 'insideLeft',
                 fill: chartTheme.axis.tick.fill,
               }}
-              {...chartTheme.axis}
+              type="number"
+              domain={diagramRateDomain}
+              {...chartTheme.yAxis}
+              includeHidden
             />
-            <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-            {!comparisonMode ? (
+            {/* The formatter is the D5 fix and it is two lines of it. This
+             * tooltip was the only one in the tool with no `formatter`, so
+             * the diagram printed `r` as a bare `3.5` / `15.5` where every
+             * other chart printed two decimals and a unit; `labelFormatter`
+             * names the horizontal quantity, which the raw tick labels
+             * (0/7/14/21/28) never did. */}
+            <Tooltip
+              {...chartTheme.tooltip}
+              cursor={chartTheme.cursor}
+              formatter={(value: number) => asRate(value)}
+              labelFormatter={(label: number) => `Output (Y) = ${label.toFixed(1)}`}
+            />
+            {/* The equilibrium, plotted. `findEquilibrium` solves the model
+             * directly rather than intersecting two sampled arrays, so the
+             * point it returns is the answer and the two curves are an
+             * illustration; showing it on the plot is what lets a reader see
+             * whether the curves actually cross where the number says. */}
+            <ReferenceDot
+              x={equilibrium_a.Y}
+              y={equilibrium_a.r}
+              r={5}
+              fill={chartColor(1)}
+              stroke="var(--plot-bg)"
+              strokeWidth={2}
+              isFront
+            />
+            {showB && (
+              <ReferenceDot
+                x={equilibrium_b.Y}
+                y={equilibrium_b.r}
+                r={6}
+                fill="none"
+                stroke={chartColor(1)}
+                strokeWidth={2}
+                isFront
+              />
+            )}
+            <ChartLine
+              type="monotone"
+              dataKey="yIS"
+              stroke={IS_STROKE}
+              dot={false}
+              name="IS Curve"
+              data={plotIsA}
+              strokeWidth={2}
+              hide={series.isHidden('IS')}
+            />
+            <ChartLine
+              type="monotone"
+              dataKey="yLM"
+              stroke={LM_STROKE}
+              dot={false}
+              name="LM Curve"
+              data={plotLmA}
+              strokeWidth={2}
+              hide={series.isHidden('LM')}
+            />
+            {showB && (
               <>
                 <ChartLine
                   type="monotone"
-                  dataKey="r"
-                  stroke={IS_STROKE}
-                  dot={false}
-                  name="IS Curve"
-                  data={isCurveA}
-                  strokeWidth={2}
-                />
-                <ChartLine
-                  type="monotone"
-                  dataKey="r"
-                  stroke={LM_STROKE}
-                  dot={false}
-                  name="LM Curve"
-                  data={lmCurveA}
-                  strokeWidth={2}
-                />
-              </>
-            ) : (
-              <>
-                <ChartLine
-                  type="monotone"
-                  dataKey="r"
-                  stroke={IS_STROKE}
-                  dot={false}
-                  name="IS-A"
-                  data={isCurveA}
-                  strokeWidth={2}
-                />
-                <ChartLine
-                  type="monotone"
-                  dataKey="r"
-                  stroke={LM_STROKE}
-                  dot={false}
-                  name="LM-A"
-                  data={lmCurveA}
-                  strokeWidth={2}
-                />
-                <ChartLine
-                  type="monotone"
-                  dataKey="r"
+                  dataKey="yIS"
                   stroke={IS_STROKE}
                   strokeOpacity={0.55}
                   dot={false}
                   name="IS-B"
-                  data={isCurveB}
+                  data={plotIsB}
                   strokeWidth={2}
                   strokeDasharray="5 5"
+                  hide={series.isHidden('IS-B')}
                 />
                 <ChartLine
                   type="monotone"
-                  dataKey="r"
+                  dataKey="yLM"
                   stroke={LM_STROKE}
                   strokeOpacity={0.55}
                   dot={false}
                   name="LM-B"
-                  data={lmCurveB}
+                  data={plotLmB}
                   strokeWidth={2}
                   strokeDasharray="5 5"
+                  hide={series.isHidden('LM-B')}
                 />
               </>
             )}
-            <Legend {...chartTheme.legend} />
           </LineChart>
         </ResponsiveContainer>
+        <ChartLegend
+          items={[
+            { key: 'IS', label: 'IS Curve', color: IS_STROKE },
+            { key: 'LM', label: 'LM Curve', color: LM_STROKE },
+            ...(showB
+              ? [
+                  { key: 'IS-B', label: 'IS-B', color: IS_STROKE },
+                  { key: 'LM-B', label: 'LM-B', color: LM_STROKE },
+                ]
+              : []),
+          ]}
+          hidden={series.hidden}
+          onToggle={series.toggle}
+          onShowAll={series.showAll}
+        />
 
         {/* Equilibrium readouts */}
-        <div className="mt-4 flex flex-wrap gap-3">
-          <div className="rounded-card border border-tier-advanced/30 bg-tier-advanced/5 px-3 py-2">
+        <div className="mt-s-4 flex flex-wrap gap-s-3">
+          <div className="rounded-card border border-tier-advanced/30 bg-tier-advanced/5 px-s-3 py-s-2">
             <div className="text-micro font-bold uppercase tracking-widest text-tier-advanced-ink">
               Scenario A equilibrium
             </div>
-            <div className="mt-1 text-sm text-fg-muted tabular-nums">
+            <div className="mt-s-1 text-sm text-fg-muted tabular-nums">
               Y* = {equilibrium_a.Y.toFixed(2)} | r* = {equilibrium_a.r.toFixed(2)}%
             </div>
           </div>
           {comparisonMode && (
-            <div className="rounded-card border border-tier-case/30 bg-tier-case/5 px-3 py-2">
+            <div className="rounded-card border border-tier-case/30 bg-tier-case/5 px-s-3 py-s-2">
               <div className="text-micro font-bold uppercase tracking-widest text-tier-case-ink">
                 Scenario B equilibrium
               </div>
-              <div className="mt-1 text-sm text-fg-muted tabular-nums">
+              <div className="mt-s-1 text-sm text-fg-muted tabular-nums">
                 Y* = {equilibrium_b.Y.toFixed(2)} | r* = {equilibrium_b.r.toFixed(2)}%
               </div>
             </div>
@@ -762,7 +1013,8 @@ export default function IsLmExplorer() {
       </figure>
 
       {/* Explanations */}
-      <ToolNote label="Overview" variant="info" title="How IS-LM Works">
+      <ToolNote label="Overview" variant="info" title="How IS-LM Works"
+        headingLevel={2}>
         <ul>
           <li>
             <strong>IS Curve (Investment-Saving):</strong> Shows combinations of Y and r where the
@@ -781,10 +1033,11 @@ export default function IsLmExplorer() {
         </ul>
       </ToolNote>
 
-      <ToolNote label="Reference" variant="lesson" title="Understanding the Curves">
-        <div className="grid gap-6 sm:grid-cols-2">
+      <ToolNote label="Reference" variant="lesson" title="Understanding the Curves"
+        headingLevel={2}>
+        <div className="grid gap-s-6 sm:grid-cols-2">
           <div>
-            <h4 className="mb-2 text-label-sm font-semibold text-fg">IS Curve Characteristics</h4>
+            <h3 className="mb-s-2 text-label-sm font-semibold text-fg">IS Curve Characteristics</h3>
             <ul>
               <li>
                 <strong>Slope:</strong> Negative (downward sloping)
@@ -803,7 +1056,7 @@ export default function IsLmExplorer() {
             </ul>
           </div>
           <div>
-            <h4 className="mb-2 text-label-sm font-semibold text-fg">LM Curve Characteristics</h4>
+            <h3 className="mb-s-2 text-label-sm font-semibold text-fg">LM Curve Characteristics</h3>
             <ul>
               <li>
                 <strong>Slope:</strong> Positive (upward sloping)
@@ -823,11 +1076,12 @@ export default function IsLmExplorer() {
         </div>
       </ToolNote>
 
-      <ToolNote label="Insight" variant="insight" title="Policy Effects">
-        <div className="grid gap-6 sm:grid-cols-2">
+      <ToolNote label="Insight" variant="insight" title="Policy Effects"
+        headingLevel={2}>
+        <div className="grid gap-s-6 sm:grid-cols-2">
           <div>
             <strong>Fiscal Expansion (G up or T down):</strong>
-            <ul className="mt-2">
+            <ul className="mt-s-2">
               <li>IS shifts right, so Y up and r up</li>
               <li>Higher rates crowd out private investment</li>
               <li>Multiplier effect depends on monetary policy response</li>
@@ -835,7 +1089,7 @@ export default function IsLmExplorer() {
           </div>
           <div>
             <strong>Monetary Expansion (M up):</strong>
-            <ul className="mt-2">
+            <ul className="mt-s-2">
               <li>LM shifts right, so Y up and r down</li>
               <li>Lower rates boost private investment</li>
               <li>
@@ -846,7 +1100,8 @@ export default function IsLmExplorer() {
         </div>
       </ToolNote>
 
-      <ToolNote label="Go deeper" variant="info" title="Advanced Concepts">
+      <ToolNote label="Go deeper" variant="info" title="Advanced Concepts"
+        headingLevel={2}>
         <ul>
           <li>
             <strong>Crowding Out:</strong> Fiscal expansion raises interest rates, crowding out
@@ -871,7 +1126,8 @@ export default function IsLmExplorer() {
         </ul>
       </ToolNote>
 
-      <ToolNote label="Try it" variant="try" title="Experiments">
+      <ToolNote label="Try it" variant="try" title="Experiments"
+        headingLevel={2}>
         <p>Enable &quot;Compare Two Scenarios&quot; and try these:</p>
         <ol>
           <li>
@@ -923,7 +1179,7 @@ export default function IsLmExplorer() {
             economies
           </li>
         </ul>
-        <p className="mt-3">
+        <p className="mt-s-3">
           The IS-LM model is a fundamental tool for understanding how the goods market and money
           market interact to determine national income and interest rates in the short run.
         </p>

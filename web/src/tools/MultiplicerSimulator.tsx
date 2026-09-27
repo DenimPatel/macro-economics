@@ -2,21 +2,56 @@ import { useState } from 'react'
 import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import { ChartBar } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
+  InfoBox,
   SliderControl,
   StatBox,
-  InfoBox,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
 import { generateMultiplierRounds, formatNumber } from '../lib/calculations'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
 
 const CUMULATIVE_STROKE = chartColor(0)
 const PER_ROUND_STROKE = chartColor(1)
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  mpc: 0.6,
+  governmentSpending: 100,
+}
+
 export default function MultiplicerSimulator() {
-  const [mpc, setMpc] = useState(0.6)
-  const [governmentSpending, setGovernmentSpending] = useState(100)
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
+const [mpc, setMpc] = useState(DEFAULTS.mpc)
+const [governmentSpending, setGovernmentSpending] = useState(DEFAULTS.governmentSpending)
+
+  const { reset, dirty } = useToolReset(
+    {
+    mpc: mpc,
+    governmentSpending: governmentSpending,
+    },
+    {
+      setMpc,
+      setGovernmentSpending,
+    },
+    {
+      mpc: DEFAULTS.mpc,
+      governmentSpending: DEFAULTS.governmentSpending,
+    },
+  )
 
   const multiplier = 1 / (1 - mpc)
   const maxChange = governmentSpending * multiplier
@@ -50,7 +85,8 @@ export default function MultiplicerSimulator() {
         />
       </div>
 
-      <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <ToolControlBar onReset={reset} dirty={dirty} />
+      <div className="mb-s-8 grid grid-cols-2 gap-s-3 lg:grid-cols-4">
         <StatBox label="Multiplier" value={multiplier.toFixed(2)} tone="accent" />
         <StatBox label="Initial Spending" value={formatNumber(governmentSpending)} unit="$B" />
         <StatBox label="Total GDP Impact" value={formatNumber(maxChange)} unit="$B" tone="accent" />
@@ -61,7 +97,7 @@ export default function MultiplicerSimulator() {
         />
       </div>
 
-      <div className="mb-8">
+      <div className="mb-s-8">
         <InfoBox type="info" title="How it works">
           <p>
             When government spends $1B, firms produce that output (Round 1). Workers earn $1B income
@@ -74,25 +110,29 @@ export default function MultiplicerSimulator() {
       </div>
 
       <div className="visualization-container">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Multiplier Rounds: Cumulative GDP Impact
-        </h3>
+        </h2>
         <ResponsiveContainer width="100%" height={350}>
           <BarChart data={roundsData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="round"
               label={{ value: 'Round', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{
                 value: 'Cumulative $ Billions',
                 angle: -90,
                 position: 'insideLeft',
                 fill: chartTheme.axis.tick.fill,
               }}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
             <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
             <ChartBar dataKey="cumulative" fill={CUMULATIVE_STROKE} name="Cumulative GDP Impact" />
@@ -100,19 +140,23 @@ export default function MultiplicerSimulator() {
         </ResponsiveContainer>
       </div>
 
-      <div className="visualization-container mt-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Round-by-Round Breakdown</h3>
+      <div className="visualization-container mt-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Round-by-Round Breakdown</h2>
         <ResponsiveContainer width="100%" height={350}>
           <BarChart data={roundsData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="round"
               label={{ value: 'Round', position: 'insideBottomRight', offset: -5, fill: chartTheme.axis.tick.fill }}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{ value: '$ Billions', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
             <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
             <ChartBar dataKey="change" fill={PER_ROUND_STROKE} name="Spending This Round" />
@@ -120,15 +164,15 @@ export default function MultiplicerSimulator() {
         </ResponsiveContainer>
       </div>
 
-      <div className="card mt-8 p-6">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Rounds Detail Table</h3>
+      <div className="card mt-s-8 p-s-6">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Rounds Detail Table</h2>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-sm tabular-nums">
             <thead>
               <tr className="border-b-2 border-border-strong">
-                <th className="px-2 py-2 text-left font-semibold text-fg">Round</th>
-                <th className="px-2 py-2 text-right font-semibold text-fg">Spending This Round</th>
-                <th className="px-2 py-2 text-right font-semibold text-fg">Cumulative Total</th>
+                <th className="px-s-2 py-s-2 text-left font-semibold text-fg">Round</th>
+                <th className="px-s-2 py-s-2 text-right font-semibold text-fg">Spending This Round</th>
+                <th className="px-s-2 py-s-2 text-right font-semibold text-fg">Cumulative Total</th>
               </tr>
             </thead>
             <tbody>
@@ -137,9 +181,9 @@ export default function MultiplicerSimulator() {
                   key={i}
                   className={`border-b border-border ${i % 2 === 0 ? 'bg-surface' : 'bg-surface-2'}`}
                 >
-                  <td className="px-2 py-2 text-left">{row.round}</td>
-                  <td className="px-2 py-2 text-right">${row.change.toFixed(2)}B</td>
-                  <td className="px-2 py-2 text-right font-semibold text-fg">
+                  <td className="px-s-2 py-s-2 text-left">{row.round}</td>
+                  <td className="px-s-2 py-s-2 text-right">${row.change.toFixed(2)}B</td>
+                  <td className="px-s-2 py-s-2 text-right font-semibold text-fg">
                     ${row.cumulative.toFixed(2)}B
                   </td>
                 </tr>

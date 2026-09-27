@@ -13,7 +13,7 @@ At the individual firm level, measuring output is straightforward. At the aggreg
 ### Example: Two-Firm Economy
 - **Steel Company**: Produces $100 of steel (all sold to car company as intermediate input)
 - **Car Company**: Produces $200 of cars (final goods)
-- **Naive Sum**: $100 + $200 = $300 (WRONG - double counts steel)
+- **Naive Sum**: \$100 + \$200 = \$300 (WRONG - double counts steel)
 - **Correct GDP**: $200
 
 ### Three Equivalent Methods for Measuring GDP
@@ -33,8 +33,8 @@ At the individual firm level, measuring output is straightforward. At the aggreg
 - **Car Company**:
     - Revenue = $200
     - Intermediate inputs = $100 (steel)
-    - Value added = $200 - $100 = $100
-- **Total Value Added**: $100 + $100 = $200
+    - Value added = \$200 - \$100 = \$100
+- **Total Value Added**: \$100 + \$100 = \$200
 - **Result**: GDP = $200
 
 #### Method 3: Income Approach
@@ -47,13 +47,13 @@ At the individual firm level, measuring output is straightforward. At the aggreg
     - Wages = $70
     - Profits = $30
     - Total income = $100
-- **Total Income**: $100 + $100 = $200
+- **Total Income**: \$100 + \$100 = \$200
 - **Result**: GDP = $200
 
 ### Key Properties
 1. **All three methods yield identical results**
 2. **Immune to organizational structure changes**: If the two companies merged, GDP would still be $200
-3. **Avoids double counting**: Unlike naive summation, which would incorrectly change from $300 to $200 upon merger
+3. **Avoids double counting**: Unlike naive summation, which would incorrectly change from \$300 to \$200 upon merger
 
 ### Nominal vs. Real GDP
 
@@ -68,9 +68,9 @@ At the individual firm level, measuring output is straightforward. At the aggreg
 | 2013 | 12 | $25,000 | $300,000 | $288,000 |
 | 2014 | 13 | $26,000 | $338,000 | $312,000 |
 
-- **Real GDP in 2012**: $24,000 \times 10 = $240,000
-- **Real GDP in 2013**: $24,000 \times 12 = $288,000 (NOT $25,000 × 12)
-- **Real GDP in 2014**: $24,000 \times 13 = $312,000
+- **Real GDP in 2012**: \$24,000 × 10 = \$240,000
+- **Real GDP in 2013**: \$24,000 × 12 = \$288,000 (NOT \$25,000 × 12)
+- **Real GDP in 2014**: \$24,000 × 13 = \$312,000
 
 #### Note on Multiple Goods
 - With one good, choice of base year doesn't affect growth rate
@@ -215,8 +215,8 @@ Suppose consumers decide to save more: $c_0 \downarrow$
 $$M^d = \$Y \cdot L(i)$$
 
 #### Determinants
-1. **Nominal Income ($\$Y$)**:
-    - $M^d$ increasing in $\$Y$
+1. **Nominal Income (\$$Y$)**:
+    - $M^d$ increasing in \$$Y$
     - Interpretation: Higher income means more transactions, need more money
 2. **Interest Rate ($i$)**:
     - $M^d$ decreasing in $i$
@@ -275,8 +275,8 @@ Where:
 - $F$: Face value (payment at maturity)
 
 #### Example
-- Face value: $F = $100
-- Current price: $P_B = $95
+- Face value: $F =$ \$100
+- Current price: $P_B =$ \$95
 - Interest rate: $i = \frac{100-95}{95} = \frac{5}{95} \approx 5.26\%$
 
 #### Intuition for OMO Effect
@@ -285,7 +285,7 @@ Where:
 3. Since $i = \frac{F - P_B}{P_B}$, when $P_B \uparrow$, then $i \downarrow$
 
 #### Extreme Case
-If $P_B = $100 = F$, then $i = 0\%$
+If $P_B =$ \$100 = F$, then $i = 0\%$
 
 ---
 

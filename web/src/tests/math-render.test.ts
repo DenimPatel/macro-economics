@@ -1,0 +1,132 @@
+import { readdirSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
+import { describe, expect, it } from 'vitest'
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
+import remarkRehype from 'remark-rehype'
+import rehypeKatex from 'rehype-katex'
+import { visit } from 'unist-util-visit'
+import { promoteDisplayMath } from '../content/markdownComponents'
+
+/**
+ * The strongest statement available short of a browser: run the notes through
+ * the same plugin chain the page uses and count what comes out. Before the
+ * transform, `/lecture/16` produced 171 `.katex` elements and zero
+ * `.katex-display` ones, which is why every display-equation rule in
+ * `index.css` was dead code and a 400-equation portion of the course was
+ * typeset as inline maths welded to the end of a sentence.
+ */
+function pipeline() {
+  return unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkMath)
+    .use(remarkRehype)
+    .use(rehypeKatex)
+}
+
+function countDisplayBlocks(markdown: string): number {
+  const processor = pipeline()
+  const tree = processor.runSync(processor.parse(promoteDisplayMath(markdown)))
+  let displays = 0
+  let inline = 0
+  visit(tree, (node) => {
+    const className = classesOf(node)
+    if (className.includes('katex-display')) displays++
+    else if (className[0] === 'katex') inline++
+  })
+  expect(displays + inline).toBeGreaterThan(0)
+  return displays
+}
+
+function countInlineMath(markdown: string): number {
+  let inline = 0
+  visit(pipeline().parse(promoteDisplayMath(markdown)), (node: { type: string }) => {
+    if (node.type === 'inlineMath') inline++
+  })
+  return inline
+}
+
+/**
+ * `visit` walks every hast node and most of them have no `properties`, so the
+ * narrowing lives here once rather than in each callback.
+ */
+function classesOf(node: unknown): string[] {
+  const className = (node as { properties?: Record<string, unknown> }).properties?.className
+  return Array.isArray(className) ? className.map(String) : []
+}
+
+const NOTES = join(__dirname, '..', '..', '..', 'content', 'lecture_notes')
+const read = (name: string): string => readFileSync(join(NOTES, name), 'utf8')
+
+describe('display equations survive the render', () => {
+  it('turns a one-line `$$` into a display block rather than inline maths', () => {
+    const md = 'Production function:\n$$Y = K^{1-\\alpha}$$'
+    const processor = pipeline()
+    const before = processor.runSync(processor.parse(md))
+    const after = processor.runSync(processor.parse(promoteDisplayMath(md)))
+    const displays = (tree: typeof before): number => {
+      let n = 0
+      visit(tree, (node) => {
+        if (classesOf(node).includes('katex-display')) n++
+      })
+      return n
+    }
+    expect(displays(before)).toBe(0)
+    expect(displays(after)).toBe(1)
+  })
+
+  it('keeps inline maths inline', () => {
+    // The transform must not swallow the `$...$` that runs through every
+    // paragraph of every note.
+    expect(countInlineMath('Growth in $A$ is $g_A$.')).toBe(2)
+  })
+
+  it('renders Lecture 5 as 7 display blocks, including its `cases` system', () => {
+    // The `\begin{cases}` system was the only equation in the notes already
+    // written in the fenced form, so it is the ground truth for "this is what
+    // a display block looks like here" — and the other six now match it.
+    expect(countDisplayBlocks(read('Lecture_5.md'))).toBe(7)
+  })
+
+  it('renders Lecture 16 as 35 display blocks, up from 0', () => {
+    expect(countDisplayBlocks(read('Lecture_16.md'))).toBe(35)
+  })
+
+  it('renders every lecture that writes a `$$` at all as display blocks', () => {
+    const files = readdirSync(NOTES).filter((name) => name.endsWith('.md'))
+    const empty: string[] = []
+    let total = 0
+    for (const file of files) {
+      const markdown = read(file)
+      if (!markdown.includes('$$')) continue
+      const displays = countDisplayBlocks(markdown)
+      total += displays
+      if (displays === 0) empty.push(file)
+    }
+    expect(empty).toEqual([])
+    // 434 blocks: the 433 one-line display equations across the 23 lectures
+    // that use them, plus the `\begin{cases}` system in Lecture 5, which was
+    // the only one the notes already wrote in the fenced form. Lectures 1 and
+    // 19 contain no `$$` at all and are not counted.
+    expect(total).toBe(434)
+  })
+
+  it('still counts 171 inline expressions on Lecture 16, plus 35 display ones', () => {
+    // The exact figure the browser measurement was taken from, so a change in
+    // the plugin chain that moved an equation between the two modes shows up
+    // here rather than only in a screenshot.
+    const processor = pipeline()
+    const tree = processor.runSync(processor.parse(promoteDisplayMath(read('Lecture_16.md'))))
+    let displays = 0
+    let inline = 0
+    visit(tree, (node) => {
+      const className = classesOf(node)
+      if (className.includes('katex-display')) displays++
+      else if (className[0] === 'katex') inline++
+    })
+    expect({ displays, inline }).toEqual({ displays: 35, inline: 171 })
+  })
+})

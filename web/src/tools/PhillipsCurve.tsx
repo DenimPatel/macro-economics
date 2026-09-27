@@ -1,15 +1,28 @@
 import { useState } from 'react'
-import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceDot, ComposedChart } from 'recharts'
+import {
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  ReferenceDot,
+  ReferenceLine,
+  ComposedChart,
+} from 'recharts'
 import { ChartLine, ChartScatter } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
-  SliderControl,
-  StatBox,
   Button,
   InfoBox,
+  SliderControl,
+  StatBox,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
+import { useHiddenSeries } from '../lib/chartSeries'
+import { ChartLegend } from '../components/ChartLegend'
 
 /** Each concept keeps one stable palette slot across every chart in this tool. */
 const TRADITIONAL_STROKE = chartColor(3)
@@ -24,14 +37,74 @@ const DECADE_1980S = chartColor(1)
 const DECADE_2000S = chartColor(6)
 const DECADE_2020S = chartColor(2)
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  expectedInflation: 2,
+  naturalUnemployment: 4.5,
+  philipsCurveAlpha: 1.0,
+  currentUnemployment: 5.0,
+  showTraditional: true,
+  showHistorical: true,
+  comparisonMode: false,
+}
+
 export default function PhillipsCurve() {
-  const [expectedInflation, setExpectedInflation] = useState(2)
-  const [naturalUnemployment, setNaturalUnemployment] = useState(4.5)
-  const [philipsCurveAlpha, setPhilipsCurveAlpha] = useState(1.0)
-  const [currentUnemployment, setCurrentUnemployment] = useState(5.0)
-  const [showTraditional, setShowTraditional] = useState(true)
-  const [showHistorical, setShowHistorical] = useState(true)
-  const [comparisonMode, setComparisonMode] = useState(false)
+  // The two `ReferenceDot`s on this chart — "Current Position" and the natural
+  // rate — are deliberately absent. A reference dot is an annotation on the
+  // plot, not a series with a data line behind it, and Recharts' `ReferenceDot`
+  // has no `hide` prop to give it: a legend row for one would be a focusable,
+  // clickable button that did nothing when pressed, which is the defect this
+  // legend exists to remove.
+  const phillips = useHiddenSeries(['traditional', 'expectations', 'lowExpectations', 'highExpectations'])
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
+const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInflation)
+const [naturalUnemployment, setNaturalUnemployment] = useState(DEFAULTS.naturalUnemployment)
+const [philipsCurveAlpha, setPhilipsCurveAlpha] = useState(DEFAULTS.philipsCurveAlpha)
+const [currentUnemployment, setCurrentUnemployment] = useState(DEFAULTS.currentUnemployment)
+const [showTraditional, setShowTraditional] = useState(DEFAULTS.showTraditional)
+const [showHistorical, setShowHistorical] = useState(DEFAULTS.showHistorical)
+const [comparisonMode, setComparisonMode] = useState(DEFAULTS.comparisonMode)
+
+  const { reset, dirty } = useToolReset(
+    {
+    expectedInflation: expectedInflation,
+    naturalUnemployment: naturalUnemployment,
+    philipsCurveAlpha: philipsCurveAlpha,
+    currentUnemployment: currentUnemployment,
+    showTraditional: showTraditional,
+    showHistorical: showHistorical,
+    comparisonMode: comparisonMode,
+    },
+    {
+      setExpectedInflation,
+      setNaturalUnemployment,
+      setPhilipsCurveAlpha,
+      setCurrentUnemployment,
+      setShowTraditional,
+      setShowHistorical,
+      setComparisonMode,
+    },
+    {
+      expectedInflation: DEFAULTS.expectedInflation,
+      naturalUnemployment: DEFAULTS.naturalUnemployment,
+      philipsCurveAlpha: DEFAULTS.philipsCurveAlpha,
+      currentUnemployment: DEFAULTS.currentUnemployment,
+      showTraditional: DEFAULTS.showTraditional,
+      showHistorical: DEFAULTS.showHistorical,
+      comparisonMode: DEFAULTS.comparisonMode,
+    },
+  )
 
   // Generate curve data points
   const generateCurveData = () => {
@@ -103,7 +176,7 @@ export default function PhillipsCurve() {
       />
 
       <div className="control-panel">
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-s-6 lg:grid-cols-2">
           <SliderControl
             label="Expected Inflation (π^e)"
             value={expectedInflation}
@@ -142,7 +215,7 @@ export default function PhillipsCurve() {
           />
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-4">
+        <div className="mt-s-6 flex flex-wrap gap-s-4">
           <Button
             onClick={() => setShowTraditional(!showTraditional)}
             variant={showTraditional ? 'primary' : 'secondary'}
@@ -164,7 +237,8 @@ export default function PhillipsCurve() {
         </div>
       </div>
 
-      <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <ToolControlBar onReset={reset} dirty={dirty} />
+      <div className="mb-s-8 grid grid-cols-2 gap-s-3 lg:grid-cols-4">
         <StatBox
           label="Current Unemployment"
           value={currentUnemployment.toFixed(1)}
@@ -190,7 +264,7 @@ export default function PhillipsCurve() {
         />
       </div>
 
-      <div className="mb-8">
+      <div className="mb-s-8">
         <InfoBox type="info">
           <strong>What's shown:</strong> The{' '}
           {showTraditional ? (
@@ -210,13 +284,14 @@ export default function PhillipsCurve() {
       </div>
 
       <div className="visualization-container">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           {showTraditional ? 'Traditional vs Expectations-Augmented Phillips Curves' : 'Phillips Curve Analysis'}
-        </h3>
+        </h2>
         <ResponsiveContainer width="100%" height={400}>
           <ComposedChart data={comparisonMode ? comparisonData : curveData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="unemployment"
               type="number"
               label={{
@@ -227,8 +302,10 @@ export default function PhillipsCurve() {
               }}
               domain={[0, 10]}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               label={{
                 value: 'Inflation Rate (%)',
                 angle: -90,
@@ -236,21 +313,32 @@ export default function PhillipsCurve() {
                 fill: chartTheme.axis.tick.fill,
               }}
               domain={[-3, 10]}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
+            {/* The zero baseline, and this is the chart it exists for. On a
+             * Phillips curve the sign of inflation is the question the whole
+             * tool asks — deflation against a positive rate is a different
+             * regime, not a lower point on the same one — and the y axis
+             * spans -3 to 10, so a reader was finding zero by eye among
+             * identical gridlines. `chartTheme.baseline` is a solid
+             * `--border-strong` line where `chartTheme.reference` is a
+             * dashed annotation: zero is a fact about the data, not a
+             * threshold somebody chose. */}
+            <ReferenceLine y={0} {...chartTheme.baseline} />
             <Tooltip
               {...chartTheme.tooltip}
               cursor={chartTheme.cursor}
               formatter={(value) => (typeof value === 'number' ? `${value.toFixed(2)}%` : value)}
               labelFormatter={(label) => `Unemployment: ${label.toFixed(1)}%`}
             />
-            <Legend {...chartTheme.legend} />
 
             {showTraditional ? (
               <>
                 <ChartLine
                   type="monotone"
                   dataKey="traditional"
+                  hide={phillips.isHidden('traditional')}
                   stroke={TRADITIONAL_STROKE}
                   name="Traditional PC (1960s)"
                   strokeWidth={2}
@@ -259,6 +347,7 @@ export default function PhillipsCurve() {
                 <ChartLine
                   type="monotone"
                   dataKey="expectations"
+                  hide={phillips.isHidden('expectations')}
                   stroke={EXPECTATIONS_STROKE}
                   name="Expectations-Augmented PC"
                   strokeWidth={2}
@@ -271,6 +360,7 @@ export default function PhillipsCurve() {
                 <ChartLine
                   type="monotone"
                   dataKey="expectations"
+                  hide={phillips.isHidden('expectations')}
                   stroke={EXPECTATIONS_STROKE}
                   name={`Phillips Curve (π^e = ${expectedInflation.toFixed(1)}%)`}
                   strokeWidth={3}
@@ -281,6 +371,7 @@ export default function PhillipsCurve() {
                     <ChartLine
                       type="monotone"
                       dataKey="lowExpectations"
+                    hide={phillips.isHidden('lowExpectations')}
                       stroke={LOW_EXPECTATIONS_STROKE}
                       name="Low Expectations (π^e - 2%)"
                       strokeWidth={2}
@@ -290,6 +381,7 @@ export default function PhillipsCurve() {
                     <ChartLine
                       type="monotone"
                       dataKey="highExpectations"
+                    hide={phillips.isHidden('highExpectations')}
                       stroke={HIGH_EXPECTATIONS_STROKE}
                       name="High Expectations (π^e + 2%)"
                       strokeWidth={2}
@@ -344,31 +436,46 @@ export default function PhillipsCurve() {
             )}
           </ComposedChart>
         </ResponsiveContainer>
+        <ChartLegend
+          items={[
+            { key: 'traditional', label: 'Traditional PC (1960s)', color: TRADITIONAL_STROKE },
+            {
+              key: 'expectations',
+              label: `Phillips Curve (π^e = ${expectedInflation.toFixed(1)}%)`,
+              color: EXPECTATIONS_STROKE,
+            },
+            { key: 'lowExpectations', label: 'Low Expectations (π^e - 2%)', color: LOW_EXPECTATIONS_STROKE },
+            { key: 'highExpectations', label: 'High Expectations (π^e + 2%)', color: HIGH_EXPECTATIONS_STROKE },
+          ]}
+          hidden={phillips.hidden}
+          onToggle={phillips.toggle}
+          onShowAll={phillips.showAll}
+        />
       </div>
 
       {showHistorical && (
-        <div className="mt-6 rounded-card border border-tier-intermediate/30 bg-tier-intermediate/5 p-4">
-          <p className="mb-2 text-sm text-fg">
+        <div className="mt-s-6 rounded-card border border-tier-intermediate/30 bg-tier-intermediate/5 p-s-4">
+          <p className="mb-s-2 text-sm text-fg">
             <strong>Historical Periods:</strong>
           </p>
-          <div className="flex flex-wrap gap-6 text-sm">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-wrap gap-s-6 text-sm">
+            <div className="flex items-center gap-s-2">
               <div className="h-3 w-3 rounded-sm bg-tier-case" />
               <span>1960s: Stable trade-off</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-s-2">
               <div className="h-3 w-3 rounded-sm bg-tier-advanced" />
               <span>1970s: Stagflation</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-s-2">
               <div className="h-3 w-3 rounded-sm bg-tier-beginner" />
               <span>1980s: Disinflation</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-s-2">
               <div className="h-3 w-3 rounded-sm bg-tier-intermediate" />
               <span>2000s: Great Moderation</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-s-2">
               <div className="h-3 w-3 rounded-sm bg-accent" />
               <span>2020s: Post-pandemic</span>
             </div>
@@ -376,7 +483,7 @@ export default function PhillipsCurve() {
         </div>
       )}
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-3">
+      <div className="mt-s-8 grid gap-s-6 lg:grid-cols-3">
         <InfoBox type="info">
           <strong>The Phillips Curve Trade-Off</strong>
           <p>In the 1960s, economist A.W. Phillips found an inverse relationship: lower unemployment led to higher inflation. Policy makers thought they could choose points on this curve to maximize employment or minimize inflation.</p>

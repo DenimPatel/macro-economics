@@ -1,14 +1,18 @@
 import { useState } from 'react'
-import { ScatterChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts'
+import { ScatterChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts'
 import { ChartLine, ChartScatter } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
+  InfoBox,
   SliderControl,
   StatBox,
-  InfoBox,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
-import { chartTheme, chartColor } from '../design/chartTheme'
+import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { useToolReset } from '../lib/toolReset'
+import { useHiddenSeries } from '../lib/chartSeries'
+import { ChartLegend } from '../components/ChartLegend'
 
 /**
  * PhillipsCurveTradeOff Component
@@ -35,15 +39,53 @@ interface ChartData {
   originalCurve?: number
 }
 
+/**
+ * One copy of this tool's starting values.
+ *
+ * The `useState` calls below read from it, so a default that is revised
+ * here cannot leave "Reset to defaults" returning to a number the tool no
+ * longer opens at — the failure mode of the five hand-written resets this
+ * replaced, each of which re-typed every default in a second list.
+ */
+const DEFAULTS = {
+  expectedInflation: 2.0,
+  naturalUnemployment: 4.5,
+  showAnnotations: true,
+}
+
 export default function PhillipsCurveTradeOff() {
+  const tradeoff = useHiddenSeries(['original', 'current', 'historical', 'equilibrium'])
+  // Re-renders the tool when the reader changes the text size, so that the
+  // axis `key` inside `chartTheme.axis` / `chartTheme.yAxis` is re-read and
+  // Recharts re-measures its tick labels. Recharts measures them once, in
+  // `componentDidMount`, and there is no other way to refresh that number.
+  useChartTextScaleSignal()
   // Control parameters
-  const [expectedInflation, setExpectedInflation] = useState(2.0)
+const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInflation)
   const [supplyShock, setSupplyShock] = useState(0) // Percentage point shift
-  const [naturalUnemployment, setNaturalUnemployment] = useState(4.5)
+const [naturalUnemployment, setNaturalUnemployment] = useState(DEFAULTS.naturalUnemployment)
   const [demandShock, setDemandShock] = useState(0) // Shifts IS curve, affects unemployment
   const [phillipsSensitivity, setPhillipsSensitivity] = useState(0.5) // α coefficient
   const [historicalMode, setHistoricalMode] = useState<'modern' | 'pre1970' | 'stagflation'>('modern')
-  const [showAnnotations, setShowAnnotations] = useState(true)
+const [showAnnotations, setShowAnnotations] = useState(DEFAULTS.showAnnotations)
+
+  const { reset, dirty } = useToolReset(
+    {
+    expectedInflation: expectedInflation,
+    naturalUnemployment: naturalUnemployment,
+    showAnnotations: showAnnotations,
+    },
+    {
+      setExpectedInflation,
+      setNaturalUnemployment,
+      setShowAnnotations,
+    },
+    {
+      expectedInflation: DEFAULTS.expectedInflation,
+      naturalUnemployment: DEFAULTS.naturalUnemployment,
+      showAnnotations: DEFAULTS.showAnnotations,
+    },
+  )
 
   // Supply shock parameters (oil shocks, cost-push factors)
   // Higher supply shocks shift Phillips Curve up
@@ -195,10 +237,12 @@ export default function PhillipsCurveTradeOff() {
         badge="intermediate"
       />
 
-      <div className="mb-8 grid gap-8 lg:grid-cols-2">
+      <ToolControlBar onReset={reset} dirty={dirty} />
+
+      <div className="mb-s-8 grid gap-s-8 lg:grid-cols-2">
         {/* Control Panel */}
         <div className="control-panel block">
-          <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">Controls</h3>
+          <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Controls</h2>
 
           <SliderControl
             label="Expected Inflation Rate"
@@ -248,16 +292,16 @@ export default function PhillipsCurveTradeOff() {
             onChange={setPhillipsSensitivity}
           />
 
-          <div className="mt-6">
-            <span className="control-label mb-2 block">Historical Period</span>
-            <div className="flex flex-wrap gap-2">
+          <div className="mt-s-6">
+            <span className="control-label mb-s-2 block">Historical Period</span>
+            <div className="flex flex-wrap gap-s-2">
               {(['modern', 'pre1970', 'stagflation'] as const).map((mode) => (
                 <button
                   key={mode}
                   type="button"
                   onClick={() => setHistoricalMode(mode)}
                   aria-pressed={historicalMode === mode}
-                  className={`rounded-pill px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`rounded-pill px-s-4 py-s-2 text-sm font-medium transition-colors ${
                     historicalMode === mode
                       ? 'bg-accent text-accent-fg'
                       : 'bg-surface text-fg-muted hover:border-accent'
@@ -271,7 +315,7 @@ export default function PhillipsCurveTradeOff() {
             </div>
           </div>
 
-          <div className="mt-4 flex items-center gap-2">
+          <div className="mt-s-4 flex items-center gap-s-2">
             <input
               type="checkbox"
               id="annotations"
@@ -286,7 +330,7 @@ export default function PhillipsCurveTradeOff() {
         </div>
 
         {/* Key Statistics */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-s-3">
           <StatBox
             label="Current Unemployment"
             value={`${equilibrium.unemployment.toFixed(2)}%`}
@@ -334,10 +378,10 @@ export default function PhillipsCurveTradeOff() {
       </div>
 
       {/* Main Chart */}
-      <div className="visualization-container mb-8">
-        <h3 className="mb-4 text-lg font-semibold tracking-tight text-fg">
+      <div className="visualization-container mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Phillips Curve {historicalMode === 'modern' ? '(Modern)' : ''}
-        </h3>
+        </h2>
 
         <ResponsiveContainer width="100%" height={400}>
           <ScatterChart
@@ -346,6 +390,7 @@ export default function PhillipsCurveTradeOff() {
           >
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
+              key={chartTheme.axisKey('x')}
               dataKey="unemployment"
               name="Unemployment Rate (%)"
               label={{
@@ -356,8 +401,10 @@ export default function PhillipsCurveTradeOff() {
               }}
               domain={[Math.max(1, naturalUnemployment - 4), naturalUnemployment + 4]}
               {...chartTheme.axis}
+              includeHidden
             />
             <YAxis
+              key={chartTheme.axisKey('y')}
               dataKey="inflation"
               name="Inflation Rate (%)"
               label={{
@@ -367,8 +414,14 @@ export default function PhillipsCurveTradeOff() {
                 fill: chartTheme.axis.tick.fill,
               }}
               domain={[-2, 12]}
-              {...chartTheme.axis}
+              {...chartTheme.yAxis}
+              includeHidden
             />
+            {/* Zero inflation, for the same reason as the Phillips curve
+             * chart, and more sharply here: this tool's scenarios include
+             * explicit DEFLATION shocks, so the reader is being asked to read
+             * a sign off this axis. */}
+            <ReferenceLine y={0} {...chartTheme.baseline} />
 
             <Tooltip
               {...chartTheme.tooltip}
@@ -378,13 +431,13 @@ export default function PhillipsCurveTradeOff() {
               }
             />
 
-            <Legend {...chartTheme.legend} />
 
             {/* Original Phillips Curve (without supply shocks) */}
             {supplyShock !== 0 && (
               <ChartLine
                 type="monotone"
                 dataKey="originalCurve"
+                hide={tradeoff.isHidden('original')}
                 stroke={chartTheme.axis.stroke}
                 strokeDasharray="5 5"
                 name="Original Curve (no shock)"
@@ -395,6 +448,7 @@ export default function PhillipsCurveTradeOff() {
             <ChartLine
               type="monotone"
               dataKey="inflation"
+              hide={tradeoff.isHidden('current')}
               stroke={chartColor(0)}
               strokeWidth={2}
               name="Phillips Curve"
@@ -404,6 +458,7 @@ export default function PhillipsCurveTradeOff() {
             {/* Historical data points */}
             {historicalData.length > 0 && (
               <ChartScatter
+                hide={tradeoff.isHidden('historical')}
                 name={`Historical Data (${historicalMode})`}
                 data={historicalData.map((p) => ({
                   unemployment: p.unemployment,
@@ -416,6 +471,7 @@ export default function PhillipsCurveTradeOff() {
 
             {/* Current equilibrium point */}
             <ChartScatter
+              hide={tradeoff.isHidden('equilibrium')}
               name="Current Equilibrium"
               data={[{ unemployment: equilibrium.unemployment, inflation: equilibrium.inflation }]}
               fill={chartColor(4)}
@@ -447,6 +503,17 @@ export default function PhillipsCurveTradeOff() {
             />
           </ScatterChart>
         </ResponsiveContainer>
+        <ChartLegend
+          items={[
+            { key: 'original', label: 'Original Curve (no shock)', color: chartTheme.axis.stroke },
+            { key: 'current', label: 'Phillips Curve', color: chartColor(0) },
+            { key: 'historical', label: `Historical Data (${historicalMode})`, color: chartColor(2) },
+            { key: 'equilibrium', label: 'Current Equilibrium', color: chartColor(4) },
+          ]}
+          hidden={tradeoff.hidden}
+          onToggle={tradeoff.toggle}
+          onShowAll={tradeoff.showAll}
+        />
 
         {showAnnotations && (
           <ToolNote label="Annotation" variant="info" title="Current Movement">
@@ -456,7 +523,7 @@ export default function PhillipsCurveTradeOff() {
       </div>
 
       {/* Explanation Sections */}
-      <div className="mb-8 grid gap-4 lg:grid-cols-2">
+      <div className="mb-s-8 grid gap-s-4 lg:grid-cols-2">
         <InfoBox
           title="Phillips Curve Equation"
           content={`

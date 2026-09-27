@@ -86,7 +86,7 @@ We simplify the financial system to **two assets**:
 - **Characteristics**:
     - Pay **positive interest** ($i > 0$).
     - **Cannot** be used directly for transactions.
-- **Example**: One-year US Treasury bill (buy for $95, receive $100 in one year → 5.3% return).
+- **Example**: One-year US Treasury bill (buy for \$95, receive \$100 in one year → 5.3% return).
 - **Advantage**: Earn return.
 - **Disadvantage**: Illiquid (must sell bond to get cash for transactions).
 
@@ -125,7 +125,7 @@ $$\frac{\partial M^d}{\partial i} < 0$$
 
 **Graphical Representation**: Downward-sloping money demand curve in ($M$, $i$) space.
 
-#### 2. Nominal Income ($\$Y = P \times Y$): Shifts Curve
+#### 2. Nominal Income (\$$Y = P \times Y$): Shifts Curve
 
 $$\frac{\partial M^d}{\partial \$Y} > 0$$
 
@@ -139,13 +139,13 @@ $$\frac{\partial M^d}{\partial \$Y} > 0$$
 **Example 2** (Prices double, real output fixed):
 - Same real transactions, but prices 2x higher → Need 2x more dollars to conduct same transactions.
 
-**Conclusion**: Money demand depends on **nominal** income ($\$Y = P \times Y$), not just real income ($Y$), because money is denominated in **dollars**.
+**Conclusion**: Money demand depends on **nominal** income (\$$Y = P \times Y$), not just real income ($Y$), because money is denominated in **dollars**.
 
 ### Money Demand Diagram
 
 - **Axes**: Money ($M$) on horizontal, Interest rate ($i$) on vertical.
 - **Curve**: Downward-sloping (higher $i$ → lower $M^d$).
-- **Shifts**: $\uparrow \$Y$ shifts curve **right** (for any given $i$, demand more money).
+- **Shifts**: \$$\uparrow Y$ shifts curve **right** (for any given $i$, demand more money).
 
 ## 5. Equilibrium Interest Rate (Simple Model: No Banks)
 
@@ -229,8 +229,8 @@ $$M^s = M^d$$
 ### Nominal Income Growth → Rightward Shift in $M^d$
 
 **Typical Year**:
-- **Inflation**: ~2% → $P \uparrow$ → $\$Y \uparrow$.
-- **Real Growth**: ~2% → $Y \uparrow$ → $\$Y \uparrow$.
+- **Inflation**: ~2% → $P \uparrow$ → \$$Y \uparrow$.
+- **Real Growth**: ~2% → $Y \uparrow$ → \$$Y \uparrow$.
 - **Combined**: Nominal income grows ~4% → $M^d$ shifts **right** by ~4%.
 
 **Implication**: If Fed wants to **maintain** the interest rate at $i^*$:
@@ -365,7 +365,7 @@ $$H = \text{Currency} + \text{Reserves}$$
 ### Reserve Requirements
 
 **Definition**: Banks must hold a **fraction** ($\theta$) of their deposits as reserves at the central bank.
-- **Example**: $\theta = 0.1$ (10%) → For every $100 in deposits, bank must hold $10 in reserves.
+- **Example**: $\theta = 0.1$ (10%) → For every \$100 in deposits, bank must hold \$10 in reserves.
 
 **Purpose**: Regulatory requirement—ensures banks have liquidity to meet withdrawal demands.
 
@@ -373,12 +373,12 @@ $$H = \text{Currency} + \text{Reserves}$$
 
 **Assumption** (Simplified): No one holds currency—all money is in checking accounts.
 
-**Money Demand**: $M^d = L(\$Y, i)$ (same as before).
+**Money Demand**: $M^d = L($\$$Y, i$ (same as before).
 
 **Reserve Demand**: Banks demand reserves to back deposits.
 $$R^d = \theta \times M^d$$
 
-**Example**: If $M^d = \$1,000 \text{ billion}$ and $\theta = 0.1$:
+**Example**: If \$$M^d = 1,000 \text{ billion}$ and $\theta = 0.1$:
 $$R^d = 0.1 \times \$1,000 \text{B} = \$100 \text{ billion}$$
 
 **Demand for Central Bank Money**:
@@ -415,7 +415,7 @@ $$\frac{H^s}{\theta} = L(\$Y, i)$$
 - This overnight lending market is active every night (huge volume of transactions).
 
 **Example**:
-- Bank A has $10 million in deposits, needs $1 million in reserves ($\theta = 0.1$), but only has $0.8 million → **Borrows** $0.2 million overnight.
+- Bank A has \$10 million in deposits, needs \$1 million in reserves ($\theta = 0.1$), but only has \$0.8 million → **Borrows** \$0.2 million overnight.
 - Bank B has excess reserves → **Lends** $0.2 million to Bank A at the Federal Funds Rate.
 
 ### Fed's Control Over the Federal Funds Rate
@@ -471,9 +471,9 @@ $$\frac{H^s}{\theta} = L(\$Y, i)$$
 ### Key Concepts
 
 1. **Two Assets**: Money (liquid, zero return) vs. Bonds (illiquid, positive return).
-2. **Money Demand**: $M^d = L(\$Y, i)$.
+2. **Money Demand**: $M^d = L($\$$Y, i$.
     - $\frac{\partial M^d}{\partial i} < 0$ (downward-sloping curve).
-    - $\frac{\partial M^d}{\partial \$Y} > 0$ (shifts curve right).
+    - $\frac{\partial M^d}{\partial}$ \$$Y$ $> 0$ (shifts curve right).
 3. **Equilibrium Interest Rate**: Determined by $M^s = M^d$ (or $H^s = H^d$ with banks).
 4. **Monetary Policy**:
     - **Expansionary**: $\uparrow M$ (or $\uparrow H$) → $\downarrow i$.

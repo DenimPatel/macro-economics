@@ -412,7 +412,7 @@ Before: Assets: Bonds    After: Assets: More Bonds
   - Mortgage-backed securities
   - Corporate bonds (investment grade)
   - "Fallen angels" bonds
-- Balance sheet expansion: ~$4 trillion → ~$9 trillion
+- Balance sheet expansion: ~\$4 trillion → ~\$9 trillion
 
 ### Fiscal Policy Response
 

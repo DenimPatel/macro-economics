@@ -33,9 +33,9 @@ This lecture establishes the formal definitions of key macroeconomic variables: 
 
 We use a **simple two-firm economy** to illustrate:
 - **Firm 1 (Steel Company)**: Revenue from sales = $100.
-- **Firm 2 (Car Company)**: Buys steel for $100, sells cars for $200.
+- **Firm 2 (Car Company)**: Buys steel for \$100, sells cars for \$200.
 
-**Question**: What is GDP? Is it $300 (sum of all revenues) or $200 (final goods only)?
+**Question**: What is GDP? Is it \$300 (sum of all revenues) or \$200 (final goods only)?
 
 **Answer**: GDP = $200 (final goods only). Here's why, shown three ways:
 
@@ -60,9 +60,9 @@ $$\text{GDP} = \text{Value of final goods and services produced}$$
 $$\text{GDP} = \sum \text{Value Added by all firms}$$
 
 **Value Added**: Revenue minus cost of intermediate inputs.
-- **Steel Company**: Value Added = $100 - $0 = $100 (no intermediate inputs).
-- **Car Company**: Value Added = $200 - $100 = $100 (revenue minus steel purchases).
-- **Total GDP** = $100 + $100 = $200.
+- **Steel Company**: Value Added = \$100 - \$0 = \$100 (no intermediate inputs).
+- **Car Company**: Value Added = \$200 - \$100 = \$100 (revenue minus steel purchases).
+- **Total GDP** = \$100 + \$100 = \$200.
 
 **Key Insight**: Value Added approach avoids double counting by subtracting intermediate inputs at each stage.
 
@@ -75,9 +75,9 @@ $$\text{GDP} = \text{Sum of all incomes earned in the economy}$$
 3. **Taxes** (in realistic economies).
 
 **In our example**:
-- **Wages**: Steel workers ($80) + Car workers ($70) = $150.
-- **Profits**: Steel company ($20) + Car company ($30) = $50.
-- **Total GDP** = $150 + $50 = $200.
+- **Wages**: Steel workers (\$80) + Car workers (\$70) = \$150.
+- **Profits**: Steel company (\$20) + Car company (\$30) = \$50.
+- **Total GDP** = \$150 + \$50 = \$200.
 
 **Fundamental Identity (Closed Economy)**:
 $$\text{Production} = \text{Income}$$
@@ -106,7 +106,7 @@ $$\text{Production} = \text{Income}$$
 
 ### Definitions
 
-#### Nominal GDP ($\$Y$)
+#### Nominal GDP (\$$Y$)
 $$\text{Nominal GDP}_t = \sum_{i} P_{it} \times Q_{it}$$
 
 - $P_{it}$: Current price of good $i$ in year $t$.
@@ -132,12 +132,12 @@ $$\text{Real GDP}_t = \sum_{i} P_{i,\text{base}} \times Q_{it}$$
 | 2013 | 13             | $26,000       | $338,000    | $312,000             |
 
 **Calculations**:
-- **Nominal GDP (2011)**: $10 \times 20,000 = \$200,000$.
-- **Real GDP (2011)**: $10 \times 24,000 = \$240,000$ (using 2012 prices).
-- **Nominal GDP (2012)**: $12 \times 24,000 = \$288,000$.
-- **Real GDP (2012)**: $12 \times 24,000 = \$288,000$ (**equal** because 2012 is the base year).
-- **Nominal GDP (2013)**: $13 \times 26,000 = \$338,000$.
-- **Real GDP (2013)**: $13 \times 24,000 = \$312,000$ (using 2012 prices).
+- **Nominal GDP (2011)**: \$10 × 20,000 = \$200,000
+- **Real GDP (2011)**: \$10 × 24,000 = \$240,000 (using 2012 prices).
+- **Nominal GDP (2012)**: \$12 × 24,000 = \$288,000
+- **Real GDP (2012)**: \$12 × 24,000 = \$288,000 (**equal** because 2012 is the base year).
+- **Nominal GDP (2013)**: \$13 × 26,000 = \$338,000
+- **Real GDP (2013)**: \$13 × 24,000 = \$312,000 (using 2012 prices).
 
 **Observations**:
 1. **Base Year Property**: Nominal GDP = Real GDP in the base year (2012).
@@ -151,7 +151,7 @@ $$\text{Real GDP}_t = \sum_{i} P_{i,\text{base}} \times Q_{it}$$
 **Key Insight**: Always use **Real GDP** when analyzing economic growth. Nominal GDP is misleading, especially over long periods or in high-inflation countries (e.g., Argentina: chronic recession but nominal GDP "exploding" due to 10,000%+ inflation).
 
 ### Convention in This Course
-- **$\$Y$**: Nominal GDP (with dollar sign).
+- **\$$Y$**: Nominal GDP (with dollar sign).
 - **$Y$**: Real GDP (no dollar sign).
 - **First Part of Course (up to Quiz 1)**: Prices fixed → focus on Real GDP.
 
@@ -323,7 +323,7 @@ $$\pi_t^{\text{CPI}} = \frac{\text{CPI}_t - \text{CPI}_{t-1}}{\text{CPI}_{t-1}} 
 ### Key Definitions
 1. **GDP**: Total value of final goods and services produced in an economy during a period.
     - **Three Methods**: Final goods, value added, income (all equivalent).
-2. **Nominal GDP**: Measured using current prices ($\$Y$).
+2. **Nominal GDP**: Measured using current prices (\$$Y$).
 3. **Real GDP**: Measured using constant (base year) prices ($Y$).
     - **Use Real GDP** for growth analysis.
 4. **Unemployment Rate**: $u = \frac{\text{Unemployed}}{\text{Labor Force}}$.

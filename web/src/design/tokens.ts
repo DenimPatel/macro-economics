@@ -78,19 +78,72 @@ export const TIER_META: Record<Tier, TierMeta> = {
 
 export const TIER_ORDER: Tier[] = ['beginner', 'intermediate', 'advanced', 'case-study']
 
+/** A resolved theme, as opposed to the `'light' | 'dark' | 'system'` pref. */
+export type Theme = 'light' | 'dark'
+
 /**
- * Categorical palette for multi-series charts. Unchanged by the visual
- * redesign: it was already contrast-vetted and distinct, and chart series are
- * a different problem from the tier ramp. Every value clears 3:1 against both
- * the light surface (#ffffff) and the dark surface (#11151c), since chart
- * strokes are non-text UI.
+ * Browser-chrome tint per theme, for `<meta name="theme-color">`. Kept in
+ * step with the `--c-bg-ch` values in `index.css`; a stale value here shows
+ * up as a wrong-coloured mobile address bar.
+ *
+ * These are hex because they are read by the browser rather than by CSS, so
+ * they cannot come from a `-ch` channel var. `index.html` restates the same
+ * two strings in its pre-module no-flash script, and
+ * `tests/preferences.test.ts` fails if the two ever drift.
+ */
+export const THEME_COLOR: Record<Theme, string> = {
+  light: '#f7f8fa',
+  dark: '#090c11',
+}
+
+/**
+ * Categorical palette for multi-series charts: seven fixed values, because a
+ * series that changed colour when the theme changed would be a different
+ * series. The only rule is that every one of them stays legible on every
+ * surface a chart is actually drawn on, in both themes.
+ *
+ * The seven are series *slots*, not an ordinal ramp: index 0 is the series a
+ * reader is meant to be looking at, 1-6 are the rest, so the order is a
+ * convention and not a scale. `chartColor` wraps the array so a tool never
+ * reaches into it, and it wraps rather than modding because the comment on
+ * the export is the thing that says what the order means.
+ *
+ * Measured, and asserted in `tests/charts.test.tsx`, as contrast against the
+ * four planes a chart is drawn on — the light card, the light plot well (the
+ * canvas, which is `--plot-bg`), the dark card, and the dark plot well:
+ *
+ *   0  #0369a1  5.93 : 5.43 : 3.08 : 3.30
+ *   1  #0d9488  3.74 : 3.43 : 4.89 : 5.23
+ *   2  #b45309  5.02 : 4.60 : 3.64 : 3.90
+ *   3  #7c3aed  5.70 : 5.21 : 3.21 : 3.44
+ *   4  #c91340  5.75 : 5.26 : 3.18 : 3.40   was #be123c, which measured 2.91:1
+ *                                              on the dark card: the one value
+ *                                              that did not clear the 3:1 it
+ *                                              claimed, lifted 15/255 in
+ *                                              luminance with its hue and
+ *                                              saturation untouched
+ *   5  #4d7c0f  4.99 : 4.57 : 3.66 : 3.92
+ *   6  #0e7490  5.36 : 4.90 : 3.41 : 3.66
+ *
+ * That is the contract, and it is now true of all seven. On `--c-surface-2`
+ * in dark (2.63-4.16) four of the seven fall below 3:1; nothing on the site
+ * draws a chart on a `surface-2` plate, and the plot well in `index.css` is
+ * the colour a chart would be measured against if one ever did.
+ *
+ * What the contract does not buy is pairwise separation, and it cannot:
+ * every value that clears 3:1 on the canvas has to sit inside a narrow band
+ * of relative luminance, and a band that narrow cannot also separate seven
+ * values from each other. Fifteen of the twenty-one pairs are within 1.2:1
+ * of each other in luminance and are told apart by hue, by the name in the
+ * legend and the name in the tooltip. That number is asserted rather than
+ * hidden, and it was thirteen before the one correction above.
  */
 export const SERIES_COLORS = [
   '#0369a1',
   '#0d9488',
   '#b45309',
   '#7c3aed',
-  '#be123c',
+  '#c91340',
   '#4d7c0f',
   '#0e7490',
 ] as const
