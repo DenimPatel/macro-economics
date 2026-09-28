@@ -210,13 +210,14 @@ describe('promoteDisplayMath', () => {
     // expressions — 392 welded to the end of the sentence above, 33 centred
     // nowhere, and 8 rendered as monospace LaTeX source.
     //
-    // 437 now, and the four are the Gordon derivation in Lecture 23: the
-    // infinite sum reached a closed form the lecture had never carried, and
-    // every step of it is a display equation. A pinned total is only a useful
+    // 437, then 439: Lecture 24 gained the general term of the machine-EPDV
+    // sum, which the section had stated as a rule under the equation rather
+    // than as the equation, and Lecture 23 gained the exact Fisher relation
+    // behind "the two routes agree". A pinned total is only a useful
     // guard if it moves when a lecture legitimately gains an equation, so the
     // invariant to watch is the one above this line — a fenced block per
     // equation, at the margin, with a blank line either side.
-    expect(promoted).toBe(437)
+    expect(promoted).toBe(439)
   })
 
   it('leaves exactly the two sentence-shaped equations in Lecture 10', () => {

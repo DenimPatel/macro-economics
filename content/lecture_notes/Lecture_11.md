@@ -1,9 +1,26 @@
 # Lecture 11: The IS-LM-PC Model
 
 ## Overview
+
+```summary
+- The IS-LM-PC model integrates the IS-LM framework (short run) with the Phillips Curve (medium run)
+- It analyzes not only the immediate impact of policies and shocks, but their dynamics over time
+- Short-run and medium-run effects are kept distinct instead of being run together
+- It is the central workhorse model for business cycle fluctuations and for monetary policy
+```
 This lecture introduces the IS-LM-PC model, which integrates the IS-LM framework (short run) with the Phillips Curve (medium run). This unified model allows us to analyze not only the immediate impact of policies and shocks but also their dynamics over time, distinguishing between short-run and medium-run effects. It is the central workhorse model for understanding business cycle fluctuations and monetary policy.
 
 ## Current Events: The Collapse of Silicon Valley Bank (SVB)
+
+```summary
+- On March 10, 2023 the FDIC shut down SVB, the 16th largest US bank by assets ($209 billion) — the largest failure since Washington Mutual in 2008, and a classic bank run
+- Tech clients withdrew deposits through 2022, while a balance sheet doubled in 2020-2021 sat in 10-year Treasuries bought near zero rates: about $80 billion of unrealized losses once the Fed hiked
+- Held-to-maturity accounting kept those losses off the books until withdrawals forced sales that realized $1.8 billion and a $2.25 billion equity raise
+- About 95% of deposits exceeded the $250,000 FDIC limit and sat in large business accounts; withdrawals topped $42 billion in a day, and VC firms ordering their portfolios out made the run self-fulfilling
+- The response went straight at the mechanism: the FDIC's systemic-risk exception guaranteed every deposit, and the BTFP let banks pledge securities at par rather than market value, removing the need for fire sales
+- Oversight had stepped aside first: the 2018 rollback raised the stress-test threshold to $250 billion, so SVB at $209 billion slipped below it, and duration risk went unhedged
+- In IS-LM terms the crisis raised the risk premium $x$, shifting IS left; the Fed can offset by cutting its policy rate to hold $i + x$ constant, and expectations of the March 22 hike fell from above 40 basis points to 15
+```
 
 ### Background
 On March 10, 2023, Silicon Valley Bank (SVB), the 16th largest bank in the US by asset size ($209 billion), was shut down by the FDIC following a classic bank run. This was the largest bank failure since Washington Mutual during the 2008 Global Financial Crisis.
@@ -93,6 +110,16 @@ On March 10, 2023, Silicon Valley Bank (SVB), the 16th largest bank in the US by
 
 ## The IS-LM-PC Model: Structure and Components
 
+```summary
+- IS-LM pins prices in the short run and is silent about inflation; the Phillips Curve supplies the medium run, linking output to inflation dynamics and to the adjustment between short-run and medium-run equilibrium
+- **IS** is written in the real rate $r$ rather than the nominal rate $i$: higher $r$ means lower investment and lower output, so the curve slopes down in $(r, Y)$ space
+- **LM** is now a rule, $r = \bar{r}$, and is horizontal: the Fed hits its real-rate target by choosing the nominal rate against expected inflation
+- **PC** in output form: substituting the output gap for unemployment gives $\pi_t - \pi^e_t = \lambda(Y_t - Y_n)$ with $\lambda = \alpha / L$
+- It slopes up in $(Y, \pi)$ space — more output means less unemployment, then wage pressure, then price pressure — and the sign of the gap fixes the direction: above potential inflation runs above expectations, below potential below
+- **The natural rate $r_n$** is the real rate that clears the goods market at full employment, defined implicitly by solving the IS equation at $Y = Y_n$
+- It is set by real factors, not policy — productivity growth, saving preferences, fiscal policy, demographics, investment opportunities — so $r > r_n$ is tight and $r < r_n$ is loose, and the Fed can only estimate this unobservable, time-varying target
+```
+
 ### 1. Motivation for the Model
 
 #### What IS-LM Tells Us (Short Run)
@@ -173,6 +200,16 @@ $r_n$ is determined by real factors (not monetary policy):
 
 ## The IS-LM-PC Model: Dynamics and Equilibrium
 
+```summary
+- Short-run equilibrium is the IS-LM intersection: the Fed's chosen $\bar{r}$ picks the point on the IS curve, and the Phillips Curve then says whether inflation at that output is rising, stable or falling
+- The overheating case: $\bar{r} < r_n$ puts output at $Y_1 > Y_n$, and $\pi_1 - \pi^e = \lambda(Y_1 - Y_n) > 0$, so inflation is accelerating
+- A gap that persists is a mandate problem — the Fed cannot tolerate it against its 2% target, so $r$ has to be moved back toward $r_n$
+- The adjustment runs in sequence: hike $\bar{r}$, output slides down the IS curve, the rise in inflation slows, and the Fed stops at $r = r_n$ with $Y = Y_n$ and $\pi = \pi^e$
+- In the two-panel picture the LM line shifts up to $r_n$, output falls from $Y_1$ to $Y_n$, and the Phillips Curve path carries $\pi - \pi^e$ down to zero at the vertical line through $Y_n$
+- **Short run**: weeks to months, prices sticky, monetary policy fully effective, and the endogenous variables are output and the real rate
+- **Medium run**: quarters to a few years, potential output, $u_n$ and $r_n$ set by supply-side factors, monetary policy neutral on real variables while inflation does the adjusting
+```
+
 ### 1. Short-Run Equilibrium
 
 #### Determining Output
@@ -237,6 +274,16 @@ $r_n$ is determined by real factors (not monetary policy):
 
 ## The Role of Inflation Expectations
 
+```summary
+- Two rules for expectations: **adaptive**, $\pi^e_t = \pi_{t-1}$, is backward-looking and creates inflation inertia; **anchored**, $\pi^e_t = \bar{\pi}$, rests on the credibility of the central bank and holds expected inflation at target
+- Anchoring is worth a great deal: easier stabilization, a lower sacrifice ratio, and real rates that tighten on their own when inflation rises, so shocks can be met without a deep recession
+- Worked example at $\pi^e = 2\%$: from $\pi = 9\%$, a 200bp hike from $r = -1\%$ to $r_n = 1\%$ brings $Y$ back to $Y_n$ and inflation to 2%, with only slower growth, never negative growth
+- Under adaptive expectations $\pi^e$ is 9% as well, so setting $r = r_n$ leaves inflation at 9%; reaching 2% needs an output gap of $-7\%/\lambda$, which is larger than $-7\%$
+- That means $r$ well above $r_n$ for years: 9% to 6% to 4% to 3% to 2%, a deep prolonged recession, high unemployment and large output loss to "wring out" expectations
+- The Volcker precedent is the price of unanchored expectations: a 14% peak in 1980, a policy rate above 15%, unemployment reaching 10.8%, and 3-4 years to disinflate
+- The live test is credibility: the Fed has taken the target from effectively zero to 5.25% against a 9.1% inflation peak in June 2022, and survey expectations near 2% are what make a return without a deep recession possible
+```
+
 ### 1. Two Models of Expectations
 
 #### Adaptive Expectations: $\pi^e_t = \pi_{t-1}$
@@ -289,7 +336,7 @@ $r_n$ is determined by real factors (not monetary policy):
 **Solution (Requires Recession)**:
 - Need $\pi < \pi^e$ to bring expectations down.
 - To get $\pi = 2\%$ when $\pi^e = 9\%$: $2\% - 9\% = \lambda(Y - Y_n)$.
-- Requires: $Y < Y_n$ (negative output gap of -7%!).
+- Requires: $Y < Y_n$, by $7\% / \lambda$. The $7\%$ is the inflation distance to close; the output gap needed to close it is larger, because $\lambda < 1$ — with $\lambda = 0.5$ it is $-14\%$. Writing "a -7% output gap" is the mistake of forgetting the slope.
 - **Must raise $r$ well above $r_n$** to create recession.
 
 **Multi-Period Process**:
@@ -310,6 +357,9 @@ $r_n$ is determined by real factors (not monetary policy):
 - Created severe recession (unemployment reached 10.8%).
 - Took 3-4 years to bring inflation back to acceptable levels.
 - Necessary because expectations had become unanchored in 1970s.
+
+#### The Same Test, Running Live
+The Volcker case is the extreme end of one calculation, and the calculation is now running in real time. Inflation peaked at **9.1%** in June 2022; the Fed's target has gone from effectively zero to **5.25%** since. Whether that combination returns inflation to 2% without a deep recession turns almost entirely on whether survey expectations stayed near 2% throughout — the credibility question rather than the arithmetic one, which is exactly what separated the 1980s from the 2020s.
 
 ### 3. Why Central Banks Care About Credibility
 
@@ -337,6 +387,16 @@ $r_n$ is determined by real factors (not monetary policy):
 - **Implication**: If credibility holds, can return to 2% inflation without deep recession (requires only $Y \approx Y_n$, not $Y \ll Y_n$).
 
 ## The Neutrality of Money
+
+```summary
+- Short run, money is not neutral: the Fed moves $r$, investment moves, and output, employment and unemployment move with them
+- Medium run, money is neutral: policy cannot move $Y_n$, $u_n$ or $r_n$, which are set by the labor force, by wage and price setting, and by productivity, preferences and fiscal policy
+- What the Fed keeps is nominal — it chooses average inflation $\bar{\pi}$, and the nominal rate is then $i = r_n + \bar{\pi}$
+- So it can smooth cycles in the short run, cutting $r$ in a recession to pull $Y$ back toward $Y_n$, but cannot permanently raise output above potential or hold unemployment below $u_n$
+- Attempting it buys only accelerating inflation: the 1960s belief that $u < u_n$ could be maintained, kept policy loose, and left Volcker the disinflation bill
+- The dual mandate is a short-run trade-off and not a medium-run one — output can be pushed above potential at the cost of higher inflation, but only price stability is the Fed's to choose
+- Optimal policy identifies $Y_n$ and $r_n$, sets $r \approx r_n$ to pull output back after a shock, and keeps $\pi^e$ anchored so those adjustments need no recession
+```
 
 ### 1. Short Run vs. Medium Run
 
@@ -389,6 +449,16 @@ $r_n$ is determined by real factors (not monetary policy):
 
 ## Current Macroeconomic Environment (2023)
 
+```summary
+- The surge was demand and supply at once: fiscal stimulus, Fed accommodation and COVID's hit to potential output left $Y \gg Y_n$, and inflation ran from 2% to 9%
+- The Fed sat at $r < r_n$ through 2021 because it expected a quick supply recovery that never came, believed the inflation transitory, and was scarred by the low inflation of the 2010s
+- Tightening came hard and fast: nine hikes from March 2022, reaching 5.00% in March 2023 and 5.25% in July, and the real rate went from about -4.5% through 2021 to roughly zero — four and a half points of real tightening
+- The open question is $r_n$ — around 1% on the pre-COVID estimate, or higher on deglobalization, energy transition investment and fiscal stimulus — and it decides whether current policy is quite restrictive or less tight than it seems
+- SVB made the trade-off concrete — inflation still elevated argues for higher $r$, banking stress argues for a pause — because the risk premium $x$ is additional monetary tightening even if the Fed does not hike
+- Markets went from pricing a 50bp March hike to pricing a pause or at most 25bp: a rise in $x$ substitutes for a rise in $r$ in the total borrowing cost $r + x$
+- The Fed hiked 25bp on March 22, 2023 anyway, at a slower pace, citing both financial stability and price stability
+```
+
 ### 1. The Post-COVID Inflation Surge
 
 #### Origins (2020-2021)
@@ -409,9 +479,9 @@ $r_n$ is determined by real factors (not monetary policy):
 
 #### Fed's Response
 - March 2022: First rate hike (25bp).
-- Followed by multiple 75bp and 50bp hikes (unusually aggressive).
-- Peak rate: 5.25% (March 2023).
-- Real rate went from approximately -4% (2021) to +2% (early 2023).
+- Followed by steps of 25, 75, 100, 50, 100 and 50 basis points — unusually large ones, and four of the nine in the cycle were 25 points.
+- Peak target: 5.00% in March 2023, then 5.25% in July 2023.
+- Real rate, measured as the funds target minus headline CPI in the same month: from about -4.5% through 2021 to roughly zero in spring 2023. That is some four and a half points of real tightening, and on this measure the real rate was barely positive even at the peak. The two ends are frequently quoted from different dates — "+2%" belongs to mid-2023, once inflation had fallen — and the gap between the two numbers is the inflation that was being squeezed out, not extra tightening.
 
 #### The Challenge: Finding $r_n$
 - Is $r_n$ still around 1% (pre-COVID estimate)?
@@ -442,6 +512,14 @@ $r_n$ is determined by real factors (not monetary policy):
 - **Interpretation**: Balancing act between inflation and financial stability.
 
 ## Summary and Key Takeaways
+
+```summary
+- The model joins short-run IS-LM to the medium-run Phillips Curve: **IS** for goods market equilibrium, **LM** for the Fed's rule, **PC** for inflation dynamics
+- The sequence: the Fed's rate picks output, output picks the inflation pressure, and the Fed moves its rule until the real rate, output and inflation all sit at their medium-run values
+- The natural rate $r_n$ anchors policy, and is set by real factors rather than by the Fed, which can only estimate it
+- Anchored expectations let inflation return to target without a recession; adaptive expectations make one unavoidable
+- Money is neutral in the medium run, so policy is a short-run trade-off against inflation and a medium-run commitment to price stability
+```
 
 ### The IS-LM-PC Framework
 - **Integrates** short-run demand analysis (IS-LM) with medium-run supply-side constraints (Phillips Curve).

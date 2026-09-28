@@ -1,9 +1,28 @@
 # Lecture 12: The IS-LM-PC Model - Dynamics and Policy Analysis
 
 ## Overview
+
+```summary
+- The IS-LM-PC framework, now complete: what it is, how the economy moves to medium-run equilibrium, and what a policymaker does about each shock
+- Dynamics: the short run can sit anywhere, and the medium run returns output to potential as the central bank leans on the interest rate
+- Inflation expectations are the adjustment margin — anchored expectations make a soft landing possible, unanchored ones force a recession
+- Two families of shock are traced end to end: demand shocks (fiscal consolidation) and supply shocks (oil, then the COVID supply chain)
+- It ends in real time, on a banking crisis and on what a central bank can and cannot do while inflation is still high
+```
+
 This lecture completes the IS-LM-PC framework by analyzing its dynamic properties and policy implications. We examine how the economy adjusts from short-run to medium-run equilibrium, the role of inflation expectations, and how policymakers respond to various economic shocks. Special emphasis is placed on the ongoing banking crisis and its macroeconomic implications.
 
 ## 1. The Complete IS-LM-PC Framework
+
+```summary
+- **IS curve**: the combinations of output $Y$ and the real rate $r$ that equilibrate the goods market, downward sloping because a higher $r$ cuts investment and with it output
+- Fiscal expansion shifts IS **right**; a financial shock or a confidence shock shifts it **left**
+- **Monetary policy rule**: the model lets the central bank set the real rate directly, though in reality it sets the nominal rate and $r = i - \pi^e$
+- Writing $r = \bar{r}$ keeps the diagrams clean and stops the curves moving every time inflation changes
+- **Phillips curve**: $\pi = \pi^e + \lambda (Y - Y_n)$, re-derived from the unemployment-gap version, upward sloping in $(Y, \pi - \pi^e)$
+- **Output gap** $Y - Y_n$ is the signpost: positive means unemployment below natural, wage pressure, rising inflation; zero gap is the medium run
+- **Potential output** $Y_n = L(1 - u_n)$ is the sustainable level without accelerating inflation, and it moves with $L$ and $u_n$ rather than being fixed
+```
 
 ### The Three Building Blocks
 
@@ -73,6 +92,16 @@ $$Y_n = L(1 - u_n)$$
 
 ## 2. Short Run vs. Medium Run Equilibrium
 
+```summary
+- **Short run**: output is whatever the IS-LM intersection gives at the rate the central bank has chosen — no constraint that $Y = Y_n$, so any output is a valid equilibrium
+- Above potential inflation accelerates, below potential it decelerates, and at potential it is stable
+- **Medium run**: the central bank moves $r$ against the pressure — up when output is above potential, down when it is below — until output comes back to $Y_n$
+- **Medium-run equilibrium** is the triple coincidence $Y = Y_n$, $\pi = \pi^e$, $r = r_n$
+- **Natural rate of interest** $r_n$ is the real rate that delivers $Y = Y_n$ given the current IS curve; it is defined implicitly by that curve, and never observed
+- $r_n$ is not a constant: fiscal policy, confidence, credit conditions, foreign demand, demographics and productivity all move it, and the central bank never observes it
+- The error is symmetric — $r < r_n$ overheats the economy and lifts inflation, $r > r_n$ cools it and lets inflation fall
+```
+
 ### Short Run (IS-LM Intersection)
 
 **Determination**: Output determined by intersection of IS and LM (central bank's chosen $r$).
@@ -123,6 +152,15 @@ $$Y^{MR} = Y_n$$
 
 ## 3. Inflation Expectations and Anchoring
 
+```summary
+- **Anchored expectations** pin expected inflation to the central bank's target, so a shock to inflation does not have to become persistent
+- **Unanchored (adaptive) expectations** set $\pi^e_t = \pi_{t-1}$: whatever inflation just did, expectations do next period
+- Unanchored, disinflation is grinding — once inflation reaches 9%, expectations follow it up, and the only route back down is a long recession, a percentage point at a time
+- Anchored, the central bank can lift $r$ until output approaches $Y_n$ and inflation falls quickly back to target: the soft landing
+- The soft/hard landing distinction is about expectations, not about the size of any shock; the same tightening produces very different inflation paths
+- **Central bank credibility** is the most valuable asset a central bank has: built over decades of hitting targets, lost quickly by falling behind the curve, and the reason surprises draw an aggressive response
+```
+
 ### Two Models of Expectations
 
 #### Model 1: Unanchored Expectations (Adaptive)
@@ -161,6 +199,16 @@ $$\pi^e_t = \pi^* = 2\%$$
 - Explains why central banks react aggressively to inflation surprises.
 
 ## 4. The Deflationary Trap and the Zero Lower Bound
+
+```summary
+- **Zero lower bound**: with $i = 0$ and expected inflation negative, the real rate is $r = 0 - \pi^e > 0$ — positive exactly when the economy most needs it negative
+- The **vicious cycle**: recession brings deflation, deflation drags expectations down, that pushes the real rate higher, which deepens the recession and the deflation
+- The **Great Depression (1929-1933)** table is the trap in numbers: the Fed cut nominal rates from 5% to 1% while the real rate rose from 5% to 11% and unemployment reached 25%
+- So the Fed was "pushing on a string" — falling nominal rates delivered *tighter* real policy, which is the whole point of the example
+- **Lesson**: central banks must move aggressively against deflation, and the Fed read 2008 that way — rates to zero immediately, no Great Depression 2.0
+- Where $i$ cannot go lower: **QE** buys duration, **forward guidance** tries to move expectations, and **negative rates** in Europe and Japan worked only marginally
+- And if monetary policy is impotent, **fiscal expansion** ($G \uparrow$) is the only lever left
+```
 
 ### The Problem
 
@@ -207,6 +255,16 @@ $$\pi^e_t = \pi^* = 2\%$$
 4. **Fiscal Policy**: If monetary policy impotent, fiscal expansion ($G \uparrow$) becomes critical.
 
 ## 5. Dynamic Adjustment to Aggregate Demand Shocks
+
+```summary
+- Worked case: **fiscal consolidation** ($G \downarrow$ or $T \uparrow$) shifts IS left, and the section traces it through the IS-LM diagram and the Phillips curve before running it to the medium run
+- **Short run**: output falls to $Y_1 < Y_n$, unemployment rises and inflation falls — a negative output gap delivers disinflation
+- **Medium run**: the central bank cuts $r$, investment is crowded back in to offset the lost $G$, and output returns to $Y_n$
+- The medium-run landing is a different economy: the same $Y = Y_n$, a lower $r$ than before the shock, more investment and less government spending
+- **Why adjustment is slow**: recognition, decision and implementation lags, rates already near the lower bound, and a $Y_n$ nobody can observe — it has to be inferred from inflation
+- The lags are dated: a central bank meets 6-8 times a year, and a rate cut takes 6-18 months to reach the economy
+- **The disagreement is empirical** — slow, painful adjustment (Greece, 2010s) against adjustment faster than models predict (UK, 1990s) — and the evidence is mixed
+```
 
 ### Case Study: Fiscal Consolidation (Austerity)
 
@@ -263,6 +321,16 @@ $$\pi^e_t = \pi^* = 2\%$$
 **Historical Evidence**: Mixed. Greece (2010s) suffered prolonged depression; UK (1990s) recovered relatively quickly.
 
 ## 6. Dynamic Adjustment to Supply Shocks
+
+```summary
+- **Supply shocks work through the markup**: with $P = (1 + m)W$, a higher $m$ implies a real wage of $1/(1 + m)$, so the equilibrium needs more unemployment to restrain wage demands
+- Which pushes $u_n$ up and potential output down — $Y_n = L(1 - u_n) \downarrow$ — and the shock never touches the goods market, it moves $Y_n$ itself
+- **Short run**: $Y$ unchanged against a lower $Y_n$ shifts the Phillips curve left and makes inflation surge — a positive output gap created entirely by the fall in $Y_n$
+- **The dilemma**: raising $r$ stabilizes inflation and unstabilizes output, holding $r$ stabilizes output and lets inflation run, and accommodating risks a spiral once expectations unanchor
+- **Medium run**: fighting inflation means accepting the new lower $Y_n$ and passing through a stagflationary transition; accommodating means the risk is not a recession but an inflation spiral
+- **1970s**: oil quadrupled in 1973-74 and inflation went from 3% to 12%; accommodation after the first shock let it persist, Volcker's 20% in 1979-80 broke it and produced the 1981-82 recession
+- **COVID (2020-2022)**: calling it transitory held rates near zero through 2021 and inflation hit 9% by June 2022, because labor force participation stayed down and kept $Y_n$ lower than assumed
+```
 
 ### Case Study: Oil Price Shock
 
@@ -365,6 +433,16 @@ $$u_n \uparrow \quad \text{when} \quad m \uparrow$$
 
 ## 7. Long and Variable Lags in Monetary Policy
 
+```summary
+- **Friedman's insight**: monetary policy acts with *long and variable lags* — 6-18 months for a rate change to reach output, and the length is unpredictable
+- *Long* means today's data reflects policy decided months ago; *variable* means you cannot yet tell from the data whether policy is working
+- The consequence is that the Fed is flying blind: with the aggressive 2022-2023 tightening, inflation is still high today and the economy may still crash in 6 months
+- The fogged-windshield analogy is the point — you steer on delayed feedback, so you have to lean before the evidence arrives
+- **Non-linearity** is the asymmetry that matters: hikes do little at first, the economy looks resilient, and then something breaks — a bank failure, a credit crunch — and output collapses quickly
+- The financial system is the amplifier: small cracks become fissures and confidence evaporates in a step
+- **March 2023**: the Fed hiked 4.5% in a year, the economy held up, and then Silicon Valley Bank failed on March 10
+```
+
 ### Milton Friedman's Insight
 
 **Quote**: "Monetary policy acts on the economy with long and variable lags."
@@ -406,6 +484,16 @@ $$u_n \uparrow \quad \text{when} \quad m \uparrow$$
 
 ## 8. Current Events: Banking Crisis and Policy Response
 
+```summary
+- **SVB**: four days from bond-portfolio losses to failure — losses announced March 8, run on March 9, FDIC takeover on March 10, blanket deposit insurance on March 12
+- **Why it failed**: 10-year Treasuries marked down as rates rose through 2022, then a depositor run. The 0% of 2020 is what let SVB buy the duration; the rise is what made it cost money
+- **The macro channel is the credit spread $x$**: tighter bank lending raises $r + x$, and a higher $x$ shifts IS left, so $Y \downarrow$ at any given $r$
+- **The Fed's two objectives now pull apart**: inflation still 6% against a 2% target argued for a 50 basis point hike on March 22, while the credit crunch argued for none
+- **Markets do the arithmetic**: the expected peak Fed Funds rate falls from 5.6% to 5.0% and then to 4.1%, because a higher $x$ is contractionary — it does part of the Fed's job for it
+- **Flight to safety confirms it**: the 1-year Treasury drops 80 basis points in a week, breakeven inflation falls, and Credit Suisse's 35% one-day fall puts contagion on the table
+- **The silver lining is the starting point**: from 5% expected inflation, cutting the nominal rate to zero puts the real rate at -5% — far more room than 2008, when inflation was already low, so high inflation is both the problem and the ammunition
+```
+
 ### The Silicon Valley Bank Collapse (March 2023)
 
 #### What Happened?
@@ -418,7 +506,7 @@ $$u_n \uparrow \quad \text{when} \quad m \uparrow$$
 
 **Why Did SVB Fail?**:
 1. SVB held long-term bonds (10-year Treasuries).
-2. Rates rose sharply (0% to 5%).
+2. Rates rose sharply through 2022. The loss came from the **rise**, not from the low rate it started at: the 0% of 2020 is what let SVB buy long duration, and the 2022 repricing is what made that duration cost money.
 3. Bond prices fell (duration risk).
 4. Mark-to-market losses $\Rightarrow$ Capital eroded.
 5. Depositors lost confidence $\Rightarrow$ Run $\Rightarrow$ Failure.
@@ -555,6 +643,16 @@ $$r = i - \pi^e$$
 
 ## 9. Key Takeaways
 
+```summary
+- The three equations are IS, LM and PC, and the whole model turns on where the output gap $Y - Y_n$ puts inflation relative to expectations
+- **Short run**: any output is an equilibrium. **Medium run**: output returns to $Y_n$ and the rate to $r_n$, because the central bank leans on $r$
+- **Demand shocks** move output and inflation together in the short run; **supply shocks** move them in opposite directions, and permanently move $Y_n$
+- **Anchored expectations** make shocks non-persistent and soft landings possible; **unanchored** ones amplify shocks and force a deep recession to bring inflation down
+- **The deflationary trap** is the worst case: deflation raises real rates, monetary policy becomes impotent, and aggressive fiscal policy is the only answer
+- **Central banking is hard** because $Y_n$ and $r_n$ are unobservable, the lags are long and variable, and something breaks non-linearly
+- **The March 2023 banking crisis** is a credit shock that shifts IS left, does some of the Fed's work, and still forces a choice between inflation and financial stability — milder than 2008 so far, and with more policy space than the Fed had then
+```
+
 ### IS-LM-PC Framework Recap
 
 **Three Equations**:
@@ -631,6 +729,14 @@ $$r = i - \pi^e$$
 
 ## 10. Summary Table: Shock Analysis in IS-LM-PC
 
+```summary
+- The table is the argument in one place: for each shock, which curve moves, which does not, and what the central bank does about it
+- **Fiscal expansion and contraction** move the IS curve in opposite directions and leave the Phillips curve alone; either way $Y = Y_n$ in the medium run, with $r$ higher or lower to match
+- **Credit crunch and confidence shock** are demand shocks in all but name: IS left, inflation down, and the lower $r$ holds only if the shock is temporary
+- **Oil shock** is the odd one out: IS does not move, and the Phillips curve shifts **up** — a lower $Y_n$ means more inflation at every output, with $\lambda$ unchanged
+- The invariant running through every row is that the medium run puts output back on $Y_n$; the only question is whether the shock raised it, cut it, or left it where it was
+```
+
 | Shock Type | IS Shift | PC Shift | Short-Run Effect | CB Reaction | Medium-Run Effect |
 |------------|----------|----------|------------------|-------------|-------------------|
 | **Fiscal Expansion** ($G \uparrow$) | Right | None | $Y \uparrow$, $\pi \uparrow$ | Raise $r$ | $Y = Y_n$, $r$ higher |
@@ -640,6 +746,14 @@ $$r = i - \pi^e$$
 | **Confidence Shock** ($c_0 \downarrow$) | Left | None | $Y \downarrow$, $\pi \downarrow$ | Lower $r$ | $Y = Y_n$, $r$ lower (if temporary) |
 
 ## 11. Looking Ahead
+
+```summary
+- Next is the long run: the Solow model and what actually sets living standards over decades, rather than the cycle running around them
+- Then expectations and asset prices — how forward-looking behavior turns a policy announcement into a price
+- Then financial crises in depth: leverage, bank runs, systemic risk — pulled forward if the current crisis spreads
+- The open question is which of two paths this is: a **contained crisis** where a few bank failures are stabilised and the economy continues, or a **spreading crisis** where the credit crunch deepens into recession
+- The section's own point: this is real-time application of the model, so the data, the market reaction and the policy response are the evidence a reader should be forming their own view on
+```
 
 **Next Topics** (subject to change if crisis escalates):
 - **Long-run growth**: Solow model, technological progress.

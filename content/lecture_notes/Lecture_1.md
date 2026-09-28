@@ -1,9 +1,25 @@
 # Lecture 1: Introduction to Macroeconomics
 
 ## Overview
+
+```summary
+- Macro studies the economy as a whole; this lecture defines the field and maps the course
+- The 2023 backdrop: record-low unemployment, high inflation, rising rates, volatile asset markets
+- Aggregate forces produce paradoxes that individual-level reasoning gets backwards
+- Course goal: read the IMF outlook, the WSJ and the FT critically, not do research mathematics
+```
 This lecture introduces the field of macroeconomics, distinguishing it from microeconomics, and provides a roadmap for the course. We examine the current economic environment (circa 2023): low unemployment, high inflation, rising interest rates, and volatile asset markets. The lecture demonstrates how macroeconomic forces create paradoxes like "good news is bad news" for financial markets.
 
 ## 1. What is Macroeconomics?
+
+```summary
+- **Micro** studies individual agents; **macro** studies aggregates — countries, regions, the world
+- Four key variables: inflation, unemployment, exchange rates and aggregate output (GDP)
+- Macro is not the sum of micros: the fallacy of composition makes individual reasoning unreliable at scale
+- Individual actions interact to produce outcomes no single agent intended
+- Macro works by simplification — the models are simple so the insight survives them
+- Aim: understand what traders and policymakers say, including when they get it wrong
+```
 
 ### Macro vs. Micro: A Fundamental Distinction
 - **Microeconomics**: Studies individual agents (households, firms, industries).
@@ -35,6 +51,16 @@ This lecture introduces the field of macroeconomics, distinguishing it from micr
 **Course Philosophy**: "If it gets very complicated, I'm failing."
 
 ## 2. Current Economic Context (2023)
+
+```summary
+- **Labor market**: unemployment ~3.5% against a 5-6% norm and a 10% Great Recession peak — "overheating"
+- **Wages**: rising in every sector, sharpest in hospitality, where workers did not return after COVID
+- **Inflation**: 6.5-8% against a 2% target, and it moves with wages (correlation ~0.8+)
+- **The wage-price spiral**: tight labor market → higher wages → higher costs → higher prices → higher wage demands
+- **Monetary policy**: the Fed holds rates as its main tool, and moved 0% → 4.5%+ in under a year
+- **Asset prices**: the S&P 500 rose 114% in 2021 and fell 20%+ in 2022, tracking the rate path rather than the economy
+- **Wealth channel**: rate moves change asset prices, which change household spending, which changes demand — and that is the squeeze: hike to fight inflation, or risk recession
+```
 
 ### A. The Labor Market: Historically Tight
 
@@ -111,6 +137,14 @@ This lecture introduces the field of macroeconomics, distinguishing it from micr
 
 ## 3. "Good News is Bad News": The Friday Jobs Report Paradox
 
+```summary
+- January 2023: payrolls beat by a wide margin (500,000+ against 190,000 expected) and S&P futures fell 2% in minutes
+- **The mechanism**: strong jobs → labor market still hot → wages still rising → inflation stays up → the Fed keeps hiking → valuations fall
+- Markets are forward-looking: they price the *policy response*, not the data
+- Before the report, cuts were priced for mid-2023; after it, for end-2023 or later
+- In an overheating economy, strong data is bad for asset prices — that is the point of this lecture
+```
+
 ### The Event (January 2023)
 - **Expected**: Nonfarm payroll to increase by 190,000 jobs.
 - **Actual**: Nonfarm payroll increased by **500,000+ jobs** (massive beat).
@@ -139,6 +173,14 @@ This lecture introduces the field of macroeconomics, distinguishing it from micr
 
 ## 4. Global Context: A Worldwide Phenomenon
 
+```summary
+- Pre-COVID, 70-80% of countries had inflation at or below 2%; by 2023 almost none did — even Japan
+- **US**: demand-driven, from fiscal stimulus, monetary easing and pent-up savings
+- **Europe**: the same demand pressure plus supply shocks, with energy the sharpest — war cut Russian gas
+- **Latin America**: commodity exporters gained on prices while still importing inflation
+- Common cause: every region over-heated out of COVID on massive fiscal and monetary support
+```
+
 ### Inflation is Everywhere
 - **Pre-COVID (2010-2019)**: 70-80% of countries had inflation at or below 2%.
 - **Today (2023)**: Nearly **zero countries** have inflation below 2%.
@@ -153,6 +195,14 @@ This lecture introduces the field of macroeconomics, distinguishing it from micr
 **Common Thread**: All regions "overheated" coming out of COVID due to massive fiscal and monetary stimulus.
 
 ## 5. China: The Major Exception
+
+```summary
+- China's growth fell from 5.5-6% pre-COVID to ~3% in 2022 as Zero-COVID closed factories and collapsed demand
+- The reopening released forced savings and a pent-up desire to spend on services
+- A 1% rise in Chinese growth adds +0.3-0.4% in East Asia and +0.4-0.5% in Latin America — the largest effect
+- Latin America is hit hardest because it exports the copper, soybeans and oil China consumes
+- **Double-edged**: good for global growth, but it adds demand just as central banks are trying to remove it
+```
 
 ### Zero-COVID Policy and Economic Slowdown
 - **Typical Growth Rate**: China grew at 5.5-6% annually (pre-COVID); much higher (~10%+) 15 years ago.
@@ -182,6 +232,13 @@ This lecture introduces the field of macroeconomics, distinguishing it from micr
 
 ## 6. Recession Risk: The Cost of Disinflation
 
+```summary
+- Professional forecasters put the 2023 recession probability at a median 65%
+- High rates slow investment, consumption and hiring — at some point the Fed breaks something
+- The trade-off is two-sided: too little hiking leaves inflation, too much causes severe recession
+- Precedent: the 1980s and early-2000s hiking cycles were each followed by recession
+```
+
 ### Forecasts for 2023
 - **Survey of Professional Forecasters**: Median expectation is **65% probability of recession** in 2023.
 - **Reason**: The Fed (and other central banks) must hike rates aggressively to fight inflation.
@@ -195,6 +252,15 @@ This lecture introduces the field of macroeconomics, distinguishing it from micr
 **Historical Precedent**: Every time the Fed has hiked rates rapidly to fight inflation (1980s, early 2000s), a recession followed shortly after.
 
 ## 7. Course Structure and Goals
+
+```summary
+- **Short run**: output set by aggregate demand — goods market, financial markets, IS-LM
+- **Medium run**: prices adjust, unemployment dynamics, the inflation-unemployment trade-off
+- **Long run**: growth theory — what sets living standards over decades
+- **Open economy**: trade, exchange rates, spillovers (Mundell-Fleming); **financial markets**: asset pricing and expectations
+- Each lecture opens on current events, builds a model, then applies it to a live policy debate
+- Explicitly *not* a PhD pipeline: that needs far more mathematics
+```
 
 ### What You Will Learn
 1. **Short Run**: Output determined by aggregate demand (goods market, financial markets, IS-LM model).
@@ -217,6 +283,15 @@ This lecture introduces the field of macroeconomics, distinguishing it from micr
 **Not a Goal**: Make you a PhD researcher in macro (that requires much more math).
 
 ## 8. Summary
+
+```summary
+- Macro is the study of aggregates: inflation, unemployment, output, exchange rates
+- 2023 in one line: tight labor markets, high inflation, rising rates, volatile asset prices
+- The central bank's main instrument is the interest rate
+- Strong economic data can be bad news for markets, because it means tighter policy
+- China's reopening helps global growth while complicating everyone else's inflation fight
+- The core skill is seeing **interactions and equilibrium effects**, not summing individual behaviour
+```
 
 ### Key Takeaways
 1. **Macroeconomics** studies the economy as a whole—inflation, unemployment, aggregate output, exchange rates.

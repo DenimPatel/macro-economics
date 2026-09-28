@@ -1,11 +1,29 @@
 # Lecture 6: The IS-LM Model (Part II) - Applications and Policy Analysis
 
 ## Overview
+
+```summary
+- This lecture stops building the model and starts using it: IS-LM is run against policy combinations and real-world scenarios
+- The through-line is always the same question — which curve moves, fiscal or monetary
+- Fiscal and monetary policy can reinforce each other or cancel each other out, and the mix determines the interest rate as well as output
+- The zero lower bound is the recurring constraint: once rates are at zero, conventional monetary policy is exhausted
+- Unconventional policy (QE) is what is left when the short rate cannot go lower
+- The COVID-19 policy response is the case study that ties all of it together
+```
+
 This lecture applies the IS-LM framework to analyze various policy combinations and real-world scenarios, with special focus on the COVID-19 policy response. We examine how monetary and fiscal policies work together (or in conflict), explore the zero lower bound problem, and discuss unconventional monetary policy.
 
 ---
 
 ## 1. IS-LM Model Review
+
+```summary
+- **IS**: $Y = C(Y - T) + I(Y, i) + G$ — goods market equilibrium, downward sloping in $(Y, i)$ and steeper than in Lecture 3 because investment now responds to output
+- The slope reflects the MPC plus the MPI; $i$ is a parameter of the ZZ curve, and the whole curve is traced by moving that parameter
+- Raise $i$ and investment falls, the ZZ curve shifts down, and the **multiplier** takes output down by more than investment fell
+- **Modern LM**: central banks set $i$ directly, so LM is a **horizontal line** at the target — the Fed supplies whatever money output demands
+- The traditional LM would slope upward if the central bank targeted $M$; under the modern one, only the Fed's rate decision moves it
+```
 
 ### The IS Curve (Goods Market Equilibrium)
 **Key Equation**:
@@ -51,11 +69,19 @@ $$\text{Modern LM: } i = \bar{i}$$
 
 ## 2. Movements Along vs. Shifts: Critical Distinction
 
+```summary
+- **Movement along IS**: the interest rate changes and nothing else — taxes, government spending, confidence and autonomous consumption are all held fixed
+- **Shift of IS**: any change in an exogenous demand factor *other* than the interest rate, so you are on a different IS curve
+- $G \uparrow$ shifts IS right; $T \uparrow$, weaker confidence or a wealth shock shift it left
+- **The test**: hold $i$ fixed and ask whether aggregate demand has moved — if it has, the curve shifted rather than the point moving
+- Worked through the ZZ diagram: $T \uparrow$ cuts disposable income, then consumption, so equilibrium $Y$ is lower at the *same* $i$
+```
+
 ### Movement Along the IS Curve
 - **Cause**: Interest rate changes (only)
 - **What's held constant**: Taxes, government spending, consumer confidence, autonomous consumption
 - **Interpretation**: Tracing different equilibrium points on the **same** IS
-- **Example**: Fed raises $i$ → move up along IS → lower $Y$
+- **Example**: a wealth shock cuts autonomous consumption, aggregate demand falls, and the new equilibrium arrives at a higher $i$ and lower $Y$ — same IS, different point. A Fed hike is *not* this example: it shifts LM, which is what Section 4 covers. With modern LM horizontal, the intersection moves off the old one and both $i$ and $Y$ change together
 
 ### Shift of the IS Curve
 - **Cause**: Change in any **exogenous** demand factor except interest rate
@@ -75,6 +101,15 @@ $$\text{Modern LM: } i = \bar{i}$$
 ---
 
 ## 3. Fiscal Policy in IS-LM
+
+```summary
+- Fiscal policy is a **goods market** policy: it moves IS and leaves LM where it is
+- **Contractionary** ($T \uparrow$ or $G \downarrow$) shifts IS **left** — higher taxes cut disposable income and consumption, or lower $G$ cuts demand directly, and the multiplier amplifies the decline
+- **Expansionary** ($T \downarrow$ or $G \uparrow$) shifts IS **right** by the same route
+- With a horizontal LM and an accommodating Fed, the whole effect lands on output: $Y$ falls or rises while $i$ is unchanged
+- Confidence, wealth and business sentiment are **non-policy equivalents** — they shift IS left in exactly the same way that contractionary fiscal policy does
+- What fiscal has that monetary does not is **targeting**: it can be aimed at particular groups, which is why the COVID response was large transfers to low-income households
+```
 
 ### Contractionary Fiscal Policy ($T \uparrow$ or $G \downarrow$)
 
@@ -115,6 +150,15 @@ $$\text{Modern LM: } i = \bar{i}$$
 ---
 
 ## 4. Monetary Policy in IS-LM
+
+```summary
+- Monetary policy is a **financial market** policy: it moves LM and leaves IS where it is. A cut shifts LM down, a hike shifts it up
+- **Why a cut is expansionary**: at the old output the lower $i$ raises investment, so aggregate demand exceeds output — there is excess demand for goods and no goods market equilibrium
+- Output must rise to absorb that excess demand, and the multiplier carries it past the initial investment gain
+- **Implementation** is open market operations: buy bonds, announce the new target, then keep supplying money — because money demand grows as the economy expands, the final money supply increase is larger than the first injection
+- **Contractionary** is the same mechanism in reverse: a hike shifts LM up and output falls
+- The 2022-2023 hiking cycle is that case in the wild: aggressive hikes to combat inflation, cooling an overheated economy
+```
 
 ### Expansionary Monetary Policy (Rate Cut: $i \downarrow$)
 
@@ -158,6 +202,15 @@ $$\text{Modern LM: } i = \bar{i}$$
 ---
 
 ## 5. Policy Combinations and Scenarios
+
+```summary
+- **"All in"** (IS right, LM down) gives the largest possible output gain; it is the deep-recession case, and monetary goes first because it is decided overnight
+- The argument for pairing them: fiscal can target people and structural problems that a rate change cannot reach
+- **Zero lower bound**: at $i = 0$ money demand is perfectly elastic, so injections cannot move the rate and conventional policy is exhausted — Japan's answer was decades of fiscal expansion
+- **QE**: with the overnight rate pinned, the central bank buys long Treasuries, MBS, corporate bonds and fallen angels to compress term and risk spreads instead; the balance sheet goes from modest to massive
+- **Consolidation with accommodation** (IS left, LM down): output roughly unchanged, the deficit improves, the interest rate falls — the way to fix fiscal accounts without a recession
+- **Conflict** (IS right, LM up): the output effect is ambiguous but $i$ certainly rises, and the government will be unhappy — the 2021 US case, where the Fed stayed behind the curve and paid in inflation
+```
 
 ### Scenario 1: "All In" - Both Policies Expansionary
 
@@ -388,6 +441,16 @@ Before: Assets: Bonds    After: Assets: More Bonds
 
 ## 6. COVID-19 Policy Response: A Case Study
 
+```summary
+- The shock was unprecedented on every axis: an economy imploding into severe recession, a health crisis that required lockdown, and a split between devastated services and booming goods
+- The Fed cut to zero within March 2020, exhausting conventional policy while the economy was still in free fall
+- The answer was massive QE — long Treasuries, MBS, investment-grade corporate bonds and fallen angels — taking the balance sheet from roughly 4 trillion dollars to 9 trillion
+- **Fiscal was the larger half**: about 20% of GDP across all packages, comparable only to wartime spending
+- In order: direct transfers (stimulus checks, enhanced unemployment benefits), then PPP small-business support, then state and local aid, then infrastructure
+- Almost every country ran a similar fiscal expansion, so this was a global response, not a US one
+- Short and medium term it prevented a depression; the same size, held too long, is what produced the overheating and inflation of 2021-2022
+```
+
 ### The Shock
 
 **Nature of Crisis**:
@@ -459,6 +522,16 @@ Result: Large increase in output (recovery from deep recession)
 ---
 
 ## 7. Empirical Evidence: How Monetary Policy Actually Works
+
+```summary
+- The central fact of the evidence is **long and variable lags** — a rate change is a decision about the future, not the present
+- **Output and employment** show almost nothing immediately, peak 5-6 quarters out, and are still working 8+ quarters later
+- **Unemployment** is the mirror image of employment, with the same slow build; the 2022-2023 hikes have not yet reached their peak
+- **Prices respond slowest of all**, which is the awkward part: the inflation fight is judged before the evidence of it has arrived
+- The current dilemma in numbers: inflation still around 6%, rates raised rapidly over 8 months, full effects 6+ quarters away, over-tightening a live risk
+- Rapid tightening has historically **broken something** — leveraged institutions failing, financial instability — and so far 2022-2023 has got away with it
+- Financial markets price policy instantly, real activity responds over quarters, so the two need different observation windows
+```
 
 ### Time Lags in Monetary Policy
 
@@ -536,6 +609,14 @@ Result: Large increase in output (recovery from deep recession)
 
 ## 8. Key Principles for IS-LM Analysis
 
+```summary
+- **Always ask which curve moves.** Fiscal policy and demand shocks move IS; monetary policy moves LM
+- Neither moves the other's curve directly — a policy reaches the other curve only by changing the Fed's response or the economy's expectations, which is a separate decision
+- The common mistake is swapping them, and the reason is that the two policies operate in different markets
+- Movement along IS is the interest rate changing with LM and every other exogenous factor held fixed; a shift of IS is any of those other factors changing instead
+- A point off the IS-LM intersection is a **disequilibrium**: one market is in equilibrium and the other has excess supply or excess demand, and the adjustment mechanism is the real content of the analysis
+```
+
 ### Always Ask: Which Curve Moves?
 
 **Fiscal Policy / Demand Shocks**:
@@ -568,6 +649,15 @@ Result: Large increase in output (recovery from deep recession)
 ---
 
 ## 9. Summary
+
+```summary
+- Fiscal policy shifts IS; with a horizontal LM and an accommodating Fed the whole effect lands on output and the interest rate does not move
+- Monetary policy shifts LM, works through the investment channel, and takes 6+ quarters for its full effect to show up
+- The combinations: **"all in"** for deep recessions, consolidation with accommodation to fix the deficit accounts, and open conflict where the central bank leans against an expansionary fiscal stance — the corner that needs the largest rate move
+- The zero lower bound is the hard constraint — Japan for decades, the US and Europe in 2008-2015 and 2020-2021 — and it forces the choice between fiscal and unconventional policy
+- COVID-19 was the largest peacetime response, fiscal at about 20% of GDP plus rates to zero and enormous QE: it prevented a depression and created the overheating problem
+- IS-LM is fundamental to how central banks think, practical for policy analysis, and the foundation for the macro debates ahead
+```
 
 ### Core IS-LM Results
 
@@ -621,6 +711,16 @@ The IS-LM model is:
 ---
 
 ## Important Concepts Checklist
+
+```summary
+- The distinction to have automatic: a movement along IS is the interest rate alone with LM held fixed, a shift of IS is anything else
+- Only the central bank's policy decision shifts LM; every other exogenous demand factor shifts IS
+- The multiplier runs through the ZZ curve, so output moves further than the spending or investment change that started it
+- The zero lower bound and the liquidity trap are one problem: when money demand is perfectly elastic, more liquidity stimulates nothing
+- Policy combinations come in three shapes — all in, consolidation with accommodation, and outright conflict
+- Lags are what make the hard part hard: the effect of a rate change peaks several quarters out, so every decision is taken under uncertainty about its own consequences
+- The one question that answers most of it: which curve moves?
+```
 
 - [ ] Understand movements along vs. shifts of IS
 - [ ] Understand movements along vs. shifts of LM

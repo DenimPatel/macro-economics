@@ -42,6 +42,7 @@ export type ThemePref = 'light' | 'dark' | 'system'
 export type DensityPref = 'compact' | 'comfortable' | 'spacious'
 export type MotionPref = 'system' | 'reduced' | 'full'
 export type MeasurePref = 'narrow' | 'normal' | 'wide'
+export type DetailPref = 'sketch' | 'full'
 export type LineHeightPref = 'tight' | 'normal' | 'relaxed'
 
 export interface Preferences {
@@ -59,6 +60,17 @@ export interface Preferences {
   chartGrid: boolean
   /** Reader / focus mode: reduce chrome and centre the reading column. */
   focusMode: boolean
+  /**
+   * Whether a lecture section opens with its argument or with its claims.
+   *
+   * A note is an argument and a re-reader wants the claims, so this is a
+   * genuine per-reader choice rather than a density or a display setting. It
+   * is a *default*: the per-section toggle on the page overrides it for that
+   * section, in that visit, and a reader who finds themselves flipping every
+   * one of eight toggles is describing their own preference and the site has
+   * somewhere to put it.
+   */
+  lectureDetail: DetailPref
 }
 
 export const DEFAULT_PREFERENCES: Preferences = Object.freeze({
@@ -70,6 +82,7 @@ export const DEFAULT_PREFERENCES: Preferences = Object.freeze({
   motion: 'system',
   chartGrid: true,
   focusMode: false,
+  lectureDetail: 'sketch',
 })
 
 /** The only accepted text scales. A slider cannot produce anything else. */
@@ -165,6 +178,7 @@ const VALIDATORS: { [K in PrefKey]: (value: unknown) => boolean } = {
   density: oneOf(['compact', 'comfortable', 'spacious'] as const),
   motion: oneOf(['system', 'reduced', 'full'] as const),
   chartGrid: isBool,
+  lectureDetail: oneOf(['sketch', 'full'] as const),
   focusMode: isBool,
 }
 

@@ -1,6 +1,13 @@
 # Lecture 7: Extensions to IS-LM - Nominal vs. Real Interest Rates and Credit Spreads
 
 ## Overview
+
+```summary
+- Two extensions to IS-LM: separating the nominal from the real interest rate, and adding the credit spread
+- The Fed controls $i$, but the real borrowing cost that drives investment also depends on expected inflation and credit conditions
+- Those two channels move independently of monetary policy, so they deliver shocks the Fed did not send
+- Tested against the Global Financial Crisis (2008-2009) and the COVID-19 response, to explain why conventional policy stops working
+```
 This lecture extends the basic IS-LM model along two realistic dimensions that significantly enhance its explanatory power for real-world macroeconomic phenomena:
 1. **Nominal vs. Real Interest Rates**: Distinguishing between interest rates in dollar terms versus goods terms, and the role of expected inflation.
 2. **Credit Spreads (Risk Premia)**: Introducing the wedge between safe government borrowing rates and the risky rates at which corporations actually borrow.
@@ -10,6 +17,16 @@ These extensions are critical for understanding modern macroeconomic crises, par
 **Key Insight**: Even when the central bank controls the nominal policy rate, the **real borrowing cost** for firms—which determines investment decisions—depends on both expected inflation and credit market conditions. These two channels can move independently from monetary policy, creating powerful shocks to the economy.
 
 ## 1. Nominal vs. Real Interest Rates
+
+```summary
+- **Nominal rate $i$**: a return in dollar terms, which the Fed sets directly and financial markets report directly
+- **Real rate $r$**: a return in goods terms, the true purchasing power gain from saving; less commonly traded directly, so it is computed from $i$ and expected inflation
+- **Fisher relation** $r \approx i - \pi^e$: arbitrage between a real bond and a nominal one forces equal expected returns, and linearising gives a relation valid for the small rates and inflation of developed economies
+- **Worked example**: 6 percent nominal with 3 percent expected inflation gives a 3 percent real rate — six percent more dollars on goods that are three percent more expensive
+- **Investment depends on $r$, not $i$**: a nominal rate of 15 percent with 10 percent expected inflation leaves $r$ at 5 percent, exactly as at zero inflation, so the same project yielding 7 percent is profitable either way
+- **Great Recession, 2008-2009**: the Fed cut $i$ to about 0 percent, yet $r$ rose to about 4 percent because expected inflation collapsed toward minus 4 percent — deflation expectations, not policy, set the real rate
+- **COVID-19 and after**: expected inflation near 4 to 5 percent made a near-zero nominal rate a real rate near minus 4 percent; hikes then stalled because $\pi^e$ rose with $i$, until the August 2022 Jackson Hole speech
+```
 
 ### 1.1 Definitions
 
@@ -189,6 +206,16 @@ Eventually, the Fed decided inflation was not "transitory" and began raising rat
 
 ## 2. Credit Spreads (Risk Premia)
 
+```summary
+- **Credit spread $x$**: most firms cannot borrow at the Treasury rate, so $r^f = r + x$ — measured as the corporate bond yield minus the same-maturity Treasury yield
+- **Two determinants**: the default probability $p$, read off ratings, historical default rates or CDS-implied probabilities, and investor risk aversion, which swings with the cycle; in practice the two are hard to separate
+- **Derivation**: indifference between a safe bond and a risky one paying $(1 + r^f)$ with probability $(1 - p)$ and nothing otherwise gives $x \approx p$ for small $p$, and an exact spread that grows faster than $p$ as the survival probability shrinks
+- **Worked example**: a safe real rate of 3 percent with $p$ of 5 percent (high yield) gives $x \approx 5.4$ percent, so the firm pays $r^f \approx 8.4$ percent
+- **Countercyclical**: spreads widen sharply in recessions because actual defaults rise, risk aversion spikes with a flight to safety, and corporate bond markets turn illiquid
+- **2008**: $x$ went from about 3 to 4 percent before the crisis to about 20 percent at the peak, so cutting the safe rate to zero did not lower what firms actually paid
+- **March 2020**: $x$ jumped from roughly 4 percent to 11 percent, then fell back to 4 to 5 percent by summer once the Fed announced the PMCCF and SMCCF — the announcement did the work, the facilities were barely used
+```
+
 ### 2.1 Definitions and Concepts
 
 #### Riskless Interest Rate
@@ -343,6 +370,16 @@ Unlike 2008, the Fed acted **immediately and forcefully**:
 - Only very recently (late 2023) have spreads begun to widen modestly.
 
 ## 3. The Extended IS-LM Model
+
+```summary
+- **LM is unchanged**: the Fed still sets the nominal rate, so LM is a horizontal line at $i = \bar{i}$ — the Fed controls $i$, not $r$, and certainly not $r + x$
+- **IS is rewritten**: investment responds to the real borrowing cost, so $Y = C(Y - T) + I(Y, i - \pi^e + x) + G$, with expected inflation and the credit spread entering as new parameters
+- **The two experiments are mirror images**: $\pi^e$ rising shifts IS right and $x$ rising shifts it left, and neither needs the Fed to move $i$
+- **Exact offset is arithmetic**: cutting $i$ by precisely $\Delta x$ leaves $r^f$, investment and output unchanged — provided the Fed can cut that far
+- **The zero lower bound blocks it**: in 2008-2009 $x$ rose about 20 points while the Fed could cut $i$ by only about 5 points, so real borrowing costs rose anyway
+- **The two shocks compound**: $x$ up about 15 points and $\pi^e$ down about 6 points, with $i$ already at zero, gives a real borrowing cost up by 21 percentage points
+- **Policy verdict**: cutting $i$ cannot offset a credit and deflation shock of that size, leaving the Fed out of conventional ammunition
+```
 
 ### 3.1 Modifications to the Standard Model
 
@@ -503,6 +540,16 @@ Even with $i$ cut to zero, real borrowing costs increased by **21 percentage poi
 
 ## 4. Unconventional Monetary Policy
 
+```summary
+- **The bind**: $i \geq 0$ while the economy needs $r^f = i - \pi^e + x$ to fall further, so the only levers left are expected inflation and the credit spread
+- **Quantitative easing**: buying long Treasuries, MBS and corporate bonds raises demand and prices, pushing long yields and mortgage rates down and cutting $x$ directly
+- **QE1-QE3 (2008-2009)**: over 3.5 trillion dollars of long Treasuries and MBS, taking long-term Treasury yields from about 4 percent to 2 percent and mortgage rates from about 6 percent to 3.5 percent; corporate bonds were barely touched
+- **The 2020 innovation**: the PMCCF and SMCCF bought corporate bonds outright to target $x$ — unprecedented for the Fed, and echoed by the Bank of Japan buying ETFs, the ECB buying corporate and covered bonds, and Hong Kong buying equities in 1997
+- **Forward guidance**: committing to keep $i$ at zero through 2025 pulls long rates down, since they average expected future short rates, and lowers $r$ without buying anything
+- **Credibility is the weak point**: time-inconsistency and communication can defeat guidance; the 2012-2015 pledge to hold until unemployment fell below 6.5 percent or inflation passed 2.5 percent is the case that worked
+- **Fiscal policy as complement**: automatic stabilizers cushion demand, and stimulus multiplies more at the zero bound because the Fed cannot offset it — 800 billion dollars in 2009, then CARES and the American Rescue Plan
+```
+
 ### 4.1 The Problem
 When $i$ hits the zero lower bound but the economy needs further stimulus, conventional monetary policy is exhausted. The Fed cannot cut $i$ below zero (or only marginally, due to cash hoarding).
 
@@ -596,6 +643,14 @@ When monetary policy is constrained by the zero lower bound, **fiscal policy** b
 
 ## 5. Summary and Key Takeaways
 
+```summary
+- **Fisher equation**: $r \approx i - \pi^e$, so investment depends on the real rate, not the nominal one
+- **Credit spread**: $r^f = r + x$, and $x$ is countercyclical — wide in recessions, narrow in expansions
+- **Extended IS-LM**: $Y = C(Y - T) + I(Y, i - \pi^e + x) + G$, so expected inflation up or the spread down shifts IS right, and the reverse shifts it left
+- **Great Recession, 2008-2009**: $x$ and $\pi^e$ both collapsed, leaving $r^f$ high even with $i$ at zero — conventional policy ineffective, deep and slow recovery
+- **COVID-19, 2020-2021, then 2022-2023**: expectations surged and the real rate turned near minus 4 percent; raising $i$ then stopped working because $\pi^e$ rose with it, until the August 2022 Jackson Hole speech lowered expectations
+```
+
 ### Main Concepts
 
 #### 1. Fisher Equation
@@ -653,6 +708,13 @@ In upcoming lectures, we will:
 - **Open economy**: How do these concepts extend to exchange rates and international capital flows?
 
 ## 6. Mathematical Appendix
+
+```summary
+- **Fisher, exactly**: expanding the exact arbitrage condition gives $r \approx i - \pi^e - i\pi^e$, so the whole error is the dropped product term — 0.15 percent, at a nominal rate of 5 percent with expected inflation of 3 percent
+- **Spread with recovery**: letting $\theta$ be the share of principal recovered in default, the spread widens as recovery falls — the zero-recovery result when nothing is recovered, and something larger when the principal is lost outright
+- **The IS curve in closed form**: with $I = \bar{I} - b(r^f - \bar{r})$, goods market equilibrium solves $Y$ as autonomous spending less $b$ times the real borrowing cost, all over the complement of the marginal propensity to consume
+- **Comparative statics**: output responds to $i$, $\pi^e$ and $x$ symmetrically and in equal magnitude, each scaled by $b$ over $(1 - c_1)$, so a 1 percentage point rise in $x$ does exactly what a fall in $\pi^e$ or a rise in $i$ of the same size does
+```
 
 ### A. Exact Fisher Equation
 Starting from:

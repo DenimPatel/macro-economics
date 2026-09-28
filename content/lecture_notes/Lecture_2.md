@@ -1,11 +1,27 @@
 # Lecture 2: Definitions - GDP, Unemployment, and Inflation
 
 ## Overview
+
+```summary
+- The lecture fixes the definitions of **GDP, unemployment and inflation** — the variables the rest of the course moves
+- In micro, output is a count and price is one price; in macro both have to be aggregated across millions of goods and services
+- GDP turns out to be measurable three equivalent ways, and nominal has to be separated from real
+- The backdrop: high inflation, supply chain disruption from COVID and China's reopening, and the war in Ukraine raising energy prices
+- Definitions, not models — the first model arrives in Lecture 3
+```
 This lecture establishes the formal definitions of key macroeconomic variables: GDP (Gross Domestic Product), unemployment, and inflation. Unlike microeconomics, where concepts like "output" and "price" are straightforward, macroeconomics requires careful aggregation across millions of goods and services. We explore three equivalent methods of measuring GDP, distinguish nominal from real GDP, and examine current labor market and inflation data.
 
 **Context**: Current environment features high inflation, supply chain disruptions (COVID, China reopening), and the war in Ukraine affecting energy prices.
 
 ## 1. Why Definitions Matter in Macro
+
+```summary
+- **The aggregation problem**: in micro, output is a number of cars and price is one car's dollar price; in macro both have to be built from millions of goods and services
+- "What is the output of the US economy?" has no obvious answer — apples, health services, banking and entertainment do not add up on their own
+- Macro definitions therefore require sophisticated aggregation techniques, not a lookup
+- The NIPA was only developed in the late 1940s, after WWII; before that, industrial production was the proxy
+- The same words mean something different at the aggregate level, which is why the definitions are worth a lecture
+```
 
 ### The Aggregation Problem
 - **Microeconomics**: Definitions are obvious.
@@ -19,11 +35,21 @@ This lecture establishes the formal definitions of key macroeconomic variables: 
 
 ## 2. Gross Domestic Product (GDP)
 
+```summary
+- **GDP**: the total market value of all final goods and services produced within a country's borders in a given period
+- A **flow** measured over a year or a quarter, **domestic** by location rather than by ownership, and **final** because intermediate goods are excluded to avoid double counting
+- "Gross" means depreciation is not deducted — net domestic product would deduct it, but GDP is the measure in use
+- A two-firm economy fixes the number: a steel mill sells for 100 dollars, the car maker buys that steel and sells cars for 200, so GDP is 200 and not the 300 of all revenues
+- **Final goods approach**: the cars count and the steel does not, and merging the firms into one vertical company leaves GDP unchanged
+- **Value added approach**: revenue minus intermediate inputs at every stage — 100 for the steel mill, 100 for the car maker
+- **Income approach**: 150 of wages and 50 of profits reach the same 200, so production = income = spending; taxes are zero in this stripped example and must be added back in a real one
+```
+
 ### Definition
 **GDP (Gross Domestic Product)**: The total market value of all **final goods and services** produced within a country during a given period (typically one year or one quarter).
 
 **Key Points**:
-- **Flow Variable**: GDP measures production over a period of time (e.g., "US GDP in 2022 was $23 trillion").
+- **Flow Variable**: GDP measures production over a period of time (e.g., "US GDP in 2022 was $25.7 trillion").
 - **Domestic**: Produced within the country's borders (regardless of ownership nationality).
 - **Final Goods**: Excludes intermediate goods to avoid double counting.
 
@@ -72,31 +98,47 @@ $$\text{GDP} = \text{Sum of all incomes earned in the economy}$$
 **Income Categories**:
 1. **Labor Income (Wages)**: Payments to workers.
 2. **Capital Income (Profits)**: Payments to owners of firms and capital.
-3. **Taxes** (in realistic economies).
+3. **Rent and land income**: What the ownership of land and natural resources pays out. The GDP Visualizer beside this lecture splits income into exactly three parts — wages, profits and rent — which is the same list with the government and the rest of the world left out.
+4. **Taxes less subsidies**: Collected by the government net of the transfers it pays back. It is a genuine part of national income and a real country's accounts include it, so a list that stops at wages and profits has to say it is a list for the stripped example.
+5. **Net factor income from abroad**: What residents earn on foreign assets less what foreigners earn on domestic ones, which is zero in a closed economy.
 
 **In our example**:
 - **Wages**: Steel workers (\$80) + Car workers (\$70) = \$150.
 - **Profits**: Steel company (\$20) + Car company (\$30) = \$50.
-- **Total GDP** = \$150 + \$50 = \$200.
+- **Rent**: \$0, the example economy owns no land.
+- **Taxes**: \$0, because the example economy is deliberately stripped of government.
+- **Total GDP** = \$150 + \$50 + \$0 + \$0 = \$200.
 
 **Fundamental Identity (Closed Economy)**:
 $$\text{Production} = \text{Income}$$
 
-**Why This Matters for Macro** (but not for Micro):
-- In **micro**, a car company's income can be spent on anything (food, entertainment, housing).
-- In **macro** (closed economy), aggregate income **must** be spent on the aggregate good produced (no other economy to buy from).
-- **Implication**: In macro, what is produced = what is earned = what is spent (circular flow).
+**Why This Holds**:
+- Every dollar of value added is someone's income, by construction. The \$200 of cars is \$150 paid out as wages and \$50 retained as profit — the *same* \$200 counted from the producing side and the receiving side. The income approach adds up the other side of the value-added arithmetic, not a separate fact.
+- The example's three methods are three routes to one number, so "wages + profits = GDP" is true here only because taxes and foreign income are zero. A reader who carries the identity into a real economy without adding them back will be short by exactly the tax take.
 
-**Key Insight**: This production-income-expenditure equivalence is fundamental to macroeconomic analysis. It's a distinctive feature of macro absent in micro.
+**And Why It Matters for Macro** (but not for Micro):
+- In **micro**, a car company's income can be spent on anything (food, entertainment, housing).
+- In **macro** (closed economy), every dollar of income is spent on the aggregate good produced, because there is no other economy to buy from.
+- **Implication**: what is produced = what is earned = what is spent. Production = income is accounting; production = spending is the circular flow, and only the second one is a statement about macro.
 
 ### Summary: All Three Methods Yield GDP = $200
 - **Final Goods Approach**: Sum only final goods ($200).
 - **Value Added Approach**: Sum value added across all firms ($200).
-- **Income Approach**: Sum all incomes (wages + profits = $200).
+- **Income Approach**: Sum all incomes (wages + profits, plus rent and taxes in a real economy = $200 here).
 
 **Why Use Multiple Methods?** Cross-validation—discrepancies indicate measurement errors.
 
 ## 3. Nominal vs. Real GDP
+
+```summary
+- **Nominal GDP** can rise for two reasons at once: more output, or higher prices on the same output
+- **Real GDP** values every good at fixed base-year prices, which strips out inflation and leaves production growth alone
+- A car-only economy over three years shows them splitting: nominal runs 200,000 → 288,000 → 338,000 while real runs only 240,000 → 288,000 → 312,000
+- The two are equal in the base year by construction, and nominal growth runs ahead of real everywhere else
+- Across 1960-2018 US nominal GDP rose 38x while real GDP rose 5.7x — most nominal growth was price, not production
+- **Always analyse growth in real GDP**; nominal misleads over long periods and in high-inflation economies such as Argentina
+- Course convention: nominal carries a dollar sign, real does not, and prices are held fixed until Quiz 1
+```
 
 ### The Problem: Separating Quantity from Prices
 - **Nominal GDP** can grow for two reasons:
@@ -111,7 +153,7 @@ $$\text{Nominal GDP}_t = \sum_{i} P_{it} \times Q_{it}$$
 
 - $P_{it}$: Current price of good $i$ in year $t$.
 - $Q_{it}$: Quantity of good $i$ produced in year $t$.
-- **Example**: US Nominal GDP in 2023 ≈ $24 trillion.
+- **Example**: US Nominal GDP in 2023 ≈ $27.7 trillion.
 
 #### Real GDP ($Y$)
 $$\text{Real GDP}_t = \sum_{i} P_{i,\text{base}} \times Q_{it}$$
@@ -157,6 +199,14 @@ $$\text{Real GDP}_t = \sum_{i} P_{i,\text{base}} \times Q_{it}$$
 
 ## 4. GDP Growth and Recessions
 
+```summary
+- Real GDP typically grows around 2% a year, and a recession is a stretch of negative or very low growth
+- The Great Recession (2007-2009) contracted output significantly and took unemployment to 10%
+- COVID-19 (2020) was far deeper but far shorter: about -30% annualized in the second quarter, then a rapid 2021 recovery
+- "Recession" here means two consecutive quarters of negative growth — close to, but not, the official NBER definition
+- Growth is the primary indicator of economic health, and a recession is falling output alongside rising unemployment
+```
+
 ### US GDP Growth (Historical Context)
 - **Typical Growth Rate**: ~2% per year (real GDP).
 - **Recessions** (shaded areas): Periods of negative or very low growth.
@@ -168,6 +218,15 @@ $$\text{Real GDP}_t = \sum_{i} P_{i,\text{base}} \times Q_{it}$$
 **Key Insight**: GDP growth is the primary indicator of economic health. Recessions = periods of falling output and rising unemployment.
 
 ## 5. Unemployment
+
+```summary
+- **Unemployed** means no job *and* actively looking — anyone who has stopped searching is not in the labor force at all
+- **Labor force** is employed plus unemployed, and the **unemployment rate** divides by the labor force, not by the total population
+- **Participation rate** is the labor force over the working-age population, so it moves whenever people stop looking for work
+- **Discouraged workers** have given up searching after repeated rejections; they are counted as out of the labor force, so the rate understates weakness in a recession
+- The figures come from the **Current Population Survey**: a monthly survey of about 77,000 households, asking about employment status and recent job search
+- U-6 widens the definition to include discouraged workers and part-timers seeking full-time work
+```
 
 ### Definitions
 
@@ -190,7 +249,7 @@ $$\text{Participation Rate} = \frac{\text{Labor Force}}{\text{Working-Age Popula
 **Important**: Unemployment rate is unemployment divided by **labor force**, not total population.
 
 ### Measurement: Current Population Survey (CPS)
-- **Method**: Monthly survey of ~60,000 households.
+- **Method**: Monthly survey of ~77,000 households.
 - **Questions**: Employment status, job search activity over past two weeks.
 
 ### Discouraged Workers
@@ -202,6 +261,15 @@ $$\text{Participation Rate} = \frac{\text{Labor Force}}{\text{Working-Age Popula
 **Key Insight**: The unemployment rate can be misleading during severe recessions if many workers become discouraged and drop out of the labor force.
 
 ## 6. Current US Labor Market (2023)
+
+```summary
+- Unemployment is about 3.5%, the lowest since the early 1960s, against a 5-6% norm, a 10% Great Recession peak and a 14.7% COVID peak
+- Such low unemployment is a problem because a tight labor market pushes wages up, and wages drive inflation
+- Participation rose sharply through the 1960s-1990s as women entered the workforce, then declined gradually over 2000-2020
+- It dropped sharply in 2020 and has still not recovered, so the labor force is smaller than expected and shortages push wages up
+- The Fed assumed participation would bounce back fully and so underestimated the resulting inflationary pressure
+- A strong demand story and a shrunken labor supply are both behind 2023's low unemployment, and both fuel wage inflation
+```
 
 ### Unemployment Rate: Historically Low
 - **Current**: ~3.5% (lowest since early 1960s).
@@ -226,6 +294,16 @@ $$\text{Participation Rate} = \frac{\text{Labor Force}}{\text{Working-Age Popula
 **Key Insight**: Low unemployment rate in 2023 partly reflects strong demand, but also reflects **reduced labor supply** (low participation). This combination fuels wage inflation.
 
 ## 7. Inflation
+
+```summary
+- **Inflation** is a sustained rise in the general price level, not a shift in relative prices
+- **Deflation** is negative inflation — Japan lived with it through the 1990s-2010s
+- "The price level" is not observable, so it is built as a weighted average of many prices
+- **GDP deflator** is nominal over real GDP and is the index economists prefer; **CPI** tracks a fixed basket of household consumption and is the one the media cite
+- **Core CPI** drops food and energy as volatile noise, yet even it runs above 6% — so the inflation problem is not just those components
+- Some argue to drop sticky, lagged shelter costs as well, and inflation stays high on every exclusion
+- The two indices differ in basket, weights and imported goods, but they move closely together, so the choice rarely changes the story
+```
 
 ### Definition
 **Inflation** ($\pi$): A sustained rise in the **general price level**.
@@ -275,6 +353,16 @@ $$\pi_t^{\text{CPI}} = \frac{\text{CPI}_t - \text{CPI}_{t-1}}{\text{CPI}_{t-1}} 
 
 ## 8. International Comparisons
 
+```summary
+- **China** grew about 10% a year in real terms through the 1980s-2000s, then 6-7% in the 2010s and roughly 3% in 2022
+- That was **catch-up growth**: high marginal returns to capital and to adopting existing technology from a very low income base, so poor countries can converge on rich ones
+- The slowdown is structural — aging after the one-child policy, and the fear of "getting old before getting rich" — with Zero-COVID lockdowns adding the cyclical part
+- Reopening from late 2022 should bring a temporary boom like the US saw in 2021, but the long-run trend is lower growth
+- **Japan** is the warning: roughly 10% catch-up growth in the 1960s, an asset bubble in the late 1980s, then 0-1% growth and near-zero or negative inflation through the 1990s-2010s
+- **Deflation traps**: when inflation is negative, real rates stay high even at a zero nominal rate, so monetary policy cannot stimulate the economy
+- Japan finally broke above 2% inflation in 2023, and China is watching for the same path
+```
+
 ### China: Catch-Up Growth
 
 #### Historical Growth Rates
@@ -319,6 +407,14 @@ $$\pi_t^{\text{CPI}} = \frac{\text{CPI}_t - \text{CPI}_{t-1}}{\text{CPI}_{t-1}} 
 **Key Insight**: Japan's experience shows that financial bubbles followed by deflation can trap an economy in prolonged stagnation. Demographics (aging) exacerbate the problem.
 
 ## 9. Summary
+
+```summary
+- GDP is the value of final output and is measurable three equivalent ways, but growth is always analysed in **real** GDP
+- Unemployment is unemployed over the labor force, and participation is labor force over working-age population — so the rate can look healthy while the labor force has shrunk
+- Inflation is a sustained rise in the general price level, measured by the GDP deflator, the CPI or core CPI, and on every measure 2023 sits far above the 2% target
+- **Production = income** in a closed economy — a circular flow microeconomics does not have
+- 2023 in one line: US unemployment near 3.5% with inflation around 6-8%, China's reopening boom against a slowing trend, Japan escaping deflation
+```
 
 ### Key Definitions
 1. **GDP**: Total value of final goods and services produced in an economy during a period.

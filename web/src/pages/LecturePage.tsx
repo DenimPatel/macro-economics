@@ -3,7 +3,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Check, ExternalLink, List, Youtube } from 'lucide-react'
 import { LECTURES, lectureByNumber, type LectureMeta } from '../../../content/lectures'
 import { useLectureBody } from '../content/loadLectures'
-import { Markdown, extractHeadings } from '../content/markdownComponents'
+import { contentsHeadings } from '../content/markdownComponents'
+import { LectureBody } from '../components/LectureBody'
 import TableOfContents, { ContentsDisclosure } from '../layout/TableOfContents'
 import { useScrollSpy } from '../layout/useScrollSpy'
 import LectureBar from '../layout/LectureBar'
@@ -13,7 +14,6 @@ import Prediction from '../learning/Prediction'
 import { TierBadge } from '../components/ui'
 import { useProgress, toggleLectureComplete } from '../learning/progress'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
-import { LECTURE_ARTICLE_ID } from '../lib/readingProgress'
 
 function youtubeId(url: string): string | undefined {
   return /youtu\.be\/([^?]+)/.exec(url)?.[1] ?? /v=([^&]+)/.exec(url)?.[1]
@@ -74,7 +74,7 @@ export default function LecturePage() {
   const { markdown, loading, error } = useLectureBody(lecture?.n)
   const { completedLectures } = useProgress()
 
-  const headings = useMemo(() => (markdown ? extractHeadings(markdown) : []), [markdown])
+  const headings = useMemo(() => (markdown ? contentsHeadings(markdown) : []), [markdown])
   const activeId = useScrollSpy(headings)
   const index = lecture ? LECTURES.findIndex((l) => l.n === lecture.n) : -1
   const prev = index > 0 ? LECTURES[index - 1] : undefined
@@ -211,9 +211,7 @@ export default function LecturePage() {
 
           {loading && <p className="text-sm text-fg-subtle">Loading lecture…</p>}
           {error && <p className="text-sm text-bad-ink">Could not load the lecture: {error}</p>}
-          {markdown && (
-            <Markdown id={LECTURE_ARTICLE_ID}>{markdown}</Markdown>
-          )}
+          {markdown && <LectureBody markdown={markdown} />}
 
           {videoId && (
             <details className="reading-col mt-8 rounded-card border border-border bg-surface p-4">

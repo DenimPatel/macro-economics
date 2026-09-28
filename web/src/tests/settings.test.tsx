@@ -124,7 +124,25 @@ describe('settings panel semantics', () => {
     renderControl()
     const panel = openPanel()
     const groups = within(panel).getAllByRole('radiogroup')
-    expect(groups).toHaveLength(6)
+    // The ROWS, by name, rather than a count. A count is a snapshot of one
+    // authoring pass: adding a preference fails it and removing one passes it,
+    // which is the opposite of what the assertion is for. Naming the rows
+    // catches both — a row that disappears or is renamed fails, and adding one
+    // does not — and the loop below already holds every one of them to the
+    // property that matters.
+    const rowNames = groups.map((g) => {
+      const id = g.getAttribute('aria-labelledby') as string
+      return document.getElementById(id)?.textContent?.trim()
+    })
+    expect(rowNames).toEqual([
+      'Appearance',
+      'Text size (%)',
+      'Reading width',
+      'Lecture detail',
+      'Line spacing',
+      'Density',
+      'Motion',
+    ])
     for (const group of groups) {
       const labelId = group.getAttribute('aria-labelledby') as string
       const descriptionId = group.getAttribute('aria-describedby') as string

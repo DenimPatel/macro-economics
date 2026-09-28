@@ -1,9 +1,26 @@
 # Lecture 16: Growth Accounting and Conditional Convergence
 
 ## Overview
+
+```summary
+- Growth accounting decomposes output growth into contributions from capital, labor and technology
+- The **Solow residual** is never observed directly; it is what is left once measurable inputs are accounted for
+- Human capital explains income *levels* — it does not change the long-run growth rate
+- TFP differences, not gaps in capital or schooling, account for most cross-country income differences
+- **Conditional convergence**: countries grow fast only when far below their own steady state
+```
 This lecture completes the growth theory section by examining what our models can and cannot explain about cross-country income differences. We introduce growth accounting (the Solow residual) to decompose growth into contributions from capital, labor, and technology. We then extend the model to include human capital and explore conditional convergence - why some countries remain poor while others catch up.
 
 ## 1. Balanced Growth Path Revisited
+
+```summary
+- **Balanced growth**: every variable grows at a constant rate when technology grows at $g_A$ and population at $g_N$
+- Normalizing by **effective workers** ($A \times N$) is what makes the steady-state diagram static — the curves stop shifting
+- Per effective worker, output and capital are constant; per worker both grow at $g_A$; the totals grow at $g_A + g_N$
+- **Only $g_A$** raises long-run living standards; capital per worker grows at $g_A$ because technology does, not because capital accumulated
+- Cobb-Douglas with a labor share near 0.7 and a capital share near 0.3 has constant returns to scale
+- Differentiating logs gives $g_Y = (1-\alpha)g_K + \alpha(g_A + g_N)$, and balanced growth collapses that to $g_{Y/N} = g_A$
+```
 
 ### Complete Model Characteristics
 In the Solow model with technological progress ($A$ grows at $g_A$) and population growth ($N$ grows at $g_N$), balanced growth occurs when all variables grow at constant rates.
@@ -18,7 +35,7 @@ In the Solow model with technological progress ($A$ grows at $g_A$) and populati
 |----------|-------------|-------------|
 | Output per Effective Worker ($Y/AN$) | 0 | Constant (balanced growth definition) |
 | Capital per Effective Worker ($K/AN$) | 0 | Constant (steady state in diagram) |
-| **Output per Worker ($Y/N$)** | **$g_A$** | Only technology drives per-capita growth |
+| **Output per Worker ($Y/N$)** | **$g_A$** | Only technology drives per capita growth |
 | **Capital per Worker ($K/N$)** | **$g_A$** | Capital deepening at rate of tech progress |
 | **Total Output ($Y$)** | **$g_A + g_N$** | Both drivers contribute to absolute growth |
 | **Total Capital ($K$)** | **$g_A + g_N$** | Grows with effective workers |
@@ -50,6 +67,15 @@ $$g_{Y/N} = g_Y - g_N = g_A$$
 This confirms our table entries.
 
 ## 2. Growth Accounting: The Solow Residual
+
+```summary
+- Output growth, capital growth, labor growth and the labor share are all observable; **technological progress is not**
+- Growth accounting infers technology growth as the leftover: $g_A = g_Y - (1-\alpha)g_K - \alpha g_N$
+- Each input is weighted by its **factor share**, which competitive markets fix at payments equal to marginal products
+- The **Solow residual** is the part of growth that measurable factor accumulation leaves unexplained
+- It is also called **TFP** growth, or "the measure of our ignorance" — it swallows measurement error too
+- Inside it sit technological innovation, organizational improvement, education, and reallocation toward more productive uses
+```
 
 ### The Fundamental Problem
 We can observe:
@@ -105,6 +131,16 @@ The residual $g_A$ captures everything not explained by $K$ and $N$:
 This is why it's sometimes called "Total Factor Productivity" (TFP) growth or the "measure of our ignorance."
 
 ## 3. Application: China's Growth (1978-2017)
+
+```summary
+- Between 1978 and 2017 China grew 7.2% a year: capital 9.2%, labor 1.7%, TFP 3.25%
+- The three contributions sum to output growth: capital $2.76\%$, labor $1.19\%$, TFP $3.25\%$
+- Capital grew faster than output, so $K/Y$ was rising — not the signature of balanced growth
+- Balanced growth would put capital growth at $g_A + g_N = 4.95\%$; it ran at 9.2%, so this was **transitional growth**
+- The mechanism is a starting $k$ below $k^*$: investment ran above steady-state needs and the saving-minus-depreciation gap drove catch-up
+- The 4.95% long-run rate is likely an overestimate as $g_N$ turns negative and the catch-up boost fades; 3-5% is more realistic
+- Pushing the saving rate further is near its limit at 45%+ of GDP; the durable options are TFP growth or immigration
+```
 
 ### The Chinese Growth Miracle
 Between 1978 (economic reforms) and 2017, China experienced extraordinary growth:
@@ -185,6 +221,15 @@ Potential reasons:
 
 ## 4. Human Capital Extension
 
+```summary
+- Schooling varies enormously: about 13 years in the US, Korea and Japan against about 5 in Sub-Saharan Africa
+- **Human capital** is $h = e^{\psi s}$, so each year of schooling is worth roughly $\approx 10\%$ and 10 years multiplies *human capital* by 2.72, so effective labor by $2.72^\alpha$ — about 1.40 at $\alpha=0.33$
+- It moves the **level** of income per capita, not its long-run growth rate — schooling cannot rise forever
+- Normalizing by workers rather than effective workers removes the $g_A$ term, leaving a break-even of $(\delta + n)$
+- The balanced-growth solution $k = (s/(g_A+\delta+n))^{1/\alpha} Ah$ leaves capital per effective worker exactly as in the basic Solow model
+- Steady-state income per worker is $A \cdot h \cdot (s/(g_A+\delta+n))^{(1-\alpha)/\alpha}$: technology, human capital and saving raise it, population growth lowers it
+```
+
 ### Motivation
 Education levels vary dramatically across countries:
 - US, Korea, Japan: ~13 years average schooling
@@ -206,7 +251,9 @@ Where:
 **Interpretation**:
 - Each additional year of schooling raises human capital by $\approx 10\%$
 - 10 years of schooling: $h = e^{0.1 \times 10} = e^1 \approx 2.72$
-  - Effectively multiplies labor force by 2.72
+  - This multiplies *human capital* $h$, not the labor force. Labor enters
+    production inside $(Ah)^\alpha$, so effective labor is multiplied by
+    $2.72^\alpha$ — about 1.40 at $\alpha = 0.33$, not 2.72
 
 ### Balanced Growth with Human Capital
 
@@ -271,6 +318,16 @@ $$y = A \cdot h \cdot \left(\frac{s}{g_A + \delta + n}\right)^{(1-\alpha)/\alpha
 
 ## 5. Cross-Country Income Comparisons
 
+```summary
+- Each country's income ratio to the US decomposes into technology, human capital, saving and population growth
+- **Solow's assumption**: the same $A$ everywhere, justified on the grounds that technology can be imported or copied
+- Holding human capital equal leaves only saving, population growth and a constant depreciation rate
+- That predicted world is far flatter than the real one — nowhere near the 30-fold differences observed
+- **Conclusion**: capital and labor accumulation alone explain only a small fraction of cross-country income gaps
+- Adding schooling boosts Japan and Korea, penalizes Sub-Saharan Africa, and raises dispersion somewhat
+- Even with education, saving and population growth, the model still predicts a much flatter world than we observe
+```
+
 ### Setting Up the Comparison
 
 **Goal**: Explain why income per capita varies so much across countries.
@@ -323,6 +380,16 @@ $$\hat{y}_i = \frac{h_i}{h_{US}} \cdot \left[\frac{s_i}{s_{US}} \cdot \frac{g_A 
 
 ## 6. The Role of Technology (TFP)
 
+```summary
+- Drop the equal-technology assumption and measure it directly: $A_i = y_i / (k_i^{1-\alpha} h_i^\alpha)$
+- Relative TFP puts Singapore near the US at about 0.9, Mexico at about 0.6 and Kenya at about 0.3
+- Relative TFP and relative output per worker are very strongly positively related
+- **Between 50% and 67%** of cross-country income differences are attributable to TFP differences
+- Poor countries are poor primarily because they are unproductive, not merely short of capital or education
+- TFP is a basket: institutions, technology-adoption barriers, misallocation, market distortions, political instability, geography
+- **The limit of growth theory**: the Solow model needs $A$ and never explains why it differs across countries
+```
+
 ### Dropping the Equal Technology Assumption
 
 **New approach**: Allow $A_i \neq A_{US}$ and measure it.
@@ -366,6 +433,16 @@ TFP differences reflect:
 **Critical insight**: Growth theory (Solow model) tells us TFP is crucial, but doesn't explain why TFP differs. That requires institutional economics, political economy, etc.
 
 ## 7. Convergence Among Similar Countries
+
+```summary
+- **Absolute convergence** — poor countries growing faster than rich ones — does not hold unconditionally
+- **Conditional convergence** does: countries converge to their own steady states, and those steady states differ
+- Major industrial economies over 1870-2010 converged clearly — Japan far behind in 1870 grew fastest, the US and UK ahead grew slowly
+- Japan is the textbook path: a gap in 1870, catch-up then war, the 1945-1990 "miracle", and growth rates equalized by 1990-2010
+- It works because similar institutions, technology adoption and education give similar $A$ and $h$ — similar steady states
+- Add the poor countries and the negative relationship disappears or reverses: some African countries were low-income in 1960 and stayed low-growth
+- The reason is that poor countries have lower steady states, so they converge to those rather than to rich-country levels
+```
 
 ### Conditional Convergence Concept
 
@@ -422,6 +499,16 @@ TFP differences reflect:
 - Converging to a low steady state, not to US/rich country levels
 
 ## 8. Conditional Convergence Framework
+
+```summary
+- **The hypothesis**: countries grow faster the further below their own steady state they are
+- The gap $y_i/y_i^*$ is built from each country's own $A$, $h$, $s$ and $n$, and the prediction is $g_i = \lambda(1 - y_i/y_i^*)$
+- $\lambda$, the convergence speed, is typically 2-3% per year
+- A ratio below 1 means fast catch-up ahead, exactly 1 means growth at $g_A$, above 1 is rare and means slow growth
+- Regressing 1970-2010 growth on the log of the 1970 gap across 100+ countries gives the predicted negative coefficient
+- The fitted coefficient implies a convergence speed of about 2% a year
+- **The key insight**: poor countries with low steady states catch up to their own low levels, not to the rich ones
+```
 
 ### The Conditional Convergence Hypothesis
 
@@ -489,11 +576,20 @@ $$g_i = a + b \log\left(\frac{y_i(1970)}{y_i^*(1970)}\right) + \varepsilon_i$$
 
 ## 9. The Great Income Divergence
 
+```summary
+- Income per worker at the 90th percentile country against the 10th went from about 5:1 in 1870 to 15:1 in 1960 and 25:1 in 2000
+- Living standards are not merely unequal — the gap between rich and poor has been widening
+- In balanced growth $g_y = g_A$, so a persistent edge in TFP growth compounds the income ratio exponentially
+- Rich countries have kept faster TFP growth: innovation is concentrated there, technology diffusion is slow, and poverty traps are self-reinforcing
+- Inequality eased slightly over 2000-2020 as China grew 7-10% a year and India 6-8%, together a third of the world population
+- China is likely to slow as transitional growth ends, India still has catch-up room, and Africa remains largely stagnant
+```
+
 ### Rising Global Inequality
 
-**Historical trend**: The ratio of income per worker between rich and poor countries has been increasing.
+**Historical trend**: The spread of income per worker across countries has been increasing.
 
-**Measure**: Ratio of 90th percentile country to 10th percentile country
+**Measure**: Ratio of the 90th percentile *country* to the 10th percentile *country* — a percentile of countries, not of workers within them
 - **1870**: ~5:1
 - **1960**: ~15:1
 - **2000**: ~25:1
@@ -536,6 +632,15 @@ $$\frac{y_{rich}(t)}{y_{poor}(t)} = \frac{y_{rich}(0)}{y_{poor}(0)} \times e^{(g
 - Africa: Still mostly stagnant (institutional challenges)
 
 ## 10. What We've Learned and What We Haven't
+
+```summary
+- The Solow model explains balanced-growth facts, transitional dynamics, conditional convergence, and the effect of saving
+- Saving raises the **level** of income, not its growth rate — it only buys a transitional boost
+- The model **assumes** technology and its growth rate, so it cannot explain why TFP levels or TFP growth differ
+- Long-run growth is handed to an exogenous $g_A$; explaining innovation needs endogenous growth theory
+- Countries poor for centuries are a development trap, needing multiple equilibria and complementarities rather than this model
+- The open fronts are institutional economics, endogenous growth, misallocation and structural transformation
+```
 
 ### What the Solow Model Explains Well
 
@@ -594,6 +699,15 @@ $$\frac{y_{rich}(t)}{y_{poor}(t)} = \frac{y_{rich}(0)}{y_{poor}(0)} \times e^{(g
 
 ## 11. Policy Implications
 
+```summary
+- For developing countries, higher investment buys transitional growth but does not by itself deliver long-run catch-up
+- Education raises the income level by roughly 10% per year of schooling, but moving average schooling takes decades
+- **Technology adoption** — trade openness, FDI, licensing — is the most important lever on TFP growth
+- Institutional reform carries the highest long-run payoff and the hardest politics
+- Don't expect automatic catch-up: convergence is conditional, and China's growth was driven by TFP, not by $K$ alone
+- Advanced countries are living with slowing TFP growth, shrinking $g_N$ and environmental limits, and must lean on R&D, skills and reallocation
+```
+
 ### For Developing Countries
 
 **What works**:
@@ -640,6 +754,14 @@ $$\frac{y_{rich}(t)}{y_{poor}(t)} = \frac{y_{rich}(0)}{y_{poor}(0)} \times e^{(g
 
 ## 12. Summary
 
+```summary
+- Growth accounting splits output growth into capital, labor, and a Solow residual standing in for TFP
+- Human capital raises the income level by about 10% per year of schooling without changing long-run growth
+- Across countries TFP dominates: 50-67% of income differences, against 20-30% education and 10-20% capital — overlapping literature ranges, not a split that sums to 100%
+- Conditional convergence means fast growth when far below your own steady state, so rich countries converge and poor ones largely do not
+- The open mystery is why TFP levels and TFP growth rates differ so much — that needs institutional economics, not this model
+```
+
 ### Key Concepts
 
 **Growth Accounting**:
@@ -653,9 +775,15 @@ $$\frac{y_{rich}(t)}{y_{poor}(t)} = \frac{y_{rich}(0)}{y_{poor}(0)} \times e^{(g
 - Important for explaining cross-country differences
 
 **Cross-Country Income Differences**:
-- 50-67% due to TFP differences
+- 50-67% due to TFP differences — the only share this note actually derives
 - 20-30% due to education differences
 - 10-20% due to capital accumulation differences
+
+These are **overlapping ranges from the literature, not a partition that sums
+to 100%** — added at their extremes they span 80-117%, and only the TFP range
+comes from the growth accounting above. The other two are order-of-magnitude
+figures: TFP dominates, and the split between education and capital is not
+pinned down by anything here.
 
 **Conditional Convergence**:
 - Countries converge to their own steady states

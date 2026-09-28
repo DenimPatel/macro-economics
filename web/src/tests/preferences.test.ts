@@ -136,6 +136,7 @@ describe('preferences: defaults', () => {
       motion: 'system',
       chartGrid: true,
       focusMode: false,
+      lectureDetail: 'sketch',
     })
     expect(prefs.readPreferences()).toEqual({ ...prefs.DEFAULT_PREFERENCES })
   })

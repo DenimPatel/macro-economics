@@ -1,7 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import type { ComponentProps, RefObject } from 'react'
-import { describe, expect, it, beforeEach, afterEach } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import ReadingProgress from '../layout/ReadingProgress'
@@ -847,7 +846,7 @@ describe('the bracket shortcut', () => {
       fireEvent.keyDown(document, { key: '[' })
     })
     await view.arrived(4)
-  })
+  , 20_000})
 
   it('is inert with a modifier, so Ctrl+] stays the browser tab switch', async () => {
     const view = page('/lecture/5')

@@ -60,9 +60,42 @@ export default function ReadingProgress({ targetId, label }: Props) {
     measure()
     window.addEventListener('scroll', measure, { passive: true })
     window.addEventListener('resize', measure)
+
+    // Scroll and resize are not the only things that move the article. Opening
+    // one section's disclosure makes every section below it taller, and the
+    // reader has not scrolled, so neither event fires — measured on
+    // /lecture/3: expanding the first section grew the article by 379px and
+    // left the bar reading 30% when the article was 37% read, and it stayed
+    // there until the reader happened to scroll. A rail that answers "how much
+    // is left" cannot be wrong by that much between the click and the next
+    // scroll, so the article is observed rather than polled.
+    //
+    // The catch is that the article does not exist when this effect runs. The
+    // bar is in the Shell and the article is in the page body, and the page
+    // body is rendered only once the markdown has resolved — so the first
+    // `getElementById` returns null, and an observer built against null watches
+    // nothing, which is worth stating because it is why attaching one directly
+    // looked right and measured as doing nothing. So the document is watched
+    // for the article instead, and that watcher disconnects itself the moment
+    // it has what it came for.
+    let observer: ResizeObserver | null = null
+    const watch = new MutationObserver(() => {
+      const article = document.getElementById(targetId)
+      if (!article) return
+      watch.disconnect()
+      measure()
+      if (typeof ResizeObserver !== 'undefined') {
+        observer = new ResizeObserver(measure)
+        observer.observe(article)
+      }
+    })
+    watch.observe(document.body, { childList: true, subtree: true })
+
     return () => {
       window.removeEventListener('scroll', measure)
       window.removeEventListener('resize', measure)
+      observer?.disconnect()
+      watch.disconnect()
     }
   }, [targetId])
 

@@ -15,6 +15,7 @@ import type {
   LineHeightPref,
   MeasurePref,
   MotionPref,
+  DetailPref,
   Preferences,
   TextScale,
   ThemePref,
@@ -120,6 +121,7 @@ const LINE_HEIGHT_OPTIONS: SegmentedOption<LineHeightPref>[] = [
 ]
 
 const DENSITY_OPTIONS: SegmentedOption<DensityPref>[] = [
+
   { value: 'compact', label: 'Compact' },
   // "Normal", not "Comfortable": it is what the store calls it, it is what the
   // other two middle options are called, and it is the only label in the panel
@@ -127,6 +129,17 @@ const DENSITY_OPTIONS: SegmentedOption<DensityPref>[] = [
   // clipped mid-word.
   { value: 'comfortable', label: 'Normal' },
   { value: 'spacious', label: 'Spacious' },
+]
+
+/**
+ * A lecture section's two halves. `sketch` leads with the claims and puts the
+ * argument one click away; `full` opens the argument, which is how the notes
+ * read today and is what a reader meeting a topic for the first time wants.
+ * The per-section toggle on the page overrides this either way.
+ */
+const DETAIL_OPTIONS: SegmentedOption<DetailPref>[] = [
+  { value: 'sketch', label: 'Sketch' },
+  { value: 'full', label: 'Full' },
 ]
 
 const MOTION_OPTIONS: SegmentedOption<MotionPref>[] = [
@@ -682,6 +695,15 @@ export default function SettingsControl() {
               value={prefs.measure}
               options={MEASURE_OPTIONS}
               onChange={(value) => prefs.set('measure', value)}
+            />
+            <Segmented
+              name="pref-lecture-detail"
+              label="Lecture detail"
+              description="A lecture section leads with its claims, with the full argument behind a toggle. Open everything by default if you would rather read straight through."
+              readout={prefs.lectureDetail === 'full' ? 'all open' : 'claims first'}
+              value={prefs.lectureDetail}
+              options={DETAIL_OPTIONS}
+              onChange={(value) => prefs.set('lectureDetail', value)}
             />
             <Segmented
               name="pref-line-height"

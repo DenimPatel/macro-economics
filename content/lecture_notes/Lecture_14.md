@@ -1,11 +1,27 @@
 # Lecture 14: The Solow Growth Model
 
 ## Overview
+
+```summary
+- **Solow Growth Model**: the foundational framework for long-run growth, built by Robert Solow (MIT, Nobel Laureate 1987)
+- Capital accumulation, not the short-run multiplier, is what makes an economy grow over decades
+- It also explains convergence: poorer countries grow faster as they close the gap to their own steady state
+- A higher saving rate raises the **level** of output per worker, never its long-run growth rate
+- March 2023 backdrop: the Fed hiked 25bps as expected but signaled pauses because of the SVB banking stress
+```
+
 This lecture introduces the **Solow Growth Model**, the foundational framework for understanding long-run economic growth. Developed by Robert Solow (MIT Nobel Laureate, 1987), this model explains how capital accumulation drives growth and why countries converge to steady states. We analyze the dynamics of capital accumulation, the role of savings rates, and the implications for long-run growth.
 
 **Key Context (March 2023)**: The Fed hiked rates by 25bps as expected, but signaled potential pauses due to banking stress (SVB crisis).
 
 ## 1. The Central Mechanism of Growth Theory
+
+```summary
+- The whole model is one loop: capital stock → output → saving → investment → capital accumulation → back to capital
+- **Long-run growth is driven by capital accumulation**, not the short-run Keynesian multiplier
+- Short-run models (IS-LM) are about aggregate demand with sticky prices; the growth model is a supply-side story with full employment assumed
+- Unemployment is therefore not a variable here, while the time scale is decades rather than quarters
+```
 
 ### The Circular Flow of Capital Accumulation
 The Solow model revolves around a fundamental feedback loop:
@@ -22,6 +38,15 @@ Capital Stock (K) → Output (Y) → Savings (S) → Investment (I) → Capital 
 - **Time Scale**: Capital accumulates slowly (decades), unlike short-run fluctuations (quarters).
 
 ## 2. The Basic Solow Model (No Population Growth, No Technology)
+
+```summary
+- **Diminishing returns to capital** is the property the whole model turns on: more capital raises output, but at a decreasing rate
+- The production function is increasing and concave, so the intensive form $f(k)$ rises with capital per worker and flattens as $k$ grows
+- Assumptions: fixed labor force, a closed economy with $I = S$, no government, and constant returns to scale
+- Saving is **proportional to income**, $S = sY$ with an exogenous rate $s$; the short-run autonomous-consumption terms are dropped because wealth and asset prices scale with income over time
+- **The fundamental equation** is $\Delta k = s f(k) - \delta k$: investment per worker adds to the capital stock, depreciation per worker subtracts from it
+- The sign of $\Delta k$ is the whole story — positive means capital per worker is growing, negative means it is shrinking, zero is the steady state
+```
 
 ### 2.1 Assumptions
 
@@ -99,6 +124,15 @@ $$\boxed{\Delta k = s f(k) - \delta k}$$
 
 ## 3. The Solow Diagram
 
+```summary
+- Three curves share one diagram: output $f(k)$, investment per worker $s f(k)$ — the production function scaled down — and depreciation per worker $\delta k$, a straight line through the origin
+- The vertical gap between the green and red curves **is** $\Delta k$, so the height of the gap tells you whether capital per worker is growing or shrinking
+- **Steady state**: the point where investment per worker exactly balances depreciation, so capital per worker stops changing
+- There output per worker is constant, and with population fixed that makes total output constant too — the steady state has no growth at all
+- Worked example ($f(k) = k^{1/2}$): $k^* = (s/\delta)^2$ and $y^* = s/\delta$
+- Doubling the saving rate doubles steady-state output per worker but quadruples steady-state capital — diminishing returns demand a great deal of extra capital for a modest gain in output
+```
+
 ### 3.1 The Basic Diagram
 
 **Axes**:
@@ -161,6 +195,15 @@ $$\boxed{y^* = f(k^*) = \frac{s}{\delta}}$$
 
 ## 4. Dynamics and Convergence
 
+```summary
+- Below steady state, investment beats depreciation, capital per worker grows, and the economy moves **rightward** along the $k$ axis
+- Above steady state, depreciation wins, capital per worker shrinks, and the economy moves **leftward** back down
+- Either way it converges to $k^*$: the steady state is stable, and initial conditions only set how fast the economy gets there
+- **Transitional growth** is growth that fades — fastest when furthest from steady state, declining as it approaches, and zero on arrival
+- That single mechanism explains why poor countries grow faster than rich ones, and the downward-sloping link between initial income and growth that OECD countries show
+- Africa is the exception: no catch-up growth, which the model on its own cannot account for
+```
+
 ### 4.1 Transitional Dynamics
 
 **Starting Below Steady State** ($k_0 < k^*$):
@@ -195,6 +238,16 @@ $$\boxed{y^* = f(k^*) = \frac{s}{\delta}}$$
 **Notable Exception**: Africa has not exhibited catch-up growth (institutional, conflict, and governance issues).
 
 ## 5. Comparative Statics: Policy Experiments
+
+```summary
+- Raise the saving rate and only the **green** curve moves: $s f(k)$ shifts up, while the production function and the depreciation line stay put
+- Output cannot jump on impact, because the capital stock is fixed; the economy climbs toward a higher steady state with a **permanently higher level** of output per worker and zero long-run growth on arrival
+- The Asian Miracle is the historical case: 8-10% growth for decades, much of it transitional growth from a low capital stock rather than a permanently faster growth rate
+- **Consumption per worker** is $c = (1-s) f(k)$: more saving shrinks the share consumed but raises output, so the net effect on $c^*$ depends on where the economy starts — a low $k$ raises $c^*$, a high $k$ lowers it
+- **Golden rule**: the saving rate that maximizes steady-state consumption satisfies $f'(k^*) = \delta$ — $s = 0.5$ for this production function, beyond which the economy is over-saving and dynamically inefficient
+- The table makes the point numerically: $c^*$ peaks at $s = 0.5$, and at $s = 1$ output is maximal while consumption is zero
+- The transition is slow: moving from $s = 0.1$ to $s = 0.2$ takes roughly 50 years to carry $k$ from 1 to 4 and $y$ from 1 to 2
+```
 
 ### 5.1 Increase in Savings Rate ($s \uparrow$)
 
@@ -335,6 +388,14 @@ $$s_{GR} = 0.5$$
 
 ## 6. China: A Case Study
 
+```summary
+- China entered the model from far below its steady state, with the saving rate pushed to 40-50% and foreign investment opened up in the 1980s
+- Investment far exceeded depreciation, and the resulting transitional growth ran at 8-15% a year for more than 30 years
+- Growth has since slowed to 4-6% from 10%+, because the capital stock is approaching steady state and diminishing returns are kicking in
+- The policy lesson: capital accumulation alone cannot sustain high growth — technology, human capital and productivity have to take over
+- The lecture's own verdict is that catching up is the *easy* part of growth, and China is running out of it
+```
+
 **Context**:
 - **1980s**: Very low capital stock ($k$ far below $k^*$).
 - **Policy Shift**: Dramatic increase in savings rate (40-50%) and opening to foreign investment.
@@ -356,6 +417,15 @@ $$s_{GR} = 0.5$$
 **Quote from Lecture**: "This is sometimes called the easy part of growth. It's sort of running out in China."
 
 ## 7. Adding Population Growth
+
+```summary
+- Relaxing the fixed-population assumption adds a third claim on saving: new workers arrive with no capital, so $g_N k$ has to be invested purely to hold $k$ constant
+- The accumulation equation becomes $\Delta k = s f(k) - (\delta + g_N) k$ — investment, depreciation and capital dilution in one line
+- On the diagram the red line rotates up to $(\delta + g_N) k$, so a faster-growing population gives a **lower** steady state for both $k^*$ and $y^*$
+- In that steady state $y$ is still constant, but total output $Y = y \times N$ now grows at exactly the population growth rate
+- The counter-intuitive result: faster population growth **lowers** income per person while **raising** total output — more people, not richer ones
+- Shrinking populations ($g_N < 0$) imply negative output growth unless productivity improves
+```
 
 ### 7.1 Motivation
 
@@ -470,6 +540,14 @@ $$\text{Growth rate of } Y = g_N$$
 
 ## 8. Limitations of the Solow Model
 
+```summary
+- The model cannot explain sustained per capita growth: the steady state has zero growth, yet advanced economies have grown 1-2% a year for over two centuries
+- What is missing is **technological progress**, which is what the next lecture relaxes
+- The saving rate is exogenous here, while in reality households choose it; the Ramsey-Cass-Koopmans model makes the choice explicit
+- Technology is assumed to be universal, so the model cannot say why countries with different institutions, property rights and education systems do not all converge
+- Africa's failure to catch up points at weak institutions, political instability, poor infrastructure and low human capital, which endogenous growth theory is built to handle
+```
+
 ### 8.1 No Sustained Per Capita Growth
 
 **Key Limitation**: In steady state, output per worker is **constant** (zero growth).
@@ -501,6 +579,15 @@ $$\text{Growth rate of } Y = g_N$$
 **Extension**: **Endogenous growth theory** (technology depends on investment in R&D, education, etc.).
 
 ## 9. Key Takeaways
+
+```summary
+- Capital accumulation drives transitional growth, and diminishing returns decide when it runs out
+- The steady state has zero per capita growth — nothing grows without technology
+- The saving rate moves the **level** of income, never the long-run growth rate
+- Poor countries grow faster than rich ones: conditional convergence toward their own steady states
+- The policy levers — higher saving, lower depreciation, slower population growth — are all one-off level effects
+- Master the diagram: blue $f(k)$, green $s f(k)$, red $(\delta + g_N) k$, steady state where green crosses red, $\Delta k > 0$ to the left of it and $\Delta k < 0$ to the right
+```
 
 ### 9.1 Core Insights
 
@@ -546,6 +633,14 @@ $$\text{Growth rate of } Y = g_N$$
 
 ## 10. Summary Table
 
+```summary
+- One row per shock: a parameter or the production function moves, and the columns report where the steady state lands
+- **Higher saving** ($s \uparrow$) raises $k^*$ and $y^*$, and leaves steady-state consumption $c^*$ ambiguous
+- **Higher depreciation** ($\delta \uparrow$) is the one shock stated to lower all three: $k^*$, $y^*$ and $c^*$
+- **Faster population growth** ($g_N \uparrow$) lowers $k^*$ and $y^*$ while raising the growth rate of total output
+- **Technological progress**, shifting $f(k)$ up, raises all three including $c^*$ — the only row that lifts consumption, and the one deferred to the next lecture
+```
+
 | Variable | Meaning | Effect on Steady State |
 |----------|---------|------------------------|
 | $s \uparrow$ | Higher savings rate | $k^* \uparrow$, $y^* \uparrow$, $c^*$ ambiguous |
@@ -554,6 +649,15 @@ $$\text{Growth rate of } Y = g_N$$
 | $f(k)$ shifts up | Technological progress | $k^* \uparrow$, $y^* \uparrow$, $c^* \uparrow$ (next lecture) |
 
 ## 11. Key Equations Reference
+
+```summary
+- The whole model is a short list of equations: production $y = f(k)$, accumulation with and without population growth, the steady-state condition, consumption and the golden rule
+- The two accumulation equations differ by exactly one term — the extra $g_N k$ of capital dilution
+- The steady-state condition is where the investment curve meets the depreciation-and-dilution line
+- Consumption per worker is what is left after saving: $c = (1-s) f(k)$
+- The golden rule is the one entry with a derivative in it, $f'(k^*) = \delta$, because it is a condition on the marginal product of capital
+- For the Cobb-Douglas case the steady state solves in closed form: output per worker is the ratio of saving to depreciation plus population growth, and capital per worker is that ratio squared
+```
 
 **Production Function (Per Worker)**:
 $$y = f(k)$$
@@ -578,6 +682,14 @@ $$k^* = \left(\frac{s}{\delta + g_N}\right)^2$$
 $$y^* = \frac{s}{\delta + g_N}$$
 
 ## 12. Practice Problems (Quiz Preparation)
+
+```summary
+- **Problem 1, higher depreciation**: the red line rotates up, $k^*$ and $y^*$ both fall, and capital per worker declines through the transition
+- **Problem 2, two countries**: the higher-saving country has the higher $k^*$ and $y^*$ — double under Cobb-Douglas — yet both have zero per capita growth in steady state, and the higher-saving one simply grows faster while transitioning
+- **Problem 3, golden rule**: with $f(k) = k^{1/2}$ and $\delta = 0.1$, $f'(k^*) = \delta$ gives $k^* = 25$, so $s = 0.5$, $y^* = 5$ and maximum steady-state consumption $c^* = 2.5$
+- Between them the three drill the three habits: shift the right curve, compare two steady states, and solve for the golden rule
+- Next the constant-technology assumption is dropped for technological progress, which is what lets output per worker keep growing
+```
 
 ### Problem 1: Increase in Depreciation Rate
 **Question**: Starting at steady state, depreciation rate increases ($\delta \uparrow$). Using Solow diagram, analyze effects on $k^*$, $y^*$, and transition dynamics.

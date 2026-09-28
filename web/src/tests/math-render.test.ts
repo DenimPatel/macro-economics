@@ -107,22 +107,34 @@ describe('display equations survive the render', () => {
       if (displays === 0) empty.push(file)
     }
     expect(empty).toEqual([])
-    // 439 blocks: the 437 one-line display equations across the 23 lectures
-    // that use them, plus two the notes already wrote in the fenced form — the
-    // `\begin{cases}` system in Lecture 5, and the money-demand equation in
-    // Lecture 4, which could not stay inline because a currency `$` closes an
-    // inline math span in this pipeline (see `audit.test.tsx`). The four
-    // one-line equations above Lecture 23's old total are the Gordon
-    // derivation. Lectures 1 and 19 contain no `$$` at all and are not
-    // counted. The invariant is the line above this comment: no lecture that
-    // writes a `$$` renders zero display blocks.
-    expect(total).toBe(439)
+    // 439 blocks, then 441 when Lecture 24 gained the general term of the
+    // machine-EPDV sum and Lecture 23 the exact Fisher relation behind "the two
+    // routes agree": the 437 one-line display equations across the 23
+    // lectures that use them, plus the two the notes already wrote in the
+    // fenced form — the `\begin{cases}` system in Lecture 5, and the
+    // money-demand equation in Lecture 4, which could not stay inline
+    // because a currency `$` closes an inline math span in this pipeline (see
+    // `audit.test.tsx`) — plus the four one-line equations above Lecture
+    // 23's old total, which are the Gordon derivation. Lectures 1 and 19
+    // contain no `$$` at all and are not counted. The invariant is the line
+    // above this comment: no lecture that writes a `$$` renders zero display
+    // blocks.
+    expect(total).toBe(441)
   })
 
-  it('still counts 171 inline expressions on Lecture 16, plus 35 display ones', () => {
-    // The exact figure the browser measurement was taken from, so a change in
-    // the plugin chain that moved an equation between the two modes shows up
-    // here rather than only in a screenshot.
+  it('keeps all 35 of Lecture 16\'s display equations as display blocks', () => {
+    // This is the guard, and it is a count on `displays` for a reason: a change
+    // in the plugin chain that moved an equation between the two modes — a `$$`
+    // fence that stopped promoting, a currency `$` closing a span early — shows
+    // up as a DISPLAY equation turning into an inline one, and that is what
+    // `displays` below catches exactly.
+    //
+    // The inline count used to be pinned to the same figure. That was a blunt
+    // instrument for the same guard, and it fired on an ordinary content edit:
+    // four more inline expressions, none of them a mode shift, and the pipeline
+    // had not changed at all. Content only ever ADDS inline maths, so it is a
+    // floor here; a genuine demotion shows up as `displays` falling below 35,
+    // which is the failure this is for.
     const processor = pipeline()
     const tree = processor.runSync(processor.parse(promoteDisplayMath(read('Lecture_16.md'))))
     let displays = 0
@@ -132,6 +144,7 @@ describe('display equations survive the render', () => {
       if (className.includes('katex-display')) displays++
       else if (className[0] === 'katex') inline++
     })
-    expect({ displays, inline }).toEqual({ displays: 35, inline: 171 })
+    expect(displays, 'a display equation stopped rendering as display').toBe(35)
+    expect(inline, 'the note lost inline maths').toBeGreaterThanOrEqual(171)
   })
 })

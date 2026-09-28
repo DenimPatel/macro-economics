@@ -1,9 +1,25 @@
 # Lecture 24: Expectations in IS-LM
 
 ## Overview
+
+```summary
+- Static IS-LM is a one-period model: consumption depends on current disposable income, investment on current output and the current interest rate
+- Real agents decide on lifetime income and on expected future profits, so expected variables belong in aggregate demand as well
+- Adding expectations makes **IS steeper** — a current policy rate change moves output far less than the static model implies
+- Monetary power is recovered through the *future* path: a credible commitment about next year's rate shifts IS instead of moving along it
+- The policy test is whether a change is **temporary or permanent**, because only a permanent one moves wealth
+```
 This lecture integrates expectations into the IS-LM framework, introducing permanent income and life-cycle theories of consumption, and analyzing how forward-looking behavior affects policy effectiveness.
 
 ## 1. Motivation: Expectations Matter for All Agents
+
+```summary
+- **Static IS-LM** has consumption depend on current disposable income ($Y - T$) and investment on current output ($Y$) and the current rate ($i$)
+- **Consumers** care about lifetime income — permanent income and human wealth — rather than this month's income
+- **Firms** invest on expected future profits, not on current sales
+- **Governments** are constrained by long-term fiscal sustainability, and **foreign investors** by expected political and economic conditions
+- Expectations about the future often matter **more** than current conditions, which is exactly what the static model cannot represent
+```
 
 ### Why the Static IS-LM Overweights the Present
 - **Consumption**: Depends on current disposable income ($Y - T$).
@@ -18,6 +34,16 @@ This lecture integrates expectations into the IS-LM framework, introducing perma
 **Key Insight**: Expectations about the future often matter **more** than current conditions.
 
 ## 2. Consumption with Expectations
+
+```summary
+- **Permanent income hypothesis (Friedman)**: consumption depends on expected average lifetime income, not on current income — so temporary income changes barely matter and permanent ones matter a lot
+- **Life-cycle theory (Modigliani)**: consumption is smoothed over a lifetime — borrow while young, save in middle age, dissave in retirement
+- **Total wealth** splits into financial and human wealth, and consumption is an intercept plus a marginal propensity out of it
+- **Financial wealth** is the EPDV of asset cash flows minus debts — stocks, bonds, real estate, expected inheritances — and the rich often borrow against it for tax reasons rather than sell
+- **Human wealth** is the EPDV of future labor income, and for most people it dwarfs financial wealth; a student has little income but high human wealth and borrows accordingly
+- **The realistic function keeps current income too**: liquidity constraints and hand-to-mouth consumers do spend out of $Y - T$
+- The intercept $c_0$ in the static model was a stand-in for consumer confidence and expectations — here they are modelled explicitly through wealth
+```
 
 ### Permanent Income Hypothesis (Milton Friedman)
 - **Core Idea**: Consumption depends on **permanent income** (expected average lifetime income), not current income.
@@ -54,14 +80,27 @@ $$C = c_0 + c_1 (Y - T) + c_2 \times \text{(Total Wealth)}$$
 
 ## 3. Investment with Expectations
 
+```summary
+- A machine is worth the **EPDV of its expected profits**: each year's profit discounted at the current rate and weighted by the chance the machine is still working
+- **Depreciation is geometric** at rate $\delta$, so $(1 - \delta)^{n-1}$ is the probability the machine survives into year $n$
+- **The purchase rule**: buy when $V_t > P_K$, with the price normalized to 1
+- **The investment function** is $I = I(V_t, Y_t, i_t)$: $V_t$ is the main driver, $Y_t$ relaxes internal-funds constraints, and $i_t$ is both borrowing cost and discounting rate
+- Future expected profits matter more than current conditions
+- **Firms need not forecast short rates at all** — the term structure $i_{2t}, i_{3t}, \ldots$ already incorporates expectations
+```
+
 ### Value of a Machine
 Firm buys machine for price $P_K$ (normalize to 1). Machine depreciates at rate $\delta$ (geometric).
 
 **EPDV of Machine**:
 $$V_t = \frac{E_t[\pi_{t+1}]}{1 + i_t} + \frac{(1 - \delta) E_t[\pi_{t+2}]}{(1 + i_t)(1 + E_t[i_{t+1}])} + \cdots$$
 
+In full:
+$$V_t = \sum_{n=1}^{\infty} \frac{(1 - \delta)^{n-1} E_t[\pi_{t+n}]}{\prod_{k=0}^{n-1} (1 + i_{t+k})}$$
+
 - $\pi_{t+n}$: Expected profits in year $n$.
 - $(1 - \delta)^{n-1}$: Probability machine still works in year $n$.
+- The weight is 1 in the year-1 term and $(1 - \delta)$ in the year-2 term because $(1-\delta)^0 = 1$ — a machine bought today is certainly working today, and that is the only reason the first fraction carries no factor. Every later term carries the full power.
 
 **Investment Decision**: Buy machine if $V_t > P_K$.
 
@@ -79,6 +118,15 @@ Firms don't need to forecast future short rates $i_{t+1}, i_{t+2}, \ldots$
 - Can use current term structure: $i_{2t}, i_{3t}, \ldots$ (market already incorporates expectations).
 
 ## 4. Expectations-Augmented IS-LM
+
+```summary
+- Aggregate demand now carries the current variables $Y, T, i, G$ **and** the expectations $E_t[Y_{t+1}], E_t[T_{t+1}], E_t[i_{t+1}], \ldots$
+- **The signs are the static model's**: demand rises with current and expected output, and falls with current and expected taxes and rates
+- Higher expected income raises demand through human wealth; higher expected rates lower it through the EPDV
+- **The IS curve is much steeper** — moving $i_t$ alone, with $E_t[i_{t+1}]$ unchanged, has a small effect, so a given $\Delta i$ buys a small $\Delta Y$
+- **Monetary power is recovered by shifting IS**: cut $i_t$ *and* convince markets that $E_t[i_{t+1}] \downarrow$, which raises both the EPDV and human wealth
+- **Forward guidance** is that commitment said out loud — central banks emphasize the future policy path because most of the value sits in the future
+```
 
 ### Augmented Aggregate Demand
 $$Z = C(Y, T, i, \mathbf{Y^e, T^e, i^e, \ldots}) + I(Y, i, \mathbf{Y^e, i^e, \ldots}) + G$$
@@ -104,6 +152,16 @@ $$Z = C(Y, T, i, \mathbf{Y^e, T^e, i^e, \ldots}) + I(Y, i, \mathbf{Y^e, i^e, \ld
 **Forward Guidance**: Central banks emphasize future policy path to maximize impact.
 
 ## 5. Policy Implications
+
+```summary
+- **A temporary tax cut** raises disposable income and consumption a little, but human wealth is unchanged — a small multiplier, with most of the windfall saved
+- **A permanent tax cut** has the same small current effect plus higher human wealth, because expected future taxes fall — a large multiplier
+- **Cutting the current rate alone** is a small move along a steep IS, so $\Delta Y$ is small
+- **Cutting the current rate and committing to a low future rate** shifts IS right through higher EPDV and higher human wealth, for a much larger $\Delta Y$
+- **Modern central banking is expectations management** — the Fed and the ECB stress the policy path ("higher for longer", "patient approach") because that is where the effect is
+- **Expansionary fiscal contraction is real but rare**: Ireland's late-1980s consolidation removed fiscal uncertainty, so GDP grew, consumption and investment surged, and the household savings rate collapsed as optimism rose
+- **Caveat**: without extreme starting conditions the direct effect dominates, so most fiscal contractions are contractionary
+```
 
 ### A. Temporary vs. Permanent Changes
 
@@ -156,6 +214,14 @@ Can occur if fiscal consolidation dramatically improves expectations:
 
 ## 6. The Greenspan Conundrum
 
+```summary
+- **The conundrum**: the Fed chair from 1987-2006, widely regarded as successful, raised short rates into an overheating economy in the mid-2000s — and long rates *fell*
+- Long rates are the average of expected future short rates, so a credible hike should have pulled them up
+- **Mechanism**: the Fed could not convince markets the tightening was persistent, so markets priced a reversal and the long-rate channel of cooling never opened
+- **The actual cause was external** — massive capital inflows from China, a savings glut, pushed long rates down on their own
+- **The lesson**: expectations matter, but sometimes external forces dominate them
+```
+
 ### Context
 - **Alan Greenspan** (Fed Chair, 1987-2006): Widely regarded as successful.
 - **Problem (mid-2000s)**: Economy overheating, Fed raised short rates, but **long rates fell**.
@@ -170,6 +236,14 @@ Can occur if fiscal consolidation dramatically improves expectations:
 - **Lesson**: Expectations matter, but sometimes external forces dominate.
 
 ## 7. Summary
+
+```summary
+- **Consumption** runs off total wealth — financial plus human — not just current income, so permanent changes move it far more than temporary ones
+- **Investment** is driven by the EPDV of future profits, and firms can read expectations off the term structure instead of forecasting short rates
+- **IS is steeper**, because current policy variables are only part of what moves demand
+- **Expectations restore monetary power**: a commitment about the future path shifts IS where moving along it does little
+- **Central banking is expectations management** — and fiscal policy, normally contractionary, is the rare case where fixing expectations flips the sign
+```
 
 ### Consumption
 - Depends on **total wealth** (financial + human), not just current income.

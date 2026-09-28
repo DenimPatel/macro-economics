@@ -150,6 +150,30 @@ export function extractHeadings(markdown: string): Heading[] {
   return headings
 }
 
+/**
+ * The headings a table of contents can actually navigate to.
+ *
+ * A lecture body is a run of section cards, and everything below `##` lives
+ * inside a disclosure that may be closed. A link to such a heading is a link
+ * to a node that is not in the DOM: the reader clicks "Mechanism", the page
+ * does not move, and the contents has advertised a target it does not have.
+ *
+ * So the contents lists the sections and nothing else. A `##` heading is the
+ * one level that is always rendered — `LectureSectionCard` puts it outside the
+ * toggle — which makes the `##` set exactly the set of reachable targets.
+ * Strip the section numbers for the same reason the card does: the number is
+ * rendered beside the heading, and a contents entry that repeats it reads as
+ * a typo.
+ */
+export function contentsHeadings(markdown: string): Heading[] {
+  return extractHeadings(markdown)
+    .filter((h) => h.level === 2)
+    .map((h) => {
+      const m = /^(\d+)[.)]?\s+(.+)$/.exec(h.text)
+      return m ? { ...h, text: m[2] } : h
+    })
+}
+
 export function Markdown({ children, id }: { children: string; id?: string }) {
   return (
     <div className="prose-lecture" id={id}>

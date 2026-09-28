@@ -1899,8 +1899,6 @@ html[data-chart-grid='off'] .recharts-cartesian-axis-line {
   font-weight: 650;
   letter-spacing: -0.02em;
   margin-top: calc(2em * var(--read-lead));
-  /* The only elements in the article that carry an id, so these two rules are
-     the complete set of `#fragment` landing sites. */
   scroll-margin-top: var(--read-anchor-offset);
 }
 
@@ -2175,6 +2173,22 @@ html[data-chart-grid='off'] .recharts-cartesian-axis-line {
    to. Off again in print, where it would be a grey block on every
    printed page whose URL carries a fragment. */
 .prose-lecture :target {
+  background-color: color-mix(in srgb, var(--c-accent) 14%, transparent);
+  border-radius: 4px;
+}
+
+/* The lecture body's section cards put their heading OUTSIDE `.prose-lecture`
+   — the card is chrome, and the prose inside it is the `.prose-lecture` — so
+   the two rules above do not reach those headings. They are the targets the
+   contents list actually links to, and without these two a contents click
+   lands the heading underneath the sticky header and the reader cannot tell
+   that anything moved. Same two declarations, same reason, one selector per
+   rule. */
+[data-lecture-detail] section > h2 {
+  scroll-margin-top: var(--read-anchor-offset);
+}
+
+[data-lecture-detail] section > h2:target {
   background-color: color-mix(in srgb, var(--c-accent) 14%, transparent);
   border-radius: 4px;
 }
@@ -3492,6 +3506,20 @@ html[data-pref-motion='reduced'] *::after {
      here.) */
   .sidebar {
     display: none !important;
+  }
+
+  /* The disclosure toggle is an interaction, and paper cannot do it. The panel
+     it controls is NOT hidden: a lecture printed on the default `sketch`
+     preference would otherwise be a page of claims with none of the prose
+     behind them, which is the one thing a reader printing a lecture is not
+     asking for. `hidden` is what has to be undone here, because that is what
+     collapses the panel on screen. */
+  [data-lecture-detail] button[aria-controls] {
+    display: none !important;
+  }
+
+  [data-lecture-detail] div[hidden] {
+    display: block !important;
   }
 
   header.sticky {

@@ -1,9 +1,26 @@
 # Lecture 13: Introduction to Economic Growth
 
 ## Overview
+
+```summary
+- The lecture turns from business cycles to long-run growth: from what moves over quarters to what compounds over decades
+- Three questions to answer — why growth matters, how to measure it across countries and across time, and what produces it
+- Measurement is the first problem, because population moves alongside output
+- The framework is a production function relating output to capital and labor
+- It yields two sources of growth: more capital per worker, and better technology
+```
 This lecture marks the transition from short-run/medium-run analysis (business cycles) to long-run economic growth. We examine why growth matters, how to measure it across countries and time periods, and introduce the fundamental framework for understanding the sources of growth.
 
 ## 1. Transition from Short Run to Long Run
+
+```summary
+- **Policy speed depends on the regime**: overwhelming and fast in a financial crisis, gradual in normal times
+- In a crisis, moves are so fast that healthy corporations cannot adjust, prices stop carrying information, and fire sales break decision-making
+- In normal times a sufficiently large adjustment can break something, and banks are the weak link — highly leveraged, so small asset price moves can destroy capital
+- The record is consistent: 1982 Volcker hikes and the Latin American debt crisis, 1989-1990 Fed hikes and the Savings & Loan crisis
+- 1990-1991 brought the Japanese bubble burst, 1994-1995 the Mexican Tequila crisis, 2004-2006 the road to the 2008 crisis, 2022-2023 regional banking stress
+- You cannot know in advance what will blow up, but something usually does — which is the case for gradualism when hiking
+```
 
 ### Important Policy Caveat: Speed Can Kill
 
@@ -47,6 +64,15 @@ Before leaving the short/medium run completely, a critical lesson about macroeco
 ---
 
 ## 2. Why Growth Matters: The Big Picture
+
+```summary
+- **Emerging markets grow faster than advanced economies in every year of the IMF forecast**: world 3.4%, 3.0%, 3.1%; advanced economies 2.7%, 1.3%, 1.4%; emerging markets 3.9%, 4.0%, 4.2%
+- Advanced economies slow hardest in the near term, from 2.7% to 1.3%, while emerging markets hold above 3.9%
+- Near-term forecasts are cyclical (recessions, booms, IS-LM-PC dynamics); forecasts further out are driven by structural trends
+- **Growth dominates business cycles**: US real GDP rose 50-fold from 1890 to 2017 against cycle swings of 2-3%, and even the Great Depression looks small beside a 130-year trend
+- **GDP per capita, not total GDP, measures living standards**: population rose 5-fold (63 million to 320 million) while GDP rose 50-fold, so output per person rose only 10-fold
+- Population growth is fading — zero or negative in Japan, South Korea, China, most of continental Europe, parts of Latin America — so growth from here has to come from productivity
+```
 
 ### IMF World Economic Outlook (Growth Forecasts)
 
@@ -103,6 +129,16 @@ Before leaving the short/medium run completely, a critical lesson about macroeco
 
 ## 3. Measuring Growth: GDP per Capita and PPP
 
+```summary
+- Within one country over 40-70 years, real GDP per capita is a reasonable measure; over 300+ years price adjustments get hard
+- Across countries, exchange rates mislead: at USD 70,000 against USD 50,000 the US looks far richer than Italy, which is not what their living standards look like
+- Poorer countries have much cheaper food and non-tradeables, so converting at market exchange rates understates their living standards
+- **Purchasing power parity** fixes it by valuing the same basket of goods at one common set of prices
+- The worked example: at 60 rubles to the dollar the rate says the US is 10x richer than Russia; at common prices it is only 1.87x, and Russia is 53% as rich
+- The whole gap is the car, not the food — revaluing Russian quantities at US prices gives USD 10,667 a year, not the USD 2,000 the rate implies
+- Penn World Tables is the main PPP source and is not updated frequently; FRED carries PPP data for some countries
+```
+
 ### Within-Country Comparisons: Real GDP per Capita
 
 For a single country over time (e.g., 40-70 years):
@@ -138,22 +174,24 @@ For a single country over time (e.g., 40-70 years):
 - **Total**: $20,000/year
 
 **Russian Household**:
-- Buys: 0.07 cars/year (40,000 rubles) + 1 food bundle/year (80,000 rubles)
+- Buys: 0.0667 cars/year (40,000 rubles) + 1 food bundle/year (80,000 rubles)
 - **Total**: 120,000 rubles/year
 
 **Exchange Rate**: 60 rubles per dollar.
 
 #### Without PPP Adjustment
-- Convert Russian consumption: 120,000 rubles ÷ 60 = **$2,000/year**
+- Convert Russian consumption: 120,000 rubles ÷ 60 = \$2,000/year — \$667 of it cars, \$1,333 of it food
 - **Ratio**: US is 10x richer than Russia (\$20,000 ÷ \$2,000 = 10).
 
 #### With PPP Adjustment
 - Value Russian consumption at US prices:
-  - 0.07 cars × \$10,000 = \$700
+  - 0.0667 cars × \$10,000 = \$667
   - 1 food bundle × \$10,000 = \$10,000
-  - **Total**: $10,700/year
-- **Ratio**: US is only 1.87x richer than Russia (\$20,000 ÷ \$10,700 = 1.87).
+  - **Total**: \$10,667/year
+- **Ratio**: US is only 1.87x richer than Russia (\$20,000 ÷ \$10,667 = 1.87).
 - Russia is 53% as rich as the US, not 10%.
+
+The car figure is the same in both lines and it has to be: the Russian household buys 667 dollars of cars at Russian prices, and at US prices the *same* 0.0667 of a car is still worth 667 dollars of purchasing power. Only the food bundle is revalued, and that is the whole point — the two prices differ for the car because the two countries buy so few of them, not because the car changed.
 
 **Key Insight**: The Russian household consumes fewer cars (changes less frequently—once every 15 years vs. annually), but the food bundle is the same. Valuing at common prices reveals true consumption differences.
 
@@ -166,6 +204,16 @@ For a single country over time (e.g., 40-70 years):
 ---
 
 ## 4. Empirical Patterns in Growth
+
+```summary
+- **Convergence**: richer countries grow slower — the US, the richest in 1950, grew slowest at 2.0% a year, while Japan and France, the poorest, grew fastest at 2.6%
+- Each row is one number: the 67-year gain is a ratio, not a rate, so 5.5x over 67 years is 2.6% a year and Japan's postwar 8-10% cannot be averaged over 1950-2017
+- Across 25 developed countries over 1950-1987, growth falls as 1950 income rises — a clear downward-sloping scatter
+- Dispersion in GDP per capita was large in 1950 and much smaller by 2017: poorer countries are catching up
+- Convergence holds within the OECD and, more noisily, within Asia, but not in Sub-Saharan Africa, where conflict, war and institutional failure sit outside the standard models
+- **Growth is modern**: flat before 1850 (the Malthusian era), accelerating in Western Europe and the Western Hemisphere over 1850-1950, and global after 1950 — bar Sub-Saharan Africa
+- **Growth makes a huge difference**: Taiwan and the DRC both started near USD 1,700 in 1950; by 2016 Taiwan was at 30x and the DRC at 0.5x, and the Asian Tigers are now among the richest economies
+```
 
 ### Pattern 1: Growth Rates and Initial Income (1950-2017)
 
@@ -196,7 +244,7 @@ For a single country over time (e.g., 40-70 years):
 
 **Visual Evidence**:
 - 1950: Large dispersion in GDP per capita across countries.
-- 2018: Much smaller dispersion.
+- 2017: Much smaller dispersion.
 - **Interpretation**: Convergence—poorer countries catching up to richer countries.
 
 ### Pattern 3: Convergence Within Regions, Not Globally
@@ -247,6 +295,15 @@ For a single country over time (e.g., 40-70 years):
 ---
 
 ## 5. The Production Function Framework
+
+```summary
+- The long run is not just a longer short run: over decades the capital stock itself changes, so growth analysis must model capital accumulation explicitly
+- The **aggregate production function** $Y = F(K, N)$ takes a capital stock and labor as inputs, and at full employment labor equals the population
+- **Constant returns to scale**, $F(xK, xN) = xY$: scaling every input by $x$ scales output by $x$, so 10% more capital and labor gives 10% more output
+- **Decreasing returns to capital**, $\partial^2 Y / \partial K^2 < 0$: each extra machine meets fewer workers, so ten more machines add 7 units, then 5, then 3
+- Capital and labor are complements — fixing one makes the other scarce, which is why each extra unit of either input adds less
+- Decreasing returns to labor follow the same logic by symmetry: with capital fixed, each extra worker adds less
+```
 
 ### From Short Run to Long Run: What Changes?
 
@@ -306,6 +363,14 @@ $$\frac{\partial^2 Y}{\partial K^2} < 0$$
 
 ## 6. The Per-Worker Production Function
 
+```summary
+- Divide the production function by labor using constant returns to scale, and output per worker turns out to depend on capital per worker alone
+- Define $k \equiv K/N$ and $y \equiv Y/N$, and the aggregate function collapses to $y = f(k)$
+- **Positive slope**, $f'(k) > 0$: more capital per worker means more output per worker
+- **Concavity**, $f''(k) < 0$: the marginal product of capital falls as capital per worker rises
+- The curve is steep at low $k$, where capital is scarce and each addition buys a lot, and flat at high $k$, where capital is abundant and it buys little
+```
+
 ### Deriving Per-Worker Form
 
 Using Constant Returns to Scale, set $x = \frac{1}{N}$:
@@ -346,6 +411,14 @@ $$y = f(k)$$
 
 ## 7. Sources of Growth: Two Channels
 
+```summary
+- Given $y = f(k)$, output per worker rises in only two ways: move along the curve, or shift the curve
+- **Channel 1, capital accumulation**: raising $k$ walks the economy up along $f(k)$, but diminishing returns make each extra unit of $y$ smaller, so this cannot sustain growth indefinitely
+- That is convergence in one line — a poor country gains a lot from new machines, a rich country gains little from the same investment
+- **Channel 2, technological progress**: better technology, management or institutions shift $f(\cdot)$ up, so the same $k$ produces more $y$
+- Only the second channel escapes diminishing returns, which makes it the only candidate for sustained long-run growth
+```
+
 Based on $y = f(k)$, there are only **two ways** to increase output per worker:
 
 ### Channel 1: Capital Accumulation (Moving Along the Curve)
@@ -383,6 +456,13 @@ Based on $y = f(k)$, there are only **two ways** to increase output per worker:
 
 ## 8. Preview of Next Lectures
 
+```summary
+- **Lecture 14, the Solow model**: how capital accumulates over time, and why poor countries grow faster than rich ones
+- It also asks what sets the steady-state level of capital per worker, and whether capital accumulation alone can sustain long-run growth
+- The Solow model explains convergence but not sustained growth
+- **Lecture 15, technological progress**: how a shift in the production function is modelled, what drives it, and whether it can sustain growth indefinitely
+```
+
 ### Lecture 14: The Solow Model (Capital Accumulation)
 
 **Focus**: Channel 1—Capital Accumulation.
@@ -409,6 +489,14 @@ Based on $y = f(k)$, there are only **two ways** to increase output per worker:
 ---
 
 ## 9. Summary
+
+```summary
+- Growth dominates cycles: over long horizons 10x-50x gains dwarf 2-3% business cycle fluctuations
+- Total GDP growth is not welfare growth — population moves too, so the comparison is GDP per capita, PPP-adjusted
+- **Convergence** is the central empirical pattern, and decreasing returns to capital explain it
+- Growth is a modern phenomenon, absent before 1850 and accelerating after 1950; small differences in growth rates compound into huge differences in living standards
+- The framework: $Y = F(K, N)$ collapses to $y = f(k)$, and its two sources are capital accumulation (along the curve, explains convergence) and technological progress (shifts the curve, explains sustained growth)
+```
 
 ### Key Takeaways
 
@@ -445,6 +533,13 @@ Based on $y = f(k)$, there are only **two ways** to increase output per worker:
 ---
 
 ## Appendix: Key Formulas
+
+```summary
+- **PPP**: real consumption is the quantity consumed valued at one common set of prices
+- **Constant returns to scale**: $F(xK, xN) = xY$
+- **Decreasing returns to capital**: $\partial^2 Y / \partial K^2 < 0$
+- **Per-worker form**: $y = f(k)$ with $k = K/N$ and $y = Y/N$; $f'(k) > 0$ is the marginal product of capital, $f''(k) < 0$ is diminishing marginal product
+```
 
 ### PPP Adjustment
 $$\text{Real Consumption (PPP)} = \sum (\text{Quantities consumed}) \times (\text{Common prices})$$

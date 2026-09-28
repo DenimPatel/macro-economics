@@ -1,9 +1,27 @@
 # Lecture 18: Review for Quiz 2
 
 ## Overview
+
+```summary
+- A review of the second part of the course — the material Quiz 2 will test
+- Four blocks: the labor market and the natural rate of unemployment, the Phillips Curve and expectations, the IS-LM-PC model, and the Solow growth model
+- The recurring move is the same in each: write the equations, find the equilibrium, then ask what a shock or a policy rule does to it
+- One parameter or shift does the work in every block — $z$ and $m$ for $u_n$, expectations for inflation, $r$ for the output gap, $s$ and $g_A$ for growth
+- Every block ends the same way: in the medium run output returns to its natural level, and the adjustment is the cost
+```
 This lecture reviews the material covered in the second part of the course, which will be the subject of Quiz 2. It consolidates key concepts from the labor market, Phillips curve, IS-LM-PC model, and economic growth theory.
 
 ## 1. The Labor Market & Natural Rate of Unemployment
+
+```summary
+- **Wage setting**: $W_t = P^e_t \times F(u_t, z)$ — real wage demands fall as unemployment rises, and rise with $z$ (union power, benefits, protections)
+- **Price setting**: markup pricing $P = W(1+m)$ means a firm offers the real wage $1/(1+m)$, so a higher markup is a lower real wage offered
+- **Natural rate** $u_n$: the unemployment rate at which actual and expected prices agree, $P_t = P^e_t$ — not a biological constant but a function of $m$ and $z$
+- **Solving for it**: at $u_n$ the real wage demanded equals the real wage offered, $F(u_n, z) = 1/(1+m)$; with a linear $F$ that makes $u_n$ a linear function of $z$ and $m$
+- **More bargaining power** ($z \uparrow$): WS shifts up, PS unchanged, $u_n \uparrow$ — only higher unemployment brings wage demands back within what firms will pay
+- **A higher markup** ($m \uparrow$): WS unchanged, PS shifts down, $u_n \uparrow$ — the same result through the other curve
+- Both comparative statics say the same thing: institutions and market power, not a constant, set the natural rate
+```
 
 ### Building Blocks of the Labor Market Model
 
@@ -70,6 +88,16 @@ $$u_n = \frac{1}{\alpha}\left(z - \frac{1}{1 + m}\right)$$
 
 ## 2. From Labor Market to Inflation: The Phillips Curve
 
+```summary
+- **Derivation**: push wage setting through markup price setting and divide by last period's price, and the curve appears as $\pi_t = \pi^e_t + (m + z) - \alpha u_t$
+- The natural rate pins the constant: inflation equals expected inflation at $u_n$, which is exactly what makes $(m + z) = \alpha u_n$ and leaves $-\alpha(u_t - u_n)$ as the shock
+- **In output gap form**: $\pi_t - \pi^e_t = \lambda(Y_t - Y_n)$ — the version to have ready, with $\lambda$ a positive constant built from the wage-setting slope, Okun's law and the labor share
+- **Anchored expectations** ($\theta = 0$): $\pi^e$ is the central bank's target, so inflation above target lasts only as long as the unemployment gap does
+- **Unanchored expectations** ($\theta = 1$): $\pi^e$ is last period's inflation, so a positive output gap accelerates prices rather than merely lifting them
+- The 1960s trade-off held only because expectations were implicitly anchored; the 1970s broke it with supply shocks and $\theta \rightarrow 1$ — stagflation, not a curve
+- The bill for unanchored expectations is a deliberate recession: Volcker 1980-82 created a deep negative output gap, expectations re-anchored, and the relationship returned
+```
+
 ### Deriving the Phillips Curve
 
 **Starting Point**: Wage setting equation
@@ -88,7 +116,11 @@ $$\frac{P_t}{P_{t-1}} = \frac{P^e_t}{P_{t-1}} (z - \alpha u_t)(1 + m)$$
 - $\pi_t = \frac{P_t - P_{t-1}}{P_{t-1}}$
 - $\pi^e_t = \frac{P^e_t - P_{t-1}}{P_{t-1}}$
 
-**After approximations** (assuming $(1 + \pi_t) \approx 1 + \pi_t$ for small $\pi$):
+**Taking a first-order approximation**: inflation is defined as a *simple*
+rate, so $P_t/P_{t-1} = 1 + \pi_t$ exactly, and the identity above becomes
+$1 + \pi_t = (1 + \pi^e_t)(z - \alpha u_t)(1 + m)$. Expanding the right
+side and discarding the products of an inflation rate with another small
+quantity — every term of order $\pi \cdot u$, $\pi \cdot m$ — leaves:
 $$\pi_t = \pi^e_t + (m + z) - \alpha u_t$$
 
 ### Modern Form: Expectations-Augmented Phillips Curve
@@ -176,6 +208,16 @@ $$\pi_t - \pi_{t-1} = -\alpha(u_t - u_n)$$
 
 ## 3. The IS-LM-PC Model
 
+```summary
+- **The three blocks**: IS sets the goods market, with output demand-determined and falling in $r$; LM is a rule the central bank sets directly; the Phillips Curve closes the system
+- **Short run** is months to a year with sticky prices, so demand policy moves output; **medium run** is several years, prices adjust, and output converges to $Y_n$ regardless
+- **Output above potential**: inflation is above expectations, so the central bank raises $r$ until the gap closes — the medium-run equilibrium is $Y = Y_n$, $\pi = \pi^e$, $r = r_n$
+- **Fiscal expansion** shifts IS right only temporarily: the central bank raises $r$, output returns to $Y_n$, and the long-run offset is crowding out of exactly what was added
+- **A supply shock** (markup up, an oil price rise) raises $u_n$, lowers $Y_n$ and lifts inflation at every $Y$; a central bank slow to accept the new $Y_n$ fights it with $r$ and causes the recession — 1970s
+- **The zero lower bound** binds when the natural real rate is negative: with $i \geq 0$ and near-zero expected inflation, $r = i - \pi^e$ cannot fall far enough — and the gap feeds itself, as lower $\pi$ drags expectations down and demand down with them
+- **At the ZLB** monetary policy is exhausted (QE, forward guidance, slightly negative rates) and fiscal policy leads — Japan's 1990s-2000s stimulus, bought with public debt
+```
+
 ### Structure of the Model
 
 #### IS Curve (Goods Market Equilibrium)
@@ -184,7 +226,7 @@ $$Y = C(Y - T) + I(Y, r) + G$$
 **Key Features**:
 - Output determined by aggregate demand.
 - **Decreasing in real interest rate** ($r$): Higher $r$ reduces investment.
-- **Shifts**: Changes in $G, T$ (fiscal policy), or exogenous demand shocks (confidence, financial conditions captured by $x$ in $I(Y, r, x)$).
+- **Shifts**: Changes in $G, T$ (fiscal policy), or exogenous demand shocks — consumer confidence, or the financial conditions summarised by an index $x$, which generalises the specification above to $I(Y, r, x)$. The equation shown is the two-argument case; $x$ is the extension, not a term of it.
 
 #### LM (Monetary Policy Rule)
 $$r = \bar{r}$$
@@ -255,7 +297,12 @@ $$\pi_t - \pi^e_t = \lambda(Y_t - Y_n)$$
 **Effects**:
 1. **Natural rate of unemployment rises**: $u_n \uparrow$ (from WS-PS analysis).
 2. **Natural level of output falls**: $Y_n \downarrow$ (fewer people employed).
-3. **Phillips Curve shifts left**: For any $Y$, inflation now higher (positive supply shock).
+3. **Phillips Curve shifts up**: For any $Y$, inflation is now higher, and the
+   only equation that governs it says so — a higher $m$ adds to
+   $\pi_t = \pi^e_t + (m + z) - \alpha u_t$ at every $u$, which is an
+   upward shift. This is a **negative** supply shock: costs have risen and
+   supply has fallen, which is what the next line shows when $Y_n$ drops
+   below $Y_0$.
 
 **Policy Dilemma** (if central bank doesn't recognize $Y_n$ has fallen):
 - **Initially**: At old output $Y_0$, now $Y_0 > Y_n$ (positive output gap).
@@ -311,6 +358,16 @@ $$i \geq 0$$
 - Commit to higher inflation target temporarily (raise $\pi^e$ to lower real rate).
 
 ## 4. Economic Growth: The Solow Model
+
+```summary
+- **Three facts**: similar institutions but lower starting income grow faster (OECD 1950-2020); the rich-poor ratio went from 20:1 to 40:1+; and individual countries diverge — South Korea and Taiwan rose, Argentina and Zimbabwe fell
+- **Cobb-Douglas** $Y = K^\alpha N^{1-\alpha}$: constant returns to scale, diminishing returns to each input, and per worker a concave $y = f(k)$ whose slope is the marginal product of capital
+- **Capital accumulation**: savings is investment, so $\Delta k = s f(k) - \delta k$, and the **steady state** is where investment per worker exactly offsets depreciation, $s f(k^*) = \delta k^*$
+- **Dynamics**: below $k^*$ capital accumulates, above $k^*$ it decumulates, and at $k^*$ output per worker is constant too — so with neither population growth nor technology there is no long-run growth
+- **A higher savings rate** raises $k^*$ and $y^*$ but not the long-run growth rate; it buys faster growth only during the transition, which is how saving explains the East Asia miracle of the 1960s-1980s
+- **Population growth** raises required investment per worker, lowering $k^*$: total output grows, output per worker does not. **Technology** inverts this — $g_y = g_A$ is the only source of sustained growth in living standards
+- **Convergence is conditional**: poorer countries grow faster only against their own steady state, set by $s$, $g_N$, human capital and technology. Growth accounting leaves a **Solow residual** (TFP) — about half of advanced-economy growth, the rest capital
+```
 
 ### Motivation: Growth Facts
 
@@ -602,6 +659,14 @@ $$g_A = g_Y - \alpha g_K - \beta g_H - (1 - \alpha - \beta) g_N$$
 **Policy Implication**: Policies that improve TFP (innovation, education quality, rule of law) are crucial for long-run prosperity.
 
 ## 5. Key Takeaways for Quiz 2
+
+```summary
+- **Labor market**: know the WS-PS derivation, and that $u_n$ rises with both bargaining power $z$ and markup $m$ — a structural parameter, not a constant
+- **Phillips Curve**: derive it from wage and price setting, keep the output-gap form $\pi - \pi^e = \lambda(Y - Y_n)$ ready, and be able to say which way the curve moves when expectations de-anchor
+- **IS-LM-PC**: separate short run from medium run, match the instrument to the shock (monetary moves $r$, fiscal moves $G$ and $T$), remember a supply shock moves $Y_n$, and expect the ZLB to hand fiscal policy the lead
+- **Solow**: the steady state is $sf(k^*) = (\delta + g_N + g_A)k^*$; a higher $s$ raises $y^*$ but not long-run $g_y$; with technology $g_y = g_A$; convergence is conditional on $s$, $g_N$ and $A$
+- If you keep one thing: levels are policy, growth rates are technology — a savings rate or a spending programme moves where the economy ends up, never how fast it grows for long
+```
 
 ### Labor Market
 - Understand derivation of natural rate of unemployment from WS-PS model.

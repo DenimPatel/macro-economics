@@ -1,9 +1,27 @@
 # Lecture 17: Open Economy Macroeconomics: Introduction
 
 ## Overview
+
+```summary
+- Moves from closed-economy analysis to an open one, where goods, capital and prices all cross borders
+- Three dimensions of openness: goods markets, financial markets and factor markets
+- **Nominal exchange rate $E$** prices the currency; **real exchange rate $\epsilon$** prices the goods
+- Business cycles move together across countries, so shocks and policies in a large economy reach everyone
+- Framed by the US economy after rapid rate hikes and banking sector stress
+```
 This lecture transitions from closed economy analysis to open economy macroeconomics. It introduces the key concepts of openness in goods and financial markets, defines exchange rates (nominal and real), and explains why international linkages matter for macroeconomic policy and business cycles. The lecture also provides context on the current state of the US economy following rapid interest rate hikes and banking sector stress.
 
 ## 1. Current Economic Context (2023): Banking Crisis and Credit Crunch
+
+```summary
+- Post-COVID demand recovered faster than supply, opening a positive output gap ($Y > Y^*$) and driving inflation
+- The Fed called inflation transitory in late 2021, delayed tightening, then hiked unusually fast in 2022-2023
+- SVB's mechanism: depositors fled to money market funds and Treasuries, long bonds lost value, and lending was cut to cover withdrawals
+- Small and regional banks bite disproportionately, because small businesses have no bond-market alternative
+- **Credit crunch as a risk premium**: in the IS-LM-PC model it appears as a rise in $x$, and it does part of the Fed's tightening for it
+- Supply-side relief: participation, the employment-to-population ratio and immigration are recovering, and wage growth is down from ~6% toward a sustainable ~3.5%
+- The Fed slowed its hikes from 50bp expected to 25bp actual in March 2023
+```
 
 ### Post-COVID Economic Dynamics
 - **Demand-Supply Imbalance**: Following COVID reopening, demand recovered faster than supply.
@@ -59,6 +77,14 @@ This lecture transitions from closed economy analysis to open economy macroecono
 
 ## 2. Why Open Economy Macroeconomics Matters
 
+```summary
+- The US is the most closed major economy, so most of its dynamics can be read without reference to the dollar
+- For almost every other country trade, capital flows and the exchange rate are primary drivers — Singapore cannot be analysed without them
+- Japan's size does not exempt it: the yen sits at the centre of the analysis
+- US openness has risen steadily in trade and more steeply still in cross-border financial holdings
+- Exposure to the rest of the world is the rule rather than the exception, and the US's own exposure has grown over time — though deglobalization now pushes back
+```
+
 ### The US as a "Closed Economy"
 - **Unique Position**: US is the **most closed** major economy in the world.
     - Can describe most US economic dynamics without referencing the rest of the world.
@@ -79,6 +105,16 @@ This lecture transitions from closed economy analysis to open economy macroecono
 ---
 
 ## 3. Three Dimensions of Openness
+
+```summary
+- **Openness ratio** is $(X + IM)/GDP$: about 15% each way for the US, near 30% of GDP, and it understates true openness because even domestically made goods face foreign competition
+- **Trade balance**: $NX = X - IM$, and the US runs a chronic deficit of about USD 70 billion a month in 2023 — a savings-investment imbalance, not a competitiveness failure
+- The largest deficits run to China (around USD 380 billion a year) and Mexico (USD 130 billion); Vietnam's is largely relocated Chinese supply chains, and Germany runs a surplus
+- **Financial openness dwarfs trade**: foreigners hold more than USD 20 trillion of US assets, about USD 2 trillion each from Japan, China and the UK — private money in Tokyo, London and Ottawa, central bank reserves in Beijing
+- **The exorbitant privilege**: foreigners buy safe Treasuries and the US buys risky foreign assets — Brazilian sovereign bonds yield 10-14% against 3-4% on Treasuries — so a trade deficit can be funded by an investment income surplus
+- **Factor mobility** — immigration and FDI — is real but out of scope here; goods and financial markets are the focus
+- Tariffs and quotas throttle trade; capital controls throttle finance — rare in developed economies, routine in emerging markets
+```
 
 ### 1. Openness in Goods Markets
 **Definition**: Ability to import goods/services from abroad and export domestically-produced goods/services.
@@ -156,6 +192,16 @@ This lecture transitions from closed economy analysis to open economy macroecono
 
 ## 4. Exchange Rates: Nominal vs. Real
 
+```summary
+- **Nominal exchange rate $E$** is the price of domestic currency in foreign currency — here yen or pounds per dollar
+- **Appreciation** ($E \uparrow$) makes domestic currency more valuable, **depreciation** ($E \downarrow$) makes it cheaper — the dollar ran from ~100 to ~150 yen per dollar in 2022-2023, a 50% rise on Fed tightening against a near-zero Bank of Japan
+- $E$ alone cannot settle where to buy; you also need prices on both sides of the border
+- **Real exchange rate** $\epsilon = E P / P^*$ is how many foreign goods one unit of domestic goods buys, and it — not $E$ — is what determines trade flows
+- Worked example: a $10,000 US car against a £8,000 UK car at 0.80 £/$ gives $\epsilon = 1$, so one US car buys exactly one UK car; a dearer UK car puts $\epsilon$ below 1 and a cheaper one above
+- **Real appreciation** ($\epsilon \uparrow$) follows nominal appreciation or faster domestic inflation: exports fall and imports rise; **real depreciation** reverses both
+- Almost all short-run movement in $\epsilon$ comes from $E$, because $P$ and $P^*$ adjust slowly
+```
+
 ### Nominal Exchange Rate ($E$)
 
 #### Definition
@@ -200,10 +246,10 @@ $$\epsilon = \frac{E \times P}{P^*}$$
 - **Exchange Rate** ($E$): 0.80 £/$ (1 dollar buys 0.80 pounds).
 
 **Step 1**: Convert US price to pounds.
-$$\text{US Car in Pounds} = P \times E = 10,000 \times 0.80 = £8,000$$
+$$\text{US Car in Pounds} = P \times E = 10{,}000 \times 0.80 = £8{,}000$$
 
 **Step 2**: Compare to UK price.
-$$\epsilon = \frac{E \times P}{P^*} = \frac{0.80 \times 10,000}{8,000} = \frac{8,000}{8,000} = 1$$
+$$\epsilon = \frac{E \times P}{P^*} = \frac{0.80 \times 10{,}000}{8{,}000} = \frac{8{,}000}{8{,}000} = 1$$
 
 **Interpretation**: One US car trades for exactly one UK car (equal purchasing power).
 
@@ -241,6 +287,15 @@ $$\epsilon = \frac{8,000}{7,000} = 1.14 > 1$$
 
 ## 5. Global Business Cycle Synchronization
 
+```summary
+- Recessions and expansions arrive together: 2008-2009 and 2020 were near-universal, and the 2001 dot-com downturn spread globally too
+- **Trade linkages**: a US recession cuts US imports, which cuts foreign exports, which is a foreign recession
+- **Financial linkages** and **confidence effects** do the same work, through global credit tightening and a hit to business and consumer confidence
+- The asymmetry runs one way — US shocks reach everyone, while an Argentinian recession barely registers in the US
+- China is now large enough to offer some diversification: its cycle is not perfectly correlated with the US, a stabilising force for commodity exporters
+- Advanced economies track the global cycle closely; emerging markets grow faster on average but fluctuate in step
+```
+
 ### Evidence of Synchronization
 - **Business Cycles Move Together**: Recessions and expansions tend to occur simultaneously across countries.
     - 2008-2009 Global Financial Crisis: Nearly universal recession.
@@ -266,6 +321,14 @@ $$\epsilon = \frac{8,000}{7,000} = 1.14 > 1$$
 
 ## 6. Rising Global Integration
 
+```summary
+- US trade openness rose steadily from the 1970s through 2019: exports went from ~10% of GDP to ~15%, with imports rising alongside
+- Cross-border financial holdings grew faster still
+- Smaller countries are more open, because a limited domestic range of goods forces imports — Chile's trade ratio far exceeds that of the US or Japan
+- Europe is the exception among large economies, and only because intra-European trade carries no currency or tariff barrier; treated as one entity, Europe is about as open as the US
+- Post-2020 pressures — COVID, US-China tensions, supply chain reshoring — may have reversed the trend, though the integration built up over decades remains
+```
+
 ### Historical Trend: Globalization
 - **US Trade Openness**: Steady increase in $(X + IM)/GDP$ from 1970s through 2019.
     - Exports rose from ~10% of GDP to ~15%.
@@ -287,6 +350,14 @@ $$\epsilon = \frac{8,000}{7,000} = 1.14 > 1$$
 ---
 
 ## 7. Summary and Preview
+
+```summary
+- Three dimensions of openness — goods, financial markets and factor mobility — with this course focused on the first two
+- **Nominal $E$** prices the currency and moves financial returns; **real $\epsilon$** prices the goods and moves trade; $NX = X - IM$ is where the two meet
+- Cycles synchronize, so policy in a large economy has spillovers and, in an open economy, partly leaks abroad through imports and capital flows
+- The exchange rate becomes a policy tool in its own right: depreciation boosts net exports
+- Next: Lecture 19 opens the IS model to trade, Lectures 20-21 add financial openness through Mundell-Fleming, and Lecture 22 turns to expectations and asset pricing
+```
 
 ### Key Concepts Introduced
 1. **Three Dimensions of Openness**:

@@ -34,8 +34,7 @@
  * are about the address bar and the history, not about a stat tile. The mount
  * below is the same one, minus the readers that need the root.
  */
-import { afterEach, describe, expect, it, vi } from 'vitest'
-import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, within, waitFor } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import ToolPage from '../pages/ToolPage'
 import { clearControls, registeredControls, snapshotControls } from '../lib/controlRegistry'
@@ -108,8 +107,20 @@ describe('the share control when the clipboard refuses', () => {
     // asserted is that the claim is checkable: a `?s=` is on the page at all.
     // Without this the rest would pass on a build that wrote nothing and a
     // status line that said nothing either.
+    //
+    // This is a WAIT and not a read. A refused clipboard write is a rejected
+    // promise, and `replaceState` runs in its handler; `act` guarantees the
+    // click was dispatched, not that the rejection has been handled. Asserting
+    // synchronously raced that handler, and the race is lost whenever the
+    // machine is loaded — which is why this file failed intermittently in a
+    // full-suite run while passing every time it ran alone.
+    await waitFor(() =>
+      expect(
+        new URLSearchParams(window.location.search).get('s'),
+        'the page wrote no scenario into the address bar',
+      ).not.toBeNull(),
+    )
     const encoded = new URLSearchParams(window.location.search).get('s')
-    expect(encoded, 'the page wrote no scenario into the address bar').not.toBeNull()
 
     const scenario = decodeScenario(encoded!)
     expect(scenario?.toolId).toBe(TOOL)

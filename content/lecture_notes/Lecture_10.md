@@ -1,11 +1,29 @@
 # Lecture 10: Comprehensive Review for Quiz 1
 
 ## Overview
+
+```summary
+- Recaps lectures 1-8: definitions, the goods market, financial markets, IS-LM, the risk and inflation extensions, and the labor market
+- What to hold onto: key concepts, the equations, graphical analysis, and policy applications
+- Roughly two-thirds of Quiz 1 is IS-LM analysis, so the model's mechanics matter more than the definitions
+- The thread running through it: build the goods market, add financial markets to get IS-LM, then shock it with risk and inflation
+- The labor market is in scope but carries less weight on the quiz
+```
 This lecture provides a comprehensive review of material from Lectures 1-8, covering basic definitions, the goods market, financial markets, the IS-LM model, extensions incorporating risk and inflation, and the labor market. This review emphasizes key concepts, equations, graphical analysis, and policy applications. Approximately two-thirds of Quiz 1 will focus on IS-LM analysis.
 
 ---
 
 ## 1. Measuring Aggregate Output (GDP)
+
+```summary
+- **Aggregate measurement must avoid double counting**: in the two-firm example the steel worth USD 100 is an intermediate input, so the naive 100 + 200 = 300 is wrong and GDP is 200
+- **Three equivalent methods** — final goods, value added (revenue minus intermediate inputs), and income (wages plus profits) — all give the same answer, 200
+- **Value added and income survive a merger**: if the two firms combine, GDP is still 200, where the naive sum would wrongly fall from 300 to 200
+- **Nominal GDP** values output at current prices and **real GDP** at base-year prices, so 2013 output is USD 288,000 real against USD 300,000 nominal
+- **The base year only matters with multiple goods**, because relative prices move over time; with a single good the growth rate is unaffected
+- **Unemployment rate** is the unemployed over the labor force — employed plus those actively seeking work — not over total population
+- **Inflation** is the rate of change of the price level, and more than one index exists — the GDP deflator, the CPI, and others
+```
 
 ### The Measurement Problem
 At the individual firm level, measuring output is straightforward. At the aggregate level, we must avoid double-counting intermediate goods.
@@ -90,6 +108,16 @@ $$\pi_t = \frac{P_t - P_{t-1}}{P_{t-1}} = \frac{\Delta P}{P}$$
 ---
 
 ## 2. The Goods Market: Keynesian Cross Model
+
+```summary
+- **Closed-economy aggregate demand** is $Z = C + I + G$ — no exports or imports, and net exports are not on Quiz 1
+- **Consumption** is $C = c_0 + c_1(Y - T)$: autonomous consumption $c_0$, an MPC $c_1$ between 0 and 1, applied to disposable income
+- **Equilibrium is $Y = Z$**, so output is demand-determined, and solving gives $Y = \frac{1}{1-c_1}[c_0 + I + G - c_1 T]$
+- **The multiplier is $1/(1-c_1)$**: an extra unit of autonomous spending is echoed back round after round — with $c_1 = 0.5$ it is 2
+- **Graphically**, aggregate demand has vertical intercept $c_0 + I + G - c_1 T$ and slope $c_1$, and it shifts up when $c_0$, $I$ or $G$ rises or $T$ falls
+- **The same equilibrium condition is $S_{private} + S_{government} = I$** — private saving $Y - T - C$ plus the budget surplus $T - G$
+- **Paradox of savings**: if everyone tries to save more, income falls far enough that total saving does not rise. Lecture 3's name for it; "paradox of thrift" is the same result
+```
 
 ### Components of Aggregate Demand (Closed Economy)
 $$Z = C + I + G$$
@@ -182,7 +210,7 @@ Where:
 - **Private Saving**: $S_{\text{private}} = Y - T - C$
 - **Government Saving**: $S_{\text{government}} = T - G$ (budget surplus)
 
-### The Paradox of Thrift
+### The Paradox of Savings (Paradox of Thrift)
 
 #### Scenario
 Suppose consumers decide to save more: $c_0 \downarrow$
@@ -196,7 +224,7 @@ Suppose consumers decide to save more: $c_0 \downarrow$
 #### Interpretation
 - Individual attempts to save more lead to lower aggregate income
 - In equilibrium, total saving doesn't increase (or even decreases)
-- **Paradox**: Virtue at individual level (thrift) becomes vice at aggregate level
+- **Paradox of savings**: virtue at the individual level (thrift) becomes vice at the aggregate level
 
 #### Alternative Explanation (Saving-Investment Framework)
 - If, for any given $Y$, saving increases, then $S > I$ (imbalance)
@@ -206,6 +234,16 @@ Suppose consumers decide to save more: $c_0 \downarrow$
 ---
 
 ## 3. Financial Markets
+
+```summary
+- **Two assets only**: money (cash) and bonds, and the whole model is a money market equilibrium
+- **Money demand** rises with nominal income and falls with $i$, because $i$ is the opportunity cost of holding cash
+- **Equilibrium is $M^s = M^d$** — at $i^*$, the money the central bank supplies is the money the public wants to hold
+- **Modern policy targets the interest rate**: the Fed picks $i^*$ and supplies whatever money is needed, the reverse of setting $M$ and letting $i$ float
+- **Open market operations implement it**: buying bonds adds to the Fed's assets and to currency in circulation, raising $M^s$ and lowering $i$; selling does the reverse
+- **Bond prices and rates move inversely**: $i = (F - P_B)/P_B$, so a bond bought at 95 against a face value of 100 yields 5.26, and a price equal to face value yields nothing
+- **That identity is the mechanism**: a bond purchase bids the price up, and a higher price is a lower rate
+```
 
 ### Simplifying Assumptions
 - Only two assets: **Money** (cash) and **Bonds**
@@ -290,6 +328,16 @@ If $P_B =$ \$100 = F$, then $i = 0\%$
 ---
 
 ## 4. The IS-LM Model
+
+```summary
+- **Investment becomes endogenous**, $I = I(Y, i)$: it rises with output (accelerator effect) and falls with the interest rate (cost of borrowing)
+- **The IS curve is downward sloping** in $(Y, i)$: each $i$ pins down an equilibrium $Y$, because a higher $i$ cuts investment, then demand, then output
+- **Movement along IS vs. shift of IS**: a change in $i$ moves you along the curve, while a change in $G$, $T$ or $c_0$ shifts the whole curve
+- **The LM curve is horizontal at the policy rate** — the Fed sets $i$ and supplies the money to hit it, so $M$ is endogenous; equilibrium $(Y^*, i^*)$ is where IS and LM cross with both markets clearing
+- **Fiscal policy shifts IS, monetary policy shifts LM**, and the IS multiplier now carries the investment response, $1/(1-c_1 - d_1)$ with $d_1 = \frac{\partial I}{\partial Y}$
+- **A balanced budget change is still expansionary**: $G$ and $T$ rising together leave net demand $(1 - c_1)\Delta G > 0$, and falling together leave it negative
+- **Policy mixes offset each other** — contractionary fiscal plus expansionary monetary can hold output constant while improving the budget — but at the **zero lower bound**, with $i = 0$ and recession persisting, monetary policy is simply powerless
+```
 
 The IS-LM model integrates goods and financial markets to determine equilibrium output and interest rates.
 
@@ -463,6 +511,8 @@ $$i \downarrow \Rightarrow I \uparrow \Rightarrow Z \uparrow \Rightarrow Y \upar
 
 ### Policy Mixes
 
+The four mixes are the four corners of one grid — expansionary or contractionary fiscal, crossed with expansionary or contractionary monetary. Two of the four are the cases a course usually stops at; the interesting one is the corner where the two pull against each other.
+
 #### Mix 1: Fighting a Recession
 **Combination**: Expansionary fiscal + Expansionary monetary
 
@@ -494,19 +544,31 @@ $$i \downarrow \Rightarrow I \uparrow \Rightarrow Z \uparrow \Rightarrow Y \upar
 
 **Example**: "Austerity with monetary accommodation"
 
-#### Mix 3: Both Policies Expansionary (Strong Stimulus)
-**Combination**: Both expansionary
+#### Mix 3: Overheating with Monetary Resistance
+**Combination**: Expansionary fiscal + Contractionary monetary
 
-**When Used**: Deep recessions, crisis situations
+**Distinguishing condition**: The fiscal side is *not* the one that has to change. The story is an economy already near capacity, where the government is still spending — transfers, defence, pandemic-era support — and the central bank has to lean against it alone.
 
-**Effects**: Maximum stimulus to output
+**Actions**:
+- Fiscal stays expansionary, or contracts too slowly to matter (IS stays put, or drifts right)
+- Increase $i$ (LM shifts up) far enough to hold $Y$ at its target despite the fiscal push
+
+**Effects**:
+- Output is held roughly constant while $i$ rises: the rate does all the tightening
+- The interest rate ends up higher than in any mix without the offset
+- This is the mix in which the policy rate is doing work nobody voted for, and it is the one that produces the fastest tightening
+
+**Historical Example**:
+- 2021-2023: large fiscal transfers alongside Fed hikes to 5.25%
 
 #### Mix 4: Both Policies Contractionary
 **Combination**: Both contractionary
 
 **When Used**: Fighting inflation, cooling overheated economy
 
-**Effects**: Strong contraction in output
+**Effects**:
+- Strong contraction in output
+- The hardest mix to land politically, because both instruments point the same way and there is nothing left to offset a mistake
 
 ### The Zero Lower Bound (ZLB)
 
@@ -533,6 +595,16 @@ $$i \downarrow \Rightarrow I \uparrow \Rightarrow Z \uparrow \Rightarrow Y \upar
 ---
 
 ## 5. The Extended IS-LM Model: Risk and Inflation
+
+```summary
+- **Two problems with the basic model**: firms care about the real cost of borrowing, not the nominal rate, and they do not borrow at the risk-free Treasury rate
+- **Fisher equation**: $r = i - \pi^e$, so with $i = 5\%$ and expected inflation of 2% the real rate is 3%
+- **Credit spread**: $x = i_{corporate} - i_{Treasury}$ pays investors for default risk and risk aversion, and widens in recessions under flight to quality; a default-probability model gives $x \approx \frac{\theta}{1-\theta}$
+- **Extended investment function**: $I = I(Y, i - \pi^e + x)$ — the three components enter the effective real cost of capital symmetrically, so an equal-sized change in $i$, $\pi^e$ or $x$ has an equal effect
+- **A spread shock** raises that cost, cuts investment and shifts IS left — in 2008 spreads went from 1% to 5% and even $i = 0$ could not offset them; higher expected inflation does the reverse
+- **The Fed can neutralize a financial shock** by cutting $i$ by exactly the rise in $x$, $\Delta i = -\Delta x$, leaving the IS curve unmoved — and with conditions easing in 2023 it raised rates instead
+- **Deflation at the zero lower bound is the worst case**: at $i = 0$ with $\pi^e = -2\%$ and $x = 3\%$, the effective rate is still 5%, investment collapses, and only fiscal or unconventional policy is left
+```
 
 ### Motivation for Extensions
 
@@ -709,6 +781,16 @@ $$I = I(Y, \underbrace{i - \pi^e + x}_{\text{effective real cost}})$$
 
 ## 6. The Labor Market and Natural Rate of Unemployment
 
+```summary
+- **Medium run**: prices adjust, so output is no longer demand-determined and unemployment returns to $u_n$ — against the short run, where IS-LM holds prices fixed
+- **Notation**: $W$ nominal wage, $P$ price level, $W/P$ real wage, $u$ unemployment rate, $L$ employment, $U$ unemployment
+- **Production is $Y = N$**: one worker makes one unit of output, so $MPL = 1$ and the marginal cost of hiring one more worker is $W$
+- **Price setting**: markup pricing $P = (1 + m)W$ implies a maximum real wage of $W/P = 1/(1+m)$ — a horizontal line that does not depend on unemployment
+- **Wage setting**: $W/P = \frac{P^e}{P} F(u, z)$, with $F$ decreasing in $u$ and increasing in $z$; with correct expectations it is just $F(u, z)$ — a downward-sloping line
+- **The natural rate** $u_n$ is the intersection, $F(u_n, z) = \frac{1}{1+m}$ — an equilibrium rate set by structure ($m$, $z$), not a desirable one
+- **Both a higher markup and more bargaining power raise $u_n$**: each shifts one curve away from the other, and only higher unemployment restores the intersection — the trade-off behind Europe's higher $u_n$ than the United States
+```
+
 This section introduces medium-run analysis where prices can adjust. Will appear on Quiz 1 but less prominently than IS-LM.
 
 ### Labor Market Framework
@@ -860,6 +942,14 @@ $$\frac{1}{1+m} \downarrow \text{ (price-setting line shifts down)}$$
 
 ## 7. Summary and Quiz Preparation
 
+```summary
+- **Six areas**: measurement, goods market, financial markets, IS-LM, extended IS-LM, labor market — with IS-LM carrying 60-70% of the quiz
+- **Know cold**: all three GDP methods, the multiplier, the IS and LM curves and their shifts, the symmetric $i$, $\pi^e$, $x$ investment function, and $F(u_n, z) = \frac{1}{1+m}$
+- **Three skills**: solve algebraically for equilibrium output and policy offsets, draw and shift the diagrams correctly, and explain mechanisms and their limits such as the zero lower bound
+- **Five classic mistakes**: movement along versus shift, $1/c_1$ instead of $1/(1-c_1)$, sign errors on the balanced budget, forgetting $i$, $\pi^e$ and $x$, and shifting the wrong labor-market curve
+- **The aim is mechanisms, not formulas** — and in particular how one policy can be used to offset another
+```
+
 ### What You Must Know Cold
 
 #### 1. GDP Measurement
@@ -873,7 +963,7 @@ $$\frac{1}{1+m} \downarrow \text{ (price-setting line shifts down)}$$
 - **Solving for equilibrium output**
 - Multiplier: $\frac{1}{1-c_1}$
 - Graphical analysis (Keynesian cross)
-- Paradox of thrift
+- Paradox of savings
 
 #### 3. Financial Markets
 - Money demand: increasing in income, decreasing in $i$

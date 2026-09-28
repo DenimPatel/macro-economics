@@ -1,9 +1,28 @@
 # Lecture 15: Technological Progress and Growth
 
 ## Overview
+
+```summary
+- The Solow model is extended with population growth and then with labor-augmenting technological change
+- Diminishing returns to capital mean capital accumulation alone cannot sustain growth in living standards
+- Labour-augmenting technology $A$ acts as if the economy had more workers: each worker becomes a more productive input
+- Normalizing by effective labor $AN$ brings the model back to the same per-worker diagram as before
+- In steady state output per worker grows at $g_A$ alone, so the question of the lecture is what sets that rate
+```
+
 This lecture introduces technological progress into the Solow growth model, showing how it enables sustained long-run growth in living standards. We extend the model with population growth to include labor-augmenting technological change and analyze its implications for economic growth across countries.
 
 ## 1. Review: The Solow Model with Population Growth
+
+```summary
+- Constant returns to scale in capital and labor; labor force and population are interchangeable in a growth model
+- Closed economy, no deficit: $I_t = S_t = s Y_t$, so the saving rate $s$ is a fixed share of income
+- Normalizing by population turns the model into $y = f(k)$, increasing in $k$ at a decreasing rate
+- With population growing at $g_N$: $k_{t+1} - k_t \approx s f(k_t) - (\delta + g_N) k_t$
+- Three forces on capital per worker: investment per worker pushes up, depreciation and population dilution push down
+- **Population dilution is mechanical**: $k = K/N$ is a ratio, so a growing denominator lowers it even with $K$ unchanged
+- A higher $g_N$ rotates the break-even line up, and both $k^*$ and $y^*$ fall even though total output rises to the higher $g_N$
+```
 
 ### Basic Setup (from Lecture 14)
 Starting point: Production function with constant returns to scale in capital ($K$) and labor ($N$).
@@ -93,6 +112,13 @@ $$s f(k^*) = (\delta + g_N) k^*$$
 
 ## 2. The Limits of Capital Accumulation
 
+```summary
+- Diminishing returns to capital carry the economy to a steady state where capital per worker and output per worker are both constant
+- In that steady state, without technology, output grows only because population grows, so living standards stagnate
+- Most countries — the U.S., Europe, Asia — have in fact sustained growth in output per worker over time
+- So capital accumulation is not the source of long-run growth; something else is needed
+```
+
 ### Why Capital Accumulation Cannot Drive Long-Run Growth
 
 **Problem**: Due to diminishing returns to capital, economies converge to steady state where:
@@ -109,6 +135,15 @@ $$s f(k^*) = (\delta + g_N) k^*$$
 **Conclusion**: Need another source of growth beyond capital accumulation.
 
 ## 3. Technological Progress: The Engine of Sustained Growth
+
+```summary
+- **Total Factor Productivity** captures improvements in technology over time, and U.S. TFP has grown steadily for decades
+- Technology shows up as more output from the same inputs, better products, entirely new products, and greater variety
+- **Labour-augmenting** production function $Y = F(K, AN)$: technology acts as if the economy had more workers
+- $AN$ is **effective labor**, labor units in efficiency terms, so a higher $A$ makes each worker a better input
+- $g_A$ is the growth rate of $A$ — the quantity this lecture will hand the role of engine
+- Modelled this way because it is simple, reuses the same diagrams, and is equivalent to other specifications under certain conditions
+```
 
 ### What is Technological Progress?
 
@@ -158,6 +193,16 @@ Where:
 - Equivalent to other specifications (e.g., output-augmenting, capital-augmenting) under certain conditions
 
 ## 4. The Solow Model with Technological Progress
+
+```summary
+- Normalize by effective labor $AN$ instead of population: constant returns to scale return $\tilde{y} = f(\tilde{k})$
+- The law of motion is the old one plus a third term: $\tilde{k}_{t+1} - \tilde{k}_t \approx s f(\tilde{k}_t) - (\delta + g_N + g_A) \tilde{k}_t$
+- **Break-even investment has three components**: depreciation, population growth, and technological progress
+- The $g_A$ term is dilution too — if $A$ grows and $K$ does not, capital per effective worker falls
+- So faster technological progress demands more investment just to hold $\tilde{k}$ constant
+- Steady state: $s f(\tilde{k}^*) = (\delta + g_N + g_A) \tilde{k}^*$, where the green curve meets the red line
+- In that steady state capital and output per effective worker are both constant
+```
 
 ### Normalization by Effective Labor
 
@@ -228,6 +273,14 @@ $$s f(\tilde{k}^*) = (\delta + g_N + g_A) \tilde{k}^*$$
 
 ## 5. Growth Rates in Steady State
 
+```summary
+- The question the section answers: if $\tilde{k}$ and $\tilde{y}$ are constant, what is growing? $A$ and $N$
+- Since $y = \tilde{y} \cdot A$, output per worker grows at $g_A$ — at the rate of technological progress
+- Capital per worker $k = \tilde{k} \cdot A$ grows at $g_A$ too, so capital intensity rises with productivity
+- Total output $Y = \tilde{y} A N$ grows at $g_A + g_N$, and total capital $K$ must grow at that same rate to keep $\tilde{k}$ constant
+- $A$ and $N$ are exogenous; every other steady-state growth rate in the table is just them added up
+```
+
 ### Deriving Steady State Growth Rates
 
 **Question**: If $\tilde{k}$ and $\tilde{y}$ are constant, what is growing?
@@ -290,6 +343,16 @@ Capital stock must grow at same rate as output to maintain constant $\tilde{k}$.
 
 ## 6. Policy Experiments and Implications
 
+```summary
+- **Higher saving rate**: the green curve shifts up, $\tilde{k}^*$ and $\tilde{y}^*$ rise, and output per worker reaches a permanently higher level
+- But the path only shifts up in parallel: a higher $s$ buys transitional growth, then the slope returns to $g_A$
+- So the saving rate affects levels, not long-run growth rates
+- **Higher $g_A$**: the red line rotates up and $\tilde{k}^*$ falls, because the economy cannot keep pace with faster dilution
+- The lower $\tilde{y}$ is deceptive — since $y = \tilde{y} \cdot A$, output per worker grows faster as $A$ grows much faster
+- During the transition output per worker grows *slower* than the new steady-state rate, then jumps once the new steady state is reached
+- A higher $g_A$ permanently raises the long-run growth rate, which a higher $s$ cannot do
+```
+
 ### Increase in Saving Rate ($s \uparrow$)
 
 **Effect on Diagram**:
@@ -346,6 +409,16 @@ Capital stock must grow at same rate as output to maintain constant $\tilde{k}$.
 
 ## 7. The Asian Miracle: A Growth Decomposition
 
+```summary
+- Japan, South Korea, Taiwan and Singapore grew at 8-12% a year, and China later posted similarly high growth
+- **Cause one is a low initial capital stock**: war and colonialism left $k$ far below steady state, and diminishing returns bind less at low $k$
+- **Cause two is a dramatic rise in saving rates**: Japan's rose from 15% to 35%, China's reached 40-50%, shifting the green curve up
+- Low $k$ plus high $s$ gives very fast transitional growth, sustainable for decades while the catch-up lasts
+- **The slowdown is the model working**: capital has caught up and $s$ cannot rise much further, so growth falls to ~2-3% in Japan, Korea and Taiwan and 5-6% in China
+- Once at steady state output grows at $g_A + g_N$ and output per worker at $g_A$ alone — so with $g_N$ falling or negative, only a higher $g_A$ sustains growth
+- Hence China's investment in R&D, AI and green technology: catch-up economies have to become technology leaders, not just adopters
+```
+
 ### Fast Growth in Southeast Asia (1960s-1990s)
 
 **Observations**:
@@ -395,6 +468,15 @@ Capital stock must grow at same rate as output to maintain constant $\tilde{k}$.
 
 ## 8. Cross-Country Growth Patterns
 
+```summary
+- **Unconditional convergence is weak**: poor countries do not automatically catch up with rich ones
+- **Conditional convergence is strong**: controlling for saving rates, institutions and education, low initial income predicts faster growth
+- Countries converge to *their own* steady state, set by $s$, $g_N$, $g_A$ and institutions — not to one common level
+- A low steady state comes from a low $s$, high $g_N$ without productivity gains, low $g_A$, and high effective depreciation from conflict or weak property rights
+- Raising $s$ alone is not enough: it is a levels effect, not a growth effect
+- The growth lever is $g_A$ — education, R&D, openness to technology transfer and institutions
+```
+
 ### Convergence Hypothesis
 
 **Prediction**: Countries with lower $k$ (relative to steady state) should grow faster.
@@ -424,11 +506,20 @@ Capital stock must grow at same rate as output to maintain constant $\tilde{k}$.
 
 ## 9. The Role of Technological Progress: Summary
 
+```summary
+- $g_A$ is the only source of sustained growth in output per worker, because capital accumulation runs into diminishing returns — and per capita too, once population growth is netted off
+- A higher $g_A$ raises the return to capital, so it amplifies investment and is complementary to human and physical capital
+- Technology spills across borders through trade, FDI and imitation, though the leaders benefit most
+- Institutions like MIT generate new technology, train human capital, and supply $g_A$ for the U.S. and the world
+- Contrast the instruments: infrastructure spending raises $K$ and gives levels only, education is partly levels and partly $g_A$, R&D subsidies raise $g_A$ directly and permanently
+```
+
 ### Why $g_A$ is Critical
 
-**1. Only Source of Sustained Per Capita Growth**:
+**1. Only Source of Sustained Growth**:
 - Capital accumulation has diminishing returns
 - Only technological progress can drive long-run increases in living standards
+- The model's result is stated per worker: $y$ grows at $g_A$. Output **per capita** is $y \times (L/N)$, so it grows at $g_A - g_N$ — a lower rate, and the gap is exactly population growth. "Per worker" and "per capita" are not the same series and the note uses both, deliberately, in the two places they are the right one.
 
 **2. Amplifies Effect of Other Factors**:
 - Higher $g_A$ $\Rightarrow$ More incentive to invest (returns to capital higher)
@@ -455,6 +546,14 @@ Capital stock must grow at same rate as output to maintain constant $\tilde{k}$.
 - R&D subsidies: Directly increase $g_A$ (permanent growth effect)
 
 ## 10. Extensions and Caveats
+
+```summary
+- **$g_A$ is exogenous in this model**; in reality R&D, education, institutions and market size all bear on it
+- Endogenous growth theory is the literature that lets $g_A$ respond to economic decisions, and lies beyond this course
+- **Other specifications**: capital-augmenting $Y = F(BK, N)$ and Hicks-neutral $Y = AF(K, N)$ join the labor-augmenting form, and under balanced growth all are equivalent in steady state
+- **Human capital**: $AN$ folds education and skills into effective labor, so education acts much like technological progress
+- **Resource constraints**: the model ignores natural resources, energy and the environment, so growth may run into limits unless technology can substitute for them
+```
 
 ### What Determines $g_A$?
 
@@ -497,6 +596,14 @@ Capital stock must grow at same rate as output to maintain constant $\tilde{k}$.
 **Extensions**: Include resources $\Rightarrow$ Growth may be constrained unless technology can substitute (e.g., green technology, efficiency gains).
 
 ## 11. Key Takeaways
+
+```summary
+- Capital accumulation alone cannot sustain output-per-worker growth; diminishing returns make it a levels effect at best
+- Technological progress, $g_A$, is the only source of sustained growth in living standards
+- In steady state output per worker grows at $g_A$ and total output at $g_A + g_N$
+- The saving rate sets levels, not long-run growth: fast growth needs low initial capital plus a high saving rate, and that phase ends
+- Sustained growth needs higher $g_A$ — innovation, education, institutions — as population growth slows or reverses; next is growth accounting
+```
 
 1. **Capital accumulation alone cannot sustain growth** in output per worker due to diminishing returns.
 

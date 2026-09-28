@@ -1,9 +1,27 @@
 # Lecture 9: The Phillips Curve
 
 ## Overview
+
+```summary
+- The Phillips Curve is the trade-off between unemployment and inflation
+- It is derived here from the wage-setting and price-setting equations, not assumed
+- The note tracks the curve's evolution over time: it appeared, broke down, and was restored
+- Expected inflation decides whether a stable trade-off exists at all
+- Policy stakes: the same relationship tells a central bank what disinflation costs
+```
+
 This lecture introduces one of the most important relationships in macroeconomics: the Phillips Curve, which describes the trade-off between unemployment and inflation. We derive this relationship from the wage-setting and price-setting equations, examine its evolution over time, and explore its critical implications for monetary policy and expectations formation.
 
 ## 1. Historical Origins of the Phillips Curve
+
+```summary
+- **A.W. Phillips (1958)**: a stable negative correlation between UK unemployment and wage inflation over 1861-1957
+- Two-sided: very low unemployment comes with very high inflation, very high unemployment with low inflation or even deflation
+- **Samuelson and Solow (1960)** reproduced it on US data, 1900-1960, and gave the relationship its name
+- The 1900-1960 window spans the Great Depression and the expansions around it, and the line through it is clearly downward-sloping
+- Naming it turned an empirical regularity into a policy menu of choices between unemployment and inflation
+- The early policy reading: accept slightly higher inflation to achieve lower unemployment
+```
 
 ### A.W. Phillips (1958)
 - **Discovery**: A.W. Phillips, an economist at the London School of Economics (LSE), documented an empirical relationship using historical data for the UK (1861-1957).
@@ -21,6 +39,16 @@ This lecture introduces one of the most important relationships in macroeconomic
 - **Initial Interpretation**: Policymakers believed they could exploit this trade-off—accepting slightly higher inflation to achieve lower unemployment.
 
 ## 2. Theoretical Foundation: Deriving the Phillips Curve
+
+```summary
+- **Wage-setting (WS)**: $W = P^e \cdot F(u, z)$ — nominal wages are set off expected prices, unemployment and labor market institutions
+- $F$ decreases in $u$ (more unemployment scares workers and hands firms the bargaining power) and increases in $z$ (benefits and unions embolden wage demands)
+- **Price-setting (PS)**: $P = (1+m)W$ — a firm marks up its wage bill, one worker producing one unit
+- **Combining them**: $P = P^e(1+m)F(u,z)$ links the price level to unemployment; linearizing $F$ as $1 - \alpha u + z$ makes it tractable
+- Divide by $P_{t-1}$ — the observed last period, not $P^e_{t-1}$, because no expectation is needed for data already in hand
+- Logs approximate to rates, which delivers $\pi_t = \pi^e_t + (m + z) - \alpha u_t$
+- Three components: expected inflation $\pi^e_t$, supply shocks $m + z$, and demand pressure $-\alpha u_t$
+```
 
 ### Starting Ingredients (From Lectures 7-8)
 
@@ -110,6 +138,16 @@ $$\boxed{\pi_t = \pi^e_t + (m + z) - \alpha u_t}$$
 
 ## 3. Evolution of the Phillips Curve Over Time
 
+```summary
+- **Period 1**: with expected inflation anchored at a long-run average, the curve is a stable downward-sloping line in inflation against unemployment
+- It was read as a policy menu, and it was flat enough to cut unemployment cheaply in the early 1960s; by the late 1960s it had steepened
+- **Period 2**: the same data plotted for 1970-1995 shows no negative relationship at all
+- **Cause one, supply shocks**: the 1973 OPEC embargo and the 1979 Iranian Revolution raised markups, shifting the curve up rather than tilting it
+- **Cause two, de-anchoring**: expected inflation went adaptive, $\pi^e_t = \pi_{t-1}$, so inflation and unemployment in levels stopped being related
+- **Period 3**: with fully adaptive expectations the curve governs the *change* in inflation — low unemployment accelerates it, high unemployment decelerates it
+- **Period 4**: Volcker paid for re-anchoring with a 1981-1982 recession and unemployment near 10.8%; by 1995-2019 the original curve was back
+```
+
 ### Period 1: The Original Phillips Curve (Pre-1970s)
 
 #### Context
@@ -156,9 +194,9 @@ If you plot the same data for **1970-1995**, the negative relationship **disappe
 
 2. **De-Anchoring of Inflation Expectations**:
     - As inflation persisted at high levels, people **stopped believing** it would return to 2%.
+    - **Implication**: Expected inflation became **endogenous** (moving with actual inflation), rather than fixed.
     - **Adaptive Expectations**: Instead of expecting $\bar{\pi}$, people began forming expectations based on recent inflation:
         $$\pi^e_t = \pi_{t-1}$$
-    - **Implication**: Expected inflation became **endogenous** (moving with actual inflation), rather than fixed.
 
 ### Period 3: The Accelerationist Phillips Curve (1970s-1990s)
 
@@ -219,7 +257,17 @@ Plotting inflation vs. unemployment for this period shows a **clear negative rel
 
 **Success of Monetary Policy**: Central banks successfully maintained low, stable inflation for ~25 years ("Great Moderation").
 
-## 4. The Natural Rate of Unemployment ($u_n$)
+## 4. The Natural Rate of Unemployment (u_n)
+
+```summary
+- **Natural rate $u_n$**: the unemployment rate at which actual inflation equals expected inflation — there are no surprises
+- It is structural rather than divinely ordained: set by institutions $z$, markups $m$ and wage-setting behavior
+- Setting $\pi_t = \pi^e_t$ in the curve gives $u_n = (m + z)/\alpha$
+- **Markups $m$**: firms want to pay lower real wages, so unemployment has to rise to weaken workers' bargaining power
+- **Institutions $z$**: stronger wage demands have to be checked the same way, by higher unemployment
+- **Wage sensitivity $\alpha$**: the more responsive wages are, the smaller the rise in unemployment that restores equilibrium
+- **Gap form**: $\pi_t - \pi^e_t = -\alpha(u_t - u_n)$ — below $u_n$ inflation runs above expectations, above $u_n$ below; this is the form central banks use
+```
 
 ### Definition
 The **natural rate of unemployment** ($u_n$) is the unemployment rate at which:
@@ -284,6 +332,16 @@ $$\boxed{\pi_t - \pi^e_t = -\alpha (u_t - u_n)}$$
 
 ## 5. Policy Implications and Current Context (2020s)
 
+```summary
+- **$u_n$ is not observable**: it must be estimated and the estimate moves, so in real time policymakers cannot tell remaining slack from an approaching natural rate
+- **2008-2013**: unemployment far above $u_n$ predicted disinflation, and inflation did fall below 2% — the gap worked
+- **2016-2019**: unemployment near 3.5% ran below most estimates of $u_n$, yet inflation sat around 1.5-2% — either $u_n$ had fallen or the curve had flattened
+- **2021-2023**: a deeply negative gap plus supply shocks produced inflation near 9% by June 2022
+- **The policy question**: with expectations at 5-6%, returning to 2% needs unemployment far above $u_n$ — the Fed must induce a recession
+- With expectations still anchored at 2-3%, only a modest rise in unemployment is needed — the soft landing
+- **2022-2023 came close**: one-year expected inflation crept to about 6%, then fell back to roughly 2.5-3% without a deep recession — credibility, not just rate hikes
+```
+
 ### The Challenge of Estimating $u_n$
 
 - **Problem**: The natural rate is **not directly observable**.
@@ -336,16 +394,17 @@ A typical estimate shows:
 
 ##### Scenario A: Expectations Stay Anchored ($\pi^e_t \approx 2\%$)
 - **Phillips Curve**:
-    $$\pi_t = 2\% - \alpha(u_t - u_n)$$
-- **To bring $\pi_t$ to 2%**: Just need $u_t = u_n$ (close the gap).
-- **Cost**: Modest rise in unemployment (not a deep recession).
+    $$\pi_t = \pi^e_t - \alpha(u_t - u_n)$$
+- **To bring $\pi_t$ to 2%**: $\alpha(u_t - u_n) = \pi^e_t - 2\%$, so at $\pi^e_t = 2\%$ the required rise in unemployment is zero and $u_t = u_n$ closes it. Above 2% — say 2.5%, which is still well anchored — the requirement is $(\pi^e_t - 2\%)/\alpha$, which is not zero.
+- **Cost**: Modest rise in unemployment (not a deep recession). Note the gap between *anchored* and *at target*: anchoring is what keeps the numerator small, and the two are not the same number.
 
 ##### Scenario B: Expectations Become Unanchored ($\pi^e_t \approx 6\%$)
-- **Phillips Curve**:
+- **Phillips Curve**: the same equation, with 6% supplying the constant:
     $$\pi_t = 6\% - \alpha(u_t - u_n)$$
 - **To bring $\pi_t$ to 2%**: Need $\pi_t = 2\% = 6\% - \alpha(u_t - u_n)$
     $$\alpha(u_t - u_n) = 4\%$$
     $$u_t - u_n = \frac{4\%}{\alpha}$$
+- **What the two scenarios share**: the cost is $(\pi^e_t - 2\%)/\alpha$ in both. A de-anchoring is not a different mechanism, it is the same mechanism with a much larger numerator, which is why the two scenarios differ in degree rather than in kind.
 - **Implication**: Unemployment must rise **far above** $u_n$ (deep recession).
 - **Cost**: Severe recession to "break" expectations and bring them back down.
 
@@ -368,6 +427,15 @@ A typical estimate shows:
 - **Anchor or spiral**: The difference between a soft landing and a hard landing depends on $\theta$ (persistence of expectations).
 
 ## 6. Additional Factors and Extensions
+
+```summary
+- **Supply shocks** raise the markup $m$, so the whole curve shifts up: 1973-1974, 1979-1980 and 2021-2022 all did this
+- **Institutions $z$**: more generous unemployment benefits and stronger unions raise reservation wages and wage demands, so $z$ and $u_n$ both rise
+- Emergency pandemic benefits in 2020-2021 likely raised $z$ temporarily, feeding wage growth
+- **Labor force participation**: a post-COVID drop in participation tightens the market for any given employment, so more wage pressure
+- **Immigration**: the roughly 500,000 workers a year lost to lower flows tightens supply and pushes wages up
+- Participation and immigration are supply-side policy tools — they can cool wage growth without raising unemployment
+```
 
 ### Supply Shocks (Oil, Pandemics, Wars)
 - **Effect on $m$**: Higher energy costs $\Rightarrow$ Firms mark up more $\Rightarrow$ $m \uparrow$.
@@ -394,6 +462,15 @@ A typical estimate shows:
 - **Policy tool**: Increasing immigration could help cool wage growth without requiring higher unemployment.
 
 ## 7. Summary
+
+```summary
+- **The curve**: $\pi_t = \pi^e_t + (m + z) - \alpha u_t$ — expected inflation plus supply shocks minus demand pressure
+- **The natural rate**: $u_n = (m + z)/\alpha$, and the gap form $\pi_t - \pi^e_t = -\alpha(u_t - u_n)$ is what central banks use
+- **Its history**: stable into the 1960s, broken in the 1970s-1980s by oil shocks and de-anchoring, restored from the 1990s to 2019
+- **Expectations set the cost**: anchored expectations buy disinflation without a severe recession; unanchored ones require one
+- **The natural rate is structural**: shifts in $m$ and $z$ move it, not just the cycle
+- **The live problem**: getting from about 6% to 2% without a deep recession turns on holding expected inflation near 2%
+```
 
 ### Historical Evolution
 1. **1900-1960s**: Stable negative relationship (anchored expectations).

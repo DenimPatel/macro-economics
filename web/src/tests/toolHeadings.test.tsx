@@ -31,7 +31,6 @@
  * came from the tool. Two tools rendered the SAME `<h1>`, and four more
  * rendered a second name for themselves.
  */
-import { afterEach, describe, expect, it } from 'vitest'
 import { act, cleanup, fireEvent, render, within } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { createElement } from 'react'

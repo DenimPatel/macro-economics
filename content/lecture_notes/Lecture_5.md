@@ -1,6 +1,13 @@
 # Lecture 5: The IS-LM Model (Part I)
 
 ## Overview
+
+```summary
+- **IS-LM**: the workhorse model for the joint determination of output ($Y$) and the interest rate ($i$)
+- **IS curve**: equilibrium in the goods market (investment–savings); **LM curve**: equilibrium in the financial market (liquidity–money)
+- It is the foundation for analyzing monetary and fiscal policy
+- It is also the basis for modern central bank thinking, including the Federal Reserve
+```
 The IS-LM model is the workhorse model for understanding the **joint determination of output (Y) and the interest rate (i)**. It combines:
 - **IS Curve**: Equilibrium in the **goods market** (Investment-Savings)
 - **LM Curve**: Equilibrium in the **financial market** (Liquidity-Money)
@@ -10,6 +17,16 @@ This model is fundamental for analyzing monetary and fiscal policy, and forms th
 ---
 
 ## 1. Current Economic Context (2022-2023)
+
+```summary
+- **Wealth**: US household net worth rose sharply through the COVID recovery, led by asset price appreciation — equity rallies and skyrocketing house prices
+- **Excess savings**: 2.7-2.8 trillion accumulated, concentrated in lower-income households whose incomes held up on government transfers while lockdowns limited what they could spend on
+- **Wealth effect**: higher wealth → higher consumption → higher aggregate demand
+- **Desaving**: the saving rate (income minus consumption) has fallen below its historical average, so spending is running above income
+- **Credit expansion**: lower-income borrowers are now funding consumption on credit cards, after exhausting their excess savings
+- **Mix**: services (about 2/3 of consumption) recovered to above trend; goods (about 1/3) spiked and are easing but still above trend
+- **Overheating**: aggregate demand far exceeds productive capacity, which is why inflation is high and the Fed is raising rates — the mechanism this model is built to explain
+```
 
 ### Wealth Increase During COVID Recovery
 - **Dramatic Rise in Net Worth**: US household wealth increased significantly during and after the COVID recovery.
@@ -49,6 +66,15 @@ This model is fundamental for analyzing monetary and fiscal policy, and forms th
 ---
 
 ## 2. The IS Curve (Goods Market Equilibrium)
+
+```summary
+- The IS curve extends Lecture 3's goods market model by making investment endogenous: $Y = C(Y - T) + I(Y, i) + G$
+- **Real investment**, $I = I(Y, i)$, rises with $Y$ — higher sales, more capacity to build — and falls with $i$, through both the cost of debt-financed borrowing and the opportunity cost of physical over financial investment
+- This is **real** investment (equipment, structures, machinery), not financial investment (bonds, stocks), which belongs to the financial market
+- The IS curve is the set of $(Y, i)$ pairs consistent with goods market equilibrium: a relationship, not a single point
+- **Derivation**: the ZZ curve is now steeper than in Lecture 3 (slope = MPC + MPI) and $i$ is a parameter of it
+- Raise $i$ and the ZZ curve shifts down; the multiplier then takes output down by more than investment fell, so IS is downward sloping
+```
 
 ### Building on Lecture 3
 The IS curve extends the goods market model from Lecture 3 by making **investment endogenous**.
@@ -133,6 +159,15 @@ $$\frac{dY}{di}\bigg|_{IS} = \frac{\partial I/\partial i}{1 - (\partial C/\parti
 
 ## 3. Movements Along vs. Shifts of the IS Curve
 
+```summary
+- **Movement along IS**: the interest rate changes and nothing else — a Fed hike moves you up the same IS curve to lower equilibrium output
+- **Shift**: any change in an exogenous demand factor, that is, anything in the model except $i$
+- **Left (contractionary)**: $T \uparrow$, $G \downarrow$, $c_0 \downarrow$ (consumer confidence, hence wealth effects), $i_0 \downarrow$ (investment sentiment)
+- **Right (expansionary)**: the same four reversed
+- **Check a shift in the ZZ diagram**: hold $i$ fixed and ask whether aggregate demand has moved
+- **Tax increase**: output falls by $\Delta Y = -\frac{c_1}{1 - c_1 - i_1} \Delta T$ — the multiplier effect amplifies the decline
+```
+
 ### Movement Along the IS Curve
 - **Cause**: Change in interest rate only
 - **Interpretation**: Moving from one equilibrium point to another on the **same** IS curve
@@ -171,6 +206,16 @@ $$\frac{dY}{di}\bigg|_{IS} = \frac{\partial I/\partial i}{1 - (\partial C/\parti
 ---
 
 ## 4. The LM Curve (Financial Market Equilibrium)
+
+```summary
+- **Traditional LM** comes from money market clearing, $M/P = Y \cdot L(i)$, and slopes upward: with $M$ fixed, a rise in $Y$ raises money demand, so $i$ must rise to draw balances back out of money
+- **Modern practice**: central banks target the interest rate directly and supply whatever $M$ holds it there, so LM is **horizontal** at the target $\bar{i}$
+- **Accommodation**: an unexpected rise in $Y$ would push $i$ up, so the Fed supplies $M = P \cdot \Delta(Y \cdot L(i))$ — any level of output is consistent with the target rate
+- **Only** the central bank's target rate shifts modern LM: up when it hikes, down when it cuts
+- That is "life is simpler now" — changes in money demand or money supply no longer shift LM
+- **Why the Fed moves**: it is not simply moody — it responds to inflation, to unemployment, to overheating, and to events like COVID or a financial crisis that force its hand
+- **The risk of fast moves**: highly leveraged banks, hedge funds and pension funds can fail. The UK LDI near-crisis of September 2022 is what that looks like, and it sits inside the 2022-2023 hiking cycle — the Bank of England had to buy gilts
+```
 
 ### Traditional LM Derivation
 
@@ -230,13 +275,22 @@ $$\text{Modern LM: } i = \bar{i}$$
 
 **Risks of Rapid Rate Changes**:
 - Can "break" something in financial system
-- Example: Highly leveraged institutions (banks, hedge funds) can fail
-- 2022-2023: Fed raised rates very fast to combat inflation → risky but nothing major broke (lucky)
-- UK: Near-crisis with pension funds during rapid rate increases
+- Example: Highly leveraged institutions (banks, hedge funds, pension funds) can fail
+- UK, September 2022: rapid hikes triggered margin calls on leveraged gilt positions in pension funds; the Bank of England stepped in with emergency gilt purchases. The stress was inside the 2022-2023 hiking cycle, not outside it
+- US, same period: no comparable systemic event, but that was the outcome rather than the expectation
 
 ---
 
 ## 5. IS-LM Equilibrium
+
+```summary
+- Two curves, two unknowns: equilibrium is the single point where IS and LM intersect, and there both markets clear at once
+- **On LM, right of IS**: the financial market clears but the goods market has **excess supply** — output is too high for demand, firms cannot sell what they produce, so output must fall
+- **On LM, left of IS**: **excess demand** for goods, so output must rise
+- **On IS, above LM**: the goods market clears but $i$ is too high — **excess demand for money**, equivalently excess supply of bonds
+- **On IS, below LM**: $i$ is too low — **excess supply of money**, equivalently excess demand for bonds
+- A point off equilibrium diagnoses itself: name the disequilibrated market, then the direction of the imbalance
+```
 
 ### Finding Equilibrium
 
@@ -286,6 +340,15 @@ $$
 ---
 
 ## 6. Policy Analysis with IS-LM
+
+```summary
+- Fiscal shocks are demand shocks, so **IS is the curve that moves**: $T \uparrow$ or $G \downarrow$ shifts it left, the reverse shifts it right
+- **Mechanism**: lower disposable income or lower government demand cuts consumption, the ZZ curve shifts down, and the multiplier takes output down by more than the initial shock
+- With LM unchanged and horizontal, output falls while the interest rate does not move
+- **Expansionary case — COVID-19**: large transfers to households, $G$ up dramatically, IS shifted far to the right
+- That stimulus, alongside Fed rates held at zero, was the largest combined monetary and fiscal package in history: a strong recovery that ended in overheating and inflation
+- **Key insight**: under a horizontal LM, fiscal policy moves output directly, without touching the interest rate — unless the Fed chooses to respond
+```
 
 ### Fiscal Contraction ($T \uparrow$ or $G \downarrow$)
 
@@ -340,6 +403,14 @@ New equilibrium: Point A' (Y₁, i₀) where Y₁ < Y₀
 
 ## 7. Key Takeaways
 
+```summary
+- **IS**: goods market equilibrium, downward sloping because a higher $i$ cuts investment and with it output; shifts with fiscal policy, consumer and business confidence, and wealth
+- **Modern LM**: horizontal at the central bank's target rate, a picture of its policy stance; it shifts only when that target changes
+- **Equilibrium**: the unique point where both markets clear, fixed by the intersection of the two curves
+- **Framework**: this is how central banks, the Fed included, think — real models add equations on top of it
+- **Right now**: an overheating economy with demand above capacity, and the Fed raising rates, which shifts LM up to cool it
+```
+
 1. **IS Curve**:
    - Represents goods market equilibrium
    - Downward sloping: higher $i$ → lower $I$ → lower $Y$
@@ -369,6 +440,13 @@ New equilibrium: Point A' (Y₁, i₀) where Y₁ < Y₀
 ---
 
 ## Important Questions to Consider
+
+```summary
+- Always ask first: which curve moves? Fiscal and demand shocks move IS; monetary policy moves LM
+- Then locate the disequilibrium — at a point off the intersection, which of the two markets is out of equilibrium?
+- Name the direction of the imbalance, excess supply or excess demand, because that fixes which way output has to move
+- The multiplier runs through the ZZ curve: an initial shock to aggregate demand is amplified into a final change in output set by the new IS-LM equilibrium
+```
 
 1. **Always ask first**: Which curve moves? (IS or LM?)
    - Fiscal/demand shocks → IS
