@@ -6,6 +6,7 @@ import {
   InfoBox,
   SliderControl,
   StatBox,
+  TileReadout,
   ToolControlBar,
   ToolHeader,
   ToolNote,
@@ -304,7 +305,7 @@ export default function LaborMarketWsPs() {
   return (
     <div className="tool-card">
       <ToolHeader
-        title="Labor Market WS/PS Diagram"
+        title="Labor Market: WS/PS Diagram"
         description="Explore how wage-setting (WS) and price-setting (PS) curves determine the natural rate of unemployment and equilibrium real wage"
         badge="advanced"
       />
@@ -314,16 +315,80 @@ export default function LaborMarketWsPs() {
         <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">WS/PS Equilibrium Diagram</h2>
 
         <ResponsiveContainer width="100%" height={400}>
+          {/*
+           * The margins, and the arithmetic behind every number in them.
+           *
+           * Recharts lays a vertical chart out as
+           * `plotX = margin.left + yAxisSize`, with `yAxisSize` fixed at 60
+           * whether or not the y tick labels need it — the widest here is
+           * `0.35`, 29.7px. So the old `left: 60` put 120px in front of the
+           * plot, of which 60px was dead space, and `right: 30` another 30.
+           * MEASURED at every width: 120 + 30 of gutter, and a PLOT of 106px at
+           * 390px and 36px at 320px. Thirty-six pixels of plot is not a
+           * diagram, and it is the whole of the other two faults on this
+           * chart, neither of which was ever about the label or the font:
+           * the 136px x-axis label centred on a 68px plot at 130% hung 34px off
+           * each side and 4.3px of that LEFT THE SVG (at 320px/100% it clipped
+           * by 4.5px), and the `W/P` line's right-anchored label hung 65px left
+           * of the plot at 390/130%. One margin, both faults.
+           *
+           * `right: 28` is not a round number and it is the one that is easy to
+           * get wrong, so here is where it comes from. The x-axis label is
+           * centred on the PLOT, and the plot's centre is
+           * `svgWidth - leftGutter - plotWidth/2` from the SVG's left, so the
+           * frame a centred label can use is `svgWidth - leftGutter +
+           * rightGutter` — the left gutter is subtracted twice, once whole and
+           * once as half the plot, because the 60px y-axis band pushes the plot
+           * right of centre and everything to the right of the label has to
+           * come out of `right`. At 320px/130% the SVG is 147.6px and the label
+           * is 102.2px, so `right >= 22.6` and the frame holds the label.
+           * MEASURED across (left, right) in {8, 24, 32, 40} x {8, 12, 20, 28,
+           * 36} at three widths and two text scales: 8/8 clips 15.2px at
+           * 320/130%, 8/20 clips 1.2px, 8/28 clips NOTHING and costs 20px of a
+           * 747px plot at 1280. 8/36 also clips nothing and costs 36px, which
+           * buys a narrower plot to defend against a viewport the site does not
+           * have to support as well.
+           *
+           * The y-axis LABEL is why the left margin was reduced to 8 and not to
+           * 0. It is `insideLeft`, so it does not WIDEN the gutter — Recharts
+           * draws it at `margin.left - 7.1 + offset` — but it does need the
+           * gutter to be there: at `offset: -10` the reduced margin clipped it
+           * by 9.1px, which is a new defect introduced by a fix. `offset: 12`
+           * puts it 12.9px inside at every width, clear of the y tick labels
+           * (which end at `plotX - 10`).
+           *
+           * `top` and `bottom` are UNCHANGED, and deliberately: they are the
+           * headroom the `u_n` mark's label needs and the x label's 20px offset
+           * plus a line of x tick labels, and together they are what makes this
+           * plot 300px tall inside a 400px frame — the same 300 its sibling
+           * `LaborMarket` draws, which is the comparison the 400px rule exists
+           * to protect. Everything here is horizontal. Reclaiming 20px of
+           * `bottom` would have been the easy way to buy the label room and it
+           * would have re-scaled the y axis against a chart a reader is meant
+           * to be comparing it with.
+           */}
           <ComposedChart
             data={chartData}
-            margin={{ top: 20, right: 30, left: 60, bottom: 80 }}
+            margin={{ top: 20, right: 28, left: 8, bottom: 80 }}
           >
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
               key={chartTheme.axisKey('x')}
               dataKey="unemployment"
               label={{
-                value: 'Unemployment Rate (fraction of labor force)',
+                // "Unemployment" and not "Unemployment Rate", and the ticks are
+                // why. `tickFormatter` below prints 0% … 100%, so the word
+                // "Rate" is the half of the old 19-character name that the
+                // numbers beside it were already saying — and it is the half
+                // that costs the label its frame. MEASURED: 19 characters is
+                // 136.2px at 130% and leaves the SVG by 15.2px at 320px even
+                // after the margins above were fixed; 12 characters is 102.2px
+                // and leaves it by nothing, at every width and both text
+                // scales. "Unemployment" is also the quantity name the table
+                // below the diagram uses in its first column, and the tile
+                // above it in the first row, so the page now says one thing in
+                // one name.
+                value: 'Unemployment',
                 position: 'bottom',
                 offset: 20,
                 fill: chartTheme.axis.tick.fill,
@@ -344,7 +409,7 @@ export default function LaborMarketWsPs() {
                 value: 'Real Wage (W/P)',
                 angle: -90,
                 position: 'insideLeft',
-                offset: -10,
+                offset: 12,
                 fill: chartTheme.axis.tick.fill,
               }}
               /* Derived, and this was the same D1 defect the sibling
@@ -389,29 +454,94 @@ export default function LaborMarketWsPs() {
               name="PS Curve (Firms' Offers)"
             />
 
-            {/* Equilibrium Point */}
+            {/* Equilibrium Point.
+             *
+             * `insideTop` and `insideRight`, not `top` and `right`. A
+             * ReferenceLine's label viewBox is the LINE, so a bare `top`
+             * anchors the text above the plot — and the plot's top edge is
+             * `chartTheme.margin` (8px) below the SVG's, so the label is
+             * clipped by however much of it is taller than 8px plus the
+             * `offset` it was given. `offset: 10` made that certain: 10px
+             * above a plot top that is 8px from the SVG top puts the text
+             * entirely outside the frame. MEASURED: `u_n = 55.6%` lost 5.5px
+             * of 19.5 at 1280px and 6px of 20 at 390px; `W/P = 0.833`,
+             * anchored `right` with `offset: 10`, lost 74.9px of 94.9px —
+             * four fifths of it, in the a11y tree and not on screen.
+             *
+             * The `inside*` positions are the fix rather than a bigger
+             * margin, because the margin is a global and a label that
+             * overhangs the plot by its own height would need a margin
+             * nobody can afford. See `tools.test.tsx` for the invariant. */}
             <ReferenceLine
               x={equilibrium.unemployment}
               stroke={EQ_STROKE}
               strokeDasharray="5 5"
               label={{
                 value: `u_n = ${(equilibrium.unemployment * 100).toFixed(1)}%`,
-                position: 'top',
+                /* WHICH inside position, and this is the half that was still
+                 * broken. `insideTop` centres the text on the line, so half of
+                 * it hangs off whichever side the line is nearer — and the
+                 * binary search in `findEquilibrium` returns `u_n` up to 1.0
+                 * at settings the sliders reach, which puts the line hard
+                 * against the right edge of a `[0, 1]` axis. MEASURED: 51px of
+                 * an 87px label outside the plot at 1280px, in the
+                 * accessibility tree and not on screen.
+                 *
+                 * The fix is a side, not a margin, and the choice costs
+                 * nothing that was documented: `insideTopRight` anchors the
+                 * text's END at the line and runs it LEFT,
+                 * `insideTopLeft` anchors its START and runs it RIGHT, and the
+                 * line is past the middle of a `[0, 1]` axis exactly when
+                 * `u_n > 0.5`. The property given up is the one the `[0, 1]`
+                 * pin is for — that a reader comparing two runs of this tool
+                 * sees the same 0–100% frame — and it is NOT given up: the
+                 * domain is untouched and only the label's SIDE moves. What is
+                 * given up instead is the label's consistent side, so the mark
+                 * reads at the right of the plot at high `u_n` and at the left
+                 * at low `u_n`. That is the cheaper of the two, because a
+                 * label that is off the page is not a comparison.
+                 *
+                 * The explicit `fontSize` is the other half of the fit, and its
+                 * own separate defect — see the note on the real-wage line's
+                 * label below, which is the same omission and the same
+                 * measurement. */
+                position: equilibrium.unemployment > 0.5 ? 'insideTopRight' : 'insideTopLeft',
                 fill: EQ_STROKE,
+                fontSize: 12,
                 offset: 10,
               }}
             />
-            <ReferenceLine
-              y={equilibrium.realWage}
-              stroke={EQ_STROKE}
-              strokeDasharray="5 5"
-              label={{
-                value: `W/P = ${equilibrium.realWage.toFixed(3)}`,
-                position: 'right',
-                fill: EQ_STROKE,
-                offset: 10,
-              }}
-            />
+              <ReferenceLine
+                y={equilibrium.realWage}
+                stroke={EQ_STROKE}
+                strokeWidth={2}
+                label={{
+                  value: `W/P = ${equilibrium.realWage.toFixed(3)}`,
+                  position: 'insideRight',
+                  fill: EQ_STROKE,
+                  /* One of four reference-line labels on the site that had no
+                   * explicit `fontSize`, so it inherited the ROOT size rather
+                   * than the chart's — 16px at 100% and 20.8px at 130%, where
+                   * the other five reference labels are 12 and the axis label
+                   * is 14.3. That is not a rounding detail: MEASURED at
+                   * 320px/130%, this label was 123.1px wide against a 51.9px
+                   * plot and hung 12.3px off the LEFT of the SVG, and the
+                   * `u_n` label's 132.3px hung 22.6px off. `index.css`
+                   * already says these labels carry an explicit size — that is
+                   * why the axis-label rule is scoped to `.recharts-cartesian-axis`
+                   * so it cannot restyle them by accident — and these four were
+                   * the ones that made the statement untrue.
+                   *
+                   * A bare `fontSize` prop cannot be fixed in the theme for the
+                   * reason the CSS comment gives for the AXIS label: a `label`
+                   * key in the shared object would be overwritten by every
+                   * tool's own `label` prop. So it is written out, four times,
+                   * and `charts.test.tsx` holds that every reference-line label
+                   * in the tools has one. */
+                  fontSize: 12,
+                  offset: 10,
+                }}
+              />
 
             {/* Equilibrium point marker */}
             <ChartScatter
@@ -504,7 +634,7 @@ export default function LaborMarketWsPs() {
       </div>
 
       {/* Scenario Buttons */}
-      <ToolNote label="Experiments" variant="try" title="Policy Scenarios">
+      <ToolNote label="Experiments" variant="try" title="Policy Scenarios" headingLevel={2}>
         <div className="flex flex-wrap gap-s-2">
           <Button
             onClick={() => {
@@ -560,6 +690,16 @@ export default function LaborMarketWsPs() {
           tone="accent"
         />
       </div>
+        <TileReadout>
+                  Natural Rate {policyImpact.naturalRate} and Equilibrium Real Wage{' '}
+          {policyImpact.realWage} are the two dashed marks on the diagram
+          above, so each tile is a point on it. The other two
+                  are the two CURVES at a stated point rather than marks: the wage
+                  floor z·A is where the WS curve meets the left edge of the plot, at
+                  u = 0, and the firm offering A/(1+μ) is the height of the PS line,
+                  which is horizontal. Read them off the two lines and the table below
+                  lists both at three unemployment rates.
+                </TileReadout>
 
       {/* Detailed Analysis Table */}
       <div className="card mb-s-8 p-s-6">

@@ -81,7 +81,8 @@ This lecture introduces the field of macroeconomics, distinguishing it from micr
 #### The Fed's Recent Path
 1. **Pre-COVID (2015-2019)**: Interest rates around 1.5-2.5%.
 2. **COVID Shock (March 2020)**: Fed cut rates to near zero (0-0.25%) to support the economy.
-    - **Zero Lower Bound**: Cannot cut rates much below 0% (explained in Lecture 9).
+    - **Zero Lower Bound**: Cannot cut rates much below 0% (explained in Lecture 6, and why it
+      binds in Lecture 4's liquidity trap).
 3. **2021-2022**: Inflation surged, but Fed initially slow to respond ("behind the curve").
 4. **2022-2023**: Fed hiking rapidly (fastest pace since the 1980s) to combat inflation.
     - Rates increased from 0% to 4.5%+ in less than a year.

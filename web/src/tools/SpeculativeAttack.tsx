@@ -2,13 +2,14 @@ import { useState } from 'react'
 import { LineChart, AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ComposedChart } from 'recharts'
 import { ChartArea, ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
-  SliderControl,
-  StatBox,
-  ToolControlBar,
   Button,
   InfoBox,
+  SliderControl,
+  StatBox,
+  TileReadout,
+  ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
 import { chartTheme, chartColor, useChartTextScaleSignal } from '../design/chartTheme'
 import { useToolReset } from '../lib/toolReset'
@@ -21,11 +22,117 @@ const OUTFLOW_STROKE = chartColor(1)
 const FOREIGN_STROKE = chartColor(2)
 const CRISIS_STROKE = chartColor(4)
 
+/* ------------------------------------------------------------------ *
+ * The units the model counts in
+ * ------------------------------------------------------------------ */
+
 /**
- * Chart series colours. Each series keeps one stable identity across all six
- * charts in this tool: the domestic real quantities, the exogenous foreign rate,
- * ordinary capital outflow, and the speculative attack.
+ * The money supply the peg was set at, which is what every reserve number in
+ * this tool is a share of. `reserves = 100` is a fully-backed peg.
+ *
+ * THE DENOMINATOR IS THE MONEY SUPPLY *AT THE PEG*, and saying so is the whole
+ * of the `CRISIS_THRESHOLD` question. This tool used to compute a second share
+ * against the CURRENT money supply, name it `reservesPercent`, and compare a
+ * third quantity — the raw reserve level — to 20, while the comment, the
+ * slider label and the y axis all said "percent of the money supply". Those
+ * are two different denominators and two different numbers, and the peg could
+ * be reported intact while the printed cover read 0.7%.
+ *
+ * Against the current supply the peg "breaks" at every preset including
+ * Stable, with no attack anywhere in the model: 8% money growth divides the
+ * cover by 1.08^t on its own, so the break would be caused by the denominator
+ * growing and would teach the reader nothing about currency crises. Against
+ * `MONEY_SUPPLY_AT_PEG` the cover only falls when capital leaves, so the
+ * reserve chart shows the thing it is titled "The Countdown to Crisis" about.
+ *
+ * The slider, the y axis, the reference line, the stat tile and the caption
+ * all name this one denominator in the same unit, and the comparison in the
+ * loop is a share against a share.
  */
+const MONEY_SUPPLY_AT_PEG = 100
+
+/**
+ * Critical reserve cover, as a share of `MONEY_SUPPLY_AT_PEG`: below this the
+ * central bank has too little left to sell to defend the parity, and the peg
+ * collapses. Drawn as the reference line on the reserve chart at the same
+ * value, in the same unit.
+ */
+const CRISIS_THRESHOLD = 20
+
+/**
+ * How far the expected devaluation has to exceed, in points per period, before
+ * speculators mount a run. Below it the negative carry on domestic currency is
+ * not worth the cost of a one-way bet: reserves still bleed away, because the
+ * rate the central bank refuses to pay is a guaranteed loss, but slowly, and a
+ * peg can sit on that drip indefinitely. Above it they attack, and the attack
+ * is on the devaluation BEYOND this level rather than on all of it, so the run
+ * is hard zero below the trigger and starts from nothing above it.
+ *
+ * Two points is two points of money growth over the world rate, so the trigger
+ * is a money growth rate of 6% against the exogenous 4%. The crisis preset is
+ * 4 points over and Managed is 1, so one is well past this and the other is
+ * well short — no preset sits ON it, which is how a preset can be a crisis.
+ */
+const ATTACK_TRIGGER = 0.02
+
+/**
+ * How much worse a thinning reserve cover makes the same fundamental
+ * inconsistency look. At zero cover the market prices the currency at
+ * `1 + CREDIBILITY_MULTIPLIER` times the devaluation the money growth
+ * differential implies on its own; at full cover the term is zero.
+ *
+ * This is the self-fulfilling half of the crisis — the reason a defence that
+ * is failing accelerates rather than grinds — and it is MULTIPLIED BY THE
+ * FUNDAMENTALS so that it can only ever accelerate a run they have already
+ * started. A tool where the run can begin with no underlying inconsistency
+ * would break the peg of a country running a 3% money growth against a 4%
+ * world rate, which is a stable peg, not a crisis.
+ */
+const CREDIBILITY_MULTIPLIER = 4
+
+/**
+ * Scale of the speculative run, in percentage points of the money supply at
+ * the peg per period. Calibrated, not derived: the point of the number is
+ * that a run CAN exhaust a fully-backed buffer inside the 60 periods the
+ * charts show, which is what a run does. The old value was a fifth of this
+ * and no reachable set of sliders could exhaust the buffer in 60 periods — a
+ * peg that cannot be broken by any parameter a reader can reach is a peg that
+ * is not being tested.
+ */
+const ATTACK_SCALE = 200
+
+/** The share of the UIP rate the central bank actually pays while defending. */
+const DEFENCE_EFFORT = 0.7
+
+/** No central bank defends past this, and past it the defence is hopeless. */
+const MAX_DEFENCE_RATE = 0.25
+
+/** Periods for the post-collapse depreciation drift to halve. */
+const DEPRECIATION_DECAY = 12
+
+/** Share of a depreciation that reaches domestic prices. */
+const PASS_THROUGH = 0.4
+
+/** The pegged rate, and the level the exchange-rate chart's reference line is
+ * drawn at. Units of foreign currency per foreign unit, so above 1 is a weaker
+ * domestic currency. */
+const PEG_RATE = 1.0
+
+/**
+ * Real output as a fraction of trend:  Y/Y* = 1 − 1.5r, floored at 0.7.
+ *
+ * One function, and it is here rather than in `lib/calculations.ts` because
+ * both callers are in this file: the loop that draws the series, and the
+ * baseline the GDP chart's reference line is drawn at. A baseline computed by
+ * a second copy of the expression is a baseline that can quietly stop being the
+ * same model as the line it is supposed to be a baseline for.
+ */
+const outputIndex = (rate: number): number => Math.max(0.7, 1 - rate * 1.5)
+
+/** Peak credibility premium after a collapse, and the two speeds it decays at. */
+const INFLATION_PEAK = 35
+const INFLATION_BUILD = 3
+const INFLATION_DECAY = 30
 
 /**
  * Speculative Attack on Fixed Peg Visualization
@@ -78,8 +185,12 @@ const DEFAULTS = {
 
 interface AttackData {
   period: number
+  /**
+   * Reserve cover: the reserves as a share of `MONEY_SUPPLY_AT_PEG`, which is
+   * the quantity `CRISIS_THRESHOLD` is compared against and the quantity the
+   * reserve chart plots. One number, one denominator, one unit.
+   */
   reserves: number
-  reservesPercent: number
   domesticRate: number
   foreignRate: number
   capitalOutflow: number
@@ -116,8 +227,6 @@ export default function SpeculativeAttack() {
   const [capitalControls, setCapitalControls] = useState(DEFAULTS.capitalControls) // 30% capital restriction
   const [initialReserves, setInitialReserves] = useState(DEFAULTS.initialReserves) // Initial reserves as % of money supply
   const [specAggressiveness, setSpecAggressiveness] = useState(DEFAULTS.specAggressiveness) // How aggressively speculators attack
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [playbackSpeed, setPlaybackSpeed] = useState(1)
   const [scenarioMode, setScenarioMode] = useState<ScenarioMode>(DEFAULTS.scenarioMode)
 
   const { reset, dirty } = useToolReset(
@@ -161,95 +270,139 @@ export default function SpeculativeAttack() {
   const foreignRate = 0.04 // 4% foreign policy rate (exogenous)
 
   /**
-   * Simulate the speculative attack dynamics
-   * Key mechanism:
-   * 1. If domestic money growth > foreign rate, expectations of devaluation form
-   * 2. If devaluation is expected, UIP requires: i = i* + (expected depreciation)
-   * 3. To defend peg (prevent depreciation), must raise i dramatically
-   * 4. High rates cause GDP to contract
-   * 5. Speculators see writing on wall - attack reserves
-   * 6. Once reserves exhausted, peg must collapse
+   * Simulate the speculative attack dynamics.
+   *
+   * The chain, in the order the loop walks it:
+   *  1. Money growing faster than the world money supply means the currency is
+   *     worth less every period. The shadow rate — the rate the market would
+   *     pay without a peg — is `i* + (m - m*)`, and that gap IS the expected
+   *     devaluation. It used to be credited at half (`* 0.5`, "partial
+   *     adjustment of expectations"), which is a fudge with no economic
+   *     content that happened to place the crisis preset exactly on the
+   *     attack gate: 8% against 4% gave precisely 0.02, and `0.02 > 0.02` is
+   *     false, so the speculative outflow was identically zero in all 61
+   *     periods of a tool titled "Speculative Attack".
+   *  2. UIP then requires the defended rate to be `i* + expected
+   *     devaluation`, and a central bank holding the parity has to pay it.
+   *  3. It cannot pay all of it — a rate that high contracts the very economy
+   *     being defended — so the gap it leaves is a guaranteed loss on domestic
+   *     currency. That is the ordinary outflow, and it exists at any money
+   *     growth above the world rate, attack or no attack.
+   *  4. Speculators add their own outflow once the expected devaluation is
+   *     worth a one-way bet, and they keep attacking while the peg holds.
+   *  5. Both drain the reserve cover, and a thinner cover makes the same
+   *     inconsistency look worse, which raises the expected devaluation again.
+   *     That is the self-fulfilling step, and it is multiplied by the
+   *     fundamentals so it can only ACCELERATE a run they have already begun.
+   *  6. Below the critical cover the central bank has nothing left to sell, the
+   *     peg collapses, and the currency floats and depreciates.
    */
   const generateAttackPath = (): AttackData[] => {
     const data: AttackData[] = []
-    let reserves = initialReserves
+    let reserveCover = initialReserves
     let peg = true
     let pegBreakPeriod = -1
-
-    // Parameters
-    const initialMoneySupply = 100
-    const initialExchangeRate = 1.0 // Pegged to foreign currency
-    const crisisThreshold = 20 // Peg breaks when reserves fall below 20% of money supply
+    let exchangeRate = PEG_RATE
+    let previousExchangeRate = PEG_RATE
 
     for (let period = 0; period <= 60; period++) {
-      // Step 1: Calculate expected depreciation based on money growth differential
-      const moneyGrowthDifferential = activeMoney - foreignRate
-      const expectedDevaluation = Math.max(0, moneyGrowthDifferential) * 0.5 // Partial adjustment of expectations
+      // Step 1: The expected devaluation, from the money growth differential and
+      // from what is left in reserve. Both are shares of the same base.
+      const moneyGrowthDifferential = Math.max(0, activeMoney - foreignRate)
+      const coverShortfall = Math.max(0, 1 - reserveCover / MONEY_SUPPLY_AT_PEG)
+      const expectedDevaluation = peg
+        ? moneyGrowthDifferential * (1 + CREDIBILITY_MULTIPLIER * coverShortfall)
+        : 0
 
-      // Step 2: Determine policy rate needed to defend peg
-      // UIP: i_domestic = i_foreign + expected_depreciation
-      let defendingRate = foreignRate + expectedDevaluation
-      let actualRate = activePolicy
+      // Step 2: The rate defending the peg requires, and the rate it gets.
+      // UIP: i_domestic = i_foreign + expected devaluation. The central bank
+      // pays DEFENCE_EFFORT of that — all of it would mean the recession the
+      // defence is meant to avoid — so the rate gap below is never closed.
+      const defendingRate = Math.min(foreignRate + expectedDevaluation, MAX_DEFENCE_RATE)
+      const actualRate =
+        peg && defendingRate > activePolicy
+          ? Math.max(activePolicy, defendingRate * DEFENCE_EFFORT)
+          : activePolicy
 
-      if (peg && expectedDevaluation > 0.01) {
-        // If expectations of devaluation form, must raise rates to defend
-        defendingRate = Math.min(foreignRate + expectedDevaluation, 0.25) // Max 25% rate
-        actualRate = Math.max(activePolicy, defendingRate * 0.7) // Gradually adjust
-      }
-
-      // Step 3: Calculate capital outflow pressure
-      // Higher is lower domestic rate relative to foreign rate = outflow pressure
+      // Step 3: Capital outflow. The rate gap is the ordinary loss; the
+      // speculative attack is on the devaluation BEYOND what speculators will
+      // tolerate, which is a hard zero below ATTACK_TRIGGER and the whole of the
+      // run above it. Note what the trigger is compared against: the EXPECTED
+      // devaluation, so a thin reserve cover can open a run on its own once the
+      // fundamentals have made one possible — and it can never open one on its
+      // own, because the credibility term is multiplied by the fundamentals.
       const rateGap = foreignRate + expectedDevaluation - actualRate
       const naturalOutflow = Math.max(0, rateGap * 50) // Base outflow from rate differential
-      const speculativeOutflow =
-        peg && expectedDevaluation > 0.02
-          ? activeAgg * (1 - activeControls) * Math.pow(expectedDevaluation, 1.5) * 30
-          : 0
-      const totalOutflow = naturalOutflow + speculativeOutflow
+      const devaluationBeyondTolerance = Math.max(0, expectedDevaluation - ATTACK_TRIGGER)
+      const speculativeOutflow = peg
+        ? activeAgg *
+          (1 - activeControls) *
+          Math.pow(devaluationBeyondTolerance, 1.5) *
+          ATTACK_SCALE
+        : 0
+      // The run stops when the peg does: a floating currency is no longer the
+      // one-way bet that produced the outflows, so reserves stop draining and
+      // the countdown ends at the break rather than sliding on for another
+      // thirty periods.
+      const totalOutflow = peg ? naturalOutflow + speculativeOutflow : 0
 
-      // Step 4: Update reserves
-      const moneySupply = initialMoneySupply * Math.pow(1 + activeMoney, period)
-      reserves = Math.max(0, reserves - totalOutflow * 0.5) // Reserves decline with outflows
+      // Step 4: Every unit of outflow is a unit of reserve cover spent, which is
+      // what the technical detail at the foot of this page says happens.
+      reserveCover = Math.max(0, reserveCover - totalOutflow)
 
-      // Step 5: Check if peg is sustainable
-      if (peg && reserves < crisisThreshold) {
+      // Step 5: The peg is sustainable while the cover clears the critical
+      // level. A share against a share, in percent of the money supply the peg
+      // was set at, which is the same number the reference line is drawn at.
+      if (peg && reserveCover < CRISIS_THRESHOLD) {
         peg = false
         pegBreakPeriod = period
       }
 
-      // Step 6: Calculate exchange rate
-      let exchangeRate = initialExchangeRate
+      // Step 6: Once it breaks the currency floats and depreciates at the money
+      // growth differential, decaying as the new rate is accepted and the
+      // central bank tightens. Compounding the full differential for the rest
+      // of the chart instead — the previous `Math.pow(1 + m * 0.8, n)` — put
+      // the final rate at 1080% devaluation, which no axis can label.
+      const periodsSinceBreak = peg ? 0 : period - pegBreakPeriod
       if (!peg) {
-        // After peg breaks, exchange rate depreciates based on money growth
-        const periodsSinceBrake = period - pegBreakPeriod
-        exchangeRate = initialExchangeRate * Math.pow(1 + activeMoney * 0.8, periodsSinceBrake)
+        exchangeRate *= 1 + moneyGrowthDifferential * Math.exp(-periodsSinceBreak / DEPRECIATION_DECAY)
       }
 
-      // Step 7: GDP contraction from high rates
-      // High interest rates reduce investment and consumption
-      const rateLevel = actualRate
-      const gdpEffect = Math.max(0.7, 1 - rateLevel * 1.5) // GDP can drop to 70% with 20% rates
-      const gdp = gdpEffect * 100
+      // Step 7: GDP contraction from the defence rate. High rates cut
+      // investment and consumption, and the trough lands on the break.
+      const gdpEffect = outputIndex(actualRate) // GDP can drop to 70% with 20% rates
 
-      // Step 8: Inflation expectations rise
-      // With depreciation or if peg lost credibility, inflation expectations rise
-      const inflationExpectation = !peg
-        ? activeMoney * 100 + (period - pegBreakPeriod) * 2
-        : activeMoney * 50 + expectedDevaluation * 100
+      // Step 8: Inflation expectations. Under the peg the currency does not
+      // move and expectations sit at the money growth rate. After the break
+      // they are money growth, plus the share of the depreciation that reaches
+      // prices, plus a credibility premium that is built over a few periods and
+      // given back over a few dozen. That shape is the point: the old formula
+      // added two points per period and clamped at 40, so within sixteen
+      // periods of a break the series was pinned against the ceiling and the
+      // reader saw a line that stopped, not an inflation episode.
+      const depreciationRate =
+        peg || previousExchangeRate <= 0 ? 0 : (exchangeRate / previousExchangeRate - 1) * 100
+      const credibilityPremium = peg
+        ? 0
+        : INFLATION_PEAK *
+          (1 - Math.exp(-periodsSinceBreak / INFLATION_BUILD)) *
+          Math.exp(-periodsSinceBreak / INFLATION_DECAY)
+      const inflationExpectation =
+        activeMoney * 100 + PASS_THROUGH * depreciationRate + credibilityPremium
 
       data.push({
         period,
-        reserves: parseFloat(Math.max(0, reserves).toFixed(2)),
-        reservesPercent: parseFloat((reserves / moneySupply * 100).toFixed(1)),
+        reserves: parseFloat(reserveCover.toFixed(2)),
         domesticRate: parseFloat((actualRate * 100).toFixed(2)),
         foreignRate: parseFloat((foreignRate * 100).toFixed(2)),
         capitalOutflow: parseFloat(totalOutflow.toFixed(2)),
         speculatorAttack: parseFloat(speculativeOutflow.toFixed(2)),
         exchangeRate: parseFloat(exchangeRate.toFixed(3)),
-        gdp: parseFloat(gdp.toFixed(1)),
-        inflationExpectation: parseFloat(Math.max(0, Math.min(40, inflationExpectation)).toFixed(1)),
+        gdp: parseFloat((gdpEffect * 100).toFixed(1)),
+        inflationExpectation: parseFloat(inflationExpectation.toFixed(1)),
         pegged: peg,
       })
+      previousExchangeRate = exchangeRate
     }
 
     return data
@@ -265,13 +418,44 @@ export default function SpeculativeAttack() {
       : Math.max(...attackData.map((d) => d.domesticRate))
 
   // Calculate final outcomes
+  const initialData = attackData[0]
   const finalData = attackData[attackData.length - 1]
   const maxOutflow = Math.max(...attackData.map((d) => d.capitalOutflow))
+  // The inflation episode is a peak and a decay, so the number that describes it
+  // is the peak. Printing only the first and last values of a series that
+  // rises to four times the first in between describes nothing.
+  const peakInflation = Math.max(...attackData.map((d) => d.inflationExpectation))
+  // The lowest output anywhere in the path, which is the cost of the defence.
+  const troughGdp = Math.min(...attackData.map((d) => d.gdp))
+
+  /**
+   * The GDP chart's reference line: output at NO defence at all, which is the
+   * same `outputIndex` evaluated at the tool's own starting policy rate rather
+   * than at the defended rate the loop pays.
+   *
+   * It was the literal 100, labelled "Baseline (no crisis)". Nothing in this
+   * model can produce 100: `outputIndex` returns 1 only at a zero interest
+   * rate, and the moment the peg is under any pressure at all the central bank
+   * is paying more than its policy rate. So the series started at 91.6, fell to
+   * 78.7 while the peg was defended, and finished at 95.5 — never once
+   * touching the line drawn to say where it would have been without the crisis.
+   * The reader was shown a number the tool had not computed and a name for it
+   * the model had not produced.
+   *
+   * 95.5 is not a guess. It is exactly the level the series RETURNS to once the
+   * peg breaks, because a floating currency needs no defence, so `actualRate`
+   * falls back to `activePolicy`. So the line is not "no crisis" — it is "no
+   * defence", and the gap between the trough and the line is what defending
+   * the peg cost, which is what this chart is titled for. The label says so and
+   * the number is in the caption below the plot, so the line cannot be
+   * mistaken for a level the series fails to reach.
+   */
+  const noDefenceGdp = outputIndex(activePolicy) * 100
 
   return (
     <div className="tool-card">
       <ToolHeader
-        title="Speculative Attack on Fixed Peg"
+        title="Speculative Attack on a Fixed Peg"
         description="Explore how inconsistent domestic and foreign policies create currency crisis dynamics. Watch as speculators attack the central bank's reserves, forcing abandonment of the exchange rate peg. From Lecture 21: How fixed regimes can collapse when underlying fundamentals are unsustainable."
         badge="advanced"
       />
@@ -324,7 +508,7 @@ export default function SpeculativeAttack() {
             unit=""
           />
           <SliderControl
-            label="Initial Reserves (% of money supply)"
+            label="Initial Reserves (% of M at the peg)"
             value={initialReserves}
             min={20}
             max={150}
@@ -334,7 +518,7 @@ export default function SpeculativeAttack() {
           />
           <SliderControl
             label="Speculator Aggressiveness"
-            value={specAggressiveness}
+            value={activeAgg}
             min={0}
             max={1}
             step={0.1}
@@ -371,28 +555,6 @@ export default function SpeculativeAttack() {
         </div>
       </div>
 
-      {/* Playback Controls */}
-      <div className="mb-s-8 rounded-card bg-surface-2 p-s-4">
-        <h3 className="mb-s-3 text-label-sm font-semibold text-fg">Timeline</h3>
-        <div className="flex flex-wrap items-center gap-s-2">
-          <Button onClick={() => setIsPlaying(!isPlaying)} variant="primary">
-            {isPlaying ? 'Pause' : 'Play'}
-          </Button>
-          <SliderControl
-            label="Playback Speed"
-            value={playbackSpeed}
-            min={0.5}
-            max={3}
-            step={0.5}
-            onChange={setPlaybackSpeed}
-            unit="x"
-          />
-        </div>
-        <p className="mt-s-2 text-sm leading-relaxed text-fg-muted">
-          Watch how reserves deplete over 60 periods. The peg breaks when reserves exhausted.
-        </p>
-      </div>
-
       {/* Critical Metrics */}
       <div className="mb-s-8 grid grid-cols-2 gap-s-3 lg:grid-cols-3">
         <StatBox
@@ -401,7 +563,7 @@ export default function SpeculativeAttack() {
           unit="%"
         />
         <StatBox
-          label="Initial Reserves"
+          label="Initial Reserve Cover"
           value={initialReserves.toFixed(0)}
           unit="% of M"
           tone={initialReserves < 50 ? 'negative' : 'neutral'}
@@ -460,22 +622,27 @@ export default function SpeculativeAttack() {
 
       {/* Reserve Depletion Chart */}
       <div className="visualization-container mb-s-8">
-        <h3 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Central Bank Reserves: The Countdown to Crisis
-        </h3>
+        </h2>
         <p className="mb-s-4 text-sm leading-relaxed text-fg-muted">
           Reserves deplete as speculators exchange domestic currency for hard currency reserves.
           {pegBreakIndex >= 0 && (
             <span>
               {' '}
-              <strong className="text-tier-case-ink">
+              {/* Caution, not difficulty. The break is the event this tool
+                  exists to produce, and the tier ramp's darkest value said
+                  "hardest lecture in the course" about a line the model
+                  drew. `--c-warn-ink` is the token for something the reader
+                  should watch, and this is it. */}
+              <strong className="text-warn-ink">
                 Peg breaks at period {pegBreakIndex}
               </strong>
-              when reserves fall below the critical threshold.
+              , when the cover falls below {CRISIS_THRESHOLD}% of M.
             </span>
           )}
         </p>
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={400}>
           <AreaChart data={attackData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
@@ -488,11 +655,23 @@ export default function SpeculativeAttack() {
             <YAxis
               key={chartTheme.axisKey('y')}
               label={{
-                value: 'Reserves (% of money supply)',
+                // Short on purpose: the rotated axis label is drawn at the full
+                // text size in a 350px plot, and anything past about twenty
+                // characters runs off the top of it. "M" is the money supply the
+                // peg was set at, named in full on the slider above and in the
+                // caption under this chart.
+                value: 'Reserves (% of M)',
                 angle: -90,
                 position: 'insideLeft',
                 fill: chartTheme.axis.tick.fill,
               }}
+              /* Pinned at zero on purpose, and `'auto'` on the other end, which
+              * is not a pin at all: Recharts resolves `'auto'` from the data,
+              * so this pair says "the floor is zero" and nothing more. Zero is
+              * the floor because a share of M cannot go below it, and because
+              * it makes the vertical distance down to the critical line
+              * readable as a fraction of the M2 the attack starts against —
+              * the same reason the critical line is drawn at a round 20%. */
               domain={[0, 'auto']}
               {...chartTheme.yAxis}
               includeHidden
@@ -503,17 +682,26 @@ export default function SpeculativeAttack() {
               formatter={(value: number) => value.toFixed(2)}
             />
             <ReferenceLine
-              y={20}
+              y={CRISIS_THRESHOLD}
               stroke={CRISIS_STROKE}
               strokeDasharray="5 5"
-              label={{ value: 'Critical Level (20%)', fill: CRISIS_STROKE }}
+              label={{ value: `Critical Level (${CRISIS_THRESHOLD}%)`, fill: CRISIS_STROKE }}
             />
             {pegBreakIndex >= 0 && (
               <ReferenceLine
                 x={pegBreakIndex}
                 stroke={CRISIS_STROKE}
                 strokeDasharray="5 5"
-                label={{ value: 'PEG BREAKS', position: 'top', fill: CRISIS_STROKE, fontSize: 12, fontWeight: 'bold' }}
+                // insideTopLeft, not top: on a vertical line `top` puts the
+                // label above the plot and the SVG clips it. These markers were
+                // written before a break was possible, so none had ever shown.
+                label={{
+                  value: 'PEG BREAKS',
+                  position: 'insideTopLeft',
+                  fill: CRISIS_STROKE,
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                }}
               />
             )}
             <ChartArea
@@ -526,16 +714,16 @@ export default function SpeculativeAttack() {
             />
           </AreaChart>
         </ResponsiveContainer>
-        <p className="mt-s-2 text-xs text-fg-subtle tabular-nums">
-          Initial reserves: {initialReserves.toFixed(0)}% of money supply | Final reserves: {finalData.reserves.toFixed(2)}%
-        </p>
+        <TileReadout>
+          Initial cover: {initialReserves.toFixed(0)}% of M | Final cover: {finalData.reserves.toFixed(2)}% of M | Critical level: {CRISIS_THRESHOLD}% of M
+        </TileReadout>
       </div>
 
       {/* Interest Rate Defense */}
       <div className="visualization-container mb-s-8">
-        <h3 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Interest Rate Defense: The Cost of Defending the Peg
-        </h3>
+        </h2>
         <p className="mb-s-4 text-sm leading-relaxed text-fg-muted">
           As speculators attack and reserves deplete, the central bank must raise interest rates to defend the peg.
           Notice how the domestic rate diverges from the foreign rate when the peg is under threat.
@@ -546,7 +734,7 @@ export default function SpeculativeAttack() {
             </span>
           )}
         </p>
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={400}>
           <LineChart data={attackData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
@@ -559,6 +747,14 @@ export default function SpeculativeAttack() {
             <YAxis
               key={chartTheme.axisKey('y')}
               label={{ value: 'Interest Rate (%)', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
+              /* Pinned, and the pin is the ruler: a nominal rate has a natural
+              * ceiling, 30% is the policy-rate limit the historical context
+              * was built under, and 2023's nominal rate is 5.3%. Derived from
+              * the data the axis would shrink to about 0–6% and this tool's
+              * whole subject — 5pp and 7pp hikes — would look like a
+              * collapse. The interest rate is one of the five channels the
+              * reader is meant to compare, so its scale must not move when a
+              * slider does. */
               domain={[0, 30]}
               {...chartTheme.yAxis}
               includeHidden
@@ -573,7 +769,16 @@ export default function SpeculativeAttack() {
                 x={pegBreakIndex}
                 stroke={CRISIS_STROKE}
                 strokeDasharray="5 5"
-                label={{ value: 'PEG BREAKS', position: 'top', fill: CRISIS_STROKE, fontSize: 12, fontWeight: 'bold' }}
+                // insideTopLeft, not top: on a vertical line `top` puts the
+                // label above the plot and the SVG clips it. These markers were
+                // written before a break was possible, so none had ever shown.
+                label={{
+                  value: 'PEG BREAKS',
+                  position: 'insideTopLeft',
+                  fill: CRISIS_STROKE,
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                }}
               />
             )}
             <ChartLine
@@ -603,23 +808,23 @@ export default function SpeculativeAttack() {
           onToggle={ratesChart.toggle}
           onShowAll={ratesChart.showAll}
         />
-        <p className="mt-s-2 text-xs text-fg-subtle tabular-nums">
+        <TileReadout>
           Peak domestic rate: {peakRate.toFixed(2)}% | Foreign rate: {(foreignRate * 100).toFixed(2)}%
-        </p>
+        </TileReadout>
       </div>
 
       {/* Capital Outflows and Speculative Attack */}
       <div className="visualization-container mb-s-8">
-        <h3 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Capital Outflows and Speculative Attack
-        </h3>
+        </h2>
         <p className="mb-s-4 text-sm leading-relaxed text-fg-muted">
           Capital outflows accelerate when speculators sense the peg is doomed. The &quot;speculative
           attack&quot; shows when organized speculators actively rush to exchange the domestic currency,
           hoping to trigger the devaluation they've been anticipating. This self-fulfilling prophecy is
           the hallmark of currency crises.
         </p>
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={400}>
           <ComposedChart data={attackData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
@@ -645,7 +850,16 @@ export default function SpeculativeAttack() {
                 x={pegBreakIndex}
                 stroke={CRISIS_STROKE}
                 strokeDasharray="5 5"
-                label={{ value: 'PEG BREAKS', position: 'top', fill: CRISIS_STROKE, fontSize: 12, fontWeight: 'bold' }}
+                // insideTopLeft, not top: on a vertical line `top` puts the
+                // label above the plot and the SVG clips it. These markers were
+                // written before a break was possible, so none had ever shown.
+                label={{
+                  value: 'PEG BREAKS',
+                  position: 'insideTopLeft',
+                  fill: CRISIS_STROKE,
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                }}
               />
             )}
             <ChartBar
@@ -673,23 +887,23 @@ export default function SpeculativeAttack() {
           onToggle={outflowChart.toggle}
           onShowAll={outflowChart.showAll}
         />
-        <p className="mt-s-2 text-xs text-fg-subtle tabular-nums">
-          Max outflow per period: {maxOutflow.toFixed(2)} | Speculator aggressiveness: {(specAggressiveness * 100).toFixed(0)}%
-        </p>
+        <TileReadout>
+          Max outflow per period: {maxOutflow.toFixed(2)} | Speculator aggressiveness: {(activeAgg * 100).toFixed(0)}%
+        </TileReadout>
       </div>
 
       {/* GDP Contraction from Defense */}
       <div className="visualization-container mb-s-8">
-        <h3 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Real Output Contraction: The Recession Cost
-        </h3>
+        </h2>
         <p className="mb-s-4 text-sm leading-relaxed text-fg-muted">
           Defending the peg requires raising interest rates, which contracts investment and consumption.
           GDP falls as rates rise. Notice the deepest recession occurs right when the peg breaks—the point
           where the fundamental inconsistency becomes unsustainable. After the break, rates can fall and recovery begins
           (though with high inflation expectations).
         </p>
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={400}>
           <AreaChart data={attackData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
@@ -702,11 +916,25 @@ export default function SpeculativeAttack() {
             <YAxis
               key={chartTheme.axisKey('y')}
               label={{
-                value: 'Real Output Index (base = 100)',
+                // The index has no period-0 base: it is 1 − 1.5r, so 100 is
+                // output at a ZERO interest rate and not output before the
+                // crisis. The old label said "(base = 100)" next to a series
+                // that starts at 91.6, which named an index this chart is not.
+                // The base is stated in the caption under the plot, where there
+                // is room for it and where a reader is already looking for the
+                // numbers the dashed line stands for.
+                value: 'Real Output Index',
                 angle: -90,
                 position: 'insideLeft',
                 fill: chartTheme.axis.tick.fill,
               }}
+              /* An index, pinned to its own definition rather than to the data
+              * it happens to contain: 100 IS potential output, so the axis has
+              * to show 0, a collapse, as well as whatever the boom above trend
+              * reaches, and 120 is the largest value this series has produced.
+              * Derived, it would rescale on every move of the output-shock
+              * slider — which is exactly when a reader is holding two
+              * settings in their head. */
               domain={[0, 120]}
               {...chartTheme.yAxis}
               includeHidden
@@ -717,17 +945,36 @@ export default function SpeculativeAttack() {
               formatter={(value: number) => value.toFixed(1)}
             />
             <ReferenceLine
-              y={100}
+              y={noDefenceGdp}
               stroke={chartTheme.axis.stroke}
               strokeDasharray="5 5"
-              label={{ value: 'Baseline (no crisis)', fill: chartTheme.reference.fill }}
+              // insideTopRight, not the default: Recharts places a horizontal
+              // reference line's label to the RIGHT of the plot box, which is
+              // the 8px margin from the SVG on that side, so a label of any
+              // width leaves the viewport and is clipped. The node is still in
+              // the document, so a screen reader announces a line the reader
+              // cannot see.
+              label={{
+                value: 'No rate defence',
+                position: 'insideTopRight',
+                fill: chartTheme.reference.fill,
+              }}
             />
             {pegBreakIndex >= 0 && (
               <ReferenceLine
                 x={pegBreakIndex}
                 stroke={CRISIS_STROKE}
                 strokeDasharray="5 5"
-                label={{ value: 'PEG BREAKS', position: 'top', fill: CRISIS_STROKE, fontSize: 12, fontWeight: 'bold' }}
+                // insideTopLeft, not top: on a vertical line `top` puts the
+                // label above the plot and the SVG clips it. These markers were
+                // written before a break was possible, so none had ever shown.
+                label={{
+                  value: 'PEG BREAKS',
+                  position: 'insideTopLeft',
+                  fill: CRISIS_STROKE,
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                }}
               />
             )}
             <ChartArea
@@ -740,22 +987,26 @@ export default function SpeculativeAttack() {
             />
           </AreaChart>
         </ResponsiveContainer>
-        <p className="mt-s-2 text-xs text-fg-subtle tabular-nums">
-          Minimum GDP: {Math.min(...attackData.map((d) => d.gdp)).toFixed(1)} | Final GDP: {finalData.gdp.toFixed(1)}
-        </p>
+        <TileReadout>
+          Minimum GDP: {troughGdp.toFixed(1)} | Final GDP: {finalData.gdp.toFixed(1)} | The
+          dashed line is output at no defence at all — the policy rate of{' '}
+          {(activePolicy * 100).toFixed(2)}% held for the whole path — which is
+          {' '}{noDefenceGdp.toFixed(1)}. 100 on this axis is a zero interest
+          rate, not the economy before the crisis.
+        </TileReadout>
       </div>
 
       {/* Exchange Rate Path */}
       <div className="visualization-container mb-s-8">
-        <h3 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Exchange Rate: From Peg to Floating Depreciation
-        </h3>
+        </h2>
         <p className="mb-s-4 text-sm leading-relaxed text-fg-muted">
           The exchange rate (in units of foreign currency per unit of domestic currency) is held constant at 1.0 while
           the peg is defended. Once the peg breaks and the currency floats, rapid depreciation occurs—the domestic
           currency weakens as speculators who bet on devaluation are proven right.
         </p>
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={400}>
           <LineChart data={attackData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
@@ -768,11 +1019,25 @@ export default function SpeculativeAttack() {
             <YAxis
               key={chartTheme.axisKey('y')}
               label={{
-                value: 'Exchange Rate (units foreign/$)',
+                // The unit is in the prose directly above this chart and
+                // in the caption directly below it, and it used to be here too:
+                // 31 characters is longer than the 25 a rotated label can
+                // afford in half a 354px plot at 130% text, so 28px of it was
+                // clipped off the top at every height. The name is what the
+                // axis has to carry; the unit has somewhere else to be.
+                value: 'Exchange Rate',
                 angle: -90,
                 position: 'insideLeft',
                 fill: chartTheme.axis.tick.fill,
               }}
+              /* The peg floor here is a FACT about the chart rather than a
+              * choice about the data: the question the chart asks is whether
+              * the exchange rate can hold 1.0, so an axis starting anywhere
+              * else would hide the answer. 0.95 is one 0.05 under the peg, so
+              * a break is legible as a line leaving the frame rather than as a
+              * line quietly crossing a gridline. The ceiling is the data's,
+              * because there is no reason to cap a rate that is already off
+              * the peg. */
               domain={[0.95, 'auto']}
               {...chartTheme.yAxis}
               includeHidden
@@ -793,7 +1058,16 @@ export default function SpeculativeAttack() {
                 x={pegBreakIndex}
                 stroke={CRISIS_STROKE}
                 strokeDasharray="5 5"
-                label={{ value: 'PEG BREAKS', position: 'top', fill: CRISIS_STROKE, fontSize: 12, fontWeight: 'bold' }}
+                // insideTopLeft, not top: on a vertical line `top` puts the
+                // label above the plot and the SVG clips it. These markers were
+                // written before a break was possible, so none had ever shown.
+                label={{
+                  value: 'PEG BREAKS',
+                  position: 'insideTopLeft',
+                  fill: CRISIS_STROKE,
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                }}
               />
             )}
             <ChartLine
@@ -806,23 +1080,23 @@ export default function SpeculativeAttack() {
             />
           </LineChart>
         </ResponsiveContainer>
-        <p className="mt-s-2 text-xs text-fg-subtle tabular-nums">
+        <TileReadout>
           Exchange rate at period 0: 1.0 | Final exchange rate: {finalData.exchangeRate.toFixed(3)} ({((finalData.exchangeRate - 1) * 100).toFixed(1)}% depreciation)
-        </p>
+        </TileReadout>
       </div>
 
       {/* Inflation Expectations */}
       <div className="visualization-container mb-s-8">
-        <h3 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Inflation Expectations: The Loss of Price Stability
-        </h3>
+        </h2>
         <p className="mb-s-4 text-sm leading-relaxed text-fg-muted">
           With the peg in place, inflation expectations remain anchored (based on money growth rate).
           Once the peg breaks and the exchange rate depreciates, inflation expectations rise sharply due to:
           (1) import price increases from depreciation, (2) loss of credibility, (3) continued rapid money growth.
           This is why currency crises often lead to high inflation regimes.
         </p>
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={400}>
           <AreaChart data={attackData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
@@ -835,6 +1109,12 @@ export default function SpeculativeAttack() {
             <YAxis
               key={chartTheme.axisKey('y')}
               label={{ value: 'Expected Inflation (%)', angle: -90, position: 'insideLeft', fill: chartTheme.axis.tick.fill }}
+              /* Pinned at zero for the same reason the reserves axis is, and
+              * here it is load-bearing rather than tidy: this tool's scenarios
+              * include NEGATIVE expected inflation, so a reader has to be
+              * able to see which side of zero the series is on, and a domain
+              * derived from the data could begin at a positive number. The
+              * ceiling is the data's. */
               domain={[0, 'auto']}
               {...chartTheme.yAxis}
               includeHidden
@@ -849,7 +1129,16 @@ export default function SpeculativeAttack() {
                 x={pegBreakIndex}
                 stroke={CRISIS_STROKE}
                 strokeDasharray="5 5"
-                label={{ value: 'PEG BREAKS', position: 'top', fill: CRISIS_STROKE, fontSize: 12, fontWeight: 'bold' }}
+                // insideTopLeft, not top: on a vertical line `top` puts the
+                // label above the plot and the SVG clips it. These markers were
+                // written before a break was possible, so none had ever shown.
+                label={{
+                  value: 'PEG BREAKS',
+                  position: 'insideTopLeft',
+                  fill: CRISIS_STROKE,
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                }}
               />
             )}
             <ChartArea
@@ -862,9 +1151,9 @@ export default function SpeculativeAttack() {
             />
           </AreaChart>
         </ResponsiveContainer>
-        <p className="mt-s-2 text-xs text-fg-subtle tabular-nums">
-          Initial expected inflation: {(activeMoney * 50).toFixed(1)}% | Final expected inflation: {finalData.inflationExpectation.toFixed(1)}%
-        </p>
+        <TileReadout>
+          Anchored at the peg: {initialData.inflationExpectation.toFixed(1)}% | Peak after the break: {peakInflation.toFixed(1)}% | Period 60: {finalData.inflationExpectation.toFixed(1)}%
+        </TileReadout>
       </div>
 
       {/* Historical Context */}
@@ -1022,7 +1311,7 @@ export default function SpeculativeAttack() {
       </div>
 
       {/* Summary Box */}
-      <ToolNote label="In one paragraph" variant="lesson" title="Key Takeaway">
+      <ToolNote label="In one paragraph" variant="lesson" title="Key Takeaway" headingLevel={2}>
         <p>
           <strong>Fixed exchange rate pegs are vulnerable to self-fulfilling speculative attacks</strong> when:
           (1) underlying fundamentals are unsustainable (rapid money growth exceeds foreign rate),

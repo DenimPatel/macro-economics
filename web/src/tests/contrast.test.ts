@@ -115,12 +115,23 @@ describe('palette contrast', () => {
 
   it.each(THEMES)('%s theme: status ink clears 4.5:1 and its base clears 3:1', (_name, vars) => {
     // Status text sits on a 8-15% tint of its own base, which is close enough
-    // to the surface that testing against the surface is the safe bound.
+    // to the surface that testing against the surface is the safe bound. It is
+    // ALSO used on `surface-2`, which is a real surface and not a bound: a
+    // ToolNote paints its body on it, and the investment-decision verdict in
+    // RealInterestRate is `ok-ink` or `bad-ink` on exactly that. Testing only
+    // against `surface` missed that the previous ink there, `tier-case-ink`,
+    // measured 4.47:1 in dark — a fail, on a surface nobody had checked.
+    for (const surface of ['surface', 'surface-2']) {
+      for (const status of STATUS_KEYS) {
+        expect(
+          contrast(vars[`${status}-ink`], vars[surface]),
+          `${status}-ink on ${surface}`,
+        ).toBeGreaterThanOrEqual(4.5)
+      }
+    }
+    // The BASE is a fill and a border, never body text, so it is held against
+    // the one surface it is drawn on.
     for (const status of STATUS_KEYS) {
-      expect(
-        contrast(vars[`${status}-ink`], vars.surface),
-        `${status}-ink on surface`,
-      ).toBeGreaterThanOrEqual(4.5)
       expect(
         contrast(vars[status], vars.surface),
         `${status} base vs surface`,

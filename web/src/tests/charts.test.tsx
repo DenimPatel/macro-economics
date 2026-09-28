@@ -331,7 +331,12 @@ describe('the text-size preference reaches the type inside a chart', () => {
 
   it('leaves the plot height out of it, because a shorter plot is a different chart', () => {
     expect(decl(':root', '--plot-h')).toBe('400px')
-    expect(decl(':root', '--plot-h-tall')).toBe('420px')
+    // One plot height, not two. `--plot-h-tall: 420px` used to sit beside it,
+    // read by nothing, and pinned here — which made a dead declaration look
+    // like a supported second geometry. `density.test.ts` now holds that
+    // `--plot-h` is the only one; this is the same fact from the chart's side,
+    // and it is the number the tools' 300px frames are measured against.
+    expect(CSS).not.toMatch(/--plot-h-tall/)
   })
 })
 

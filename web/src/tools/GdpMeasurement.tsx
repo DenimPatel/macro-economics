@@ -6,6 +6,7 @@ import {
   InfoBox,
   SliderControl,
   StatBox,
+  TileReadout,
   ToolControlBar,
   ToolHeader,
 } from '../components/ToolComponents'
@@ -58,36 +59,138 @@ interface TimeSeriesData {
   gdp: number
 }
 
-/**
- * One copy of this tool's starting values. The `useState` calls below read
- * from it, so "Reset to defaults" cannot return to a number the tool no
- * longer opens at — the failure mode of a hand-written reset that re-typed
- * every default in a second list.
- */
-const DEFAULTS = {
-  consumption: 70,
-  investment: 18,
-  governmentSpending: 17,
-  exports: 12,
-  imports: 10,
-  wages: 68,
-  profits: 20,
-  rent: 12,
-  agriculture: 2,
-  manufacturing: 18,
-  services: 80,
-  showBreakdown: true,
-  activeTab: 'expenditure' as GdpTab,
-  scenarioMode: 'balanced' as GdpScenario,
-}
-
-/** Named so the reset record can hold it: a bare inline union in
+/** Named so the reset record can hold them: a bare inline union in
  * `useState<...>(DEFAULTS.activeTab)` would widen to `string` and stop
  * being assignable to the state it resets. */
 type GdpTab = 'expenditure' | 'income' | 'production' | 'comparison'
 
 /** The second tab-shaped control in this tool, named for the same reason. */
 type GdpScenario = 'balanced' | 'consumption-driven' | 'investment-led' | 'export-focused'
+
+/**
+ * The eleven numbers a WHOLE economy is made of, in the three columns the
+ * three tabs each sum.
+ */
+interface Economy {
+  consumption: number
+  investment: number
+  governmentSpending: number
+  exports: number
+  imports: number
+  wages: number
+  profits: number
+  rent: number
+  agriculture: number
+  manufacturing: number
+  services: number
+}
+
+/**
+ * The four preset economies, and the arithmetic that holds them together.
+ *
+ * EVERY PRESET ADDS TO 100 IN ALL THREE COLUMNS, and that is the whole
+ * constraint:
+ *
+ *   expenditure   C + I + G + (X - M) = 100
+ *   income        wages + profits + rent = 100
+ *   production    agriculture + manufacturing + services = 100
+ *
+ * It was not true, and it was not only a default that was wrong. The
+ * "Balanced Growth" button re-typed the five expenditure numbers itself, so
+ * opening a tool at consistent defaults and clicking the button that was
+ * already selected put the three approaches 7% apart — and the other three
+ * buttons were worse, because they moved one column and left the other two at
+ * 100, which is how "Export-Focused" came to spend 111% of the economy. A
+ * preset is under the heading "Economy Scenarios" and the Comparison tab
+ * answers a preset with "Significant discrepancy — align the three approaches
+ * for proper GDP measurement", so a preset that broke the identity had the
+ * tool telling the reader their chosen economy was a measurement failure.
+ *
+ * The only way to open a discrepancy on purpose is now to move one slider,
+ * which is the exercise the Comparison tab is for.
+ *
+ * The balanced economy's consumption share is 68% because the Economic
+ * Insight on the expenditure tab says consumption "typically accounts for
+ * 65-70% of GDP" and the Component Breakdown tile directly under it is
+ * computed from these numbers. A default that put the tile outside the range
+ * the tool's own prose names would trade one contradiction for another.
+ */
+const SCENARIOS: Record<GdpScenario, Economy> = {
+  // 68 + 15 + 15 + (12 - 10) = 100 | 68 + 20 + 12 = 100 | 2 + 18 + 80 = 100
+  balanced: {
+    consumption: 68,
+    investment: 15,
+    governmentSpending: 15,
+    exports: 12,
+    imports: 10,
+    wages: 68,
+    profits: 20,
+    rent: 12,
+    agriculture: 2,
+    manufacturing: 18,
+    services: 80,
+  },
+  // 72 + 14 + 12 + (10 - 8) = 100 | 72 + 17 + 11 = 100 | 2 + 16 + 82 = 100
+  'consumption-driven': {
+    consumption: 72,
+    investment: 14,
+    governmentSpending: 12,
+    exports: 10,
+    imports: 8,
+    wages: 72,
+    profits: 17,
+    rent: 11,
+    agriculture: 2,
+    manufacturing: 16,
+    services: 82,
+  },
+  // 60 + 25 + 13 + (10 - 8) = 100 | 58 + 32 + 10 = 100 | 3 + 27 + 70 = 100
+  'investment-led': {
+    consumption: 60,
+    investment: 25,
+    governmentSpending: 13,
+    exports: 10,
+    imports: 8,
+    wages: 58,
+    profits: 32,
+    rent: 10,
+    agriculture: 3,
+    manufacturing: 27,
+    services: 70,
+  },
+  // 63 + 12 + 10 + (20 - 5) = 100 | 55 + 35 + 10 = 100 | 4 + 30 + 66 = 100
+  'export-focused': {
+    consumption: 63,
+    investment: 12,
+    governmentSpending: 10,
+    exports: 20,
+    imports: 5,
+    wages: 55,
+    profits: 35,
+    rent: 10,
+    agriculture: 4,
+    manufacturing: 30,
+    services: 66,
+  },
+}
+
+/**
+ * One copy of this tool's starting values. The `useState` calls below read
+ * from it, and so does the reset record, so "Reset to defaults" cannot
+ * return to a number the tool no longer opens at — the failure mode of a
+ * hand-written reset that re-typed every default in a second list.
+ *
+ * The eleven economy numbers are `SCENARIOS.balanced` rather than eleven
+ * literals, because the Balanced Growth button has to write exactly what the
+ * tool opens at, and two lists of the same eleven numbers is how they stop
+ * being the same eleven numbers.
+ */
+const DEFAULTS = {
+  ...SCENARIOS.balanced,
+  showBreakdown: true,
+  activeTab: 'expenditure' as GdpTab,
+  scenarioMode: 'balanced' as GdpScenario,
+}
 
 export default function GdpMeasurement() {
   // Re-renders the tool when the reader changes the text size, so that the
@@ -151,62 +254,25 @@ export default function GdpMeasurement() {
       setActiveTab,
       setScenarioMode,
     },
-    {
-      consumption: DEFAULTS.consumption,
-      investment: DEFAULTS.investment,
-      governmentSpending: DEFAULTS.governmentSpending,
-      exports: DEFAULTS.exports,
-      imports: DEFAULTS.imports,
-      wages: DEFAULTS.wages,
-      profits: DEFAULTS.profits,
-      rent: DEFAULTS.rent,
-      agriculture: DEFAULTS.agriculture,
-      manufacturing: DEFAULTS.manufacturing,
-      services: DEFAULTS.services,
-      showBreakdown: DEFAULTS.showBreakdown,
-      activeTab: DEFAULTS.activeTab,
-      scenarioMode: DEFAULTS.scenarioMode,
-    },
+    DEFAULTS,
   )
 
-  // Apply scenario presets
-  const applyScenario = (scenario: typeof scenarioMode) => {
+  // Apply scenario presets. One record, eleven setters, so a preset cannot
+  // set a subset of an economy and leave the other two columns at 100.
+  const applyScenario = (scenario: GdpScenario) => {
     setScenarioMode(scenario)
-    switch (scenario) {
-      case 'consumption-driven':
-        // Strong consumer demand
-        setConsumption(75)
-        setInvestment(15)
-        setGovernmentSpending(16)
-        setExports(10)
-        setImports(12)
-        break
-      case 'investment-led':
-        // Business investment focus (capital accumulation)
-        setConsumption(65)
-        setInvestment(25)
-        setGovernmentSpending(16)
-        setExports(12)
-        setImports(10)
-        break
-      case 'export-focused':
-        // Trade surplus driven growth
-        setConsumption(68)
-        setInvestment(16)
-        setGovernmentSpending(15)
-        setExports(20)
-        setImports(8)
-        break
-      case 'balanced':
-      default:
-        // Balanced growth
-        setConsumption(70)
-        setInvestment(18)
-        setGovernmentSpending(17)
-        setExports(12)
-        setImports(10)
-        break
-    }
+    const next = SCENARIOS[scenario]
+    setConsumption(next.consumption)
+    setInvestment(next.investment)
+    setGovernmentSpending(next.governmentSpending)
+    setExports(next.exports)
+    setImports(next.imports)
+    setWages(next.wages)
+    setProfits(next.profits)
+    setRent(next.rent)
+    setAgriculture(next.agriculture)
+    setManufacturing(next.manufacturing)
+    setServices(next.services)
   }
 
   // ============================================
@@ -301,7 +367,7 @@ export default function GdpMeasurement() {
   return (
     <div className="tool-card">
       <ToolHeader
-        title="GDP Measurement Approaches"
+        title="GDP Measurement Visualizer"
         description="Explore the three equivalent methods of measuring GDP: Expenditure, Income, and Production. Understand how they all capture the same economic activity and verify that they yield identical results."
         badge="intermediate"
       />
@@ -398,7 +464,7 @@ export default function GdpMeasurement() {
 
           {/* Controls */}
           <div className="mb-s-8">
-            <h3 className="mb-s-4 text-base font-semibold text-fg">Adjust Components ($ trillions)</h3>
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Adjust Components ($ trillions)</h2>
             <div className="control-panel">
               <SliderControl
                 label="Consumption (C)"
@@ -447,7 +513,7 @@ export default function GdpMeasurement() {
               />
             </div>
 
-      <ToolControlBar onReset={reset} dirty={dirty} />
+            <ToolControlBar onReset={reset} dirty={dirty} />
           </div>
 
           {/* Key Results */}
@@ -463,11 +529,24 @@ export default function GdpMeasurement() {
             />
             <StatBox label="Total GDP" value={gdpExpenditure.toFixed(1)} unit="T" tone="accent" />
           </div>
+            <TileReadout>
+              Every component tile is one bar of the chart immediately below it, and each Total
+              GDP tile is the sum of the bars in its own approach: expenditure{' '}
+              {gdpExpenditure.toFixed(1)}, income {gdpIncome.toFixed(1)}, production{' '}
+              {gdpProduction.toFixed(1)}. Those three totals are the quantity the tool exists to
+              make comparable, and they are the three bars of the comparison chart at the bottom
+              of the page, which is where the routes are made to land on the same number. Income
+              and production are built from their own lines rather than the expenditure
+              components — wages, profits and rent against C, I, G and net exports — so the
+              agreement is a result rather than an identity: move one component on its own and
+              the three bars come apart, which is the gap the discrepancy figure under the
+              comparison chart reports.
+            </TileReadout>
 
           {/* Bar Chart */}
           <div className="mb-s-8">
-            <h3 className="mb-s-4 text-base font-semibold text-fg">Composition of GDP</h3>
-            <ResponsiveContainer width="100%" height={350}>
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Composition of GDP</h2>
+            <ResponsiveContainer width="100%" height={400}>
               <BarChart data={expenditureData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
                 <XAxis
@@ -500,7 +579,7 @@ export default function GdpMeasurement() {
           {/* Breakdown Percentages */}
           {showBreakdown && (
             <div className="mb-s-8">
-              <h3 className="mb-s-4 text-base font-semibold text-fg">Component Breakdown (%)</h3>
+              <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Component Breakdown (%)</h2>
               <div className="grid grid-cols-2 gap-s-3 lg:grid-cols-4">
                 <div className="stat-tile stat-tile--accent">
                   <div className="stat-tile-label">Consumption</div>
@@ -556,7 +635,7 @@ export default function GdpMeasurement() {
 
           {/* Controls */}
           <div className="mb-s-8">
-            <h3 className="mb-s-4 text-base font-semibold text-fg">Adjust Income Components ($ trillions)</h3>
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Adjust Income Components ($ trillions)</h2>
             <div className="control-panel">
               <SliderControl
                 label="Wages (Labor Income)"
@@ -598,8 +677,8 @@ export default function GdpMeasurement() {
 
           {/* Pie Chart */}
           <div className="mb-s-8">
-            <h3 className="mb-s-4 text-base font-semibold text-fg">Income Distribution Breakdown</h3>
-            <ResponsiveContainer width="100%" height={350}>
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Income Distribution Breakdown</h2>
+            <ResponsiveContainer width="100%" height={400}>
               <PieChart margin={chartTheme.margin}>
                 <ChartPie
                   data={incomeData}
@@ -627,7 +706,7 @@ export default function GdpMeasurement() {
           {/* Income Distribution */}
           {showBreakdown && (
             <div className="mb-s-8">
-              <h3 className="mb-s-4 text-base font-semibold text-fg">Income Share (% of GDP)</h3>
+              <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Income Share (% of GDP)</h2>
               <div className="grid grid-cols-2 gap-s-3 lg:grid-cols-3">
                 <div className="stat-tile stat-tile--accent">
                   <div className="stat-tile-label">Labor's Share</div>
@@ -648,10 +727,12 @@ export default function GdpMeasurement() {
           {/* Economic Insights */}
           <div className="mb-s-4">
             <InfoBox type="success">
-              <strong>Economic Insight:</strong> Labor income typically accounts for 65-70% of GDP in developed economies
-              (slightly higher than 50% due to inclusion of fringe benefits). This reflects that labor is the primary factor of production.
-              The income approach reveals the distribution of wealth creation: notice what fraction goes to workers vs. capital owners.
-              This is central to debates about inequality.
+              <strong>Economic Insight:</strong> Labor income is typically about two-thirds of
+              GDP in developed economies, and the rest of what is produced goes to capital
+              owners and to land. This reflects that labor is the primary factor of production.
+              The income approach reveals the distribution of wealth creation: notice what
+              fraction goes to workers vs. capital owners. This is central to debates about
+              inequality.
             </InfoBox>
           </div>
         </div>
@@ -675,7 +756,7 @@ export default function GdpMeasurement() {
 
           {/* Controls */}
           <div className="mb-s-8">
-            <h3 className="mb-s-4 text-base font-semibold text-fg">Adjust Sector Value Added ($ trillions)</h3>
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Adjust Sector Value Added ($ trillions)</h2>
             <div className="control-panel">
               <SliderControl
                 label="Agriculture & Mining"
@@ -717,8 +798,8 @@ export default function GdpMeasurement() {
 
           {/* Bar Chart */}
           <div className="mb-s-8">
-            <h3 className="mb-s-4 text-base font-semibold text-fg">Value Added by Sector</h3>
-            <ResponsiveContainer width="100%" height={350}>
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Value Added by Sector</h2>
+            <ResponsiveContainer width="100%" height={400}>
               <BarChart data={productionData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
                 <XAxis
@@ -751,7 +832,7 @@ export default function GdpMeasurement() {
           {/* Sector Structure */}
           {showBreakdown && (
             <div className="mb-s-8">
-              <h3 className="mb-s-4 text-base font-semibold text-fg">Economic Structure (% of GDP)</h3>
+              <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Economic Structure (% of GDP)</h2>
               <div className="grid grid-cols-2 gap-s-3 lg:grid-cols-3">
                 <div className="stat-tile stat-tile--positive">
                   <div className="stat-tile-label">Agriculture</div>
@@ -814,7 +895,7 @@ export default function GdpMeasurement() {
 
           {/* Key Results - All Approaches */}
           <div className="mb-s-8">
-            <h3 className="mb-s-4 text-base font-semibold text-fg">GDP by Approach</h3>
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">GDP by Approach</h2>
             <div className="grid grid-cols-2 gap-s-3 lg:grid-cols-3">
               <div className="stat-tile stat-tile--accent">
                 <div className="stat-tile-label">Expenditure Approach</div>
@@ -833,7 +914,7 @@ export default function GdpMeasurement() {
 
           {/* Discrepancy Analysis */}
           <div className="mb-s-8">
-            <h3 className="mb-s-4 text-base font-semibold text-fg">Measurement Consistency</h3>
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Measurement Consistency</h2>
             <div
               className={`stat-tile ${
                 discrepancyPercent < 2
@@ -865,8 +946,8 @@ export default function GdpMeasurement() {
 
           {/* Comparison Chart */}
           <div className="mb-s-8">
-            <h3 className="mb-s-4 text-base font-semibold text-fg">GDP Comparison Across Methods</h3>
-            <ResponsiveContainer width="100%" height={350}>
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">GDP Comparison Across Methods</h2>
+            <ResponsiveContainer width="100%" height={400}>
               <BarChart data={comparisonData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
                 <XAxis
@@ -894,7 +975,7 @@ export default function GdpMeasurement() {
 
           {/* Detailed Breakdown Table */}
           <div className="mb-s-8">
-            <h3 className="mb-s-4 text-base font-semibold text-fg">Detailed Breakdown Table</h3>
+            <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Detailed Breakdown Table</h2>
             <div className="overflow-x-auto">
               <table className="w-full overflow-hidden rounded-card border-collapse bg-surface text-sm">
                 <thead>
@@ -969,7 +1050,7 @@ export default function GdpMeasurement() {
               <strong>Fundamental Macro Identity:</strong> In a closed economy with perfect measurement:
               <br />
               <br />
-              **Production = Income = Expenditure**
+              <strong>Production = Income = Expenditure</strong>
               <br />
               <br />
               This is NOT true for individual households or firms (a firm can have revenues differ from costs or spending).

@@ -114,11 +114,11 @@ Between 1978 (economic reforms) and 2017, China experienced extraordinary growth
 | Output ($g_Y$) | 7.2% |
 | Capital ($g_K$) | 9.2% |
 | Labor ($g_N$) | 1.7% |
-| TFP ($g_A$) | 4.2% |
+| TFP ($g_A$) | 3.25% |
 
 **Using growth accounting** (with $\alpha \approx 0.7$):
-$$7.2\% = (0.3)(9.2\%) + (0.7)(1.7\%) + 4.2\%$$
-$$7.2\% = 2.76\% + 1.19\% + 4.2\%$$
+$$7.2\% = (0.3)(9.2\%) + (0.7)(1.7\%) + 3.25\%$$
+$$7.2\% = 2.76\% + 1.19\% + 3.25\%$$
 
 ### Is This Balanced Growth?
 
@@ -132,8 +132,8 @@ $$7.2\% = 2.76\% + 1.19\% + 4.2\%$$
 - In balanced growth, $K$ and $Y$ should grow at same rate ($g_A + g_N$)
 
 **Clue 2**: Check the balanced growth prediction
-- Balanced growth rate should be: $g_A + g_N = 4.2\% + 1.7\% = 5.9\%$
-- But capital growing at 9.2%, not 5.9%!
+- Balanced growth rate should be: $g_A + g_N = 3.25\% + 1.7\% = 4.95\%$
+- But capital growing at 9.2%, not 4.95%!
 
 **Conclusion**: China was experiencing **transitional growth**, not balanced growth.
 
@@ -160,14 +160,14 @@ Potential reasons:
 ### Implications for China's Future
 
 **Steady-state growth prediction**:
-- Long-run growth = $g_A + g_N = 4.2\% + 1.7\% = 5.9\%$
+- Long-run growth = $g_A + g_N = 3.25\% + 1.7\% = 4.95\%$
 
 **But this is likely an overestimate**:
 1. **Population growth turning negative**: One-child policy aftermath
    - $g_N$ is declining, turning negative by 2020s
    - This directly reduces $g_Y$ in steady state
 2. **Transitional growth ending**: As $k \to k^*$, growth boost from capital deepening disappears
-3. **TFP growth may slow**: Harder to maintain 4.2% TFP growth as you approach technology frontier
+3. **TFP growth may slow**: Harder to maintain 3.25% TFP growth as you approach technology frontier
 
 **Realistic forecast**:
 - Long-run growth likely around 3-5% (depending on TFP trends)

@@ -50,6 +50,35 @@ const stripComments = (source: string): string =>
 
 const toolSource = (file: string): string => readFileSync(join(TOOLS, file), 'utf8')
 
+/**
+ * The byte range each self-closing element of one kind occupies in a file.
+ *
+ * Needed because the height test has to decide WHERE a `height={N}` was
+ * written, and a value-keyed lookup cannot do that: the same number is
+ * legitimately on a container and illegitimately on a wrapper div, and only
+ * the position tells them apart. Every `<XAxis>`, `<YAxis>` and
+ * `<ResponsiveContainer>` in the tools is self-closing, so the first `/>` after
+ * the opening tag ends the element.
+ *
+ * `axisDomains.test.ts` asserts that equality for the two axis tags — that
+ * every one opened is one this parser closed — so a tool that adopted a
+ * non-self-closing axis fails there rather than quietly shortening every
+ * element after it here.
+ */
+function elementRanges(
+  source: string,
+  open: RegExp,
+): { tag: string; from: number; to: number }[] {
+  const out: { tag: string; from: number; to: number }[] = []
+  for (const m of source.matchAll(open)) {
+    const rest = source.slice(m.index + m[0].length)
+    const end = rest.indexOf('/>')
+    if (end === -1) continue
+    out.push({ tag: m[1] ?? 'element', from: m.index, to: m.index + m[0].length + end + 2 })
+  }
+  return out
+}
+
 function ruleBodies(selector: string): string[] {
   const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const out: string[] = []
@@ -177,11 +206,6 @@ describe('the density preference reaches a tool page', () => {
     // reasoning stated as a measurement: a shorter plot RE-SCALES the y axis,
     // so the same curve sits at a different height and a reader comparing
     // two tools by eye is comparing two pictures of different things.
-    const heights: string[] = []
-    for (const file of toolFiles) {
-      for (const m of toolSource(file).matchAll(/height=\{(\d+)\}/g)) heights.push(m[1])
-    }
-    expect(heights.length, 'literal plot heights in web/src/tools').toBeGreaterThan(30)
     for (const file of toolFiles) {
       const source = toolSource(file)
       expect(source, file).not.toMatch(/height=\{['"][^'"]*s-/)
@@ -189,6 +213,217 @@ describe('the density preference reaches a tool page', () => {
       expect(source, file).not.toMatch(/h-s-/)
       expect(source, file).not.toMatch(/h-\[s-/)
     }
+  })
+
+  it('gives every plot the same height, and writes that height in one place', () => {
+    // The height a plot is drawn at is a SIZE, and a size with a single
+    // correct value in twenty tools. Five values across thirteen files was
+    // the state this replaces: `300`, `320`, `350` and `400`, four files
+    // carrying two of them at once, and two spellings of the same fact
+    // (`height={N}` on the container, `h-[Npx]` on a wrapper div) which let
+    // the same tool disagree with itself. The reason one value: a shorter
+    // plot RE-SCALES the y axis, so the same curve sits at a different
+    // height and a reader comparing two tools by eye is comparing two
+    // pictures of different things.
+    //
+    // MEASURED in Chromium against the production build, on the densest
+    // chart (IsLmExplorer, three series) and the most label-dense one
+    // (SpeculativeAttack, six charts), at 1280px and 390px and at
+    // textScale 1.0 and 1.3, sweeping the three candidates:
+    //
+    //   y-axis labels clipped   300: 7 of 12 charts (worst 103.4px)
+    //   at textScale 1.0        350: 5 of 12 (worst 78.4px)
+    //                           400: 2 of 12 (worst 53.4px)
+    //   at textScale 1.3        300: 12 of 12 (worst 175.0px)
+    //                           350:  9 of 12 (worst 150.0px)
+    //                           400:  5 of 12 (worst 125.0px)
+    //   y-axis tick min gap     300: 38.6px   350: 52.9px   400: 67.1px
+    //
+    // 400 is the best of the three, not a clean sweep, and the residue at the
+    // time of writing was the two long rotated axis labels in
+    // SpeculativeAttack: a label anchored at the axis's vertical middle grows
+    // UPWARD from its anchor, so one longer than half the plot is clipped
+    // however tall the plot is. That was a chart-chrome fix rather than a
+    // height one — the label carried no `fontSize` and fell back to the
+    // browser's 16px — and it has since been made: the axis label now takes
+    // `--chart-axis-label-size`, and `axisDomains.test.ts` holds the token,
+    // the rule and the character budget a rotated label has to fit. RE-MEASURED
+    // on the production build at 1280px and 390px, textScale 1.0 and 1.3, over
+    // every panel of every tool: 19 of the 25 distinct axis labels were
+    // clipped at some width and scale, 16 of them by more than 5px, and the
+    // worst by 152.5px. One label is clipped now, by 4.3px, in one tool at
+    // one width.
+    //
+    // The x-tick collision recorded here is likewise fixed, and it was never a
+    // height problem: the only collision found, in RealInterestRateCalculator's
+    // rotated scenario bar chart at 390px, was 4 overlapping pairs at a -42.6px
+    // gap at textScale 1.0 and -48.4px at 1.3 — IDENTICAL at 300, 350 and 400.
+    // It belonged to the width and the label angle, and it is gone because the
+    // category axis is now vertical, where a label's footprint is the font size
+    // rather than the length of its string.
+    //
+    // 400 is also the tallest, and growing a plot is the safe direction:
+    // shrinking is what makes labels collide.
+    const PLOT_HEIGHT = 400
+
+    const seen = new Map<string, string[]>()
+    const record = (value: string, where: string) => {
+      if (!seen.has(value)) seen.set(value, [])
+      seen.get(value)!.push(where)
+    }
+
+    // A container states its own height. Every one must be the one value, and
+    // every tool that draws a chart must state it at all, so a rename that
+    // dropped the prop cannot pass by asserting nothing.
+    const filesWithPlots: string[] = []
+    for (const file of toolFiles) {
+      const source = toolSource(file)
+      const plots = [
+        ...source.matchAll(/<ResponsiveContainer\b[^>]*?\bheight=\{(\d+)\}/gs),
+      ].map((m) => m[1])
+      if (plots.length === 0) continue
+      filesWithPlots.push(file)
+      plots.forEach((v) => record(v, `${file} <ResponsiveContainer>`))
+    }
+    expect(
+      filesWithPlots.length,
+      'tools that state a plot height on the container',
+    ).toBe(toolFiles.length)
+
+    // The retired spelling. A wrapper div that only exists to size a
+    // `height="100%"` container is a second place to hold the same number,
+    // and it is the one place a chart height could still be reached from CSS
+    // — which `density.test.ts` calls out. A plot says it on the container.
+    for (const file of toolFiles) {
+      const source = toolSource(file)
+      expect(source, `${file} must not size a plot with a wrapper div`).not.toMatch(
+        /<ResponsiveContainer\b[^>]*height="100%"/,
+      )
+    }
+
+    // The one `h-[Npx]` that survives is a plot's RESERVED FRAME, not a
+    // plot: a `<div>` has no `height` prop, so the two empty states that
+    // stand in for a chart with no data to draw spell the same number as a
+    // class. It is in the same class of facts and it is held to the same
+    // value, or a chart would appear and the page would jump.
+    for (const file of toolFiles) {
+      for (const m of toolSource(file).matchAll(/h-\[(\d+)px\]/g)) {
+        record(m[1], `${file} reserved frame`)
+      }
+    }
+
+    // Anything else numeric that is called a height is a cartesian axis
+    // giving room for its tick LABELS, and the band is a legitimate exception
+    // to the one value: normalising it to 400 would buy an empty band under
+    // the plot and shrink the plot itself. It is on an `XAxis` or a `YAxis`,
+    // and that is the whole exemption.
+    for (const file of toolFiles) {
+      const source = toolSource(file)
+      for (const axis of source.matchAll(/<(XAxis|YAxis)\b[\s\S]*?\/>/g)) {
+        for (const m of axis[0].matchAll(/\bheight=\{(\d+)\}/g)) {
+          record(`axis label band ${m[1]}`, `${file} <${axis[1]}>`)
+        }
+      }
+    }
+
+    const offenders = [...seen.entries()].filter(([value]) => value !== String(PLOT_HEIGHT) && !value.startsWith('axis label band'))
+    expect(offenders, 'plot heights that are not the one value').toEqual([])
+
+    /* ---------------------------------------------------------------- *
+     * The exemption, stated as the PROPERTY rather than as a count.
+     *
+     * This replaces `expect(axisBands).toHaveLength(1)`. That assertion said
+     * there is exactly one exempt band in the tools, which is true of the tree
+     * it was written against and stops being true the moment a second
+     * category axis needs vertical tick labels — which is the ordinary reason
+     * to add one. A test that has to be edited whenever a file legitimately
+     * changes teaches the next contributor to edit it without thinking, and
+     * the edit it invites here is "bump 1 to 2", which asserts nothing about
+     * either band.
+     *
+     * The property, which survives any number of bands:
+     *
+     *   EVERY `height={N}` written in a tool is one of exactly two things —
+     *   the plot height on a `<ResponsiveContainer>`, or a tick-label band
+     *   inside a cartesian axis element. Nothing else may carry one.
+     *
+     * And it is classified by OCCURRENCE, not by value, which is the part the
+     * count could not express. The loop this replaces skipped a `height={N}`
+     * whenever the same number appeared anywhere on a container, so a
+     * `<div height={400}>` in a file that also has a 400px plot was exempt,
+     * and a wrapper div carrying `height={120}` was exempt by proxy from an
+     * unrelated axis band elsewhere in the same file. Both are plots that have
+     * drifted, and a value-keyed check cannot see either. The mutation that
+     * proves this one can: a `height={N}` on a wrapper div, in a file whose
+     * axis carries the same N.
+     * ---------------------------------------------------------------- */
+    const bands: string[] = []
+    const strayHeights: string[] = []
+    for (const file of toolFiles) {
+      const source = toolSource(file)
+      const axes = elementRanges(source, /<(XAxis|YAxis)\b/g)
+      const containers = elementRanges(source, /<ResponsiveContainer\b/g)
+      for (const h of source.matchAll(/\bheight=\{(\d+)\}/g)) {
+        const at = h.index ?? 0
+        const axis = axes.find((r) => at >= r.from && at < r.to)
+        if (axis) {
+          bands.push(`${file} <${axis.tag}> height={${h[1]}}`)
+          continue
+        }
+        // A container's height is the one value, and the offender list above
+        // is what holds it there; nothing to add here.
+        if (containers.some((r) => at >= r.from && at < r.to)) continue
+        strayHeights.push(
+          `${file}: height={${h[1]}} on neither a <ResponsiveContainer> nor a cartesian axis`,
+        )
+      }
+    }
+    // Non-vacuity first. A band assertion that found no band would be a test of
+    // a tree with no rotated axis in it, passing for the same reason a scan
+    // that matched nothing passes — and the exemption above is the one thing
+    // in this test that can be satisfied by the tools simply not having any.
+    expect(bands, 'tick-label bands the exemption was written for').not.toHaveLength(0)
+    expect(strayHeights, 'plot heights that are not the one value').toEqual([])
+  })
+
+  it('draws every ReferenceLine label inside the plot, where it cannot be clipped', () => {
+    // Recharts gives a ReferenceLine's label the LINE as its viewBox, so
+    // `position: 'top'` on a vertical line puts the text ABOVE the plot and
+    // `position: 'right'` on a horizontal one puts it past the right edge.
+    // The plot box is `chartTheme.margin` (8px) from the SVG on every side,
+    // so there is no room there for a label of any size: the text leaves the
+    // SVG viewport, which clips it, while the node stays in the document and
+    // so in the accessibility tree. MEASURED in Chromium, at the defaults, at
+    // 1280px and 390px in both themes: `Y₀=650B` in
+    // `FiscalPolicyExperiments` lost 14px of a 15px label — present for a
+    // screen reader and not on screen at all — `W/P = 0.833` in
+    // `LaborMarketWsPs` lost 74.9px of 94.9px, `Expected Inflation (2.0%)` in
+    // `PhillipsCurveTradeOff` 166.9px of 191.8px, and `NAIRU (5.0%)` in
+    // `LaborMarket` 8.5px of 14.5px. The `inside*` positions are the family
+    // that is inside the plot box by construction, so the answer holds at any
+    // axis length — which matters in the tools whose axis is derived from the
+    // quantity being labelled.
+    //
+    // Comments are stripped first. A tool explains WHY it uses `insideTop`,
+    // and a scan of raw source would read that explanation as the bug.
+    const offenders: string[] = []
+    for (const file of toolFiles) {
+      const code = toolSource(file)
+        .replace(/\/\*[\s\S]*?\*\//g, '')
+        .replace(/\{\s*\/\*[\s\S]*?\*\/\s*\}/g, '')
+      for (const open of code.matchAll(/<(ReferenceLine|ReferenceArea)\b/g)) {
+        // The element's own props: from the opening tag to the `/>` that
+        // closes it. Nothing in a ReferenceLine is self-closing but itself,
+        // so the first `/>` is the right end and the window cannot run on
+        // into the next element and pick up its positions.
+        const rest = code.slice(open.index + open[0].length)
+        const end = rest.indexOf('/>')
+        const props = end === -1 ? rest : rest.slice(0, end)
+        const bad = /\bposition:\s*'(top|bottom|left|right)'/.exec(props)
+        if (bad) offenders.push(`${file}: ${open[1]} label uses position: '${bad[1]}'`)
+      }
+    }
+    expect(offenders, 'ReferenceLine labels positioned outside the plot').toEqual([])
   })
 
   it('keeps every axis key unique per orientation, so a sibling cannot be dropped', () => {
@@ -217,6 +452,165 @@ describe('the density preference reaches a tool page', () => {
       /key:\s*`axis-/,
     )
     expect(CHART_THEME, 'axisProps must not return a key').not.toMatch(/function axisProps[\s\S]*?key:/)
+  })
+})
+
+/* ------------------------------------------------------------------ *
+ * The heading outline
+ * ------------------------------------------------------------------ */
+
+describe('a tool authors h2s, and the h3 slot belongs to the note primitive', () => {
+  /**
+   * Every heading LEVEL a source file writes, in source order.
+   *
+   * Comments come off first, for the reason `stripComments` exists and is worth
+   * restating here: several comments in this tree explain the rule this file
+   * asserts, and the correct way to explain a rule is to name the thing being
+   * banned — so a scan of raw source reads its own documentation as the
+   * violation. That is not a corner case, it is the ordinary case, and a scan
+   * that cannot be quoted in a comment is a scan the next agent will disable.
+   *
+   * The unit is the TAG, not a class name. The classes are the styling and they
+   * are deliberately allowed to vary (a chart heading, an uppercase eyebrow and
+   * a `text-lg` section title are all `h2` in this tree); the tag is the only
+   * thing a screen reader's heading list or a browser's find-by-heading can
+   * see, so it is the only thing the invariant can be about.
+   */
+  const headingLevels = (source: string): number[] => [
+    ...stripComments(source).matchAll(/<h([1-6])\b/g),
+  ].map((m) => Number(m[1]))
+
+  /**
+   * The scanner above is the whole test, so it is held to being able to fail.
+   *
+   * A source scan has exactly one interesting failure mode and it is silent: a
+   * regex that never matches reports an empty offender list for every file and
+   * the assertion passes on a tree that violates the rule in every file. The
+   * mutation that causes it is boring — a `\b` dropped, a lookahead tightened,
+   * the capture group moved out of the match — and nothing else in this file
+   * would notice. So the scanner is run here against sources that are known to
+   * contain what it is supposed to find, including the two shapes that are
+   * easy to get wrong: a multi-line opening tag, and a tag that appears only
+   * inside a comment.
+   */
+  it('finds what is there and ignores what is only written about', () => {
+    expect(
+      headingLevels('<h1>a</h1><h2 className="x">b</h2><h3>c</h3><h4>d</h4><h5>e</h5><h6>f</h6>'),
+      'one of each level, in order',
+    ).toEqual([1, 2, 3, 4, 5, 6])
+    // The multi-line form, which every heading in a tool that wraps its title
+    // onto a second line uses.
+    expect(headingLevels('<h2\n  className="mb-s-4 text-lg"\n>\n  Title\n</h2>')).toEqual([2])
+    // Not a heading: a close tag, and a class name that merely contains one.
+    expect(headingLevels('</h3><div className="h3" />')).toEqual([])
+    // A comment that names the tag is prose about the rule, not the rule
+    // broken. This is the case `stripComments` exists for and it is a
+    // correctness requirement here, not tidiness: without it the comments
+    // added alongside this fix would have turned the assertion red.
+    expect(headingLevels('{/* was an <h3> until the promotion */} <h2>x</h2>')).toEqual([2])
+    expect(headingLevels('// an <h3> in a line comment\n<h2>x</h2>')).toEqual([2])
+  })
+
+  /**
+   * The rule `AGENTS.md` states: a tool's own sections are `h2`, and `h3` is
+   * the note primitive's title level. Thirty-four tool-authored `h3`s said
+   * otherwise, spread over five files, and the damage is that the slot had
+   * two occupants: a tool's own section title and a `ToolNote` title occupied
+   * the same place in the outline, so a reader moving by heading could not
+   * tell a section of the tool from an aside inside one. `SpeculativeAttack`
+   * was the worst case because it did it to ITSELF — two `h2`s, then six
+   * chart headings at `h3` carrying `text-lg`, the same visual weight as the
+   * `h2`s one level down.
+   *
+   * Nothing here counts headings. The count moves for a legitimate reason
+   * (a section added, a tool rewritten), and a test that has to be edited
+   * every time the file legitimately changes is a test that gets edited the
+   * first time something illegitimate changes too. The property is the
+   * vocabulary: one `h3` producer, and it is not a tool.
+   */
+  it('writes no h3 of its own, and no level above or below the one a section may use', () => {
+    const offenders: string[] = []
+    for (const file of toolFiles) {
+      const source = toolSource(file)
+      // The scan has to have run over the file and not over a comment-stripped
+      // husk of it, or "no offenders" is a statement about the stripper.
+      expect(stripComments(source).length, `${file} was not scanned`).toBeGreaterThan(0)
+      for (const level of headingLevels(source)) {
+        if (level !== 2) {
+          offenders.push(`${file}: <h${level}> — a tool section is <h2>`)
+        }
+      }
+    }
+    expect(offenders, 'headings authored in a tool file that are not <h2>').toEqual([])
+  })
+
+  /**
+   * The same vocabulary, one step further out: not WHICH level a title is at,
+   * but how a SECTION title is set. A promotion from `h3` to `h2` is a change
+   * of level, and the class list is not part of it — so thirteen `<h3>` section
+   * titles in `GdpMeasurement` became `<h2>`s without `tracking-tight`, leaving
+   * five and thirteen sibling section titles in that one file set two ways.
+   * `tracking-tight` at 18px/600 is -0.45px of letter spacing: a quarter of a
+   * pixel, which is why it is invisible in a screenshot and obvious when a
+   * reader's eye tracks down a column of headings and finds one of them
+   * drifting.
+   *
+   * Scoped to section titles rather than to every `<h2>`, and the discriminator
+   * is `text-lg font-semibold`, which is the signature of that role. Two tools
+   * also write `<h2>` for other jobs — `ModernISCurve`'s two-axis comparison
+   * labels, `IsLmExplorer`'s lesson sub-headings and `chart-title` — and those
+   * are deliberately smaller, because they are not sections and should not
+   * look like them. Asserting over every `<h2>` would have demanded they match
+   * a section title, which is the opposite of what makes them legible.
+   *
+   * `tags` is the positive control: a pattern that matched no section title
+   * leaves it at zero and every `offenders` list below is empty.
+   */
+  it('sets every section title the way the other section titles are set', () => {
+    const offenders: string[] = []
+    let tags = 0
+    for (const file of toolFiles) {
+      const source = stripComments(toolSource(file))
+      for (const m of source.matchAll(/<h2\b[^>]*>/g)) {
+        const cls = m[0].match(/className="([^"]*)"/)?.[1] ?? ''
+        if (!/\btext-lg\b/.test(cls) || !/\bfont-semibold\b/.test(cls)) continue
+        tags++
+        if (!/\btracking-tight\b/.test(cls)) {
+          offenders.push(`${file}: section title "${cls}" is not tracking-tight`)
+        }
+      }
+    }
+    expect(tags, 'no section title was found in any tool, so the scan was vacuous').toBeGreaterThan(0)
+    expect(offenders, 'section titles of one role, set two ways').toEqual([])
+  })
+
+  /**
+   * The positive control for the assertion above, and the reason the `h3` is
+   * allowed to exist at all.
+   *
+   * `ToolComponents` is the one place a tool's `h3` may be written, and it
+   * writes it twice: `ToolNote`'s title (the `headingLevel` default of 3) and
+   * `ToolHeader`'s own title when a tool is embedded in a lecture, where the
+   * lecture's "Try it" is already an `h2`. Both are asserted to be PRESENT,
+   * because a rule expressed only as a prohibition is a rule a later agent can
+   * satisfy by deleting the thing that is allowed. If someone promoted the
+   * note's title to `h2` and deleted the conditional in the header to make
+   * this green, the note would be a peer of the section it sits in and every
+   * lecture would have a duplicate `h1` again.
+   */
+  it('leaves the h3 to ToolComponents, and keeps the two it needs there', () => {
+    const levels = headingLevels(TOOL_COMPONENTS)
+    // `ToolNote`: one `h2` and one `h3`, chosen by `headingLevel`. `ToolHeader`:
+    // an `h1`, an `h2` and an `h3`, chosen by the page the tool is on.
+    expect(
+      levels.filter((l) => l === 3).length,
+      'the note title and the embedded-tool title',
+    ).toBe(2)
+    expect(
+      levels.filter((l) => l === 2).length,
+      'the note title and the case-study tool title',
+    ).toBe(2)
+    expect(levels.filter((l) => l === 1).length, 'the one h1 a tool page owns').toBe(1)
   })
 })
 

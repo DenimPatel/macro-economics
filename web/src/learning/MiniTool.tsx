@@ -35,16 +35,26 @@ export default function MiniTool({ spec }: { spec: MiniToolSpec }) {
 
   return (
     <section className="my-7 overflow-hidden rounded-card border border-border bg-surface">
+      {/*
+       * The band above the tool carries the tool's name and the way out of
+       * here, and nothing else. A third chip used to sit between them: the
+       * `preset` string from `MiniToolSpec`, which nineteen lectures supplied
+       * and no code applied, so each one was a caption telling the reader what
+       * state the tool below it was in while the tool sat at its defaults. Two
+       * of them were wrong even about the numbers — `nominal 5%, inflation 2%`
+       * above a tool reading 3.5 / 2.5 / 2.2.
+       *
+       * If a state chip is ever wanted back it has to arrive as one the tool
+       * is actually put into, through `lib/controlRegistry`'s applier, and the
+       * claim has to be a number the reader can find on the sliders. A chip
+       * that is only rendered is a caption, and captions may describe what the
+       * tool does without asserting where it is.
+       */}
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-border bg-surface-2 px-4 py-s-2">
         <span className="text-micro font-bold uppercase tracking-widest text-fg-subtle">
           Interactive
         </span>
         <span className="text-sm font-semibold text-fg">{info.title}</span>
-        {spec.preset && (
-          <span className="rounded-pill border border-border bg-surface px-2 py-0.5 text-micro font-semibold text-fg-muted">
-            {spec.preset}
-          </span>
-        )}
         <Link
           to={`/tool/${spec.toolId}`}
           className="tap-clear ml-auto inline-flex items-center gap-1 text-xs font-semibold text-fg-muted no-underline hover:text-accent-ink active:text-accent"

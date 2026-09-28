@@ -107,11 +107,16 @@ describe('display equations survive the render', () => {
       if (displays === 0) empty.push(file)
     }
     expect(empty).toEqual([])
-    // 434 blocks: the 433 one-line display equations across the 23 lectures
-    // that use them, plus the `\begin{cases}` system in Lecture 5, which was
-    // the only one the notes already wrote in the fenced form. Lectures 1 and
-    // 19 contain no `$$` at all and are not counted.
-    expect(total).toBe(434)
+    // 439 blocks: the 437 one-line display equations across the 23 lectures
+    // that use them, plus two the notes already wrote in the fenced form — the
+    // `\begin{cases}` system in Lecture 5, and the money-demand equation in
+    // Lecture 4, which could not stay inline because a currency `$` closes an
+    // inline math span in this pipeline (see `audit.test.tsx`). The four
+    // one-line equations above Lecture 23's old total are the Gordon
+    // derivation. Lectures 1 and 19 contain no `$$` at all and are not
+    // counted. The invariant is the line above this comment: no lecture that
+    // writes a `$$` renders zero display blocks.
+    expect(total).toBe(439)
   })
 
   it('still counts 171 inline expressions on Lecture 16, plus 35 display ones', () => {

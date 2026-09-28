@@ -41,8 +41,28 @@ export interface QuizQuestion {
 
 export interface MiniToolSpec {
   toolId: ToolId
-  /** Optional starting scenario label shown above the embedded tool. */
-  preset?: string
+  /**
+   * One sentence of prose describing what the embedded tool shows.
+   *
+   * There was a third field here, `preset?: string`, on 19 of the 20 entries.
+   * It was write-only: `learning/MiniTool.tsx` rendered it as a chip and no
+   * code ever applied it, so every chip was a caption claiming a state the
+   * reader was not in, and two of them named numbers the tool contradicted —
+   * `nominal 5%, inflation 2%` on `RealInterestRateCalculator`, which opens at
+   * 3.5 / 2.5 / 2.2. Deleted, because a caption is the only text on this card
+   * that can make a claim, and a claim is only allowed if it can be honoured.
+   *
+   * To bring the capability back, do it as a feature and not as a field of
+   * strings: a `Partial<ScenarioParams>` applied through
+   * `lib/controlRegistry.applyScenarioParams`, which clamps each value to the
+   * bounds the control enforces. Not a field of strings, because the applier
+   * IGNORES a key no mounted control claims — a typo in one of nineteen data
+   * entries is a silent no-op and the chip lies again, with nothing red. And
+   * not all nineteen are expressible that way even then: the choice controls
+   * (`MundellFleming`'s Fixed / Floating, `GrowthAccounting`'s country,
+   * `AssetPricing`'s bond / equity) are button groups, which do not register,
+   * so a payload cannot set them until they are made registered controls.
+   */
   caption?: string
 }
 
@@ -142,7 +162,25 @@ export const LECTURES: LectureMeta[] = [
       "Okun's law",
     ],
     miniTools: [
-      { toolId: 'gdp-visualizer', caption: 'See the three ways of measuring GDP agree.' },
+      // "…agree" is restored, and it is restored because it is now true: the
+      // tool opens with expenditure 68 + 15 + 15 + (12 − 10) = 100 against
+      // income 68 + 20 + 12 = 100 and production 2 + 18 + 80 = 100, so the
+      // Comparison tab reads 0.00% and every one of the four "Economy
+      // Scenarios" buttons lands on the same identity.
+      //
+      // It was withdrawn from this slot because the tool opened with
+      // expenditure 107 against income 100 and production 100, and a caption
+      // promising agreement above a tool showing a 6.7% discrepancy is a lie
+      // told in the first sentence a reader reads. What makes it safe to put
+      // back is not the wording, it is the assertion in
+      // `tests/modelValues.test.tsx` that the three approaches render the same
+      // number at these defaults: a default change that breaks the identity
+      // turns that test red in the same commit that would falsify this
+      // sentence.
+      {
+        toolId: 'gdp-visualizer',
+        caption: 'See the three ways of measuring GDP agree.',
+      },
     ],
     quiz: [
       {
@@ -186,7 +224,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'multiplier-simulator',
-        preset: 'MPC 0.6',
         caption: 'Watch spending cascade through successive rounds.',
       },
     ],
@@ -228,7 +265,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'real-interest-rate-calculator',
-        preset: 'nominal 5%, inflation 2%',
         caption: 'Separate the nominal rate from the real rate.',
       },
     ],
@@ -274,7 +310,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'is-lm-explorer',
-        preset: 'baseline',
         caption: 'Shift the curves and find the new intersection.',
       },
     ],
@@ -320,7 +355,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'is-lm-explorer',
-        preset: 'fiscal expansion',
         caption: 'Watch the interest rate rise as output expands.',
       },
     ],
@@ -365,7 +399,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'modern-is-curve',
-        preset: 'financial conditions',
         caption: 'Financial frictions widen the gap between the policy rate and borrowing costs.',
       },
     ],
@@ -410,7 +443,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'labor-market-wsps',
-        preset: 'baseline',
         caption: 'Find the real wage and unemployment where WS and PS meet.',
       },
     ],
@@ -456,7 +488,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'phillips-curve-tradeoff',
-        preset: 'expectations up',
         caption: 'When expected inflation rises, the curve shifts and the short-run trade-off moves.',
       },
     ],
@@ -535,7 +566,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'is-lm-pc-dynamics',
-        preset: 'demand boom',
         caption: 'A positive output gap puts upward pressure on inflation.',
       },
     ],
@@ -574,7 +604,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'is-lm-pc-dynamics',
-        preset: 'disinflation',
         caption: 'Trace output and inflation as policy tightens.',
       },
     ],
@@ -651,7 +680,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'solow-simulator',
-        preset: 'baseline',
         caption: 'Raise the saving rate and watch the steady state move.',
       },
     ],
@@ -695,7 +723,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'growth-accounting',
-        preset: 'TFP growth 1.5%',
         caption: 'See how much of growth is the residual, not inputs.',
       },
     ],
@@ -739,7 +766,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'growth-accounting',
-        preset: 'US 1990-2019',
         caption: 'Attribute growth to inputs versus productivity.',
       },
     ],
@@ -783,7 +809,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'mundell-fleming',
-        preset: 'floating baseline',
         caption: 'Introduce the rest of the world to IS-LM.',
       },
     ],
@@ -855,7 +880,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'mundell-fleming',
-        preset: 'depreciation',
         caption: 'A weaker currency shifts demand toward domestic output.',
       },
     ],
@@ -900,7 +924,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'mundell-fleming',
-        preset: 'fixed vs floating',
         caption: 'Compare the same policy under two regimes.',
       },
     ],
@@ -944,7 +967,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'speculative-attack',
-        preset: 'reserve drain',
         caption: 'Watch reserves fall as the market bets against the peg.',
       },
     ],
@@ -988,7 +1010,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'asset-pricing',
-        preset: 'bond',
         caption: 'Vary the discount rate and watch the price move.',
       },
     ],
@@ -1027,7 +1048,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'asset-pricing',
-        preset: 'equity',
         caption: 'Growth and discount assumptions drive the valuation.',
       },
     ],
@@ -1066,7 +1086,6 @@ export const LECTURES: LectureMeta[] = [
     miniTools: [
       {
         toolId: 'modern-is-curve',
-        preset: 'expected future policy',
         caption: 'Today\u2019s outcome depends on expected future rates.',
       },
     ],

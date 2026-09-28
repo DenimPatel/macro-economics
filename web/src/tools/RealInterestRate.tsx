@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ComposedChart } from 'recharts'
+import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ComposedChart, ReferenceLine } from 'recharts'
 import { ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
   InfoBox,
   SliderControl,
   StatBox,
+  TileReadout,
   ToolControlBar,
   ToolHeader,
   ToolNote,
@@ -133,7 +134,7 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
   return (
     <div className="tool-card">
       <ToolHeader
-        title="Real Interest Rate Calculator"
+        title="Real Interest Rate"
         description="Master the Fisher Equation (r = i - π^e) and understand how nominal rates, inflation expectations, and real rates shape investment decisions, wealth effects, and monetary policy transmission."
         badge="intermediate"
       />
@@ -162,12 +163,37 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
 
       <ToolControlBar onReset={reset} dirty={dirty} />
       {/* Fisher Equation Results */}
-      <div className="mb-s-8 grid grid-cols-2 gap-s-3 lg:grid-cols-4">
+      <div className="mb-s-3 grid grid-cols-2 gap-s-3 lg:grid-cols-4">
         <StatBox label="Nominal Rate (i)" value={nominalRate.toFixed(1)} unit="%" />
         <StatBox label="Expected Inflation (π^e)" value={expectedInflation.toFixed(1)} unit="%" />
         <StatBox label="Real Interest Rate (r)" value={realRate.toFixed(1)} unit="%" tone="accent" />
         <StatBox label="Cost Assessment" value={costLevel.label} tone={costLevel.tone} />
       </div>
+
+      {/*
+       * The caption the four tiles above were missing, and the reason it has
+       * to sit here rather than under a chart: this tile row is the top of the
+       * page, so the chart nearest `r` is the historical one further down, and
+       * a reader who cannot tell from the tile that `r` is marked three
+       * hundred pixels below is exactly the reader this is for.
+       *
+       * So it names where each of the four is. `i` and `π^e` are route 2 of
+       * the rule — they restate the two sliders, and a slider prints its own
+       * value under its track, so the number and the thing that produced it
+       * are side by side. `r` is route 1: a dashed mark on the historical
+       * chart. `Cost Assessment` is a VERDICT rather than a number, which is
+       * why it has no counterpart to look for.
+       */}
+      <TileReadout>
+        i = {nominalRate.toFixed(1)}% and π^e = {expectedInflation.toFixed(1)}% are
+        the two sliders above, and each prints its own value under its track.
+        r = {realRate.toFixed(1)}% is not a slider: it is the dashed `r` line
+        on the historical chart at the bottom of this page, which is where the
+        reader can see it against the recorded path. Cost Assessment
+        is a verdict on that r against a 5% hurdle, not a rate — the bands
+        are under 5% (attractive), 5–7% (moderate) and over 7% (expensive).
+      </TileReadout>
+      <div className="mb-s-8" />
 
       {/* Fisher Equation Explanation */}
       <div className="mb-s-8">
@@ -182,6 +208,16 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
       </div>
 
       {/* Investment Decision Indicator */}
+      {/*
+       * The verdict wears a STATUS ink, not a tier ink. The four tier values
+       * are one ordinal azure ramp and they mean how hard a lecture is; this
+       * number means whether a project clears its hurdle rate, and reading it
+       * as "beginner-level" is the reader being told a fact about the
+       * economics with a vocabulary that has nothing to do with it. `ok` and
+       * `bad` are the tokens for a pass and a fail, and the note around it
+       * already switches between the insight and warning variants to say the
+       * same thing twice.
+       */}
       <ToolNote
         headingLevel={2}
         label="Investment decision"
@@ -191,7 +227,7 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
         <div className="mb-s-3 flex items-center gap-s-4">
           <span
             className={`text-display-sm font-bold tabular-nums ${
-              isAttractive ? 'text-tier-beginner-ink' : 'text-tier-case-ink'
+              isAttractive ? 'text-ok-ink' : 'text-bad-ink'
             }`}
           >
             {investmentDecision}
@@ -247,7 +283,7 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
                   ? 'Same Nominal Rate (5%), Different Inflation Expectations'
                   : 'Historical Real Interest Rates'}
             </h2>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={400}>
               <BarChart data={comparisonData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
                 <XAxis
@@ -282,6 +318,14 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
               onToggle={compare.toggle}
               onShowAll={compare.showAll}
             />
+            <TileReadout>
+              The three scenarios are fixed, and none of them is your setting
+              unless you have set it to one of them: your own r ={' '}
+              {realRate.toFixed(1)}% is the dashed line on the historical chart
+              below, and the bars here are the comparison cases the buttons
+              above name. Hiding a bar changes what is drawn, never what the
+              tile says.
+            </TileReadout>
 
             {/* Comparison Insights */}
             <div className="mt-s-6">
@@ -325,7 +369,7 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
         <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Historical Real Interest Rates (1950s–2023)
         </h2>
-        <ResponsiveContainer width="100%" height={320}>
+        <ResponsiveContainer width="100%" height={400}>
           <ComposedChart data={historicalContext} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
@@ -368,6 +412,68 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
               name="Real Rate"
               connectNulls
             />
+            {/*
+             * The reader's own real rate, as a MARK on the recorded path.
+             *
+             * The defect this replaces: the tile reads "Real Interest Rate (r)
+             * −10.0 %" and the only chart on the page is a 1950s–2023 average
+             * whose y axis runs about −5 to 15, so at i = −2 and π^e = 8 the
+             * number the tool leads with was not on the page anywhere. Widening
+             * the axis to −12 to make room for it was rejected: an axis that
+             * runs to −12 because a slider is at −10 is a claim about the
+             * record, and the record's lowest decade average is −1.25.
+             *
+             * Three things keep the mark from claiming that −10% is an
+             * observation:
+             *
+             *  1. DASHED, from `chartTheme.reference`, which the baseline test
+             *     holds distinct from `chartTheme.baseline` for exactly this
+             *     reason — a fact about the data is a solid line, an annotation
+             *     on the data is a dashed one, and they are still tellable apart
+             *     when a reader cannot separate the two greys.
+             *  2. The label says whose it is. "Your r" cannot be mistaken for a
+             *     decade, and `insideTopLeft` starts the text at the line's left
+             *     end — which for a horizontal line is the plot's left edge — so
+             *     it cannot leave the frame at the right at any width.
+             *  3. `ifOverflow: 'extendDomain'`, and this is the load-bearing
+             *     half. Recharts' default is `discard`, which DELETES the whole
+             *     line when its value is off the scale — no rule, no label,
+             *     nothing in the accessibility tree — so without this the mark
+             *     would exist at exactly the settings that need it most and
+             *     vanish above r = 15. The axis therefore stretches only as far
+             *     as the reader's own setting requires, and at the defaults
+             *     (r = 3, inside the recorded range) it does not move at all.
+             *     That is the trade being made: a reader who drives r to −10
+             *     sees a history drawn in the top two thirds of the frame, and
+             *     the caption below says why. The alternative — a mark that is
+             *     silently absent — is the defect.
+             */}
+            <ReferenceLine
+              y={realRate}
+              {...chartTheme.reference}
+              ifOverflow="extendDomain"
+              label={{
+                /* `r = X%` and not "Your r = X%": MEASURED, the longer label
+                 * is 88.5px against a plot of 71.8px at 320px/130%, and an
+                 * `inside*Left` anchor starts at the PLOT's left edge, so the
+                 * 19.5px it does not fit leaves the SVG — 13.7px of it, in
+                 * light and dark. `insideTopRight` would move the overhang to
+                 * the left, where it lands on the y tick labels instead of
+                 * off the page; there is no side that puts 88.5px inside 71.8.
+                 *
+                 * So the label is 59px and the CAPTION is what says whose it
+                 * is, which is the right way round anyway: the mark carries the
+                 * symbol and the number, and the prose says that the symbol is
+                 * the reader's own setting rather than a decade. `r` is the
+                 * tile's own symbol — "Real Interest Rate (r)" — so the two
+                 * readings of the mark are the same reading of the same
+                 * letter. */
+                value: `r = ${realRate.toFixed(1)}%`,
+                position: 'insideTopLeft',
+                fill: chartColor(0),
+                fontSize: 12,
+              }}
+            />
           </ComposedChart>
         </ResponsiveContainer>
         <ChartLegend
@@ -380,6 +486,21 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
           onToggle={history.toggle}
           onShowAll={history.showAll}
         />
+        <TileReadout>
+          The three lines are decade averages, and the dashed `r` line is not
+          one of them. It is the reader's OWN real rate — the same `r` the tile
+          at the top of this page reports, at {realRate.toFixed(1)}% — drawn
+          here so the reader can see how far it sits from the recorded path
+          rather than having to hold it in their head. It is a threshold and
+          not an observation: dashed, which is how every threshold on this
+          site is drawn and how `chartTheme.reference` differs from
+          `chartTheme.baseline`, and carrying no decade, no quarter and no
+          series name. The y axis stretches to reach it only when the setting is
+          outside the recorded range, which is why it can read below −1.25% and
+          why no decade's average does — the nearest recorded real rate is the
+          2010s at −1.25%, and at the defaults this r of{' '}
+          {realRate.toFixed(1)}% sits between the 2000s and the 1990s.
+        </TileReadout>
       </div>
 
       {/* Educational Insights Section */}

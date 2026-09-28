@@ -5,6 +5,7 @@ import {
   InfoBox,
   SliderControl,
   StatBox,
+  TileReadout,
   ToolControlBar,
   ToolHeader,
   ToolNote,
@@ -375,6 +376,17 @@ const [showAnnotations, setShowAnnotations] = useState(DEFAULTS.showAnnotations)
             tone={tradeOff.unemploymentReduction > 0 ? 'caution' : 'neutral'}
           />
         </div>
+          <TileReadout>
+                    Three of the four are on the chart: the current point is the marked dot at
+          u = {equilibrium.unemployment.toFixed(2)}% and inflation{' '}
+          {equilibrium.inflation.toFixed(2)}%, and the natural rate of{' '}
+          {naturalUnemployment.toFixed(2)}% is the vertical dashed line. The policy trade-off is a second dot
+                    the reader has to imagine — where inflation would be if unemployment
+                    were taken to the natural rate along this curve — so it is named here
+                    rather than marked, because there is no second inflation axis to put
+                    it on and a mark at a y it did not take would misread as a
+                    prediction.
+                  </TileReadout>
       </div>
 
       {/* Main Chart */}
@@ -399,6 +411,13 @@ const [showAnnotations, setShowAnnotations] = useState(DEFAULTS.showAnnotations)
                 offset: -5,
                 fill: chartTheme.axis.tick.fill,
               }}
+              /* FOLLOWS the natural rate on purpose, so the reader is always
+               * looking at a window centred on u_n with four points of slack
+               * either side, and never at a scale that has moved under a curve
+               * they were reading. The supply and demand shocks in this tool
+               * SHIFT the curves rather than moving them along the axis, so
+               * nothing plotted can leave the window; the only value on it that
+               * moves is u_n, which is what the window is built from. */
               domain={[Math.max(1, naturalUnemployment - 4), naturalUnemployment + 4]}
               {...chartTheme.axis}
               includeHidden
@@ -411,8 +430,27 @@ const [showAnnotations, setShowAnnotations] = useState(DEFAULTS.showAnnotations)
                 value: 'Inflation Rate (%)',
                 angle: -90,
                 position: 'insideLeft',
+                // 10, and the reason is a Recharts layout quirk rather than
+                // anything about this label. The y-axis LAYER is positioned at
+                // a negative x here — MEASURED 2.1px outside the SVG at 100%
+                // text and 3.9px at 130%, growing with the size because the
+                // axis width it reserved came up short — and a label at
+                // `insideLeft` with no offset is drawn at that layer's own
+                // origin, so it inherits the overflow. Every other rotated y
+                // label on the site carries this offset for the same reason.
+                // The gutter here is 52px wide and the tick labels sit at
+                // 41–47 within it, so 10px is clear of both.
+                offset: 10,
                 fill: chartTheme.axis.tick.fill,
               }}
+              /* Pinned, and the pin is the point. This tool's own scenarios
+               * include explicit DEFLATION shocks, so the reader is being asked
+               * to read a sign off this axis and the two ends of the range are
+               * what the argument is about: a 4pp disinflation against a 1pp
+               * demand shock is the difference between -2 and +1. A domain
+               * derived from the data would narrow to whichever shocks happen
+               * to be switched on, and the same shock would then look like a
+               * different size of shock because the scale moved. */
               domain={[-2, 12]}
               {...chartTheme.yAxis}
               includeHidden
@@ -478,26 +516,43 @@ const [showAnnotations, setShowAnnotations] = useState(DEFAULTS.showAnnotations)
               shape="circle"
             />
 
-            {/* Natural rate of unemployment line */}
+            {/* Natural rate of unemployment line.
+             *
+             * `insideTop`, not `top`: a vertical ReferenceLine labels
+             * against the LINE, so `top` anchors the text above the plot,
+             * where the 8px `chartTheme.margin` clips all but its last
+             * fraction of a pixel — MEASURED 0.5px at 1280px and 1px at
+             * 390px, i.e. the label is on the frame's edge rather than
+             * beside the line it names. */}
             <ReferenceLine
               x={naturalUnemployment}
               stroke={chartTheme.reference.stroke}
               strokeDasharray="3 3"
               label={{
                 value: `NAIRU (${naturalUnemployment.toFixed(1)}%)`,
-                position: 'top',
+                position: 'insideTop',
+                fontSize: 12,
                 fill: chartTheme.reference.fill,
               }}
             />
 
-            {/* Expected inflation line */}
+            {/* Expected inflation line.
+             *
+             * `insideRight`, not `right`, and the reason is measurable: a
+             * bare `right` starts the text at the line's right end and runs
+             * it rightwards, so on a horizontal line that end IS the plot's
+             * right edge and all but the first character is drawn outside
+             * the SVG — 166.9px of a 191.8px label at 1280px, MEASURED, in
+             * the accessibility tree and not on screen. `insideRight`
+             * anchors the text at that edge and lets it run left, so there
+             * is no position of the line that can clip it. */}
             <ReferenceLine
               y={expectedInflation}
               stroke={chartTheme.reference.stroke}
               strokeDasharray="3 3"
               label={{
                 value: `Expected Inflation (${expectedInflation.toFixed(1)}%)`,
-                position: 'right',
+                position: 'insideRight',
                 fill: chartTheme.reference.fill,
               }}
             />
@@ -594,7 +649,7 @@ PRE-1970s: STABLE TRADE-OFF
       />
 
       {/* Policy Implications */}
-      <ToolNote label="Policy" variant="warning" title="Policy Implications">
+      <ToolNote label="Policy" variant="warning" title="Policy Implications" headingLevel={2}>
         <ul>
           <li>
             <strong>Expectations Matter:</strong> Anchoring inflation expectations prevents the

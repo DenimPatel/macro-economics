@@ -47,14 +47,46 @@ interface NoteProps {
   /**
    * The heading level the title renders at, 3 by default.
    *
-   * A note is usually a child of a section the tool wrote as an `h2`, so `h3`
-   * is right seventeen times out of twenty. In the three tools whose FIRST
-   * heading is a note — `IsLmExplorer` and `ModernISCurve`, which use their
-   * notes as the section headings, and the two real-rate tools, which open
-   * with one before their first `h2` — an `h3` there made the tool's outline
-   * go `h1` straight to `h3`, which is a skipped level and a reader moving by
-   * heading hears the page title and then a peer of nothing. Those call sites
-   * pass 2.
+   * The level says what the note IS, and the default is for the commoner of
+   * the two: an ASIDE, a note that sits inside a section the tool already
+   * wrote as an `h2`. A note that is itself a section — a top-level block of
+   * the tool, standing in the same list as the `h2`s — passes 2.
+   *
+   * POSITION decides which, per call site, and this comment used to describe
+   * only one of the three positions that get it wrong. It said the tools whose
+   * FIRST heading is a note pass 2, which is true and covers a note that OPENS
+   * a page: rendered at 3 there, the outline goes `h1` straight to `h3`, a
+   * skipped level, and a reader moving by heading hears the page title and then
+   * a peer of nothing. It said nothing about a note in the MIDDLE or at the
+   * END, and thirteen tools had one of those at the default while reading
+   * correctly under that rule — so the rule was not wrong, it was a third of
+   * the rule, and it is the reason the other two thirds kept arriving.
+   *
+   * The three, with the shape each one makes in the outline:
+   *
+   *  - OPENS the page, before the first `h2`. `h1 → h3` skips a level.
+   *    `IsLmExplorer` uses its notes AS its section headings, and the two
+   *    real-rate tools open with one before their first `h2`.
+   *  - SITS BETWEEN two `h2` sections. A peer rendered at 3 is a child of the
+   *    section above it and a parent of nothing, so the outline says the
+   *    second section is under the first with one thing in between.
+   *    `LaborMarket`'s "Inflation Pressures" and `LaborMarketWsPs`'s "Policy
+   *    Scenarios" are both this.
+   *  - CLOSES the page, after the last `h2`. Reads as a subsection of whatever
+   *    section happens to be last, which is rarely what a closing "Key
+   *    insights" note is. This was the widest of the three: a note at the end
+   *    of thirteen of the twenty tools.
+   *
+   * A note is at the top level when its element is a direct child of the tool's
+   * own root — the same list the `h2` sections are in. A note inside a
+   * `control-panel`, a `visualization-container` or a grid of panels is an
+   * aside, and 3 is right there even where the enclosing `h2` has already
+   * closed, because a row of three notes under a section reads as three things
+   * that section is about.
+   *
+   * `tests/tools.test.tsx` holds this against the rendered DOM of all twenty
+   * tool pages rather than against the source, because the thing being asserted
+   * is where the note lands in the outline and the outline is what the DOM is.
    *
    * The level is the TAG. `.note__title` is a class, so the rendered size is
    * the same at either level and only the outline changes.
@@ -248,6 +280,7 @@ export const SliderControl: React.FC<SliderControlProps> = ({
     if (!Number.isFinite(min) || !Number.isFinite(max)) return
     return registerControl({
       key: paramKey ?? label,
+      label,
       min,
       max,
       get: () => current.current.value,
@@ -373,6 +406,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
     const hi = max ?? Number.POSITIVE_INFINITY
     return registerControl({
       key: paramKey ?? label,
+      label,
       min: lo === Number.NEGATIVE_INFINITY ? -Number.MAX_VALUE : lo,
       max: hi === Number.POSITIVE_INFINITY ? Number.MAX_VALUE : hi,
       get: () => current.current.value,
@@ -567,6 +601,41 @@ export const StatBox: React.FC<StatBoxProps> = ({ label, value, unit, change, to
     </div>
     {change && <div className="stat-tile-change">{change}</div>}
   </div>
+)
+
+/**
+ * The caption a tile row is never allowed to be without.
+ *
+ * A `StatBox` is a summary, and the defect this primitive exists for is a
+ * summary that is the ONLY place a number appears: the reader reads
+ * "Real Interest Rate (r) -10.0 %", looks for it, and the page's only chart
+ * is a 1950s-2023 average whose axis stops at -5. The two halves of the page
+ * do not disagree — one of them simply never shows the value, so there is
+ * nothing to disagree with.
+ *
+ * So the rule is three routes and this is the third:
+ *
+ *   1. a MARK or a SERIES on a chart — the only route that shows the reader
+ *      WHERE the number sits in the data;
+ *   2. the CONTROL — a tile that restates a value the reader can read off a
+ *      slider on the same page;
+ *   3. this CAPTION, naming the quantity, its value, and — where that is why
+ *      it is not on a chart — why no axis on the page carries it.
+ *
+ * `AGENTS.md` states the rule; `tests/tileReadout.test.tsx` holds it. The
+ * classes are the ones the tools' own captions already wore, so adopting this
+ * changes no pixels: the point is that a caption is now a named thing with a
+ * test, rather than a paragraph a tool happens to have.
+ *
+ * The other half of the rule lives at the `StatBox` above and is NOT
+ * expressible here: a tile must never print a value the model did not
+ * compute. Where the model has none — the WS/PS intersection outside
+ * `u <= 1`, a Gordon denominator at or below zero, a peg that never breaks —
+ * the tile prints `—` and the caption names the boundary that was crossed.
+ * A placeholder shaped exactly like a result is worse than no tile.
+ */
+export const TileReadout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <p className="mt-s-2 text-xs text-fg-subtle tabular-nums">{children}</p>
 )
 
 interface InfoBoxProps {

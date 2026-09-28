@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
+import {
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type RefObject,
+} from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { Github, Menu, X } from 'lucide-react'
 import Sidebar from './Sidebar'
@@ -7,6 +14,7 @@ import FocusModeExit from './FocusModeExit'
 import ReadingProgress from './ReadingProgress'
 import SettingsControl from '../components/SettingsPanel'
 import ErrorBoundary from '../components/ErrorBoundary'
+import { PageSkeleton } from '../components/ui'
 import { recordVisit } from '../learning/progress'
 import { LECTURES } from '../../../content/lectures'
 import { TOOLS } from '../store'
@@ -410,8 +418,33 @@ export default function Shell() {
           // is placed relative to it.
           className="min-w-0 flex-1 px-4 py-s-6 outline-none md:px-8 md:py-s-8"
         >
+          {/* The site's one route-level `Suspense`, and it sits HERE rather
+              than above this whole tree in `router.tsx` or `App.tsx`.
+              Everything the twelve routes pull in is a dynamic import
+              (`router.tsx`), so the first view of any route is a suspended
+              one, and a boundary has to be above them. Where it goes decides
+              what the reader loses while it waits:
+
+              above `<Shell />` — the header, the sidebar, the footer and the
+                skip link all unmount and come back. A route change is then a
+                full-page skeleton, and every effect in here re-runs, including
+                the scroll restoration that the reader would then be fighting.
+              here, around the `<Outlet />` — the frame stays. The header keeps
+                its section name, the sidebar keeps the current route marked,
+                and the footer stays put, and only the region that is about to
+                be replaced shows a skeleton. On a cold deep link this is also
+                strictly better than a blank document: the chrome paints on the
+                first frame and the page arrives underneath it.
+              inside `<ErrorBoundary>` — deliberate order. A module that
+                throws while resolving is a render throw, and the error
+                boundary has to be ABOVE the boundary that catches the suspend
+                to see it. Reversed, a broken page module takes down the whole
+                application instead of one card.
+          */}
           <ErrorBoundary>
-            <Outlet />
+            <Suspense fallback={<PageSkeleton />}>
+              <Outlet />
+            </Suspense>
           </ErrorBoundary>
         </main>
         <Footer />

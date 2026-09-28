@@ -57,7 +57,8 @@ $$k_{t+1} - k_t \approx s f(k_t) - (\delta + g_N) k_t$$
 ### Why Does Population Growth Reduce Capital Per Worker?
 
 **Mechanical Effect**: Suppose capital stock $K$ doesn't change, but population grows.
-- Denominator of $k = K/N$ is growing $\Rightarrow$ $k$ falls (becomes negative)
+- Denominator of $k = K/N$ is growing $\Rightarrow$ $k$ falls. It is a ratio, so it settles at
+  whatever capital the new residents bring with them, and it never goes negative — $K \ge 0$
 - **Population dilution**: Need investment just to maintain the same $k$ as population expands
 
 **Policy Implication**: Fast population growth requires more investment to maintain the same capital-labor ratio.
@@ -379,7 +380,7 @@ Capital stock must grow at same rate as output to maintain constant $\tilde{k}$.
 **Fighting the Solow Model**:
 - Policymakers concerned about slowdown (China especially)
 - But model predicts: Transitional growth must end
-- Once reach steady state, growth rate = $g_A + g_N$
+- Once reach steady state, total output grows at $g_A + g_N$ and output per worker at $g_A$ alone
 
 **Challenge**:
 - $g_A$: Must innovate (harder for catch-up countries)

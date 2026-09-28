@@ -15,6 +15,7 @@ import {
   InfoBox,
   SliderControl,
   StatBox,
+  TileReadout,
   ToolControlBar,
   ToolHeader,
   ToolNote,
@@ -23,6 +24,7 @@ import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chart
 import { useToolReset } from '../lib/toolReset'
 import { useHiddenSeries } from '../lib/chartSeries'
 import { ChartLegend } from '../components/ChartLegend'
+import { dataDomain } from '../lib/chartDomain'
 
 /** Each concept keeps one stable palette slot across every chart in this tool. */
 const TRADITIONAL_STROKE = chartColor(3)
@@ -36,6 +38,32 @@ const DECADE_1970S = chartColor(4)
 const DECADE_1980S = chartColor(1)
 const DECADE_2000S = chartColor(6)
 const DECADE_2020S = chartColor(2)
+
+/**
+ * Where the natural-rate marker is drawn, in percent.
+ *
+ * It is a named constant rather than a literal in the JSX because the axis
+ * domain is computed from it: a marker outside the domain is not clipped, it
+ * is deleted — Recharts' `ReferenceDot` returns `null` when the coordinate is
+ * out of range — so a second copy of the number is a second chance for the
+ * mark and the frame to disagree.
+ */
+const NATURAL_RATE_MARKER_Y = -2.5
+
+/** One sampled point on the unemployment axis, in percent and percent. */
+interface CurvePoint {
+  unemployment: number
+  traditional: number
+  expectations: number
+}
+
+/** A sampled point plus the two expectations-shifted curves the comparison
+ *  mode adds beside it. */
+interface ComparisonPoint extends CurvePoint {
+  lowExpectations: number
+  highExpectations: number
+}
+
 
 /**
  * One copy of this tool's starting values.
@@ -107,8 +135,8 @@ const [comparisonMode, setComparisonMode] = useState(DEFAULTS.comparisonMode)
   )
 
   // Generate curve data points
-  const generateCurveData = () => {
-    const data = []
+  const generateCurveData = (): CurvePoint[] => {
+    const data: CurvePoint[] = []
     for (let u = 0; u <= 10; u += 0.5) {
       // Traditional Phillips Curve: π = 5 - 1.5(u - u_n)
       // This mimics 1960s behavior with inflation bias
@@ -159,18 +187,61 @@ const [comparisonMode, setComparisonMode] = useState(DEFAULTS.comparisonMode)
   const inflationSurprise = impliedInflation - expectedInflation
 
   // Comparison mode data (low vs high expectations)
-  const comparisonData = comparisonMode
+  // EMPTY when the comparison is off, rather than `curveData`: the chart below
+  // still selects between the two, and an array that is empty when it carries
+  // no data is the one the domain can be computed from without a second
+  // `comparisonMode` test that could fall out of step with the series the
+  // chart actually draws.
+  const comparisonData: ComparisonPoint[] = comparisonMode
     ? curveData.map((d) => ({
         ...d,
         lowExpectations: expectedInflation - 2 - philipsCurveAlpha * (d.unemployment - naturalUnemployment),
         highExpectations: expectedInflation + 2 - philipsCurveAlpha * (d.unemployment - naturalUnemployment),
       }))
-    : curveData
+    : []
+
+  /**
+   * The inflation axis, computed from everything this chart marks.
+   *
+   * It was `domain={[-3, 10]}`, and the chart was outside it in BOTH
+   * directions at the defaults: the traditional curve is
+   * `5 - 1.5(u - 4)` sampled over u ∈ [0, 10], so it runs 11 at u = 0 and -4
+   * at u = 10 — 27.2px off the top of the plot box and 27.2px off the bottom
+   * of it, MEASURED at 1280px and 390px at both text scales. A 1970s
+   * historical point sits at 11.0 for the same reason. The current-position
+   * dot leaves the frame as soon as the reader moves a slider: at
+   * `Current Unemployment = 10` the tile reads -4.00%, and at
+   * π^e = -2, u_n = 7, α = 2, u = 0 it reads 11.00%, one point above a
+   * ceiling of 10.
+   *
+   * A curve that stops looks like a fact about the model, so the domain
+   * follows the data. Every value fed in is one the chart actually draws, and
+   * the two series the buttons can switch OFF are left out when they are off —
+   * a hidden series must not hold the axis open, which is the same reason
+   * `includeHidden` is on the axis and the reason this list is built from
+   * the same conditionals the series are drawn under.
+   *
+   * `includeZero` because zero is the question this chart asks: the sign of
+   * inflation is the finding, `chartTheme.baseline` is drawn there, and
+   * deflation is a different regime rather than a lower point on the same one.
+   */
+  const inflationDomain = dataDomain(
+    [
+      curveData.map((d) => d.expectations),
+      showTraditional ? curveData.map((d) => d.traditional) : [],
+      comparisonData.map((d) => d.lowExpectations),
+      comparisonData.map((d) => d.highExpectations),
+      ...(showHistorical ? historicalData.map((d) => d.inflation) : []),
+      impliedInflation,
+      NATURAL_RATE_MARKER_Y,
+    ],
+    { includeZero: true },
+  )
 
   return (
     <div className="tool-card">
       <ToolHeader
-        title="Phillips Curve Trade-Off"
+        title="Phillips Curve"
         description="Explore the relationship between unemployment and inflation. From the 1960s Phillips Curve to modern expectations-augmented models, understand why central bank credibility matters for inflation control."
         badge="intermediate"
       />
@@ -263,6 +334,17 @@ const [comparisonMode, setComparisonMode] = useState(DEFAULTS.comparisonMode)
           tone={Math.abs(inflationSurprise) > 0.5 ? 'accent' : undefined}
         />
       </div>
+        <TileReadout>
+                  Current Unemployment is the dot's x and Implied Inflation is its y,
+                  so the two are the same point read twice and both are on the chart;
+                  Expected Inflation is the line the dot is measured against. The
+                  Inflation Surprise is the vertical distance between the dot and that
+                  line — {(impliedInflation - expectedInflation >= 0 ? 'above' : 'below')}{' '}
+                  it by{' '}
+                  {Math.abs(impliedInflation - expectedInflation).toFixed(2)} points —
+                  and it is on no axis, because it is a distance rather than either
+                  quantity.
+                </TileReadout>
 
       <div className="mb-s-8">
         <InfoBox type="info">
@@ -297,9 +379,17 @@ const [comparisonMode, setComparisonMode] = useState(DEFAULTS.comparisonMode)
               label={{
                 value: 'Unemployment Rate (%)',
                 position: 'insideBottomRight',
-                offset: -10,
+                offset: -5,
                 fill: chartTheme.axis.tick.fill,
               }}
+              /* Pinned, and it is the one axis on this chart that is. The
+               * unemployment rate is a bounded quantity — the sliders run
+               * 0–10% and the historical decade points are all inside it — and
+               * it is the axis the two curves are compared ALONG, so a domain
+               * that moved with the y data would slide the plot box under a
+               * stationary curve for no gain. Everything the chart plots and
+               * reports on this axis is inside [0, 10], so there is nothing
+               * here for a derived domain to catch. */
               domain={[0, 10]}
               {...chartTheme.axis}
               includeHidden
@@ -312,7 +402,7 @@ const [comparisonMode, setComparisonMode] = useState(DEFAULTS.comparisonMode)
                 position: 'insideLeft',
                 fill: chartTheme.axis.tick.fill,
               }}
-              domain={[-3, 10]}
+              domain={inflationDomain}
               {...chartTheme.yAxis}
               includeHidden
             />
@@ -320,8 +410,8 @@ const [comparisonMode, setComparisonMode] = useState(DEFAULTS.comparisonMode)
              * Phillips curve the sign of inflation is the question the whole
              * tool asks — deflation against a positive rate is a different
              * regime, not a lower point on the same one — and the y axis
-             * spans -3 to 10, so a reader was finding zero by eye among
-             * identical gridlines. `chartTheme.baseline` is a solid
+             * spans it by construction now, so a reader was finding zero by
+             * eye among identical gridlines. `chartTheme.baseline` is a solid
              * `--border-strong` line where `chartTheme.reference` is a
              * dashed annotation: zero is a fact about the data, not a
              * threshold somebody chose. */}
@@ -407,7 +497,7 @@ const [comparisonMode, setComparisonMode] = useState(DEFAULTS.comparisonMode)
             {/* Natural rate vertical line */}
             <ReferenceDot
               x={naturalUnemployment}
-              y={-2.5}
+              y={NATURAL_RATE_MARKER_Y}
               r={3}
               fill={NATURAL_RATE_STROKE}
               stroke={NATURAL_RATE_STROKE}

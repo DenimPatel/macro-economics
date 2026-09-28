@@ -202,10 +202,10 @@ $$\Delta Y = 2.5 \times \$1 \text{ billion} = \$2.5 \text{ billion}$$
 
 **Mechanism** (for \$$\Delta G = 1 \text{ billion}$, $c_1 = 0.6$):
 
-1. **Round 1**: Government spends \$$1 \text{ billion}$ → Output \$$\uparrow 1 \text{ billion}$ → Income \$$\uparrow 1 \text{ billion}$.
-2. **Round 2**: Households receive \$$1 \text{ billion}$ extra income → Consume \$$c_1 \times 1 \text{ billion} = 0.6 \text{ billion}$ → Demand \$$\uparrow 0.6 \text{ billion}$ → Output \$$\uparrow 0.6 \text{ billion}$ → Income \$$\uparrow 0.6 \text{ billion}$.
-3. **Round 3**: Households receive \$$0.6 \text{ billion}$ extra income → Consume \$$c_1 \times 0.6 \text{ billion} = 0.36 \text{ billion}$ → Output \$$\uparrow 0.36 \text{ billion}$.
-4. **Continue**: \$$0.216 \text{ billion}$, \$$0.13 \text{ billion}$, ...
+1. **Round 1**: Government spends \$1 billion → Output \$$\uparrow 1 \text{ billion}$ → Income \$$\uparrow 1 \text{ billion}$.
+2. **Round 2**: Households receive \$1 billion extra income → Consume \$$c_1 \times 1 \text{ billion} = 0.6 \text{ billion}$ → Demand \$$\uparrow 0.6 \text{ billion}$ → Output \$$\uparrow 0.6 \text{ billion}$ → Income \$$\uparrow 0.6 \text{ billion}$.
+3. **Round 3**: Households receive \$0.6 billion extra income → Consume \$$c_1 \times 0.6 \text{ billion} = 0.36 \text{ billion}$ → Output \$$\uparrow 0.36 \text{ billion}$.
+4. **Continue**: \$0.216 billion, \$0.13 billion, ...
 
 **Total Effect** (geometric series):
 $$\Delta Y = \$1 \text{B} \times (1 + 0.6 + 0.36 + 0.216 + \ldots) = \$1 \text{B} \times \frac{1}{1 - 0.6} = \$2.5 \text{B}$$
@@ -260,24 +260,24 @@ $$\Delta Y = \frac{1}{0.5} \times \$1 \text{B} = \$2 \text{B}$$
 
 **Graphical Analysis** (Keynesian Cross):
 
-1. **Step A→B**: $ZZ$ curve shifts **up** by \$$1 \text{B}$ (parallel shift).
-    - Distance A→B = \$$1 \text{B}$ (initial increase in autonomous consumption).
+1. **Step A→B**: $ZZ$ curve shifts **up** by \$1 billion (parallel shift).
+    - Distance A→B = \$1 billion (initial increase in autonomous consumption).
 2. **Step B→C**: Output immediately adjusts to meet demand → Output \$$\uparrow 1 \text{B}$.
-    - Distance B→C = \$$1 \text{B}$ (vertical distance to 45° line).
+    - Distance B→C = \$1 billion (vertical distance to 45° line).
 3. **Step C→D**: Income \$$\uparrow 1 \text{B}$ → Consumption \$$\uparrow c_1 \times 1 \text{B} = 0.5 \text{B}$ (if $c_1 = 0.5$).
-    - Distance C→D = \$$0.5 \text{B}$ (movement along new $ZZ$ curve).
+    - Distance C→D = \$0.5 billion (movement along new $ZZ$ curve).
 4. **Step D→E**: Output adjusts again → Output \$$\uparrow 0.5 \text{B}$ → Income \$$\uparrow 0.5 \text{B}$.
-5. **Continue**: \$$0.25 \text{B}$, \$$0.125 \text{B}$, ... → Converge to new equilibrium at $Y' = Y +$ \$$2 \text{B}$.
+5. **Continue**: \$0.25 billion, \$0.125 billion, ... → Converge to new equilibrium at $Y' = Y +$ \$2 billion.
 
-**Key Takeaway**: A \$$1 \text{B}$ increase in autonomous spending leads to \$$2 \text{B}$ increase in output (if $c_1 = 0.5$). The multiplier amplifies the initial shock.
+**Key Takeaway**: A \$1 billion increase in autonomous spending leads to \$2 billion increase in output (if $c_1 = 0.5$). The multiplier amplifies the initial shock.
 
 ### Experiment 2: Expansionary Fiscal Policy (\$$\Delta G = +1 \text{ billion}$)
 
 **Mechanism**: Identical to increase in $c_0$.
-- $ZZ$ curve shifts up by \$$1 \text{B}$.
-- Multiplier effect: $\Delta Y = \frac{1}{1 - c_1} \times$ \$$1 \text{B}$.
+- $ZZ$ curve shifts up by \$1 billion.
+- Multiplier effect: $\Delta Y = \frac{1}{1 - c_1} \times$ \$1 billion.
 
-**Fiscal Multiplier**: A \$$1 increase in government spending raises output by more than \$$1.
+**Fiscal Multiplier**: A \$1 increase in government spending raises output by more than \$1.
 
 ### Experiment 3: Tax Increase (\$$\Delta T = +1 \text{ billion}$)
 
@@ -290,7 +290,7 @@ $$\Delta Z = -c_1 \Delta T = -c_1 \times \$1 \text{B}$$
 **Effect on Equilibrium Output**:
 $$\Delta Y = \frac{1}{1 - c_1} \times (-c_1 \Delta T) = -\frac{c_1}{1 - c_1} \times \$1 \text{B}$$
 
-**Example** ($c_1 = 0.6$, $\Delta T = +$ \$$1 \text{B}$):
+**Example** ($c_1 = 0.6$, $\Delta T = +$ \$1 billion):
 $$\Delta Y = -\frac{0.6}{0.4} \times \$1 \text{B} = -\$1.5 \text{B}$$
 
 **Key Insight**: Tax increases are **contractionary** (reduce output), but less contractionary per dollar than government spending is expansionary.

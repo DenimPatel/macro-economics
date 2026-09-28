@@ -21,9 +21,15 @@ export default function ToolPage() {
   const info = TOOLS[toolId]
   useDocumentTitle(info?.title ?? 'Tool', info?.description)
   const setScenario = useAppStore((s) => s.setScenario)
-  const setShowDataOverlay = useAppStore((s) => s.setShowDataOverlay)
-  const showDataOverlay = useAppStore((s) => s.showDataOverlay)
-  const [copy, setCopy] = useState<'idle' | 'copied' | 'failed'>('idle')
+  /*
+   * `failed` and `unavailable` are two failures, not one, because the message
+   * under the button is a claim about where the link is and the two cases put
+   * it in different places. `failed` means the clipboard refused and the link
+   * is in the address bar; `unavailable` means both routes failed and there is
+   * nothing on the page to copy, which is the only state in which this
+   * component can say so honestly.
+   */
+  const [copy, setCopy] = useState<'idle' | 'copied' | 'failed' | 'unavailable'>('idle')
   const [params, setParams] = useState<ScenarioParams>({})
   // The tool's module has mounted, so an empty registry now means a tool
   // without settings rather than a chunk that has not arrived. Every one of
@@ -76,13 +82,49 @@ export default function ToolPage() {
     // control eventually claims it, once. A panel that mounts a beat later
     // still gets its value, and a control that remounts is not re-driven
     // because its key has already been spent.
+    //
+    // And the callback runs once directly, because SUBSCRIBING IS NOT THE SAME
+    // AS BEING CURRENT. `subscribeControls` does not invoke a listener it has
+    // just been given, and React flushes child effects before parent ones, so
+    // on a warm chunk every control has already registered — and notified,
+    // into an empty listener set — before this effect subscribes. Nothing
+    // notifies afterwards, so on every second visit the reader's tool opened at
+    // its defaults and the URL's promise was broken. Reachable in normal use:
+    // follow a shared link, navigate away, come back; click a lecture's
+    // mini-tool then "Open full tool", which renders the same already-loaded
+    // module; or use the browser's back button onto a `?s=` URL.
+    //
+    // `snapshotControls` and `registeredControls` are both the wrong read here
+    // and neither is called: applying a payload needs no inventory, because
+    // `applyScenarioParams` resolves each key against the registry itself, and
+    // the values being applied are the link's, not the tool's. What was missing
+    // was the TIMING, and a second read of the registry would not supply it.
     const spent = new Set<string>()
-    return subscribeControls(() => {
-      const incoming = scenarioFromSearch(window.location.search)
+    // Read ONCE, here, and not inside the callback. The share control writes
+    // `?s=` into this same search string when the clipboard refuses, so a
+    // callback that re-read the search would read the page's OWN write and
+    // hand the shared values back to the controls — over whatever the reader
+    // has moved since. It would read as a slider that springs back the moment
+    // any panel is switched, which is the reader's edit being discarded by a
+    // control that has already reported success.
+    //
+    // The subscription's job is late controls, not fresh links: a payload
+    // belonging to a control that has not registered yet. One payload, held
+    // for the life of the effect, is exactly that.
+    const incoming = scenarioFromSearch(window.location.search)
+    const applyIncoming = () => {
       // A link for another tool, or no link at all, is not an error: the
       // reader simply opened the tool, and the tool is what they get.
       if (incoming?.toolId === toolId) applyScenarioParams(incoming.params, spent)
-    })
+    }
+    // The read and the subscription share one `spent` set, and that is what
+    // makes running the callback twice safe rather than merely survivable: a
+    // key the read spent is one the notifications will not spend again, so no
+    // control is driven twice, and a key the read could not spend — because
+    // nothing had claimed it yet — is still open for the control that mounts
+    // later. Both halves of the same guarantee, in one set.
+    applyIncoming()
+    return subscribeControls(applyIncoming)
   }, [toolId])
 
   // The registry is scoped to one mounted tool, so leaving the page must not
@@ -96,12 +138,58 @@ export default function ToolPage() {
     const current = snapshotControls()
     if (Object.keys(current).length === 0) return
     setScenario(toolId, current)
-    try {
-      await navigator.clipboard.writeText(scenarioUrl(toolId, current))
-      setCopy('copied')
-    } catch {
-      setCopy('failed')
+    /*
+     * Built inside the guarded half, and that is not tidiness. The share key
+     * is a control's visible LABEL, so building the URL runs the whole payload
+     * through an encoder, and an encoder that refuses one of the labels takes
+     * the whole click down with it. `encodeScenario` no longer throws on the
+     * Greek and subscript letters half these tools are named in, but the
+     * lesson stands: a failure to BUILD the link is the same situation as a
+     * failure to copy it, and the reader gets the same honest answer rather
+     * than an unhandled rejection and no status text at all.
+     */
+    const url = (() => {
+      try {
+        return scenarioUrl(toolId, current)
+      } catch {
+        return null
+      }
+    })()
+    if (url) {
+      try {
+        await navigator.clipboard.writeText(url)
+        setCopy('copied')
+        return
+      } catch {
+        // Fall through: the clipboard is the route that just failed, and the
+        // status line under the button has to be true in the state that
+        // failure produces.
+        try {
+          /*
+           * The instruction this used to print — "the link is in the address
+           * bar — copy it from there" — was FALSE, because nothing put it
+           * there. It is true from here, and it is true in the one state where
+           * the reader has no other way to get the link.
+           *
+           * `replaceState`, not an assignment, for the back button: an
+           * assignment would add an entry, and a reader who pressed Back after
+           * a failed copy would step to the same page with a different query
+           * string rather than leave it. It also leaves the route untouched —
+           * the path is the one the reader is already on, only the query
+           * changes — so React Router, which owns the path, never hears about
+           * it.
+           */
+          window.history.replaceState(window.history.state, '', url)
+          setCopy('failed')
+          return
+        } catch {
+          // A sandboxed document can refuse a same-document navigation. Not
+          // hypothetical, and not worth papering over with a message that
+          // claims an address bar this call never wrote to.
+        }
+      }
     }
+    setCopy('unavailable')
   }, [toolId, setScenario])
 
   if (!info) {
@@ -139,24 +227,25 @@ export default function ToolPage() {
         <div className="mb-s-4 flex flex-wrap items-center gap-s-2">
           <Link
             to="/tools"
-            className="hit-44 tap-clear rounded-pill border border-border bg-surface px-3 py-1.5 text-xs text-fg-muted no-underline transition-colors hover:border-border-strong hover:text-fg active:border-fg-subtle"
+            className="hit-44 tap-clear rounded-pill border border-border bg-surface px-3 py-1.5 text-xs text-fg-muted no-underline transition-colors hover:border-border-strong hover:text-fg active:text-fg-subtle"
           >
             All tools
           </Link>
-          {showDataOverlay !== undefined && (
-            <label className="inline-flex cursor-pointer items-center gap-1.5 text-xs text-fg-muted">
-              <input
-                type="checkbox"
-                checked={showDataOverlay}
-                onChange={(e) => setShowDataOverlay(e.target.checked)}
-                className="h-3.5 w-3.5 cursor-pointer accent-accent"
-              />
-              Show real-data overlay where available
-            </label>
-          )}
         </div>
         {/* The tool's own ToolHeader renders the page <h1>; repeating the title
-            and description here just showed them twice in a row. */}
+            and description here just showed them twice in a row.
+
+            A "Show real-data overlay where available" checkbox used to sit beside
+            that link, and it was the same defect as the per-tool "Hide Data"
+            button it was meant to govern: it wrote `showDataOverlay` into the
+            store and nothing in the product read that field, so it was a
+            control over a feature that does not exist. Every series in these
+            tools is the model; there is no measured series anywhere to overlay
+            on it. The `showDataOverlay !== undefined` guard around it was also
+            vacuous — the field is typed `boolean`, so the condition was
+            always true. Both are gone rather than disabled: a checkbox that
+            says "where available" and is available nowhere is worse than no
+            checkbox, because it is a promise. */}
       </header>
 
       {/*
@@ -244,9 +333,18 @@ export default function ToolPage() {
               </>
             ) : copy === 'failed' ? (
               <>
-                The clipboard was not available. The link is in the address bar — copy it from there.
+                The clipboard was not available, so the link has been put in your address bar
+                instead — copy it from there. It carries this tool and the {controlCount}{' '}
+                {controlCount === 1 ? 'setting' : 'settings'} on screen, and opens with them
+                restored.
               </>
-              ) : (
+            ) : copy === 'unavailable' ? (
+              <>
+                The clipboard was not available and this page could not put the link in the
+                address bar either, so there is nothing here to copy. The button is still
+                enabled: press it again once this page has focus.
+              </>
+            ) : (
                 <>
                   A shared link reopens this tool with the same {controlCount}{' '}
                   {controlCount === 1 ? 'setting' : 'settings'} you can see on screen.

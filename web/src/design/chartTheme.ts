@@ -150,7 +150,41 @@ function axisProps() {
   }
 }
 
-
+/**
+ * The axis LABEL's size, which is deliberately NOT in `axisProps()`.
+ *
+ * Every axis in the twenty tools writes its own
+ * `label={{ value, position, offset, fill }}` and then spreads
+ * `chartTheme.axis` or `chartTheme.yAxis`, in that order, so a `label` key on
+ * the shared object would be clobbered by the tool's own label on every one
+ * of the 41 axes. Putting the number in the object anyway would therefore
+ * have looked correct and done nothing; putting it in each tool's label
+ * object would be the same number written 41 times, and the next chart added
+ * would be the one that forgets it.
+ *
+ * So it is one stylesheet rule instead —
+ * `.recharts-cartesian-axis .recharts-label { font-size: var(--chart-axis-label-size) }`
+ * in `index.css`, with the token beside `--chart-tick-size` — which reaches
+ * every axis on the site including the ones in `pages/DataExplorer.tsx`, and
+ * which the reader's text scale reaches for the same reason the tick's does.
+ *
+ * The reason this is load-bearing rather than cosmetic: a rotated y label is
+ * anchored at the axis's vertical middle and grows UPWARD from that anchor,
+ * so its length is measured against HALF the plot box, and one longer than
+ * half the plot is clipped however tall the plot is. MEASURED on the
+ * production build at 1280px and 390px, textScale 1.0 and 1.3, over every
+ * panel of every tool, before the token existed: 19 of the 25 distinct axis
+ * labels were clipped at some width and scale, 12 of them rotated ones over
+ * that half-plot bound, the worst by 152.5px. At 16px the longest ran 44% to
+ * 63% over the bound; at the token's size the same strings run 24% to 44%
+ * over it, and the three that are still over it are shortened in the tool
+ * that owns them.
+ *
+ * There is deliberately no `AXIS_LABEL_SIZE_TOKEN` export here. A TS constant
+ * holding the same string as the custom property would be a third place to
+ * keep in step with the other two, and the test asserts against `index.css`
+ * directly because that is where the value is.
+ */
 export const chartTheme = {
   /* The categorical series, as the tools ask for them. Index 0 is the
    * series a reader is meant to be looking at; the seven are one ordinal

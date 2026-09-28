@@ -399,9 +399,11 @@
    *                     well — one plot geometry across the site, so
    *                     that a rate of 4 on this page and a rate of 4
    *                     in a tool are the same number of pixels up
-   *                     the screen. `--plot-h-tall` below is the
-   *                     frame the explorer used to take, kept declared
-   *                     and read by nothing.
+   *                     the screen. It is the only one: a `--plot-h-tall`
+   *                     used to sit beside it, declared for the explorer
+   *                     and read by nothing, and
+   *                     `tests/density.test.ts` now holds that this
+   *                     value is the site's only plot height.
    *
    *   min hit area      A 44px tap target must not become 37px at
    *                     compact. The header's buttons and the settings
@@ -438,18 +440,6 @@
    *                     width and the print block is written in points.
    * ---------------------------------------------------------------- */
   --plot-h: 400px;
-  /* Still declared, still off the scale, and read by nothing. The data
-   * explorer was the last user of a "tall" frame and the reasoning that
-   * justified it did not survive a real chart with a legend on it.
-   *
-   * The site has TWO plot geometries, both deliberate and both guarded by
-   * `tests/density.test.ts`: the twenty-odd tool charts draw into
-   * `h-[300px]` frames, which `DataExplorer` is the only page not to use,
-   * because its second y-axis and its legend need the extra 100px and want
-   * to share a pixel scale with the tools' primary axis. This third value is
-   * a fourth candidate nobody uses, kept only so the next pass cannot
-   * re-derive 420px by accident. */
-  --plot-h-tall: 420px;
 
   /* ---------------------------------------------------------------- *
    * Radii
@@ -490,6 +480,35 @@
   --chart-tick-size: max(11px, 0.6875rem);
   --chart-legend-size: max(12px, 0.75rem);
   --chart-tooltip-size: max(12px, 0.75rem);
+
+  /* The axis LABEL, which is the fourth number here and was the one that
+   * never got one. Every axis label in the twenty tools writes its own
+   * `label={{ value, position, fill }}` and none of them wrote a `fontSize`,
+   * so each one inherited the browser's 16px — larger than the 11px tick
+   * labels it belongs to, and the only text on a chart that ignored
+   * `--pref-text-scale` in both directions at once.
+   *
+   * It matters because a label's LENGTH is what decides whether it fits, and
+   * on a rotated y axis the length runs along the plot's own vertical axis:
+   * the label is anchored at the axis's vertical middle and grows UPWARD from
+   * there, so a label longer than half the plot is clipped at the top however
+   * tall the plot is. Half of the 354px plot box is 177px, and at this size
+   * that is about twenty-five characters. MEASURED in Chromium on the
+   * production build at 1280px and 390px, textScale 1.0 and 1.3, before this
+   * token existed: eight axis labels were clipped, the worst by 126px
+   * (`Exchange Rate (units foreign/$)` at 130%), and at 16px they ran 44% to
+   * 63% over the half-plot bound. At this size the same strings run 24% to
+   * 44% over it, and the four that are still over it are shortened in the
+   * tool that owns them.
+   *
+   * It is the same token as the ticks on purpose. A label at a different size
+   * from the numbers it names reads as a different kind of object, and a
+   * label that does not scale with the reader's text preference would be the
+   * one chart type on the site that ignores a setting the other three honour.
+   * The rule that applies it is `.recharts-cartesian-axis .recharts-label`
+   * below, and the reason it is a stylesheet rule rather than a prop is
+   * recorded there. */
+  --chart-axis-label-size: max(11px, 0.6875rem);
 
   /* The plot area is a well, and the well is the canvas colour.
      A `surface-2` fill was measured and rejected: `surface-2` is
@@ -1296,15 +1315,15 @@ a:hover {
 /* The data explorer's plot frame. Same 400px as every tool, and the reason
  * is a claim about the site rather than about this page.
  *
- * `--plot-h-tall` existed for one chart: this one, on the argument that a
- * second y-axis and a legend need more room. It does not. Recharts draws the
- * legend absolutely inside the plot box and reserves no height for it, so
- * adding 20px made the axis *shorter* while pushing the x tick labels down
- * over the plot, and 400px puts this chart's right-hand rate axis on exactly
- * the same pixel scale as every tool's left-hand one. The two-argument
- * position — as close as possible — is what makes a number mean the same
- * height everywhere, and one chart being 5% out is enough to make the eye
- * read a difference that is not there. */
+ * A taller frame for this chart was tried, on the argument that a second
+ * y-axis and a legend need the room. They do not. Recharts draws the legend
+ * absolutely inside the plot box and reserves no height for it, so the extra
+ * 20px made the axis *shorter* while pushing the x tick labels down over the
+ * plot, and 400px puts this chart's right-hand rate axis on exactly the same
+ * pixel scale as every tool's left-hand one. The two-argument position — as
+ * close as possible — is what makes a number mean the same height everywhere,
+ * and one chart being 5% out is enough to make the eye read a difference that
+ * is not there. That is why there is no second plot height to declare. */
 .plot-frame {
   width: 100%;
   height: var(--plot-h);
@@ -1469,6 +1488,34 @@ html[data-chart-grid='off'] .recharts-cartesian-axis-line {
 
 .chart-legend-item.is-inactive .chart-legend-swatch {
   background: var(--c-fg-subtle);
+}
+
+/* The axis label, and the one chart-chrome size that is applied by a rule
+ * rather than by a prop.
+ *
+ * The obvious place for it is `chartTheme.axisProps()` in `design/chartTheme.ts`,
+ * which already carries the tick's `fontSize`, and it cannot go there: a
+ * `label` key in the shared object would be overwritten by the tool's own
+ * `label` prop on all 41 axes, because every one of them writes the label
+ * BEFORE the spread. The alternative — a `fontSize` on each of those 41
+ * label objects — is the same number decided 41 times, and the 41st chart
+ * added would be the one that forgets it. One rule reaches all of them, and
+ * it is the same shape as `.chart-tooltip` above: a Recharts-emitted class
+ * plus one of the `--chart-*` sizes.
+ *
+ * The selector is scoped to the axis on purpose. Recharts puts the SAME
+ * `recharts-label` class on a `ReferenceLine` label, and the reference-line
+ * labels in these tools carry an explicit `fontSize: 12` as a presentation
+ * attribute; a CSS declaration outranks a presentation attribute, so an
+ * unscoped `.recharts-label` rule would silently restyle every dashed
+ * threshold label on the site. A reference line's label lives inside
+ * `g.recharts-reference-line` and an axis label inside
+ * `g.recharts-cartesian-axis`, so the axis is nameable on its own.
+ *
+ * `font-size` in CSS, never a bare px: `preferences.test.ts` holds that, and
+ * the value is a `max()` of px and rem so the reader's text scale reaches it. */
+.recharts-cartesian-axis .recharts-label {
+  font-size: var(--chart-axis-label-size);
 }
 
 /* The tooltip: the only way to read an exact value off a curve, so it

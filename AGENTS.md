@@ -9,8 +9,16 @@ Conventions for AI agents and contributors working in this repository.
 - `content/lectures.ts` is the single place that maps a lecture to its tier,
   video URL, tools, concepts, mini-tools, and quiz. Update it when adding a
   lecture or tool.
-- `web/src/lib/calculations.ts` holds economic formulas. Tools and tests import
-  from there; don't re-derive formulas inline.
+- `web/src/lib/calculations.ts` holds a formula **only when two places compute
+  it and the two have to keep agreeing** — the bond present value
+  (`AssetPricing`, `CrisisSvb`), the Solow steady state (`SolowSimulator`), the
+  multiplier round table (`MultiplicerSimulator`) and `formatNumber`. Every
+  other model belongs to the tool that owns it, written next to the sliders that
+  drive it with a comment naming the equation. Don't move a formula in on the
+  strength of it being one: that file once held thirteen exports, eleven with no
+  caller anywhere, while the tools re-derived everything inline and a green test
+  on a dead export read as coverage. `tests/calculations.test.ts` asserts that
+  every export has a product caller, so a fourteenth goes red.
 - Colour is defined once, in `web/src/index.css`, as `--c-*-ch` channel triples
   plus an azure accent, and exposed to TS through `web/src/design/tokens.ts`.
   `web/src/design/chartTheme.ts` owns chart chrome. There is no third place.
@@ -98,7 +106,7 @@ Never hard-code one of these values in TSX.
   in `tailwind.config.ts` (`p-s-4`, `gap-s-2`, `space-y-s-3`) is the
   density-bound half; plain `p-4` stays literal. A class you can see is
   density-bound; a class you cannot is a size. In `web/src/tools` every spacing
-  utility is on the scale and `tools.test.ts` holds that. Four step VALUES are
+  utility is on the scale and `tools.test.tsx` holds that. Four step VALUES are
   deliberately left literal — `py-2.5`, `my-0.5`, `mt-1.5`, `space-y-1.5` —
   because they are off the 12-step grid, and the test holds that list too, so
   a fifth literal fails rather than passing quietly.
@@ -139,12 +147,87 @@ Never hard-code one of these values in TSX.
   `ResponsiveContainer height={300}` prop or an `h-[300px]` wrapper, never a
   `var()` and never an `s-*` utility: a plot is not a density step, and
   `--plot-h` in `index.css` is for the one page-level frame, not for the
-  twenty tools. `tools.test.ts` and `density.test.ts` between them reject
+  twenty tools. It is also the site's ONLY plot height — a second declared
+  one makes a chart look like it belongs somewhere, and
+  `density.test.ts` holds that there is none. `tools.test.tsx` and
+  `density.test.ts` between them reject
   `h-s-`, `h-[s-…]`, a `var()` inside `h-[…]`, and an `s-` inside a `height`
   prop. The reason to care is comparison, not consistency: a shorter plot
   RE-SCALES the y axis, so the same curve sits at a different height and a
   reader comparing two tools by eye is comparing two pictures of different
   things.
+
+  The one exemption is an axis's `height`, which is not a plot height at all:
+  on a cartesian axis it is the band its tick LABELS are given, and a
+  vertically rotated category label spends its length downwards and its font
+  size across, so the band has to be a line of text at the reader's largest
+  size. `RealInterestRateCalculator` and `ModernISCurve` have one each.
+  `tools.test.tsx` states this as a property rather than as a count: **every
+  `height={N}` written in a tool is either the plot height on a
+  `<ResponsiveContainer>` or a tick-label band inside a cartesian axis
+  element** — classified by where it was written, so a `height={N}` on a
+  wrapper div is caught even when the same number is legitimately on a
+  container or an axis elsewhere in the file.
+
+### A tile is a summary, not the only place a number appears
+
+A `StatBox` row is the first thing a reader sees on a tool and the last thing
+they should have to trust. It is a summary, and the defect this section exists
+for is a summary that is the **only** place a number appears: the reader reads
+`Real Interest Rate (r) −10.0 %`, looks for it, and the page's only chart is a
+1950s–2023 average whose axis stops at −5. The two halves of the page do not
+disagree — one of them simply never shows the value, so there is nothing to
+disagree with.
+
+So every tile's quantity is findable on the page by one of **three routes**,
+and the tool's own file says which:
+
+1. **A mark or a series.** A chart on the page plots the quantity, or draws a
+   labelled reference mark for it. This is the only route that shows the reader
+   *where* the number sits in the data, so prefer it.
+2. **The control.** The tile restates a value the reader can read off a slider
+   on the same page, and the slider prints its own value under its track. A
+   number and the thing that produced it, side by side.
+3. **A caption.** `<TileReadout>` from `components/ToolComponents.tsx`, the one
+   paragraph style for this, under the nearest chart. It names the quantity,
+   prints its value, and — where that is why it is not on a chart — says why
+   no axis on the page carries it.
+
+Route 3 is where a quantity in a **different unit** from both axes belongs, and
+only there: a headcount beside a rate-and-real-wage diagram, a rate beside two
+per-worker level charts, a weighted index that is none of its components. A mark
+at the wrong unit asserts a comparison the chart cannot support, so writing
+`Output 205.0` under a chart of decade averages and hoping the reader infers
+something is not an option. `<TileReadout>` must interpolate a value, not only
+name a quantity — a caption that names something without printing its number is
+the shape of the defect, and `tests/tileReadout.test.tsx` holds it.
+
+**Two things a tile must never do.**
+
+- **Print a value the model did not compute.** Where the model has none — the
+  WS/PS intersection outside `u ≤ 1`, a Gordon denominator at or below zero, a
+  peg that never breaks, a report the server has not filed — the tile prints
+  `—` and the caption says **which boundary was crossed**, because a reader who
+  is told the reason can fix it. `SpeculativeAttack`, `AssetPricing` and
+  `LaborMarket` are the precedent. A placeholder shaped exactly like a result is
+  worse than no tile: `findEquilibrium` returns `unemployment: 0.5` when its
+  intersection is out of range, and four readouts used to print that as
+  `50.00 %`, a 50.0m headcount, a diagnosis and a caption without a mark
+  anywhere on the diagram. **Decide whether the model produced a value once,
+  read that flag everywhere**, and never read the fallback blindly.
+- **Share a *word* with a chart's series while reporting a different quantity.**
+  `Crisis2008` had tiles reading `Output`, `Money Demand` and `Money Supply`
+  beside a chart whose own `Output` series was the recorded index: the label
+  matched and the number did not, and nothing on the page said the two were
+  unrelated. A label is not a location. This is also why the test does *not*
+  try to work out which tiles are unplotted by matching label words against
+  `dataKey`s — a scan built that way reports all four of those tiles as
+  located, and it is wrong.
+
+`tests/tileReadout.test.tsx` holds both halves: every tool with a tile row has
+a `<TileReadout>` that carries a number and is the primitive rather than a
+hand-written paragraph, and `LaborMarket` is rendered at both the defaults and
+at the no-intersection settings to assert a number in one and `—` in the other.
 
 ### Tools
 
@@ -155,11 +238,24 @@ Never hard-code one of these values in TSX.
   in the file. A scenario button that overwrites the sliders belongs in
   `DEFAULTS` too, or Reset is inert while it is selected.
 - `<ToolControlBar onReset={reset} dirty={dirty} />` under the header.
+- A tool's top-level sections are `h2`. A `ToolNote` title is `h3` when the
+  note is an ASIDE — inside a section the tool already wrote as an `h2` — and
+  `h2` when the note is a section itself, which is a top-level block of the
+  tool: an element that is a direct child of the tool's own root, standing in
+  the same list as the sections. All three of those go wrong the same way, and
+  the outline is how they show: a note that OPENS a page before the first `h2`
+  makes the outline go `h1` straight to `h3`; a note BETWEEN two `h2` sections
+  becomes a child of the first and a parent of nothing; a note that CLOSES a
+  page after the last `h2` becomes a child of whichever section is last, which
+  is rarely what a closing "Key insights" note is. Thirteen of the twenty
+  tools carried one of the last two. `toolHeadings.test.tsx` holds this
+  against the rendered pages.
 - `ToolHeader` is the page `<h1>` on `/tool/:id` and takes its level from
   `HeadingLevel` elsewhere, so a case study or a lecture embedding a tool does
-  not get two. Do not hard-code an `h1` in a tool.
-- A tool's top-level sections are `h2`; `ToolNote` titles are `h3`. An outline
-  that goes `h1` straight to `h3` is a defect, not a style.
+  not get two. Do not hard-code an `h1` in a tool. Its `title` is the name the
+  `TOOLS` registry already carries: the index, the breadcrumb, the document
+  title and every lecture link all say that name, and a tool that answers with
+  a second one puts two different names on one page.
 - Call `useChartTextScaleSignal()` (see Charts).
 
 ### Shell and pages

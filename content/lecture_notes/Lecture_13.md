@@ -173,14 +173,18 @@ For a single country over time (e.g., 40-70 years):
 
 | Country | GDP per Capita (1950) | GDP per Capita (2017) | Average Annual Growth | Ratio (2017/1950) |
 |---------|------------------------|------------------------|------------------------|-------------------|
-| **Japan** | $6,800 | $37,200 | 4.1% | 5.5x |
+| **Japan** | $6,800 | $37,200 | 2.6% | 5.5x |
 | **France** | $7,000 | $39,300 | 2.6% | 5.6x |
 | **UK** | $9,000 | $38,500 | 2.1% | 4.3x |
 | **US** | $15,200 | $58,000 | 2.0% | 3.8x |
 
 **Key Pattern**: **Richer countries tend to grow slower**.
 - The richest country (US in 1950) had the lowest growth rate.
-- The poorest country (Japan in 1950) had the highest growth rate.
+- The poorest countries in 1950 (Japan and France) grew fastest.
+- Each row is one number: the 67 years of growth are the ratio, not the rate. A 5.5x gain over
+  67 years is $\frac{1}{67}(5.5)^{1/67} - 1 \approx 2.6\%$ a year, which is what the rate column
+  reports — and it is why Japan's postwar 1950s-70s figure of 8-10% cannot be used for a
+  1950-2017 average.
 
 ### Pattern 2: Convergence Among Developed Countries
 

@@ -2,14 +2,15 @@ import { useState } from 'react'
 import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart } from 'recharts'
 import { ChartBar, ChartLine } from '../components/ChartPrimitives'
 import {
-  Button,
   SliderControl,
   StatBox,
+  TileReadout,
   ToolControlBar,
   ToolHeader,
   ToolNote,
 } from '../components/ToolComponents'
 import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chartTheme'
+import { calculateBondPrice } from '../lib/calculations'
 import { useToolReset } from '../lib/toolReset'
 
 /** Series keep a fixed economic identity across every chart in this tool. */
@@ -19,7 +20,6 @@ const VALUATION_BAR_FILL = chartColor(3)
 
 /** Layout shared by the chart and readout blocks. */
 const CONTROL_GRID = 'grid gap-s-6 sm:grid-cols-2'
-const CHART_BOX = 'h-[300px]'
 const SPLIT = 'grid gap-s-6 lg:grid-cols-2'
 const STAT_GRID = 'mb-s-6 grid grid-cols-2 gap-s-3'
 
@@ -30,7 +30,8 @@ interface BondDataPoint {
 
 interface EquityDataPoint {
   rate: number
-  price: number
+  /** `null` where the Gordon model is undefined, which Recharts draws as a gap. */
+  price: number | null
 }
 
 /**
@@ -47,7 +48,6 @@ const DEFAULTS = {
   discountRate: 5,
   dividend: 2,
   growthRate: 3,
-  showDataOverlay: true,
 }
 
 export default function AssetPricing() {
@@ -61,7 +61,6 @@ const [years, setYears] = useState(DEFAULTS.years)
 const [discountRate, setDiscountRate] = useState(DEFAULTS.discountRate)
 const [dividend, setDividend] = useState(DEFAULTS.dividend)
 const [growthRate, setGrowthRate] = useState(DEFAULTS.growthRate)
-const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
 
   const { reset, dirty } = useToolReset(
     {
@@ -70,7 +69,6 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
     discountRate: discountRate,
     dividend: dividend,
     growthRate: growthRate,
-    showDataOverlay: showDataOverlay,
     },
     {
       setCoupon,
@@ -78,7 +76,6 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
       setDiscountRate,
       setDividend,
       setGrowthRate,
-      setShowDataOverlay,
     },
     {
       coupon: DEFAULTS.coupon,
@@ -86,26 +83,30 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
       discountRate: DEFAULTS.discountRate,
       dividend: DEFAULTS.dividend,
       growthRate: DEFAULTS.growthRate,
-      showDataOverlay: DEFAULTS.showDataOverlay,
     },
   )
 
-  // Calculate bond price using present value formula
-  const calculateBondPrice = (coupon: number, years: number, rate: number) => {
-    // PV = C * [1 - (1+r)^(-n)] / r + FV / (1+r)^n
-    const annualPayment = coupon
-    const faceValue = 100
-    const presentValue = (annualPayment * (1 - Math.pow(1 + rate/100, -years)) / (rate/100)) + 
-                         (faceValue / Math.pow(1 + rate/100, years))
-    return presentValue
-  }
-
-  // Calculate stock price using Gordon Growth Model
-  const calculateStockPrice = (dividend: number, rate: number, growth: number) => {
-    // P = D0 * (1 + g) / (r - g)
-    if (rate <= growth) return 0 // Prevent division by zero or negative
-    const price = dividend * (1 + growth/100) / ((rate/100) - (growth/100))
-    return price
+  /**
+   * Gordon Growth Model: P = D0 * (1 + g) / (r - g).
+   *
+   * `dividend` is D0 — the dividend just paid — which is why the slider names
+   * it. The dividend the numerator grows is NEXT year's, and conflating the
+   * two prices the same stock 5% too high.
+   *
+   * `null` below r = g rather than a number, because there is no number: the
+   * model is undefined there, diverging as r approaches g from above. It used
+   * to return 0, which is not a neutral guard — 0 is a specific claim that the
+   * asset is worthless, printed to two decimals as if it were a valuation. The
+   * one thing that is true at r <= g is that no price exists, so the tile says
+   * that and the chart leaves a gap.
+   */
+  const calculateStockPrice = (
+    dividend: number,
+    rate: number,
+    growth: number,
+  ): number | null => {
+    if (rate <= growth) return null
+    return dividend * (1 + growth / 100) / (rate / 100 - growth / 100)
   }
 
   // Generate bond price data for different discount rates
@@ -125,6 +126,15 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
   // Calculate current prices
   const bondPrice = calculateBondPrice(coupon, years, discountRate)
   const stockPrice = calculateStockPrice(dividend, discountRate, growthRate)
+
+  // The stock's bar is omitted, not drawn at zero, when the model is undefined.
+  // A category label with no rectangle over it reads as a valuation of zero —
+  // the same wrong claim the tile used to make, one chart to the left of where
+  // the reader would look for the correction.
+  const valuationBars = [
+    { name: 'Bond Price', value: bondPrice },
+    ...(stockPrice === null ? [] : [{ name: 'Stock Price', value: stockPrice }]),
+  ]
 
   return (
     <div className="tool-card">
@@ -164,7 +174,7 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
             unit="%"
           />
           <SliderControl
-            label="Dividend (per share)"
+            label="Current dividend D₀ (per share)"
             value={dividend}
             min={0}
             max={10}
@@ -183,14 +193,6 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
           />
         </div>
         
-        <div className="button-group">
-          <Button
-            onClick={() => setShowDataOverlay(!showDataOverlay)}
-            variant={showDataOverlay ? 'primary' : 'secondary'}
-          >
-            {showDataOverlay ? 'Hide Data' : 'Show Data'}
-          </Button>
-        </div>
       </div>
 
       <ToolControlBar onReset={reset} dirty={dirty} />
@@ -198,52 +200,49 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
         <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Bond Price vs. Discount Rate
         </h2>
-        <div className={CHART_BOX}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={bondData} margin={chartTheme.margin}>
-              <CartesianGrid {...chartTheme.grid} />
-              <XAxis
-                key={chartTheme.axisKey('x')} dataKey="rate" {...chartTheme.axis} />
-              <YAxis
-                key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
-              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-              <ChartLine
-                type="monotone"
-                dataKey="price"
-                stroke={BOND_PRICE_STROKE}
-                strokeWidth={2}
-                dot={{ r: 4 }}
-                name="Bond Price"
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
+        <ResponsiveContainer width="100%" height={400}>
+          <LineChart data={bondData} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
+            <XAxis
+              key={chartTheme.axisKey('x')} dataKey="rate" {...chartTheme.axis} />
+            <YAxis
+              key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
+            <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+            <ChartLine
+              type="monotone"
+              dataKey="price"
+              stroke={BOND_PRICE_STROKE}
+              strokeWidth={2}
+              dot={{ r: 4 }}
+              name="Bond Price"
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
 
       <div className="mb-s-8">
         <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Stock Price vs. Discount Rate
         </h2>
-        <div className={CHART_BOX}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={equityData} margin={chartTheme.margin}>
-              <CartesianGrid {...chartTheme.grid} />
-              <XAxis
-                key={chartTheme.axisKey('x')} dataKey="rate" {...chartTheme.axis} />
-              <YAxis
-                key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
-              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-              <ChartLine
-                type="monotone"
-                dataKey="price"
-                stroke={STOCK_PRICE_STROKE}
-                strokeWidth={2}
-                dot={{ r: 4 }}
-                name="Stock Price"
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
+        <ResponsiveContainer width="100%" height={400}>
+          <LineChart data={equityData} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
+            <XAxis
+              key={chartTheme.axisKey('x')} dataKey="rate" {...chartTheme.axis} />
+            <YAxis
+              key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
+            <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+            <ChartLine
+              type="monotone"
+              dataKey="price"
+              stroke={STOCK_PRICE_STROKE}
+              strokeWidth={2}
+              dot={{ r: 4 }}
+              name="Stock Price"
+              connectNulls={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
 
       <div className="mb-s-8">
@@ -251,28 +250,48 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
           Current Asset Valuation
         </h2>
         <div className={SPLIT}>
-          <div className={CHART_BOX}>
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={[
-                { name: 'Bond Price', value: bondPrice },
-                { name: 'Stock Price', value: stockPrice },
-              ]} margin={chartTheme.margin}>
-                <CartesianGrid {...chartTheme.grid} />
-                <XAxis
-                  key={chartTheme.axisKey('x')} dataKey="name" {...chartTheme.axis} />
-                <YAxis
-                  key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
-                <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-                <ChartBar dataKey="value" fill={VALUATION_BAR_FILL} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+          <ResponsiveContainer width="100%" height={400}>
+            <BarChart data={valuationBars} margin={chartTheme.margin}>
+              <CartesianGrid {...chartTheme.grid} />
+              <XAxis
+                key={chartTheme.axisKey('x')} dataKey="name" {...chartTheme.axis} />
+              <YAxis
+                key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
+              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+              <ChartBar dataKey="value" fill={VALUATION_BAR_FILL} />
+            </BarChart>
+          </ResponsiveContainer>
 
           <div>
             <div className={STAT_GRID}>
               <StatBox label="Bond Price" value={bondPrice.toFixed(2)} />
-              <StatBox label="Stock Price" value={stockPrice.toFixed(2)} />
+              {/* An em dash rather than a word: `.stat-tile-value` is a numeric
+                  slot at 1.5rem with tabular figures, and at 130% text its
+                  content box in this two-column grid holds about six
+                  characters. `undefined` is one unbreakable nine-character
+                  token, so it cannot wrap — it bled 24px past the card border
+                  at 130% and would bleed further on any narrower layout.
+                  `SpeculativeAttack.tsx` uses the same dash for the same kind
+                  of domain edge. The `change` line carries the reason, so the
+                  tile never shows a number AND never shows a bare shrug. */}
+              <StatBox
+                label="Stock Price"
+                value={stockPrice === null ? '—' : stockPrice.toFixed(2)}
+                change={stockPrice === null ? 'requires r > g' : undefined}
+              />
             </div>
+              <TileReadout>
+                Both tiles are the two bars on the third chart, one reading each: Bond Price is
+                the bond price at the yield you have set, and Stock Price is the Gordon result.
+                The bond price is defined at every discount rate, so it is a number whenever a
+                yield is set; the stock price is not, because the Gordon denominator r − g goes
+                to zero as the required return reaches the growth rate and the model stops having
+                an answer. That is the case the tile prints — a dash, and the caption owes the
+                reason: at r ≤ g = {growthRate.toFixed(1)}% there is no finite discounted price to
+                report. The second chart carries the same boundary from the other side: the stock
+                price curve begins only where r exceeds g, so push growth up far enough and the
+                line leaves the page entirely.
+              </TileReadout>
 
             <ToolNote label="Reference" variant="info" title="Present Value Principle">
               <p>
@@ -296,6 +315,11 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
           <p>Stocks pay dividends and are valued based on expected future dividends</p>
           <p>Gordon Growth Model assumes constant dividend growth</p>
           <p>Higher growth rates increase stock values, but also increase risk</p>
+          <p>
+            The model requires r &gt; g. At or below the growth rate there is no
+            price to report, so the tile above says the price is undefined rather
+            than printing a number the model cannot produce.
+          </p>
         </ToolNote>
 
         <ToolNote label="Note" variant="lesson" title="Practical Applications">
@@ -305,7 +329,7 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
         </ToolNote>
       </div>
 
-      <ToolNote label="Reference" variant="info" title="Key Insights from Asset Pricing">
+      <ToolNote label="Reference" variant="info" title="Key Insights from Asset Pricing" headingLevel={2}>
         <ul>
           <li>
             <strong>Present Value:</strong> The fundamental principle that all assets are valued based on the present value of their expected future cash flows.

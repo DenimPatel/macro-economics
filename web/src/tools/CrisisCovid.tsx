@@ -5,6 +5,7 @@ import {
   Button,
   SliderControl,
   StatBox,
+  TileReadout,
   ToolControlBar,
   ToolHeader,
   ToolNote,
@@ -20,7 +21,6 @@ const POLICY_BAR_FILL = chartColor(3)
 
 /** Layout shared by the chart and readout blocks. */
 const CONTROL_GRID = 'grid gap-s-6 sm:grid-cols-2'
-const CHART_BOX = 'h-[300px]'
 const SPLIT = 'grid gap-s-6 lg:grid-cols-2'
 const STAT_GRID = 'mb-s-6 grid grid-cols-2 gap-s-3'
 
@@ -42,7 +42,6 @@ interface CovidDataPoint {
  * replaced, each of which re-typed every default in a second list.
  */
 const DEFAULTS = {
-  showDataOverlay: true,
   fiscalPolicy: 100,
   monetaryPolicy: 50,
 }
@@ -54,23 +53,19 @@ export default function CrisisCovid() {
   // `componentDidMount`, and there is no other way to refresh that number.
   useChartTextScaleSignal()
   const [shockType, setShockType] = useState<'demand' | 'supply' | 'combined'>('combined')
-const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
 const [fiscalPolicy, setFiscalPolicy] = useState(DEFAULTS.fiscalPolicy)
 const [monetaryPolicy, setMonetaryPolicy] = useState(DEFAULTS.monetaryPolicy)
 
   const { reset, dirty } = useToolReset(
     {
-    showDataOverlay: showDataOverlay,
     fiscalPolicy: fiscalPolicy,
     monetaryPolicy: monetaryPolicy,
     },
     {
-      setShowDataOverlay,
       setFiscalPolicy,
       setMonetaryPolicy,
     },
     {
-      showDataOverlay: DEFAULTS.showDataOverlay,
       fiscalPolicy: DEFAULTS.fiscalPolicy,
       monetaryPolicy: DEFAULTS.monetaryPolicy,
     },
@@ -175,14 +170,6 @@ const [monetaryPolicy, setMonetaryPolicy] = useState(DEFAULTS.monetaryPolicy)
           </div>
         </div>
 
-        <div className="button-group">
-          <Button
-            onClick={() => setShowDataOverlay(!showDataOverlay)}
-            variant={showDataOverlay ? 'primary' : 'secondary'}
-          >
-            {showDataOverlay ? 'Hide Data' : 'Show Data'}
-          </Button>
-        </div>
       </div>
 
       <ToolControlBar onReset={reset} dirty={dirty} />
@@ -190,52 +177,40 @@ const [monetaryPolicy, setMonetaryPolicy] = useState(DEFAULTS.monetaryPolicy)
         <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Output, Unemployment, and Inflation Path
         </h2>
-        <div className={CHART_BOX}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={covidData} margin={chartTheme.margin}>
-              <CartesianGrid {...chartTheme.grid} />
-              <XAxis
-                key={chartTheme.axisKey('x')} dataKey="year" {...chartTheme.axis} />
-              <YAxis
-                key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
-              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-              <ChartLine
-                type="monotone"
-                dataKey="output"
-                stroke={OUTPUT_STROKE}
-                strokeWidth={2}
-                dot={{ r: 4 }}
-                name="Output (Y)"
-              />
-              <ChartLine
-                type="monotone"
-                dataKey="unemployment"
-                stroke={UNEMPLOYMENT_STROKE}
-                strokeWidth={2}
-                dot={{ r: 4 }}
-                name="Unemployment Rate"
-              />
-              <ChartLine
-                type="monotone"
-                dataKey="inflation"
-                stroke={INFLATION_STROKE}
-                strokeWidth={2}
-                dot={{ r: 4 }}
-                name="Inflation Rate"
-              />
-              {showDataOverlay && (
-                <ChartLine
-                  type="monotone"
-                  dataKey="output"
-                  stroke={OUTPUT_STROKE}
-                  strokeWidth={2}
-                  dot={{ r: 4 }}
-                  name="Actual Data"
-                />
-              )}
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
+        <ResponsiveContainer width="100%" height={400}>
+          <LineChart data={covidData} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
+            <XAxis
+              key={chartTheme.axisKey('x')} dataKey="year" {...chartTheme.axis} />
+            <YAxis
+              key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
+            <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+            <ChartLine
+              type="monotone"
+              dataKey="output"
+              stroke={OUTPUT_STROKE}
+              strokeWidth={2}
+              dot={{ r: 4 }}
+              name="Output (Y)"
+            />
+            <ChartLine
+              type="monotone"
+              dataKey="unemployment"
+              stroke={UNEMPLOYMENT_STROKE}
+              strokeWidth={2}
+              dot={{ r: 4 }}
+              name="Unemployment Rate"
+            />
+            <ChartLine
+              type="monotone"
+              dataKey="inflation"
+              stroke={INFLATION_STROKE}
+              strokeWidth={2}
+              dot={{ r: 4 }}
+              name="Inflation Rate"
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
 
       <div className="mb-s-8">
@@ -243,23 +218,21 @@ const [monetaryPolicy, setMonetaryPolicy] = useState(DEFAULTS.monetaryPolicy)
           Policy Response Comparison
         </h2>
         <div className={SPLIT}>
-          <div className={CHART_BOX}>
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={[
-                { name: 'Output', value: policyResult.output },
-                { name: 'Unemployment', value: policyResult.unemployment },
-                { name: 'Inflation', value: policyResult.inflation },
-              ]} margin={chartTheme.margin}>
-                <CartesianGrid {...chartTheme.grid} />
-                <XAxis
-                  key={chartTheme.axisKey('x')} dataKey="name" {...chartTheme.axis} />
-                <YAxis
-                  key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
-                <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-                <ChartBar dataKey="value" fill={POLICY_BAR_FILL} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+          <ResponsiveContainer width="100%" height={400}>
+            <BarChart data={[
+              { name: 'Output', value: policyResult.output },
+              { name: 'Unemployment', value: policyResult.unemployment },
+              { name: 'Inflation', value: policyResult.inflation },
+            ]} margin={chartTheme.margin}>
+              <CartesianGrid {...chartTheme.grid} />
+              <XAxis
+                key={chartTheme.axisKey('x')} dataKey="name" {...chartTheme.axis} />
+              <YAxis
+                key={chartTheme.axisKey('y')} {...chartTheme.yAxis} />
+              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+              <ChartBar dataKey="value" fill={POLICY_BAR_FILL} />
+            </BarChart>
+          </ResponsiveContainer>
 
           <div>
             <div className={STAT_GRID}>
@@ -267,6 +240,18 @@ const [monetaryPolicy, setMonetaryPolicy] = useState(DEFAULTS.monetaryPolicy)
               <StatBox label="Unemployment" value={policyResult.unemployment.toFixed(1)} unit="%" />
               <StatBox label="Inflation" value={policyResult.inflation.toFixed(1)} unit="%" />
             </div>
+              <TileReadout>
+                        The three tiles are the three bars of the chart immediately below —
+          output {policyResult.output.toFixed(1)}, unemployment{' '}
+          {policyResult.unemployment.toFixed(1)}% and inflation{' '}
+          {policyResult.inflation.toFixed(1)}% —
+                        output, unemployment and inflation side by side in one bar, which is
+                        the only place on the page where the three are comparable without
+                        reading three axes. The chart above them is a different object: the
+                        recorded path of the same three quantities, and its own y scale. The
+                        bars are the model at the current settings, so the number to look for
+                        in the left-hand chart's later years is the shape, not the tile.
+                      </TileReadout>
 
             <ToolNote label="Reference" variant="info" title="Policy Response Effects">
               <p>
@@ -303,7 +288,7 @@ const [monetaryPolicy, setMonetaryPolicy] = useState(DEFAULTS.monetaryPolicy)
         </ToolNote>
       </div>
 
-      <ToolNote label="Reference" variant="info" title="Key Lessons from the Pandemic">
+      <ToolNote label="Reference" variant="info" title="Key Lessons from the Pandemic" headingLevel={2}>
         <ul>
           <li>
             <strong>Unprecedented Policy Response:</strong> The scale of fiscal and monetary policy response was unprecedented in peacetime.

@@ -24,7 +24,7 @@ Asset prices move dramatically based on **expectations** about the future (cash 
 
 **Why discount the future?**
 - \$1 today > \$1 one year from now (can invest and earn interest).
-- If \$1 invested today yields \$$1 \times (1 + i_t)$ next year, then \$1 next year is worth $\frac{1}{1 + i_t}$ today.
+- If \$1 invested today yields $\text{1} \times (1 + i_t)$ next year, then \$1 next year is worth $\frac{1}{1 + i_t}$ today.
 
 **Key Formula**: Value of \$1 received in $n$ years:
 $$\text{Value today} = \frac{1}{(1 + i_t)(1 + i_{t+1}) \cdots (1 + i_{t+n-1})}$$

@@ -10,12 +10,13 @@ import {
 } from 'recharts'
 import { ChartLine } from '../components/ChartPrimitives'
 import {
-  ToolHeader,
-  ToolNote,
+  InfoBox,
   SliderControl,
   StatBox,
-  InfoBox,
+  TileReadout,
   ToolControlBar,
+  ToolHeader,
+  ToolNote,
 } from '../components/ToolComponents'
 import { ChartLegend } from '../components/ChartLegend'
 import { useHiddenSeries } from '../lib/chartSeries'
@@ -346,7 +347,7 @@ export default function IsLmExplorer() {
         headingLevel={2}>
         <div className={SPLIT}>
           <div>
-            <h3 className="mb-s-4 text-label-sm font-semibold text-fg">IS Curve Parameters</h3>
+            <h2 className="mb-s-4 text-label-sm font-semibold text-fg">IS Curve Parameters</h2>
             <div className="control-panel">
               <SliderControl paramKey="G_a" label="Government Spending (G)" value={G_a} min={50} max={150} onChange={setG_a} />
               <SliderControl paramKey="T_a" label="Taxes (T)" value={T_a} min={20} max={80} onChange={setT_a} />
@@ -383,9 +384,9 @@ export default function IsLmExplorer() {
           </div>
 
           <div>
-            <h3 className="mb-s-4 text-label-sm font-semibold text-fg">IS Curve</h3>
+            <h2 className="mb-s-4 text-label-sm font-semibold text-fg">IS Curve</h2>
             {isCurveA.length > 0 ? (
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={400}>
                 <LineChart data={isCurveA} margin={chartTheme.margin}>
                   <CartesianGrid {...chartTheme.grid} />
                   <XAxis
@@ -440,7 +441,18 @@ export default function IsLmExplorer() {
                 </LineChart>
               </ResponsiveContainer>
             ) : (
-              <div className="flex h-[300px] items-center justify-center rounded-card border border-border bg-surface-2">
+              /* The empty state reserves the plot's own frame, so the two
+               * panels in this row are the same height whether or not there
+               * is a curve, and the page does not jump when one appears. It
+               * is a `<div>` and not a container, so it cannot carry a height
+               * PROP the way every plot does — hence the class, and hence
+               * `tools.test.tsx` holding both spellings to the same number
+               * rather than only the one a chart can write.
+               *
+               * The number is spelled in words on purpose. The plot-height test
+               * classifies every `height={…}` by WHERE it was written, and a
+               * number written inside a comment is written inside a comment. */
+              <div className="flex h-[400px] items-center justify-center rounded-card border border-border bg-surface-2">
                 <p className="text-sm text-fg-subtle">No data to display</p>
               </div>
             )}
@@ -504,7 +516,7 @@ export default function IsLmExplorer() {
         headingLevel={2}>
         <div className={SPLIT}>
           <div>
-            <h3 className="mb-s-4 text-label-sm font-semibold text-fg">LM Curve Parameters</h3>
+            <h2 className="mb-s-4 text-label-sm font-semibold text-fg">LM Curve Parameters</h2>
             <div className="control-panel">
               <SliderControl paramKey="M_a" label="Money Supply (M)" value={M_a} min={80} max={250} onChange={setM_a} />
               <SliderControl
@@ -541,9 +553,9 @@ export default function IsLmExplorer() {
           </div>
 
           <div>
-            <h3 className="mb-s-4 text-label-sm font-semibold text-fg">LM Curve</h3>
+            <h2 className="mb-s-4 text-label-sm font-semibold text-fg">LM Curve</h2>
             {lmCurveA.length > 0 ? (
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={400}>
                 <LineChart data={lmCurveA} margin={chartTheme.margin}>
                   <CartesianGrid {...chartTheme.grid} />
                   <XAxis
@@ -599,7 +611,9 @@ export default function IsLmExplorer() {
                 </LineChart>
               </ResponsiveContainer>
             ) : (
-              <div className="flex h-[300px] items-center justify-center rounded-card border border-border bg-surface-2">
+              /* As the IS panel above: the same reserved frame, and the same
+               * reason it is spelled as a class. */
+              <div className="flex h-[400px] items-center justify-center rounded-card border border-border bg-surface-2">
                 <p className="text-sm text-fg-subtle">No data to display</p>
               </div>
             )}
@@ -786,6 +800,17 @@ export default function IsLmExplorer() {
           <StatBox label="Investment at Eq." value={equilibrium_a.I.toFixed(2)} unit="units" />
           <StatBox label="Money Demand (L)" value={equilibrium_a.L.toFixed(2)} unit="units" />
         </div>
+          <TileReadout>
+                    Output {equilibrium_a.Y.toFixed(2)} and the interest rate{' '}
+          {equilibrium_a.r.toFixed(2)} are the two curves' crossing, so those
+          two tiles are a point on the IS-LM diagram below. Investment at Eq.
+                    and Money Demand (L) are the two values that CROSSING is built from —
+                    I = Ī − βr and L = k̄Y − hY − (h/P)i, evaluated at (Y*, r*) — and
+                    they are on no axis, because the diagram's axes are Y and r and both
+                    of these are off-picture quantities read off the curves. The Δ tiles
+                    in the second row are the differences between scenario A and scenario
+                    B: the distance between the two crossings on each axis.
+                  </TileReadout>
       </div>
 
       {comparisonMode && (
@@ -1037,7 +1062,7 @@ export default function IsLmExplorer() {
         headingLevel={2}>
         <div className="grid gap-s-6 sm:grid-cols-2">
           <div>
-            <h3 className="mb-s-2 text-label-sm font-semibold text-fg">IS Curve Characteristics</h3>
+            <h2 className="mb-s-2 text-label-sm font-semibold text-fg">IS Curve Characteristics</h2>
             <ul>
               <li>
                 <strong>Slope:</strong> Negative (downward sloping)
@@ -1056,7 +1081,7 @@ export default function IsLmExplorer() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-s-2 text-label-sm font-semibold text-fg">LM Curve Characteristics</h3>
+            <h2 className="mb-s-2 text-label-sm font-semibold text-fg">LM Curve Characteristics</h2>
             <ul>
               <li>
                 <strong>Slope:</strong> Positive (upward sloping)

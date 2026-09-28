@@ -43,6 +43,31 @@ $$Q_t = \sum_{n=1}^{\infty} \frac{E_t[D_{t+n}]}{(1 + i_{1t} + x_s)(1 + E_t[i_{1,
 
 **Interpretation**: Stock price = EPDV of **all future dividends** (discounted by interest rate + risk premium).
 
+### Closing the Sum: The Gordon Growth Model
+
+The infinite sum is only useful if it sums. Take the two assumptions the closed form needs — the required return is the same in every period, and dividends grow at a constant rate $g$ forever:
+
+$$E_t[D_{t+n}] = D_1 (1 + g)^{n-1}, \qquad D_1 \equiv E_t[D_{t+1}]$$
+
+Factoring the first dividend out leaves a geometric series in the ratio $\frac{1 + g}{1 + i_{1t} + x_s}$:
+
+$$Q_t = \frac{D_1}{1 + i_{1t} + x_s} \sum_{n=0}^{\infty} \left(\frac{1 + g}{1 + i_{1t} + x_s}\right)^n$$
+
+**Step 1: The Series Must Converge.** A geometric series sums only when its ratio is below 1, so the model is defined only when:
+
+$$g < i_{1t} + x_s$$
+
+**Step 2: Apply the Closed Form** $\sum_{n=0}^{\infty} q^n = \frac{1}{1-q}$:
+
+$$Q_t = \frac{D_1}{1 + i_{1t} + x_s} \cdot \frac{1}{1 - \frac{1 + g}{1 + i_{1t} + x_s}} = \frac{D_1}{i_{1t} + x_s - g}$$
+
+**The Constraint Is the Point**: When $g$ reaches the required return, the denominator hits zero and the formula returns an infinite price; push $g$ above it and the series diverges outright. Neither is a valuation — both say *no finite price is consistent with dividends growing forever at a rate the market discounts that heavily*. A modest $g$ is therefore harmless, but it is a FLOOR under the required return, and that is the divisor paradox of §2 resolved.
+
+**Reading the Formula**:
+- $D_1$ is **next** period's expected dividend, not this year's: the sum starts at $n = 1$, so the first term is $D_1$ discounted one period
+- Required return $\uparrow$ $\Rightarrow$ price $\downarrow$ (more discounting)
+- $g \uparrow$ $\Rightarrow$ price $\uparrow$, the whole time remaining inside the constraint
+
 ### Fundamental Value vs. Bubbles
 - **Fundamental Value**: Based on expected dividends.
 - **Bubbles**: Price exceeds any reasonable EPDV of dividends.

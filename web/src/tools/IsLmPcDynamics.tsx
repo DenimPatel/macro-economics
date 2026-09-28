@@ -6,6 +6,7 @@ import {
   InfoBox,
   SliderControl,
   StatBox,
+  TileReadout,
   ToolControlBar,
   ToolHeader,
   ToolNote,
@@ -24,6 +25,11 @@ interface DynamicDataPoint {
   isShock: boolean
 }
 
+/** Annotated at the field so `useState(DEFAULTS.fedReaction)` infers the union
+ * rather than the single value `'aggressive'`, which the other button could
+ * not assign to. */
+type FedReaction = 'passive' | 'aggressive'
+
 /**
  * One copy of this tool's starting values.
  *
@@ -31,10 +37,16 @@ interface DynamicDataPoint {
  * here cannot leave "Reset to defaults" returning to a number the tool no
  * longer opens at — the failure mode of the five hand-written resets this
  * replaced, each of which re-typed every default in a second list.
+ *
+ * `fedReaction` is in here because it is a control and was not in the record:
+ * it lived in a `useState` of its own, below the reset call, so Reset undid the
+ * shock size and left the Fed's reaction selected at whatever the reader had
+ * last chosen. Both buttons change the four tiles below the charts, so a
+ * half-undone pair of controls is worse than either one alone.
  */
 const DEFAULTS = {
   shockSize: 100,
-  showDataOverlay: true,
+  fedReaction: 'aggressive' as FedReaction,
 }
 
 export default function IsLmPcDynamics() {
@@ -44,24 +56,20 @@ export default function IsLmPcDynamics() {
   // Recharts re-measures its tick labels. Recharts measures them once, in
   // `componentDidMount`, and there is no other way to refresh that number.
   useChartTextScaleSignal()
-const [shockSize, setShockSize] = useState(DEFAULTS.shockSize)
-const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
+  const [shockSize, setShockSize] = useState(DEFAULTS.shockSize)
+  const [fedReaction, setFedReaction] = useState<FedReaction>(DEFAULTS.fedReaction)
 
   const { reset, dirty } = useToolReset(
     {
-    shockSize: shockSize,
-    showDataOverlay: showDataOverlay,
+      shockSize,
+      fedReaction,
     },
     {
       setShockSize,
-      setShowDataOverlay,
+      setFedReaction,
     },
-    {
-      shockSize: DEFAULTS.shockSize,
-      showDataOverlay: DEFAULTS.showDataOverlay,
-    },
+    DEFAULTS,
   )
-  const [fedReaction, setFedReaction] = useState<'passive' | 'aggressive'>('aggressive')
 
   // Simulated dynamic adjustment path
   const dynamicData: DynamicDataPoint[] = [
@@ -143,117 +151,105 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
           </div>
         </div>
 
-        <div className="mt-s-4 flex gap-s-2">
-          <Button
-            onClick={() => setShowDataOverlay(!showDataOverlay)}
-            variant={showDataOverlay ? 'primary' : 'secondary'}
-          >
-            {showDataOverlay ? 'Hide Data' : 'Show Data'}
-          </Button>
-        </div>
       </div>
 
       <ToolControlBar onReset={reset} dirty={dirty} />
       <div className="mb-s-8">
         <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Dynamic Adjustment Path</h2>
-        <div className="h-[300px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={dynamicData} margin={chartTheme.margin}>
+        <ResponsiveContainer width="100%" height={400}>
+          <AreaChart data={dynamicData} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
+            <XAxis
+              key={chartTheme.axisKey('x')} dataKey="quarter" {...chartTheme.axis} includeHidden />
+            <YAxis
+              key={chartTheme.axisKey('y')} {...chartTheme.yAxis} includeHidden />
+            <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+            <ChartArea
+              type="monotone"
+              dataKey="output"
+              stroke={chartColor(0)}
+              fill={chartColor(0)}
+              fillOpacity={0.15}
+              name="Output (Y)"
+            />
+            <ChartArea
+              type="monotone"
+              dataKey="interestRate"
+              stroke={chartColor(2)}
+              fill={chartColor(2)}
+              fillOpacity={0.15}
+              name="Interest Rate (r)"
+            />
+            <ChartArea
+              type="monotone"
+              dataKey="inflation"
+              stroke={chartColor(1)}
+              fill={chartColor(1)}
+              fillOpacity={0.15}
+              name="Inflation (π)"
+            />
+            <ChartArea
+              type="monotone"
+              dataKey="unemployment"
+              stroke={chartColor(3)}
+              fill={chartColor(3)}
+              fillOpacity={0.15}
+              name="Unemployment (u)"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div className="mb-s-8">
+        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Quarter-by-Quarter Dynamics</h2>
+        <div className="grid gap-s-6 lg:grid-cols-2">
+          <ResponsiveContainer width="100%" height={400}>
+            <LineChart data={dynamicData} margin={chartTheme.margin}>
               <CartesianGrid {...chartTheme.grid} />
               <XAxis
                 key={chartTheme.axisKey('x')} dataKey="quarter" {...chartTheme.axis} includeHidden />
               <YAxis
                 key={chartTheme.axisKey('y')} {...chartTheme.yAxis} includeHidden />
               <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-              <ChartArea
+              <ChartLine
                 type="monotone"
                 dataKey="output"
+                hide={phoenix.isHidden('output')}
                 stroke={chartColor(0)}
-                fill={chartColor(0)}
-                fillOpacity={0.15}
-                name="Output (Y)"
+                strokeWidth={2}
+                dot={{ r: 4 }}
+                name="Output"
               />
-              <ChartArea
+              <ChartLine
                 type="monotone"
                 dataKey="interestRate"
+                hide={phoenix.isHidden('rate')}
                 stroke={chartColor(2)}
-                fill={chartColor(2)}
-                fillOpacity={0.15}
-                name="Interest Rate (r)"
+                strokeWidth={2}
+                dot={{ r: 4 }}
+                name="Interest Rate"
               />
-              <ChartArea
+              <ChartLine
                 type="monotone"
                 dataKey="inflation"
+                hide={phoenix.isHidden('inflation')}
                 stroke={chartColor(1)}
-                fill={chartColor(1)}
-                fillOpacity={0.15}
-                name="Inflation (π)"
+                strokeWidth={2}
+                dot={{ r: 4 }}
+                name="Inflation"
               />
-              <ChartArea
-                type="monotone"
-                dataKey="unemployment"
-                stroke={chartColor(3)}
-                fill={chartColor(3)}
-                fillOpacity={0.15}
-                name="Unemployment (u)"
-              />
-            </AreaChart>
+            </LineChart>
           </ResponsiveContainer>
-        </div>
-      </div>
-
-      <div className="mb-s-8">
-        <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Quarter-by-Quarter Dynamics</h2>
-        <div className="grid gap-s-6 lg:grid-cols-2">
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={dynamicData} margin={chartTheme.margin}>
-                <CartesianGrid {...chartTheme.grid} />
-                <XAxis
-                  key={chartTheme.axisKey('x')} dataKey="quarter" {...chartTheme.axis} includeHidden />
-                <YAxis
-                  key={chartTheme.axisKey('y')} {...chartTheme.yAxis} includeHidden />
-                <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-                <ChartLine
-                  type="monotone"
-                  dataKey="output"
-                  hide={phoenix.isHidden('output')}
-                  stroke={chartColor(0)}
-                  strokeWidth={2}
-                  dot={{ r: 4 }}
-                  name="Output"
-                />
-                <ChartLine
-                  type="monotone"
-                  dataKey="interestRate"
-                  hide={phoenix.isHidden('rate')}
-                  stroke={chartColor(2)}
-                  strokeWidth={2}
-                  dot={{ r: 4 }}
-                  name="Interest Rate"
-                />
-                <ChartLine
-                  type="monotone"
-                  dataKey="inflation"
-                  hide={phoenix.isHidden('inflation')}
-                  stroke={chartColor(1)}
-                  strokeWidth={2}
-                  dot={{ r: 4 }}
-                  name="Inflation"
-                />
-              </LineChart>
-            </ResponsiveContainer>
-            <ChartLegend
-              items={[
-                { key: 'output', label: 'Output', color: chartColor(0) },
-                { key: 'inflation', label: 'Inflation', color: chartColor(1) },
-                { key: 'rate', label: 'Interest Rate', color: chartColor(2) },
-              ]}
-              hidden={phoenix.hidden}
-              onToggle={phoenix.toggle}
-              onShowAll={phoenix.showAll}
-            />
-          </div>
+          <ChartLegend
+            items={[
+              { key: 'output', label: 'Output', color: chartColor(0) },
+              { key: 'inflation', label: 'Inflation', color: chartColor(1) },
+              { key: 'rate', label: 'Interest Rate', color: chartColor(2) },
+            ]}
+            hidden={phoenix.hidden}
+            onToggle={phoenix.toggle}
+            onShowAll={phoenix.showAll}
+          />
 
           <div>
             <div className="mb-s-6 grid grid-cols-2 gap-s-3">
@@ -262,6 +258,19 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
               <StatBox label="Inflation" value={fedResult.inflation.toFixed(1)} unit="%" />
               <StatBox label="Unemployment" value={fedResult.unemployment.toFixed(1)} unit="%" />
             </div>
+              <TileReadout>
+                        The four tiles are the four lines of both charts, one reading each —
+          output {fedResult.output.toFixed(1)}, interest rate{' '}
+          {fedResult.interestRate.toFixed(1)}%, inflation{' '}
+          {fedResult.inflation.toFixed(1)}%, unemployment{' '}
+          {fedResult.unemployment.toFixed(1)}% — at the END of the simulated
+          path, the last quarter of the first chart, which is where the shock
+          has finished working through. The
+                        second chart drops unemployment because the two charts answer
+                        different questions and four lines on one is already the limit; the
+                        tile's unemployment is the first chart's fourth line, at the same
+                        end point.
+                      </TileReadout>
 
             <ToolNote label="Current setting" variant="info" title="Dynamic Adjustment Process">
               <p>
@@ -298,6 +307,7 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
         label="Key insights"
         variant="insight"
         title="Insights from Dynamic Adjustment"
+        headingLevel={2}
       >
         <ul>
           <li>

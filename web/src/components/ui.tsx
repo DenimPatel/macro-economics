@@ -74,8 +74,61 @@ export function PageHeader({
 }
 
 /**
- * A single number in the course-at-a-glance strip. Rendered as `dt`/`dd` so
- * the strip can be a real `dl`; `order-*` puts the value above the label
+ * The route-level loading state: the shape a page is about to have, in the
+ * plate's own colour, while its module is in flight.
+ *
+ * This is `pages/DataExplorer.tsx`'s loading idiom applied to a whole page,
+ * and the reason it is that idiom and not a spinner is the same one given
+ * there. A shimmer is an animation, and a reader who has asked for a still
+ * page (`data-pref-motion="reduced"`) gets one whether or not the animation
+ * honours it; a spinner is an animation that is *also* a promise about time,
+ * so it either flickers for 120ms on a client-side route change or sits there
+ * being wrong for two seconds on a cold deep link. Grey bars in a card are a
+ * shape, and a shape is quiet.
+ *
+ * It reserves the geometry of a `PageHeader` plus one card, which is the
+ * common floor under all twelve routes. Reserving 0px and then expanding
+ * 400px when the module lands is a page that moves under the reader's eye,
+ * which is the complaint `AGENTS.md` records for a chart that animates — the
+ * same objection to the same animation, and the same answer.
+ *
+ * The label is `sr-only` rather than visible text. On a cold deep link — the
+ * GitHub Pages case, a reader who followed a shared `/lecture/16` — the wait
+ * is a second or two and a sentence explaining it is worth nothing they can
+ * read that fast. On a client-side route change the same wait is 120ms, and
+ * visible text is a flash of a sentence the reader did not finish. The bars
+ * are `aria-hidden` and the status region carries the announcement, so a
+ * screen reader hears "Loading page" once and a sighted reader sees the
+ * shape, and neither sees the other half.
+ *
+ * It is deliberately not `animate-pulse`. See the paragraph above.
+ */
+export function PageSkeleton({ label = 'Loading page' }: { label?: string }) {
+  return (
+    <div role="status" aria-busy="true">
+      <span className="sr-only">{label}</span>
+      <div className="reading-col mb-s-8" aria-hidden="true">
+        <div className="h-2.5 w-24 rounded bg-surface-2" />
+        <div className="mt-s-4 h-7 w-4/5 rounded bg-surface-2" />
+        <div className="mt-s-4 h-2.5 rounded bg-surface-2" />
+        <div className="mt-s-2 h-2.5 w-11/12 rounded bg-surface-2" />
+      </div>
+      <div className="card p-s-5" aria-hidden="true">
+        <div className="flex flex-col gap-s-3">
+          <div className="h-3 w-2/5 rounded bg-surface-2" />
+          <div className="h-2 w-4/5 rounded bg-surface-2" />
+          <div className="h-2 w-3/5 rounded bg-surface-2" />
+          <div className="h-2 w-11/12 rounded bg-surface-2" />
+          <div className="h-2 w-2/3 rounded bg-surface-2" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/**
+ * A single number in the course-at-a-glance strip. Rendered as `dt`/`dd` so the
+ * strip can be a real `dl`; `order-*` puts the value above the label
  * without inverting the markup.
  *
  * The two lines are ONE figure, and the things that make them read as one are

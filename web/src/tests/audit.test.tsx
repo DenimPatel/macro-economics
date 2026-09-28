@@ -88,6 +88,36 @@ describe('a currency dollar is never a math delimiter', () => {
     expect(offenders, `a math span closed early in:\n${offenders.join('\n')}`).toEqual([])
   })
 
+  it('no note renders a doubled dollar sign into its prose', () => {
+    // The same symptom as the backslash above, one character later in the
+    // alphabet, and it is what the corpus writes whenever a currency amount is
+    // put in math mode: `\$$1 \\text{ billion}$` is an escaped dollar followed
+    // by an inline span. micromark will not open a math span at a `$` followed
+    // by a DIGIT — that is a price, not a delimiter — so neither half is math,
+    // and the reader gets `$` `$1 billion` with the dollar sign doubled.
+    //
+    // It survived the wave that fixed 57 escaping defects here because every
+    // one of those fixed the `\$` and left the `$` after it, and it is
+    // invisible in the source: `\$$1` looks like correct escaping and renders
+    // as a typo. Twenty of them, in `Lecture_3.md` and `Lecture_22.md`.
+    //
+    // A `$$` in the SOURCE is a display delimiter and is promoted before the
+    // tree is walked, so the only way a text node here can hold one is if it
+    // was never a delimiter at all.
+    const offenders: string[] = []
+    for (const file of readdirSync(NOTES).filter((f) => f.endsWith('.md'))) {
+      visit(parseNotes(readFileSync(join(NOTES, file), 'utf8')) as never, (node: never) => {
+        const n = node as { type: string; value?: string }
+        if (n.type === 'text' && typeof n.value === 'string' && n.value.includes('$$')) {
+          offenders.push(`${file}: ${JSON.stringify(n.value.slice(0, 60))}`)
+        }
+      })
+    }
+    expect(offenders, `a doubled dollar sign reached the prose of:\n${offenders.join('\n')}`).toEqual(
+      [],
+    )
+  })
+
   it.each(observed)('no inline math span is a mis-paired currency amount (%s)', () => {
     const offenders: string[] = []
     for (const file of readdirSync(NOTES).filter((f) => f.endsWith('.md'))) {
@@ -260,7 +290,7 @@ describe('the lecture page has one reading column, not two widths', () => {
 
 describe('the scenario link carries the controls and restores them', () => {
   const control = (key: string, min: number, max: number, value: number) =>
-    registerControl({ key, min, max, get: () => value, set: () => {} })
+    registerControl({ key, label: key, min, max, get: () => value, set: () => {} })
 
   it('encodes what the controls hold', () => {
     clearControls()
@@ -273,7 +303,7 @@ describe('the scenario link carries the controls and restores them', () => {
   it('clamps an arriving value to the bounds of the control it names', () => {
     clearControls()
     const set = vi.fn()
-    registerControl({ key: 'beta', min: 2, max: 20, get: () => 10, set })
+    registerControl({ key: 'beta', label: 'beta', min: 2, max: 20, get: () => 10, set })
     // A hand-edited or stale link. Measured before the repair: nothing
     // clamped, and the model received a number its own slider cannot show.
     applyScenarioParams({ beta: 9999 })
@@ -291,8 +321,8 @@ describe('the scenario link carries the controls and restores them', () => {
     // produce a link that opens, looks authoritative, and configures the wrong
     // panel.
     clearControls()
-    const a = { key: 'G', min: 50, max: 150, get: () => 100, set: vi.fn() }
-    const b = { key: 'G', min: 50, max: 200, get: () => 120, set: vi.fn() }
+    const a = { key: 'G', label: 'G', min: 50, max: 150, get: () => 100, set: vi.fn() }
+    const b = { key: 'G', label: 'G', min: 50, max: 200, get: () => 120, set: vi.fn() }
     const offA = registerControl(a)
     const offB = registerControl(b)
     expect(snapshotControls()).toEqual({})
@@ -307,7 +337,7 @@ describe('the scenario link carries the controls and restores them', () => {
   it('spends a key once, so a remount is not driven twice', () => {
     clearControls()
     const set = vi.fn()
-    registerControl({ key: 'M', min: 0, max: 10, get: () => 1, set })
+    registerControl({ key: 'M', label: 'M', min: 0, max: 10, get: () => 1, set })
     const spent = new Set<string>()
     applyScenarioParams({ M: 7 }, spent)
     applyScenarioParams({ M: 7 }, spent)
@@ -318,7 +348,7 @@ describe('the scenario link carries the controls and restores them', () => {
   it('leaves the tool alone for a link naming another tool', () => {
     clearControls()
     const set = vi.fn()
-    registerControl({ key: 'P', min: 0, max: 1, get: () => 0.5, set })
+    registerControl({ key: 'P', label: 'P', min: 0, max: 1, get: () => 0.5, set })
     // `ToolPage` only calls `applyScenarioParams` when
     // `incoming.toolId === toolId`; this pins the payload shape that check
     // depends on, so a codec change cannot make it vacuous.

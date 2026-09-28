@@ -16,7 +16,7 @@ export const TOOLS: Record<ToolId, ToolInfo> = {
     title: 'GDP Measurement Visualizer',
     category: 'beginner',
     description:
-      'Explore three approaches to GDP measurement: final goods, value added, and income approaches.',
+      'The three equivalent methods of measuring GDP: Expenditure, Income, and Production.',
   },
   'multiplier-simulator': {
     title: 'Multiplier Effect Simulator',
@@ -28,7 +28,7 @@ export const TOOLS: Record<ToolId, ToolInfo> = {
     title: 'Keynesian Cross Policy Experiments',
     category: 'beginner',
     description:
-      'The three foundational fiscal policy experiments: consumption shocks, government spending changes, and tax policy.',
+      'Four fiscal policy experiments: consumption shocks, government spending, taxes, and both levers at once.',
   },
   'is-lm-explorer': {
     title: 'IS-LM Equilibrium Explorer',
@@ -128,8 +128,6 @@ export interface ScenarioParams {
 }
 
 interface AppState {
-  showDataOverlay: boolean
-  setShowDataOverlay: (show: boolean) => void
   /** Live scenario parameters for the active tool, used for sharing. */
   scenario: { toolId: ToolId; params: ScenarioParams } | null
   setScenario: (toolId: ToolId, params: ScenarioParams) => void
@@ -137,8 +135,6 @@ interface AppState {
 }
 
 export const useAppStore = create<AppState>((set) => ({
-  showDataOverlay: false,
-  setShowDataOverlay: (show) => set({ showDataOverlay: show }),
   scenario: null,
   setScenario: (toolId, params) => set({ scenario: { toolId, params } }),
   clearScenario: () => set({ scenario: null }),

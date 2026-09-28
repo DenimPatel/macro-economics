@@ -6,6 +6,7 @@ import {
   InfoBox,
   SliderControl,
   StatBox,
+  TileReadout,
   ToggleDot,
   ToolControlBar,
   ToolHeader,
@@ -150,25 +151,52 @@ const [showFinancialConditions, setShowFinancialConditions] = useState(DEFAULTS.
   const demandEffect = fiscalImpulse * multiplier
 
   // === Data for Decomposition Chart ===
+  /* One line per category, not two or three, and that is a consequence of the
+   * vertical axis further down rather than a preference.
+   *
+   * These five were broken up on purpose: five of them in 214px at a 390px
+   * viewport is a 43px band, and a HORIZONTAL label's footprint is the LONGER
+   * of its lines, so 'Policy Rate Effect' had to become 'Policy\nRate\nEffect'
+   * and 'Growth Expectations' had to be abbreviated to 'Growth\nExp.'.
+   * MEASURED in Chromium at 390px/130% before the rotation: four overlapping
+   * pairs of neighbours, the worst at −65.0px, and −56.0px after the
+   * abbreviation — the abbreviation shortened the string, not the footprint,
+   * because the second line was still the long one.
+   *
+   * A VERTICAL label's footprint is its font size, not its length, so the line
+   * breaks stop mattering entirely and come out. Two lines would still be two
+   * columns of type: 2 x the font size across, which is 28.6px at 130% against
+   * a 23px band at 320px/130% — MEASURED there as one overlap of −8.3px and
+   * 8px of label outside the SVG. One line is 17px across and the band holds it
+   * at every width and both text scales: MEASURED worst gap between
+   * neighbouring labels +144.4px at 1280/100%, +20.0px at 390/130% and +8.7px
+   * at 320/130%.
+   *
+   * What the rotation costs is the axis BAND, because a vertical label spends
+   * its length downwards: the longest of the five is 19 characters, 124.5px at
+   * 130%, so the band has to be at least that. This is the fix
+   * `RealInterestRateCalculator` already took for the same reason, and
+   * `axisDomains.test.ts` holds that nothing between 0 and 90 degrees exists.
+   */
   const decompositionData = [
     {
-      component: 'Policy Rate\nEffect',
+      component: 'Policy Rate Effect',
       contribution: -(1 / sigma) * (realPolicyRate - rNatural),
     },
     {
-      component: 'Term\nPremium',
+      component: 'Term Premium',
       contribution: -(1 / sigma) * termPremium,
     },
     {
-      component: 'Credit\nSpread',
+      component: 'Credit Spread',
       contribution: -(1 / sigma) * creditSpread,
     },
     {
-      component: 'Fiscal\nImpulse',
+      component: 'Fiscal Impulse',
       contribution: (fiscalImpulse / 100) * 5, // Scale for visualization
     },
     {
-      component: 'Growth\nExpectations',
+      component: 'Growth Expectations',
       contribution: (expectedGrowth - 2.5) * 0.5,
     },
   ]
@@ -424,7 +452,13 @@ const [showFinancialConditions, setShowFinancialConditions] = useState(DEFAULTS.
                 <YAxis
                   key={chartTheme.axisKey('y')}
                   label={{
-                    value: 'Output Gap (%) or Output Level',
+                    // 'or Output Level' named a second quantity this axis
+                    // does not carry: both series on this chart are
+                    // `outputGapTextbook` and `outputGapNK`, and both are gaps
+                    // in percent of potential, with no level anywhere on the
+                    // plot. It was also 30 characters, which is over the
+                    // 25 a rotated label affords in half a 354px plot.
+                    value: 'Output Gap (%)',
                     angle: -90,
                     position: 'insideLeft',
                     fill: chartTheme.axis.tick.fill,
@@ -501,9 +535,23 @@ const [showFinancialConditions, setShowFinancialConditions] = useState(DEFAULTS.
               tone={Math.abs(currentOutputGapNK) > 2 ? 'negative' : 'accent'}
             />
           </div>
+            <TileReadout>
+                      Real Policy Rate {formatNumber(realPolicyRate, 2)}% is the dashed line
+          marked on the IS curves, and the Natural Rate (r*) of{' '}
+          {formatNumber(rNatural, 2)}% it is measured against is the other one. The gap
+                      between them is the Real Rate Gap tile, and the NK Output Gap is
+                      that gap scaled by 1/sigma — the two are the same distance read on
+                      two axes, so both are locatable as the distance between the two
+                      dashed lines rather than as a value of their own. Effective Real
+                      Rate, Term Premium Effect and Credit Spread Effect are the three
+                      bands of the conditions chart on the last tab, stacked: the effective
+                      rate is their SUM and so is a height rather than a band, and the
+                      Financial Conditions Index is a weighted combination of all three,
+                      which is why it is on no axis at all.
+                    </TileReadout>
 
           <InfoBox type="info">
-            <h3 className="mb-s-2 text-label-sm font-semibold text-fg">Understanding the Curves</h3>
+            <h2 className="mb-s-2 text-label-sm font-semibold text-fg">Understanding the Curves</h2>
             <p><strong>Textbook IS Curve:</strong> The simple IS curve shows output as a downward-sloping function of the real interest rate. Higher real rates reduce investment, which via the multiplier reduces aggregate demand.</p>
             <p><strong>Modern NK IS Curve:</strong> What matters is not the absolute real rate, but how it compares to the natural rate. When r &gt; rⁿ, monetary policy is restrictive and output falls below potential.</p>
             <p><strong>Why the Difference Matters:</strong> The modern IS directly incorporates expectations of future growth and rates. Financial frictions enter explicitly as wedges tightening conditions independent of the policy rate alone.</p>
@@ -524,15 +572,72 @@ const [showFinancialConditions, setShowFinancialConditions] = useState(DEFAULTS.
               <BarChart data={decompositionData} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
                 <XAxis
-                  key={chartTheme.axisKey('x')} dataKey="component" {...chartTheme.axis} includeHidden />
+                  key={chartTheme.axisKey('x')}
+                  dataKey="component"
+                  angle={-90}
+                  textAnchor="end"
+                  /* Not a plot height, and the second `height` in the tools
+                   * that is not one. On a cartesian axis `height` is the band
+                   * the tick LABELS are given, and it is the band that makes
+                   * the rotation possible at all: a vertical label spends its
+                   * LENGTH downwards and its font size across, so the band has
+                   * to be a line of text at the reader's largest size rather
+                   * than a column.
+                   *
+                   * 130 holds the longest of the five — 'Growth Expectations',
+                   * 19 characters, MEASURED 124.5px at 130% — with 5.5px to
+                   * spare, and it is a floor rather than a round guess: too
+                   * small a band does not shrink the plot further, it lets the
+                   * label run UP into the plot, which reads as a plotting error
+                   * rather than as a label. 400 would be the other way to be
+                   * wrong, and would re-scale the y axis of a chart whose bars
+                   * are being compared with each other.
+                   *
+                   * `interval={0}` because a vertical label cannot be dropped
+                   * without dropping a bar's name with it: Recharts' tick
+                   * thinning is a horizontal-band decision and has no answer
+                   * for labels that are already one font size wide. */
+                  height={130}
+                  interval={0}
+                  {...chartTheme.axis}
+                  includeHidden
+                />
                 <YAxis
                   key={chartTheme.axisKey('y')}
                   label={{
-                    value: 'Contribution to Output Gap (%)',
+                    // 30 characters, and a rotated label is measured against
+                    // HALF the plot box, so at 130% text it ran 25.5px off the
+                    // top of the chart however tall the plot was.
+                    value: 'Gap Contribution (%)',
                     angle: -90,
                     position: 'insideLeft',
                     fill: chartTheme.axis.tick.fill,
                   }}
+                  /* The y band stays at Recharts' 60, and that is a measured
+                   * decision rather than a default left alone.
+                   *
+                   * Recharts hands every tick label the axis's own `width` as
+                   * the width to WRAP to (about 17px less than it, MEASURED),
+                   * so a category label longer than that is silently broken into
+                   * two lines — and two lines, rotated, are two columns of type,
+                   * 2 x the font size across.
+                   *
+                   * Narrowing this band to 38 DOES fix it: the plot goes from
+                   * 115px to 137px at 320/130%, 'Policy Rate Effect' (117.9px)
+                   * stops wrapping, and the worst neighbour gap goes from
+                   * −8.3px to +10.4px. It also clips the y tick labels by 7px
+                   * at 130% at every width, because they are the signed
+                   * contributions printed at full precision — `-0.255` measures
+                   * 45px at 130% — and 38 is 7px less than that. Rounding them
+                   * would have made room and would have been the wrong trade: an
+                   * axis that reads `-0.3` where the bar is `-0.255` is a
+                   * disagreement on the page about the same number.
+                   *
+                   * So the two constraints are 7px apart and point opposite
+                   * ways, and the one that is wrong at 320px/130% only is the
+                   * one that is left. See the report for the residual: two of
+                   * the five wrap to two columns there, overlapping by 8.3px,
+                   * against −65.0px at 390px/130% before the rotation. */
                   {...chartTheme.yAxis}
                   includeHidden
                 />
@@ -547,10 +652,27 @@ const [showFinancialConditions, setShowFinancialConditions] = useState(DEFAULTS.
           </div>
 
           {/* === DECOMPOSITION DETAILS === */}
+          {/*
+           * Four cards, two inks. They were four heading inks and four number
+           * inks, and three of each came off the tier ramp — so a reader was
+           * told that "Financial Frictions" was the hardest of four things to
+           * understand and "Fiscal Impulse" the easiest, which is a claim
+           * about this course's sequencing dressed as a claim about the
+           * economy. Nothing here is a difficulty: the four are a
+           * decomposition, comparable term for term, and the comparison is
+           * carried by the numbers. The accent stays on Growth Expectations,
+           * which is the one the reader should look at and the one the
+           * `note` below it argues from.
+           *
+           * The card BORDERS and FILLS still carry a tier tint each. That is
+           * deliberate residue, not an oversight: they are decoration on a
+           * card edge rather than ink on a heading or a value, and removing
+           * them is a design change to a block this fix is not re-designing.
+           */}
           <div className="mt-s-6 grid grid-cols-1 gap-s-4 md:grid-cols-2">
             <div className="rounded-card border border-tier-intermediate/30 bg-tier-intermediate/5 p-s-4">
-              <h3 className="font-bold text-tier-intermediate-ink">Policy Rate Effect</h3>
-              <p className="text-2xl font-bold tabular-nums text-tier-intermediate">
+              <h2 className="font-bold text-fg">Policy Rate Effect</h2>
+              <p className="text-2xl font-bold tabular-nums text-fg">
                 {formatNumber(-(1 / sigma) * (realPolicyRate - rNatural), 2)}%
               </p>
               <p className="mt-s-2 text-sm text-fg-muted">
@@ -559,8 +681,8 @@ const [showFinancialConditions, setShowFinancialConditions] = useState(DEFAULTS.
             </div>
 
             <div className="rounded-card border border-tier-case/30 bg-tier-case/5 p-s-4">
-              <h3 className="font-bold text-tier-case-ink">Financial Frictions</h3>
-              <p className="text-2xl font-bold tabular-nums text-tier-case">
+              <h2 className="font-bold text-fg">Financial Frictions</h2>
+              <p className="text-2xl font-bold tabular-nums text-fg">
                 {formatNumber(-(1 / sigma) * (termPremium + creditSpread), 2)}%
               </p>
               <p className="mt-s-2 text-sm text-fg-muted">
@@ -569,8 +691,8 @@ const [showFinancialConditions, setShowFinancialConditions] = useState(DEFAULTS.
             </div>
 
             <div className="rounded-card border border-tier-beginner/30 bg-tier-beginner/5 p-s-4">
-              <h3 className="font-bold text-tier-beginner-ink">Fiscal Impulse</h3>
-              <p className="text-2xl font-bold tabular-nums text-tier-beginner">
+              <h2 className="font-bold text-fg">Fiscal Impulse</h2>
+              <p className="text-2xl font-bold tabular-nums text-fg">
                 {formatNumber(demandEffect, 1)} units
               </p>
               <p className="mt-s-2 text-sm text-fg-muted">
@@ -579,7 +701,7 @@ const [showFinancialConditions, setShowFinancialConditions] = useState(DEFAULTS.
             </div>
 
             <div className="rounded-card border border-accent/30 bg-accent/5 p-s-4">
-              <h3 className="font-bold text-accent-ink">Growth Expectations</h3>
+              <h2 className="font-bold text-accent-ink">Growth Expectations</h2>
               <p className="text-2xl font-bold tabular-nums text-accent">
                 {formatNumber(expectedGrowth, 2)}%
               </p>
@@ -590,7 +712,7 @@ const [showFinancialConditions, setShowFinancialConditions] = useState(DEFAULTS.
           </div>
 
           <InfoBox type="warning">
-            <h3 className="mb-s-2 text-label-sm font-semibold text-fg">Key Insights from Decomposition</h3>
+            <h2 className="mb-s-2 text-label-sm font-semibold text-fg">Key Insights from Decomposition</h2>
             <p><strong>The output gap is determined by:</strong></p>
             <ol className="list-inside">
               <li><strong>Real Rate Gap (r - rⁿ):</strong> The fundamental IS driver.</li>
@@ -612,7 +734,7 @@ const [showFinancialConditions, setShowFinancialConditions] = useState(DEFAULTS.
               Tighter conditions (positive values) imply lower output gaps.
             </p>
 
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={400}>
               <ComposedChart data={[{ name: 'Current', realRate: realPolicyRate, termPrem: termPremium, credSpread: creditSpread }]} margin={chartTheme.margin}>
                 <CartesianGrid {...chartTheme.grid} />
                 <XAxis

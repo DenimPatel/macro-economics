@@ -32,8 +32,15 @@
  *    series defaults to annotation geometry is how a chart ends up with
  *    marker lines heavier than the data.
  *
- * Imported for its side effect from `main.tsx` and from `chartTheme.ts`.
- * Caller props still win, so a single chart can override any of it.
+ * Imported for its side effect from `chartTheme.ts`, which every chart that
+ * does not already import this module goes through, and as a value import by
+ * the twenty tools and the data explorer. It used to be imported for its side
+ * effect from `main.tsx` as well, which is what put Recharts — and the d3 and
+ * lodash modules under it — in the first chunk, since a side-effect import is
+ * a static import. That one is gone: nothing reachable from the entry point
+ * needs a chart, and a chart cannot be reached without passing this module, so
+ * the mutation runs in the chunk that needs it and not before. Caller props
+ * still win, so a single chart can override any of it.
  */
 import { Area, Bar, Brush, Line, Pie, ReferenceArea, ReferenceDot, ReferenceLine, Scatter } from 'recharts'
 

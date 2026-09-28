@@ -373,7 +373,11 @@ $$H = \text{Currency} + \text{Reserves}$$
 
 **Assumption** (Simplified): No one holds currency—all money is in checking accounts.
 
-**Money Demand**: $M^d = L($\$$Y, i$ (same as before).
+**Money Demand** (same as before):
+
+$$
+M^d = L(\$Y, i)
+$$
 
 **Reserve Demand**: Banks demand reserves to back deposits.
 $$R^d = \theta \times M^d$$
@@ -471,9 +475,9 @@ $$\frac{H^s}{\theta} = L(\$Y, i)$$
 ### Key Concepts
 
 1. **Two Assets**: Money (liquid, zero return) vs. Bonds (illiquid, positive return).
-2. **Money Demand**: $M^d = L($\$$Y, i$.
+2. **Money Demand**: falls with the interest rate, rises with nominal income.
     - $\frac{\partial M^d}{\partial i} < 0$ (downward-sloping curve).
-    - $\frac{\partial M^d}{\partial}$ \$$Y$ $> 0$ (shifts curve right).
+    - A rise in nominal income shifts the curve right.
 3. **Equilibrium Interest Rate**: Determined by $M^s = M^d$ (or $H^s = H^d$ with banks).
 4. **Monetary Policy**:
     - **Expansionary**: $\uparrow M$ (or $\uparrow H$) → $\downarrow i$.

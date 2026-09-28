@@ -48,6 +48,21 @@ import type { ScenarioParams } from '../store'
 
 export interface RegisteredControl {
   key: string
+  /**
+   * The label the reader sees, kept alongside the key so a payload can be
+   * resolved by either.
+   *
+   * `paramKey` is how one parameter keeps one identity while wearing two
+   * labels — `FiscalPolicyExperiments` mounts "Change in Autonomous
+   * Consumption", "Change in Government Spending" and "Change in Spending" on
+   * three panels, all backed by the same state, and a link built on one panel
+   * could not be applied on another because the key in the payload was not
+   * among the keys mounted. One key fixes that. But the key is then not the
+   * text on the control, and a reader — or a test, or a link written before
+   * the change — still says the label. Resolving by both is what keeps the
+   * key an identity without making the label a second, competing one.
+   */
+  label: string
   min: number
   max: number
   /** The value the control holds right now. */
@@ -58,6 +73,15 @@ export interface RegisteredControl {
 
 const controls = new Map<string, RegisteredControl[]>()
 const listeners = new Set<() => void>()
+
+/**
+ * Every mounted control whose visible label is `label`, in insertion order.
+ * A label with more than one owner resolves to nothing, for the same reason an
+ * ambiguous key does.
+ */
+function controlsByLabel(label: string): RegisteredControl[] {
+  return registeredControls().filter((control) => control.label === label)
+}
 
 function notify(): void {
   for (const listener of listeners) listener()
@@ -120,7 +144,15 @@ export function applyScenarioParams(params: ScenarioParams, spent?: Set<string>)
   let applied = 0
   for (const [key, raw] of Object.entries(params)) {
     if (spent?.has(key)) continue
-    const list = controls.get(key)
+    // The key is the identity and is tried first. The label is the fallback,
+    // so a payload that names what the reader sees still lands — which is the
+    // case for every link written before a `paramKey` was added, and for the
+    // one a reader types by hand.
+    let list = controls.get(key)
+    if (!list) {
+      const byLabel = controlsByLabel(key)
+      if (byLabel.length === 1) list = byLabel
+    }
     // An ambiguous key has no single owner, so there is nothing to apply the
     // value TO. Ignoring it is the same rule as an unknown key: no control
     // moves, and the link restores everything it can name unambiguously.

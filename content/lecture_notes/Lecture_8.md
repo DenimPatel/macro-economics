@@ -657,7 +657,7 @@ All point to **very tight** labor market $\Rightarrow$ Sustained wage/inflation 
 
 ### What's Next
 - **Lecture 9**: Phillips Curve (what happens when $P^e \neq P$? Inflation dynamics)
-- **Lecture 10**: IS-LM-PC model (integrating demand, supply, and inflation)
+- **Lecture 11**: IS-LM-PC model (integrating demand, supply, and inflation)
 - **Later**: Growth theory (endogenizing $A$, capital, long-run trends)
 
 ## 12. Historical Context: The Natural Rate Debate

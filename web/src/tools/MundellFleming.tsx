@@ -7,6 +7,7 @@ import {
   InfoBox,
   SliderControl,
   StatBox,
+  TileReadout,
   ToolControlBar,
   ToolHeader,
   ToolNote,
@@ -24,6 +25,12 @@ interface MundellFlemingDataPoint {
   isFloating: boolean
 }
 
+/** The instrument being moved. */
+type PolicyType = 'monetary' | 'fiscal'
+
+/** The regime the comparison is drawn in. */
+type ExchangeRateType = 'fixed' | 'floating'
+
 /**
  * One copy of this tool's starting values.
  *
@@ -31,10 +38,21 @@ interface MundellFlemingDataPoint {
  * here cannot leave "Reset to defaults" returning to a number the tool no
  * longer opens at — the failure mode of the five hand-written resets this
  * replaced, each of which re-typed every default in a second list.
+ *
+ * The two regime switches are in the record for the same reason `policyEffect`
+ * is, and they are the more important half of it. They were three
+ * `useState`s holding bare literals, so Reset moved the one slider and left
+ * both button groups wherever the reader had left them — a reader who picked
+ * "Fixed", moved the policy effect and pressed Reset got the effect back with
+ * the fixed-rate regime still selected and a comparison of the wrong two
+ * regimes. The literals are annotated at the fields for the reason
+ * `useState(DEFAULTS.x)` would otherwise infer a single value that the other
+ * button cannot assign to.
  */
 const DEFAULTS = {
   policyEffect: 50,
-  showDataOverlay: true,
+  policyType: 'monetary' as PolicyType,
+  exchangeRateType: 'floating' as ExchangeRateType,
 }
 
 /**
@@ -56,10 +74,11 @@ export default function MundellFleming() {
   // Recharts re-measures its tick labels. Recharts measures them once, in
   // `componentDidMount`, and there is no other way to refresh that number.
   useChartTextScaleSignal()
-  const [policyType, setPolicyType] = useState<'monetary' | 'fiscal'>('monetary')
-const [policyEffect, setPolicyEffect] = useState(DEFAULTS.policyEffect)
-  const [exchangeRateType, setExchangeRateType] = useState<'fixed' | 'floating'>('floating')
-const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
+  const [policyType, setPolicyType] = useState<PolicyType>(DEFAULTS.policyType)
+  const [policyEffect, setPolicyEffect] = useState(DEFAULTS.policyEffect)
+  const [exchangeRateType, setExchangeRateType] = useState<ExchangeRateType>(
+    DEFAULTS.exchangeRateType,
+  )
 
   /**
    * One hidden-series set for the tool's two charts, deliberately. They plot
@@ -72,17 +91,16 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
 
   const { reset, dirty } = useToolReset(
     {
-    policyEffect: policyEffect,
-    showDataOverlay: showDataOverlay,
+      policyEffect,
+      policyType,
+      exchangeRateType,
     },
     {
       setPolicyEffect,
-      setShowDataOverlay,
+      setPolicyType,
+      setExchangeRateType,
     },
-    {
-      policyEffect: DEFAULTS.policyEffect,
-      showDataOverlay: DEFAULTS.showDataOverlay,
-    },
+    DEFAULTS,
   )
 
   // Simulated Mundell-Fleming model data
@@ -103,50 +121,83 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
   // Simulate policy effects
   const simulatePolicyEffect = () => {
     const baseOutput = 100
-    const baseInterestRate = 5
-    const baseExchangeRate = 1.0
-    const baseInflation = 2
-    
-    // Policy effect
-    const policyImpact = policyEffect * 0.01
-    
-    // Different effects based on policy type and exchange rate regime
-    let outputChange = 0
-    let interestRateChange = 0
-    let exchangeRateChange = 0
-    const inflationChange = 0
-    
-    if (policyType === 'monetary') {
-      // Monetary expansion
-      outputChange = policyImpact * 2
-      interestRateChange = -policyImpact
-      if (exchangeRateType === 'floating') {
-        exchangeRateChange = -policyImpact * 0.5  // Currency depreciates
-      } else {
-        // Fixed exchange rate: Fed must sterilize
-        exchangeRateChange = 0
-        interestRateChange = -policyImpact * 0.5  // Fed raises rates to defend
-      }
-    } else {
-      // Fiscal expansion
-      outputChange = policyImpact * 1.5
-      interestRateChange = policyImpact
-      if (exchangeRateType === 'floating') {
-        exchangeRateChange = policyImpact * 0.3  // Currency appreciates
-      } else {
-        // Fixed exchange rate: Fed must sterilize
-        exchangeRateChange = 0
-        interestRateChange = policyImpact * 0.5  // Fed raises rates to defend
-      }
-    }
-    
-    return {
-      output: baseOutput + outputChange,
-      interestRate: baseInterestRate + interestRateChange,
-      exchangeRate: baseExchangeRate + exchangeRateChange,
-      inflation: baseInflation + inflationChange,
-    }
+  const baseInterestRate = 5
+  const baseExchangeRate = 1.0
+  const baseInflation = 2
+
+  // Policy effect, in basis points, entering the model as a fraction of a
+  // percentage point: 100 on the slider is one point off the rate.
+  const policyImpact = policyEffect * 0.01
+
+  let outputChange = 0
+  let interestRateChange = 0
+  let exchangeRateChange = 0
+  const inflationChange = 0
+
+  /**
+   * The model's two coefficients, and the whole of what makes the regime
+   * matter. They are properties of the ECONOMY, not of the verdict: neither
+   * is keyed on the policy type, so the ranking the course teaches falls out
+   * of the arithmetic instead of being written into it.
+   */
+  // How much of a monetary expansion survives a defended peg.
+  //
+  // Under a float the central bank sets the rate and there is no parity to
+  // satisfy, so the rate cut stands. Under a peg the parity pins the rate to
+  // the world rate and the currency is defended by buying and selling
+  // reserves — which contracts and expands the money supply, i.e. moves the
+  // rate back. The monetary instrument under a peg is not the rate at all; it
+  // is the money supply, and the parity condition rather than policy sets it.
+  // What imperfect capital mobility leaves behind, once the defence has run,
+  // is the small remainder. Set this to 1 and monetary policy becomes as
+  // effective under a peg as under a float, and the fiscal claim below stops
+  // holding — which is the test that the peg is doing the work.
+  const SURVIVES_A_PEG = 0.2
+  // How strongly net exports answer the currency, per unit of the exchange
+  // rate. A depreciation raises net exports, hence the negative sign. Set it
+  // to 0 and the exchange rate stops mattering to output at all, which is the
+  // test that the currency channel is doing its half.
+  const NX_TO_EXCHANGE_RATE = -2
+  // The direct demand effect of each instrument, before either channel.
+  // A rate cut works through investment; a spending increase shifts IS. These
+  // are the textbook shapes, and the regime is what tilts them against each
+  // other — it does not set them.
+  const BASE_MONETARY = 2
+  const BASE_FISCAL = 1.5
+
+  if (policyType === 'monetary') {
+    // Monetary expansion: the rate falls and the currency depreciates with it
+    // unless something is holding it up. `survives` is the share of the move
+    // the peg's defence cannot take back — it applies to the output effect as
+    // well as to the rate, because what the defence does is contract the
+    // money supply, and the money supply is what moved output in the first
+    // place. Scaling only the rate would leave the output tile claiming a
+    // monetary expansion under a peg that the model has already undone.
+    const survives = exchangeRateType === 'fixed' ? SURVIVES_A_PEG : 1
+    interestRateChange = -policyImpact * survives
+    exchangeRateChange = exchangeRateType === 'floating' ? -policyImpact * 0.5 : 0
+    outputChange = policyImpact * BASE_MONETARY * survives
+  } else {
+    // Fiscal expansion: spending rises, the rate follows it up, and the
+    // currency appreciates — which is what erodes the spending under a float.
+    interestRateChange = exchangeRateType === 'floating' ? policyImpact : policyImpact * 0.5
+    exchangeRateChange = exchangeRateType === 'floating' ? policyImpact * 0.3 : 0
+    outputChange = policyImpact * BASE_FISCAL
   }
+
+  // Output is the direct effect plus the exchange rate's contribution through
+  // net exports. Under a peg the exchange rate does not move, so that term is
+  // zero — which is the whole reason a peg is the better place to run fiscal
+  // policy: the appreciation that would undo the spending never happens.
+  outputChange += NX_TO_EXCHANGE_RATE * exchangeRateChange
+
+  return {
+    output: baseOutput + outputChange,
+    interestRate: baseInterestRate + interestRateChange,
+    exchangeRate: baseExchangeRate + exchangeRateChange,
+    inflation: baseInflation + inflationChange,
+  }
+}
   
   const policyResult = simulatePolicyEffect()
 
@@ -185,6 +236,7 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
             max={100}
             step={5}
             onChange={setPolicyEffect}
+            unit="bp"
           />
 
           <div>
@@ -206,73 +258,63 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
           </div>
         </div>
 
-        <div className="mt-s-4 flex gap-s-2">
-          <Button
-            onClick={() => setShowDataOverlay(!showDataOverlay)}
-            variant={showDataOverlay ? 'primary' : 'secondary'}
-          >
-            {showDataOverlay ? 'Hide Data' : 'Show Data'}
-          </Button>
-        </div>
       </div>
 
       <ToolControlBar onReset={reset} dirty={dirty} />
       <div className="mb-s-8">
         <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Policy Effectiveness Comparison</h2>
-        <div className="h-[300px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={mfData} margin={chartTheme.margin}>
-              <CartesianGrid {...chartTheme.grid} />
-              {/* `includeHidden` on both axes, on every chart with an
-                * interactive legend. Recharts derives an auto-domain from
-                * the VISIBLE series, so without it, hiding output would
-                * rescale the y axis and the three remaining series would
-                * appear to move — a legend toggle that changes the numbers
-                * on the plot. */}
-              <XAxis
-                key={chartTheme.axisKey('x')} dataKey="year" includeHidden {...chartTheme.axis} />
-              <YAxis
-                key={chartTheme.axisKey('y')} includeHidden {...chartTheme.yAxis} />
-              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-              <ChartArea
-                type="monotone"
-                dataKey="output"
-                stroke={chartColor(0)}
-                fill={chartColor(0)}
-                fillOpacity={0.15}
-                name="Output (Y)"
-                hide={series.isHidden('output')}
-              />
-              <ChartArea
-                type="monotone"
-                dataKey="interestRate"
-                stroke={chartColor(2)}
-                fill={chartColor(2)}
-                fillOpacity={0.15}
-                name="Interest Rate (r)"
-                hide={series.isHidden('interestRate')}
-              />
-              <ChartArea
-                type="monotone"
-                dataKey="exchangeRate"
-                stroke={chartColor(1)}
-                fill={chartColor(1)}
-                fillOpacity={0.15}
-                name="Exchange Rate"
-                hide={series.isHidden('exchangeRate')}
-              />
-              <ChartArea
-                type="monotone"
-                dataKey="inflation"
-                stroke={chartColor(3)}
-                fill={chartColor(3)}
-                fillOpacity={0.15}
-                name="Inflation (π)"
-                hide={series.isHidden('inflation')}
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
+        <ResponsiveContainer width="100%" height={400}>
+          <AreaChart data={mfData} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
+            {/* `includeHidden` on both axes, on every chart with an
+              * interactive legend. Recharts derives an auto-domain from
+              * the VISIBLE series, so without it, hiding output would
+              * rescale the y axis and the three remaining series would
+              * appear to move — a legend toggle that changes the numbers
+              * on the plot. */}
+            <XAxis
+              key={chartTheme.axisKey('x')} dataKey="year" includeHidden {...chartTheme.axis} />
+            <YAxis
+              key={chartTheme.axisKey('y')} includeHidden {...chartTheme.yAxis} />
+            <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+            <ChartArea
+              type="monotone"
+              dataKey="output"
+              stroke={chartColor(0)}
+              fill={chartColor(0)}
+              fillOpacity={0.15}
+              name="Output (Y)"
+              hide={series.isHidden('output')}
+            />
+            <ChartArea
+              type="monotone"
+              dataKey="interestRate"
+              stroke={chartColor(2)}
+              fill={chartColor(2)}
+              fillOpacity={0.15}
+              name="Interest Rate (r)"
+              hide={series.isHidden('interestRate')}
+            />
+            <ChartArea
+              type="monotone"
+              dataKey="exchangeRate"
+              stroke={chartColor(1)}
+              fill={chartColor(1)}
+              fillOpacity={0.15}
+              name="Exchange Rate"
+              hide={series.isHidden('exchangeRate')}
+            />
+            <ChartArea
+              type="monotone"
+              dataKey="inflation"
+              stroke={chartColor(3)}
+              fill={chartColor(3)}
+              fillOpacity={0.15}
+              name="Inflation (π)"
+              hide={series.isHidden('inflation')}
+            />
+          </AreaChart>
+        </ResponsiveContainer>
         {/* This chart had NO legend at all — four series, three of them in a
          * range an order of magnitude below output, and nothing on the plot
          * naming which line was which. That is the defect a legend is for,
@@ -289,51 +331,49 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
       <div className="mb-s-8">
         <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Policy Impact Summary</h2>
         <div className="grid gap-s-6 lg:grid-cols-2">
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={mfData.slice(0, 5)} margin={chartTheme.margin}>
-                <CartesianGrid {...chartTheme.grid} />
-                <XAxis
-                  key={chartTheme.axisKey('x')} dataKey="year" includeHidden {...chartTheme.axis} />
-                <YAxis
-                  key={chartTheme.axisKey('y')} includeHidden {...chartTheme.yAxis} />
-                <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-                <ChartLine
-                  type="monotone"
-                  dataKey="output"
-                  stroke={chartColor(0)}
-                  strokeWidth={2}
-                  dot={{ r: 4 }}
-                  name="Output"
-                  hide={series.isHidden('output')}
-                />
-                <ChartLine
-                  type="monotone"
-                  dataKey="interestRate"
-                  stroke={chartColor(2)}
-                  strokeWidth={2}
-                  dot={{ r: 4 }}
-                  name="Interest Rate"
-                  hide={series.isHidden('interestRate')}
-                />
-                <ChartLine
-                  type="monotone"
-                  dataKey="exchangeRate"
-                  stroke={chartColor(1)}
-                  strokeWidth={2}
-                  dot={{ r: 4 }}
-                  name="Exchange Rate"
-                  hide={series.isHidden('exchangeRate')}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-            <ChartLegend
-              items={MF_LEGEND}
-              hidden={series.hidden}
-              onToggle={series.toggle}
-              onShowAll={series.showAll}
-            />
-          </div>
+          <ResponsiveContainer width="100%" height={400}>
+            <LineChart data={mfData.slice(0, 5)} margin={chartTheme.margin}>
+              <CartesianGrid {...chartTheme.grid} />
+              <XAxis
+                key={chartTheme.axisKey('x')} dataKey="year" includeHidden {...chartTheme.axis} />
+              <YAxis
+                key={chartTheme.axisKey('y')} includeHidden {...chartTheme.yAxis} />
+              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+              <ChartLine
+                type="monotone"
+                dataKey="output"
+                stroke={chartColor(0)}
+                strokeWidth={2}
+                dot={{ r: 4 }}
+                name="Output"
+                hide={series.isHidden('output')}
+              />
+              <ChartLine
+                type="monotone"
+                dataKey="interestRate"
+                stroke={chartColor(2)}
+                strokeWidth={2}
+                dot={{ r: 4 }}
+                name="Interest Rate"
+                hide={series.isHidden('interestRate')}
+              />
+              <ChartLine
+                type="monotone"
+                dataKey="exchangeRate"
+                stroke={chartColor(1)}
+                strokeWidth={2}
+                dot={{ r: 4 }}
+                name="Exchange Rate"
+                hide={series.isHidden('exchangeRate')}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+          <ChartLegend
+            items={MF_LEGEND}
+            hidden={series.hidden}
+            onToggle={series.toggle}
+            onShowAll={series.showAll}
+          />
 
           <div>
             <div className="mb-s-6 grid grid-cols-2 gap-s-3">
@@ -342,16 +382,36 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
               <StatBox label="Exchange Rate" value={policyResult.exchangeRate.toFixed(2)} />
               <StatBox label="Inflation" value={policyResult.inflation.toFixed(1)} unit="%" />
             </div>
+              <TileReadout>
+                These four tiles are the model's response to the move you have dialled in, and
+                that response is a single point rather than a path — output{' '}
+                {policyResult.output.toFixed(1)}, interest rate{' '}
+                {policyResult.interestRate.toFixed(1)}%, exchange rate{' '}
+                {policyResult.exchangeRate.toFixed(2)}, inflation{' '}
+                {policyResult.inflation.toFixed(1)}%. These four move with the policy type and
+                the regime — that is the comparison the tool is for. Nothing on either chart
+                carries them: both charts are the same decade path, from base output of 100, a
+                base rate of 5% and a pegged 1.00 exchange rate, and a decade of recorded data
+                is not a policy response. The arithmetic behind the ordering is the note
+                underneath.
+              </TileReadout>
 
             <ToolNote label="Current setting" variant="info" title="Policy Effectiveness">
               <p>
                 {policyType === 'monetary'
                   ? (exchangeRateType === 'floating'
-                      ? "Monetary expansion is highly effective in a floating exchange rate system. Output increases, interest rates fall, and the currency depreciates."
-                      : "Monetary expansion is less effective in a fixed exchange rate system. The central bank must sterilize the policy to maintain the peg, limiting its impact.")
+                      ? "Monetary expansion is the effective instrument under a floating rate. The central bank has no parity to defend, so it can hold the rate down and the currency is free to depreciate with it — and a cheaper currency is net exports, which is the second channel in the output tile above."
+                      : "Monetary expansion is largely neutralised under a fixed rate. The parity pins the domestic rate to the world rate, so the central bank defends the currency by buying and selling reserves, which contracts the money supply the policy just expanded. What the model leaves is the part the defence could not take back, and the exchange rate does not move at all.")
                   : (exchangeRateType === 'floating'
-                      ? "Fiscal expansion is moderately effective in a floating exchange rate system. Output increases, interest rates rise, and the currency appreciates."
-                      : "Fiscal expansion is less effective in a fixed exchange rate system. The central bank must raise interest rates to defend the peg, offsetting the fiscal stimulus.")}
+                      ? "Fiscal expansion is the weaker instrument under a floating rate. The extra spending raises the domestic rate, which pulls in capital and appreciates the currency, and the fall in net exports offsets much of the spending. The appreciation is the leakage — and it is the term the output tile above subtracts."
+                      : "Fiscal expansion is the effective instrument under a fixed rate. Holding the parity means the central bank accommodates the extra demand instead of letting the rate rise, so nothing crowds out private spending, and the currency does not appreciate to undo it. The exchange rate does not move, so the offset that erodes fiscal policy under a float is simply absent.")}
+              </p>
+              <p className="mt-s-2">
+                Switch the policy type and the regime and watch the four outputs order
+                themselves: under a float monetary beats fiscal, under a peg fiscal beats
+                monetary. That ordering is the result, not an input — the two coefficients
+                that produce it are properties of the economy, and the comment on them says
+                which is which.
               </p>
             </ToolNote>
           </div>
@@ -360,7 +420,7 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
 
       <div className="mt-s-8 grid grid-cols-1 gap-s-4 lg:grid-cols-3">
         <InfoBox type="info" title="Mundell-Fleming Framework">
-          <p>Small open economy with perfect capital mobility</p>
+          <p>Small open economy with imperfect capital mobility</p>
           <p>IS-LM-PC model extended to international capital flows</p>
           <p>Exchange rate regime determines policy effectiveness</p>
         </InfoBox>
@@ -378,15 +438,15 @@ const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
         </InfoBox>
       </div>
 
-      <ToolNote label="Key insights" variant="insight" title="Insights from Mundell-Fleming">
+      <ToolNote label="Key insights" variant="insight" title="Insights from Mundell-Fleming" headingLevel={2}>
         <ul>
           <li>
             <strong>Exchange Rate Regimes:</strong> The choice of exchange rate regime fundamentally affects policy effectiveness.
             Fixed rates limit monetary autonomy but provide exchange rate stability.
           </li>
           <li>
-            <strong>Capital Mobility:</strong> Perfect capital mobility means that monetary policy is less effective in a fixed rate system.
-            Capital flows will offset any attempts to change interest rates.
+            <strong>Capital Mobility:</strong> Imperfect capital mobility means that monetary policy is less effective in a fixed rate system.
+            Capital flows offset most of any attempt to change interest rates, and the central bank unwinds what is left to hold the parity.
           </li>
           <li>
             <strong>Policy Trade-offs:</strong> The model shows that policymakers must choose between exchange rate stability, monetary independence, and capital mobility.

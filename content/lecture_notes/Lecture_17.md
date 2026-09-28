@@ -307,8 +307,8 @@ $$\epsilon = \frac{8,000}{7,000} = 1.14 > 1$$
 - **Exchange Rate as Policy Tool**: Can use $\epsilon$ to stimulate demand (depreciation boosts net exports).
 
 ### What's Next
-- **Lecture 18-19**: Extend IS model to open economy (goods market equilibrium with trade).
+- **Lecture 19**: Extend IS model to open economy (goods market equilibrium with trade).
 - **Lecture 20-21**: Introduce financial openness (Mundell-Fleming model: IS-LM with open capital account).
-- **Lecture 22+**: Expectations, asset pricing, and exchange rate dynamics.
+- **Lecture 22+**: Expectations and asset pricing, following on from exchange rate dynamics.
 
 **Bottom Line**: Opening the economy introduces powerful new linkages and policy tradeoffs. For most countries, these are **first-order** considerations. Even for the US, they matter increasingly over time.

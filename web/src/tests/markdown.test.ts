@@ -204,11 +204,19 @@ describe('promoteDisplayMath', () => {
         expect(lines[i + 3]?.trim(), `${file}:${i + 2} needs a blank line below`).toBe('')
       }
     }
-    // All 433 one-line display equations in the notes. 33 of them already sat
-    // on their own line and 8 were indented four spaces, so before this they
-    // were 433 inline expressions: 392 welded to the end of the sentence
-    // above, 33 centred nowhere, and 8 rendered as monospace LaTeX source.
-    expect(promoted).toBe(433)
+    // Every one-line display equation in the notes, which was 433 when this
+    // count was taken: 33 of them already sat on their own line and 8 were
+    // indented four spaces, so before the transform they were 433 inline
+    // expressions — 392 welded to the end of the sentence above, 33 centred
+    // nowhere, and 8 rendered as monospace LaTeX source.
+    //
+    // 437 now, and the four are the Gordon derivation in Lecture 23: the
+    // infinite sum reached a closed form the lecture had never carried, and
+    // every step of it is a display equation. A pinned total is only a useful
+    // guard if it moves when a lecture legitimately gains an equation, so the
+    // invariant to watch is the one above this line — a fenced block per
+    // equation, at the margin, with a blank line either side.
+    expect(promoted).toBe(437)
   })
 
   it('leaves exactly the two sentence-shaped equations in Lecture 10', () => {

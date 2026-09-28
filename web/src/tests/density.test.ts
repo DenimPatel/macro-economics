@@ -321,10 +321,7 @@ describe('the dimensions that must not move', () => {
     // different height and two tools stop being comparable by eye. This is a
     // correctness property, not a taste one.
     expect(decl(':root', '--plot-h')).toBe('400px')
-    expect(decl(':root', '--plot-h-tall')).toBe('420px')
-    for (const name of ['--plot-h', '--plot-h-tall']) {
-      expect(decl(':root', name), name).not.toMatch(/var\(--/)
-    }
+    expect(decl(':root', '--plot-h'), '--plot-h').not.toMatch(/var\(--/)
     expect(decl('.recharts-responsive-container', 'height')).toBe(
       'var(--plot-h)'
     )
@@ -341,18 +338,49 @@ describe('the dimensions that must not move', () => {
     expect(decl('.plot-frame', 'height')).toBe('var(--plot-h)')
   })
 
-  it('leaves the retired tall frame declared and unread, so it cannot creep back', () => {
-    // `--plot-h-tall` is kept in `:root` — see the note there — so the next
-    // pass cannot re-derive 420px by accident. The site has TWO plot
-    // geometries, not one: the tool charts use fixed `h-[300px]` frames (the
-    // test below pins that), and `DataExplorer` is the single page on
-    // `--plot-h` at 400px because its second axis and legend need the room.
-    // What must not happen is a third consumer appearing.
-    const frame = ruleBody('.plot-frame')
-    expect(frame).not.toMatch(/--plot-h-tall/)
-    const consumers = CSS.match(/--plot-h-tall/g) ?? []
-    // The `:root` declaration, its own comment stripped, and nothing else.
-    expect(consumers).toHaveLength(1)
+  /**
+   * There is ONE plot height on this site, and this is the assertion that
+   * says so.
+   *
+   * `--plot-h-tall: 420px` was declared beside `--plot-h` and read by
+   * nothing, and the test that covered it counted its own single occurrence in
+   * `:root` and called that a guard. Pinning a dead declaration is not a
+   * guard: it makes a token nobody reads look load-bearing, and the next
+   * agent to need a second height wires it up on the strength of a green tick
+   * that only ever measured the token's own existence.
+   *
+   * So the property is the one that was true all along — no second plot
+   * height — stated over every `height:` this stylesheet writes, so a
+   * re-derived 420px is caught wherever it is written rather than only where
+   * a reviewer happened to look.
+   *
+   * The `plotHeights` list is the positive control, and it is the reason this
+   * cannot pass by finding nothing: a broken pattern reports an empty list, the
+   * empty list satisfies every `not.toContain` below, and the suite goes green
+   * on a stylesheet that no longer declares a plot height at all. `toContain
+   * ('400px')` is what makes that a failure instead.
+   */
+  it('leaves the site with one plot height, and 420px nowhere in it', () => {
+    const plotHeights = [...CSS.matchAll(/(?:^|[;{\s])(--plot-h[a-z-]*)\s*:\s*([^;}]+)/g)]
+    expect(
+      plotHeights.map((m) => m[1]),
+      'the pattern found no plot HEIGHT token, so the checks below are vacuous'
+    ).toContain('--plot-h')
+    // ONE. A second declared height is the defect this replaces: it looks like
+    // a supported second geometry, so a future agent wires a chart into it on
+    // the strength of a declaration rather than a measurement.
+    expect(
+      plotHeights.map((m) => m[1]),
+      'a second plot height token, declared and read by nothing'
+    ).toEqual(['--plot-h'])
+    // Both plot frames on the site resolve that one token, so a 400px plot is
+    // 400px whatever drew it.
+    for (const frame of ['.recharts-responsive-container', '.plot-frame']) {
+      expect(decl(frame, 'height'), frame).toBe('var(--plot-h)')
+    }
+    // And 420px is gone from the file, comments included: a reviewer reading
+    // the note on `.plot-frame` should not be able to find the number either.
+    expect(RAW_CSS, 'the retired height survives as a literal').not.toMatch(/420px/)
   })
 
   it("leaves the tools' own plot frames on fixed pixels", () => {

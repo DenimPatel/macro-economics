@@ -55,7 +55,7 @@ $$E_t = \frac{1 + i_t}{1 + i^*_t} E^e_{t+1}$$
 **Approximation**:
 $$i_t \approx i^*_t + \frac{E^e_{t+1} - E_t}{E_t}$$
 
-**Interpretation**: Domestic rate = Foreign rate + Expected appreciation of domestic currency.
+**Interpretation**: Domestic rate = Foreign rate + Expected depreciation of domestic currency.
 
 **Key Results**:
 - $\uparrow i$ (domestic) $\Rightarrow$ $E \uparrow$ (appreciation today $\Rightarrow$ expect depreciation tomorrow).

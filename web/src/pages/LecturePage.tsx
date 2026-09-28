@@ -239,7 +239,7 @@ export default function LecturePage() {
                 Move the controls and watch the model respond. The full tool opens a larger view.
               </p>
               {lecture.miniTools.map((spec) => (
-                <MiniTool key={`${spec.toolId}-${spec.preset ?? ''}`} spec={spec} />
+                <MiniTool key={spec.toolId} spec={spec} />
               ))}
             </section>
           )}

@@ -16,6 +16,7 @@ import {
   InfoBox,
   SliderControl,
   StatBox,
+  TileReadout,
   ToolControlBar,
   ToolHeader,
   ToolNote,
@@ -24,6 +25,7 @@ import { chartColor, chartTheme, useChartTextScaleSignal } from '../design/chart
 import { useToolReset } from '../lib/toolReset'
 import { useHiddenSeries } from '../lib/chartSeries'
 import { ChartLegend } from '../components/ChartLegend'
+import { dataDomain } from '../lib/chartDomain'
 
 interface ScenarioData {
   scenario: string
@@ -33,6 +35,30 @@ interface ScenarioData {
   realRate: number
   expectedRealRate: number
 }
+
+/**
+ * The five scenarios as the bar chart's x axis spells them, which is not how
+ * the tooltip, the data or the section heading spell them.
+ *
+ * The axis is the only one of those places with a hard geometric budget — the
+ * plot is 214px wide at 390px and five categories divide it into 42.8px bands
+ * — and a category label has to fit its band. It is a separate map rather
+ * than a second `scenario` field because the full name has to survive
+ * everywhere else: it is what the tooltip prints, and a tooltip that said
+ * "Scenario: Deflation" when the axis said "Scenario: 2" would be a defect of
+ * the same class this map exists to fix.
+ *
+ * `tickFormatter` receives the raw payload value, not the tick text, so the
+ * tooltip is unaffected by this.
+ */
+const SCENARIO_TICK_LABELS: Record<string, string> = {
+  'Normal Economy': 'Normal',
+  'High Inflation': 'High infl.',
+  Deflation: 'Deflation',
+  Disinflation: 'Disinflation',
+  'Stagflation (1970s)': 'Stagflation',
+}
+
 
 interface TimeSeriesData {
   period: string
@@ -56,6 +82,7 @@ const DEFAULTS = {
   actualInflation: 2.5,
   expectedInflation: 2.2,
 }
+
 
 export default function RealInterestRateCalculator() {
   const actualVsExpected = useHiddenSeries(['realActual', 'realExpected'])
@@ -240,6 +267,66 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
 
   const nominalComparison = generateNominalRateComparison()
 
+  /**
+   * The three rate axes on this page, each computed from the series it draws.
+   *
+   * Every one of them carried a literal pair, and a literal pair on a Recharts
+   * axis is not what it looks like: with `allowDataOverflow` false — which
+   * `tools.test.tsx` requires site-wide, correctly, because the alternative
+   * clips a series past the plot edge with nothing on screen saying so — a
+   * numeric `domain` is a FLOOR and a CEILING rather than the drawn range, and
+   * Recharts widens it to whatever the data needs. So the written bounds and
+   * the drawn bounds were different numbers with nothing on the page to say
+   * so, and the written ones were the ones a reader of the source believed.
+   *
+   * MEASURED, at the defaults, in Chromium on the production build:
+   *
+   *  - Fisher chart, `[-5, 8]`: the data over i ∈ [-2, 8] is [-4.5, 5.8], so
+   *    the drawn axis really is [-5, 8] and the prop is live THERE. Drag i to
+   *    -2 and inflation to 10 and the drawn axis becomes [-12, 8] with ticks
+   *    -12 -7 -2 3 8 — one bound snapped to a round 8 and the other sitting
+   *    on a data point, which is the tell that a pin and a fit have been
+   *    mixed. Widening the prop would have changed nothing at those settings.
+   *  - Scenario bars, `[-6, 6]`: 1970s stagflation has inflation 8.0, so the
+   *    drawn axis is [-6, 8] and the ceiling in the source is not the ceiling
+   *    on the screen.
+   *  - History, `[-6, 6]`: 2022 has inflation 8.0, same answer.
+   *
+   * None of the three clipped its data — Recharts' widening is why — so this
+   * is not a fix for marks outside a frame. It is the removal of a claim in
+   * the source that the page contradicts, in favour of a bound that is
+   * computed, follows the sliders, and cannot be half right.
+   *
+   * `includeZero` on all three because zero is the single most load-bearing
+   * line on this page: the tool's own copy branches on `realRate < 0` three
+   * times and each chart draws `chartTheme.baseline` there, so a domain that
+   * stopped short of zero on an all-positive series would put the baseline
+   * outside the frame and take the sign question with it.
+   */
+  const fisherRateDomain = dataDomain(
+    [
+      nominalComparison.map((d) => d.realRateActual),
+      nominalComparison.map((d) => d.realRateExpected),
+    ],
+    { includeZero: true },
+  )
+  const scenarioRateDomain = dataDomain(
+    [
+      scenarioComparison.map((d) => d.nominalRate),
+      scenarioComparison.map((d) => d.inflationRate),
+      scenarioComparison.map((d) => d.realRate),
+    ],
+    { includeZero: true },
+  )
+  const historyRateDomain = dataDomain(
+    [
+      timeSeriesData.map((d) => d.nominalRate),
+      timeSeriesData.map((d) => d.actualInflation),
+      timeSeriesData.map((d) => d.realRate),
+    ],
+    { includeZero: true },
+  )
+
   return (
     <div className="tool-card">
       <ToolHeader
@@ -333,6 +420,17 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
           tone={Math.abs(activeActual - activeExpected) > 0.5 ? 'accent' : undefined}
         />
       </div>
+        <TileReadout>
+                  Nominal Rate, Actual Inflation and Expected Inflation restate the
+                  three sliders and each prints its own value under its track. Real
+                  Rate (Actual) and Expected Real Rate are the two lines of the chart
+                  below, i − π and i − π^e, and the gap between them is what the chart
+                  exists to show. The Inflation Surprise is that gap in inflation
+                  points — {(actualInflation - expectedInflation >= 0 ? 'above' : 'below')}{' '}
+                  actual expectations by{' '}
+                  {Math.abs(actualInflation - expectedInflation).toFixed(2)} — and it is
+                  on no axis, because it is a difference between two of them.
+                </TileReadout>
 
       {/* Fisher Equation Explanation */}
       <div className="mb-s-8">
@@ -400,7 +498,7 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
         <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           How Real Rates Change with Nominal Rates (at current {activeActual.toFixed(1)}% inflation)
         </h2>
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={400}>
           <LineChart data={nominalComparison} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
@@ -410,7 +508,7 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
               label={{
                 value: 'Nominal Interest Rate (%)',
                 position: 'insideBottomRight',
-                offset: -10,
+                offset: -5,
                 fill: chartTheme.axis.tick.fill,
               }}
               {...chartTheme.axis}
@@ -424,7 +522,7 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
                 position: 'insideLeft',
                 fill: chartTheme.axis.tick.fill,
               }}
-              domain={[-5, 8]}
+              domain={fisherRateDomain}
               {...chartTheme.yAxis}
               includeHidden
             />
@@ -484,19 +582,49 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
         <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Real Rates Across Economic Scenarios
         </h2>
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={400}>
           <BarChart data={scenarioComparison} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
               key={chartTheme.axisKey('x')}
               dataKey="scenario"
-              angle={-45}
+              angle={-90}
               textAnchor="end"
-              height={100}
+              /* Not a plot height, and the only `height` in this tool that is
+               * not 400. On a cartesian axis `height` is the band the tick
+               * LABELS are given. Raising it to 400 would buy an empty 300px
+               * under the plot and shrink the plot to nothing, which is the
+               * opposite of the point. The normalisation test knows the
+               * difference: it requires every `ResponsiveContainer` height to
+               * be the one value and allows exactly one other `height` in the
+               * tools, on an axis.
+               *
+               * VERTICAL, and that is the fix for a collision the angle could
+               * not solve. At -45 a label's horizontal footprint is
+               * `width x cos45`, so no rotation but zero can make a long name
+               * fit a 42.8px band, and at 390px the five bands are 42.8px
+               * wide: MEASURED, four overlapping pairs at gaps of -21.0,
+               * -3.8, -12.4 and -42.6px at textScale 1.0, and -26.8, -9.6,
+               * -18.2 and -48.4px at 1.3 — identical at plot heights of 300,
+               * 350 and 400, because a label's footprint is a function of its
+               * LENGTH and the plot's WIDTH, not of how tall the plot is. At
+               * -90 the footprint is the font size instead of the string
+               * length, so 11px of label sits in a 42.8px band and the
+               * collision cannot recur at any width or text size. What the
+               * angle does cost is depth, which is what this band is: 100px
+               * held the 19-character "Stagflation (1970s)" at 16px and is
+               * sized for the longest SHORT label instead.
+               *
+               * The 12px `tick` override that stood here pinned the category
+               * labels to a fixed size, which is the reader's text-size
+               * preference ignored on one axis of the site. `chartTheme.axis`
+               * already carries `--chart-tick-size`, so it is dropped and the
+               * band is sized for the scale that preference can reach. */
+              height={120}
               interval={0}
+              tickFormatter={(value: string) => SCENARIO_TICK_LABELS[value] ?? value}
               {...chartTheme.axis}
               includeHidden
-              tick={{ ...chartTheme.axis.tick, fontSize: 12 }}
             />
             <YAxis
               key={chartTheme.axisKey('y')}
@@ -506,7 +634,7 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
                 position: 'insideLeft',
                 fill: chartTheme.axis.tick.fill,
               }}
-              domain={[-6, 6]}
+              domain={scenarioRateDomain}
               {...chartTheme.yAxis}
               includeHidden
             />
@@ -540,7 +668,7 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
       {/* Historical Context */}
       <div className="mb-s-8">
         <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Historical Real Interest Rates</h2>
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={400}>
           <ComposedChart data={timeSeriesData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
@@ -549,7 +677,7 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
               label={{
                 value: 'Time Period',
                 position: 'insideBottomRight',
-                offset: -10,
+                offset: -5,
                 fill: chartTheme.axis.tick.fill,
               }}
               {...chartTheme.axis}
@@ -563,7 +691,7 @@ const [expectedInflation, setExpectedInflation] = useState(DEFAULTS.expectedInfl
                 position: 'insideLeft',
                 fill: chartTheme.axis.tick.fill,
               }}
-              domain={[-6, 6]}
+              domain={historyRateDomain}
               {...chartTheme.yAxis}
               includeHidden
             />

@@ -5,6 +5,7 @@ import {
   Button,
   SliderControl,
   StatBox,
+  TileReadout,
   ToolControlBar,
   ToolHeader,
   ToolNote,
@@ -22,7 +23,6 @@ const TOTAL_GROWTH_FILL = chartColor(3)
 
 /** Layout shared by the chart and readout blocks. */
 const CONTROL_GRID = 'grid gap-s-6 sm:grid-cols-2'
-const CHART_BOX = 'h-[300px]'
 const SPLIT = 'grid gap-s-6 lg:grid-cols-2'
 const STAT_GRID = 'mb-s-6 grid grid-cols-2 gap-s-3'
 
@@ -36,15 +36,30 @@ interface GrowthDataPoint {
 }
 
 /**
+ * The country whose growth record the reader is looking at. Annotated rather
+ * than narrowed, because a literal `'us'` in the record would make
+ * `useState(DEFAULTS.country)` infer the single value `'us'` and the two other
+ * country buttons would not assign to it.
+ */
+type Country = 'us' | 'china' | 'japan'
+
+/**
  * One copy of this tool's starting values.
  *
  * The `useState` calls below read from it, so a default that is revised
  * here cannot leave "Reset to defaults" returning to a number the tool no
  * longer opens at — the failure mode of the five hand-written resets this
  * replaced, each of which re-typed every default in a second list.
+ *
+ * `country` is in here because it is a control and was not in the record:
+ * `useState<'us' | 'china' | 'japan'>('us')` held it outside every copy of the
+ * defaults, so a reader who switched to China, moved the time period, pressed
+ * Reset, and got the time period back with China still selected and a caption
+ * about the time period over a chart of the wrong country. A reset that undoes
+ * one of the two things the reader did is a reset that misreports what it does.
  */
 const DEFAULTS = {
-  showDataOverlay: true,
+  country: 'us' as Country,
   timePeriod: 2000,
 }
 
@@ -55,23 +70,19 @@ export default function GrowthAccounting() {
   // Recharts re-measures its tick labels. Recharts measures them once, in
   // `componentDidMount`, and there is no other way to refresh that number.
   useChartTextScaleSignal()
-  const [country, setCountry] = useState<'us' | 'china' | 'japan'>('us')
-const [showDataOverlay, setShowDataOverlay] = useState(DEFAULTS.showDataOverlay)
-const [timePeriod, setTimePeriod] = useState(DEFAULTS.timePeriod)
+  const [country, setCountry] = useState<Country>(DEFAULTS.country)
+  const [timePeriod, setTimePeriod] = useState(DEFAULTS.timePeriod)
 
   const { reset, dirty } = useToolReset(
     {
-    showDataOverlay: showDataOverlay,
-    timePeriod: timePeriod,
+      country,
+      timePeriod,
     },
     {
-      setShowDataOverlay,
+      setCountry,
       setTimePeriod,
     },
-    {
-      showDataOverlay: DEFAULTS.showDataOverlay,
-      timePeriod: DEFAULTS.timePeriod,
-    },
+    DEFAULTS,
   )
 
   // Historical growth data for different countries
@@ -167,14 +178,6 @@ const [timePeriod, setTimePeriod] = useState(DEFAULTS.timePeriod)
           />
         </div>
 
-        <div className="button-group">
-          <Button
-            onClick={() => setShowDataOverlay(!showDataOverlay)}
-            variant={showDataOverlay ? 'primary' : 'secondary'}
-          >
-            {showDataOverlay ? 'Hide Data' : 'Show Data'}
-          </Button>
-        </div>
       </div>
 
       <ToolControlBar onReset={reset} dirty={dirty} />
@@ -182,33 +185,31 @@ const [timePeriod, setTimePeriod] = useState(DEFAULTS.timePeriod)
         <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Growth Decomposition Over Time
         </h2>
-        <div className={CHART_BOX}>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={currentCountryData} margin={chartTheme.margin}>
-              <CartesianGrid {...chartTheme.grid} />
-              <XAxis
-                key={chartTheme.axisKey('x')} dataKey="year" {...chartTheme.axis} includeHidden />
-              <YAxis
-                key={chartTheme.axisKey('y')} {...chartTheme.yAxis} includeHidden />
-              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-              <ChartBar hide={decomp.isHidden('capital')} dataKey="capitalContribution" fill={CAPITAL_FILL} name="Capital Contribution" />
-              <ChartBar hide={decomp.isHidden('labor')} dataKey="laborContribution" fill={LABOR_FILL} name="Labor Contribution" />
-              <ChartBar hide={decomp.isHidden('tfp')} dataKey="tfpContribution" fill={TFP_FILL} name="TFP Contribution" />
-              <ChartBar hide={decomp.isHidden('total')} dataKey="growthRate" fill={TOTAL_GROWTH_FILL} name="Total Growth" />
-            </BarChart>
-          </ResponsiveContainer>
-          <ChartLegend
-            items={[
-              { key: 'capital', label: 'Capital Contribution', color: CAPITAL_FILL },
-              { key: 'labor', label: 'Labor Contribution', color: LABOR_FILL },
-              { key: 'tfp', label: 'TFP Contribution', color: TFP_FILL },
-              { key: 'total', label: 'Total Growth', color: TOTAL_GROWTH_FILL },
-            ]}
-            hidden={decomp.hidden}
-            onToggle={decomp.toggle}
-            onShowAll={decomp.showAll}
-          />
-        </div>
+        <ResponsiveContainer width="100%" height={400}>
+          <BarChart data={currentCountryData} margin={chartTheme.margin}>
+            <CartesianGrid {...chartTheme.grid} />
+            <XAxis
+              key={chartTheme.axisKey('x')} dataKey="year" {...chartTheme.axis} includeHidden />
+            <YAxis
+              key={chartTheme.axisKey('y')} {...chartTheme.yAxis} includeHidden />
+            <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+            <ChartBar hide={decomp.isHidden('capital')} dataKey="capitalContribution" fill={CAPITAL_FILL} name="Capital Contribution" />
+            <ChartBar hide={decomp.isHidden('labor')} dataKey="laborContribution" fill={LABOR_FILL} name="Labor Contribution" />
+            <ChartBar hide={decomp.isHidden('tfp')} dataKey="tfpContribution" fill={TFP_FILL} name="TFP Contribution" />
+            <ChartBar hide={decomp.isHidden('total')} dataKey="growthRate" fill={TOTAL_GROWTH_FILL} name="Total Growth" />
+          </BarChart>
+        </ResponsiveContainer>
+        <ChartLegend
+          items={[
+            { key: 'capital', label: 'Capital Contribution', color: CAPITAL_FILL },
+            { key: 'labor', label: 'Labor Contribution', color: LABOR_FILL },
+            { key: 'tfp', label: 'TFP Contribution', color: TFP_FILL },
+            { key: 'total', label: 'Total Growth', color: TOTAL_GROWTH_FILL },
+          ]}
+          hidden={decomp.hidden}
+          onToggle={decomp.toggle}
+          onShowAll={decomp.showAll}
+        />
       </div>
 
       <div className="mb-s-8">
@@ -216,38 +217,36 @@ const [timePeriod, setTimePeriod] = useState(DEFAULTS.timePeriod)
           Contribution Shares (2000)
         </h2>
         <div className={SPLIT}>
-          <div className={CHART_BOX}>
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart margin={chartTheme.margin}>
-                <ChartPie
-                  data={pieData}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={true}
-                  outerRadius={80}
-                  fill={CAPITAL_FILL}
-                  dataKey="value"
-                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                >
-                  {pieData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </ChartPie>
-                <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
-                {/*
-                 * No legend on this one, deliberately. A pie is ONE series cut
-                 * into slices, so there is nothing to hide: `hide` on a slice
-                 * removes part of the quantity being displayed, and a pie with
-                 * a slice missing is not a pie any more. Buttons here would
-                 * also be a lie — clickable, focusable, and inert.
-                 *
-                 * It is not information loss either: every slice already
-                 * carries its own name and percentage as a direct label, so
-                 * the legend repeated, in a column, what the slices say.
-                 */}
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
+          <ResponsiveContainer width="100%" height={400}>
+            <PieChart margin={chartTheme.margin}>
+              <ChartPie
+                data={pieData}
+                cx="50%"
+                cy="50%"
+                labelLine={true}
+                outerRadius={80}
+                fill={CAPITAL_FILL}
+                dataKey="value"
+                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </ChartPie>
+              <Tooltip {...chartTheme.tooltip} cursor={chartTheme.cursor} />
+              {/*
+               * No legend on this one, deliberately. A pie is ONE series cut
+               * into slices, so there is nothing to hide: `hide` on a slice
+               * removes part of the quantity being displayed, and a pie with
+               * a slice missing is not a pie any more. Buttons here would
+               * also be a lie — clickable, focusable, and inert.
+               *
+               * It is not information loss either: every slice already
+               * carries its own name and percentage as a direct label, so
+               * the legend repeated, in a column, what the slices say.
+               */}
+            </PieChart>
+          </ResponsiveContainer>
 
           <div>
             <div className={STAT_GRID}>
@@ -256,6 +255,16 @@ const [timePeriod, setTimePeriod] = useState(DEFAULTS.timePeriod)
               <StatBox label="TFP Contribution" value={currentData.tfpContribution.toFixed(1)} unit="%" />
               <StatBox label="Total Growth" value={currentData.growthRate.toFixed(1)} unit="%" />
             </div>
+        <TileReadout>
+          All four tiles are the four segments of one stacked bar — total growth
+          with capital, labour and TFP as its parts — so each is a segment
+          height and Total Growth is the whole of the stack, not a fifth series.
+          The chart is ten bars, one per year, and the year matters: these are{' '}
+          {currentData.year}'s, not the last bar's. The second chart holds that
+          year on its own, which is where to read the shares rather than the
+          levels.
+        </TileReadout>
+              
 
             <ToolNote label="Reference" variant="info" title="Growth Accounting Principles">
               <p>
@@ -292,7 +301,7 @@ const [timePeriod, setTimePeriod] = useState(DEFAULTS.timePeriod)
         </ToolNote>
       </div>
 
-      <ToolNote label="Reference" variant="info" title="Key Insights from Growth Accounting">
+      <ToolNote label="Reference" variant="info" title="Key Insights from Growth Accounting" headingLevel={2}>
         <ul>
           <li>
             <strong>Capital vs. Labor:</strong> In developing economies, capital accumulation typically contributes more to growth than labor.

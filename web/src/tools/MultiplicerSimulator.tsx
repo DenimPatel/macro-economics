@@ -5,6 +5,7 @@ import {
   InfoBox,
   SliderControl,
   StatBox,
+  TileReadout,
   ToolControlBar,
   ToolHeader,
   ToolNote,
@@ -96,6 +97,16 @@ const [governmentSpending, setGovernmentSpending] = useState(DEFAULTS.government
           unit="$B"
         />
       </div>
+        <TileReadout>
+                  The multiplier 1/(1 − MPC) is the SLOPE of the cumulative line rather
+                  than a point on it, so it is the ratio of the plateau to the first
+                  bar: {formatNumber(maxChange / roundsData[0].change)} here. Initial
+                  Spending is the first bar of the round-by-round chart, Total GDP
+                  Impact is where the cumulative line levels off, and Additional Output
+                  — the part of the total that was not the first round — is the gap
+                  between that plateau and the first bar. It is on no axis, because it
+                  is a difference between two of them rather than either one.
+                </TileReadout>
 
       <div className="mb-s-8">
         <InfoBox type="info" title="How it works">
@@ -113,7 +124,7 @@ const [governmentSpending, setGovernmentSpending] = useState(DEFAULTS.government
         <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">
           Multiplier Rounds: Cumulative GDP Impact
         </h2>
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={400}>
           <BarChart data={roundsData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
@@ -142,7 +153,7 @@ const [governmentSpending, setGovernmentSpending] = useState(DEFAULTS.government
 
       <div className="visualization-container mt-s-8">
         <h2 className="mb-s-4 text-lg font-semibold tracking-tight text-fg">Round-by-Round Breakdown</h2>
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={400}>
           <BarChart data={roundsData} margin={chartTheme.margin}>
             <CartesianGrid {...chartTheme.grid} />
             <XAxis
@@ -193,7 +204,7 @@ const [governmentSpending, setGovernmentSpending] = useState(DEFAULTS.government
         </div>
       </div>
 
-      <ToolNote label="Key insights" variant="insight" title="What the model implies">
+      <ToolNote label="Key insights" variant="insight" title="What the model implies" headingLevel={2}>
         <ul>
           <li>
             Higher MPC means a stronger multiplier. If people spend 80¢ of each $1 earned, the

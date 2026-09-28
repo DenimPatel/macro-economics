@@ -790,6 +790,31 @@ describe('the lecture page at its boundaries', () => {
 })
 
 describe('the bracket shortcut', () => {
+  /**
+   * Every wait in this block is a full lecture arriving, not a state change.
+   *
+   * `LecturePage` loads its body with a dynamic `import()` of a lecture note
+   * and renders the whole article — markdown, KaTeX, the quiz, the mini-tool —
+   * into jsdom, which has no layout to make any of it cheap. `waitFor`'s
+   * default budget is 1000ms, which is a sensible budget for an assertion
+   * about a class name flipping and a coin flip when three of those renders
+   * are competing with the rest of the suite for the same workers. The
+   * assertion itself is not loosened: it still waits for the next lecture's
+   * `<h1>` and fails if it never arrives, it just no longer reports a loaded
+   * machine as a broken shortcut.
+   *
+   * This is also the file's slowest test and, at the time of writing, the
+   * suite's — MEASURED at 671ms alone and 1.3s in a full-suite run, against
+   * 472ms and 502ms for its two siblings in this block, which mount a lecture
+   * and press a key without waiting for the navigation. The extra cost is the
+   * two navigations, and it is real work rather than a timer: there is no
+   * debounce, no transition and no `setTimeout` on the path, which is why
+   * fake timers buy nothing here. Do not make it fast by asserting less —
+   * the second `waitFor` is what proves the shortcut goes BOTH ways, and the
+   * step it proves is the one that was broken.
+   */
+  const ARRIVAL_MS = 10000
+
   function page(path: string) {
     const result = render(
       <MemoryRouter initialEntries={[path]}>
@@ -802,8 +827,13 @@ describe('the bracket shortcut', () => {
     // heading left behind by another test cannot satisfy the wait.
     const h1 = () => result.container.querySelector('h1')?.textContent ?? ''
     const n = Number(path.split('/').pop())
-    const settled = () => waitFor(() => expect(h1()).toContain(`${n}.`))
-    return { ...result, h1, settled }
+    const settled = () =>
+      waitFor(() => expect(h1()).toContain(`${n}.`), { timeout: ARRIVAL_MS })
+    const arrived = (lecture: number) =>
+      waitFor(() => expect(h1()).toContain(`${LECTURES[lecture].n}.`), {
+        timeout: ARRIVAL_MS,
+      })
+    return { ...result, h1, settled, arrived }
   }
 
   it('steps forward on ] and back on [', async () => {
@@ -812,11 +842,11 @@ describe('the bracket shortcut', () => {
     act(() => {
       fireEvent.keyDown(document, { key: ']' })
     })
-    await waitFor(() => expect(view.h1()).toContain(`${LECTURES[5].n}.`))
+    await view.arrived(5)
     act(() => {
       fireEvent.keyDown(document, { key: '[' })
     })
-    await waitFor(() => expect(view.h1()).toContain(`${LECTURES[4].n}.`))
+    await view.arrived(4)
   })
 
   it('is inert with a modifier, so Ctrl+] stays the browser tab switch', async () => {
